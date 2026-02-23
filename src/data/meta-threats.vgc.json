@@ -1,0 +1,132 @@
+[
+  {
+    "id": "flutter-mane",
+    "name": "Flutter Mane",
+    "kind": "pokemon",
+    "pokemonId": "flutter-mane",
+    "defensiveTypes": ["ghost", "fairy"],
+    "threatMoveTypes": ["ghost", "fairy"],
+    "expectedSpeed": 205,
+    "utilityCountersAny": ["snarl", "thunder-wave", "tailwind", "trick-room"],
+    "priority": 1
+  },
+  {
+    "id": "urshifu-rapid-strike",
+    "name": "Urshifu-RS",
+    "kind": "pokemon",
+    "pokemonId": "urshifu-rapid-strike",
+    "defensiveTypes": ["fighting", "water"],
+    "threatMoveTypes": ["water", "fighting"],
+    "expectedSpeed": 163,
+    "utilityCountersAny": ["follow-me", "rage-powder", "tailwind", "thunder-wave"],
+    "priority": 2
+  },
+  {
+    "id": "raging-bolt",
+    "name": "Raging Bolt",
+    "kind": "pokemon",
+    "pokemonId": "raging-bolt",
+    "defensiveTypes": ["electric", "dragon"],
+    "threatMoveTypes": ["electric", "dragon"],
+    "expectedSpeed": 128,
+    "utilityCountersAny": ["icy-wind", "electroweb", "thunder-wave", "taunt"],
+    "priority": 3
+  },
+  {
+    "id": "incineroar",
+    "name": "Incineroar",
+    "kind": "pokemon",
+    "pokemonId": "incineroar",
+    "defensiveTypes": ["fire", "dark"],
+    "threatMoveTypes": ["fire", "dark"],
+    "expectedSpeed": 123,
+    "utilityCountersAny": ["taunt", "haze", "will-o-wisp", "fake-out"],
+    "priority": 4
+  },
+  {
+    "id": "calyrex-ice",
+    "name": "Calyrex-Ice",
+    "kind": "pokemon",
+    "pokemonId": "calyrex-ice",
+    "defensiveTypes": ["psychic", "ice"],
+    "threatMoveTypes": ["ice", "psychic"],
+    "expectedSpeed": 112,
+    "utilityCountersAny": ["will-o-wisp", "taunt", "haze", "trick-room"],
+    "priority": 5
+  },
+  {
+    "id": "rillaboom",
+    "name": "Rillaboom",
+    "kind": "pokemon",
+    "pokemonId": "rillaboom",
+    "defensiveTypes": ["grass"],
+    "threatMoveTypes": ["grass"],
+    "expectedSpeed": 137,
+    "utilityCountersAny": ["taunt", "tailwind", "will-o-wisp"],
+    "priority": 6
+  },
+  {
+    "id": "amoonguss",
+    "name": "Amoonguss",
+    "kind": "pokemon",
+    "pokemonId": "amoonguss",
+    "defensiveTypes": ["grass", "poison"],
+    "threatMoveTypes": ["grass", "poison"],
+    "expectedSpeed": 90,
+    "utilityCountersAny": ["taunt", "haze", "trick-room"],
+    "priority": 7
+  },
+  {
+    "id": "ogerpon-wellspring",
+    "name": "Ogerpon-Wellspring",
+    "kind": "pokemon",
+    "pokemonId": "ogerpon-wellspring",
+    "defensiveTypes": ["grass", "water"],
+    "threatMoveTypes": ["grass", "water"],
+    "expectedSpeed": 177,
+    "utilityCountersAny": ["tailwind", "thunder-wave", "taunt"],
+    "priority": 8
+  },
+  {
+    "id": "gholdengo",
+    "name": "Gholdengo",
+    "kind": "pokemon",
+    "pokemonId": "gholdengo",
+    "defensiveTypes": ["steel", "ghost"],
+    "threatMoveTypes": ["steel", "ghost"],
+    "expectedSpeed": 149,
+    "utilityCountersAny": ["snarl", "tailwind", "trick-room", "taunt"],
+    "priority": 9
+  },
+  {
+    "id": "iron-hands",
+    "name": "Iron Hands",
+    "kind": "pokemon",
+    "pokemonId": "iron-hands",
+    "defensiveTypes": ["fighting", "electric"],
+    "threatMoveTypes": ["fighting", "electric"],
+    "expectedSpeed": 118,
+    "utilityCountersAny": ["will-o-wisp", "taunt", "haze", "tailwind"],
+    "priority": 10
+  },
+  {
+    "id": "tr-caly-ice",
+    "name": "TR (Caly-I)",
+    "kind": "archetype",
+    "defensiveTypes": ["psychic", "ice"],
+    "threatMoveTypes": ["psychic", "ice"],
+    "expectedSpeed": 110,
+    "utilityCountersAny": ["taunt", "imprison", "trick-room", "fake-out", "haze"],
+    "priority": 11
+  },
+  {
+    "id": "rain-core",
+    "name": "Rain Core",
+    "kind": "archetype",
+    "defensiveTypes": ["water"],
+    "threatMoveTypes": ["water", "electric"],
+    "expectedSpeed": 170,
+    "utilityCountersAny": ["sunny-day", "wide-guard", "taunt", "thunder-wave"],
+    "priority": 12
+  }
+]

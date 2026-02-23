@@ -1,0 +1,94 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-off-black: #121212;
+  --color-st-black: #030303;
+}
+
+@font-face {
+  font-family: 'ubuntu';
+  src: url('../fonts/ubuntu/Ubuntu-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'ubuntu-special';
+  src: url('../fonts/ubuntu/Ubuntu-Italic.ttf') format('truetype');
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-family: 'ubuntu', sans-serif;
+  background-color: var(--color-off-black);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+#app {
+  min-height: 100vh;
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(56, 189, 248, 0.2), transparent 38%),
+    radial-gradient(circle at 82% 88%, rgba(59, 130, 246, 0.18), transparent 40%),
+    linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.86)),
+    url('../img/fondoweb-optimized.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+textarea,
+select,
+input,
+button {
+  color: inherit;
+}
+
+button,
+select,
+input,
+textarea {
+  outline: none;
+}
+
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.55);
+  border-color: rgba(56, 189, 248, 0.7);
+}
+
+@keyframes walk {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  20% {
+    transform: translateX(-3px) translateY(-2px);
+  }
+  40% {
+    transform: translateX(-6px) translateY(0);
+  }
+  60% {
+    transform: translateX(-6px) translateY(-2px);
+  }
+  80% {
+    transform: translateX(-3px) translateY(0);
+  }
+  100% {
+    transform: translateX(0) translateY(-2px);
+  }
+}
+
+@layer utilities {
+  .animate-walk {
+    animation: walk 1.5s infinite linear;
+    display: inline-block;
+  }
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "rain-offense",
+    "name": "Rain Offense",
+    "summary": "Rain core with speed pressure and spread damage",
+    "threats": ["kyogre", "urshifu-rapid-strike", "raging-bolt"]
+  },
+  {
+    "id": "psyspam",
+    "name": "Psyspam",
+    "summary": "Terrain based pressure with high special output",
+    "threats": ["indeedee", "armarouge", "flutter-mane"]
+  },
+  {
+    "id": "balance-intimidate",
+    "name": "Intimidate Balance",
+    "summary": "Pivot heavy balance with speed control",
+    "threats": ["incineroar", "landorus-therian", "amoonguss"]
+  }
+]

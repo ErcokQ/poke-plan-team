@@ -1,0 +1,133 @@
+[
+  {
+    "id": "great-tusk",
+    "name": "Great Tusk",
+    "kind": "pokemon",
+    "pokemonId": "great-tusk",
+    "defensiveTypes": ["ground", "fighting"],
+    "threatMoveTypes": ["ground", "fighting"],
+    "expectedSpeed": 339,
+    "utilityCountersAny": ["will-o-wisp", "taunt", "haze", "rapid-spin"],
+    "priority": 1
+  },
+  {
+    "id": "kingambit",
+    "name": "Kingambit",
+    "kind": "pokemon",
+    "pokemonId": "kingambit",
+    "defensiveTypes": ["dark", "steel"],
+    "threatMoveTypes": ["dark", "steel"],
+    "expectedSpeed": 262,
+    "utilityCountersAny": ["will-o-wisp", "taunt", "haze"],
+    "priority": 2
+  },
+  {
+    "id": "gholdengo",
+    "name": "Gholdengo",
+    "kind": "pokemon",
+    "pokemonId": "gholdengo",
+    "defensiveTypes": ["steel", "ghost"],
+    "threatMoveTypes": ["steel", "ghost"],
+    "expectedSpeed": 306,
+    "utilityCountersAny": ["knock-off", "taunt", "thunder-wave"],
+    "priority": 3
+  },
+  {
+    "id": "dragapult",
+    "name": "Dragapult",
+    "kind": "pokemon",
+    "pokemonId": "dragapult",
+    "defensiveTypes": ["dragon", "ghost"],
+    "threatMoveTypes": ["dragon", "ghost"],
+    "expectedSpeed": 421,
+    "utilityCountersAny": ["thunder-wave", "tailwind", "icy-wind"],
+    "priority": 4
+  },
+  {
+    "id": "iron-valiant",
+    "name": "Iron Valiant",
+    "kind": "pokemon",
+    "pokemonId": "iron-valiant",
+    "defensiveTypes": ["fairy", "fighting"],
+    "threatMoveTypes": ["fairy", "fighting"],
+    "expectedSpeed": 350,
+    "utilityCountersAny": ["thunder-wave", "tailwind", "will-o-wisp"],
+    "priority": 5
+  },
+  {
+    "id": "zamazenta",
+    "name": "Zamazenta",
+    "kind": "pokemon",
+    "pokemonId": "zamazenta",
+    "defensiveTypes": ["fighting"],
+    "threatMoveTypes": ["fighting", "steel"],
+    "expectedSpeed": 388,
+    "utilityCountersAny": ["will-o-wisp", "haze", "taunt"],
+    "priority": 6
+  },
+  {
+    "id": "gliscor",
+    "name": "Gliscor",
+    "kind": "pokemon",
+    "pokemonId": "gliscor",
+    "defensiveTypes": ["ground", "flying"],
+    "threatMoveTypes": ["ground", "flying"],
+    "expectedSpeed": 317,
+    "utilityCountersAny": ["ice-shard", "taunt", "haze"],
+    "priority": 7
+  },
+  {
+    "id": "garganacl",
+    "name": "Garganacl",
+    "kind": "pokemon",
+    "pokemonId": "garganacl",
+    "defensiveTypes": ["rock"],
+    "threatMoveTypes": ["rock"],
+    "expectedSpeed": 196,
+    "utilityCountersAny": ["taunt", "haze", "encore"],
+    "priority": 8
+  },
+  {
+    "id": "roaring-moon",
+    "name": "Roaring Moon",
+    "kind": "pokemon",
+    "pokemonId": "roaring-moon",
+    "defensiveTypes": ["dragon", "dark"],
+    "threatMoveTypes": ["dragon", "dark", "flying"],
+    "expectedSpeed": 373,
+    "utilityCountersAny": ["thunder-wave", "icy-wind", "will-o-wisp"],
+    "priority": 9
+  },
+  {
+    "id": "raging-bolt",
+    "name": "Raging Bolt",
+    "kind": "pokemon",
+    "pokemonId": "raging-bolt",
+    "defensiveTypes": ["electric", "dragon"],
+    "threatMoveTypes": ["electric", "dragon"],
+    "expectedSpeed": 262,
+    "utilityCountersAny": ["haze", "thunder-wave", "taunt"],
+    "priority": 10
+  },
+  {
+    "id": "volcarona",
+    "name": "Volcarona",
+    "kind": "pokemon",
+    "pokemonId": "volcarona",
+    "defensiveTypes": ["bug", "fire"],
+    "threatMoveTypes": ["fire", "bug"],
+    "expectedSpeed": 328,
+    "utilityCountersAny": ["taunt", "haze", "thunder-wave", "stealth-rock"],
+    "priority": 11
+  },
+  {
+    "id": "hazard-stack",
+    "name": "Hazard Stack",
+    "kind": "archetype",
+    "defensiveTypes": ["steel", "ghost"],
+    "threatMoveTypes": ["ground", "ghost"],
+    "expectedSpeed": 300,
+    "utilityCountersAny": ["rapid-spin", "defog", "taunt", "encore"],
+    "priority": 12
+  }
+]

@@ -1,0 +1,21 @@
+<svg width="720" height="720" viewBox="0 0 720 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bgGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(500 260) rotate(126.34) scale(520)">
+      <stop stop-color="#ff2e83" stop-opacity="0.9"/>
+      <stop offset="0.48" stop-color="#0d1118" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#0b1522"/>
+    </radialGradient>
+    <linearGradient id="rim" x1="120" y1="100" x2="610" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2ee8ff"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="720" fill="url(#bgGlow)"/>
+  <circle cx="360" cy="360" r="280" fill="none" stroke="url(#rim)" stroke-width="8" opacity="0.55"/>
+  <ellipse cx="360" cy="420" rx="180" ry="170" fill="#0f172a" opacity="0.7"/>
+  <circle cx="360" cy="280" r="120" fill="#1e293b" opacity="0.86"/>
+  <rect x="245" y="410" width="230" height="220" rx="110" fill="#111827" opacity="0.9"/>
+  <circle cx="320" cy="265" r="17" fill="#22d3ee" opacity="0.65"/>
+  <circle cx="400" cy="265" r="17" fill="#22d3ee" opacity="0.65"/>
+  <rect x="285" y="250" width="150" height="40" rx="20" fill="#0f172a" opacity="0.65"/>
+</svg>

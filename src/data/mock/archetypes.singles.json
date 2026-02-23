@@ -1,0 +1,20 @@
+[
+  {
+    "id": "hazard-stack",
+    "name": "Hazard Stack",
+    "summary": "Layer hazards and force progress with pivots",
+    "threats": ["gliscor", "ting-lu", "gholdengo"]
+  },
+  {
+    "id": "bulky-offense",
+    "name": "Bulky Offense",
+    "summary": "Pressure with resilient attackers and pivots",
+    "threats": ["great-tusk", "kingambit", "dragapult"]
+  },
+  {
+    "id": "screens-setup",
+    "name": "Screens Setup",
+    "summary": "Support setup sweepers with dual screens",
+    "threats": ["iron-valiant", "kingambit", "dragonite"]
+  }
+]

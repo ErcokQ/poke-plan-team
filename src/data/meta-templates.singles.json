@@ -1,0 +1,112 @@
+{
+  "teams": [
+    {
+      "id": "ou-balance-1",
+      "name": "OU Balance Core",
+      "members": [
+        {
+          "slot": 1,
+          "pokemonId": "great-tusk",
+          "abilityId": "protosynthesis",
+          "itemId": "leftovers",
+          "natureId": "impish",
+          "teraType": "water",
+          "moves": ["earthquake", "rapid-spin", "knock-off", "stealth-rock"],
+          "evs": { "hp": 252, "atk": 0, "def": 252, "spa": 0, "spd": 4, "spe": 0 },
+          "ivs": { "hp": 31, "atk": 31, "def": 31, "spa": 31, "spd": 31, "spe": 31 },
+          "level": 100
+        },
+        {
+          "slot": 2,
+          "pokemonId": "kingambit",
+          "abilityId": "supreme-overlord",
+          "itemId": "black-glasses",
+          "natureId": "adamant",
+          "teraType": "dark",
+          "moves": ["kowtow-cleave", "sucker-punch", "iron-head", "swords-dance"],
+          "evs": { "hp": 244, "atk": 252, "def": 0, "spa": 0, "spd": 12, "spe": 0 },
+          "ivs": { "hp": 31, "atk": 31, "def": 31, "spa": 31, "spd": 31, "spe": 31 },
+          "level": 100
+        },
+        {
+          "slot": 3,
+          "pokemonId": "dragapult",
+          "abilityId": "infiltrator",
+          "itemId": "choice-specs",
+          "natureId": "timid",
+          "teraType": "ghost",
+          "moves": ["draco-meteor", "shadow-ball", "flamethrower", "u-turn"],
+          "evs": { "hp": 0, "atk": 0, "def": 0, "spa": 252, "spd": 4, "spe": 252 },
+          "ivs": { "hp": 31, "atk": 0, "def": 31, "spa": 31, "spd": 31, "spe": 31 },
+          "level": 100
+        },
+        {
+          "slot": 4,
+          "pokemonId": "gliscor",
+          "abilityId": "poison-heal",
+          "itemId": "toxic-orb",
+          "natureId": "careful",
+          "teraType": "water",
+          "moves": ["earthquake", "knock-off", "protect", "toxic"],
+          "evs": { "hp": 244, "atk": 0, "def": 40, "spa": 0, "spd": 224, "spe": 0 },
+          "ivs": { "hp": 31, "atk": 31, "def": 31, "spa": 31, "spd": 31, "spe": 31 },
+          "level": 100
+        },
+        {
+          "slot": 5,
+          "pokemonId": "gholdengo",
+          "abilityId": "good-as-gold",
+          "itemId": "leftovers",
+          "natureId": "timid",
+          "teraType": "steel",
+          "moves": ["make-it-rain", "shadow-ball", "recover", "nasty-plot"],
+          "evs": { "hp": 56, "atk": 0, "def": 0, "spa": 252, "spd": 0, "spe": 200 },
+          "ivs": { "hp": 31, "atk": 0, "def": 31, "spa": 31, "spd": 31, "spe": 31 },
+          "level": 100
+        },
+        {
+          "slot": 6,
+          "pokemonId": "zamazenta",
+          "abilityId": "dauntless-shield",
+          "itemId": "leftovers",
+          "natureId": "jolly",
+          "teraType": "steel",
+          "moves": ["body-press", "crunch", "heavy-slam", "howl"],
+          "evs": { "hp": 0, "atk": 0, "def": 252, "spa": 0, "spd": 4, "spe": 252 },
+          "ivs": { "hp": 31, "atk": 31, "def": 31, "spa": 31, "spd": 31, "spe": 31 },
+          "level": 100
+        }
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "ou-kingambit-standard",
+      "pokemonId": "kingambit",
+      "set": {
+        "abilityId": "supreme-overlord",
+        "itemId": "black-glasses",
+        "natureId": "adamant",
+        "teraType": "dark",
+        "moves": ["kowtow-cleave", "sucker-punch", "iron-head", "swords-dance"],
+        "evs": { "hp": 244, "atk": 252, "def": 0, "spa": 0, "spd": 12, "spe": 0 },
+        "ivs": { "hp": 31, "atk": 31, "def": 31, "spa": 31, "spd": 31, "spe": 31 },
+        "level": 100
+      }
+    },
+    {
+      "id": "ou-great-tusk-standard",
+      "pokemonId": "great-tusk",
+      "set": {
+        "abilityId": "protosynthesis",
+        "itemId": "leftovers",
+        "natureId": "impish",
+        "teraType": "water",
+        "moves": ["earthquake", "rapid-spin", "knock-off", "stealth-rock"],
+        "evs": { "hp": 252, "atk": 0, "def": 252, "spa": 0, "spd": 4, "spe": 0 },
+        "ivs": { "hp": 31, "atk": 31, "def": 31, "spa": 31, "spd": 31, "spe": 31 },
+        "level": 100
+      }
+    }
+  ]
+}

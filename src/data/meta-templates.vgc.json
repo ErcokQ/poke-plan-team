@@ -1,0 +1,112 @@
+{
+  "teams": [
+    {
+      "id": "vgc-balance-1",
+      "name": "VGC Balance Core",
+      "members": [
+        {
+          "slot": 1,
+          "pokemonId": "incineroar",
+          "abilityId": "intimidate",
+          "itemId": "sitrus-berry",
+          "natureId": "careful",
+          "teraType": "grass",
+          "moves": ["fake-out", "parting-shot", "flare-blitz", "knock-off"],
+          "evs": { "hp": 236, "atk": 20, "def": 108, "spa": 0, "spd": 140, "spe": 4 },
+          "ivs": { "hp": 31, "atk": 31, "def": 31, "spa": 31, "spd": 31, "spe": 31 },
+          "level": 50
+        },
+        {
+          "slot": 2,
+          "pokemonId": "rillaboom",
+          "abilityId": "grassy-surge",
+          "itemId": "assault-vest",
+          "natureId": "adamant",
+          "teraType": "fire",
+          "moves": ["fake-out", "wood-hammer", "grassy-glide", "u-turn"],
+          "evs": { "hp": 236, "atk": 196, "def": 4, "spa": 0, "spd": 68, "spe": 4 },
+          "ivs": { "hp": 31, "atk": 31, "def": 31, "spa": 31, "spd": 31, "spe": 31 },
+          "level": 50
+        },
+        {
+          "slot": 3,
+          "pokemonId": "urshifu-rapid-strike",
+          "abilityId": "unseen-fist",
+          "itemId": "mystic-water",
+          "natureId": "jolly",
+          "teraType": "water",
+          "moves": ["surging-strikes", "close-combat", "aqua-jet", "protect"],
+          "evs": { "hp": 44, "atk": 252, "def": 4, "spa": 0, "spd": 4, "spe": 204 },
+          "ivs": { "hp": 31, "atk": 31, "def": 31, "spa": 31, "spd": 31, "spe": 31 },
+          "level": 50
+        },
+        {
+          "slot": 4,
+          "pokemonId": "flutter-mane",
+          "abilityId": "protosynthesis",
+          "itemId": "booster-energy",
+          "natureId": "timid",
+          "teraType": "fairy",
+          "moves": ["moonblast", "shadow-ball", "icy-wind", "protect"],
+          "evs": { "hp": 84, "atk": 0, "def": 4, "spa": 196, "spd": 4, "spe": 220 },
+          "ivs": { "hp": 31, "atk": 0, "def": 31, "spa": 31, "spd": 31, "spe": 31 },
+          "level": 50
+        },
+        {
+          "slot": 5,
+          "pokemonId": "amoonguss",
+          "abilityId": "regenerator",
+          "itemId": "rocky-helmet",
+          "natureId": "bold",
+          "teraType": "water",
+          "moves": ["rage-powder", "spore", "pollen-puff", "protect"],
+          "evs": { "hp": 236, "atk": 0, "def": 164, "spa": 0, "spd": 108, "spe": 0 },
+          "ivs": { "hp": 31, "atk": 0, "def": 31, "spa": 31, "spd": 31, "spe": 0 },
+          "level": 50
+        },
+        {
+          "slot": 6,
+          "pokemonId": "landorus-therian",
+          "abilityId": "intimidate",
+          "itemId": "choice-scarf",
+          "natureId": "jolly",
+          "teraType": "flying",
+          "moves": ["earthquake", "rock-slide", "u-turn", "stomping-tantrum"],
+          "evs": { "hp": 4, "atk": 252, "def": 0, "spa": 0, "spd": 0, "spe": 252 },
+          "ivs": { "hp": 31, "atk": 31, "def": 31, "spa": 31, "spd": 31, "spe": 31 },
+          "level": 50
+        }
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "vgc-flutter-mane-standard",
+      "pokemonId": "flutter-mane",
+      "set": {
+        "abilityId": "protosynthesis",
+        "itemId": "booster-energy",
+        "natureId": "timid",
+        "teraType": "fairy",
+        "moves": ["moonblast", "shadow-ball", "icy-wind", "protect"],
+        "evs": { "hp": 84, "atk": 0, "def": 4, "spa": 196, "spd": 4, "spe": 220 },
+        "ivs": { "hp": 31, "atk": 0, "def": 31, "spa": 31, "spd": 31, "spe": 31 },
+        "level": 50
+      }
+    },
+    {
+      "id": "vgc-incineroar-standard",
+      "pokemonId": "incineroar",
+      "set": {
+        "abilityId": "intimidate",
+        "itemId": "sitrus-berry",
+        "natureId": "careful",
+        "teraType": "grass",
+        "moves": ["fake-out", "parting-shot", "flare-blitz", "knock-off"],
+        "evs": { "hp": 236, "atk": 20, "def": 108, "spa": 0, "spd": 140, "spe": 4 },
+        "ivs": { "hp": 31, "atk": 31, "def": 31, "spa": 31, "spd": 31, "spe": 31 },
+        "level": 50
+      }
+    }
+  ]
+}

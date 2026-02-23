@@ -1,0 +1,17 @@
+[
+  { "id": "leftovers", "name": "Leftovers", "tags": ["recovery"], "description": "Recupera PS al final de cada turno." },
+  { "id": "sitrus-berry", "name": "Sitrus Berry", "tags": ["recovery"], "description": "Restaura PS cuando el usuario queda con poca vida." },
+  { "id": "assault-vest", "name": "Assault Vest", "tags": ["bulk"], "description": "Aumenta la Defensa Especial, pero bloquea movimientos de estado." },
+  { "id": "focus-sash", "name": "Focus Sash", "tags": ["survival"], "description": "Si está a PS completos, sobrevive con 1 PS a un golpe que lo debilitaría." },
+  { "id": "choice-scarf", "name": "Choice Scarf", "tags": ["speed-control"], "description": "Aumenta la Velocidad, pero te bloquea en el primer movimiento usado." },
+  { "id": "choice-specs", "name": "Choice Specs", "tags": ["power"], "description": "Aumenta el Ataque Especial, pero te bloquea en el primer movimiento usado." },
+  { "id": "choice-band", "name": "Choice Band", "tags": ["power"], "description": "Aumenta el Ataque, pero te bloquea en el primer movimiento usado." },
+  { "id": "booster-energy", "name": "Booster Energy", "tags": ["speed-control", "power"], "description": "Activa Protosíntesis/Carga Cuark y potencia la mejor estadística." },
+  { "id": "rocky-helmet", "name": "Rocky Helmet", "tags": ["chip"], "description": "Daña al rival cuando hace contacto con el usuario." },
+  { "id": "life-orb", "name": "Life Orb", "tags": ["power"], "description": "Potencia el daño de los movimientos, pero el usuario pierde PS al atacar." },
+  { "id": "toxic-orb", "name": "Toxic Orb", "tags": ["utility"], "description": "Envenena gravemente al usuario al final del turno." },
+  { "id": "mystic-water", "name": "Mystic Water", "tags": ["power"], "description": "Potencia los movimientos de tipo Agua." },
+  { "id": "clear-amulet", "name": "Clear Amulet", "tags": ["utility"], "description": "Evita que el rival baje tus estadísticas." },
+  { "id": "black-glasses", "name": "Black Glasses", "tags": ["power"], "description": "Potencia los movimientos de tipo Siniestro." },
+  { "id": "air-balloon", "name": "Air Balloon", "tags": ["utility"], "description": "Otorga inmunidad a Tierra hasta recibir daño." }
+]
