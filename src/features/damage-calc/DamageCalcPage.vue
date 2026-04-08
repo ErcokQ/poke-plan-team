@@ -646,11 +646,6 @@ function updateMove(side: DamageSideId, slot: DamageSlotNumber, moveIndex: numbe
   })
 }
 
-function updateSideTemplate(side: DamageSideId, templateId: string) {
-  if (!templateId) return
-  damageCalcStore.applyMetaTemplate(mode.value, side, templateId)
-}
-
 function applyTemplateB(templateId: string) {
   const template = teamTemplates.value.find((entry) => entry.id === templateId)
   customTeamBName.value = template?.name ?? ''

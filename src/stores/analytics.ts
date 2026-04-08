@@ -21,7 +21,6 @@ import { useTeamStore } from './team'
 import { useUiStore } from './ui'
 import {
   calculateMemberAnalytics,
-  calculateTeamAnalytics,
   normalizeWeights,
   type MemberAnalytics,
 } from '@/utils/analytics'

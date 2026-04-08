@@ -9,10 +9,20 @@ import {
 import { computed, ref, watch } from 'vue'
 import { useDebounce } from '@vueuse/core'
 
+interface SearchOptionMeta {
+  effect?: string
+  type?: string
+  category?: string
+  power?: number | null
+  accuracy?: number | null
+  pp?: number | null
+  [key: string]: unknown
+}
+
 interface SearchOption {
   value: string
   label: string
-  meta?: any
+  meta?: SearchOptionMeta
 }
 
 const props = withDefaults(
@@ -66,12 +76,16 @@ function normalize(value: string): string {
 
 const filteredOptions = computed(() => {
   const needle = normalize(queryDebounced.value)
-  if (!needle) {
-    if (props.maxVisible > 0) return props.options.slice(0, props.maxVisible)
-    if (props.options.length > props.largeListThreshold) {
-      return props.options.slice(0, props.largeListPreview)
+  const boundedSlice = (options: SearchOption[]) => {
+    if (props.maxVisible > 0) return options.slice(0, props.maxVisible)
+    if (options.length > props.largeListThreshold) {
+      return options.slice(0, props.largeListPreview)
     }
-    return props.options
+    return options
+  }
+
+  if (!needle) {
+    return boundedSlice(props.options)
   }
 
   const filtered = props.options.filter((option) => {
@@ -81,8 +95,7 @@ const filteredOptions = computed(() => {
     return valueNorm.includes(needle)
   })
 
-  if (props.maxVisible > 0) return filtered.slice(0, props.maxVisible)
-  return filtered
+  return boundedSlice(filtered)
 })
 
 const selectedValue = computed<SearchOption | null>(() => {

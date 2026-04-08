@@ -22,6 +22,7 @@ export interface PokemonEntry {
   evolutionChain: string[]
   preEvolutionChain?: string[]
   abilities: string[]
+  requiredItemId?: string
   suggestedItems: string[]
   suggestedMoves: string[]
   learnsetMoves?: string[]

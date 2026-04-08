@@ -1,0 +1,3056 @@
+{
+  "version": "v1",
+  "locale": "es",
+  "generationId": 9,
+  "bucketId": 7,
+  "generatedAt": "2026-04-08T16:02:29.445Z",
+  "profiles": [
+    {
+      "id": "walking-wake",
+      "moves": [
+        {
+          "id": "aqua-jet",
+          "name": "Acua Jet",
+          "category": "physical",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hone-claws",
+          "name": "Afilagarras",
+          "category": "status",
+          "type": "dark",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "agility",
+          "name": "Agilidad",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "endure",
+          "name": "Aguante",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "snarl",
+          "name": "Alarido",
+          "category": "special",
+          "type": "dark",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-cheer",
+          "name": "Bramido Dragón",
+          "category": "status",
+          "type": "dragon",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "scary-face",
+          "name": "Cara Susto",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-rush",
+          "name": "Carga Dragón",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 42
+        },
+        {
+          "id": "waterfall",
+          "name": "Cascada",
+          "category": "physical",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "chilling-water",
+          "name": "Chilling Water",
+          "category": "special",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "twister",
+          "name": "Ciclón",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "fire-fang",
+          "name": "Colmillo Ígneo",
+          "category": "physical",
+          "type": "fire",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "draco-meteor",
+          "name": "Cometa Draco",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-dance",
+          "name": "Danza Dragón",
+          "category": "status",
+          "type": "dragon",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rain-dance",
+          "name": "Danza Lluvia",
+          "category": "status",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "take-down",
+          "name": "Derribo",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "knock-off",
+          "name": "Desarme",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rest",
+          "name": "Descanso",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sunny-day",
+          "name": "Día Soleado",
+          "category": "status",
+          "type": "fire",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "mud-shot",
+          "name": "Disparo Lodo",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "double-edge",
+          "name": "Doble Filo",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-breath",
+          "name": "Dragoaliento",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 28
+        },
+        {
+          "id": "outrage",
+          "name": "Enfado",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 70
+        },
+        {
+          "id": "scald",
+          "name": "Escaldar",
+          "category": "special",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-claw",
+          "name": "Garra Dragón",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "giga-impact",
+          "name": "Gigaimpacto",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "body-slam",
+          "name": "Golpe Cuerpo",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "liquidation",
+          "name": "Hidroariete",
+          "category": "physical",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hydro-pump",
+          "name": "Hidrobomba",
+          "category": "special",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 84
+        },
+        {
+          "id": "water-pulse",
+          "name": "Hidropulso",
+          "category": "special",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 14
+        },
+        {
+          "id": "hydro-steam",
+          "name": "Hidrovapor",
+          "category": "special",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 56
+        },
+        {
+          "id": "hyper-beam",
+          "name": "Hiperrayo",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "facade",
+          "name": "Imagen",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "flamethrower",
+          "name": "Lanzallamas",
+          "category": "special",
+          "type": "fire",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 77
+        },
+        {
+          "id": "leer",
+          "name": "Malicioso",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "weather-ball",
+          "name": "Meteorobola",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "bite",
+          "name": "Mordisco",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 7
+        },
+        {
+          "id": "low-kick",
+          "name": "Patada Baja",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "protect",
+          "name": "Protección",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-pulse",
+          "name": "Pulso Dragón",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 63
+        },
+        {
+          "id": "swift",
+          "name": "Rapidez",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "roar",
+          "name": "Rugido",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "noble-roar",
+          "name": "Rugido de Guerra",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 21
+        },
+        {
+          "id": "sleep-talk",
+          "name": "Sonámbulo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "surf",
+          "name": "Surf",
+          "category": "special",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "substitute",
+          "name": "Sustituto",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "tera-blast",
+          "name": "Tera Blast",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "whirlpool",
+          "name": "Torbellino",
+          "category": "special",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "crunch",
+          "name": "Triturar",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "breaking-swipe",
+          "name": "Vasto Impacto",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 35
+        },
+        {
+          "id": "hurricane",
+          "name": "Vendaval",
+          "category": "special",
+          "type": "flying",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "flip-turn",
+          "name": "Viraje",
+          "category": "physical",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        }
+      ]
+    },
+    {
+      "id": "wattrel",
+      "moves": [
+        {
+          "id": "acrobatics",
+          "name": "Acróbata",
+          "category": "physical",
+          "type": "flying",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "agility",
+          "name": "Agilidad",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 32
+        },
+        {
+          "id": "endure",
+          "name": "Aguante",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "air-cutter",
+          "name": "Aire Afilado",
+          "category": "special",
+          "type": "flying",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dual-wingbeat",
+          "name": "Ala Bis",
+          "category": "physical",
+          "type": "flying",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 27
+        },
+        {
+          "id": "uproar",
+          "name": "Alboroto",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 19
+        },
+        {
+          "id": "quick-attack",
+          "name": "Ataque Rápido",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 7
+        },
+        {
+          "id": "electro-ball",
+          "name": "Bola Voltio",
+          "category": "special",
+          "type": "electric",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "electric-terrain",
+          "name": "Campo Eléctrico",
+          "category": "status",
+          "type": "electric",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "charge",
+          "name": "Carga",
+          "category": "status",
+          "type": "electric",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "spark",
+          "name": "Chispa",
+          "category": "physical",
+          "type": "electric",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 15
+        },
+        {
+          "id": "discharge",
+          "name": "Chispazo",
+          "category": "special",
+          "type": "electric",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 43
+        },
+        {
+          "id": "feather-dance",
+          "name": "Danza Pluma",
+          "category": "status",
+          "type": "flying",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "egg",
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "take-down",
+          "name": "Derribo",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rest",
+          "name": "Descanso",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "electroweb",
+          "name": "Electrotela",
+          "category": "special",
+          "type": "electric",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "spit-up",
+          "name": "Escupir",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "egg"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "endeavor",
+          "name": "Esfuerzo",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "egg",
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "aerial-ace",
+          "name": "Golpe Aéreo",
+          "category": "physical",
+          "type": "flying",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "growl",
+          "name": "Gruñido",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "u-turn",
+          "name": "Ida y Vuelta",
+          "category": "physical",
+          "type": "bug",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "facade",
+          "name": "Imagen",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "thunder-shock",
+          "name": "Impactrueno",
+          "category": "special",
+          "type": "electric",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 4
+        },
+        {
+          "id": "weather-ball",
+          "name": "Meteorobola",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "egg",
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "eerie-impulse",
+          "name": "Onda Anómala",
+          "category": "status",
+          "type": "electric",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "thunder-wave",
+          "name": "Onda Trueno",
+          "category": "status",
+          "type": "electric",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "brave-bird",
+          "name": "Pájaro Osado",
+          "category": "physical",
+          "type": "flying",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "peck",
+          "name": "Picotazo",
+          "category": "physical",
+          "type": "flying",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "pluck",
+          "name": "Picoteo",
+          "category": "physical",
+          "type": "flying",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 11
+        },
+        {
+          "id": "protect",
+          "name": "Protección",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swift",
+          "name": "Rapidez",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "thunderbolt",
+          "name": "Rayo",
+          "category": "special",
+          "type": "electric",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "charge-beam",
+          "name": "Rayo Carga",
+          "category": "special",
+          "type": "electric",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stockpile",
+          "name": "Reserva",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "egg"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "roost",
+          "name": "Respiro",
+          "category": "status",
+          "type": "flying",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 23
+        },
+        {
+          "id": "sleep-talk",
+          "name": "Sonámbulo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "substitute",
+          "name": "Sustituto",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "air-slash",
+          "name": "Tajo Aéreo",
+          "category": "special",
+          "type": "flying",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "tera-blast",
+          "name": "Tera Blast",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swallow",
+          "name": "Tragar",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "egg"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "thunder",
+          "name": "Trueno",
+          "category": "special",
+          "type": "electric",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hurricane",
+          "name": "Vendaval",
+          "category": "special",
+          "type": "flying",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "tailwind",
+          "name": "Viento Afín",
+          "category": "status",
+          "type": "flying",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "wild-charge",
+          "name": "Voltio Cruel",
+          "category": "physical",
+          "type": "electric",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "volt-switch",
+          "name": "Voltiocambio",
+          "category": "special",
+          "type": "electric",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 37
+        },
+        {
+          "id": "fly",
+          "name": "Vuelo",
+          "category": "physical",
+          "type": "flying",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        }
+      ]
+    },
+    {
+      "id": "wiglett",
+      "moves": [
+        {
+          "id": "aqua-jet",
+          "name": "Acua Jet",
+          "category": "physical",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 12
+        },
+        {
+          "id": "agility",
+          "name": "Agilidad",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "muddy-water",
+          "name": "Agua Lodosa",
+          "category": "special",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "endure",
+          "name": "Aguante",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sand-attack",
+          "name": "Ataque Arena",
+          "category": "status",
+          "type": "ground",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "slam",
+          "name": "Atizar",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 20
+        },
+        {
+          "id": "mud-slap",
+          "name": "Bofetón Lodo",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 4
+        },
+        {
+          "id": "chilling-water",
+          "name": "Chilling Water",
+          "category": "special",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "wrap",
+          "name": "Constricción",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 8
+        },
+        {
+          "id": "rain-dance",
+          "name": "Danza Lluvia",
+          "category": "status",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "take-down",
+          "name": "Derribo",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rest",
+          "name": "Descanso",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "mud-shot",
+          "name": "Disparo Lodo",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dig",
+          "name": "Excavar",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 28
+        },
+        {
+          "id": "sucker-punch",
+          "name": "Golpe Bajo",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 32
+        },
+        {
+          "id": "headbutt",
+          "name": "Golpe Cabeza",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 24
+        },
+        {
+          "id": "throat-chop",
+          "name": "Golpe Mordaza",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 36
+        },
+        {
+          "id": "liquidation",
+          "name": "Hidroariete",
+          "category": "physical",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 40
+        },
+        {
+          "id": "hydro-pump",
+          "name": "Hidrobomba",
+          "category": "special",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "water-pulse",
+          "name": "Hidropulso",
+          "category": "special",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 20
+        },
+        {
+          "id": "facade",
+          "name": "Imagen",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "foul-play",
+          "name": "Juego Sucio",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "memento",
+          "name": "Legado",
+          "category": "status",
+          "type": "dark",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "egg"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stomping-tantrum",
+          "name": "Pataleta",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "water-gun",
+          "name": "Pistola Agua",
+          "category": "special",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "protect",
+          "name": "Protección",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swift",
+          "name": "Rapidez",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "ice-beam",
+          "name": "Rayo Hielo",
+          "category": "special",
+          "type": "ice",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "helping-hand",
+          "name": "Refuerzo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "final-gambit",
+          "name": "Sacrificio",
+          "category": "special",
+          "type": "fighting",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "egg"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sleep-talk",
+          "name": "Sonámbulo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "surf",
+          "name": "Surf",
+          "category": "special",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "substitute",
+          "name": "Sustituto",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "tera-blast",
+          "name": "Tera Blast",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "bulldoze",
+          "name": "Terratemblor",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "earth-power",
+          "name": "Tierra Viva",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "whirlpool",
+          "name": "Torbellino",
+          "category": "special",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sandstorm",
+          "name": "Tormenta Arena",
+          "category": "status",
+          "type": "rock",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "blizzard",
+          "name": "Ventisca",
+          "category": "special",
+          "type": "ice",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        }
+      ]
+    },
+    {
+      "id": "wo-chien",
+      "moves": [
+        {
+          "id": "absorb",
+          "name": "Absorber",
+          "category": "special",
+          "type": "grass",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "endure",
+          "name": "Aguante",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "snarl",
+          "name": "Alarido",
+          "category": "special",
+          "type": "dark",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "ingrain",
+          "name": "Arraigo",
+          "category": "status",
+          "type": "grass",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 35
+        },
+        {
+          "id": "mud-slap",
+          "name": "Bofetón Lodo",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "pollen-puff",
+          "name": "Bola de Polen",
+          "category": "special",
+          "type": "bug",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "seed-bomb",
+          "name": "Bomba Germen",
+          "category": "physical",
+          "type": "grass",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "zen-headbutt",
+          "name": "Cabezazo Zen",
+          "category": "physical",
+          "type": "psychic",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "grassy-terrain",
+          "name": "Campo de Hierba",
+          "category": "status",
+          "type": "grass",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 65
+        },
+        {
+          "id": "scary-face",
+          "name": "Cara Susto",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "tickle",
+          "name": "Cosquillas",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 5
+        },
+        {
+          "id": "solar-blade",
+          "name": "Cuchilla Solar",
+          "category": "physical",
+          "type": "grass",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rain-dance",
+          "name": "Danza Lluvia",
+          "category": "status",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "take-down",
+          "name": "Derribo",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "lash-out",
+          "name": "Desahogo",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "knock-off",
+          "name": "Desarme",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 70
+        },
+        {
+          "id": "growth",
+          "name": "Desarrollo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 30
+        },
+        {
+          "id": "rest",
+          "name": "Descanso",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sunny-day",
+          "name": "Día Soleado",
+          "category": "status",
+          "type": "fire",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "mud-shot",
+          "name": "Disparo Lodo",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "leech-seed",
+          "name": "Drenadoras",
+          "category": "status",
+          "type": "grass",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 25
+        },
+        {
+          "id": "energy-ball",
+          "name": "Energibola",
+          "category": "special",
+          "type": "grass",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "giga-drain",
+          "name": "Gigadrenado",
+          "category": "special",
+          "type": "grass",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 45
+        },
+        {
+          "id": "giga-impact",
+          "name": "Gigaimpacto",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "body-slam",
+          "name": "Golpe Cuerpo",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "grass-knot",
+          "name": "Hierba Lazo",
+          "category": "special",
+          "type": "grass",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-beam",
+          "name": "Hiperrayo",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "magical-leaf",
+          "name": "Hoja Mágica",
+          "category": "special",
+          "type": "grass",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "facade",
+          "name": "Imagen",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hex",
+          "name": "Infortunio",
+          "category": "special",
+          "type": "ghost",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "foul-play",
+          "name": "Juego Sucio",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 55
+        },
+        {
+          "id": "power-whip",
+          "name": "Latigazo",
+          "category": "physical",
+          "type": "grass",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 60
+        },
+        {
+          "id": "leaf-storm",
+          "name": "Lluevehojas",
+          "category": "special",
+          "type": "grass",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 75
+        },
+        {
+          "id": "mean-look",
+          "name": "Mal de Ojo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "mega-drain",
+          "name": "Megaagotar",
+          "category": "special",
+          "type": "grass",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 20
+        },
+        {
+          "id": "taunt",
+          "name": "Mofa",
+          "category": "status",
+          "type": "dark",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "light-screen",
+          "name": "Pantalla de Luz",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stun-spore",
+          "name": "Paralizador",
+          "category": "status",
+          "type": "grass",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 15
+        },
+        {
+          "id": "body-press",
+          "name": "Plancha Corporal",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "poison-powder",
+          "name": "Polvo Veneno",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 15
+        },
+        {
+          "id": "protect",
+          "name": "Protección",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dark-pulse",
+          "name": "Pulso Umbrío",
+          "category": "special",
+          "type": "dark",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 40
+        },
+        {
+          "id": "solar-beam",
+          "name": "Rayo Solar",
+          "category": "special",
+          "type": "grass",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "reflect",
+          "name": "Reflejo",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "spite",
+          "name": "Rencor",
+          "category": "status",
+          "type": "ghost",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "ruination",
+          "name": "Ruination",
+          "category": "special",
+          "type": "dark",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 50
+        },
+        {
+          "id": "bullet-seed",
+          "name": "Semilladora",
+          "category": "physical",
+          "type": "grass",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sleep-talk",
+          "name": "Sonámbulo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "substitute",
+          "name": "Sustituto",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "tera-blast",
+          "name": "Tera Blast",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "trailblaze",
+          "name": "Trailblaze",
+          "category": "physical",
+          "type": "grass",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "payback",
+          "name": "Vendetta",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 10
+        }
+      ]
+    },
+    {
+      "id": "wugtrio",
+      "moves": [
+        {
+          "id": "aqua-jet",
+          "name": "Acua Jet",
+          "category": "physical",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 12
+        },
+        {
+          "id": "agility",
+          "name": "Agilidad",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "muddy-water",
+          "name": "Agua Lodosa",
+          "category": "special",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "endure",
+          "name": "Aguante",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sand-attack",
+          "name": "Ataque Arena",
+          "category": "status",
+          "type": "ground",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "slam",
+          "name": "Atizar",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 16
+        },
+        {
+          "id": "mud-slap",
+          "name": "Bofetón Lodo",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "chilling-water",
+          "name": "Chilling Water",
+          "category": "special",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "wrap",
+          "name": "Constricción",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "rain-dance",
+          "name": "Danza Lluvia",
+          "category": "status",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "take-down",
+          "name": "Derribo",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rest",
+          "name": "Descanso",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "mud-shot",
+          "name": "Disparo Lodo",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "pain-split",
+          "name": "Divide Dolor",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dig",
+          "name": "Excavar",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 36
+        },
+        {
+          "id": "giga-impact",
+          "name": "Gigaimpacto",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sucker-punch",
+          "name": "Golpe Bajo",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 42
+        },
+        {
+          "id": "headbutt",
+          "name": "Golpe Cabeza",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 24
+        },
+        {
+          "id": "throat-chop",
+          "name": "Golpe Mordaza",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 48
+        },
+        {
+          "id": "liquidation",
+          "name": "Hidroariete",
+          "category": "physical",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 54
+        },
+        {
+          "id": "hydro-pump",
+          "name": "Hidrobomba",
+          "category": "special",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "water-pulse",
+          "name": "Hidropulso",
+          "category": "special",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 20
+        },
+        {
+          "id": "hyper-beam",
+          "name": "Hiperrayo",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "facade",
+          "name": "Imagen",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "foul-play",
+          "name": "Juego Sucio",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stomping-tantrum",
+          "name": "Pataleta",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "water-gun",
+          "name": "Pistola Agua",
+          "category": "special",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "protect",
+          "name": "Protección",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swift",
+          "name": "Rapidez",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "ice-beam",
+          "name": "Rayo Hielo",
+          "category": "special",
+          "type": "ice",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "helping-hand",
+          "name": "Refuerzo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sleep-talk",
+          "name": "Sonámbulo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "surf",
+          "name": "Surf",
+          "category": "special",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "substitute",
+          "name": "Sustituto",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "tera-blast",
+          "name": "Tera Blast",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "bulldoze",
+          "name": "Terratemblor",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "earth-power",
+          "name": "Tierra Viva",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "whirlpool",
+          "name": "Torbellino",
+          "category": "special",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sandstorm",
+          "name": "Tormenta Arena",
+          "category": "status",
+          "type": "rock",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "triple-dive",
+          "name": "Triple Dive",
+          "category": "physical",
+          "type": "water",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 30
+        },
+        {
+          "id": "blizzard",
+          "name": "Ventisca",
+          "category": "special",
+          "type": "ice",
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        }
+      ]
+    }
+  ]
+}

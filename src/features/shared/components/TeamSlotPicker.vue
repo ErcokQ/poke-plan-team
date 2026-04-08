@@ -30,12 +30,47 @@ const filledSlots = computed(() => props.members.filter((member) => member.pokem
 
 function pokemonNameFor(member: TeamMember): string {
   if (!member.pokemonId) return t('analytics.emptySlot')
-  return dexStore.getPokemon(props.mode, member.pokemonId)?.name ?? member.pokemonId
+  const pokemon = dexStore.getPokemon(props.mode, member.pokemonId)
+  if (!pokemon) return member.pokemonId
+  return displayPokemonName(pokemon.id, pokemon.name)
+}
+
+function formSuffixFromPokemonId(pokemonId: string): string {
+  if (!pokemonId.includes('-')) return ''
+  const suffixParts = pokemonId.split('-').slice(1)
+  if (!suffixParts.length) return ''
+
+  const [head, ...tail] = suffixParts
+  if (head === 'mega') {
+    return tail.length
+      ? `Mega ${tail.map((part) => prettifySlug(part)).join(' ')}`
+      : 'Mega'
+  }
+  if (head === 'gmax') return 'Gmax'
+  if (head === 'alola' || head === 'galar' || head === 'hisui' || head === 'paldea') {
+    const region = prettifySlug(head)
+    const rest = tail.map((part) => prettifySlug(part)).join(' ')
+    return rest ? `${region} ${rest}` : region
+  }
+  return suffixParts.map((part) => prettifySlug(part)).join(' ')
+}
+
+function prettifySlug(raw: string): string {
+  return raw
+    .split('-')
+    .filter(Boolean)
+    .map((chunk) => chunk.charAt(0).toUpperCase() + chunk.slice(1))
+    .join(' ')
+}
+
+function displayPokemonName(pokemonId: string, baseName: string): string {
+  const suffix = formSuffixFromPokemonId(pokemonId)
+  return suffix ? `${baseName} (${suffix})` : baseName
 }
 
 function spriteUrl(pokemonId: string): string {
   if (!pokemonId) return mudkipSprite
-  return `https://img.pokemondb.net/sprites/home/normal/${pokemonId}.png`
+  return spriteCandidatesForPokemon(pokemonId)[0] ?? mudkipSprite
 }
 
 const spriteAliasFallback: Record<string, string> = {
@@ -43,20 +78,45 @@ const spriteAliasFallback: Record<string, string> = {
   'calyrex-ice': 'calyrex-ice-rider',
 }
 
+function spriteCandidatesForPokemon(pokemonId: string): string[] {
+  if (!pokemonId) return [mudkipSprite]
+
+  const ids = [pokemonId]
+  const aliasId = spriteAliasFallback[pokemonId]
+  if (aliasId && aliasId !== pokemonId) ids.push(aliasId)
+
+  const prefersShowdown = pokemonId.includes('-')
+  const candidates: string[] = []
+
+  for (const id of ids) {
+    if (prefersShowdown) {
+      candidates.push(`https://play.pokemonshowdown.com/sprites/ani/${id}.gif`)
+      candidates.push(`https://img.pokemondb.net/sprites/home/normal/${id}.png`)
+    } else {
+      candidates.push(`https://img.pokemondb.net/sprites/home/normal/${id}.png`)
+      candidates.push(`https://play.pokemonshowdown.com/sprites/ani/${id}.gif`)
+    }
+    candidates.push(`https://play.pokemonshowdown.com/sprites/gen5/${id}.png`)
+  }
+
+  return [...new Set(candidates)]
+}
+
 function spriteIdFromUrl(url: string): string {
-  const marker = '/sprites/home/normal/'
-  const markerIndex = url.lastIndexOf(marker)
-  if (markerIndex === -1) return ''
-  return url.slice(markerIndex + marker.length).replace('.png', '').toLowerCase()
+  const match = url.match(/\/([^/?#]+)\.(?:png|gif)(?:[?#].*)?$/)
+  return match?.[1] ?? ''
 }
 
 function onSpriteError(event: Event) {
   const target = event.target as HTMLImageElement
-  const failedId = spriteIdFromUrl(target.src)
-  const aliasId = spriteAliasFallback[failedId]
-  if (aliasId && target.dataset.spriteAliasTried !== aliasId) {
-    target.dataset.spriteAliasTried = aliasId
-    target.src = `https://img.pokemondb.net/sprites/home/normal/${aliasId}.png`
+  const pokemonId = target.dataset.spriteId || spriteIdFromUrl(target.src)
+  const candidates = spriteCandidatesForPokemon(pokemonId)
+  const currentIndex = Number(target.dataset.spriteFallbackIndex ?? '0')
+  const nextIndex = currentIndex + 1
+
+  if (nextIndex < candidates.length) {
+    target.dataset.spriteFallbackIndex = String(nextIndex)
+    target.src = candidates[nextIndex]
     return
   }
 
@@ -95,6 +155,8 @@ function onSpriteError(event: Event) {
           <img
             :src="spriteUrl(member.pokemonId)"
             :alt="pokemonNameFor(member)"
+            :data-sprite-id="member.pokemonId"
+            :data-sprite-fallback-index="0"
             class="h-10 w-10 rounded bg-black/20 object-contain transition"
             :class="member.pokemonId ? '' : 'opacity-70 grayscale'"
             loading="lazy"

@@ -1,7 +1,7 @@
 import { computed } from 'vue'
 import { defineStore } from 'pinia'
-import { useStorage } from '@vueuse/core'
 import type { BattleMode, Team, TeamMember } from '@/models/domain'
+import { useBufferedStorage } from '@/utils/buffered-storage'
 import { createEmptyTeam, normalizeEvs } from '@/utils/team'
 import {
   exportTeamAsFullJson,
@@ -15,7 +15,9 @@ import { useUiStore } from './ui'
 type MemberPatch = Partial<Omit<TeamMember, 'slot'>>
 
 export const useTeamStore = defineStore('team', () => {
-  const teams = useStorage<Team[]>('pokeplan.v1.teams', [])
+  const { state: teams, flush: flushTeams } = useBufferedStorage<Team[]>('pokeplan.v1.teams', [], {
+    debounceMs: 250,
+  })
   const uiStore = useUiStore()
 
   function ensureSeeded() {
@@ -165,6 +167,7 @@ export const useTeamStore = defineStore('team', () => {
 
   return {
     teams,
+    flushTeams,
     teamsForMode,
     getTeamById,
     getActiveTeam,

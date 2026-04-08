@@ -22,7 +22,6 @@ import {
 } from '@/models/domain'
 import { TYPE_META } from '@/models/type-meta'
 import { effectivenessAgainstDual } from '@/models/type-chart'
-import { dexService } from '@/services/dex-service'
 import { useAnalyticsStore } from '@/stores/analytics'
 import { useDexStore } from '@/stores/dex'
 import { useMetaUsageStore } from '@/stores/meta-usage'
@@ -32,6 +31,12 @@ import TeamSlotPicker from '@/features/shared/components/TeamSlotPicker.vue'
 import SearchableSelect from '@/features/shared/components/SearchableSelect.vue'
 import { memberIsComplete } from '@/utils/team'
 import { calculateTeamAnalytics } from '@/utils/analytics'
+import {
+  getRequiredItemIdForPokemon,
+  isItemLockedForPokemon,
+  resolveInitialItemIdForPokemon,
+  resolveItemIdAfterFormChange,
+} from '@/utils/form-item-rules'
 import { calculateBattleStats, getNatureModifier } from '@/utils/stat-calc'
 import { getEffectiveLearnsetMoveIds } from '@/utils/move-legality'
 
@@ -91,7 +96,7 @@ const favoritePokemonOptions = computed(() => {
 const pokemonSelectOptions = computed<SearchOption[]>(() =>
   pokemonOptions.value.map((pokemon) => ({
     value: pokemon.id,
-    label: `#${String(pokemon.pokedexNumber).padStart(4, '0')} ${pokemon.name}`,
+    label: `#${String(pokemon.pokedexNumber).padStart(4, '0')} ${displayPokemonName(pokemon.id, pokemon.name)}`,
   })),
 )
 const formSelectOptions = ref<SearchOption[]>([])
@@ -132,8 +137,6 @@ const comparePokemonOptions = computed<SearchOption[]>(() =>
 )
 const abilityLabels = ref<Record<string, string>>({})
 const abilityEffects = ref<Record<string, string>>({})
-const abilityMetaCache = new Map<string, { name: string; effect: string }>()
-let abilityLabelRequest = 0
 
 const abilitySelectOptions = computed<SearchOption[]>(() =>
   (activePokemon.value?.abilities ?? []).map((ability) => ({
@@ -151,6 +154,12 @@ const itemSelectOptions = computed<SearchOption[]>(() =>
   dexStore.items.map((item) => ({ value: item.id, label: item.name })),
 )
 const selectedItem = computed(() => dexStore.getItem(activeMember.value.itemId ?? ''))
+const lockedItemId = computed(() => getRequiredItemIdForPokemon(activePokemon.value))
+const isItemSelectionLocked = computed(() => isItemLockedForPokemon(activePokemon.value))
+const lockedItemLabel = computed(() => {
+  if (!lockedItemId.value) return ''
+  return dexStore.getItem(lockedItemId.value)?.name ?? prettifySlug(lockedItemId.value)
+})
 const selectedItemDescription = computed(() => {
   const item = selectedItem.value
   if (!item) return ''
@@ -158,9 +167,10 @@ const selectedItemDescription = computed(() => {
 })
 const selectedPokemonFieldLabel = computed(() => {
   if (!activePokemon.value) return t('builder.selectPokemon')
-  return `#${String(activePokemon.value.pokedexNumber).padStart(4, '0')} ${activePokemon.value.name}`
+  return `#${String(activePokemon.value.pokedexNumber).padStart(4, '0')} ${displayPokemonName(activePokemon.value.id, activePokemon.value.name)}`
 })
 const selectedItemFieldLabel = computed(() => {
+  if (isItemSelectionLocked.value && lockedItemLabel.value) return lockedItemLabel.value
   if (!selectedItem.value) return t('builder.selectItem')
   return selectedItem.value.name
 })
@@ -842,11 +852,15 @@ function onPokemonChange(value: string) {
   teamStore.updateMember(mode.value, activeMember.value.slot, {
     pokemonId: value,
     abilityId: pokemon?.abilities[0] ?? '',
-    itemId: pokemon?.suggestedItems[0] ?? '',
+    itemId: resolveInitialItemIdForPokemon(pokemon),
     natureId: pokemon?.defaultNature ?? activeMember.value.natureId,
     moves: suggestedMoves,
     roleTags: pokemon ? resolveRoleTagsForSet(suggestedMoves, pokemon.roleTags, pokemon) : [],
   })
+
+  if (isItemLockedForPokemon(pokemon)) {
+    uiStore.setBuilderCatalogSource('items')
+  }
 }
 
 function formSuffixFromPokemonId(pokemonId: string): string {
@@ -872,15 +886,18 @@ function formatFormOptionLabel(
   index: number,
 ): string {
   const numberLabel = `#${String(pokemon.pokedexNumber).padStart(4, '0')}`
+  const label = displayPokemonName(pokemon.id, pokemon.name)
   const suffix = formSuffixFromPokemonId(pokemon.id)
 
   if (!suffix && index === 0) {
-    return `${numberLabel} ${pokemon.name} (${t('builder.formBase')})`
+    return `${numberLabel} ${label} (${t('builder.formBase')})`
   }
-  if (!suffix) {
-    return `${numberLabel} ${pokemon.name}`
-  }
-  return `${numberLabel} ${pokemon.name} (${suffix})`
+  return `${numberLabel} ${label}`
+}
+
+function displayPokemonName(pokemonId: string, baseName: string): string {
+  const suffix = formSuffixFromPokemonId(pokemonId)
+  return suffix ? `${baseName} (${suffix})` : baseName
 }
 
 function applyFormOptions(forms: PokemonEntry[]) {
@@ -929,16 +946,23 @@ function onFormChange(value: string) {
   const pokemon = dexStore.getPokemon(mode.value, value)
   if (!pokemon) return
 
+  const previousPokemon = activePokemon.value
   const currentAbility = activeMember.value.abilityId
   const nextAbility = pokemon.abilities.includes(currentAbility)
     ? currentAbility
     : (pokemon.abilities[0] ?? '')
+  const nextItemId = resolveItemIdAfterFormChange(pokemon, previousPokemon, activeMember.value.itemId ?? '')
 
   teamStore.updateMember(mode.value, activeMember.value.slot, {
     pokemonId: value,
     abilityId: nextAbility,
+    itemId: nextItemId,
     roleTags: resolveRoleTagsForSet(activeMember.value.moves, pokemon.roleTags, pokemon),
   })
+
+  if (isItemLockedForPokemon(pokemon)) {
+    uiStore.setBuilderCatalogSource('items')
+  }
 }
 
 function openCatalogSource(source: 'pokemon' | 'items') {
@@ -947,6 +971,7 @@ function openCatalogSource(source: 'pokemon' | 'items') {
 
 function updateField(field: 'abilityId' | 'itemId' | 'natureId', value: string) {
   if (field === 'itemId') {
+    if (isItemSelectionLocked.value) return
     uiStore.setBuilderCatalogSource('items')
   }
   teamStore.updateMember(mode.value, activeMember.value.slot, { [field]: value })
@@ -1180,7 +1205,7 @@ function isMovePopoverOpen(index: number): boolean {
 
 function spriteUrl(pokemonId: string): string {
   if (!pokemonId) return mudkipSprite
-  return `https://img.pokemondb.net/sprites/home/normal/${pokemonId}.png`
+  return spriteCandidatesForPokemon(pokemonId)[0] ?? mudkipSprite
 }
 
 const spriteAliasFallback: Record<string, string> = {
@@ -1188,20 +1213,45 @@ const spriteAliasFallback: Record<string, string> = {
   'calyrex-ice': 'calyrex-ice-rider',
 }
 
+function spriteCandidatesForPokemon(pokemonId: string): string[] {
+  if (!pokemonId) return [mudkipSprite]
+
+  const ids = [pokemonId]
+  const aliasId = spriteAliasFallback[pokemonId]
+  if (aliasId && aliasId !== pokemonId) ids.push(aliasId)
+
+  const prefersShowdown = pokemonId.includes('-')
+  const candidates: string[] = []
+
+  for (const id of ids) {
+    if (prefersShowdown) {
+      candidates.push(`https://play.pokemonshowdown.com/sprites/ani/${id}.gif`)
+      candidates.push(`https://img.pokemondb.net/sprites/home/normal/${id}.png`)
+    } else {
+      candidates.push(`https://img.pokemondb.net/sprites/home/normal/${id}.png`)
+      candidates.push(`https://play.pokemonshowdown.com/sprites/ani/${id}.gif`)
+    }
+    candidates.push(`https://play.pokemonshowdown.com/sprites/gen5/${id}.png`)
+  }
+
+  return [...new Set(candidates)]
+}
+
 function spriteIdFromUrl(url: string): string {
-  const match = url.match(/\/([^/?#]+)\.png(?:[?#].*)?$/)
+  const match = url.match(/\/([^/?#]+)\.(?:png|gif)(?:[?#].*)?$/)
   return match?.[1] ?? ''
 }
 
 function onSpriteError(event: Event) {
   const target = event.target as HTMLImageElement
-  const failedId = spriteIdFromUrl(target.src)
-  const aliasId = spriteAliasFallback[failedId]
-  const alreadyTriedAlias = target.dataset.aliasFallbackTried === '1'
+  const pokemonId = target.dataset.spriteId || spriteIdFromUrl(target.src)
+  const candidates = spriteCandidatesForPokemon(pokemonId)
+  const currentIndex = Number(target.dataset.spriteFallbackIndex ?? '0')
+  const nextIndex = currentIndex + 1
 
-  if (aliasId && !alreadyTriedAlias) {
-    target.dataset.aliasFallbackTried = '1'
-    target.src = `https://img.pokemondb.net/sprites/home/normal/${aliasId}.png`
+  if (nextIndex < candidates.length) {
+    target.dataset.spriteFallbackIndex = String(nextIndex)
+    target.src = candidates[nextIndex]
     return
   }
 
@@ -1329,7 +1379,7 @@ function buildCompareDraft(pokemonId: string, preserveTraining = true) {
   compareDraft.value = {
     pokemonId,
     abilityId: pokemon.abilities[0] ?? '',
-    itemId: pokemon.suggestedItems[0] ?? '',
+    itemId: resolveInitialItemIdForPokemon(pokemon),
     natureId: preservedNature || pokemon.defaultNature || 'jolly',
     evs: { ...preservedEvs },
     ivs: { ...preservedIvs },
@@ -1344,6 +1394,7 @@ function onComparePokemonChange(value: string) {
 }
 
 function updateCompareField(field: 'abilityId' | 'itemId' | 'natureId', value: string) {
+  if (field === 'itemId' && isItemLockedForPokemon(comparePokemon.value)) return
   compareDraft.value = {
     ...compareDraft.value,
     [field]: value,
@@ -1428,7 +1479,7 @@ function applyCompareFullSet() {
   teamStore.updateMember(mode.value, activeMember.value.slot, {
     pokemonId: candidate.id,
     abilityId: compareDraft.value.abilityId || candidate.abilities[0] || '',
-    itemId: compareDraft.value.itemId || '',
+    itemId: getRequiredItemIdForPokemon(candidate) || compareDraft.value.itemId || '',
     natureId: compareDraft.value.natureId || candidate.defaultNature || activeMember.value.natureId,
     evs: { ...compareDraft.value.evs },
     ivs: { ...compareDraft.value.ivs },
@@ -1494,60 +1545,22 @@ watch(
 
 watch(
   () => [locale.value, ...(activePokemon.value?.abilities ?? [])],
-  async () => {
+  () => {
     const abilities = activePokemon.value?.abilities ?? []
-    if (abilities.length === 0) return
+    if (abilities.length === 0) {
+      abilityLabels.value = {}
+      abilityEffects.value = {}
+      return
+    }
 
-    const requestId = ++abilityLabelRequest
-    const currentLocale = localeCode()
-    const cached: Array<[string, { name: string; shortEffect: string; effect: string }]> = []
-    const missing: string[] = []
-
+    const nextLabels: Record<string, string> = {}
+    const nextEffects: Record<string, string> = {}
     for (const abilityId of abilities) {
-      const cacheKey = `${currentLocale}:${abilityId}`
-      const meta = abilityMetaCache.get(cacheKey)
-      if (meta) {
-        cached.push([
-          abilityId,
-          {
-            name: meta.name,
-            shortEffect: meta.effect,
-            effect: meta.effect,
-          },
-        ])
-      } else {
-        missing.push(abilityId)
-      }
-    }
-
-    const fetched = await Promise.all(
-      missing.map(async (abilityId) => {
-        try {
-          const meta = await dexService.loadAbilityLocalizedMeta(abilityId, currentLocale)
-          const effect = meta.shortEffect || meta.effect || ''
-          abilityMetaCache.set(`${currentLocale}:${abilityId}`, { name: meta.name, effect })
-          return [abilityId, meta] as const
-        } catch {
-          const fallback = { name: prettifySlug(abilityId), shortEffect: '', effect: '' }
-          abilityMetaCache.set(`${currentLocale}:${abilityId}`, {
-            name: fallback.name,
-            effect: '',
-          })
-          return [abilityId, fallback] as const
-        }
-      }),
-    )
-    const labels = [...cached, ...fetched]
-
-    if (requestId !== abilityLabelRequest) return
-    const nextEffects = { ...abilityEffects.value }
-    abilityLabels.value = {
-      ...abilityLabels.value,
-      ...Object.fromEntries(labels.map(([abilityId, meta]) => [abilityId, meta.name])),
-    }
-    for (const [abilityId, meta] of labels) {
+      const meta = dexStore.getAbilityMeta(abilityId)
+      nextLabels[abilityId] = meta.name || prettifySlug(abilityId)
       nextEffects[abilityId] = meta.shortEffect || meta.effect || ''
     }
+    abilityLabels.value = nextLabels
     abilityEffects.value = nextEffects
   },
   { immediate: true },
@@ -1631,6 +1644,8 @@ watch(
                       <img
                         :src="spriteUrl(option.value)"
                         :alt="option.label"
+                        :data-sprite-id="option.value"
+                        :data-sprite-fallback-index="0"
                         class="h-4 w-4 shrink-0 object-contain"
                         @error="onSpriteError"
                       />
@@ -1656,8 +1671,15 @@ watch(
                       : 'border-gray-700 bg-black/35 text-gray-200 hover:border-sky-500/40'"
                     @click="onPokemonChange(pokemon.id)"
                   >
-                    <img :src="spriteUrl(pokemon.id)" :alt="pokemon.name" class="h-4 w-4 object-contain" @error="onSpriteError" />
-                    <span class="max-w-[10rem] truncate">#{{ String(pokemon.pokedexNumber).padStart(4, '0') }} {{ pokemon.name }}</span>
+                    <img
+                      :src="spriteUrl(pokemon.id)"
+                      :alt="displayPokemonName(pokemon.id, pokemon.name)"
+                      :data-sprite-id="pokemon.id"
+                      :data-sprite-fallback-index="0"
+                      class="h-4 w-4 object-contain"
+                      @error="onSpriteError"
+                    />
+                    <span class="max-w-[10rem] truncate">#{{ String(pokemon.pokedexNumber).padStart(4, '0') }} {{ displayPokemonName(pokemon.id, pokemon.name) }}</span>
                   </button>
                 </div>
                 <p v-else class="text-xs text-gray-500">{{ t('builder.noFavorites') }}</p>
@@ -1684,10 +1706,21 @@ watch(
                   type="text"
                   :value="selectedItemFieldLabel"
                   readonly
-                  class="w-full cursor-pointer rounded-md border border-gray-700 bg-st-black p-2 text-sm text-gray-100 outline-none transition hover:border-sky-500/50 focus:border-sky-500/70"
-                  @click="openCatalogSource('items')"
-                  @focus="openCatalogSource('items')"
+                  class="w-full rounded-md border border-gray-700 bg-st-black p-2 text-sm text-gray-100 outline-none transition"
+                  :class="
+                    isItemSelectionLocked
+                      ? 'cursor-not-allowed border-amber-500/35 bg-amber-500/5 text-amber-100'
+                      : 'cursor-pointer hover:border-sky-500/50 focus:border-sky-500/70'
+                  "
+                  @click="!isItemSelectionLocked && openCatalogSource('items')"
+                  @focus="!isItemSelectionLocked && openCatalogSource('items')"
                 />
+                <p v-if="isItemSelectionLocked" class="mt-2 text-[11px] text-amber-200">
+                  {{ t('builder.itemLockedByForm', { item: lockedItemLabel }) }}
+                </p>
+                <p v-if="isItemSelectionLocked" class="mt-1 text-[11px] text-gray-500">
+                  {{ t('builder.itemLockedHint') }}
+                </p>
                 <p class="mt-2 text-[11px] text-gray-400">
                   <span class="font-semibold text-gray-300">{{ t('builder.itemDescription') }}:</span>
                   {{ selectedItemDescription || t('builder.noItemDescription') }}
@@ -2005,13 +2038,15 @@ watch(
           <div class="mb-3 flex items-center gap-3">
             <img
               :src="spriteUrl(activeMember.pokemonId)"
-              :alt="activePokemon.name"
+              :alt="displayPokemonName(activePokemon.id, activePokemon.name)"
+              :data-sprite-id="activeMember.pokemonId"
+              :data-sprite-fallback-index="0"
               class="h-20 w-20 rounded bg-black/20 object-contain"
               loading="lazy"
               @error="onSpriteError"
             />
             <div>
-              <p class="text-sm font-semibold text-gray-100">{{ activePokemon.name }}</p>
+              <p class="text-sm font-semibold text-gray-100">{{ displayPokemonName(activePokemon.id, activePokemon.name) }}</p>
               <p class="text-xs text-gray-400">{{ t('common.slot', { slot: activeMember.slot }) }}</p>
               <p class="text-xs text-gray-400">{{ t('builder.pokedexNumber') }} {{ activePokemon.pokedexNumber }}</p>
             </div>
@@ -2080,6 +2115,9 @@ watch(
             >
               {{ speedComparison.isFaster ? '+' : '-' }} {{ speedComparison.text }}
             </p>
+            <p class="mt-1 text-[10px] text-gray-500">
+              {{ t('builder.speedBenchmarkHint', { level: battleLevel }) }}
+            </p>
           </div>
 
           <div class="mb-3 rounded-lg border border-amber-500/30 bg-amber-500/10 p-2">
@@ -2135,12 +2173,14 @@ watch(
                 <div class="inline-flex items-center gap-1 rounded-md border border-gray-700 bg-off-black/70 px-2 py-1 text-xs">
                   <img
                     :src="spriteUrl(evo.id)"
-                    :alt="evo.name"
+                    :alt="displayPokemonName(evo.id, evo.name)"
+                    :data-sprite-id="evo.id"
+                    :data-sprite-fallback-index="0"
                     class="h-4 w-4 rounded object-contain"
                     loading="lazy"
                     @error="onSpriteError"
                   />
-                  {{ evo.name }}
+                  {{ displayPokemonName(evo.id, evo.name) }}
                 </div>
                 <span v-if="index < evolutionChainDetails.length - 1" class="text-xs text-gray-500">></span>
               </template>
@@ -2226,9 +2266,16 @@ watch(
               <p class="text-xs font-semibold text-gray-300">{{ t('builder.compareCurrent') }}</p>
               <template v-if="activePokemon">
                 <div class="mt-2 flex items-center gap-3">
-                  <img :src="spriteUrl(activePokemon.id)" :alt="activePokemon.name" class="h-16 w-16 rounded bg-black/20 object-contain" @error="onSpriteError" />
+                  <img
+                    :src="spriteUrl(activePokemon.id)"
+                    :alt="displayPokemonName(activePokemon.id, activePokemon.name)"
+                    :data-sprite-id="activePokemon.id"
+                    :data-sprite-fallback-index="0"
+                    class="h-16 w-16 rounded bg-black/20 object-contain"
+                    @error="onSpriteError"
+                  />
                   <div>
-                    <p class="text-sm font-semibold text-gray-100">{{ activePokemon.name }}</p>
+                    <p class="text-sm font-semibold text-gray-100">{{ displayPokemonName(activePokemon.id, activePokemon.name) }}</p>
                     <p class="text-xs text-gray-400">#{{ String(activePokemon.pokedexNumber).padStart(4, '0') }}</p>
                   </div>
                 </div>
@@ -2249,9 +2296,16 @@ watch(
               <p class="text-xs font-semibold text-sky-200">{{ t('builder.compareCandidateCard') }}</p>
               <template v-if="comparePokemon">
                 <div class="mt-2 flex items-center gap-3">
-                  <img :src="spriteUrl(comparePokemon.id)" :alt="comparePokemon.name" class="h-16 w-16 rounded bg-black/20 object-contain" @error="onSpriteError" />
+                  <img
+                    :src="spriteUrl(comparePokemon.id)"
+                    :alt="displayPokemonName(comparePokemon.id, comparePokemon.name)"
+                    :data-sprite-id="comparePokemon.id"
+                    :data-sprite-fallback-index="0"
+                    class="h-16 w-16 rounded bg-black/20 object-contain"
+                    @error="onSpriteError"
+                  />
                   <div>
-                    <p class="text-sm font-semibold text-gray-100">{{ comparePokemon.name }}</p>
+                    <p class="text-sm font-semibold text-gray-100">{{ displayPokemonName(comparePokemon.id, comparePokemon.name) }}</p>
                     <p class="text-xs text-gray-400">#{{ String(comparePokemon.pokedexNumber).padStart(4, '0') }}</p>
                   </div>
                 </div>
@@ -2292,10 +2346,13 @@ watch(
                   :model-value="compareDraft.itemId"
                   :options="itemSelectOptions"
                   :placeholder="t('builder.selectItem')"
-                  :disabled="!comparePokemon"
+                  :disabled="!comparePokemon || isItemLockedForPokemon(comparePokemon)"
                   :no-results-label="t('dex.noSearchResults')"
                   @update:model-value="updateCompareField('itemId', $event)"
                 />
+                <p v-if="comparePokemon && isItemLockedForPokemon(comparePokemon)" class="mt-2 text-[11px] text-amber-200">
+                  {{ t('builder.itemLockedByForm', { item: dexStore.getItem(comparePokemon.requiredItemId ?? '')?.name ?? prettifySlug(comparePokemon.requiredItemId ?? '') }) }}
+                </p>
               </label>
 
               <label class="block text-xs">

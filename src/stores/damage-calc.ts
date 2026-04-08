@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { useStorage } from '@vueuse/core'
 import { ref } from 'vue'
 import type { BattleMode, MoveEntry, StatKey, TeamMember } from '@/models/domain'
 import type {
@@ -16,6 +15,7 @@ import { useMetaUsageStore } from '@/stores/meta-usage'
 import { useTeamStore } from '@/stores/team'
 import { metaTemplateService } from '@/services/meta-template-service'
 import { computeMatrixDamage, computePairDamage } from '@/utils/damage-engine'
+import { useBufferedStorage } from '@/utils/buffered-storage'
 import { getEffectiveLearnsetMoveIds } from '@/utils/move-legality'
 import { canonicalizePokemonId } from '@/utils/showdown'
 import type { MetaTeamTemplate } from '@/models/meta'
@@ -168,7 +168,7 @@ function findTeamMemberBySlot(members: TeamMember[], slot: DamageSlotNumber, fal
   return members[fallbackIndex]
 }
 
-function normalizeSlotSet(input: DamageSlotSet, mode: BattleMode): DamageSlotSet {
+function normalizeSlotSet(input: DamageSlotSet): DamageSlotSet {
   const canonicalPokemonId = canonicalizePokemonId(input.pokemonId ?? '')
   return {
     ...input,
@@ -238,12 +238,24 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
   const teamStore = useTeamStore()
   const metaUsageStore = useMetaUsageStore()
 
-  const vgcScenario = useStorage<DamageCalcScenario>('pokeplan.v1.damage.vgc', createScenario('vgc'))
-  const singlesScenario = useStorage<DamageCalcScenario>('pokeplan.v1.damage.singles', createScenario('singles'))
-  const scenarioVersion = useStorage<Record<BattleMode, number>>('pokeplan.v1.damage.version', {
-    vgc: 0,
-    singles: 0,
-  })
+  const { state: vgcScenario } = useBufferedStorage<DamageCalcScenario>(
+    'pokeplan.v1.damage.vgc',
+    createScenario('vgc'),
+    { debounceMs: 250 },
+  )
+  const { state: singlesScenario } = useBufferedStorage<DamageCalcScenario>(
+    'pokeplan.v1.damage.singles',
+    createScenario('singles'),
+    { debounceMs: 250 },
+  )
+  const { state: scenarioVersion } = useBufferedStorage<Record<BattleMode, number>>(
+    'pokeplan.v1.damage.version',
+    {
+      vgc: 0,
+      singles: 0,
+    },
+    { debounceMs: 250 },
+  )
 
   const pairCache = new Map<string, DamagePairComputation>()
   const matrixCache = new Map<string, DamageMatrixCell[]>()
@@ -318,7 +330,6 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
             level: defaultLevel,
             isTeraActive: false,
           },
-          mode,
         )
       }),
     }
@@ -383,7 +394,7 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
         ivs: { ...entry.ivs, ...(patch.ivs ?? {}) },
         stages: { ...entry.stages, ...(patch.stages ?? {}) },
       }
-      return normalizeSlotSet(merged, mode)
+      return normalizeSlotSet(merged)
     })
     const nextSide = {
       ...current[key],
@@ -462,7 +473,6 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
           currentHpPercent: 100,
           status: 'healthy',
         },
-        mode,
       )
     })
     const active = ensureActiveSlots(
@@ -595,14 +605,19 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
         }
       })
       .catch((error) => {
+        dynamicTeamTemplates.value = {
+          ...dynamicTeamTemplates.value,
+          [mode]: dynamicTeamTemplates.value[mode] ?? [],
+        }
         dynamicTemplatesStatus.value = {
           ...dynamicTemplatesStatus.value,
-          [mode]: 'error',
+          [mode]: 'ready',
         }
         dynamicTemplatesError.value = {
           ...dynamicTemplatesError.value,
-          [mode]: (error as Error).message,
+          [mode]: null,
         }
+        console.warn(`[MetaTemplates] Falling back to local-only mode for ${mode}`, error)
       })
 
     pendingDynamicTeams.set(mode, task)

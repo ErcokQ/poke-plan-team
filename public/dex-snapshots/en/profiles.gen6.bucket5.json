@@ -1,0 +1,7265 @@
+{
+  "version": "v1",
+  "locale": "en",
+  "generationId": 6,
+  "bucketId": 5,
+  "generatedAt": "2026-04-08T16:02:29.445Z",
+  "profiles": [
+    {
+      "id": "yveltal",
+      "moves": [
+        {
+          "id": "acrobatics",
+          "name": "Acrobatics",
+          "category": "physical",
+          "type": "flying",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "aerial-ace",
+          "name": "Aerial Ace",
+          "category": "physical",
+          "type": "flying",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "air-slash",
+          "name": "Air Slash",
+          "category": "special",
+          "type": "flying",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 10
+        },
+        {
+          "id": "block",
+          "name": "Block",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "body-slam",
+          "name": "Body Slam",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "confide",
+          "name": "Confide",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "cut",
+          "name": "Cut",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dark-pulse",
+          "name": "Dark Pulse",
+          "category": "special",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 40
+        },
+        {
+          "id": "defog",
+          "name": "Defog",
+          "category": "status",
+          "type": "flying",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "disable",
+          "name": "Disable",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 15
+        },
+        {
+          "id": "double-team",
+          "name": "Double Team",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "dragon-claw",
+          "name": "Dragon Claw",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-rush",
+          "name": "Dragon Rush",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 63
+        },
+        {
+          "id": "dream-eater",
+          "name": "Dream Eater",
+          "category": "special",
+          "type": "psychic",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dual-wingbeat",
+          "name": "Dual Wingbeat",
+          "category": "physical",
+          "type": "flying",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "embargo",
+          "name": "Embargo",
+          "category": "status",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "endure",
+          "name": "Endure",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "facade",
+          "name": "Facade",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "fly",
+          "name": "Fly",
+          "category": "physical",
+          "type": "flying",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "focus-blast",
+          "name": "Focus Blast",
+          "category": "special",
+          "type": "fighting",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 72
+        },
+        {
+          "id": "foul-play",
+          "name": "Foul Play",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 51
+        },
+        {
+          "id": "frustration",
+          "name": "Frustration",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "giga-impact",
+          "name": "Giga Impact",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "gust",
+          "name": "Gust",
+          "category": "special",
+          "type": "flying",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "heat-wave",
+          "name": "Heat Wave",
+          "category": "special",
+          "type": "fire",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hidden-power",
+          "name": "Hidden Power",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hone-claws",
+          "name": "Hone Claws",
+          "category": "status",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hurricane",
+          "name": "Hurricane",
+          "category": "special",
+          "type": "flying",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "hyper-beam",
+          "name": "Hyper Beam",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 85
+        },
+        {
+          "id": "hyper-voice",
+          "name": "Hyper Voice",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "knock-off",
+          "name": "Knock Off",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "laser-focus",
+          "name": "Laser Focus",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "lash-out",
+          "name": "Lash Out",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "oblivion-wing",
+          "name": "Oblivion Wing",
+          "category": "special",
+          "type": "flying",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 26
+        },
+        {
+          "id": "payback",
+          "name": "Payback",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "phantom-force",
+          "name": "Phantom Force",
+          "category": "physical",
+          "type": "ghost",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 55
+        },
+        {
+          "id": "protect",
+          "name": "Protect",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "psychic",
+          "name": "Psychic",
+          "category": "special",
+          "type": "psychic",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 45
+        },
+        {
+          "id": "rain-dance",
+          "name": "Rain Dance",
+          "category": "status",
+          "type": "water",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "razor-wind",
+          "name": "Razor Wind",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "rest",
+          "name": "Rest",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "return",
+          "name": "Return",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rock-slide",
+          "name": "Rock Slide",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "roost",
+          "name": "Roost",
+          "category": "status",
+          "type": "flying",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "round",
+          "name": "Round",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "secret-power",
+          "name": "Secret Power",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "shadow-ball",
+          "name": "Shadow Ball",
+          "category": "special",
+          "type": "ghost",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "shadow-claw",
+          "name": "Shadow Claw",
+          "category": "physical",
+          "type": "ghost",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sky-attack",
+          "name": "Sky Attack",
+          "category": "physical",
+          "type": "flying",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "tutor"
+          ],
+          "minLevel": 80
+        },
+        {
+          "id": "sky-drop",
+          "name": "Sky Drop",
+          "category": "physical",
+          "type": "flying",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sleep-talk",
+          "name": "Sleep Talk",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "snarl",
+          "name": "Snarl",
+          "category": "special",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 10
+        },
+        {
+          "id": "snore",
+          "name": "Snore",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "steel-wing",
+          "name": "Steel Wing",
+          "category": "physical",
+          "type": "steel",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "substitute",
+          "name": "Substitute",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sucker-punch",
+          "name": "Sucker Punch",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 20
+        },
+        {
+          "id": "sunny-day",
+          "name": "Sunny Day",
+          "category": "status",
+          "type": "fire",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swagger",
+          "name": "Swagger",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swift",
+          "name": "Swift",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "tailwind",
+          "name": "Tailwind",
+          "category": "status",
+          "type": "flying",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "tutor"
+          ],
+          "minLevel": 25
+        },
+        {
+          "id": "taunt",
+          "name": "Taunt",
+          "category": "status",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "thief",
+          "name": "Thief",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "torment",
+          "name": "Torment",
+          "category": "status",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "toxic",
+          "name": "Toxic",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "u-turn",
+          "name": "U-turn",
+          "category": "physical",
+          "type": "bug",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "zen-headbutt",
+          "name": "Zen Headbutt",
+          "category": "physical",
+          "type": "psychic",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        }
+      ]
+    },
+    {
+      "id": "zygarde-10",
+      "moves": [
+        {
+          "id": "bind",
+          "name": "Bind",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "tutor"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "bite",
+          "name": "Bite",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "block",
+          "name": "Block",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "body-slam",
+          "name": "Body Slam",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "breaking-swipe",
+          "name": "Breaking Swipe",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "brick-break",
+          "name": "Brick Break",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "bulldoze",
+          "name": "Bulldoze",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "camouflage",
+          "name": "Camouflage",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 59
+        },
+        {
+          "id": "coil",
+          "name": "Coil",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 72
+        },
+        {
+          "id": "confide",
+          "name": "Confide",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "core-enforcer",
+          "name": "Core Enforcer",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "crunch",
+          "name": "Crunch",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 32
+        },
+        {
+          "id": "dig",
+          "name": "Dig",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 10
+        },
+        {
+          "id": "double-team",
+          "name": "Double Team",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "draco-meteor",
+          "name": "Draco Meteor",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-breath",
+          "name": "Dragon Breath",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "dragon-dance",
+          "name": "Dragon Dance",
+          "category": "status",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "zygarde-cube"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-pulse",
+          "name": "Dragon Pulse",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 40
+        },
+        {
+          "id": "dragon-tail",
+          "name": "Dragon Tail",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "earth-power",
+          "name": "Earth Power",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "earthquake",
+          "name": "Earthquake",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 55
+        },
+        {
+          "id": "endure",
+          "name": "Endure",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "extreme-speed",
+          "name": "Extreme Speed",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "zygarde-cube"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "facade",
+          "name": "Facade",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "focus-blast",
+          "name": "Focus Blast",
+          "category": "special",
+          "type": "fighting",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "frustration",
+          "name": "Frustration",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "giga-impact",
+          "name": "Giga Impact",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "glare",
+          "name": "Glare",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "grass-knot",
+          "name": "Grass Knot",
+          "category": "special",
+          "type": "grass",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "haze",
+          "name": "Haze",
+          "category": "status",
+          "type": "ice",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 8
+        },
+        {
+          "id": "hidden-power",
+          "name": "Hidden Power",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "high-horsepower",
+          "name": "High Horsepower",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-beam",
+          "name": "Hyper Beam",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-voice",
+          "name": "Hyper Voice",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "iron-tail",
+          "name": "Iron Tail",
+          "category": "physical",
+          "type": "steel",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "lands-wrath",
+          "name": "Land’s Wrath",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 26
+        },
+        {
+          "id": "outrage",
+          "name": "Outrage",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 80
+        },
+        {
+          "id": "pain-split",
+          "name": "Pain Split",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "payback",
+          "name": "Payback",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "protect",
+          "name": "Protect",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rest",
+          "name": "Rest",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "retaliate",
+          "name": "Retaliate",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "return",
+          "name": "Return",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "reversal",
+          "name": "Reversal",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rock-slide",
+          "name": "Rock Slide",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "round",
+          "name": "Round",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "safeguard",
+          "name": "Safeguard",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 5
+        },
+        {
+          "id": "sandstorm",
+          "name": "Sandstorm",
+          "category": "status",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 35
+        },
+        {
+          "id": "scale-shot",
+          "name": "Scale Shot",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "scorching-sands",
+          "name": "Scorching Sands",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "shock-wave",
+          "name": "Shock Wave",
+          "category": "special",
+          "type": "electric",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "skitter-smack",
+          "name": "Skitter Smack",
+          "category": "physical",
+          "type": "bug",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sleep-talk",
+          "name": "Sleep Talk",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sludge-wave",
+          "name": "Sludge Wave",
+          "category": "special",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "snore",
+          "name": "Snore",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "spite",
+          "name": "Spite",
+          "category": "status",
+          "type": "ghost",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stomping-tantrum",
+          "name": "Stomping Tantrum",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stone-edge",
+          "name": "Stone Edge",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "substitute",
+          "name": "Substitute",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sunny-day",
+          "name": "Sunny Day",
+          "category": "status",
+          "type": "fire",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "superpower",
+          "name": "Superpower",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swagger",
+          "name": "Swagger",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swift",
+          "name": "Swift",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "thousand-arrows",
+          "name": "Thousand Arrows",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "thousand-waves",
+          "name": "Thousand Waves",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "toxic",
+          "name": "Toxic",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "zen-headbutt",
+          "name": "Zen Headbutt",
+          "category": "physical",
+          "type": "psychic",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        }
+      ]
+    },
+    {
+      "id": "zygarde-10-power-construct",
+      "moves": [
+        {
+          "id": "bind",
+          "name": "Bind",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "tutor"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "bite",
+          "name": "Bite",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "block",
+          "name": "Block",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "body-slam",
+          "name": "Body Slam",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "breaking-swipe",
+          "name": "Breaking Swipe",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "brick-break",
+          "name": "Brick Break",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "bulldoze",
+          "name": "Bulldoze",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "camouflage",
+          "name": "Camouflage",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 59
+        },
+        {
+          "id": "coil",
+          "name": "Coil",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 72
+        },
+        {
+          "id": "confide",
+          "name": "Confide",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "core-enforcer",
+          "name": "Core Enforcer",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "crunch",
+          "name": "Crunch",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 32
+        },
+        {
+          "id": "dig",
+          "name": "Dig",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 10
+        },
+        {
+          "id": "double-team",
+          "name": "Double Team",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "draco-meteor",
+          "name": "Draco Meteor",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-breath",
+          "name": "Dragon Breath",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "dragon-dance",
+          "name": "Dragon Dance",
+          "category": "status",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "zygarde-cube"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-pulse",
+          "name": "Dragon Pulse",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 40
+        },
+        {
+          "id": "dragon-tail",
+          "name": "Dragon Tail",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "earth-power",
+          "name": "Earth Power",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "earthquake",
+          "name": "Earthquake",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 55
+        },
+        {
+          "id": "endure",
+          "name": "Endure",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "extreme-speed",
+          "name": "Extreme Speed",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "zygarde-cube"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "facade",
+          "name": "Facade",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "focus-blast",
+          "name": "Focus Blast",
+          "category": "special",
+          "type": "fighting",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "frustration",
+          "name": "Frustration",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "giga-impact",
+          "name": "Giga Impact",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "glare",
+          "name": "Glare",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "grass-knot",
+          "name": "Grass Knot",
+          "category": "special",
+          "type": "grass",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "haze",
+          "name": "Haze",
+          "category": "status",
+          "type": "ice",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 8
+        },
+        {
+          "id": "hidden-power",
+          "name": "Hidden Power",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "high-horsepower",
+          "name": "High Horsepower",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-beam",
+          "name": "Hyper Beam",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-voice",
+          "name": "Hyper Voice",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "iron-tail",
+          "name": "Iron Tail",
+          "category": "physical",
+          "type": "steel",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "lands-wrath",
+          "name": "Land’s Wrath",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 26
+        },
+        {
+          "id": "outrage",
+          "name": "Outrage",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 80
+        },
+        {
+          "id": "pain-split",
+          "name": "Pain Split",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "payback",
+          "name": "Payback",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "protect",
+          "name": "Protect",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rest",
+          "name": "Rest",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "retaliate",
+          "name": "Retaliate",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "return",
+          "name": "Return",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "reversal",
+          "name": "Reversal",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rock-slide",
+          "name": "Rock Slide",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "round",
+          "name": "Round",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "safeguard",
+          "name": "Safeguard",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 5
+        },
+        {
+          "id": "sandstorm",
+          "name": "Sandstorm",
+          "category": "status",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 35
+        },
+        {
+          "id": "scale-shot",
+          "name": "Scale Shot",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "scorching-sands",
+          "name": "Scorching Sands",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "shock-wave",
+          "name": "Shock Wave",
+          "category": "special",
+          "type": "electric",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "skitter-smack",
+          "name": "Skitter Smack",
+          "category": "physical",
+          "type": "bug",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sleep-talk",
+          "name": "Sleep Talk",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sludge-wave",
+          "name": "Sludge Wave",
+          "category": "special",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "snore",
+          "name": "Snore",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "spite",
+          "name": "Spite",
+          "category": "status",
+          "type": "ghost",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stomping-tantrum",
+          "name": "Stomping Tantrum",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stone-edge",
+          "name": "Stone Edge",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "substitute",
+          "name": "Substitute",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sunny-day",
+          "name": "Sunny Day",
+          "category": "status",
+          "type": "fire",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "superpower",
+          "name": "Superpower",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swagger",
+          "name": "Swagger",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swift",
+          "name": "Swift",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "thousand-arrows",
+          "name": "Thousand Arrows",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "thousand-waves",
+          "name": "Thousand Waves",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "toxic",
+          "name": "Toxic",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "zen-headbutt",
+          "name": "Zen Headbutt",
+          "category": "physical",
+          "type": "psychic",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        }
+      ]
+    },
+    {
+      "id": "zygarde-50",
+      "moves": [
+        {
+          "id": "bind",
+          "name": "Bind",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "tutor"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "bite",
+          "name": "Bite",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "block",
+          "name": "Block",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "body-slam",
+          "name": "Body Slam",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "breaking-swipe",
+          "name": "Breaking Swipe",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "brick-break",
+          "name": "Brick Break",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "bulldoze",
+          "name": "Bulldoze",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "camouflage",
+          "name": "Camouflage",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 59
+        },
+        {
+          "id": "coil",
+          "name": "Coil",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 72
+        },
+        {
+          "id": "confide",
+          "name": "Confide",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "core-enforcer",
+          "name": "Core Enforcer",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "crunch",
+          "name": "Crunch",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 32
+        },
+        {
+          "id": "dig",
+          "name": "Dig",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 10
+        },
+        {
+          "id": "double-team",
+          "name": "Double Team",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "draco-meteor",
+          "name": "Draco Meteor",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-breath",
+          "name": "Dragon Breath",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "dragon-dance",
+          "name": "Dragon Dance",
+          "category": "status",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "zygarde-cube"
+          ],
+          "minLevel": 72
+        },
+        {
+          "id": "dragon-pulse",
+          "name": "Dragon Pulse",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 40
+        },
+        {
+          "id": "dragon-tail",
+          "name": "Dragon Tail",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "earth-power",
+          "name": "Earth Power",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "earthquake",
+          "name": "Earthquake",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 55
+        },
+        {
+          "id": "endure",
+          "name": "Endure",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "extreme-speed",
+          "name": "Extreme Speed",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 88
+        },
+        {
+          "id": "facade",
+          "name": "Facade",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "focus-blast",
+          "name": "Focus Blast",
+          "category": "special",
+          "type": "fighting",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "frustration",
+          "name": "Frustration",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "giga-impact",
+          "name": "Giga Impact",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "glare",
+          "name": "Glare",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "grass-knot",
+          "name": "Grass Knot",
+          "category": "special",
+          "type": "grass",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "haze",
+          "name": "Haze",
+          "category": "status",
+          "type": "ice",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 8
+        },
+        {
+          "id": "hidden-power",
+          "name": "Hidden Power",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "high-horsepower",
+          "name": "High Horsepower",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-beam",
+          "name": "Hyper Beam",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-voice",
+          "name": "Hyper Voice",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "iron-tail",
+          "name": "Iron Tail",
+          "category": "physical",
+          "type": "steel",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "lands-wrath",
+          "name": "Land’s Wrath",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 26
+        },
+        {
+          "id": "outrage",
+          "name": "Outrage",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 80
+        },
+        {
+          "id": "pain-split",
+          "name": "Pain Split",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "payback",
+          "name": "Payback",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "protect",
+          "name": "Protect",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rest",
+          "name": "Rest",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "retaliate",
+          "name": "Retaliate",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "return",
+          "name": "Return",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "reversal",
+          "name": "Reversal",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rock-slide",
+          "name": "Rock Slide",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rock-smash",
+          "name": "Rock Smash",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "round",
+          "name": "Round",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "safeguard",
+          "name": "Safeguard",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 5
+        },
+        {
+          "id": "sandstorm",
+          "name": "Sandstorm",
+          "category": "status",
+          "type": "rock",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 35
+        },
+        {
+          "id": "scale-shot",
+          "name": "Scale Shot",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "scorching-sands",
+          "name": "Scorching Sands",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "secret-power",
+          "name": "Secret Power",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "shock-wave",
+          "name": "Shock Wave",
+          "category": "special",
+          "type": "electric",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "skitter-smack",
+          "name": "Skitter Smack",
+          "category": "physical",
+          "type": "bug",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sleep-talk",
+          "name": "Sleep Talk",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sludge-wave",
+          "name": "Sludge Wave",
+          "category": "special",
+          "type": "poison",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "snore",
+          "name": "Snore",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "spite",
+          "name": "Spite",
+          "category": "status",
+          "type": "ghost",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stomping-tantrum",
+          "name": "Stomping Tantrum",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stone-edge",
+          "name": "Stone Edge",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "strength",
+          "name": "Strength",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "substitute",
+          "name": "Substitute",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sunny-day",
+          "name": "Sunny Day",
+          "category": "status",
+          "type": "fire",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "superpower",
+          "name": "Superpower",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swagger",
+          "name": "Swagger",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swift",
+          "name": "Swift",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "thousand-arrows",
+          "name": "Thousand Arrows",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "thousand-waves",
+          "name": "Thousand Waves",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "toxic",
+          "name": "Toxic",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "zen-headbutt",
+          "name": "Zen Headbutt",
+          "category": "physical",
+          "type": "psychic",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        }
+      ]
+    },
+    {
+      "id": "zygarde-50-power-construct",
+      "moves": [
+        {
+          "id": "bind",
+          "name": "Bind",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "tutor"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "bite",
+          "name": "Bite",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "block",
+          "name": "Block",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "body-slam",
+          "name": "Body Slam",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "breaking-swipe",
+          "name": "Breaking Swipe",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "brick-break",
+          "name": "Brick Break",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "bulldoze",
+          "name": "Bulldoze",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "camouflage",
+          "name": "Camouflage",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 59
+        },
+        {
+          "id": "coil",
+          "name": "Coil",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 72
+        },
+        {
+          "id": "confide",
+          "name": "Confide",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "core-enforcer",
+          "name": "Core Enforcer",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "crunch",
+          "name": "Crunch",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 32
+        },
+        {
+          "id": "dig",
+          "name": "Dig",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 10
+        },
+        {
+          "id": "double-team",
+          "name": "Double Team",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "draco-meteor",
+          "name": "Draco Meteor",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-breath",
+          "name": "Dragon Breath",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "dragon-dance",
+          "name": "Dragon Dance",
+          "category": "status",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "zygarde-cube"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-pulse",
+          "name": "Dragon Pulse",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 40
+        },
+        {
+          "id": "dragon-tail",
+          "name": "Dragon Tail",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "earth-power",
+          "name": "Earth Power",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "earthquake",
+          "name": "Earthquake",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 55
+        },
+        {
+          "id": "endure",
+          "name": "Endure",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "extreme-speed",
+          "name": "Extreme Speed",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "zygarde-cube"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "facade",
+          "name": "Facade",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "focus-blast",
+          "name": "Focus Blast",
+          "category": "special",
+          "type": "fighting",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "frustration",
+          "name": "Frustration",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "giga-impact",
+          "name": "Giga Impact",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "glare",
+          "name": "Glare",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "grass-knot",
+          "name": "Grass Knot",
+          "category": "special",
+          "type": "grass",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "haze",
+          "name": "Haze",
+          "category": "status",
+          "type": "ice",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 8
+        },
+        {
+          "id": "hidden-power",
+          "name": "Hidden Power",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "high-horsepower",
+          "name": "High Horsepower",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-beam",
+          "name": "Hyper Beam",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-voice",
+          "name": "Hyper Voice",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "iron-tail",
+          "name": "Iron Tail",
+          "category": "physical",
+          "type": "steel",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "lands-wrath",
+          "name": "Land’s Wrath",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 26
+        },
+        {
+          "id": "outrage",
+          "name": "Outrage",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 80
+        },
+        {
+          "id": "pain-split",
+          "name": "Pain Split",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "payback",
+          "name": "Payback",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "protect",
+          "name": "Protect",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rest",
+          "name": "Rest",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "retaliate",
+          "name": "Retaliate",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "return",
+          "name": "Return",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "reversal",
+          "name": "Reversal",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rock-slide",
+          "name": "Rock Slide",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "round",
+          "name": "Round",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "safeguard",
+          "name": "Safeguard",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 5
+        },
+        {
+          "id": "sandstorm",
+          "name": "Sandstorm",
+          "category": "status",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 35
+        },
+        {
+          "id": "scale-shot",
+          "name": "Scale Shot",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "scorching-sands",
+          "name": "Scorching Sands",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "shock-wave",
+          "name": "Shock Wave",
+          "category": "special",
+          "type": "electric",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "skitter-smack",
+          "name": "Skitter Smack",
+          "category": "physical",
+          "type": "bug",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sleep-talk",
+          "name": "Sleep Talk",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sludge-wave",
+          "name": "Sludge Wave",
+          "category": "special",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "snore",
+          "name": "Snore",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "spite",
+          "name": "Spite",
+          "category": "status",
+          "type": "ghost",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stomping-tantrum",
+          "name": "Stomping Tantrum",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stone-edge",
+          "name": "Stone Edge",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "substitute",
+          "name": "Substitute",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sunny-day",
+          "name": "Sunny Day",
+          "category": "status",
+          "type": "fire",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "superpower",
+          "name": "Superpower",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swagger",
+          "name": "Swagger",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swift",
+          "name": "Swift",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "thousand-arrows",
+          "name": "Thousand Arrows",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "thousand-waves",
+          "name": "Thousand Waves",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "toxic",
+          "name": "Toxic",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "zen-headbutt",
+          "name": "Zen Headbutt",
+          "category": "physical",
+          "type": "psychic",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        }
+      ]
+    },
+    {
+      "id": "zygarde-complete",
+      "moves": [
+        {
+          "id": "bind",
+          "name": "Bind",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "tutor"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "bite",
+          "name": "Bite",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "block",
+          "name": "Block",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "body-slam",
+          "name": "Body Slam",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "breaking-swipe",
+          "name": "Breaking Swipe",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "brick-break",
+          "name": "Brick Break",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "bulldoze",
+          "name": "Bulldoze",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "camouflage",
+          "name": "Camouflage",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 59
+        },
+        {
+          "id": "coil",
+          "name": "Coil",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 72
+        },
+        {
+          "id": "confide",
+          "name": "Confide",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "core-enforcer",
+          "name": "Core Enforcer",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "crunch",
+          "name": "Crunch",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 32
+        },
+        {
+          "id": "dig",
+          "name": "Dig",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 10
+        },
+        {
+          "id": "double-team",
+          "name": "Double Team",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "draco-meteor",
+          "name": "Draco Meteor",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-breath",
+          "name": "Dragon Breath",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "dragon-dance",
+          "name": "Dragon Dance",
+          "category": "status",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "zygarde-cube"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-pulse",
+          "name": "Dragon Pulse",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 40
+        },
+        {
+          "id": "dragon-tail",
+          "name": "Dragon Tail",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "earth-power",
+          "name": "Earth Power",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "earthquake",
+          "name": "Earthquake",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 55
+        },
+        {
+          "id": "endure",
+          "name": "Endure",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "extreme-speed",
+          "name": "Extreme Speed",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "zygarde-cube"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "facade",
+          "name": "Facade",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "focus-blast",
+          "name": "Focus Blast",
+          "category": "special",
+          "type": "fighting",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "frustration",
+          "name": "Frustration",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "giga-impact",
+          "name": "Giga Impact",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "glare",
+          "name": "Glare",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "grass-knot",
+          "name": "Grass Knot",
+          "category": "special",
+          "type": "grass",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "haze",
+          "name": "Haze",
+          "category": "status",
+          "type": "ice",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 8
+        },
+        {
+          "id": "hidden-power",
+          "name": "Hidden Power",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "high-horsepower",
+          "name": "High Horsepower",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-beam",
+          "name": "Hyper Beam",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-voice",
+          "name": "Hyper Voice",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "iron-tail",
+          "name": "Iron Tail",
+          "category": "physical",
+          "type": "steel",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "lands-wrath",
+          "name": "Land’s Wrath",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 26
+        },
+        {
+          "id": "outrage",
+          "name": "Outrage",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 80
+        },
+        {
+          "id": "pain-split",
+          "name": "Pain Split",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "payback",
+          "name": "Payback",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "protect",
+          "name": "Protect",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rest",
+          "name": "Rest",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "retaliate",
+          "name": "Retaliate",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "return",
+          "name": "Return",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "reversal",
+          "name": "Reversal",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rock-slide",
+          "name": "Rock Slide",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "round",
+          "name": "Round",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "safeguard",
+          "name": "Safeguard",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 5
+        },
+        {
+          "id": "sandstorm",
+          "name": "Sandstorm",
+          "category": "status",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 35
+        },
+        {
+          "id": "scale-shot",
+          "name": "Scale Shot",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "scorching-sands",
+          "name": "Scorching Sands",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "shock-wave",
+          "name": "Shock Wave",
+          "category": "special",
+          "type": "electric",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "skitter-smack",
+          "name": "Skitter Smack",
+          "category": "physical",
+          "type": "bug",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sleep-talk",
+          "name": "Sleep Talk",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sludge-wave",
+          "name": "Sludge Wave",
+          "category": "special",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "snore",
+          "name": "Snore",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "spite",
+          "name": "Spite",
+          "category": "status",
+          "type": "ghost",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stomping-tantrum",
+          "name": "Stomping Tantrum",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stone-edge",
+          "name": "Stone Edge",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "substitute",
+          "name": "Substitute",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sunny-day",
+          "name": "Sunny Day",
+          "category": "status",
+          "type": "fire",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "superpower",
+          "name": "Superpower",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swagger",
+          "name": "Swagger",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swift",
+          "name": "Swift",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "thousand-arrows",
+          "name": "Thousand Arrows",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "thousand-waves",
+          "name": "Thousand Waves",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "toxic",
+          "name": "Toxic",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "zen-headbutt",
+          "name": "Zen Headbutt",
+          "category": "physical",
+          "type": "psychic",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        }
+      ]
+    },
+    {
+      "id": "zygarde-mega",
+      "moves": [
+        {
+          "id": "bind",
+          "name": "Bind",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "tutor"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "bite",
+          "name": "Bite",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "block",
+          "name": "Block",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "body-slam",
+          "name": "Body Slam",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "breaking-swipe",
+          "name": "Breaking Swipe",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "brick-break",
+          "name": "Brick Break",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "bulldoze",
+          "name": "Bulldoze",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "camouflage",
+          "name": "Camouflage",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 59
+        },
+        {
+          "id": "coil",
+          "name": "Coil",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 72
+        },
+        {
+          "id": "confide",
+          "name": "Confide",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "core-enforcer",
+          "name": "Core Enforcer",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "crunch",
+          "name": "Crunch",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 32
+        },
+        {
+          "id": "dig",
+          "name": "Dig",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 10
+        },
+        {
+          "id": "double-team",
+          "name": "Double Team",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "draco-meteor",
+          "name": "Draco Meteor",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-breath",
+          "name": "Dragon Breath",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "dragon-dance",
+          "name": "Dragon Dance",
+          "category": "status",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "zygarde-cube"
+          ],
+          "minLevel": 72
+        },
+        {
+          "id": "dragon-pulse",
+          "name": "Dragon Pulse",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 40
+        },
+        {
+          "id": "dragon-tail",
+          "name": "Dragon Tail",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "earth-power",
+          "name": "Earth Power",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "earthquake",
+          "name": "Earthquake",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 55
+        },
+        {
+          "id": "endure",
+          "name": "Endure",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "extreme-speed",
+          "name": "Extreme Speed",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 88
+        },
+        {
+          "id": "facade",
+          "name": "Facade",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "focus-blast",
+          "name": "Focus Blast",
+          "category": "special",
+          "type": "fighting",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "frustration",
+          "name": "Frustration",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "giga-impact",
+          "name": "Giga Impact",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "glare",
+          "name": "Glare",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "grass-knot",
+          "name": "Grass Knot",
+          "category": "special",
+          "type": "grass",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "haze",
+          "name": "Haze",
+          "category": "status",
+          "type": "ice",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 8
+        },
+        {
+          "id": "hidden-power",
+          "name": "Hidden Power",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "high-horsepower",
+          "name": "High Horsepower",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-beam",
+          "name": "Hyper Beam",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-voice",
+          "name": "Hyper Voice",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "iron-tail",
+          "name": "Iron Tail",
+          "category": "physical",
+          "type": "steel",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "lands-wrath",
+          "name": "Land’s Wrath",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 26
+        },
+        {
+          "id": "outrage",
+          "name": "Outrage",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 80
+        },
+        {
+          "id": "pain-split",
+          "name": "Pain Split",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "payback",
+          "name": "Payback",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "protect",
+          "name": "Protect",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rest",
+          "name": "Rest",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "retaliate",
+          "name": "Retaliate",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "return",
+          "name": "Return",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "reversal",
+          "name": "Reversal",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rock-slide",
+          "name": "Rock Slide",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rock-smash",
+          "name": "Rock Smash",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "round",
+          "name": "Round",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "safeguard",
+          "name": "Safeguard",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 5
+        },
+        {
+          "id": "sandstorm",
+          "name": "Sandstorm",
+          "category": "status",
+          "type": "rock",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 35
+        },
+        {
+          "id": "scale-shot",
+          "name": "Scale Shot",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "scorching-sands",
+          "name": "Scorching Sands",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "secret-power",
+          "name": "Secret Power",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "shock-wave",
+          "name": "Shock Wave",
+          "category": "special",
+          "type": "electric",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "skitter-smack",
+          "name": "Skitter Smack",
+          "category": "physical",
+          "type": "bug",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sleep-talk",
+          "name": "Sleep Talk",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sludge-wave",
+          "name": "Sludge Wave",
+          "category": "special",
+          "type": "poison",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "snore",
+          "name": "Snore",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "spite",
+          "name": "Spite",
+          "category": "status",
+          "type": "ghost",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stomping-tantrum",
+          "name": "Stomping Tantrum",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stone-edge",
+          "name": "Stone Edge",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "strength",
+          "name": "Strength",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "substitute",
+          "name": "Substitute",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sunny-day",
+          "name": "Sunny Day",
+          "category": "status",
+          "type": "fire",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "superpower",
+          "name": "Superpower",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swagger",
+          "name": "Swagger",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swift",
+          "name": "Swift",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "thousand-arrows",
+          "name": "Thousand Arrows",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "thousand-waves",
+          "name": "Thousand Waves",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "toxic",
+          "name": "Toxic",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "zen-headbutt",
+          "name": "Zen Headbutt",
+          "category": "physical",
+          "type": "psychic",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        }
+      ]
+    }
+  ]
+}

@@ -53,8 +53,13 @@ export const useMetaUsageStore = defineStore('meta-usage', () => {
       await ensureFormatLoaded(format)
       statusByMode.value[mode] = 'ready'
     } catch (error) {
-      statusByMode.value[mode] = 'error'
-      errorByMode.value[mode] = (error as Error).message
+      usageByFormat.value = {
+        ...usageByFormat.value,
+        [format]: usageByFormat.value[format] ?? {},
+      }
+      statusByMode.value[mode] = 'ready'
+      errorByMode.value[mode] = null
+      console.warn(`[MetaUsage] Falling back to local-only mode for ${mode}`, error)
     }
   }
 

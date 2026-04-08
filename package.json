@@ -12,7 +12,9 @@
     "preview": "vite preview",
     "test:unit": "vitest",
     "build-only": "vite build",
+    "dex:sync": "node ./scripts/dex-sync.mjs",
     "type-check": "vue-tsc --build",
+    "lint:check": "eslint .",
     "lint": "eslint . --fix",
     "format": "prettier --write src/"
   },

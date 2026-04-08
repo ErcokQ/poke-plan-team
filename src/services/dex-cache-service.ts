@@ -1,16 +1,18 @@
 import { clear, createStore, del, get, set } from 'idb-keyval'
 import type { LocaleCode } from '@/models/domain'
 
+export const DEX_CACHE_VERSION = 'v7'
+
 export interface DexCacheEnvelope<T> {
-  version: 'v3'
+  version: typeof DEX_CACHE_VERSION
   locale: LocaleCode
   createdAt: number
   ttlMs: number
   payload: T
 }
 
-const CACHE_VERSION = 'v3'
-const CACHE_PREFIX = 'pokeplan.v3.dex'
+const CACHE_VERSION = DEX_CACHE_VERSION
+const CACHE_PREFIX = `pokeplan.${DEX_CACHE_VERSION}.dex`
 const dexCacheStore = createStore('pokeplan-cache', 'dex-catalog')
 
 function isLocaleCode(value: string): value is LocaleCode {
@@ -19,7 +21,13 @@ function isLocaleCode(value: string): value is LocaleCode {
 
 export function makeDexCacheKey(
   locale: LocaleCode,
-  section: 'pokemon' | 'moves' | 'items',
+  section:
+    | 'pokemon'
+    | 'moves'
+    | 'items'
+    | 'catalog'
+    | `generation-${number}`
+    | `profiles-${number}-${number}`,
 ): string {
   return `${CACHE_PREFIX}.${locale}.${section}`
 }

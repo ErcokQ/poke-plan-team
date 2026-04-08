@@ -18,6 +18,11 @@ import { useTeamStore } from '@/stores/team'
 import { useUiStore } from '@/stores/ui'
 import { TYPE_META } from '@/models/type-meta'
 import { effectivenessAgainstDual } from '@/models/type-chart'
+import {
+  getRequiredItemIdForPokemon,
+  isItemLockedForPokemon,
+  resolveInitialItemIdForPokemon,
+} from '@/utils/form-item-rules'
 import { getEffectiveLearnsetMoveIds } from '@/utils/move-legality'
 import itemPanelIcon from '@/assets/pokesprite/icons/battle-item/x-attack.png'
 import mudkipSprite from '@/assets/pokesprite/pokemon-gen8/regular/mudkip.png'
@@ -105,6 +110,12 @@ const activePokemon = computed(() => {
   if (!activeMember.value?.pokemonId) return undefined
   return dexStore.getPokemon(mode.value, activeMember.value.pokemonId)
 })
+const lockedItemId = computed(() => getRequiredItemIdForPokemon(activePokemon.value))
+const isItemSelectionLocked = computed(() => isItemLockedForPokemon(activePokemon.value))
+const lockedItemLabel = computed(() => {
+  if (!lockedItemId.value) return ''
+  return dexStore.getItem(lockedItemId.value)?.name ?? prettifySlug(lockedItemId.value)
+})
 
 const metaStatus = computed(() => metaUsageStore.getModeStatus(mode.value))
 const isMetaLoading = computed(() => metaStatus.value === 'loading' || metaStatus.value === 'idle')
@@ -128,6 +139,11 @@ watch(selectedSlot, (nextSlot, previousSlot) => {
 watch(mode, (nextMode, previousMode) => {
   if (nextMode === previousMode) return
   uiStore.setBuilderCatalogSource('pokemon')
+  searchRaw.value = ''
+})
+
+watch(source, (nextSource, previousSource) => {
+  if (nextSource === previousSource) return
   searchRaw.value = ''
 })
 
@@ -385,7 +401,7 @@ function statLabel(value: number | null, suffix = ''): string {
 
 function spriteUrl(pokemonId: string): string {
   if (!pokemonId) return mudkipSprite
-  return `https://img.pokemondb.net/sprites/home/normal/${pokemonId}.png`
+  return spriteCandidatesForPokemon(pokemonId)[0] ?? mudkipSprite
 }
 
 const spriteAliasFallback: Record<string, string> = {
@@ -393,26 +409,76 @@ const spriteAliasFallback: Record<string, string> = {
   'calyrex-ice': 'calyrex-ice-rider',
 }
 
+function spriteCandidatesForPokemon(pokemonId: string): string[] {
+  if (!pokemonId) return [mudkipSprite]
+
+  const ids = [pokemonId]
+  const aliasId = spriteAliasFallback[pokemonId]
+  if (aliasId && aliasId !== pokemonId) ids.push(aliasId)
+
+  const prefersShowdown = pokemonId.includes('-')
+  const candidates: string[] = []
+
+  for (const id of ids) {
+    if (prefersShowdown) {
+      candidates.push(`https://play.pokemonshowdown.com/sprites/ani/${id}.gif`)
+      candidates.push(`https://img.pokemondb.net/sprites/home/normal/${id}.png`)
+    } else {
+      candidates.push(`https://img.pokemondb.net/sprites/home/normal/${id}.png`)
+      candidates.push(`https://play.pokemonshowdown.com/sprites/ani/${id}.gif`)
+    }
+    candidates.push(`https://play.pokemonshowdown.com/sprites/gen5/${id}.png`)
+  }
+
+  return [...new Set(candidates)]
+}
+
 function spriteIdFromUrl(url: string): string {
-  const marker = '/sprites/home/normal/'
-  const markerIndex = url.lastIndexOf(marker)
-  if (markerIndex === -1) return ''
-  return url.slice(markerIndex + marker.length).replace('.png', '').toLowerCase()
+  const match = url.match(/\/([^/?#]+)\.(?:png|gif)(?:[?#].*)?$/)
+  return match?.[1] ?? ''
 }
 
 function onSpriteError(event: Event) {
   const target = event.target as HTMLImageElement
-  const failedId = spriteIdFromUrl(target.src)
-  const aliasId = spriteAliasFallback[failedId]
-  if (aliasId && target.dataset.spriteAliasTried !== aliasId) {
-    target.dataset.spriteAliasTried = aliasId
-    target.src = `https://img.pokemondb.net/sprites/home/normal/${aliasId}.png`
+  const pokemonId = target.dataset.spriteId || spriteIdFromUrl(target.src)
+  const candidates = spriteCandidatesForPokemon(pokemonId)
+  const currentIndex = Number(target.dataset.spriteFallbackIndex ?? '0')
+  const nextIndex = currentIndex + 1
+
+  if (nextIndex < candidates.length) {
+    target.dataset.spriteFallbackIndex = String(nextIndex)
+    target.src = candidates[nextIndex]
     return
   }
 
   if (target.src !== mudkipSprite) {
     target.src = mudkipSprite
   }
+}
+
+function formSuffixFromPokemonId(pokemonId: string): string {
+  if (!pokemonId.includes('-')) return ''
+  const suffixParts = pokemonId.split('-').slice(1)
+  if (!suffixParts.length) return ''
+
+  const [head, ...tail] = suffixParts
+  if (head === 'mega') {
+    return tail.length
+      ? `Mega ${tail.map((part) => prettifySlug(part)).join(' ')}`
+      : 'Mega'
+  }
+  if (head === 'gmax') return 'Gmax'
+  if (head === 'alola' || head === 'galar' || head === 'hisui' || head === 'paldea') {
+    const region = prettifySlug(head)
+    const rest = tail.map((part) => prettifySlug(part)).join(' ')
+    return rest ? `${region} ${rest}` : region
+  }
+  return suffixParts.map((part) => prettifySlug(part)).join(' ')
+}
+
+function displayPokemonName(pokemonId: string, baseName: string): string {
+  const suffix = formSuffixFromPokemonId(pokemonId)
+  return suffix ? `${baseName} (${suffix})` : baseName
 }
 
 function itemIconUrl(item: PanelItemEntry): string {
@@ -436,7 +502,7 @@ function applyPokemonSelection(pokemonId: string) {
   teamStore.updateMember(mode.value, activeMember.value.slot, {
     pokemonId,
     abilityId: pokemon?.abilities[0] ?? '',
-    itemId: pokemon?.suggestedItems[0] ?? '',
+    itemId: resolveInitialItemIdForPokemon(pokemon),
     natureId: pokemon?.defaultNature ?? activeMember.value.natureId,
     moves: [
       suggestedMoves[0],
@@ -446,9 +512,14 @@ function applyPokemonSelection(pokemonId: string) {
     ],
     roleTags: pokemon ? resolveRoleTagsForSet(suggestedMoves, pokemon.roleTags, pokemon) : [],
   })
+
+  if (isItemLockedForPokemon(pokemon)) {
+    uiStore.setBuilderCatalogSource('items')
+  }
 }
 
 function applyItemSelection(itemId: string) {
+  if (isItemSelectionLocked.value) return
   uiStore.setBuilderCatalogSource('items')
   teamStore.updateMember(mode.value, activeMember.value.slot, { itemId })
 }
@@ -962,12 +1033,23 @@ function rankPokemonForFilledSlot(targetPokemon: PokemonEntry, optimizeForPrevie
 
       <div class="mt-3 min-h-0 flex-1 space-y-2 overflow-y-auto pr-1">
         <template v-if="source === 'items'">
+          <div v-if="isItemSelectionLocked" class="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-[11px] text-amber-100">
+            <p class="font-semibold">{{ t('builder.itemLockedByForm', { item: lockedItemLabel }) }}</p>
+            <p class="mt-1 text-gray-300">{{ t('builder.itemLockedHint') }}</p>
+          </div>
           <button
             v-for="item in filteredItems"
             :key="`item-${item.id}`"
             type="button"
-            class="w-full rounded-lg border p-2 text-left transition cursor-pointer"
-            :class="activeMember.itemId === item.id ? 'border-sky-500/70 bg-sky-500/15' : 'border-gray-700 bg-st-black/55 hover:border-sky-500/40'"
+            class="w-full rounded-lg border p-2 text-left transition"
+            :class="
+              activeMember.itemId === item.id
+                ? 'border-sky-500/70 bg-sky-500/15'
+                : isItemSelectionLocked
+                  ? 'cursor-not-allowed border-gray-700/70 bg-st-black/35 opacity-70'
+                  : 'cursor-pointer border-gray-700 bg-st-black/55 hover:border-sky-500/40'
+            "
+            :disabled="isItemSelectionLocked"
             @click="applyItemSelection(item.id)"
           >
             <div class="flex items-start gap-2">
@@ -993,14 +1075,16 @@ function rankPokemonForFilledSlot(targetPokemon: PokemonEntry, optimizeForPrevie
             <div class="flex items-start gap-2">
               <img
                 :src="spriteUrl(pokemon.id)"
-                :alt="pokemon.name"
+                :alt="displayPokemonName(pokemon.id, pokemon.name)"
+                :data-sprite-id="pokemon.id"
+                :data-sprite-fallback-index="0"
                 class="h-8 w-8 shrink-0 rounded bg-black/25 object-contain"
                 loading="lazy"
                 @error="onSpriteError"
               />
               <div class="min-w-0 flex-1">
                 <p class="truncate text-xs font-semibold text-gray-100">
-                  #{{ String(pokemon.pokedexNumber).padStart(4, '0') }} {{ pokemon.name }}
+                  #{{ String(pokemon.pokedexNumber).padStart(4, '0') }} {{ displayPokemonName(pokemon.id, pokemon.name) }}
                 </p>
                 <div class="mt-1 flex flex-wrap gap-1">
                   <span

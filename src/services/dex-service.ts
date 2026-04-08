@@ -374,9 +374,17 @@ function defaultSuggestedItems(types: PokemonTypeKey[]): string[] {
 
 const BUILDER_VERSION_GROUPS = new Set(['scarlet-violet'])
 const LEGAL_MOVE_LEARN_METHODS = new Set(['level-up', 'machine', 'tutor', 'egg', 'form-change'])
+const REQUEST_CACHE_TTL_MS = 15 * 60 * 1000
+const REQUEST_CACHE_MAX_ENTRIES = 800
+
+interface RequestCacheEntry {
+  createdAt: number
+  touchedAt: number
+  promise: Promise<unknown>
+}
 
 export class DexService {
-  private readonly cache = new Map<string, Promise<unknown>>()
+  private readonly cache = new Map<string, RequestCacheEntry>()
 
   constructor(private readonly baseUrl = 'https://pokeapi.co/api/v2') {}
 
@@ -1061,20 +1069,29 @@ export class DexService {
 
   private async request<T>(pathOrUrl: string): Promise<T> {
     const url = this.toUrl(pathOrUrl)
+    const now = Date.now()
+    const cached = this.cache.get(url)
 
-    if (!this.cache.has(url)) {
-      this.cache.set(
-        url,
-        fetch(url).then(async (response) => {
-          if (!response.ok) {
-            throw new Error(`DexService request failed (${response.status}) for ${url}`)
-          }
-          return (await response.json()) as T
-        }),
-      )
+    if (cached && now - cached.createdAt <= REQUEST_CACHE_TTL_MS) {
+      cached.touchedAt = now
+      return (await cached.promise) as T
     }
 
-    return (await this.cache.get(url)) as T
+    const promise = fetch(url).then(async (response) => {
+      if (!response.ok) {
+        this.cache.delete(url)
+        throw new Error(`DexService request failed (${response.status}) for ${url}`)
+      }
+      return (await response.json()) as T
+    })
+
+    this.cache.set(url, {
+      createdAt: now,
+      touchedAt: now,
+      promise,
+    })
+    this.pruneCache(now)
+    return (await promise) as T
   }
 
   private toUrl(pathOrUrl: string): string {
@@ -1102,6 +1119,26 @@ export class DexService {
 
     await Promise.all(Array.from({ length: Math.min(safeLimit, items.length) }, () => worker()))
     return results
+  }
+
+  private pruneCache(now: number) {
+    for (const [key, entry] of this.cache.entries()) {
+      if (now - entry.createdAt > REQUEST_CACHE_TTL_MS) {
+        this.cache.delete(key)
+      }
+    }
+
+    if (this.cache.size <= REQUEST_CACHE_MAX_ENTRIES) return
+
+    const overflow = this.cache.size - REQUEST_CACHE_MAX_ENTRIES
+    const staleKeys = [...this.cache.entries()]
+      .sort((a, b) => a[1].touchedAt - b[1].touchedAt)
+      .slice(0, overflow)
+      .map(([key]) => key)
+
+    for (const key of staleKeys) {
+      this.cache.delete(key)
+    }
   }
 }
 

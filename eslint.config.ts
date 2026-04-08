@@ -14,6 +14,7 @@ export default defineConfigWithVueTs(
     '**/node_modules/**',
     '**/dist/**',
     '**/coverage/**',
+    'scripts/**',
     'src/assets/**',
     'src/data/mock/**',
     'src/pages/**',

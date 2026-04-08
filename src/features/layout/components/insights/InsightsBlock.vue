@@ -1,17 +1,16 @@
 <script setup lang="ts">
-const props = withDefaults(
-  defineProps<{
-    title: string
-    defaultOpen?: boolean
-    tone?: 'neutral' | 'sky' | 'cyan' | 'amber' | 'gray'
-  }>(),
-  {
-    defaultOpen: true,
-    tone: 'neutral',
-  },
-)
+type InsightsBlockProps = {
+  title: string
+  defaultOpen?: boolean
+  tone?: 'neutral' | 'sky' | 'cyan' | 'amber' | 'gray'
+}
 
-const toneClassByKey: Record<NonNullable<typeof props.tone>, string> = {
+withDefaults(defineProps<InsightsBlockProps>(), {
+  defaultOpen: true,
+  tone: 'neutral',
+})
+
+const toneClassByKey: Record<NonNullable<InsightsBlockProps['tone']>, string> = {
   neutral: 'border-gray-700 bg-st-black/50',
   sky: 'border-sky-500/30 bg-sky-500/5',
   cyan: 'border-cyan-500/30 bg-cyan-500/5',

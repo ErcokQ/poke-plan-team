@@ -3,6 +3,15 @@ export const messages = {
     app: {
       title: 'El Estanque de Mudkip',
       subtitle: 'Builder, analitica y estrategia competitiva',
+      bootTitle: 'Preparando el aplicativo',
+      bootBodySnapshot:
+        'Estamos cargando el catalogo local y dejando listas las herramientas principales para que el resto de la experiencia sea fluida.',
+      bootBodyApi:
+        'Estamos preparando el catalogo inicial y sincronizando los datos necesarios para arrancar el aplicativo.',
+      bootStatusCatalog: 'Cargando catalogo base',
+      bootStatusDex: 'Preparando la Dex y modulos principales',
+      bootStatusCache: 'Activando cache local para la sesion',
+      bootHint: 'Esto solo tarda un poco en la primera entrada o despues de actualizar datos.',
     },
     nav: {
       vgc: 'VGC',
@@ -56,7 +65,8 @@ export const messages = {
       rightPanelStrategy: 'Soporte de Estrategia',
       rightPanelDex: 'Soporte de Dex',
       rightPanelPlaceholderTitle: 'Modulo componente',
-      rightPanelPlaceholderBody: 'Este panel ya es modular y permite agregar widgets por vista sin tocar el layout principal.',
+      rightPanelPlaceholderBody:
+        'Este panel ya es modular y permite agregar widgets por vista sin tocar el layout principal.',
       rightPanelRoadmapTitle: 'Siguientes widgets',
       rightPanelRoadmapThreatFilters: 'Filtros de amenazas y etiquetas por matchup.',
       rightPanelRoadmapBenchmarks: 'Benchmarks rapidos de speed/defensa por modo.',
@@ -73,7 +83,7 @@ export const messages = {
     },
     about: {
       title: 'About',
-      subtitle: 'Estado del proyecto, motivacion y contacto directo.',
+      subtitle: 'Estado del proyecto, motivación y contacto directo.',
       betaStatus: 'BETA',
       photoAlt: 'Foto del creador',
       authorTitle: 'Creador del proyecto',
@@ -102,7 +112,8 @@ export const messages = {
       saveBugSuccess: 'Bug guardado correctamente en el storage local.',
       saveSuggestionSuccess: 'Sugerencia guardada correctamente en el storage local.',
       saveValidation: 'Escribe al menos asunto o mensaje para guardar el reporte.',
-      storageHint: 'Los reportes se guardan en el storage local del proyecto para revisarlos despues.',
+      storageHint:
+        'Los reportes se guardan en el storage local del proyecto para revisarlos despues.',
       savedCount: 'Guardados: {count}',
       bugDefaultSubject: '[Bug] El Estanque de Mudkip',
       suggestionDefaultSubject: '[Sugerencia] El Estanque de Mudkip',
@@ -133,6 +144,8 @@ export const messages = {
       noAbilityDescription: 'Sin descripcion disponible para esta habilidad.',
       item: 'Objeto',
       selectItem: 'Selecciona objeto',
+      itemLockedByForm: 'Objeto bloqueado por la forma: {item}',
+      itemLockedHint: 'Esta forma requiere su objeto para mantenerse valida.',
       itemDescription: 'Descripcion del objeto',
       noItemDescription: 'Este objeto no tiene descripcion disponible.',
       nature: 'Naturaleza',
@@ -171,7 +184,8 @@ export const messages = {
       catalogItemsNeedPokemon: 'Selecciona un Pokemon para priorizar objetos mas usados.',
       catalogMovesNeedPokemon: 'Selecciona un Pokemon para ver su moveset permitido.',
       catalogPokemonHintEmpty: 'Slot vacio: se muestran companeros sugeridos (top 12).',
-      catalogPokemonHintFilled: 'Slot con Pokemon: se ordena por rol, tipo y complemento de equipo.',
+      catalogPokemonHintFilled:
+        'Slot con Pokemon: se ordena por rol, tipo y complemento de equipo.',
       catalogMetaLoading: 'Cargando ranking meta...',
       catalogMetaReady: 'Ranking meta activo.',
       catalogMetaFallback: 'Meta no disponible: usando ranking local de respaldo.',
@@ -186,7 +200,8 @@ export const messages = {
       calcLevel: 'Nivel',
       suggestedItems: 'Objetos sugeridos',
       suggestedMoves: 'Movimientos sugeridos',
-      slotEmptyHint: 'Selecciona un pokemon en este slot para ver su mini wiki. Mientras tanto, Mudkip cuida el estanque.',
+      slotEmptyHint:
+        'Selecciona un pokemon en este slot para ver su mini wiki. Mientras tanto, Mudkip cuida el estanque.',
       completeShort: 'Completo',
       incompleteShort: 'Incompleto',
       statTraining: 'Entrenamiento de stats',
@@ -206,10 +221,11 @@ export const messages = {
       speedTrRankHigh: 'Alto',
       speedTrRankMid: 'Medio',
       speedTrRankLow: 'Bajo',
+      speedBenchmarkHint: 'Benchmarks: nivel {level}, 31 IVs y 252 EVs en Velocidad.',
       speedCompareFaster: 'supera {target}',
       speedCompareSlower: 'pierde vs {target}',
-      speedTargetNeutral: 'base {base} neutral',
-      speedTargetJolly: 'base {base} jolly',
+      speedTargetNeutral: 'base {base} neutral (252 Vel / 31 IV)',
+      speedTargetJolly: 'base {base} jolly (252 Vel / 31 IV)',
       slotWarnings: 'Alertas del slot',
       slotWarningsNone: 'Sin alertas para este slot.',
       warnNoProtectVgc: 'Este set no tiene Protect (VGC).',
@@ -221,7 +237,8 @@ export const messages = {
       warnAbilityUnavailable: 'La habilidad seleccionada no esta disponible para este Pokemon.',
       compareButton: 'Comparar',
       compareTitle: 'Comparador de Pokemon',
-      compareSubtitle: 'Compara el Pokemon actual del slot contra un candidato antes de reemplazar.',
+      compareSubtitle:
+        'Compara el Pokemon actual del slot contra un candidato antes de reemplazar.',
       compareCandidate: 'Pokemon candidato',
       compareSelect: 'Selecciona un Pokemon para comparar',
       compareCurrent: 'Actual (slot)',
@@ -256,12 +273,15 @@ export const messages = {
       emptySlot: 'Mudkip',
       scoreFormulaTitle: 'Como se calcula',
       scoreFormulaHint: 'Puntaje heuristico local en escala 0-100.',
-      scoreFormulaNoBenchmark: 'El score base no se compara contra ladder en vivo; usa estado actual de tu equipo.',
+      scoreFormulaNoBenchmark:
+        'El score base no se compara contra ladder en vivo; usa estado actual de tu equipo.',
       scoreWeightLabel: 'Peso: {value}',
       scorePointsLabel: 'Puntos: {value}',
-      metricOffenseHelp: 'Cobertura por tipos de movimientos del equipo contra los 18 tipos defensivos.',
+      metricOffenseHelp:
+        'Cobertura por tipos de movimientos del equipo contra los 18 tipos defensivos.',
       metricDefenseHelp: 'Balance acumulado de resistencias vs debilidades segun typings actuales.',
-      metricRoleHelp: 'Cuantos roles diferentes cubre el equipo (sweeper, support, pivot, wall, speed-control).',
+      metricRoleHelp:
+        'Cuantos roles diferentes cubre el equipo (sweeper, support, pivot, wall, speed-control).',
       metricSpeedHelp: 'Senales de control de velocidad (movimientos y roles de speed control).',
       pillarPlan: 'Plan',
       pillarTempo: 'Tempo',
@@ -310,7 +330,8 @@ export const messages = {
         'Muestra resistencias e inmunidades acumuladas por tipo atacante (solo tipos base, sin Tera).',
       teamResistanceCount: '{covered}/{total} tipos cuentan con resistencia/inmunidad.',
       teamCoverageWidgetTitle: 'Tipos cubiertos',
-      teamCoverageWidgetHint: 'Tipos rivales que tu equipo puede golpear super efectivo segun los ataques actuales.',
+      teamCoverageWidgetHint:
+        'Tipos rivales que tu equipo puede golpear super efectivo segun los ataques actuales.',
       teamCoverageCount: '{covered}/{total} tipos cubiertos super efectivo.',
       teamTypeShowAll: 'Ver todos',
       teamTypeShowLess: 'Ver menos',
@@ -330,7 +351,8 @@ export const messages = {
       metaComposite: 'Meta fit compuesto: {value}/100',
       metaUnavailable: 'Meta fit no disponible para el equipo actual.',
       threatResponsesTitle: 'Respuestas a amenazas meta',
-      threatResponsesHint: 'Heuristica local sin damage calc: defensa, velocidad, presion y utilidad.',
+      threatResponsesHint:
+        'Heuristica local sin damage calc: defensa, velocidad, presion y utilidad.',
       threatColumnThreat: 'Amenaza',
       threatColumnSolid: 'Respuestas solidas',
       threatColumnSoft: 'Checks suaves',
@@ -346,7 +368,8 @@ export const messages = {
       threatSummaryCriticalNone: 'No hay amenazas criticas detectadas.',
       threatNoRows: 'No hay amenazas para mostrar.',
       offensePressureTitle: 'Presion ofensiva real',
-      offensePressureHint: 'Evalua wincons, cierre de partida, spread, pivoting y redireccion segun los sets actuales.',
+      offensePressureHint:
+        'Evalua wincons, cierre de partida, spread, pivoting y redireccion segun los sets actuales.',
       offensePressureWincons: 'Wincons detectadas',
       offensePressureClosers: 'Closers detectados',
       offensePressureSpread: 'Spread pressure',
@@ -354,7 +377,8 @@ export const messages = {
       offensePressureRedirection: 'Redirection',
       offensePressureWinconList: 'Slots con wincon:',
       offensePressureSlotBreakdown: 'Desglose por slot',
-      offensePressureSlotBreakdownHint: 'Abre cada slot para ver como suma/resta en el score ofensivo.',
+      offensePressureSlotBreakdownHint:
+        'Abre cada slot para ver como suma/resta en el score ofensivo.',
       offensePressureScore: 'Score ofensivo',
       offensePressureScoreThreat: 'ThreatScore',
       offensePressureScoreWincon: 'WinconScore',
@@ -394,15 +418,15 @@ export const messages = {
       offensePressureContributionSetupBodyPress: 'Combo Body Press + setup defensivo',
       offensePressureContributionBoostImmediate: 'Boost inmediato por item',
       offensePressureContributionConsistencyProtectVgc: 'Protect aporta consistencia (VGC)',
-      offensePressureContributionConsistencyRecoverySingles: 'Recuperacion aporta consistencia (Singles)',
+      offensePressureContributionConsistencyRecoverySingles:
+        'Recuperacion aporta consistencia (Singles)',
       offensePressureContributionUtilityBloatPenalty: 'Exceso de utilidad no habilitante',
       offensePressureContributionPlanSetup: 'Plan bonus por setup',
       offensePressureContributionPlanConsistency: 'Plan bonus por consistencia',
       offensePressureContributionPlanEnable: 'Plan bonus por enable de equipo',
       offensePressureContributionPlanTerrainWeather: 'Plan bonus por terreno/clima',
       offensePressureContributionCloseTurnOrderVgc: 'Closer bonus por orden de turno (VGC)',
-      offensePressureContributionCloseTurnOrderSingles:
-        'Closer bonus por orden de turno (Singles)',
+      offensePressureContributionCloseTurnOrderSingles: 'Closer bonus por orden de turno (Singles)',
       offensePressureContributionCloseHi2: 'Closer bonus por dano alto consistente',
       offensePressureContributionCloseSimpleButton: 'Closer bonus por boton de cierre simple',
       offensePressureContributionCloseProtectVgc: 'Closer bonus por Protect (VGC)',
@@ -413,8 +437,7 @@ export const messages = {
         'Friccion: riesgo de precision en dano clave',
       offensePressureContributionFrictionRecoilRisk: 'Friccion: recoil/costo de PS',
       offensePressureContributionFrictionSelfDropRisk: 'Friccion: autodebuff ofensivo',
-      offensePressureContributionFrictionOneButton:
-        'Friccion: plan de cierre de un solo boton',
+      offensePressureContributionFrictionOneButton: 'Friccion: plan de cierre de un solo boton',
       offensePressureContributionUnknown: 'Contribucion {key}',
       pressureBandNone: 'Ninguna',
       pressureBandLow: 'Baja',
@@ -422,11 +445,13 @@ export const messages = {
       pressureBandHigh: 'Alta',
       pressureBandNA: 'No aplica',
       quickFindingsTitle: 'Prioridades del equipo (Top 3)',
-      quickFindingRisk: 'Mayor riesgo: debilidad compartida a {type} ({weak} debiles, {resist} resisten, {immune} inmunes).',
+      quickFindingRisk:
+        'Mayor riesgo: debilidad compartida a {type} ({weak} debiles, {resist} resisten, {immune} inmunes).',
       quickFindingRiskNone: 'Mayor riesgo: no hay debilidad compartida critica detectada.',
       quickFindingGapTempoVgc: 'Mayor gap de plan: tempo bajo, solo {count}/{total} con Protect.',
       quickFindingGapTempoSingles: 'Mayor gap de plan: tempo en {score}, falta cierre consistente.',
-      quickFindingFixProtect: 'Mejor quick-fix: agregar Protect en {slots} slot(s) puede subir Tempo +{delta}.',
+      quickFindingFixProtect:
+        'Mejor quick-fix: agregar Protect en {slots} slot(s) puede subir Tempo +{delta}.',
       quickFindingFixTeraContention:
         'Mejor quick-fix: reducir conflicto de Tera ({count} piezas criticas compiten por Tera).',
       quickFindingFixCoverage: 'Mejor quick-fix: agregar cobertura ofensiva fiable contra {type}.',
@@ -452,7 +477,8 @@ export const messages = {
       quickSimDeltaDefenseRisk: 'Risk def.',
       quickSimDeltaCloser: 'Closer',
       teraDependencyTitle: 'Dependencia de Tera',
-      teraDependencyHint: 'Clasifica que tanto cada slot necesita Teracristalizar para rendir de forma optima.',
+      teraDependencyHint:
+        'Clasifica que tanto cada slot necesita Teracristalizar para rendir de forma optima.',
       teraDependencyReason: 'Motivo',
       teraDependencyEmpty: 'No hay datos de dependencia de Tera para mostrar.',
       teraColumnSlot: 'Slot',
@@ -531,7 +557,8 @@ export const messages = {
       pokemon: 'Pokemon',
       selectPokemon: 'Selecciona pokemon',
       defaultTarget: 'Objetivo por defecto',
-      defaultTargetHelp: 'Se usa al abrir un 1v1 rapido para ese slot; puedes cambiarlo en la matriz.',
+      defaultTargetHelp:
+        'Se usa al abrir un 1v1 rapido para ese slot; puedes cambiarlo en la matriz.',
       expectedDamageMode: 'Daño esperado (incluye chance de no actuar)',
       assumeSpreadMultiTarget: 'Asumir penalizacion spread (2 objetivos)',
       expectedModeHelp: 'KO y residual son estimados: asume turnos consecutivos sin cambios.',
@@ -548,8 +575,8 @@ export const messages = {
       currentHpPercent: 'HP actual %',
       statusLabel: 'Estado',
       loadMetaTemplate: 'Cargar plantilla meta',
-      metaTemplatesLoading: 'Cargando plantillas desde pkmn.cc...',
-      metaTemplatesReady: 'Plantillas meta listas (pkmn.cc + deduccion por usage).',
+      metaTemplatesLoading: 'Cargando plantillas remotas opcionales...',
+      metaTemplatesReady: 'Plantillas meta listas (locales y remotas si estan disponibles).',
       metaTemplatesError: 'No se pudieron cargar plantillas remotas: {message}',
       advancedTitle: 'Modificadores avanzados',
       show: 'Mostrar',
@@ -560,7 +587,8 @@ export const messages = {
       matrixTitle: 'Matriz de cruces',
       matrixAtoB: 'Equipo A -> Equipo B',
       matrixBtoA: 'Equipo B -> Equipo A',
-      matrixDirectionHelp: 'Selecciona quien ataca. En VGC se evalua 4v4 y puedes cambiar con reservas desde Simulador.',
+      matrixDirectionHelp:
+        'Selecciona quien ataca. En VGC se evalua 4v4 y puedes cambiar con reservas desde Simulador.',
       filterAll: 'Todo',
       filterHigh: 'Altos 75%+',
       filterKo: 'KOs 100%+',
@@ -574,7 +602,8 @@ export const messages = {
       pairNoMoves: 'No hay movimientos de dano validos para este cruce.',
       otherMovesDetail: 'Ver otros movimientos',
       rollsLabel: 'Rolls',
-      rollsHelp: 'Rolls = 16 posibles danos por el factor aleatorio del juego (de minimo a maximo).',
+      rollsHelp:
+        'Rolls = 16 posibles danos por el factor aleatorio del juego (de minimo a maximo).',
       statsAdvancedTitle: 'Nivel, EVs, IVs y modificadores',
       statsQuickEdit: 'Ajuste rapido de IV/EV',
       stageNeutralTag: 'Stages neutros',
@@ -669,6 +698,16 @@ export const messages = {
       loading: 'Cargando generacion...',
       unavailable: 'Esta generacion se habilitara en una siguiente fase.',
       noSearchResults: 'No hay Pokemon que coincidan con la busqueda.',
+      noResultsForType: 'No hay Pokemon de tipo {type} en esta generacion.',
+      noResultsWithTypeAndSearch:
+        'No hay Pokemon de tipo {type} que coincidan con la busqueda actual.',
+      noResultsForAvailability: 'No hay Pokemon disponibles en {game} dentro de esta generacion.',
+      noResultsWithAvailabilityAndSearch:
+        'No hay Pokemon disponibles en {game} que coincidan con la busqueda actual.',
+      noResultsWithTypeAndAvailability:
+        'No hay Pokemon de tipo {type} disponibles en {game} dentro de esta generacion.',
+      noResultsWithTypeAvailabilityAndSearch:
+        'No hay Pokemon de tipo {type} disponibles en {game} que coincidan con la busqueda actual.',
       retry: 'Reintentar',
       ready: 'Lista',
       soon: 'Pronto',
@@ -698,12 +737,29 @@ export const messages = {
       eggGroups: 'Grupos huevo',
       legendary: 'Legendario',
       mythical: 'Mitico',
+      filterByType: 'Filtrar por tipo',
+      filterByAvailability: 'Juego',
+      filterAllTypes: 'Todos',
+      filterAnyGame: 'Cualquier juego',
+      clearFilter: 'Limpiar filtro',
+      formsAvailable: 'Formas disponibles',
+      variantsBadge: '+{count} variantes',
+      variantsCount: '{count} variantes',
     },
   },
   en: {
     app: {
       title: 'El Estanque de Mudkip',
       subtitle: 'Builder, analytics and competitive strategy',
+      bootTitle: 'Preparing the app',
+      bootBodySnapshot:
+        'We are loading the local catalog and getting the main tools ready so the rest of the experience stays smooth.',
+      bootBodyApi:
+        'We are preparing the initial catalog and syncing the data needed to start the app.',
+      bootStatusCatalog: 'Loading base catalog',
+      bootStatusDex: 'Preparing Dex and main modules',
+      bootStatusCache: 'Warming up local cache for this session',
+      bootHint: 'This usually only takes a bit on the first visit or after refreshing data.',
     },
     nav: {
       vgc: 'VGC',
@@ -757,7 +813,8 @@ export const messages = {
       rightPanelStrategy: 'Strategy support',
       rightPanelDex: 'Dex support',
       rightPanelPlaceholderTitle: 'Component module',
-      rightPanelPlaceholderBody: 'This panel is now modular and can host route-specific widgets without changing the main layout.',
+      rightPanelPlaceholderBody:
+        'This panel is now modular and can host route-specific widgets without changing the main layout.',
       rightPanelRoadmapTitle: 'Next widgets',
       rightPanelRoadmapThreatFilters: 'Threat filters and matchup tags.',
       rightPanelRoadmapBenchmarks: 'Quick speed/defense benchmarks by mode.',
@@ -834,6 +891,8 @@ export const messages = {
       noAbilityDescription: 'No description available for this ability.',
       item: 'Item',
       selectItem: 'Select item',
+      itemLockedByForm: 'Item locked by form: {item}',
+      itemLockedHint: 'This form requires its item to remain valid.',
       itemDescription: 'Item description',
       noItemDescription: 'No description available for this item.',
       nature: 'Nature',
@@ -887,7 +946,8 @@ export const messages = {
       calcLevel: 'Level',
       suggestedItems: 'Suggested items',
       suggestedMoves: 'Suggested moves',
-      slotEmptyHint: 'Select a pokemon in this slot to open its mini wiki. Meanwhile, Mudkip watches over the pond.',
+      slotEmptyHint:
+        'Select a pokemon in this slot to open its mini wiki. Meanwhile, Mudkip watches over the pond.',
       completeShort: 'Complete',
       incompleteShort: 'Incomplete',
       statTraining: 'Stat training',
@@ -907,10 +967,11 @@ export const messages = {
       speedTrRankHigh: 'High',
       speedTrRankMid: 'Mid',
       speedTrRankLow: 'Low',
+      speedBenchmarkHint: 'Benchmarks: level {level}, 31 IVs and 252 Speed EVs.',
       speedCompareFaster: 'outspeeds {target}',
       speedCompareSlower: 'slower than {target}',
-      speedTargetNeutral: 'base {base} neutral',
-      speedTargetJolly: 'base {base} jolly',
+      speedTargetNeutral: 'base {base} neutral (252 Spe / 31 IV)',
+      speedTargetJolly: 'base {base} jolly (252 Spe / 31 IV)',
       slotWarnings: 'Slot warnings',
       slotWarningsNone: 'No warnings for this slot.',
       warnNoProtectVgc: 'This set does not have Protect (VGC).',
@@ -957,12 +1018,14 @@ export const messages = {
       emptySlot: 'Mudkip',
       scoreFormulaTitle: 'How it is calculated',
       scoreFormulaHint: 'Local heuristic score on a 0-100 scale.',
-      scoreFormulaNoBenchmark: 'Base score is not compared to live ladder; it uses your current team state.',
+      scoreFormulaNoBenchmark:
+        'Base score is not compared to live ladder; it uses your current team state.',
       scoreWeightLabel: 'Weight: {value}',
       scorePointsLabel: 'Points: {value}',
       metricOffenseHelp: 'Coverage based on team move types against all 18 defensive types.',
       metricDefenseHelp: 'Cumulative balance of resistances vs weaknesses from current typings.',
-      metricRoleHelp: 'How many different team roles are covered (sweeper, support, pivot, wall, speed-control).',
+      metricRoleHelp:
+        'How many different team roles are covered (sweeper, support, pivot, wall, speed-control).',
       metricSpeedHelp: 'Speed-control signals from moves and role tags.',
       pillarPlan: 'Plan',
       pillarTempo: 'Tempo',
@@ -1011,7 +1074,8 @@ export const messages = {
         'Shows total resistances and immunities by attacking type (base typing only, no Tera).',
       teamResistanceCount: '{covered}/{total} types have resistance/immunity coverage.',
       teamCoverageWidgetTitle: 'Covered types',
-      teamCoverageWidgetHint: 'Target types your team can hit super effectively with current attacks.',
+      teamCoverageWidgetHint:
+        'Target types your team can hit super effectively with current attacks.',
       teamCoverageCount: '{covered}/{total} target types covered super effectively.',
       teamTypeShowAll: 'Show all',
       teamTypeShowLess: 'Show less',
@@ -1031,7 +1095,8 @@ export const messages = {
       metaComposite: 'Composite meta fit: {value}/100',
       metaUnavailable: 'Meta fit is unavailable for the current team.',
       threatResponsesTitle: 'Meta threat responses',
-      threatResponsesHint: 'Local heuristic without damage calc: defense, speed, pressure and utility.',
+      threatResponsesHint:
+        'Local heuristic without damage calc: defense, speed, pressure and utility.',
       threatColumnThreat: 'Threat',
       threatColumnSolid: 'Solid responses',
       threatColumnSoft: 'Soft checks',
@@ -1047,7 +1112,8 @@ export const messages = {
       threatSummaryCriticalNone: 'No critical threats detected.',
       threatNoRows: 'No threats to display.',
       offensePressureTitle: 'Real offensive pressure',
-      offensePressureHint: 'Evaluates wincons, late-game closing, spread, pivoting and redirection from current sets.',
+      offensePressureHint:
+        'Evaluates wincons, late-game closing, spread, pivoting and redirection from current sets.',
       offensePressureWincons: 'Detected wincons',
       offensePressureClosers: 'Detected closers',
       offensePressureSpread: 'Spread pressure',
@@ -1125,10 +1191,8 @@ export const messages = {
       quickFindingRisk:
         'Highest risk: shared weakness to {type} ({weak} weak, {resist} resist, {immune} immunities).',
       quickFindingRiskNone: 'Highest risk: no critical shared weakness detected.',
-      quickFindingGapTempoVgc:
-        'Largest plan gap: low tempo, only {count}/{total} with Protect.',
-      quickFindingGapTempoSingles:
-        'Largest plan gap: tempo at {score}, late-game closure is thin.',
+      quickFindingGapTempoVgc: 'Largest plan gap: low tempo, only {count}/{total} with Protect.',
+      quickFindingGapTempoSingles: 'Largest plan gap: tempo at {score}, late-game closure is thin.',
       quickFindingFixProtect:
         'Best quick-fix: adding Protect on {slots} slot(s) can raise Tempo by +{delta}.',
       quickFindingFixTeraContention:
@@ -1156,7 +1220,8 @@ export const messages = {
       quickSimDeltaDefenseRisk: 'Def risk',
       quickSimDeltaCloser: 'Closer',
       teraDependencyTitle: 'Tera dependency',
-      teraDependencyHint: 'Classifies how much each slot needs Terastallization to perform optimally.',
+      teraDependencyHint:
+        'Classifies how much each slot needs Terastallization to perform optimally.',
       teraDependencyReason: 'Reason',
       teraDependencyEmpty: 'No Tera dependency data to display.',
       teraColumnSlot: 'Slot',
@@ -1235,10 +1300,12 @@ export const messages = {
       pokemon: 'Pokemon',
       selectPokemon: 'Select pokemon',
       defaultTarget: 'Default target',
-      defaultTargetHelp: 'Used for quick 1v1 opening on that slot; you can override it from the matrix.',
+      defaultTargetHelp:
+        'Used for quick 1v1 opening on that slot; you can override it from the matrix.',
       expectedDamageMode: 'Expected damage (includes chance to miss the turn)',
       assumeSpreadMultiTarget: 'Assume spread penalty (2 targets)',
-      expectedModeHelp: 'KO and residual are estimates: assumes consecutive turns without switching.',
+      expectedModeHelp:
+        'KO and residual are estimates: assumes consecutive turns without switching.',
       ability: 'Ability',
       item: 'Item',
       nature: 'Nature',
@@ -1252,8 +1319,8 @@ export const messages = {
       currentHpPercent: 'Current HP %',
       statusLabel: 'Status',
       loadMetaTemplate: 'Load meta template',
-      metaTemplatesLoading: 'Loading templates from pkmn.cc...',
-      metaTemplatesReady: 'Meta templates ready (pkmn.cc + usage-based deduction).',
+      metaTemplatesLoading: 'Loading optional remote templates...',
+      metaTemplatesReady: 'Meta templates ready (local plus remote when available).',
       metaTemplatesError: 'Could not load remote templates: {message}',
       advancedTitle: 'Advanced modifiers',
       show: 'Show',
@@ -1264,7 +1331,8 @@ export const messages = {
       matrixTitle: 'Cross matrix',
       matrixAtoB: 'Team A -> Team B',
       matrixBtoA: 'Team B -> Team A',
-      matrixDirectionHelp: 'Choose the attacker side. In VGC it evaluates 4v4 and you can swap with reserves from Simulator.',
+      matrixDirectionHelp:
+        'Choose the attacker side. In VGC it evaluates 4v4 and you can swap with reserves from Simulator.',
       filterAll: 'All',
       filterHigh: 'High 75%+',
       filterKo: 'KOs 100%+',
@@ -1278,7 +1346,8 @@ export const messages = {
       pairNoMoves: 'No valid damaging moves for this pairing.',
       otherMovesDetail: 'Show other moves',
       rollsLabel: 'Rolls',
-      rollsHelp: 'Rolls = the 16 possible damage values from the in-game random damage factor (min to max).',
+      rollsHelp:
+        'Rolls = the 16 possible damage values from the in-game random damage factor (min to max).',
       statsAdvancedTitle: 'Level, EVs, IVs and stat modifiers',
       statsQuickEdit: 'Quick IV/EV edit',
       stageNeutralTag: 'Neutral stages',
@@ -1373,6 +1442,16 @@ export const messages = {
       loading: 'Loading generation...',
       unavailable: 'This generation will be enabled in a next phase.',
       noSearchResults: 'No Pokemon matched your search.',
+      noResultsForType: 'No {type}-type Pokemon are available in this generation.',
+      noResultsWithTypeAndSearch:
+        'No {type}-type Pokemon matched the current search.',
+      noResultsForAvailability: 'No Pokemon available in {game} were found in this generation.',
+      noResultsWithAvailabilityAndSearch:
+        'No Pokemon available in {game} matched the current search.',
+      noResultsWithTypeAndAvailability:
+        'No {type}-type Pokemon available in {game} were found in this generation.',
+      noResultsWithTypeAvailabilityAndSearch:
+        'No {type}-type Pokemon available in {game} matched the current search.',
       retry: 'Retry',
       ready: 'Ready',
       soon: 'Soon',
@@ -1402,6 +1481,14 @@ export const messages = {
       eggGroups: 'Egg groups',
       legendary: 'Legendary',
       mythical: 'Mythical',
+      filterByType: 'Filter by type',
+      filterByAvailability: 'Game',
+      filterAllTypes: 'All',
+      filterAnyGame: 'Any game',
+      clearFilter: 'Clear filter',
+      formsAvailable: 'Available forms',
+      variantsBadge: '+{count} variants',
+      variantsCount: '{count} variants',
     },
   },
 } as const

@@ -1,12 +1,13 @@
 <script setup lang="ts">
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import mudkipSprite from '@/assets/pokesprite/pokemon-gen8/regular/mudkip.png'
 import { MAX_IV_PER_STAT, STATS, TYPE_KEYS, type BattleMode, type LocaleCode, type PokemonTypeKey } from '@/models/domain'
+import type { DexAvailabilityFilterKey, DexPokemonProfile } from '@/models/dex'
 import { TYPE_META } from '@/models/type-meta'
 import { effectivenessAgainstDual } from '@/models/type-chart'
-import { dexService, type DexNationalEntry, type DexPokemonProfile } from '@/services/dex-service'
 import { useDexStore } from '@/stores/dex'
 import { useTeamStore } from '@/stores/team'
 import { useUiStore } from '@/stores/ui'
@@ -25,6 +26,12 @@ interface GenerationTab {
 type ProfileStatKey = keyof DexPokemonProfile['stats']
 type MoveCategory = 'physical' | 'special' | 'status'
 type EvolutionVariantKind = DexPokemonProfile['evolutionChain'][number]['variants'][number]['kind']
+type DexProfileVariantOption = {
+  id: string
+  name: string
+  kind: EvolutionVariantKind | 'base'
+  isCurrent: boolean
+}
 type VersionFilterOption = {
   id: string
   short: string
@@ -33,6 +40,22 @@ type VersionFilterOption = {
   labelEn: string
   historical?: boolean
 }
+type GenerationTypeFilterOption = {
+  type: PokemonTypeKey
+  count: number
+}
+type GenerationAvailabilityFilterOption = {
+  key: DexAvailabilityFilterKey
+  count: number
+}
+type DexGenerationEntry = ReturnType<typeof useDexStore>['getGenerationEntries'] extends (
+  generationId: number,
+  locale?: LocaleCode,
+) => infer T
+  ? T extends Array<infer Entry>
+    ? Entry
+    : never
+  : never
 
 const TYPE_COLORS: Record<PokemonTypeKey, string> = {
   normal: '#A8A77A',
@@ -56,6 +79,25 @@ const TYPE_COLORS: Record<PokemonTypeKey, string> = {
 }
 
 const STAT_KEYS: ProfileStatKey[] = ['hp', 'atk', 'def', 'spa', 'spd', 'spe']
+const GAME_AVAILABILITY_OPTIONS: Array<{
+  key: DexAvailabilityFilterKey
+  labelEs: string
+  labelEn: string
+  short: string
+}> = [
+  {
+    key: 'scarlet-violet',
+    labelEs: 'Escarlata/Purpura',
+    labelEn: 'Scarlet/Violet',
+    short: 'SV',
+  },
+  {
+    key: 'sword-shield',
+    labelEs: 'Espada/Escudo',
+    labelEn: 'Sword/Shield',
+    short: 'SwSh',
+  },
+]
 
 const generationTabs: GenerationTab[] = [
   { id: 1, key: 'I', regionEs: 'Kanto', regionEn: 'Kanto', starterId: 'bulbasaur', offset: 0, limit: 151, available: true },
@@ -130,14 +172,17 @@ const teamStore = useTeamStore()
 const uiStore = useUiStore()
 
 const activeGeneration = ref(1)
-const entries = ref<DexNationalEntry[]>([])
+const entries = ref<DexGenerationEntry[]>([])
 const pokemonSearch = ref('')
 const showShinySprites = ref(false)
 const isLoading = ref(false)
 const loadError = ref('')
+const typeFilter = ref<PokemonTypeKey | null>(null)
+const availabilityFilter = ref<'all' | DexAvailabilityFilterKey>('all')
 
 const selectedProfile = ref<DexPokemonProfile | null>(null)
 const isProfileLoading = ref(false)
+const isProfileDetailsLoading = ref(false)
 const profileError = ref('')
 const moveSearch = ref<Record<MoveCategory, string>>({
   physical: '',
@@ -244,16 +289,82 @@ const selectedVersionOption = computed(() => {
   return versionFilterOptions.value.find((option) => option.id === selectedVersionFilter.value) ?? versionFilterOptions.value[0] ?? null
 })
 
+const generationTypeFilters = computed<GenerationTypeFilterOption[]>(() => {
+  return TYPE_KEYS.map((type) => ({
+    type,
+    count: entries.value.filter((entry) => entry.types.includes(type)).length,
+  })).filter((entry) => entry.count > 0)
+})
+
+const generationAvailabilityFilters = computed<GenerationAvailabilityFilterOption[]>(() => {
+  return GAME_AVAILABILITY_OPTIONS.map((option) => ({
+    key: option.key,
+    count: entries.value.filter((entry) => (entry.gameAvailability ?? []).includes(option.key)).length,
+  })).filter((entry) => entry.count > 0)
+})
+
+const selectedAvailabilityOption = computed(() => {
+  if (availabilityFilter.value === 'all') return null
+  return GAME_AVAILABILITY_OPTIONS.find((option) => option.key === availabilityFilter.value) ?? null
+})
+
+const hasSearchQuery = computed(() => pokemonSearch.value.trim().length > 0)
+const hasActiveDexFilters = computed(
+  () => hasSearchQuery.value || typeFilter.value !== null || availabilityFilter.value !== 'all',
+)
+
 const filteredEntries = computed(() => {
   const query = normalizeSearchText(pokemonSearch.value)
-  if (!query) return entries.value
 
   return entries.value.filter((entry) => {
+    const matchesType = !typeFilter.value || entry.types.includes(typeFilter.value)
+    if (!matchesType) return false
+
+    const matchesAvailability =
+      availabilityFilter.value === 'all' ||
+      (entry.gameAvailability ?? []).includes(availabilityFilter.value)
+    if (!matchesAvailability) return false
+
+    if (!query) return true
+
     const byName = normalizeSearchText(entry.name).includes(query)
     const byId = normalizeSearchText(entry.id).includes(query)
     const byDexNumber = String(entry.pokedexNumber).includes(query)
-    return byName || byId || byDexNumber
+    const byTypes = entry.types.some((type) => normalizeSearchText(type).includes(query))
+    return byName || byId || byDexNumber || byTypes
   })
+})
+
+const noResultsMessage = computed(() => {
+  if (typeFilter.value && availabilityFilter.value !== 'all' && hasSearchQuery.value) {
+    return t('dex.noResultsWithTypeAvailabilityAndSearch', {
+      type: typeLabel(typeFilter.value),
+      game: availabilityFilterLabel(availabilityFilter.value),
+    })
+  }
+  if (typeFilter.value && availabilityFilter.value !== 'all') {
+    return t('dex.noResultsWithTypeAndAvailability', {
+      type: typeLabel(typeFilter.value),
+      game: availabilityFilterLabel(availabilityFilter.value),
+    })
+  }
+  if (typeFilter.value && hasSearchQuery.value) {
+    return t('dex.noResultsWithTypeAndSearch', { type: typeLabel(typeFilter.value) })
+  }
+  if (availabilityFilter.value !== 'all' && hasSearchQuery.value) {
+    return t('dex.noResultsWithAvailabilityAndSearch', {
+      game: availabilityFilterLabel(availabilityFilter.value),
+    })
+  }
+  if (typeFilter.value) {
+    return t('dex.noResultsForType', { type: typeLabel(typeFilter.value) })
+  }
+  if (availabilityFilter.value !== 'all') {
+    return t('dex.noResultsForAvailability', {
+      game: availabilityFilterLabel(availabilityFilter.value),
+    })
+  }
+  return t('dex.noSearchResults')
 })
 
 const activeTeam = computed(() => teamStore.getActiveTeam(mode.value))
@@ -269,6 +380,41 @@ const selectedPokemonIsFavorite = computed(() => {
   const pokemonId = selectedProfile.value?.id
   return pokemonId ? uiStore.isFavoritePokemon(pokemonId) : false
 })
+const selectedProfileDisplayName = computed(() =>
+  selectedProfile.value ? displayPokemonName(selectedProfile.value.id, selectedProfile.value.name) : '',
+)
+const selectedProfileFormLabel = computed(() => {
+  if (!selectedProfile.value) return ''
+  return formSuffixFromPokemonId(selectedProfile.value.id)
+})
+const selectedProfileVariantOptions = computed<DexProfileVariantOption[]>(() => {
+  if (!selectedProfile.value) return []
+
+  const familyEntry =
+    selectedProfile.value.evolutionChain.find(
+      (entry) => entry.pokedexNumber === selectedProfile.value?.pokedexNumber,
+    ) ?? null
+  if (!familyEntry) return []
+
+  const options: DexProfileVariantOption[] = [
+    {
+      id: familyEntry.id,
+      name: displayPokemonName(familyEntry.id, familyEntry.name),
+      kind: 'base',
+      isCurrent: familyEntry.id === selectedProfile.value.id,
+    },
+    ...familyEntry.variants.map((variant) => ({
+      id: variant.id,
+      name: displayPokemonName(variant.id, variant.name),
+      kind: variant.kind,
+      isCurrent: variant.id === selectedProfile.value?.id,
+    })),
+  ]
+
+  return options.filter(
+    (option, index, list) => list.findIndex((candidate) => candidate.id === option.id) === index,
+  )
+})
 
 function regionLabel(tab: GenerationTab): string {
   return locale.value === 'es' ? tab.regionEs : tab.regionEn
@@ -276,6 +422,17 @@ function regionLabel(tab: GenerationTab): string {
 
 function typeLabel(type: PokemonTypeKey): string {
   return locale.value === 'es' ? TYPE_META[type].es : TYPE_META[type].en
+}
+
+function availabilityFilterLabel(filter: 'all' | DexAvailabilityFilterKey): string {
+  if (filter === 'all') return t('dex.filterAnyGame')
+  const option = GAME_AVAILABILITY_OPTIONS.find((entry) => entry.key === filter)
+  if (!option) return filter
+  return locale.value === 'es' ? option.labelEs : option.labelEn
+}
+
+function availabilityFilterShortLabel(filter: DexAvailabilityFilterKey): string {
+  return GAME_AVAILABILITY_OPTIONS.find((option) => option.key === filter)?.short ?? filter
 }
 
 function learnMethodLabel(method: string): string {
@@ -337,12 +494,52 @@ function titleFromSlug(slug: string): string {
     .join(' ')
 }
 
+function prettifySlug(slug: string): string {
+  return slug
+    .split('-')
+    .filter(Boolean)
+    .map((chunk) => chunk.charAt(0).toUpperCase() + chunk.slice(1))
+    .join(' ')
+}
+
+function formSuffixFromPokemonId(pokemonId: string): string {
+  if (!pokemonId.includes('-')) return ''
+  const suffixParts = pokemonId.split('-').slice(1)
+  if (!suffixParts.length) return ''
+
+  const [head, ...tail] = suffixParts
+  if (head === 'mega') {
+    return tail.length ? `Mega ${tail.map((part) => prettifySlug(part)).join(' ')}` : 'Mega'
+  }
+  if (head === 'gmax') return 'Gmax'
+  if (head === 'alola' || head === 'galar' || head === 'hisui' || head === 'paldea') {
+    const region = prettifySlug(head)
+    const rest = tail.map((part) => prettifySlug(part)).join(' ')
+    return rest ? `${region} ${rest}` : region
+  }
+  return suffixParts.map((part) => prettifySlug(part)).join(' ')
+}
+
+function displayPokemonName(pokemonId: string, baseName: string): string {
+  const suffix = formSuffixFromPokemonId(pokemonId)
+  return suffix ? `${baseName} (${suffix})` : baseName
+}
+
 function normalizeSearchText(value: string): string {
   return value
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
     .trim()
+}
+
+function generationIdForPokedexNumber(pokedexNumber: number): number | null {
+  for (const tab of generationTabs) {
+    const start = tab.offset + 1
+    const end = tab.offset + tab.limit
+    if (pokedexNumber >= start && pokedexNumber <= end) return tab.id
+  }
+  return null
 }
 
 function shortFromVersionGroup(group: string): string {
@@ -387,6 +584,20 @@ function versionStyle(option: VersionFilterOption) {
 
 function setVersionFilter(versionId: string) {
   selectedVersionFilter.value = versionId
+}
+
+function toggleTypeFilter(type: PokemonTypeKey) {
+  typeFilter.value = typeFilter.value === type ? null : type
+}
+
+function clearDexFilters() {
+  pokemonSearch.value = ''
+  typeFilter.value = null
+  availabilityFilter.value = 'all'
+}
+
+function setAvailabilityFilter(nextFilter: 'all' | DexAvailabilityFilterKey) {
+  availabilityFilter.value = nextFilter
 }
 
 function starterSpriteUrl(starterId: string): string {
@@ -455,6 +666,25 @@ function variantKindClass(kind: EvolutionVariantKind): string {
   return 'border-gray-500/35 bg-gray-500/10 text-gray-100 hover:border-gray-400/60'
 }
 
+function variantSummaryLabel(
+  variants: Array<{ id: string; name: string; kind: EvolutionVariantKind }>,
+): string {
+  if (variants.length === 0) return ''
+  if (variants.length === 1) return displayPokemonName(variants[0].id, variants[0].name)
+  return t('dex.variantsCount', { count: variants.length })
+}
+
+function variantKindButtonClass(kind: EvolutionVariantKind | 'base', active: boolean): string {
+  if (kind === 'base') {
+    return active
+      ? 'border-sky-400/70 bg-sky-500/20 text-sky-100'
+      : 'border-gray-600/70 bg-black/35 text-gray-200 hover:border-sky-500/50'
+  }
+
+  const accent = variantKindClass(kind)
+  return active ? `${accent} shadow-[0_0_0_1px_rgba(255,255,255,0.08)]` : accent
+}
+
 function filteredMoves(category: MoveCategory) {
   return filteredMovesByCategory.value[category]
 }
@@ -517,13 +747,10 @@ async function loadGeneration() {
 
   isLoading.value = true
   try {
-    entries.value = await dexService.loadGenerationPokemon({
-      offset: tab.offset,
-      limit: tab.limit,
-      locale: (locale.value === 'en' ? 'en' : 'es') as LocaleCode,
-      includeLocalizedNames: locale.value !== 'en',
-      concurrency: 14,
-    })
+    const currentLocale = (locale.value === 'en' ? 'en' : 'es') as LocaleCode
+    await dexStore.ensureCatalogLoaded({ locale: currentLocale })
+    await dexStore.ensureGenerationLoaded(tab.id, currentLocale)
+    entries.value = dexStore.getGenerationEntries(tab.id, currentLocale)
   } catch (error) {
     entries.value = []
     loadError.value = (error as Error).message
@@ -542,6 +769,7 @@ function closePokemonModal() {
   delete nextQuery.pokemon
   void router.replace({ query: nextQuery })
   selectedProfile.value = null
+  isProfileDetailsLoading.value = false
   profileError.value = ''
   addToTeamMessage.value = ''
   addToTeamError.value = false
@@ -607,24 +835,57 @@ function addSelectedPokemonToTeam() {
 
 async function loadSelectedPokemon() {
   const pokemonId = selectedPokemonId.value
+  const currentLocale = (locale.value === 'en' ? 'en' : 'es') as LocaleCode
   profileError.value = ''
 
   if (!pokemonId) {
     selectedProfile.value = null
+    isProfileDetailsLoading.value = false
     return
   }
 
   isProfileLoading.value = true
   try {
-    selectedProfile.value = await dexService.loadPokemonProfile(
-      pokemonId,
-      (locale.value === 'en' ? 'en' : 'es') as LocaleCode,
-    )
+    await dexStore.ensureCatalogLoaded({ locale: currentLocale })
+    await dexStore.ensureGenerationLoaded(currentTab.value.id, currentLocale)
+
+    let summary = dexStore.getPokemonProfileSummary(pokemonId, currentLocale)
+    if (!summary) {
+      const generationId = generationIdForPokedexNumber(
+        dexStore.getPokemon(mode.value, pokemonId)?.pokedexNumber ?? 0,
+      )
+      if (generationId && generationId !== currentTab.value.id) {
+        await dexStore.ensureGenerationLoaded(generationId, currentLocale)
+        summary = dexStore.getPokemonProfileSummary(pokemonId, currentLocale)
+      }
+    }
+    if (!summary) {
+      throw new Error(t('dex.errorLoad'))
+    }
+
+    selectedProfile.value = {
+      ...summary,
+      moves: [],
+    }
+    isProfileLoading.value = false
+    isProfileDetailsLoading.value = true
+
+    const details = await dexStore.ensurePokemonProfileDetails(pokemonId, currentLocale)
+    if (selectedPokemonId.value !== pokemonId) return
+
+    selectedProfile.value = {
+      ...summary,
+      moves: details?.moves ?? [],
+    }
   } catch (error) {
     selectedProfile.value = null
+    isProfileDetailsLoading.value = false
     profileError.value = (error as Error).message
   } finally {
     isProfileLoading.value = false
+    if (selectedPokemonId.value === pokemonId) {
+      isProfileDetailsLoading.value = false
+    }
   }
 }
 
@@ -633,6 +894,27 @@ watch(
   () => {
     selectedVersionFilter.value = 'history'
     void loadGeneration()
+  },
+  { immediate: true },
+)
+
+watch(
+  generationTypeFilters,
+  (options) => {
+    if (typeFilter.value && !options.some((option) => option.type === typeFilter.value)) {
+      typeFilter.value = null
+    }
+  },
+  { immediate: true },
+)
+
+watch(
+  generationAvailabilityFilters,
+  (options) => {
+    if (availabilityFilter.value === 'all') return
+    if (!options.some((option) => option.key === availabilityFilter.value)) {
+      availabilityFilter.value = 'all'
+    }
   },
   { immediate: true },
 )
@@ -689,12 +971,8 @@ watch(
 <template>
   <section class="rounded-2xl border border-sky-500/30 bg-off-black/70 p-4">
     <header class="mb-4 flex items-center gap-3">
-      <img
-        :src="mudkipTitleSprite"
-        alt="Mudkip"
-        class="h-11 w-11 rounded-full border border-sky-400/50 bg-black/35 object-contain p-1"
-        @error="onSpriteError"
-      />
+      <img :src="mudkipTitleSprite" alt="Mudkip"
+        class="h-11 w-11 rounded-full border border-sky-400/50 bg-black/35 object-contain p-1" @error="onSpriteError" />
       <div>
         <h2 class="text-lg font-semibold text-sky-300">{{ t('dex.title') }}</h2>
         <p class="text-sm text-gray-300">{{ t('dex.subtitle') }}</p>
@@ -707,15 +985,14 @@ watch(
         <div class="flex items-center gap-2">
           <p class="text-xs text-gray-400">
             {{ t('dex.pokemonCount', { count: filteredEntries.length }) }}
-            <span v-if="pokemonSearch.trim()"> / {{ entries.length }}</span>
+            <span v-if="hasActiveDexFilters"> / {{ entries.length }}</span>
           </p>
           <button
             class="cursor-pointer select-none rounded-md border px-2 py-1 text-[11px] font-semibold transition hover:-translate-y-0.5 hover:shadow-sm active:translate-y-0 active:scale-[0.98]"
             :class="showShinySprites
               ? 'border-gray-600 bg-black/35 text-gray-200 hover:border-gray-400'
               : 'border-sky-400/70 bg-sky-400/15 text-sky-200 hover:border-sky-300'"
-            @click="showShinySprites = !showShinySprites"
-          >
+            @click="showShinySprites = !showShinySprites">
             {{ showShinySprites ? t('dex.spriteNormal') : t('dex.spriteShiny') }}
           </button>
         </div>
@@ -746,24 +1023,109 @@ watch(
     <article class="mt-4 rounded-xl border border-gray-700 bg-st-black/45 p-4">
       <div class="mb-8 flex items-center justify-between">
         <p class="text-sm text-gray-200">Gen {{ currentTab.key }} - {{ regionLabel(currentTab) }}</p>
-        <button v-if="loadError" class="rounded-md border border-sky-500/40 px-2 py-1 text-xs"
-          @click="loadGeneration">
+        <button v-if="loadError" class="rounded-md border border-sky-500/40 px-2 py-1 text-xs" @click="loadGeneration">
           {{ t('dex.retry') }}
         </button>
       </div>
+      <div class="mb-2 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <div v-if="isLoading" class="mb-4 text-sm text-gray-300">{{ t('dex.loading') }}</div>
+        <div v-else class="mb-4 flex flex-wrap items-center gap-2">
+          <Menu as="div" class="relative">
+            <MenuButton
+              class="inline-flex min-w-[11.5rem] items-center justify-between gap-2 rounded-md border border-gray-700 bg-black/35 px-2.5 py-2 text-xs font-semibold text-gray-100 transition hover:border-sky-500/40">
+              <span class="inline-flex min-w-0 items-center gap-2">
+                <img v-if="typeFilter" :src="TYPE_META[typeFilter].icon" :alt="typeLabel(typeFilter)" class="h-4 w-4 shrink-0" />
+                <span v-else class="inline-flex h-4 w-4 items-center justify-center rounded-full border border-gray-600 text-[9px] text-gray-400">T</span>
+                <span class="truncate">{{ typeFilter ? typeLabel(typeFilter) : t('dex.filterAllTypes') }}</span>
+              </span>
+              <span class="text-[10px] text-gray-400">
+                {{ t('dex.filterByType') }}
+              </span>
+            </MenuButton>
+            <MenuItems
+              class="absolute left-0 z-20 mt-1 max-h-72 w-64 overflow-auto rounded-lg border border-gray-700 bg-off-black/95 p-1 shadow-lg focus:outline-none">
+              <MenuItem v-slot="{ active }">
+                <button
+                  class="flex w-full items-center justify-between rounded-md px-2 py-2 text-left text-xs transition"
+                  :class="active ? 'bg-sky-500/15' : ''" @click="typeFilter = null">
+                  <span class="inline-flex items-center gap-2 text-gray-100">
+                    <span class="inline-flex h-4 w-4 items-center justify-center rounded-full border border-gray-600 text-[9px] text-gray-400">T</span>
+                    {{ t('dex.filterAllTypes') }}
+                  </span>
+                  <span class="text-[10px] text-gray-400">{{ entries.length }}</span>
+                </button>
+              </MenuItem>
+              <MenuItem v-for="option in generationTypeFilters" :key="`type-filter-${option.type}`" v-slot="{ active }">
+                <button
+                  class="flex w-full items-center justify-between rounded-md px-2 py-2 text-left text-xs transition"
+                  :class="active ? 'bg-white/8' : ''" @click="toggleTypeFilter(option.type)">
+                  <span class="inline-flex items-center gap-2" :style="{ color: TYPE_COLORS[option.type] }">
+                    <img :src="TYPE_META[option.type].icon" :alt="typeLabel(option.type)" class="h-4 w-4" />
+                    {{ typeLabel(option.type) }}
+                  </span>
+                  <span class="text-[10px] text-gray-400">{{ option.count }}</span>
+                </button>
+              </MenuItem>
+            </MenuItems>
+          </Menu>
 
+          <Menu as="div" class="relative">
+            <MenuButton
+              class="inline-flex min-w-[13rem] items-center justify-between gap-2 rounded-md border border-gray-700 bg-black/35 px-2.5 py-2 text-xs font-semibold text-gray-100 transition hover:border-sky-500/40">
+              <span class="inline-flex min-w-0 items-center gap-2">
+                <span class="inline-flex h-5 min-w-[2.2rem] items-center justify-center rounded border border-sky-500/30 bg-sky-500/10 px-1 text-[10px] font-bold text-sky-200">
+                  {{ selectedAvailabilityOption?.short ?? 'Any' }}
+                </span>
+                <span class="truncate">{{ availabilityFilterLabel(availabilityFilter) }}</span>
+              </span>
+              <span class="text-[10px] text-gray-400">{{ t('dex.filterByAvailability') }}</span>
+            </MenuButton>
+            <MenuItems
+              class="absolute left-0 z-20 mt-1 max-h-72 w-72 overflow-auto rounded-lg border border-gray-700 bg-off-black/95 p-1 shadow-lg focus:outline-none">
+              <MenuItem v-slot="{ active }">
+                <button
+                  class="flex w-full items-center justify-between rounded-md px-2 py-2 text-left text-xs transition"
+                  :class="active ? 'bg-sky-500/15' : ''" @click="setAvailabilityFilter('all')">
+                  <span class="inline-flex items-center gap-2 text-gray-100">
+                    <span class="inline-flex h-5 min-w-[2.2rem] items-center justify-center rounded border border-sky-500/30 bg-sky-500/10 px-1 text-[10px] font-bold text-sky-200">Any</span>
+                    {{ t('dex.filterAnyGame') }}
+                  </span>
+                  <span class="text-[10px] text-gray-400">{{ entries.length }}</span>
+                </button>
+              </MenuItem>
+              <MenuItem
+                v-for="option in generationAvailabilityFilters"
+                :key="`availability-filter-${option.key}`"
+                v-slot="{ active }">
+                <button
+                  class="flex w-full items-center justify-between rounded-md px-2 py-2 text-left text-xs transition"
+                  :class="active ? 'bg-white/8' : ''" @click="setAvailabilityFilter(option.key)">
+                  <span class="inline-flex items-center gap-2 text-gray-100">
+                    <span class="inline-flex h-5 min-w-[2.6rem] items-center justify-center rounded border border-sky-500/30 bg-sky-500/10 px-1 text-[10px] font-bold text-sky-200">
+                      {{ availabilityFilterShortLabel(option.key) }}
+                    </span>
+                    {{ availabilityFilterLabel(option.key) }}
+                  </span>
+                  <span class="text-[10px] text-gray-400">{{ option.count }}</span>
+                </button>
+              </MenuItem>
+            </MenuItems>
+          </Menu>
+
+          <button v-if="hasActiveDexFilters"
+            class="ml-auto rounded-md border border-gray-700 px-2 py-1 text-xs text-gray-200 hover:border-sky-500/50"
+            @click="clearDexFilters">
+            {{ t('dex.clearFilter') }}
+          </button>
+        </div>
+      </div>
       <div class="mb-4 flex items-center gap-2">
-        <input
-          v-model="pokemonSearch"
-          type="text"
+        <input v-model="pokemonSearch" type="text"
           class="w-full rounded-md border border-gray-700 bg-off-black/70 px-2.5 py-2 text-sm text-gray-100 placeholder:text-gray-500"
-          :placeholder="t('dex.searchPokemon')"
-        />
-        <button
-          v-if="pokemonSearch.trim()"
+          :placeholder="t('dex.searchPokemon')" />
+        <button v-if="pokemonSearch.trim()"
           class="rounded-md border border-gray-700 px-2 py-2 text-xs text-gray-200 hover:border-sky-500/50"
-          @click="pokemonSearch = ''"
-        >
+          @click="pokemonSearch = ''">
           X
         </button>
       </div>
@@ -771,7 +1133,7 @@ watch(
       <p v-if="isLoading" class="text-sm text-gray-300">{{ t('dex.loading') }}</p>
       <p v-else-if="loadError" class="text-sm text-red-300">{{ loadError }}</p>
       <p v-else-if="entries.length === 0" class="text-sm text-gray-300">{{ t('dex.unavailable') }}</p>
-      <p v-else-if="filteredEntries.length === 0" class="text-sm text-gray-300">{{ t('dex.noSearchResults') }}</p>
+      <p v-else-if="filteredEntries.length === 0" class="text-sm text-gray-300">{{ noResultsMessage }}</p>
 
       <ul v-else class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
         <li v-for="entry in filteredEntries" :key="entry.id" class="pt-8">
@@ -788,7 +1150,25 @@ watch(
                 <p class="text-[11px] text-gray-500">Gen {{ currentTab.key }}</p>
               </div>
 
-              <h4 class="line-clamp-1 text-sm font-semibold text-gray-100">{{ entry.name }}</h4>
+              <div class="flex items-start justify-between gap-2">
+                <h4 class="line-clamp-1 text-sm font-semibold text-gray-100">{{ entry.name }}</h4>
+                <span v-if="entry.variantCount > 0"
+                  class="shrink-0 rounded-full border border-fuchsia-500/35 bg-fuchsia-500/10 px-2 py-0.5 text-[10px] font-semibold text-fuchsia-100">
+                  {{ t('dex.variantsBadge', { count: entry.variantCount }) }}
+                </span>
+              </div>
+
+              <div v-if="entry.variants.length > 0" class="mt-2 flex flex-wrap gap-1">
+                <span
+                  class="inline-flex max-w-full items-center rounded-md border border-gray-700 bg-black/35 px-2 py-0.5 text-[10px] text-gray-300">
+                  {{ variantSummaryLabel(entry.variants) }}
+                </span>
+                <span v-for="variant in entry.variants.slice(0, 2)" :key="`card-variant-${variant.id}`"
+                  class="inline-flex items-center rounded-md border px-1.5 py-0.5 text-[10px]"
+                  :class="variantKindClass(variant.kind)">
+                  {{ variantKindLabel(variant.kind) }}
+                </span>
+              </div>
 
               <div class="mt-2 flex min-h-[4.5rem] flex-col gap-1.5">
                 <span v-for="type in entry.types" :key="`${entry.id}-${type}`"
@@ -816,7 +1196,7 @@ watch(
           <div
             class="sticky top-0 z-10 flex items-center justify-between border-b border-sky-500/20 bg-off-black/95 px-4 py-3 backdrop-blur">
             <h3 class="text-sm font-semibold text-sky-300">
-              {{ selectedProfile ? `${selectedProfile.name} #${String(selectedProfile.pokedexNumber).padStart(3, '0')}`
+              {{ selectedProfile ? `${selectedProfileDisplayName} #${String(selectedProfile.pokedexNumber).padStart(3, '0')}`
                 : t('dex.loading') }}
             </h3>
             <div class="flex items-center gap-2">
@@ -825,8 +1205,7 @@ watch(
                 :class="showShinySprites
                   ? 'border-gray-600 bg-black/35 text-gray-200 hover:border-gray-400'
                   : 'border-sky-400/70 bg-sky-400/15 text-sky-200 hover:border-sky-300'"
-                @click="showShinySprites = !showShinySprites"
-              >
+                @click="showShinySprites = !showShinySprites">
                 {{ showShinySprites ? t('dex.spriteNormal') : t('dex.spriteShiny') }}
               </button>
               <button class="rounded-md border border-gray-700 px-2 py-1 text-xs text-gray-200 hover:border-sky-500/50"
@@ -842,293 +1221,287 @@ watch(
               <div class="rounded-xl border border-sky-500/25 bg-st-black/55 p-3">
                 <div class="flex flex-wrap items-center gap-2">
                   <p class="text-xs font-semibold text-sky-200">{{ t('dex.addToTeamLabel') }}</p>
-                  <select
-                    v-model.number="addToTeamSlot"
-                    class="rounded-md border border-gray-700 bg-off-black/80 px-2 py-1 text-xs"
-                  >
+                  <select v-model.number="addToTeamSlot"
+                    class="rounded-md border border-gray-700 bg-off-black/80 px-2 py-1 text-xs">
                     <option v-for="slot in slotOptions" :key="`add-slot-${slot}`" :value="slot">
                       {{ t('common.slot', { slot }) }}
                     </option>
                   </select>
                   <button
                     class="rounded-md border border-sky-500/50 bg-sky-500/15 px-2.5 py-1 text-xs font-semibold text-sky-100 transition hover:border-sky-400 hover:bg-sky-500/25"
-                    @click="addSelectedPokemonToTeam"
-                  >
+                    @click="addSelectedPokemonToTeam">
                     {{ t('dex.addToTeamButton', { slot: addToTeamSlot }) }}
                   </button>
-                  <div class="ml-auto flex items-center gap-2 rounded-md border border-gray-700 bg-black/35 px-2 py-1 text-xs">
+                  <div
+                    class="ml-auto flex items-center gap-2 rounded-md border border-gray-700 bg-black/35 px-2 py-1 text-xs">
                     <span class="text-gray-300">{{ t('dex.slotCurrentLabel', { slot: addToTeamSlot }) }}</span>
-                    <img
-                      :src="targetSlotMember?.pokemonId ? spriteUrl(targetSlotMember.pokemonId) : mudkipSprite"
-                      :alt="targetSlotPokemonName"
-                      class="h-4 w-4 object-contain"
-                      @error="onSpriteError"
-                    />
+                    <img :src="targetSlotMember?.pokemonId ? spriteUrl(targetSlotMember.pokemonId) : mudkipSprite"
+                      :alt="targetSlotPokemonName" class="h-4 w-4 object-contain" @error="onSpriteError" />
                     <span class="max-w-[9rem] truncate text-gray-100">{{ targetSlotPokemonName }}</span>
                     <span class="text-[11px] text-gray-400">{{ t('dex.slotWillReplace') }}</span>
                   </div>
-                  <p
-                    v-if="addToTeamMessage"
-                    class="text-xs"
-                    :class="addToTeamError ? 'text-red-300' : 'text-emerald-300'"
-                  >
+                  <p v-if="addToTeamMessage" class="text-xs"
+                    :class="addToTeamError ? 'text-red-300' : 'text-emerald-300'">
                     {{ addToTeamMessage }}
                   </p>
                 </div>
               </div>
 
               <div class="grid gap-4 lg:grid-cols-[390px_minmax(0,1fr)]">
-              <aside class="rounded-xl border p-3"
-                :style="{ borderColor: `${primaryColor}66`, background: `linear-gradient(180deg, ${primaryColor}22 0%, rgba(3,3,3,0.8) 75%)` }">
-                <div class="relative mx-auto mb-2 w-fit">
-                  <img :src="profileSpriteUrl(selectedProfile)" :alt="selectedProfile.name"
-                    class="h-52 w-52 object-contain" loading="lazy" @error="onSpriteError" />
-                  <button
-                    class="absolute right-1 top-1 inline-flex h-8 w-8 items-center justify-center rounded-full border text-base font-bold transition"
-                    :class="selectedPokemonIsFavorite
-                      ? 'border-sky-400/80 bg-sky-500/25 text-sky-100'
-                      : 'border-gray-600/80 bg-black/50 text-gray-300 hover:border-sky-400/70 hover:text-sky-100'"
-                    :title="favoriteToggleLabel()"
-                    :aria-label="favoriteToggleLabel()"
-                    @click="toggleSelectedFavorite"
-                  >
-                    {{ selectedPokemonIsFavorite ? '★' : '☆' }}
-                  </button>
-                </div>
-
-                <div class="mb-2 flex flex-wrap gap-1.5">
-                  <span v-for="type in selectedProfile.types" :key="`profile-type-${type}`"
-                    class="inline-flex items-center gap-1 rounded-md border border-gray-700 bg-black/50 px-2 py-1 text-xs">
-                    <img :src="TYPE_META[type].icon" :alt="typeLabel(type)" class="h-4 w-4" />
-                    {{ typeLabel(type) }}
-                  </span>
-                </div>
-
-                <p class="text-xs text-gray-300">{{ selectedProfile.genus }}</p>
-                <p class="mt-2 text-xs leading-5 text-gray-200">{{ selectedProfile.flavorText }}</p>
-
-                <div class="mt-3 grid grid-cols-2 gap-2 text-xs">
-                  <div class="rounded-md border border-gray-700 bg-black/45 p-2">
-                    <p class="text-gray-400">{{ t('dex.height') }}</p>
-                    <p class="font-semibold text-gray-100">{{ selectedProfile.heightMeters.toFixed(1) }} m</p>
+                <aside class="rounded-xl border p-3"
+                  :style="{ borderColor: `${primaryColor}66`, background: `linear-gradient(180deg, ${primaryColor}22 0%, rgba(3,3,3,0.8) 75%)` }">
+                  <div class="relative mx-auto mb-2 w-fit">
+                    <img :src="profileSpriteUrl(selectedProfile)" :alt="selectedProfile.name"
+                      class="h-52 w-52 object-contain" loading="lazy" @error="onSpriteError" />
+                    <button
+                      class="absolute right-1 top-1 inline-flex h-8 w-8 items-center justify-center rounded-full border text-base font-bold transition"
+                      :class="selectedPokemonIsFavorite
+                        ? 'border-sky-400/80 bg-sky-500/25 text-sky-100'
+                        : 'border-gray-600/80 bg-black/50 text-gray-300 hover:border-sky-400/70 hover:text-sky-100'"
+                      :title="favoriteToggleLabel()" :aria-label="favoriteToggleLabel()"
+                      @click="toggleSelectedFavorite">
+                      {{ selectedPokemonIsFavorite ? '★' : '☆' }}
+                    </button>
                   </div>
-                  <div class="rounded-md border border-gray-700 bg-black/45 p-2">
-                    <p class="text-gray-400">{{ t('dex.weight') }}</p>
-                    <p class="font-semibold text-gray-100">{{ selectedProfile.weightKg.toFixed(1) }} kg</p>
-                  </div>
-                  <div class="rounded-md border border-gray-700 bg-black/45 p-2">
-                    <p class="text-gray-400">{{ t('dex.baseExp') }}</p>
-                    <p class="font-semibold text-gray-100">{{ selectedProfile.baseExperience }}</p>
-                  </div>
-                  <div class="rounded-md border border-gray-700 bg-black/45 p-2">
-                    <p class="text-gray-400">{{ t('dex.captureRate') }}</p>
-                    <p class="font-semibold text-gray-100">{{ selectedProfile.captureRate }}</p>
-                  </div>
-                </div>
 
-                <div class="mt-3 rounded-xl border border-gray-700 bg-black/40 p-3">
-                  <h4 class="mb-2 text-sm font-semibold text-sky-300">{{ t('dex.abilities') }}</h4>
-                  <div class="flex flex-wrap gap-1.5">
-                    <span v-for="ability in selectedProfile.abilities" :key="ability.id"
-                      class="inline-flex items-center gap-1 rounded-md border border-gray-700 bg-black/45 px-2 py-1 text-xs">
-                      {{ ability.name }}
-                      <span v-if="ability.isHidden" class="text-[10px] text-sky-300">{{ t('dex.hidden') }}</span>
+                  <div class="mb-2 flex flex-wrap gap-1.5">
+                    <span v-for="type in selectedProfile.types" :key="`profile-type-${type}`"
+                      class="inline-flex items-center gap-1 rounded-md border border-gray-700 bg-black/50 px-2 py-1 text-xs">
+                      <img :src="TYPE_META[type].icon" :alt="typeLabel(type)" class="h-4 w-4" />
+                      {{ typeLabel(type) }}
+                    </span>
+                    <span v-if="selectedProfileFormLabel"
+                      class="inline-flex items-center gap-1 rounded-md border border-fuchsia-500/35 bg-fuchsia-500/10 px-2 py-1 text-xs text-fuchsia-100">
+                      {{ selectedProfileFormLabel }}
                     </span>
                   </div>
-                </div>
 
-                <div class="mt-3 grid gap-3">
-                  <div class="rounded-xl border border-red-500/30 bg-red-500/10 p-3">
-                    <h4 class="mb-2 text-sm font-semibold text-red-300">{{ t('dex.weaknesses') }}</h4>
+                  <div v-if="selectedProfileVariantOptions.length > 1"
+                    class="mb-3 rounded-xl border border-gray-700 bg-black/35 p-2">
+                    <p class="mb-2 text-[11px] font-semibold uppercase tracking-wide text-gray-400">
+                      {{ t('dex.formsAvailable') }}
+                    </p>
                     <div class="flex flex-wrap gap-1.5">
-                      <span v-for="entry in weaknessRows" :key="`w-left-${entry.type}`"
-                        class="inline-flex items-center gap-1 rounded-md border border-red-500/30 bg-black/35 px-2 py-1 text-xs">
-                        <img :src="TYPE_META[entry.type].icon" :alt="typeLabel(entry.type)" class="h-3.5 w-3.5" />
-                        {{ typeLabel(entry.type) }} {{ factorLabel(entry.factor) }}
-                      </span>
-                      <span v-if="weaknessRows.length === 0" class="text-xs text-gray-400">{{ t('common.none') }}</span>
-                    </div>
-                  </div>
-
-                  <div class="rounded-xl border border-blue-500/30 bg-blue-500/10 p-3">
-                    <h4 class="mb-2 text-sm font-semibold text-blue-300">{{ t('dex.resistances') }}</h4>
-                    <div class="flex flex-wrap gap-1.5">
-                      <span v-for="entry in resistanceRows" :key="`r-left-${entry.type}`"
-                        class="inline-flex items-center gap-1 rounded-md border border-blue-500/30 bg-black/35 px-2 py-1 text-xs">
-                        <img :src="TYPE_META[entry.type].icon" :alt="typeLabel(entry.type)" class="h-3.5 w-3.5" />
-                        {{ typeLabel(entry.type) }} {{ factorLabel(entry.factor) }}
-                      </span>
-                      <span v-if="resistanceRows.length === 0" class="text-xs text-gray-400">{{ t('common.none') }}</span>
-                    </div>
-                  </div>
-                </div>
-              </aside>
-
-              <section class="space-y-4">
-                <div class="rounded-xl border border-gray-700 bg-st-black/60 p-3">
-                  <h4 class="mb-2 text-sm font-semibold text-sky-300">{{ t('dex.baseStats') }}</h4>
-                  <div class="space-y-2">
-                    <div v-for="stat in statRows" :key="`stat-${stat.key}`" class="flex items-center gap-2 text-xs">
-                      <span class="w-16 text-gray-300">{{ statLabel(stat.key) }}</span>
-                      <div class="h-2 flex-1 rounded-full bg-gray-800">
-                        <div class="h-full rounded-full"
-                          :style="{ ...statBarStyle(stat.value), backgroundColor: `${primaryColor}` }" />
-                      </div>
-                      <span class="w-8 text-right text-gray-100">{{ stat.value }}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="rounded-xl border border-gray-700 bg-st-black/60 p-3">
-                  <h4 class="mb-2 text-sm font-semibold text-sky-300">{{ t('dex.evolution') }}</h4>
-                  <div class="overflow-x-auto pb-1">
-                    <div class="flex min-w-max items-start gap-2">
-                      <template v-for="(evo, index) in selectedProfile.evolutionChain" :key="`evo-${evo.id}`">
-                        <div class="w-52 rounded-lg border border-gray-700 bg-black/35 p-2">
-                          <button
-                            class="inline-flex w-full items-center justify-between gap-2 rounded-md border border-gray-700 bg-black/45 px-2 py-1 text-xs hover:border-sky-500/40"
-                            @click="openPokemonModal(evo.id)"
-                          >
-                            <span class="inline-flex min-w-0 items-center gap-1">
-                              <img :src="spriteUrl(evo.id)" :alt="evo.name" class="h-5 w-5 object-contain" @error="onSpriteError" />
-                              <span class="truncate">{{ evo.name }}</span>
-                            </span>
-                            <span class="shrink-0 text-gray-500">#{{ String(evo.pokedexNumber).padStart(3, '0') }}</span>
-                          </button>
-
-                          <div v-if="evo.variants.length" class="mt-2 grid gap-1.5">
-                            <button
-                              v-for="variant in evo.variants"
-                              :key="`variant-${variant.id}`"
-                              class="inline-flex items-center justify-between gap-2 rounded-md border px-2 py-1 text-[11px] transition"
-                              :class="variantKindClass(variant.kind)"
-                              @click="openPokemonModal(variant.id)"
-                            >
-                              <span class="inline-flex min-w-0 items-center gap-1">
-                                <img :src="spriteUrl(variant.id)" :alt="variant.name" class="h-4 w-4 object-contain" @error="onSpriteError" />
-                                <span class="truncate">{{ variant.name }}</span>
-                              </span>
-                              <span class="rounded border border-current/40 px-1 py-0.5 text-[10px] uppercase tracking-wide">
-                                {{ variantKindLabel(variant.kind) }}
-                              </span>
-                            </button>
-                          </div>
-                        </div>
-
-                      </template>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="rounded-xl border border-gray-700 bg-st-black/60 p-3">
-                  <h4 class="mb-3 text-sm font-semibold text-sky-300">{{ t('dex.movesLearnset') }}</h4>
-
-                  <div class="mb-3 rounded-lg border border-gray-700 bg-black/30 p-2">
-                    <div class="mb-2 flex items-center justify-between gap-2">
-                      <p class="text-xs text-gray-300">{{ t('dex.movesVersionFilter') }}</p>
-                      <p class="text-[11px] text-gray-400">{{ selectedVersionOption ? versionLabel(selectedVersionOption) : '-' }}</p>
-                    </div>
-                    <div class="flex gap-1 overflow-x-auto pb-1">
-                      <button
-                        v-for="option in versionFilterOptions"
-                        :key="`vf-${option.id}`"
-                        class="inline-flex h-7 min-w-7 items-center justify-center rounded-full border px-1.5 text-[11px] font-semibold transition"
-                        :style="versionStyle(option)"
-                        :title="versionLabel(option)"
-                        @click="setVersionFilter(option.id)"
-                      >
-                        {{ option.short }}
+                      <button v-for="option in selectedProfileVariantOptions" :key="`profile-variant-${option.id}`"
+                        class="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[11px] transition"
+                        :class="variantKindButtonClass(option.kind, option.isCurrent)"
+                        @click="openPokemonModal(option.id)">
+                        <img :src="spriteUrl(option.id)" :alt="option.name" class="h-4 w-4 object-contain"
+                          @error="onSpriteError" />
+                        <span class="max-w-[10rem] truncate">{{ option.name }}</span>
                       </button>
                     </div>
                   </div>
 
-                  <div class="grid gap-3 lg:grid-cols-3">
-                    <article
-                      v-for="category in MOVE_CATEGORIES"
-                      :key="`category-${category}`"
-                      class="rounded-lg border bg-black/30 p-2"
-                      :class="moveCategoryBorderClass(category)"
-                    >
-                      <div class="mb-2 flex items-center justify-between gap-2">
-                        <p class="text-xs font-semibold" :class="moveCategoryHeaderClass(category)">
-                          <span class="mr-1.5">{{ moveCategoryIcon(category) }}</span>
-                          {{ moveCategoryLabel(category) }}
-                        </p>
-                        <span class="text-[11px] text-gray-400">{{ filteredMoves(category).length }}</span>
-                      </div>
+                  <p class="text-xs text-gray-300">{{ selectedProfile.genus }}</p>
+                  <p class="mt-2 text-xs leading-5 text-gray-200">{{ selectedProfile.flavorText }}</p>
 
-                      <input
-                        v-model="moveSearch[category]"
-                        class="mb-2 w-full rounded-md border border-gray-700 bg-off-black/70 px-2 py-1 text-xs"
-                        :placeholder="t('dex.searchMove')"
-                        type="text"
-                      />
-
-                      <select
-                        v-model="selectedMoveByCategory[category]"
-                        class="h-44 w-full rounded-md border border-gray-700 bg-off-black/80 p-1 text-xs"
-                        size="8"
-                      >
-                        <option
-                          v-for="move in filteredMoves(category)"
-                          :key="`${category}-${move.id}`"
-                          :value="move.id"
-                        >
-                          {{ move.name }}
-                        </option>
-                      </select>
-
-                      <div
-                        v-if="selectedMoveMeta(category)"
-                        class="mt-2 rounded-md border border-gray-700 bg-off-black/60 px-2 py-1.5 text-xs text-gray-200"
-                      >
-                        <div class="mb-1 flex items-center gap-1.5">
-                          <img
-                            :src="TYPE_META[selectedMoveMeta(category)!.type].icon"
-                            :alt="typeLabel(selectedMoveMeta(category)!.type)"
-                            class="h-3.5 w-3.5"
-                          />
-                          <span>{{ selectedMoveMeta(category)!.name }}</span>
-                        </div>
-                        <p class="text-[11px] text-gray-400">{{ typeLabel(selectedMoveMeta(category)!.type) }}</p>
-                        <p class="mt-1 text-[11px] text-gray-400">
-                          {{ t('dex.learnMethods') }}:
-                          {{ selectedMoveMeta(category)!.learnMethods.map(learnMethodLabel).join(', ') || t('common.none') }}
-                        </p>
-                        <p class="text-[11px] text-gray-400">
-                          {{ t('dex.minLevel') }}:
-                          {{ selectedMoveMeta(category)!.minLevel ?? '-' }}
-                        </p>
-                      </div>
-                      <p v-else class="mt-2 text-[11px] text-gray-500">{{ t('common.none') }}</p>
-                    </article>
+                  <div class="mt-3 grid grid-cols-2 gap-2 text-xs">
+                    <div class="rounded-md border border-gray-700 bg-black/45 p-2">
+                      <p class="text-gray-400">{{ t('dex.height') }}</p>
+                      <p class="font-semibold text-gray-100">{{ selectedProfile.heightMeters.toFixed(1) }} m</p>
+                    </div>
+                    <div class="rounded-md border border-gray-700 bg-black/45 p-2">
+                      <p class="text-gray-400">{{ t('dex.weight') }}</p>
+                      <p class="font-semibold text-gray-100">{{ selectedProfile.weightKg.toFixed(1) }} kg</p>
+                    </div>
+                    <div class="rounded-md border border-gray-700 bg-black/45 p-2">
+                      <p class="text-gray-400">{{ t('dex.baseExp') }}</p>
+                      <p class="font-semibold text-gray-100">{{ selectedProfile.baseExperience }}</p>
+                    </div>
+                    <div class="rounded-md border border-gray-700 bg-black/45 p-2">
+                      <p class="text-gray-400">{{ t('dex.captureRate') }}</p>
+                      <p class="font-semibold text-gray-100">{{ selectedProfile.captureRate }}</p>
+                    </div>
                   </div>
-                </div>
 
-                <div class="grid gap-2 rounded-xl border border-gray-700 bg-st-black/60 p-3 text-xs md:grid-cols-2">
-                  <p><span class="text-gray-400">{{ t('dex.habitat') }}:</span> <span class="text-gray-200">{{
-                    selectedProfile.habitat }}</span></p>
-                  <p><span class="text-gray-400">{{ t('dex.growthRate') }}:</span> <span class="text-gray-200">{{
-                    selectedProfile.growthRate }}</span></p>
-                  <p><span class="text-gray-400">{{ t('dex.generationLabel') }}:</span> <span class="text-gray-200">{{
-                    selectedProfile.generation }}</span></p>
-                  <p><span class="text-gray-400">{{ t('dex.baseHappiness') }}:</span> <span class="text-gray-200">{{
-                    selectedProfile.baseHappiness }}</span></p>
-                  <p class="md:col-span-2">
-                    <span class="text-gray-400">{{ t('dex.eggGroups') }}:</span>
-                    <span class="text-gray-200"> {{ selectedProfile.eggGroups.join(', ') || t('common.none') }}</span>
-                  </p>
-                  <p class="md:col-span-2">
-                    <span v-if="selectedProfile.isLegendary"
-                      class="mr-2 rounded border border-sky-500/40 bg-sky-500/10 px-2 py-0.5 text-sky-300">{{
-                        t('dex.legendary') }}</span>
-                    <span v-if="selectedProfile.isMythical"
-                      class="rounded border border-fuchsia-500/40 bg-fuchsia-500/10 px-2 py-0.5 text-fuchsia-300">{{
-                        t('dex.mythical') }}</span>
-                  </p>
-                </div>
-              </section>
-            </div>
+                  <div class="mt-3 rounded-xl border border-gray-700 bg-black/40 p-3">
+                    <h4 class="mb-2 text-sm font-semibold text-sky-300">{{ t('dex.abilities') }}</h4>
+                    <div class="flex flex-wrap gap-1.5">
+                      <span v-for="ability in selectedProfile.abilities" :key="ability.id"
+                        class="inline-flex items-center gap-1 rounded-md border border-gray-700 bg-black/45 px-2 py-1 text-xs">
+                        {{ ability.name }}
+                        <span v-if="ability.isHidden" class="text-[10px] text-sky-300">{{ t('dex.hidden') }}</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="mt-3 grid gap-3">
+                    <div class="rounded-xl border border-red-500/30 bg-red-500/10 p-3">
+                      <h4 class="mb-2 text-sm font-semibold text-red-300">{{ t('dex.weaknesses') }}</h4>
+                      <div class="flex flex-wrap gap-1.5">
+                        <span v-for="entry in weaknessRows" :key="`w-left-${entry.type}`"
+                          class="inline-flex items-center gap-1 rounded-md border border-red-500/30 bg-black/35 px-2 py-1 text-xs">
+                          <img :src="TYPE_META[entry.type].icon" :alt="typeLabel(entry.type)" class="h-3.5 w-3.5" />
+                          {{ typeLabel(entry.type) }} {{ factorLabel(entry.factor) }}
+                        </span>
+                        <span v-if="weaknessRows.length === 0" class="text-xs text-gray-400">{{ t('common.none')
+                        }}</span>
+                      </div>
+                    </div>
+
+                    <div class="rounded-xl border border-blue-500/30 bg-blue-500/10 p-3">
+                      <h4 class="mb-2 text-sm font-semibold text-blue-300">{{ t('dex.resistances') }}</h4>
+                      <div class="flex flex-wrap gap-1.5">
+                        <span v-for="entry in resistanceRows" :key="`r-left-${entry.type}`"
+                          class="inline-flex items-center gap-1 rounded-md border border-blue-500/30 bg-black/35 px-2 py-1 text-xs">
+                          <img :src="TYPE_META[entry.type].icon" :alt="typeLabel(entry.type)" class="h-3.5 w-3.5" />
+                          {{ typeLabel(entry.type) }} {{ factorLabel(entry.factor) }}
+                        </span>
+                        <span v-if="resistanceRows.length === 0" class="text-xs text-gray-400">{{ t('common.none')
+                        }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </aside>
+
+                <section class="space-y-4">
+                  <div class="rounded-xl border border-gray-700 bg-st-black/60 p-3">
+                    <h4 class="mb-2 text-sm font-semibold text-sky-300">{{ t('dex.baseStats') }}</h4>
+                    <div class="space-y-2">
+                      <div v-for="stat in statRows" :key="`stat-${stat.key}`" class="flex items-center gap-2 text-xs">
+                        <span class="w-16 text-gray-300">{{ statLabel(stat.key) }}</span>
+                        <div class="h-2 flex-1 rounded-full bg-gray-800">
+                          <div class="h-full rounded-full"
+                            :style="{ ...statBarStyle(stat.value), backgroundColor: `${primaryColor}` }" />
+                        </div>
+                        <span class="w-8 text-right text-gray-100">{{ stat.value }}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="rounded-xl border border-gray-700 bg-st-black/60 p-3">
+                    <h4 class="mb-2 text-sm font-semibold text-sky-300">{{ t('dex.evolution') }}</h4>
+                    <div class="overflow-x-auto pb-1">
+                      <div class="flex min-w-max items-start gap-2">
+                        <template v-for="evo in selectedProfile.evolutionChain" :key="`evo-${evo.id}`">
+                          <div class="w-52 rounded-lg border border-gray-700 bg-black/35 p-2">
+                            <button
+                              class="inline-flex w-full items-center justify-between gap-2 rounded-md border border-gray-700 bg-black/45 px-2 py-1 text-xs hover:border-sky-500/40"
+                              @click="openPokemonModal(evo.id)">
+                              <span class="inline-flex min-w-0 items-center gap-1">
+                                <img :src="spriteUrl(evo.id)" :alt="evo.name" class="h-5 w-5 object-contain"
+                                  @error="onSpriteError" />
+                                <span class="truncate">{{ evo.name }}</span>
+                              </span>
+                              <span class="shrink-0 text-gray-500">#{{ String(evo.pokedexNumber).padStart(3, '0')
+                              }}</span>
+                            </button>
+
+                            <div v-if="evo.variants.length" class="mt-2 grid gap-1.5">
+                              <button v-for="variant in evo.variants" :key="`variant-${variant.id}`"
+                                class="inline-flex items-center justify-between gap-2 rounded-md border px-2 py-1 text-[11px] transition"
+                                :class="variantKindClass(variant.kind)" @click="openPokemonModal(variant.id)">
+                                <span class="inline-flex min-w-0 items-center gap-1">
+                                  <img :src="spriteUrl(variant.id)" :alt="variant.name" class="h-4 w-4 object-contain"
+                                    @error="onSpriteError" />
+                                  <span class="truncate">{{ variant.name }}</span>
+                                </span>
+                                <span
+                                  class="rounded border border-current/40 px-1 py-0.5 text-[10px] uppercase tracking-wide">
+                                  {{ variantKindLabel(variant.kind) }}
+                                </span>
+                              </button>
+                            </div>
+                          </div>
+
+                        </template>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="rounded-xl border border-gray-700 bg-st-black/60 p-3">
+                    <h4 class="mb-3 text-sm font-semibold text-sky-300">{{ t('dex.movesLearnset') }}</h4>
+                    <p v-if="isProfileDetailsLoading" class="mb-3 text-xs text-cyan-200">
+                      {{ t('dex.loading') }}
+                    </p>
+
+                    <div class="mb-3 rounded-lg border border-gray-700 bg-black/30 p-2">
+                      <div class="mb-2 flex items-center justify-between gap-2">
+                        <p class="text-xs text-gray-300">{{ t('dex.movesVersionFilter') }}</p>
+                        <p class="text-[11px] text-gray-400">{{ selectedVersionOption ?
+                          versionLabel(selectedVersionOption) : '-' }}</p>
+                      </div>
+                      <div class="flex gap-1 overflow-x-auto pb-1">
+                        <button v-for="option in versionFilterOptions" :key="`vf-${option.id}`"
+                          class="inline-flex h-7 min-w-7 items-center justify-center rounded-full border px-1.5 text-[11px] font-semibold transition"
+                          :style="versionStyle(option)" :title="versionLabel(option)"
+                          @click="setVersionFilter(option.id)">
+                          {{ option.short }}
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="grid gap-3 lg:grid-cols-3">
+                      <article v-for="category in MOVE_CATEGORIES" :key="`category-${category}`"
+                        class="rounded-lg border bg-black/30 p-2" :class="moveCategoryBorderClass(category)">
+                        <div class="mb-2 flex items-center justify-between gap-2">
+                          <p class="text-xs font-semibold" :class="moveCategoryHeaderClass(category)">
+                            <span class="mr-1.5">{{ moveCategoryIcon(category) }}</span>
+                            {{ moveCategoryLabel(category) }}
+                          </p>
+                          <span class="text-[11px] text-gray-400">{{ filteredMoves(category).length }}</span>
+                        </div>
+
+                        <input v-model="moveSearch[category]"
+                          class="mb-2 w-full rounded-md border border-gray-700 bg-off-black/70 px-2 py-1 text-xs"
+                          :placeholder="t('dex.searchMove')" type="text" />
+
+                        <select v-model="selectedMoveByCategory[category]"
+                          class="h-44 w-full rounded-md border border-gray-700 bg-off-black/80 p-1 text-xs" size="8">
+                          <option v-for="move in filteredMoves(category)" :key="`${category}-${move.id}`"
+                            :value="move.id">
+                            {{ move.name }}
+                          </option>
+                        </select>
+
+                        <div v-if="selectedMoveMeta(category)"
+                          class="mt-2 rounded-md border border-gray-700 bg-off-black/60 px-2 py-1.5 text-xs text-gray-200">
+                          <div class="mb-1 flex items-center gap-1.5">
+                            <img :src="TYPE_META[selectedMoveMeta(category)!.type].icon"
+                              :alt="typeLabel(selectedMoveMeta(category)!.type)" class="h-3.5 w-3.5" />
+                            <span>{{ selectedMoveMeta(category)!.name }}</span>
+                          </div>
+                          <p class="text-[11px] text-gray-400">{{ typeLabel(selectedMoveMeta(category)!.type) }}</p>
+                          <p class="mt-1 text-[11px] text-gray-400">
+                            {{ t('dex.learnMethods') }}:
+                            {{ selectedMoveMeta(category)!.learnMethods.map(learnMethodLabel).join(', ') ||
+                              t('common.none') }}
+                          </p>
+                          <p class="text-[11px] text-gray-400">
+                            {{ t('dex.minLevel') }}:
+                            {{ selectedMoveMeta(category)!.minLevel ?? '-' }}
+                          </p>
+                        </div>
+                        <p v-else class="mt-2 text-[11px] text-gray-500">{{ t('common.none') }}</p>
+                      </article>
+                    </div>
+                  </div>
+
+                  <div class="grid gap-2 rounded-xl border border-gray-700 bg-st-black/60 p-3 text-xs md:grid-cols-2">
+                    <p><span class="text-gray-400">{{ t('dex.habitat') }}:</span> <span class="text-gray-200">{{
+                      selectedProfile.habitat }}</span></p>
+                    <p><span class="text-gray-400">{{ t('dex.growthRate') }}:</span> <span class="text-gray-200">{{
+                      selectedProfile.growthRate }}</span></p>
+                    <p><span class="text-gray-400">{{ t('dex.generationLabel') }}:</span> <span class="text-gray-200">{{
+                      selectedProfile.generation }}</span></p>
+                    <p><span class="text-gray-400">{{ t('dex.baseHappiness') }}:</span> <span class="text-gray-200">{{
+                      selectedProfile.baseHappiness }}</span></p>
+                    <p class="md:col-span-2">
+                      <span class="text-gray-400">{{ t('dex.eggGroups') }}:</span>
+                      <span class="text-gray-200"> {{ selectedProfile.eggGroups.join(', ') || t('common.none') }}</span>
+                    </p>
+                    <p class="md:col-span-2">
+                      <span v-if="selectedProfile.isLegendary"
+                        class="mr-2 rounded border border-sky-500/40 bg-sky-500/10 px-2 py-0.5 text-sky-300">{{
+                          t('dex.legendary') }}</span>
+                      <span v-if="selectedProfile.isMythical"
+                        class="rounded border border-fuchsia-500/40 bg-fuchsia-500/10 px-2 py-0.5 text-fuchsia-300">{{
+                          t('dex.mythical') }}</span>
+                    </p>
+                  </div>
+                </section>
+              </div>
             </div>
           </template>
         </article>
@@ -1136,7 +1509,3 @@ watch(
     </Teleport>
   </section>
 </template>
-
-
-
-

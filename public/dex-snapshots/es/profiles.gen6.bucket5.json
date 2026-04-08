@@ -1,0 +1,7265 @@
+{
+  "version": "v1",
+  "locale": "es",
+  "generationId": 6,
+  "bucketId": 5,
+  "generatedAt": "2026-04-08T16:02:29.445Z",
+  "profiles": [
+    {
+      "id": "yveltal",
+      "moves": [
+        {
+          "id": "acrobatics",
+          "name": "Acróbata",
+          "category": "physical",
+          "type": "flying",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hone-claws",
+          "name": "Afilagarras",
+          "category": "status",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "endure",
+          "name": "Aguante",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "laser-focus",
+          "name": "Aguzar",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dual-wingbeat",
+          "name": "Ala Bis",
+          "category": "physical",
+          "type": "flying",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "steel-wing",
+          "name": "Ala de Acero",
+          "category": "physical",
+          "type": "steel",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "oblivion-wing",
+          "name": "Ala Mortífera",
+          "category": "special",
+          "type": "flying",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 26
+        },
+        {
+          "id": "snarl",
+          "name": "Alarido",
+          "category": "special",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 10
+        },
+        {
+          "id": "disable",
+          "name": "Anulación",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 15
+        },
+        {
+          "id": "sky-attack",
+          "name": "Ataque Aéreo",
+          "category": "physical",
+          "type": "flying",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "tutor"
+          ],
+          "minLevel": 80
+        },
+        {
+          "id": "rock-slide",
+          "name": "Avalancha",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "block",
+          "name": "Bloqueo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "shadow-ball",
+          "name": "Bola Sombra",
+          "category": "special",
+          "type": "ghost",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "zen-headbutt",
+          "name": "Cabezazo Zen",
+          "category": "physical",
+          "type": "psychic",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sky-drop",
+          "name": "Caída Libre",
+          "category": "physical",
+          "type": "flying",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "round",
+          "name": "Canon",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-rush",
+          "name": "Carga Dragón",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 63
+        },
+        {
+          "id": "dream-eater",
+          "name": "Comesueños",
+          "category": "special",
+          "type": "psychic",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "confide",
+          "name": "Confidencia",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swagger",
+          "name": "Contoneo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "cut",
+          "name": "Corte",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rain-dance",
+          "name": "Danza Lluvia",
+          "category": "status",
+          "type": "water",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "secret-power",
+          "name": "Daño Secreto",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "lash-out",
+          "name": "Desahogo",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "knock-off",
+          "name": "Desarme",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rest",
+          "name": "Descanso",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "defog",
+          "name": "Despejar",
+          "category": "status",
+          "type": "flying",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sunny-day",
+          "name": "Día Soleado",
+          "category": "status",
+          "type": "fire",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "double-team",
+          "name": "Doble Equipo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "embargo",
+          "name": "Embargo",
+          "category": "status",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "frustration",
+          "name": "Frustración",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-claw",
+          "name": "Garra Dragón",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "shadow-claw",
+          "name": "Garra Umbría",
+          "category": "physical",
+          "type": "ghost",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "giga-impact",
+          "name": "Gigaimpacto",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "aerial-ace",
+          "name": "Golpe Aéreo",
+          "category": "physical",
+          "type": "flying",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sucker-punch",
+          "name": "Golpe Bajo",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 20
+        },
+        {
+          "id": "body-slam",
+          "name": "Golpe Cuerpo",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "phantom-force",
+          "name": "Golpe Fantasma",
+          "category": "physical",
+          "type": "ghost",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 55
+        },
+        {
+          "id": "hyper-beam",
+          "name": "Hiperrayo",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 85
+        },
+        {
+          "id": "u-turn",
+          "name": "Ida y Vuelta",
+          "category": "physical",
+          "type": "bug",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "facade",
+          "name": "Imagen",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "foul-play",
+          "name": "Juego Sucio",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 51
+        },
+        {
+          "id": "thief",
+          "name": "Ladrón",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "taunt",
+          "name": "Mofa",
+          "category": "status",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "focus-blast",
+          "name": "Onda Certera",
+          "category": "special",
+          "type": "fighting",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 72
+        },
+        {
+          "id": "heat-wave",
+          "name": "Onda Ígnea",
+          "category": "special",
+          "type": "fire",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hidden-power",
+          "name": "Poder Oculto",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "protect",
+          "name": "Protección",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "psychic",
+          "name": "Psíquico",
+          "category": "special",
+          "type": "psychic",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 45
+        },
+        {
+          "id": "dark-pulse",
+          "name": "Pulso Umbrío",
+          "category": "special",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 40
+        },
+        {
+          "id": "swift",
+          "name": "Rapidez",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "roost",
+          "name": "Respiro",
+          "category": "status",
+          "type": "flying",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "return",
+          "name": "Retribución",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "snore",
+          "name": "Ronquido",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sleep-talk",
+          "name": "Sonámbulo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "substitute",
+          "name": "Sustituto",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "air-slash",
+          "name": "Tajo Aéreo",
+          "category": "special",
+          "type": "flying",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 10
+        },
+        {
+          "id": "torment",
+          "name": "Tormento",
+          "category": "status",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "gust",
+          "name": "Tornado",
+          "category": "special",
+          "type": "flying",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "toxic",
+          "name": "Tóxico",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hurricane",
+          "name": "Vendaval",
+          "category": "special",
+          "type": "flying",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "payback",
+          "name": "Vendetta",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "tailwind",
+          "name": "Viento Afín",
+          "category": "status",
+          "type": "flying",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "tutor"
+          ],
+          "minLevel": 25
+        },
+        {
+          "id": "razor-wind",
+          "name": "Viento Cortante",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "hyper-voice",
+          "name": "Vozarrón",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "fly",
+          "name": "Vuelo",
+          "category": "physical",
+          "type": "flying",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        }
+      ]
+    },
+    {
+      "id": "zygarde-10",
+      "moves": [
+        {
+          "id": "endure",
+          "name": "Aguante",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "scorching-sands",
+          "name": "Arenas Ardientes",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "bind",
+          "name": "Atadura",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "tutor"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "rock-slide",
+          "name": "Avalancha",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "block",
+          "name": "Bloqueo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "zen-headbutt",
+          "name": "Cabezazo Zen",
+          "category": "physical",
+          "type": "psychic",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "camouflage",
+          "name": "Camuflaje",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 59
+        },
+        {
+          "id": "round",
+          "name": "Canon",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-tail",
+          "name": "Cola Dragón",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "iron-tail",
+          "name": "Cola Férrea",
+          "category": "physical",
+          "type": "steel",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "draco-meteor",
+          "name": "Cometa Draco",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "confide",
+          "name": "Confidencia",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swagger",
+          "name": "Contoneo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-dance",
+          "name": "Danza Dragón",
+          "category": "status",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "zygarde-cube"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "brick-break",
+          "name": "Demolición",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rest",
+          "name": "Descanso",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "glare",
+          "name": "Deslumbrar",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "sunny-day",
+          "name": "Día Soleado",
+          "category": "status",
+          "type": "fire",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "pain-split",
+          "name": "Divide Dolor",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "double-team",
+          "name": "Doble Equipo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-breath",
+          "name": "Dragoaliento",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "outrage",
+          "name": "Enfado",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 80
+        },
+        {
+          "id": "coil",
+          "name": "Enrosque",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 72
+        },
+        {
+          "id": "dig",
+          "name": "Excavar",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 10
+        },
+        {
+          "id": "frustration",
+          "name": "Frustración",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "superpower",
+          "name": "Fuerza Bruta",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "high-horsepower",
+          "name": "Fuerza Equina",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "lands-wrath",
+          "name": "Fuerza Telúrica",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 26
+        },
+        {
+          "id": "giga-impact",
+          "name": "Gigaimpacto",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "body-slam",
+          "name": "Golpe Cuerpo",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "skitter-smack",
+          "name": "Golpe Rastrero",
+          "category": "physical",
+          "type": "bug",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "grass-knot",
+          "name": "Hierba Lazo",
+          "category": "special",
+          "type": "grass",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-beam",
+          "name": "Hiperrayo",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "facade",
+          "name": "Imagen",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "reversal",
+          "name": "Inversión",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "thousand-arrows",
+          "name": "Mil Flechas",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "thousand-waves",
+          "name": "Mil Temblores",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "bite",
+          "name": "Mordisco",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "haze",
+          "name": "Niebla",
+          "category": "status",
+          "type": "ice",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 8
+        },
+        {
+          "id": "core-enforcer",
+          "name": "Núcleo Castigo",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "focus-blast",
+          "name": "Onda Certera",
+          "category": "special",
+          "type": "fighting",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sludge-wave",
+          "name": "Onda Tóxica",
+          "category": "special",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "shock-wave",
+          "name": "Onda Voltio",
+          "category": "special",
+          "type": "electric",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stomping-tantrum",
+          "name": "Pataleta",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hidden-power",
+          "name": "Poder Oculto",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "protect",
+          "name": "Protección",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-pulse",
+          "name": "Pulso Dragón",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 40
+        },
+        {
+          "id": "scale-shot",
+          "name": "Ráfaga Escamas",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swift",
+          "name": "Rapidez",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "spite",
+          "name": "Rencor",
+          "category": "status",
+          "type": "ghost",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "retaliate",
+          "name": "Represalia",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "return",
+          "name": "Retribución",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stone-edge",
+          "name": "Roca Afilada",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "snore",
+          "name": "Ronquido",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sleep-talk",
+          "name": "Sonámbulo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "substitute",
+          "name": "Sustituto",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "bulldoze",
+          "name": "Terratemblor",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "earthquake",
+          "name": "Terremoto",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 55
+        },
+        {
+          "id": "earth-power",
+          "name": "Tierra Viva",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sandstorm",
+          "name": "Tormenta Arena",
+          "category": "status",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 35
+        },
+        {
+          "id": "toxic",
+          "name": "Tóxico",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "crunch",
+          "name": "Triturar",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 32
+        },
+        {
+          "id": "breaking-swipe",
+          "name": "Vasto Impacto",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "safeguard",
+          "name": "Velo Sagrado",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 5
+        },
+        {
+          "id": "extreme-speed",
+          "name": "Veloc. Extrema",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "zygarde-cube"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "payback",
+          "name": "Vendetta",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-voice",
+          "name": "Vozarrón",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        }
+      ]
+    },
+    {
+      "id": "zygarde-10-power-construct",
+      "moves": [
+        {
+          "id": "endure",
+          "name": "Aguante",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "scorching-sands",
+          "name": "Arenas Ardientes",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "bind",
+          "name": "Atadura",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "tutor"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "rock-slide",
+          "name": "Avalancha",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "block",
+          "name": "Bloqueo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "zen-headbutt",
+          "name": "Cabezazo Zen",
+          "category": "physical",
+          "type": "psychic",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "camouflage",
+          "name": "Camuflaje",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 59
+        },
+        {
+          "id": "round",
+          "name": "Canon",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-tail",
+          "name": "Cola Dragón",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "iron-tail",
+          "name": "Cola Férrea",
+          "category": "physical",
+          "type": "steel",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "draco-meteor",
+          "name": "Cometa Draco",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "confide",
+          "name": "Confidencia",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swagger",
+          "name": "Contoneo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-dance",
+          "name": "Danza Dragón",
+          "category": "status",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "zygarde-cube"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "brick-break",
+          "name": "Demolición",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rest",
+          "name": "Descanso",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "glare",
+          "name": "Deslumbrar",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "sunny-day",
+          "name": "Día Soleado",
+          "category": "status",
+          "type": "fire",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "pain-split",
+          "name": "Divide Dolor",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "double-team",
+          "name": "Doble Equipo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-breath",
+          "name": "Dragoaliento",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "outrage",
+          "name": "Enfado",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 80
+        },
+        {
+          "id": "coil",
+          "name": "Enrosque",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 72
+        },
+        {
+          "id": "dig",
+          "name": "Excavar",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 10
+        },
+        {
+          "id": "frustration",
+          "name": "Frustración",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "superpower",
+          "name": "Fuerza Bruta",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "high-horsepower",
+          "name": "Fuerza Equina",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "lands-wrath",
+          "name": "Fuerza Telúrica",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 26
+        },
+        {
+          "id": "giga-impact",
+          "name": "Gigaimpacto",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "body-slam",
+          "name": "Golpe Cuerpo",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "skitter-smack",
+          "name": "Golpe Rastrero",
+          "category": "physical",
+          "type": "bug",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "grass-knot",
+          "name": "Hierba Lazo",
+          "category": "special",
+          "type": "grass",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-beam",
+          "name": "Hiperrayo",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "facade",
+          "name": "Imagen",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "reversal",
+          "name": "Inversión",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "thousand-arrows",
+          "name": "Mil Flechas",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "thousand-waves",
+          "name": "Mil Temblores",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "bite",
+          "name": "Mordisco",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "haze",
+          "name": "Niebla",
+          "category": "status",
+          "type": "ice",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 8
+        },
+        {
+          "id": "core-enforcer",
+          "name": "Núcleo Castigo",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "focus-blast",
+          "name": "Onda Certera",
+          "category": "special",
+          "type": "fighting",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sludge-wave",
+          "name": "Onda Tóxica",
+          "category": "special",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "shock-wave",
+          "name": "Onda Voltio",
+          "category": "special",
+          "type": "electric",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stomping-tantrum",
+          "name": "Pataleta",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hidden-power",
+          "name": "Poder Oculto",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "protect",
+          "name": "Protección",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-pulse",
+          "name": "Pulso Dragón",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 40
+        },
+        {
+          "id": "scale-shot",
+          "name": "Ráfaga Escamas",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swift",
+          "name": "Rapidez",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "spite",
+          "name": "Rencor",
+          "category": "status",
+          "type": "ghost",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "retaliate",
+          "name": "Represalia",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "return",
+          "name": "Retribución",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stone-edge",
+          "name": "Roca Afilada",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "snore",
+          "name": "Ronquido",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sleep-talk",
+          "name": "Sonámbulo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "substitute",
+          "name": "Sustituto",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "bulldoze",
+          "name": "Terratemblor",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "earthquake",
+          "name": "Terremoto",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 55
+        },
+        {
+          "id": "earth-power",
+          "name": "Tierra Viva",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sandstorm",
+          "name": "Tormenta Arena",
+          "category": "status",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 35
+        },
+        {
+          "id": "toxic",
+          "name": "Tóxico",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "crunch",
+          "name": "Triturar",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 32
+        },
+        {
+          "id": "breaking-swipe",
+          "name": "Vasto Impacto",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "safeguard",
+          "name": "Velo Sagrado",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 5
+        },
+        {
+          "id": "extreme-speed",
+          "name": "Veloc. Extrema",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "zygarde-cube"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "payback",
+          "name": "Vendetta",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-voice",
+          "name": "Vozarrón",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        }
+      ]
+    },
+    {
+      "id": "zygarde-50",
+      "moves": [
+        {
+          "id": "endure",
+          "name": "Aguante",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "scorching-sands",
+          "name": "Arenas Ardientes",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "bind",
+          "name": "Atadura",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "tutor"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "rock-slide",
+          "name": "Avalancha",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "block",
+          "name": "Bloqueo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "zen-headbutt",
+          "name": "Cabezazo Zen",
+          "category": "physical",
+          "type": "psychic",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "camouflage",
+          "name": "Camuflaje",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 59
+        },
+        {
+          "id": "round",
+          "name": "Canon",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-tail",
+          "name": "Cola Dragón",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "iron-tail",
+          "name": "Cola Férrea",
+          "category": "physical",
+          "type": "steel",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "draco-meteor",
+          "name": "Cometa Draco",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "confide",
+          "name": "Confidencia",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swagger",
+          "name": "Contoneo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-dance",
+          "name": "Danza Dragón",
+          "category": "status",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "zygarde-cube"
+          ],
+          "minLevel": 72
+        },
+        {
+          "id": "secret-power",
+          "name": "Daño Secreto",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "brick-break",
+          "name": "Demolición",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rest",
+          "name": "Descanso",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "glare",
+          "name": "Deslumbrar",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "sunny-day",
+          "name": "Día Soleado",
+          "category": "status",
+          "type": "fire",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "pain-split",
+          "name": "Divide Dolor",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "double-team",
+          "name": "Doble Equipo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-breath",
+          "name": "Dragoaliento",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "outrage",
+          "name": "Enfado",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 80
+        },
+        {
+          "id": "coil",
+          "name": "Enrosque",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 72
+        },
+        {
+          "id": "dig",
+          "name": "Excavar",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 10
+        },
+        {
+          "id": "frustration",
+          "name": "Frustración",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "strength",
+          "name": "Fuerza",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "superpower",
+          "name": "Fuerza Bruta",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "high-horsepower",
+          "name": "Fuerza Equina",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "lands-wrath",
+          "name": "Fuerza Telúrica",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 26
+        },
+        {
+          "id": "giga-impact",
+          "name": "Gigaimpacto",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "body-slam",
+          "name": "Golpe Cuerpo",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "skitter-smack",
+          "name": "Golpe Rastrero",
+          "category": "physical",
+          "type": "bug",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rock-smash",
+          "name": "Golpe Roca",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "grass-knot",
+          "name": "Hierba Lazo",
+          "category": "special",
+          "type": "grass",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-beam",
+          "name": "Hiperrayo",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "facade",
+          "name": "Imagen",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "reversal",
+          "name": "Inversión",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "thousand-arrows",
+          "name": "Mil Flechas",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "thousand-waves",
+          "name": "Mil Temblores",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "bite",
+          "name": "Mordisco",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "haze",
+          "name": "Niebla",
+          "category": "status",
+          "type": "ice",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 8
+        },
+        {
+          "id": "core-enforcer",
+          "name": "Núcleo Castigo",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "focus-blast",
+          "name": "Onda Certera",
+          "category": "special",
+          "type": "fighting",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sludge-wave",
+          "name": "Onda Tóxica",
+          "category": "special",
+          "type": "poison",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "shock-wave",
+          "name": "Onda Voltio",
+          "category": "special",
+          "type": "electric",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stomping-tantrum",
+          "name": "Pataleta",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hidden-power",
+          "name": "Poder Oculto",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "protect",
+          "name": "Protección",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-pulse",
+          "name": "Pulso Dragón",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 40
+        },
+        {
+          "id": "scale-shot",
+          "name": "Ráfaga Escamas",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swift",
+          "name": "Rapidez",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "spite",
+          "name": "Rencor",
+          "category": "status",
+          "type": "ghost",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "retaliate",
+          "name": "Represalia",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "return",
+          "name": "Retribución",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stone-edge",
+          "name": "Roca Afilada",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "snore",
+          "name": "Ronquido",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sleep-talk",
+          "name": "Sonámbulo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "substitute",
+          "name": "Sustituto",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "bulldoze",
+          "name": "Terratemblor",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "earthquake",
+          "name": "Terremoto",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 55
+        },
+        {
+          "id": "earth-power",
+          "name": "Tierra Viva",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sandstorm",
+          "name": "Tormenta Arena",
+          "category": "status",
+          "type": "rock",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 35
+        },
+        {
+          "id": "toxic",
+          "name": "Tóxico",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "crunch",
+          "name": "Triturar",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 32
+        },
+        {
+          "id": "breaking-swipe",
+          "name": "Vasto Impacto",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "safeguard",
+          "name": "Velo Sagrado",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 5
+        },
+        {
+          "id": "extreme-speed",
+          "name": "Veloc. Extrema",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 88
+        },
+        {
+          "id": "payback",
+          "name": "Vendetta",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-voice",
+          "name": "Vozarrón",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        }
+      ]
+    },
+    {
+      "id": "zygarde-50-power-construct",
+      "moves": [
+        {
+          "id": "endure",
+          "name": "Aguante",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "scorching-sands",
+          "name": "Arenas Ardientes",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "bind",
+          "name": "Atadura",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "tutor"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "rock-slide",
+          "name": "Avalancha",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "block",
+          "name": "Bloqueo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "zen-headbutt",
+          "name": "Cabezazo Zen",
+          "category": "physical",
+          "type": "psychic",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "camouflage",
+          "name": "Camuflaje",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 59
+        },
+        {
+          "id": "round",
+          "name": "Canon",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-tail",
+          "name": "Cola Dragón",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "iron-tail",
+          "name": "Cola Férrea",
+          "category": "physical",
+          "type": "steel",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "draco-meteor",
+          "name": "Cometa Draco",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "confide",
+          "name": "Confidencia",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swagger",
+          "name": "Contoneo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-dance",
+          "name": "Danza Dragón",
+          "category": "status",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "zygarde-cube"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "brick-break",
+          "name": "Demolición",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rest",
+          "name": "Descanso",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "glare",
+          "name": "Deslumbrar",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "sunny-day",
+          "name": "Día Soleado",
+          "category": "status",
+          "type": "fire",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "pain-split",
+          "name": "Divide Dolor",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "double-team",
+          "name": "Doble Equipo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-breath",
+          "name": "Dragoaliento",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "outrage",
+          "name": "Enfado",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 80
+        },
+        {
+          "id": "coil",
+          "name": "Enrosque",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 72
+        },
+        {
+          "id": "dig",
+          "name": "Excavar",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 10
+        },
+        {
+          "id": "frustration",
+          "name": "Frustración",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "superpower",
+          "name": "Fuerza Bruta",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "high-horsepower",
+          "name": "Fuerza Equina",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "lands-wrath",
+          "name": "Fuerza Telúrica",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 26
+        },
+        {
+          "id": "giga-impact",
+          "name": "Gigaimpacto",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "body-slam",
+          "name": "Golpe Cuerpo",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "skitter-smack",
+          "name": "Golpe Rastrero",
+          "category": "physical",
+          "type": "bug",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "grass-knot",
+          "name": "Hierba Lazo",
+          "category": "special",
+          "type": "grass",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-beam",
+          "name": "Hiperrayo",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "facade",
+          "name": "Imagen",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "reversal",
+          "name": "Inversión",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "thousand-arrows",
+          "name": "Mil Flechas",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "thousand-waves",
+          "name": "Mil Temblores",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "bite",
+          "name": "Mordisco",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "haze",
+          "name": "Niebla",
+          "category": "status",
+          "type": "ice",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 8
+        },
+        {
+          "id": "core-enforcer",
+          "name": "Núcleo Castigo",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "focus-blast",
+          "name": "Onda Certera",
+          "category": "special",
+          "type": "fighting",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sludge-wave",
+          "name": "Onda Tóxica",
+          "category": "special",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "shock-wave",
+          "name": "Onda Voltio",
+          "category": "special",
+          "type": "electric",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stomping-tantrum",
+          "name": "Pataleta",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hidden-power",
+          "name": "Poder Oculto",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "protect",
+          "name": "Protección",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-pulse",
+          "name": "Pulso Dragón",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 40
+        },
+        {
+          "id": "scale-shot",
+          "name": "Ráfaga Escamas",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swift",
+          "name": "Rapidez",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "spite",
+          "name": "Rencor",
+          "category": "status",
+          "type": "ghost",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "retaliate",
+          "name": "Represalia",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "return",
+          "name": "Retribución",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stone-edge",
+          "name": "Roca Afilada",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "snore",
+          "name": "Ronquido",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sleep-talk",
+          "name": "Sonámbulo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "substitute",
+          "name": "Sustituto",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "bulldoze",
+          "name": "Terratemblor",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "earthquake",
+          "name": "Terremoto",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 55
+        },
+        {
+          "id": "earth-power",
+          "name": "Tierra Viva",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sandstorm",
+          "name": "Tormenta Arena",
+          "category": "status",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 35
+        },
+        {
+          "id": "toxic",
+          "name": "Tóxico",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "crunch",
+          "name": "Triturar",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 32
+        },
+        {
+          "id": "breaking-swipe",
+          "name": "Vasto Impacto",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "safeguard",
+          "name": "Velo Sagrado",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 5
+        },
+        {
+          "id": "extreme-speed",
+          "name": "Veloc. Extrema",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "zygarde-cube"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "payback",
+          "name": "Vendetta",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-voice",
+          "name": "Vozarrón",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        }
+      ]
+    },
+    {
+      "id": "zygarde-complete",
+      "moves": [
+        {
+          "id": "endure",
+          "name": "Aguante",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "scorching-sands",
+          "name": "Arenas Ardientes",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "bind",
+          "name": "Atadura",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "tutor"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "rock-slide",
+          "name": "Avalancha",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "block",
+          "name": "Bloqueo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "zen-headbutt",
+          "name": "Cabezazo Zen",
+          "category": "physical",
+          "type": "psychic",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "camouflage",
+          "name": "Camuflaje",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 59
+        },
+        {
+          "id": "round",
+          "name": "Canon",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-tail",
+          "name": "Cola Dragón",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "iron-tail",
+          "name": "Cola Férrea",
+          "category": "physical",
+          "type": "steel",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "draco-meteor",
+          "name": "Cometa Draco",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "confide",
+          "name": "Confidencia",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swagger",
+          "name": "Contoneo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-dance",
+          "name": "Danza Dragón",
+          "category": "status",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "zygarde-cube"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "brick-break",
+          "name": "Demolición",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rest",
+          "name": "Descanso",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "glare",
+          "name": "Deslumbrar",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "sunny-day",
+          "name": "Día Soleado",
+          "category": "status",
+          "type": "fire",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "pain-split",
+          "name": "Divide Dolor",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "double-team",
+          "name": "Doble Equipo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-breath",
+          "name": "Dragoaliento",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "outrage",
+          "name": "Enfado",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 80
+        },
+        {
+          "id": "coil",
+          "name": "Enrosque",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 72
+        },
+        {
+          "id": "dig",
+          "name": "Excavar",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 10
+        },
+        {
+          "id": "frustration",
+          "name": "Frustración",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "superpower",
+          "name": "Fuerza Bruta",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "high-horsepower",
+          "name": "Fuerza Equina",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "lands-wrath",
+          "name": "Fuerza Telúrica",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 26
+        },
+        {
+          "id": "giga-impact",
+          "name": "Gigaimpacto",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "body-slam",
+          "name": "Golpe Cuerpo",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "skitter-smack",
+          "name": "Golpe Rastrero",
+          "category": "physical",
+          "type": "bug",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "grass-knot",
+          "name": "Hierba Lazo",
+          "category": "special",
+          "type": "grass",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-beam",
+          "name": "Hiperrayo",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "facade",
+          "name": "Imagen",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "reversal",
+          "name": "Inversión",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "thousand-arrows",
+          "name": "Mil Flechas",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "thousand-waves",
+          "name": "Mil Temblores",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "bite",
+          "name": "Mordisco",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "haze",
+          "name": "Niebla",
+          "category": "status",
+          "type": "ice",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 8
+        },
+        {
+          "id": "core-enforcer",
+          "name": "Núcleo Castigo",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "focus-blast",
+          "name": "Onda Certera",
+          "category": "special",
+          "type": "fighting",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sludge-wave",
+          "name": "Onda Tóxica",
+          "category": "special",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "shock-wave",
+          "name": "Onda Voltio",
+          "category": "special",
+          "type": "electric",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stomping-tantrum",
+          "name": "Pataleta",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hidden-power",
+          "name": "Poder Oculto",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "protect",
+          "name": "Protección",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-pulse",
+          "name": "Pulso Dragón",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 40
+        },
+        {
+          "id": "scale-shot",
+          "name": "Ráfaga Escamas",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swift",
+          "name": "Rapidez",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "spite",
+          "name": "Rencor",
+          "category": "status",
+          "type": "ghost",
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "retaliate",
+          "name": "Represalia",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "return",
+          "name": "Retribución",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stone-edge",
+          "name": "Roca Afilada",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "snore",
+          "name": "Ronquido",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sleep-talk",
+          "name": "Sonámbulo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "substitute",
+          "name": "Sustituto",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "bulldoze",
+          "name": "Terratemblor",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "earthquake",
+          "name": "Terremoto",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 55
+        },
+        {
+          "id": "earth-power",
+          "name": "Tierra Viva",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sandstorm",
+          "name": "Tormenta Arena",
+          "category": "status",
+          "type": "rock",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 35
+        },
+        {
+          "id": "toxic",
+          "name": "Tóxico",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "crunch",
+          "name": "Triturar",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 32
+        },
+        {
+          "id": "breaking-swipe",
+          "name": "Vasto Impacto",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "safeguard",
+          "name": "Velo Sagrado",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 5
+        },
+        {
+          "id": "extreme-speed",
+          "name": "Veloc. Extrema",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "zygarde-cube"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "payback",
+          "name": "Vendetta",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-voice",
+          "name": "Vozarrón",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        }
+      ]
+    },
+    {
+      "id": "zygarde-mega",
+      "moves": [
+        {
+          "id": "endure",
+          "name": "Aguante",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "scorching-sands",
+          "name": "Arenas Ardientes",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "bind",
+          "name": "Atadura",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "tutor"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "rock-slide",
+          "name": "Avalancha",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "block",
+          "name": "Bloqueo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "zen-headbutt",
+          "name": "Cabezazo Zen",
+          "category": "physical",
+          "type": "psychic",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "camouflage",
+          "name": "Camuflaje",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 59
+        },
+        {
+          "id": "round",
+          "name": "Canon",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-tail",
+          "name": "Cola Dragón",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "iron-tail",
+          "name": "Cola Férrea",
+          "category": "physical",
+          "type": "steel",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "draco-meteor",
+          "name": "Cometa Draco",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "confide",
+          "name": "Confidencia",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swagger",
+          "name": "Contoneo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-dance",
+          "name": "Danza Dragón",
+          "category": "status",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "zygarde-cube"
+          ],
+          "minLevel": 72
+        },
+        {
+          "id": "secret-power",
+          "name": "Daño Secreto",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "brick-break",
+          "name": "Demolición",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rest",
+          "name": "Descanso",
+          "category": "status",
+          "type": "psychic",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "glare",
+          "name": "Deslumbrar",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "sunny-day",
+          "name": "Día Soleado",
+          "category": "status",
+          "type": "fire",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "pain-split",
+          "name": "Divide Dolor",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "double-team",
+          "name": "Doble Equipo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-breath",
+          "name": "Dragoaliento",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "outrage",
+          "name": "Enfado",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 80
+        },
+        {
+          "id": "coil",
+          "name": "Enrosque",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 72
+        },
+        {
+          "id": "dig",
+          "name": "Excavar",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 10
+        },
+        {
+          "id": "frustration",
+          "name": "Frustración",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "strength",
+          "name": "Fuerza",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "superpower",
+          "name": "Fuerza Bruta",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "high-horsepower",
+          "name": "Fuerza Equina",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "lands-wrath",
+          "name": "Fuerza Telúrica",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 26
+        },
+        {
+          "id": "giga-impact",
+          "name": "Gigaimpacto",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "body-slam",
+          "name": "Golpe Cuerpo",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "skitter-smack",
+          "name": "Golpe Rastrero",
+          "category": "physical",
+          "type": "bug",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "rock-smash",
+          "name": "Golpe Roca",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "grass-knot",
+          "name": "Hierba Lazo",
+          "category": "special",
+          "type": "grass",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-beam",
+          "name": "Hiperrayo",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "facade",
+          "name": "Imagen",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "reversal",
+          "name": "Inversión",
+          "category": "physical",
+          "type": "fighting",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "thousand-arrows",
+          "name": "Mil Flechas",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "thousand-waves",
+          "name": "Mil Temblores",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "bite",
+          "name": "Mordisco",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "haze",
+          "name": "Niebla",
+          "category": "status",
+          "type": "ice",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up"
+          ],
+          "minLevel": 8
+        },
+        {
+          "id": "core-enforcer",
+          "name": "Núcleo Castigo",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "focus-blast",
+          "name": "Onda Certera",
+          "category": "special",
+          "type": "fighting",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sludge-wave",
+          "name": "Onda Tóxica",
+          "category": "special",
+          "type": "poison",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "shock-wave",
+          "name": "Onda Voltio",
+          "category": "special",
+          "type": "electric",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stomping-tantrum",
+          "name": "Pataleta",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hidden-power",
+          "name": "Poder Oculto",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "protect",
+          "name": "Protección",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "dragon-pulse",
+          "name": "Pulso Dragón",
+          "category": "special",
+          "type": "dragon",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine",
+            "tutor"
+          ],
+          "minLevel": 40
+        },
+        {
+          "id": "scale-shot",
+          "name": "Ráfaga Escamas",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "swift",
+          "name": "Rapidez",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "spite",
+          "name": "Rencor",
+          "category": "status",
+          "type": "ghost",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "retaliate",
+          "name": "Represalia",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "return",
+          "name": "Retribución",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "stone-edge",
+          "name": "Roca Afilada",
+          "category": "physical",
+          "type": "rock",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "snore",
+          "name": "Ronquido",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sleep-talk",
+          "name": "Sonámbulo",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "substitute",
+          "name": "Sustituto",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "bulldoze",
+          "name": "Terratemblor",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 1
+        },
+        {
+          "id": "earthquake",
+          "name": "Terremoto",
+          "category": "physical",
+          "type": "ground",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 55
+        },
+        {
+          "id": "earth-power",
+          "name": "Tierra Viva",
+          "category": "special",
+          "type": "ground",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "sandstorm",
+          "name": "Tormenta Arena",
+          "category": "status",
+          "type": "rock",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 35
+        },
+        {
+          "id": "toxic",
+          "name": "Tóxico",
+          "category": "status",
+          "type": "poison",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "crunch",
+          "name": "Triturar",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 32
+        },
+        {
+          "id": "breaking-swipe",
+          "name": "Vasto Impacto",
+          "category": "physical",
+          "type": "dragon",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "safeguard",
+          "name": "Velo Sagrado",
+          "category": "status",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "machine"
+          ],
+          "minLevel": 5
+        },
+        {
+          "id": "extreme-speed",
+          "name": "Veloc. Extrema",
+          "category": "physical",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "learnMethods": [
+            "level-up",
+            "zygarde-cube"
+          ],
+          "minLevel": 88
+        },
+        {
+          "id": "payback",
+          "name": "Vendetta",
+          "category": "physical",
+          "type": "dark",
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "learnMethods": [
+            "machine"
+          ],
+          "minLevel": null
+        },
+        {
+          "id": "hyper-voice",
+          "name": "Vozarrón",
+          "category": "special",
+          "type": "normal",
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "learnMethods": [
+            "machine",
+            "tutor"
+          ],
+          "minLevel": null
+        }
+      ]
+    }
+  ]
+}

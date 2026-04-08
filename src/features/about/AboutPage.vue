@@ -5,13 +5,14 @@ import { useI18n } from 'vue-i18n'
 import ownerPlaceholder from '@/assets/img/about-owner-placeholder.svg'
 import type { BattleMode } from '@/models/domain'
 import { getAboutFeedbackCounters, saveAboutFeedback } from '@/services/about-feedback-service'
+import { resolvePublicAssetPath } from '@/utils/base-path'
 
 const route = useRoute()
 const { t, locale } = useI18n()
 
 const mode = computed<BattleMode>(() => (route.params.mode === 'singles' ? 'singles' : 'vgc'))
 const ownerPhotoEnv = (import.meta.env.VITE_OWNER_PHOTO_URL as string | undefined)?.trim()
-const ownerPhoto = computed(() => ownerPhotoEnv || '/ercokq.jpeg')
+const ownerPhoto = computed(() => ownerPhotoEnv || resolvePublicAssetPath('ercokq.jpeg'))
 const ownerPhotoSrc = ref(ownerPhoto.value)
 const feedbackCounters = ref(getAboutFeedbackCounters())
 const feedbackStatus = ref<{ tone: 'success' | 'error'; message: string } | null>(null)
