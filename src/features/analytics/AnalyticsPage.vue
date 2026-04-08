@@ -46,6 +46,12 @@ const speedMap = computed(() => analyticsStore.getTeamSpeedMap(mode.value))
 const teraDependency = computed(() => analyticsStore.getTeamTeraDependency(mode.value))
 const threatRows = computed(() => analyticsStore.getThreatResponses(mode.value))
 const threatSummary = computed(() => analyticsStore.getThreatResponseSummary(mode.value))
+const breakerCount = computed(
+  () =>
+    offensivePressure.value.members.filter(
+      (entry) => !entry.isWincon && !entry.isCloser && entry.damagingMoves >= 2 && entry.highPowerMoves >= 2,
+    ).length,
+)
 const speedBucketOrder: SpeedBucketKey[] = ['slow', 'mid', 'fast', 'veryFast']
 const offenseThresholdWinconText = computed(() =>
   mode.value === 'vgc'
@@ -696,13 +702,7 @@ function pillarMapButtonClass(key: 'plan' | 'tempo' | 'matchups' | 'resources'):
               </div>
               <div class="rounded border border-gray-700 bg-st-black/60 px-2 py-1">
                 <span class="text-gray-300">{{ t('analytics.pillarPlanMapBreakers') }}:</span>
-                <span class="ml-1 text-amber-200">
-                  {{
-                    offensivePressure.members.filter(
-                      (entry) => !entry.isWincon && !entry.isCloser && entry.damagingMoves >= 2 && entry.highPowerMoves >= 2,
-                    ).length
-                  }}
-                </span>
+                <span class="ml-1 text-amber-200">{{ breakerCount }}</span>
               </div>
             </div>
           </template>

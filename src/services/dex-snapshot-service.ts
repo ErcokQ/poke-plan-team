@@ -1,5 +1,10 @@
 import type { LocaleCode } from '@/models/domain'
-import type { DexCatalogSnapshot, DexGenerationSnapshot, DexProfileSnapshot } from '@/models/dex'
+import type {
+  DexCatalogSnapshot,
+  DexChampionsAvailabilitySnapshot,
+  DexGenerationSnapshot,
+  DexProfileSnapshot,
+} from '@/models/dex'
 import { DEX_CACHE_VERSION } from '@/services/dex-cache-service'
 import { resolvePublicAssetPath } from '@/utils/base-path'
 
@@ -86,6 +91,7 @@ class DexSnapshotWorkerClient {
 
 export class DexSnapshotService {
   private readonly catalogCache = new Map<LocaleCode, Promise<DexCatalogSnapshot>>()
+  private championsAvailabilityCache: Promise<DexChampionsAvailabilitySnapshot> | null = null
   private readonly generationCache = new Map<string, Promise<DexGenerationSnapshot>>()
   private readonly profileCache = new Map<string, Promise<DexProfileSnapshot>>()
   private workerClient: DexSnapshotWorkerClient | null = null
@@ -105,6 +111,15 @@ export class DexSnapshotService {
 
   async loadProfiles(locale: LocaleCode, generationId: number): Promise<DexProfileSnapshot> {
     return this.loadProfileBucket(locale, generationId, 1)
+  }
+
+  async loadChampionsAvailability(): Promise<DexChampionsAvailabilitySnapshot> {
+    if (!this.championsAvailabilityCache) {
+      this.championsAvailabilityCache = this.requestJson<DexChampionsAvailabilitySnapshot>(
+        this.versionedSnapshotPath(resolvePublicAssetPath('dex-snapshots/champions/availability.json')),
+      )
+    }
+    return this.championsAvailabilityCache
   }
 
   async loadProfileBucket(
@@ -143,6 +158,7 @@ export class DexSnapshotService {
 
   resetCache() {
     this.catalogCache.clear()
+    this.championsAvailabilityCache = null
     this.generationCache.clear()
     this.profileCache.clear()
   }
@@ -151,14 +167,15 @@ export class DexSnapshotService {
     const workerResult = await this.requestJsonWithWorker<T>(path)
     if (workerResult !== null) return workerResult
 
-    const compressed = await this.requestCompressedJson<T>(`${path}.gz`)
+    const compressed = await this.requestCompressedJson<T>(this.toCompressedSnapshotPath(path))
     if (compressed) return compressed
 
     const response = await fetch(path, { cache: SNAPSHOT_FETCH_CACHE_MODE })
     if (!response.ok) {
       throw new Error(`Dex snapshot request failed (${response.status}) for ${path}`)
     }
-    return (await response.json()) as T
+
+    return this.parseJsonResponse<T>(response, path)
   }
 
   private async requestCompressedJson<T>(path: string): Promise<T | null> {
@@ -170,7 +187,7 @@ export class DexSnapshotService {
 
       const contentEncoding = response.headers.get('content-encoding')?.toLowerCase() ?? ''
       if (contentEncoding.includes('gzip')) {
-        return (await response.json()) as T
+        return await this.parseJsonResponse<T>(response, path)
       }
 
       const decompressedStream = response.body.pipeThrough(new DecompressionStream('gzip'))
@@ -214,6 +231,21 @@ export class DexSnapshotService {
   private versionedSnapshotPath(path: string): string {
     const separator = path.includes('?') ? '&' : '?'
     return `${path}${separator}rev=${encodeURIComponent(DEX_CACHE_VERSION)}`
+  }
+
+  private toCompressedSnapshotPath(path: string): string {
+    const [basePath, queryString = ''] = path.split('?')
+    return `${basePath}.gz${queryString ? `?${queryString}` : ''}`
+  }
+
+  private async parseJsonResponse<T>(response: Response, path: string): Promise<T> {
+    const text = await response.text()
+    try {
+      return JSON.parse(text) as T
+    } catch {
+      const preview = text.slice(0, 80).trim()
+      throw new Error(`Dex snapshot parse failed for ${path}: ${preview || 'empty response'}`)
+    }
   }
 }
 

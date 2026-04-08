@@ -2,6 +2,7 @@ import { createPinia, setActivePinia } from 'pinia'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 vi.mock('@/services/dex-cache-service', () => ({
+  DEX_CACHE_VERSION: 'v8',
   getCached: vi.fn(async () => null),
   isCacheValid: vi.fn(() => false),
   makeDexCacheKey: vi.fn((locale: string, section: string) => `${locale}:${section}`),
@@ -111,6 +112,24 @@ describe('useDexStore', () => {
             },
           ],
         })),
+        loadChampionsAvailability: vi.fn(async () => ({
+          version: 'v1',
+          generatedAt: '2026-04-08T00:00:00.000Z',
+          game: { id: 'pokemon-champions', name: 'Pokemon Champions' },
+          metadata: { maintainers: [], lastReviewedAt: '2026-04-08', notes: '' },
+          entries: [
+            {
+              pokemonId: 'bulbasaur',
+              formId: null,
+              availability: 'available',
+              introducedIn: 'launch',
+              sourceType: 'official',
+              sourceLabel: 'Official',
+              sourceUrl: 'https://example.com',
+              notes: '',
+            },
+          ],
+        })),
         loadProfiles: vi.fn(async () => ({
           version: 'v1',
           locale: 'es',
@@ -158,6 +177,7 @@ describe('useDexStore', () => {
 
     expect(store.source).toBe('snapshot')
     expect(store.getGenerationEntries(1, 'es').length).toBeGreaterThan(0)
+    expect(store.getGenerationEntries(1, 'es')[0]?.gameAvailability).toContain('pokemon-champions')
     expect(pokemonCatalogSpy).not.toHaveBeenCalled()
   })
 

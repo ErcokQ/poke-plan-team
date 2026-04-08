@@ -1,7 +1,9 @@
 ﻿<script setup lang="ts">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import type { DamageCalcScenario, DamageSideId, DamageSlotNumber } from '@/models/damage-calc'
+import type { DamageCalcScenario, DamageSideFieldState, DamageSideId, DamageSlotNumber } from '@/models/damage-calc'
+
+type SideBooleanFlagKey = Exclude<keyof DamageSideFieldState, 'hazards' | 'protectBySlot'>
 
 const props = withDefaults(
   defineProps<{
@@ -66,7 +68,7 @@ const terrainOptions = computed<Array<{ value: DamageCalcScenario['field']['terr
   { value: 'psychic', label: t('damageCalc.terrain.psychic') },
 ])
 
-const sideFlags = computed<Array<{ key: keyof DamageCalcScenario['field']['sideA']; label: string }>>(() => [
+const sideFlags = computed<Array<{ key: SideBooleanFlagKey; label: string }>>(() => [
   { key: 'reflect', label: t('damageCalc.flags.reflect') },
   { key: 'lightScreen', label: t('damageCalc.flags.lightScreen') },
   { key: 'auroraVeil', label: t('damageCalc.flags.auroraVeil') },

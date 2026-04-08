@@ -31,6 +31,7 @@ El runtime actual es `local-first`:
 Documentacion relacionada:
 
 - [Arquitectura](./docs/architecture.md)
+- [Overlay de Champions](./docs/champions-overlay.md)
 - [Remediacion de rendimiento](./docs/performance-remediation.md)
 - [Preparacion para despliegue continuo](./docs/deployment-readiness.md)
 - [Deploy en VPS](./docs/vps-deployment.md)
@@ -79,6 +80,24 @@ Para este proyecto, la estrategia recomendada es:
 - no ejecutar `dex:sync` en cada deploy automatico de la VPS
 
 Eso mantiene el build reproducible y simplifica rollback.
+
+## Overlay de Champions
+
+La disponibilidad de `Pokemon Champions` no se va a modelar con una API propia en esta fase.
+
+La fuente editable queda en:
+
+- `data/champions/availability.source.json`
+
+La documentacion del contrato y mantenimiento esta en:
+
+- `docs/champions-overlay.md`
+
+El flujo actual es:
+
+- editar `data/champions/availability.source.json`
+- ejecutar `npm run dex:sync`
+- consumir el snapshot generado desde la Dex
 
 ## Rutas principales
 

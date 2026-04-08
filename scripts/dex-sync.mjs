@@ -1,4 +1,4 @@
-import { mkdir, rm, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import vm from 'node:vm'
@@ -8,6 +8,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const repoRoot = path.resolve(__dirname, '..')
 const outputRoot = path.join(repoRoot, 'public', 'dex-snapshots')
+const championsSourcePath = path.join(repoRoot, 'data', 'champions', 'availability.source.json')
 
 const API_BASE_URL = 'https://pokeapi.co/api/v2'
 const SHOWDOWN_POKEDEX_URL = 'https://play.pokemonshowdown.com/data/pokedex.json'
@@ -74,6 +75,53 @@ const ITEM_DESCRIPTION_FALLBACKS = {
     es: 'Potencia movimientos de punio y evita efectos de contacto en esos movimientos.',
     en: 'Boosts punching moves and removes contact side effects for those moves.',
   },
+}
+
+function normalizeChampionsAvailabilityEntry(entry) {
+  const pokemonId = String(entry?.pokemonId ?? '').trim()
+  if (!pokemonId) return null
+
+  const rawAvailability = String(entry?.availability ?? 'unconfirmed').trim().toLowerCase()
+  const availability = ['available', 'limited', 'unconfirmed', 'unavailable'].includes(rawAvailability)
+    ? rawAvailability
+    : 'unconfirmed'
+  const rawSourceType = String(entry?.sourceType ?? 'internal').trim().toLowerCase()
+  const sourceType = ['official', 'community', 'internal'].includes(rawSourceType) ? rawSourceType : 'internal'
+
+  return {
+    pokemonId,
+    formId: entry?.formId ? String(entry.formId).trim() : null,
+    availability,
+    introducedIn: String(entry?.introducedIn ?? 'unknown').trim() || 'unknown',
+    sourceType,
+    sourceLabel: String(entry?.sourceLabel ?? '').trim(),
+    sourceUrl: String(entry?.sourceUrl ?? '').trim(),
+    notes: String(entry?.notes ?? '').trim(),
+  }
+}
+
+async function loadChampionsAvailabilityOverlay(generatedAt) {
+  const raw = JSON.parse(await readFile(championsSourcePath, 'utf8'))
+  const entries = Array.isArray(raw?.entries)
+    ? raw.entries.map((entry) => normalizeChampionsAvailabilityEntry(entry)).filter(Boolean)
+    : []
+
+  return {
+    version: 'v1',
+    generatedAt,
+    game: {
+      id: 'pokemon-champions',
+      name: String(raw?.game?.name ?? 'Pokemon Champions'),
+    },
+    metadata: {
+      maintainers: Array.isArray(raw?.metadata?.maintainers)
+        ? raw.metadata.maintainers.map((entry) => String(entry).trim()).filter(Boolean)
+        : [],
+      lastReviewedAt: String(raw?.metadata?.lastReviewedAt ?? '').trim() || generatedAt.slice(0, 10),
+      notes: String(raw?.metadata?.notes ?? '').trim(),
+    },
+    entries,
+  }
 }
 
 const requestCache = new Map()
@@ -797,6 +845,7 @@ async function main() {
   const moveByName = new Map(moveRaw.map((move) => [move.name, move]))
   const abilityByName = new Map(abilityRaw.map((ability) => [ability.name, ability]))
   const generatedAt = new Date().toISOString()
+  const championsAvailabilityOverlay = await loadChampionsAvailabilityOverlay(generatedAt)
 
   console.log('Building locale snapshots...')
   for (const locale of LOCALES) {
@@ -1002,6 +1051,10 @@ async function main() {
 
     console.log(`Wrote snapshots for locale ${locale}`)
   }
+
+  const championsDir = path.join(outputRoot, 'champions')
+  await mkdir(championsDir, { recursive: true })
+  await writeSnapshotFile(path.join(championsDir, 'availability.json'), championsAvailabilityOverlay)
 
   console.log('Dex snapshots generated successfully.')
 }

@@ -12,6 +12,7 @@ import type {
 import type {
   DexAbilityEntry,
   DexCatalogSnapshot,
+  DexChampionsAvailabilitySnapshot,
   DexGenerationSnapshot,
   DexPokemonProfile,
   DexPokemonProfileDetails,
@@ -22,6 +23,7 @@ import { NATURES } from '@/utils/team'
 import { dexService, type DexCatalogOptions } from '@/services/dex-service'
 import { dexSnapshotService } from '@/services/dex-snapshot-service'
 import {
+  DEX_CACHE_VERSION,
   getCached,
   isCacheValid,
   makeDexCacheKey,
@@ -198,6 +200,7 @@ export const useDexStore = defineStore('dex', () => {
     es: {},
     en: {},
   })
+  const championsAvailabilityIds = ref<Set<string>>(new Set())
   const pendingGenerationSnapshots = new Map<string, Promise<void>>()
   const pendingProfileBuckets = new Map<string, Promise<void>>()
   const pendingForms = new Map<string, Promise<PokemonEntry[]>>()
@@ -298,6 +301,50 @@ export const useDexStore = defineStore('dex', () => {
     }
   }
 
+  function applyChampionsAvailabilitySnapshot(snapshot: DexChampionsAvailabilitySnapshot) {
+    championsAvailabilityIds.value = new Set(
+      snapshot.entries
+        .filter((entry) => entry.availability === 'available' || entry.availability === 'limited')
+        .map((entry) => entry.formId ?? entry.pokemonId)
+        .filter(Boolean),
+    )
+  }
+
+  function summarySupportsChampions(summary: DexPokemonProfileSummary): boolean {
+    if (championsAvailabilityIds.value.size === 0) return false
+    if (championsAvailabilityIds.value.has(summary.id)) return true
+
+    for (const evolutionEntry of summary.evolutionChain) {
+      if (championsAvailabilityIds.value.has(evolutionEntry.id)) return true
+      for (const variant of evolutionEntry.variants) {
+        if (championsAvailabilityIds.value.has(variant.id)) return true
+      }
+    }
+
+    return false
+  }
+
+  function withAvailabilityOverlay(summary: DexPokemonProfileSummary): DexPokemonProfileSummary {
+    if (!summarySupportsChampions(summary)) return summary
+    if (summary.gameAvailability.includes('pokemon-champions')) return summary
+
+    return {
+      ...summary,
+      gameAvailability: [...summary.gameAvailability, 'pokemon-champions'],
+    }
+  }
+
+  async function ensureChampionsAvailabilityLoaded() {
+    if (source.value === 'mock' || championsAvailabilityIds.value.size > 0) return
+
+    try {
+      const snapshot = await dexSnapshotService.loadChampionsAvailability()
+      applyChampionsAvailabilitySnapshot(snapshot)
+    } catch {
+      championsAvailabilityIds.value = new Set()
+    }
+  }
+
   function buildApiProfileSummaries(): Record<string, DexPokemonProfileSummary> {
     const pokemonById = pokemonMap.value.vgc
     return Object.fromEntries(
@@ -334,7 +381,8 @@ export const useDexStore = defineStore('dex', () => {
   }
 
   function getPokemonProfileSummary(id: string, locale: LocaleCode = hydratedLocale.value ?? 'es') {
-    return profileSummariesByLocale.value[locale]?.[id]
+    const summary = profileSummariesByLocale.value[locale]?.[id]
+    return summary ? withAvailabilityOverlay(summary) : undefined
   }
 
   function getPokemonProfileDetails(id: string, locale: LocaleCode = hydratedLocale.value ?? 'es') {
@@ -356,7 +404,7 @@ export const useDexStore = defineStore('dex', () => {
     for (const entry of Object.values(profileSummariesByLocale.value[locale] ?? {})) {
       if (entry.generationId !== generationId) continue
       if (!deduped.has(entry.pokedexNumber)) {
-        deduped.set(entry.pokedexNumber, entry)
+        deduped.set(entry.pokedexNumber, withAvailabilityOverlay(entry))
       }
     }
 
@@ -409,7 +457,7 @@ export const useDexStore = defineStore('dex', () => {
       } else {
         snapshot = await dexSnapshotService.loadGeneration(locale, generationId)
         const envelope: DexCacheEnvelope<DexGenerationSnapshot> = {
-          version: 'v7',
+          version: DEX_CACHE_VERSION,
           locale,
           createdAt: Date.now(),
           ttlMs: DEX_CACHE_TTL_MS,
@@ -569,7 +617,7 @@ export const useDexStore = defineStore('dex', () => {
       } else {
         snapshot = await dexSnapshotService.loadProfileBucket(locale, generationId, bucketId)
         const envelope: DexCacheEnvelope<DexProfileSnapshot> = {
-          version: 'v7',
+          version: DEX_CACHE_VERSION,
           locale,
           createdAt: Date.now(),
           ttlMs: DEX_CACHE_TTL_MS,
@@ -619,6 +667,7 @@ export const useDexStore = defineStore('dex', () => {
         const cached = await getCached<DexCatalogSnapshot>(cacheKey)
         if (isCacheValid(cached)) {
           applyCatalogSnapshot(cached.payload)
+          await ensureChampionsAvailabilityLoaded()
           return
         }
 
@@ -626,13 +675,14 @@ export const useDexStore = defineStore('dex', () => {
         applyCatalogSnapshot(snapshot)
 
         const envelope: DexCacheEnvelope<DexCatalogSnapshot> = {
-          version: 'v7',
+          version: DEX_CACHE_VERSION,
           locale,
           createdAt: Date.now(),
           ttlMs: DEX_CACHE_TTL_MS,
           payload: snapshot,
         }
         await setCached(cacheKey, envelope)
+        await ensureChampionsAvailabilityLoaded()
         return
       }
 
@@ -661,6 +711,7 @@ export const useDexStore = defineStore('dex', () => {
       hydratedLocale.value = locale
       lastHydratedAt.value = new Date().toISOString()
       hydrationStatus.value = 'ready'
+      await ensureChampionsAvailabilityLoaded()
     })()
 
     pendingHydration.value = task
@@ -693,6 +744,7 @@ export const useDexStore = defineStore('dex', () => {
     profileDetailsByLocale.value = { es: {}, en: {} }
     loadedGenerationsByLocale.value = { es: new Set<number>(), en: new Set<number>() }
     detailBucketByPokemonIdByLocale.value = { es: {}, en: {} }
+    championsAvailabilityIds.value = new Set()
     pendingGenerationSnapshots.clear()
     pendingForms.clear()
     pendingMoves.clear()

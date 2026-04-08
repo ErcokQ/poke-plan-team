@@ -46,14 +46,14 @@ self.onmessage = async (event: MessageEvent<DexSnapshotWorkerRequest>) => {
 }
 
 async function requestJson(path: string): Promise<unknown> {
-  const compressed = await requestCompressedJson(`${path}.gz`)
+  const compressed = await requestCompressedJson(toCompressedSnapshotPath(path))
   if (compressed) return compressed
 
   const response = await fetch(path, { cache: SNAPSHOT_FETCH_CACHE_MODE })
   if (!response.ok) {
     throw new Error(`Dex snapshot request failed (${response.status}) for ${path}`)
   }
-  return response.json()
+  return parseJsonResponse(response, path)
 }
 
 async function requestCompressedJson(path: string): Promise<unknown | null> {
@@ -63,7 +63,7 @@ async function requestCompressedJson(path: string): Promise<unknown | null> {
 
     const contentEncoding = response.headers.get('content-encoding')?.toLowerCase() ?? ''
     if (contentEncoding.includes('gzip')) {
-      return response.json()
+      return parseJsonResponse(response, path)
     }
 
     if (typeof DecompressionStream === 'undefined') return null
@@ -73,6 +73,21 @@ async function requestCompressedJson(path: string): Promise<unknown | null> {
     return JSON.parse(text) as unknown
   } catch {
     return null
+  }
+}
+
+function toCompressedSnapshotPath(path: string): string {
+  const [basePath, queryString = ''] = path.split('?')
+  return `${basePath}.gz${queryString ? `?${queryString}` : ''}`
+}
+
+async function parseJsonResponse(response: Response, path: string): Promise<unknown> {
+  const text = await response.text()
+  try {
+    return JSON.parse(text) as unknown
+  } catch {
+    const preview = text.slice(0, 80).trim()
+    throw new Error(`Dex snapshot parse failed for ${path}: ${preview || 'empty response'}`)
   }
 }
 

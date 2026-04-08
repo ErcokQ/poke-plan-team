@@ -1,0 +1,2594 @@
+{
+  "version": 1,
+  "game": {
+    "id": "pokemon-champions",
+    "name": "Pokemon Champions"
+  },
+  "metadata": {
+    "maintainers": [],
+    "lastReviewedAt": "2026-04-08",
+    "notes": "Lista canonica del proyecto para disponibilidad confirmada en Pokemon Champions."
+  },
+  "entries": [
+    {
+      "pokemonId": "venusaur",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "venusaur",
+      "formId": "venusaur-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "charizard",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "charizard",
+      "formId": "charizard-mega-x",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "charizard",
+      "formId": "charizard-mega-y",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "blastoise",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "blastoise",
+      "formId": "blastoise-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "beedrill",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "beedrill",
+      "formId": "beedrill-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "pidgeot",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "pidgeot",
+      "formId": "pidgeot-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "arbok",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "pikachu",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "raichu",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "raichu",
+      "formId": "raichu-alola",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "clefable",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "clefable",
+      "formId": "clefable-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "ninetales",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "ninetales",
+      "formId": "ninetales-alola",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "arcanine",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "arcanine",
+      "formId": "arcanine-hisui",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "alakazam",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "alakazam",
+      "formId": "alakazam-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "machamp",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "victreebel",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "victreebel",
+      "formId": "victreebel-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "slowbro",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "slowbro",
+      "formId": "slowbro-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "slowbro",
+      "formId": "slowbro-galar",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "gengar",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "gengar",
+      "formId": "gengar-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "kangaskhan",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "kangaskhan",
+      "formId": "kangaskhan-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "starmie",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "starmie",
+      "formId": "starmie-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "pinsir",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "pinsir",
+      "formId": "pinsir-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "tauros",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "tauros",
+      "formId": "tauros-paldea-combat-breed",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "gyarados",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "gyarados",
+      "formId": "gyarados-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "ditto",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "vaporeon",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "jolteon",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "flareon",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "aerodactyl",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "aerodactyl",
+      "formId": "aerodactyl-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "snorlax",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "dragonite",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "dragonite",
+      "formId": "dragonite-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "meganium",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "meganium",
+      "formId": "meganium-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "typhlosion",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "typhlosion",
+      "formId": "typhlosion-hisui",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "feraligatr",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "feraligatr",
+      "formId": "feraligatr-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "ariados",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "ampharos",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "ampharos",
+      "formId": "ampharos-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "azumarill",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "politoed",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "espeon",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "umbreon",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "slowking",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "slowking",
+      "formId": "slowking-galar",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "forretress",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "steelix",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "steelix",
+      "formId": "steelix-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "scizor",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "scizor",
+      "formId": "scizor-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "heracross",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "heracross",
+      "formId": "heracross-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "skarmory",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "skarmory",
+      "formId": "skarmory-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "houndoom",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "houndoom",
+      "formId": "houndoom-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "tyranitar",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "tyranitar",
+      "formId": "tyranitar-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "pelipper",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "gardevoir",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "gardevoir",
+      "formId": "gardevoir-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "sableye",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "sableye",
+      "formId": "sableye-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "aggron",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "aggron",
+      "formId": "aggron-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "medicham",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "medicham",
+      "formId": "medicham-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "manectric",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "manectric",
+      "formId": "manectric-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "sharpedo",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "sharpedo",
+      "formId": "sharpedo-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "camerupt",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "camerupt",
+      "formId": "camerupt-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "torkoal",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "altaria",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "altaria",
+      "formId": "altaria-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "milotic",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "castform",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "banette",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "banette",
+      "formId": "banette-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "chimecho",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "chimecho",
+      "formId": "chimecho-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "absol",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "absol",
+      "formId": "absol-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "glalie",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "glalie",
+      "formId": "glalie-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "torterra",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "infernape",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "empoleon",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "luxray",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "roserade",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "rampardos",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "bastiodon",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "lopunny",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "lopunny",
+      "formId": "lopunny-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "spiritomb",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "garchomp",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "garchomp",
+      "formId": "garchomp-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "lucario",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "lucario",
+      "formId": "lucario-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "hippowdon",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "toxicroak",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "abomasnow",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "abomasnow",
+      "formId": "abomasnow-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "weavile",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "rhyperior",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "leafeon",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "glaceon",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "gliscor",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "mamoswine",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "gallade",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "gallade",
+      "formId": "gallade-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "froslass",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "froslass",
+      "formId": "froslass-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "rotom",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "serperior",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "emboar",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "emboar",
+      "formId": "emboar-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "samurott",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "samurott",
+      "formId": "samurott-hisui",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "watchog",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "liepard",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "simisage",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "simisear",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "simipour",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "excadrill",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "excadrill",
+      "formId": "excadrill-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "audino",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "audino",
+      "formId": "audino-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "conkeldurr",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "whimsicott",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "krookodile",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "cofagrigus",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "garbodor",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "zoroark",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "zoroark",
+      "formId": "zoroark-hisui",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "reuniclus",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "vanilluxe",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "emolga",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "chandelure",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "chandelure",
+      "formId": "chandelure-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "beartic",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "stunfisk",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "stunfisk",
+      "formId": "stunfisk-galar",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "golurk",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "golurk",
+      "formId": "golurk-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "hydreigon",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "volcarona",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "chesnaught",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "chesnaught",
+      "formId": "chesnaught-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "delphox",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "delphox",
+      "formId": "delphox-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "greninja",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "greninja",
+      "formId": "greninja-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "diggersby",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "talonflame",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "vivillon",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "floette",
+      "formId": "floette-eternal",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "floette",
+      "formId": "floette-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "florges",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "pangoro",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "furfrou",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "meowstic",
+      "formId": "meowstic-male",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "meowstic",
+      "formId": "meowstic-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "aegislash",
+      "formId": "aegislash-shield",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "aromatisse",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "slurpuff",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "clawitzer",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "heliolisk",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "tyrantrum",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "aurorus",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "sylveon",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "hawlucha",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "hawlucha",
+      "formId": "hawlucha-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "dedenne",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "goodra",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "goodra",
+      "formId": "goodra-hisui",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "klefki",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "trevenant",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "gourgeist",
+      "formId": "gourgeist-average",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "avalugg",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "avalugg",
+      "formId": "avalugg-hisui",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "noivern",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "decidueye",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "decidueye",
+      "formId": "decidueye-hisui",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "incineroar",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "primarina",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "toucannon",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "crabominable",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "crabominable",
+      "formId": "crabominable-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "lycanroc",
+      "formId": "lycanroc-midday",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "toxapex",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "mudsdale",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "araquanid",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "salazzle",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "tsareena",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "oranguru",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "passimian",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "mimikyu",
+      "formId": "mimikyu-disguised",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "drampa",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "drampa",
+      "formId": "drampa-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "kommo-o",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "corviknight",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "flapple",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "appletun",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "sandaconda",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "polteageist",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "hatterene",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "mr-rime",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "runerigus",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "alcremie",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "morpeko",
+      "formId": "morpeko-full-belly",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "dragapult",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "wyrdeer",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "kleavor",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "basculegion",
+      "formId": "basculegion-male",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "sneasler",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "meowscarada",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "skeledirge",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "quaquaval",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "maushold",
+      "formId": "maushold-family-of-four",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "garganacl",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "armarouge",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "ceruledge",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "bellibolt",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "scovillain",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "scovillain",
+      "formId": "scovillain-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "espathra",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "tinkaton",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "palafin",
+      "formId": "palafin-zero",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "orthworm",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "glimmora",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "glimmora",
+      "formId": "glimmora-mega",
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "farigiraf",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "kingambit",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "sinistcha",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "archaludon",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "hydrapple",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "launch",
+      "sourceType": "internal",
+      "sourceLabel": "",
+      "sourceUrl": "",
+      "notes": "Confirmado para la lista canonica del proyecto."
+    }
+  ]
+}

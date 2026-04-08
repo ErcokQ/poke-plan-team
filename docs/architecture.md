@@ -57,6 +57,25 @@ Se conserva solo para mantenimiento y debug. No debe usarse como configuracion p
 ### Overlay de Showdown
 Se usa solo en el flujo de `dex:sync` para rellenar huecos cuando `PokeAPI` todavia no trae habilidades, sprites o consistencia suficiente en formas nuevas.
 
+### Overlay editorial de Champions
+`Pokemon Champions` se mantiene como dataset separado del pipeline base de `PokeAPI`.
+
+Ubicacion de fuente:
+- `data/champions/availability.source.json`
+
+Ubicacion reservada para runtime:
+- `public/dex-snapshots/champions/availability.json`
+
+Motivo:
+- la disponibilidad de `Champions` no tiene hoy una fuente publica y estable equivalente a `PokeAPI`
+- el dato se mantiene como overlay curado por el proyecto
+- esto evita introducir una API propia antes de que haga falta
+
+Integracion:
+- `scripts/dex-sync.mjs` genera el snapshot de `Champions` desde `data/champions/availability.source.json`
+- `dexSnapshotService` lo carga como artefacto separado
+- `dexStore` lo fusiona sobre `gameAvailability` para exponerlo en la Dex sin contaminar el pipeline base de `PokeAPI`
+
 ## Flujo runtime
 
 1. `ModeLayout` llama `dexStore.ensureCatalogLoaded(locale)`.

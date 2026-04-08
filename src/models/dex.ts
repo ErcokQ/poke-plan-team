@@ -1,6 +1,7 @@
 import type { ItemEntry, LocaleCode, MoveEntry, PokemonEntry, PokemonTypeKey } from './domain'
 
-export type DexAvailabilityFilterKey = 'scarlet-violet' | 'sword-shield'
+export type DexAvailabilityFilterKey = 'scarlet-violet' | 'sword-shield' | 'pokemon-champions'
+export type DexChampionsAvailabilityStatus = 'available' | 'limited' | 'unconfirmed' | 'unavailable'
 
 export interface DexAbilityEntry {
   id: string
@@ -114,4 +115,30 @@ export interface DexProfileSnapshot {
   bucketId: number
   generatedAt: string
   profiles: DexPokemonProfileDetails[]
+}
+
+export interface DexChampionsAvailabilityEntry {
+  pokemonId: string
+  formId: string | null
+  availability: DexChampionsAvailabilityStatus
+  introducedIn: string
+  sourceType: 'official' | 'community' | 'internal'
+  sourceLabel: string
+  sourceUrl: string
+  notes: string
+}
+
+export interface DexChampionsAvailabilitySnapshot {
+  version: 'v1'
+  generatedAt: string
+  game: {
+    id: 'pokemon-champions'
+    name: string
+  }
+  metadata: {
+    maintainers: string[]
+    lastReviewedAt: string
+    notes: string
+  }
+  entries: DexChampionsAvailabilityEntry[]
 }

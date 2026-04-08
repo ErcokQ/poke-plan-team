@@ -120,6 +120,13 @@ const itemOptions = computed<SearchOption[]>(() =>
   })),
 )
 
+function swapReservePokemonName(): string {
+  const reserveSlot = swapModal.value.reserveSlot
+  if (reserveSlot == null) return ''
+  const reserveEntry = sideState(swapModal.value.side).slots.find((entry) => entry.slot === reserveSlot)
+  return pokemonNameById(reserveEntry?.pokemonId ?? '')
+}
+
 const natureOptions = computed<SearchOption[]>(() =>
   dexStore.natures.map((nature) => ({
     value: nature,
@@ -1998,9 +2005,7 @@ watch(selectedTemplateB, (templateId) => {
         <p class="mt-1 text-xs text-gray-300">
           {{
             t('damageCalc.swapReservePrompt', {
-              pokemon: pokemonNameById(
-                sideState(swapModal.side).slots.find((entry) => entry.slot === swapModal.reserveSlot)?.pokemonId ?? '',
-              ),
+              pokemon: swapReservePokemonName(),
             })
           }}
         </p>

@@ -97,6 +97,12 @@ const GAME_AVAILABILITY_OPTIONS: Array<{
     labelEn: 'Sword/Shield',
     short: 'SwSh',
   },
+  {
+    key: 'pokemon-champions',
+    labelEs: 'Pokemon Champions',
+    labelEn: 'Pokemon Champions',
+    short: 'CH',
+  },
 ]
 
 const generationTabs: GenerationTab[] = [
@@ -666,14 +672,6 @@ function variantKindClass(kind: EvolutionVariantKind): string {
   return 'border-gray-500/35 bg-gray-500/10 text-gray-100 hover:border-gray-400/60'
 }
 
-function variantSummaryLabel(
-  variants: Array<{ id: string; name: string; kind: EvolutionVariantKind }>,
-): string {
-  if (variants.length === 0) return ''
-  if (variants.length === 1) return displayPokemonName(variants[0].id, variants[0].name)
-  return t('dex.variantsCount', { count: variants.length })
-}
-
 function variantKindButtonClass(kind: EvolutionVariantKind | 'base', active: boolean): string {
   if (kind === 'base') {
     return active
@@ -1150,25 +1148,7 @@ watch(
                 <p class="text-[11px] text-gray-500">Gen {{ currentTab.key }}</p>
               </div>
 
-              <div class="flex items-start justify-between gap-2">
-                <h4 class="line-clamp-1 text-sm font-semibold text-gray-100">{{ entry.name }}</h4>
-                <span v-if="entry.variantCount > 0"
-                  class="shrink-0 rounded-full border border-fuchsia-500/35 bg-fuchsia-500/10 px-2 py-0.5 text-[10px] font-semibold text-fuchsia-100">
-                  {{ t('dex.variantsBadge', { count: entry.variantCount }) }}
-                </span>
-              </div>
-
-              <div v-if="entry.variants.length > 0" class="mt-2 flex flex-wrap gap-1">
-                <span
-                  class="inline-flex max-w-full items-center rounded-md border border-gray-700 bg-black/35 px-2 py-0.5 text-[10px] text-gray-300">
-                  {{ variantSummaryLabel(entry.variants) }}
-                </span>
-                <span v-for="variant in entry.variants.slice(0, 2)" :key="`card-variant-${variant.id}`"
-                  class="inline-flex items-center rounded-md border px-1.5 py-0.5 text-[10px]"
-                  :class="variantKindClass(variant.kind)">
-                  {{ variantKindLabel(variant.kind) }}
-                </span>
-              </div>
+              <h4 class="line-clamp-1 text-sm font-semibold text-gray-100">{{ entry.name }}</h4>
 
               <div class="mt-2 flex min-h-[4.5rem] flex-col gap-1.5">
                 <span v-for="type in entry.types" :key="`${entry.id}-${type}`"
