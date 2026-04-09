@@ -11,6 +11,7 @@ import type {
 } from '@/models/domain'
 import type {
   DexAbilityEntry,
+  DexAvailabilityFilterKey,
   DexCatalogSnapshot,
   DexChampionsAvailabilitySnapshot,
   DexGenerationSnapshot,
@@ -83,6 +84,18 @@ function titleFromSlug(slug: string): string {
 
 function resolveGenerationId(pokedexNumber: number): number {
   return GENERATION_RANGES.find((range) => pokedexNumber >= range.start && pokedexNumber <= range.end)?.id ?? 9
+}
+
+function isMegaLikePokemonId(pokemonId: string): boolean {
+  return /(?:-mega(?:-|$)|-primal(?:-|$))/.test(pokemonId)
+}
+
+function isGigantamaxPokemonId(pokemonId: string): boolean {
+  return /-gmax(?:-|$)/.test(pokemonId)
+}
+
+function isTotemPokemonId(pokemonId: string): boolean {
+  return /-totem(?:-|$)/.test(pokemonId)
 }
 
 function fallbackAbilityEntry(id: string): DexAbilityEntry {
@@ -216,6 +229,76 @@ export const useDexStore = defineStore('dex', () => {
     vgc: new Map(pokemonCatalog.value.vgc.map((entry) => [entry.id, entry])),
     singles: new Map(pokemonCatalog.value.singles.map((entry) => [entry.id, entry])),
   }))
+  const basePokemonIdByPokemonId = computed(() => {
+    const byPokedex = new Map<number, PokemonEntry[]>()
+    for (const pokemon of pokemonCatalog.value.vgc) {
+      const bucket = byPokedex.get(pokemon.pokedexNumber)
+      if (bucket) {
+        bucket.push(pokemon)
+      } else {
+        byPokedex.set(pokemon.pokedexNumber, [pokemon])
+      }
+    }
+
+    const map = new Map<string, string>()
+    for (const pokemon of pokemonCatalog.value.vgc) {
+      const variants = byPokedex.get(pokemon.pokedexNumber) ?? [pokemon]
+      const plainBase = variants.find((entry) => !entry.id.includes('-'))
+      map.set(pokemon.id, plainBase?.id ?? variants[0]?.id ?? pokemon.id)
+    }
+    return map
+  })
+  const gameAvailabilityByPokemonId = computed<Record<LocaleCode, Map<string, DexAvailabilityFilterKey[]>>>(() => {
+    const buildForLocale = (locale: LocaleCode) => {
+      const summaryMap = profileSummariesByLocale.value[locale] ?? {}
+      const availabilityMap = new Map<string, DexAvailabilityFilterKey[]>()
+
+      for (const pokemon of pokemonCatalog.value.vgc) {
+        const basePokemonId = basePokemonIdByPokemonId.value.get(pokemon.id) ?? pokemon.id
+        const exactSummaryRaw = summaryMap[pokemon.id]
+        const baseSummaryRaw = summaryMap[basePokemonId]
+        const exactSummary = exactSummaryRaw ? withAvailabilityOverlay(exactSummaryRaw) : undefined
+        const baseSummary = baseSummaryRaw ? withAvailabilityOverlay(baseSummaryRaw) : undefined
+        const availability = new Set<DexAvailabilityFilterKey>(
+          exactSummary?.gameAvailability ?? baseSummary?.gameAvailability ?? ['scarlet-violet', 'sword-shield'],
+        )
+
+        if (isMegaLikePokemonId(pokemon.id) || isTotemPokemonId(pokemon.id)) {
+          availability.delete('scarlet-violet')
+          availability.delete('sword-shield')
+        }
+
+        if (isGigantamaxPokemonId(pokemon.id)) {
+          availability.delete('scarlet-violet')
+          availability.delete('pokemon-champions')
+          availability.add('sword-shield')
+        }
+
+        const requiresExactChampionsEntry =
+          isMegaLikePokemonId(pokemon.id) || isGigantamaxPokemonId(pokemon.id) || isTotemPokemonId(pokemon.id)
+        const supportsChampions = requiresExactChampionsEntry
+          ? championsAvailabilityIds.value.has(pokemon.id)
+          : availability.has('pokemon-champions') ||
+            championsAvailabilityIds.value.has(pokemon.id) ||
+            championsAvailabilityIds.value.has(basePokemonId)
+
+        if (supportsChampions) {
+          availability.add('pokemon-champions')
+        } else if (requiresExactChampionsEntry) {
+          availability.delete('pokemon-champions')
+        }
+
+        availabilityMap.set(pokemon.id, [...availability])
+      }
+
+      return availabilityMap
+    }
+
+    return {
+      es: buildForLocale('es'),
+      en: buildForLocale('en'),
+    }
+  })
 
   function loadMockState(locale: LocaleCode) {
     const pokemonById = new Map(
@@ -383,6 +466,27 @@ export const useDexStore = defineStore('dex', () => {
   function getPokemonProfileSummary(id: string, locale: LocaleCode = hydratedLocale.value ?? 'es') {
     const summary = profileSummariesByLocale.value[locale]?.[id]
     return summary ? withAvailabilityOverlay(summary) : undefined
+  }
+
+  function resolveBasePokemonId(pokemonId: string): string | null {
+    const pokemon = getPokemon('vgc', pokemonId) ?? getPokemon('singles', pokemonId)
+    if (!pokemon) return null
+
+    const candidates = pokemonCatalog.value.vgc.filter((entry) => entry.pokedexNumber === pokemon.pokedexNumber)
+    const exactBase = candidates.find((entry) => entry.id === pokemon.id)
+    if (exactBase && !exactBase.id.includes('-')) return exactBase.id
+
+    const plainBase = candidates.find((entry) => !entry.id.includes('-'))
+    if (plainBase) return plainBase.id
+
+    return candidates[0]?.id ?? pokemon.id
+  }
+
+  function getGameAvailabilityForPokemon(
+    pokemonId: string,
+    locale: LocaleCode = hydratedLocale.value ?? 'es',
+  ): DexAvailabilityFilterKey[] {
+    return [...(gameAvailabilityByPokemonId.value[locale].get(pokemonId) ?? ['scarlet-violet', 'sword-shield'])]
   }
 
   function getPokemonProfileDetails(id: string, locale: LocaleCode = hydratedLocale.value ?? 'es') {
@@ -784,6 +888,7 @@ export const useDexStore = defineStore('dex', () => {
     ensureGenerationLoaded,
     getGenerationEntries,
     getPokemonProfileSummary,
+    getGameAvailabilityForPokemon,
     getPokemonProfileDetails,
     getPokemonProfile,
     ensurePokemonProfileDetails,

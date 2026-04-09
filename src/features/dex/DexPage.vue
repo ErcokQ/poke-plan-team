@@ -11,6 +11,7 @@ import { effectivenessAgainstDual } from '@/models/type-chart'
 import { useDexStore } from '@/stores/dex'
 import { useTeamStore } from '@/stores/team'
 import { useUiStore } from '@/stores/ui'
+import { onPokemonSpriteError, primaryPokemonSpriteUrl } from '@/utils/pokemon-sprite'
 
 interface GenerationTab {
   id: number
@@ -207,6 +208,14 @@ const addToTeamError = ref(false)
 
 const slotOptions: Array<1 | 2 | 3 | 4 | 5 | 6> = [1, 2, 3, 4, 5, 6]
 const mode = computed<BattleMode>(() => (route.params.mode === 'singles' ? 'singles' : 'vgc'))
+
+function applyDexPreferences(nextMode: BattleMode) {
+  activeGeneration.value = uiStore.getDexGeneration(nextMode)
+  typeFilter.value = uiStore.getDexTypeFilter(nextMode)
+  availabilityFilter.value = uiStore.getDexAvailabilityFilter(nextMode)
+}
+
+applyDexPreferences(mode.value)
 
 const currentTab = computed(() => generationTabs.find((tab) => tab.id === activeGeneration.value) ?? generationTabs[0])
 
@@ -422,6 +431,16 @@ const selectedProfileVariantOptions = computed<DexProfileVariantOption[]>(() => 
   )
 })
 
+const selectedProfileAbilityEntries = computed(() => {
+  return (selectedProfile.value?.abilities ?? []).map((ability) => {
+    const meta = dexStore.getAbilityMeta(ability.id)
+    return {
+      ...ability,
+      description: meta.shortEffect || meta.effect || '',
+    }
+  })
+})
+
 function regionLabel(tab: GenerationTab): string {
   return locale.value === 'es' ? tab.regionEs : tab.regionEn
 }
@@ -612,8 +631,10 @@ function starterSpriteUrl(starterId: string): string {
 }
 
 function spriteUrl(pokemonId: string): string {
-  const variant = showShinySprites.value ? 'shiny' : 'normal'
-  return `https://img.pokemondb.net/sprites/home/${variant}/${pokemonId}.png`
+  if (showShinySprites.value) {
+    return `https://img.pokemondb.net/sprites/home/shiny/${pokemonId}.png`
+  }
+  return primaryPokemonSpriteUrl(pokemonId)
 }
 
 function profileSpriteUrl(profile: DexPokemonProfile): string {
@@ -701,12 +722,10 @@ function onSpriteError(event: Event) {
     target.dataset.shinyFallback !== '1'
   ) {
     target.dataset.shinyFallback = '1'
-    target.src = target.src.replace('/shiny/', '/normal/')
+    target.src = primaryPokemonSpriteUrl(target.dataset.spriteId || '')
     return
   }
-  if (target.src !== mudkipSprite) {
-    target.src = mudkipSprite
-  }
+  onPokemonSpriteError(event)
 }
 
 function fallbackStatBlock(value: number) {
@@ -888,6 +907,14 @@ async function loadSelectedPokemon() {
 }
 
 watch(
+  mode,
+  (nextMode) => {
+    applyDexPreferences(nextMode)
+  },
+  { immediate: false },
+)
+
+watch(
   [activeGeneration, () => locale.value],
   () => {
     selectedVersionFilter.value = 'history'
@@ -897,8 +924,33 @@ watch(
 )
 
 watch(
+  [mode, activeGeneration],
+  ([currentMode, generation]) => {
+    uiStore.setDexGeneration(currentMode, generation)
+  },
+  { immediate: true },
+)
+
+watch(
+  [mode, typeFilter],
+  ([currentMode, filter]) => {
+    uiStore.setDexTypeFilter(currentMode, filter)
+  },
+  { immediate: true },
+)
+
+watch(
+  [mode, availabilityFilter],
+  ([currentMode, filter]) => {
+    uiStore.setDexAvailabilityFilter(currentMode, filter)
+  },
+  { immediate: true },
+)
+
+watch(
   generationTypeFilters,
   (options) => {
+    if (entries.value.length === 0) return
     if (typeFilter.value && !options.some((option) => option.type === typeFilter.value)) {
       typeFilter.value = null
     }
@@ -909,6 +961,7 @@ watch(
 watch(
   generationAvailabilityFilters,
   (options) => {
+    if (entries.value.length === 0) return
     if (availabilityFilter.value === 'all') return
     if (!options.some((option) => option.key === availabilityFilter.value)) {
       availabilityFilter.value = 'all'
@@ -1004,8 +1057,9 @@ watch(
           tab.available ? '' : 'opacity-60',
         ]" @click="activeGeneration = tab.id">
           <div class="mb-2 flex items-center gap-2">
-            <img :src="starterSpriteUrl(tab.starterId)" :alt="`Gen ${tab.key}`"
-              class="h-8 w-8 rounded bg-black/30 object-contain" loading="lazy" @error="onSpriteError" />
+            <img :src="starterSpriteUrl(tab.starterId)" :alt="`Gen ${tab.key}`" :data-sprite-id="tab.starterId"
+              data-sprite-fallback-index="0" class="h-8 w-8 rounded bg-black/30 object-contain" loading="lazy"
+              @error="onSpriteError" />
             <div class="min-w-0">
               <p class="truncate text-xs font-semibold text-gray-100">Gen {{ tab.key }}</p>
               <p class="truncate text-[11px] text-gray-400">{{ regionLabel(tab) }}</p>
@@ -1139,7 +1193,8 @@ watch(
             <article
               class="relative rounded-xl border bg-off-black/75 px-3 pb-3 pt-10 transition hover:-translate-y-0.5 hover:border-sky-400/40"
               :style="borderStyle(entry.types[0])">
-              <img :src="spriteUrl(entry.id)" :alt="entry.name"
+              <img :src="spriteUrl(entry.id)" :alt="entry.name" :data-sprite-id="entry.id"
+                data-sprite-fallback-index="0"
                 class="absolute -top-8 left-1/2 h-16 w-16 -translate-x-1/2 rounded-full border-2 bg-black/55 object-contain p-1"
                 :style="spriteFrameStyle(entry.types[0])" loading="lazy" @error="onSpriteError" />
 
@@ -1216,7 +1271,8 @@ watch(
                     class="ml-auto flex items-center gap-2 rounded-md border border-gray-700 bg-black/35 px-2 py-1 text-xs">
                     <span class="text-gray-300">{{ t('dex.slotCurrentLabel', { slot: addToTeamSlot }) }}</span>
                     <img :src="targetSlotMember?.pokemonId ? spriteUrl(targetSlotMember.pokemonId) : mudkipSprite"
-                      :alt="targetSlotPokemonName" class="h-4 w-4 object-contain" @error="onSpriteError" />
+                      :alt="targetSlotPokemonName" :data-sprite-id="targetSlotMember?.pokemonId ?? ''"
+                      data-sprite-fallback-index="0" class="h-4 w-4 object-contain" @error="onSpriteError" />
                     <span class="max-w-[9rem] truncate text-gray-100">{{ targetSlotPokemonName }}</span>
                     <span class="text-[11px] text-gray-400">{{ t('dex.slotWillReplace') }}</span>
                   </div>
@@ -1232,6 +1288,7 @@ watch(
                   :style="{ borderColor: `${primaryColor}66`, background: `linear-gradient(180deg, ${primaryColor}22 0%, rgba(3,3,3,0.8) 75%)` }">
                   <div class="relative mx-auto mb-2 w-fit">
                     <img :src="profileSpriteUrl(selectedProfile)" :alt="selectedProfile.name"
+                      :data-sprite-id="selectedProfile.id" data-sprite-fallback-index="0"
                       class="h-52 w-52 object-contain" loading="lazy" @error="onSpriteError" />
                     <button
                       class="absolute right-1 top-1 inline-flex h-8 w-8 items-center justify-center rounded-full border text-base font-bold transition"
@@ -1266,8 +1323,8 @@ watch(
                         class="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[11px] transition"
                         :class="variantKindButtonClass(option.kind, option.isCurrent)"
                         @click="openPokemonModal(option.id)">
-                        <img :src="spriteUrl(option.id)" :alt="option.name" class="h-4 w-4 object-contain"
-                          @error="onSpriteError" />
+                        <img :src="spriteUrl(option.id)" :alt="option.name" :data-sprite-id="option.id"
+                          data-sprite-fallback-index="0" class="h-4 w-4 object-contain" @error="onSpriteError" />
                         <span class="max-w-[10rem] truncate">{{ option.name }}</span>
                       </button>
                     </div>
@@ -1297,12 +1354,19 @@ watch(
 
                   <div class="mt-3 rounded-xl border border-gray-700 bg-black/40 p-3">
                     <h4 class="mb-2 text-sm font-semibold text-sky-300">{{ t('dex.abilities') }}</h4>
-                    <div class="flex flex-wrap gap-1.5">
-                      <span v-for="ability in selectedProfile.abilities" :key="ability.id"
-                        class="inline-flex items-center gap-1 rounded-md border border-gray-700 bg-black/45 px-2 py-1 text-xs">
-                        {{ ability.name }}
-                        <span v-if="ability.isHidden" class="text-[10px] text-sky-300">{{ t('dex.hidden') }}</span>
-                      </span>
+                    <div class="grid gap-2">
+                      <div v-for="ability in selectedProfileAbilityEntries" :key="ability.id"
+                        class="rounded-lg border border-gray-700 bg-black/45 p-2">
+                        <div class="flex flex-wrap items-center gap-1.5">
+                          <span class="inline-flex items-center gap-1 rounded-md border border-gray-700 bg-black/45 px-2 py-1 text-xs text-gray-100">
+                            {{ ability.name }}
+                            <span v-if="ability.isHidden" class="text-[10px] text-sky-300">{{ t('dex.hidden') }}</span>
+                          </span>
+                        </div>
+                        <p class="mt-2 text-xs leading-relaxed text-gray-300">
+                          {{ ability.description || t('dex.noAbilityDescription') }}
+                        </p>
+                      </div>
                     </div>
                   </div>
 
@@ -1360,7 +1424,8 @@ watch(
                               class="inline-flex w-full items-center justify-between gap-2 rounded-md border border-gray-700 bg-black/45 px-2 py-1 text-xs hover:border-sky-500/40"
                               @click="openPokemonModal(evo.id)">
                               <span class="inline-flex min-w-0 items-center gap-1">
-                                <img :src="spriteUrl(evo.id)" :alt="evo.name" class="h-5 w-5 object-contain"
+                                <img :src="spriteUrl(evo.id)" :alt="evo.name" :data-sprite-id="evo.id"
+                                  data-sprite-fallback-index="0" class="h-5 w-5 object-contain"
                                   @error="onSpriteError" />
                                 <span class="truncate">{{ evo.name }}</span>
                               </span>
@@ -1373,8 +1438,9 @@ watch(
                                 class="inline-flex items-center justify-between gap-2 rounded-md border px-2 py-1 text-[11px] transition"
                                 :class="variantKindClass(variant.kind)" @click="openPokemonModal(variant.id)">
                                 <span class="inline-flex min-w-0 items-center gap-1">
-                                  <img :src="spriteUrl(variant.id)" :alt="variant.name" class="h-4 w-4 object-contain"
-                                    @error="onSpriteError" />
+                                  <img :src="spriteUrl(variant.id)" :alt="variant.name"
+                                    :data-sprite-id="variant.id" data-sprite-fallback-index="0"
+                                    class="h-4 w-4 object-contain" @error="onSpriteError" />
                                   <span class="truncate">{{ variant.name }}</span>
                                 </span>
                                 <span

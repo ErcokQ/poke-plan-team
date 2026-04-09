@@ -8,7 +8,9 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const repoRoot = path.resolve(__dirname, '..')
 const outputRoot = path.join(repoRoot, 'public', 'dex-snapshots')
+const abilityDescriptionOverridesPath = path.join(repoRoot, 'data', 'abilities', 'description-overrides.source.json')
 const championsSourcePath = path.join(repoRoot, 'data', 'champions', 'availability.source.json')
+const championsFormOverridesPath = path.join(repoRoot, 'data', 'champions', 'form-overrides.source.json')
 
 const API_BASE_URL = 'https://pokeapi.co/api/v2'
 const SHOWDOWN_POKEDEX_URL = 'https://play.pokemonshowdown.com/data/pokedex.json'
@@ -100,6 +102,64 @@ function normalizeChampionsAvailabilityEntry(entry) {
   }
 }
 
+function normalizeChampionsFormOverrideEntry(entry) {
+  const formId = String(entry?.formId ?? '').trim()
+  if (!formId) return null
+
+  const abilityIds = Array.isArray(entry?.abilityIds)
+    ? entry.abilityIds.map((value) => normalizeAbilityId(value)).filter(Boolean)
+    : []
+
+  return {
+    formId,
+    abilityIds: [...new Set(abilityIds)],
+  }
+}
+
+function normalizeChampionsAbilityOverride(entry) {
+  const id = normalizeAbilityId(entry?.id)
+  if (!id) return null
+
+  const nameEn = String(entry?.nameEn ?? entry?.name ?? titleFromSlug(id)).trim() || titleFromSlug(id)
+  const nameEs = String(entry?.nameEs ?? entry?.name ?? nameEn).trim() || nameEn
+  const shortEffectEn = normalizeText(entry?.shortEffectEn ?? entry?.shortEffect ?? entry?.effectEn ?? entry?.effect ?? '')
+  const shortEffectEs = normalizeText(entry?.shortEffectEs ?? entry?.shortEffect ?? entry?.effectEs ?? entry?.effect ?? shortEffectEn)
+  const effectEn = normalizeText(entry?.effectEn ?? entry?.effect ?? entry?.shortEffectEn ?? entry?.shortEffect ?? shortEffectEn)
+  const effectEs = normalizeText(entry?.effectEs ?? entry?.effect ?? entry?.shortEffectEs ?? entry?.shortEffect ?? shortEffectEs)
+
+  return {
+    id,
+    nameEs,
+    nameEn,
+    shortEffectEs,
+    shortEffectEn,
+    effectEs,
+    effectEn,
+  }
+}
+
+function normalizeAbilityDescriptionOverride(entry) {
+  const id = normalizeAbilityId(entry?.id)
+  if (!id) return null
+
+  const nameEn = String(entry?.nameEn ?? entry?.name ?? titleFromSlug(id)).trim() || titleFromSlug(id)
+  const nameEs = String(entry?.nameEs ?? entry?.name ?? nameEn).trim() || nameEn
+  const shortEffectEn = normalizeText(entry?.shortEffectEn ?? entry?.shortEffect ?? entry?.effectEn ?? entry?.effect ?? '')
+  const shortEffectEs = normalizeText(entry?.shortEffectEs ?? entry?.shortEffect ?? entry?.effectEs ?? entry?.effect ?? shortEffectEn)
+  const effectEn = normalizeText(entry?.effectEn ?? entry?.effect ?? entry?.shortEffectEn ?? entry?.shortEffect ?? shortEffectEn)
+  const effectEs = normalizeText(entry?.effectEs ?? entry?.effect ?? entry?.shortEffectEs ?? entry?.shortEffect ?? shortEffectEs)
+
+  return {
+    id,
+    nameEs,
+    nameEn,
+    shortEffectEs,
+    shortEffectEn,
+    effectEs,
+    effectEn,
+  }
+}
+
 async function loadChampionsAvailabilityOverlay(generatedAt) {
   const raw = JSON.parse(await readFile(championsSourcePath, 'utf8'))
   const entries = Array.isArray(raw?.entries)
@@ -121,6 +181,32 @@ async function loadChampionsAvailabilityOverlay(generatedAt) {
       notes: String(raw?.metadata?.notes ?? '').trim(),
     },
     entries,
+  }
+}
+
+async function loadAbilityDescriptionOverrides() {
+  const raw = JSON.parse(await readFile(abilityDescriptionOverridesPath, 'utf8'))
+  const abilities = Array.isArray(raw?.abilities)
+    ? raw.abilities.map((entry) => normalizeAbilityDescriptionOverride(entry)).filter(Boolean)
+    : []
+
+  return {
+    abilitiesById: Object.fromEntries(abilities.map((entry) => [entry.id, entry])),
+  }
+}
+
+async function loadChampionsFormOverrides() {
+  const raw = JSON.parse(await readFile(championsFormOverridesPath, 'utf8'))
+  const entries = Array.isArray(raw?.entries)
+    ? raw.entries.map((entry) => normalizeChampionsFormOverrideEntry(entry)).filter(Boolean)
+    : []
+  const abilities = Array.isArray(raw?.abilities)
+    ? raw.abilities.map((entry) => normalizeChampionsAbilityOverride(entry)).filter(Boolean)
+    : []
+
+  return {
+    entriesByFormId: Object.fromEntries(entries.map((entry) => [entry.formId, entry])),
+    abilitiesById: Object.fromEntries(abilities.map((entry) => [entry.id, entry])),
   }
 }
 
@@ -246,6 +332,17 @@ function resolveEffectText(entries, locale, variant, effectChance) {
   const fallback = entries.find((entry) => entry.language.name === 'en')
   const key = variant === 'short' ? 'short_effect' : 'effect'
   const raw = localized?.[key]?.trim() || fallback?.[key]?.trim() || ''
+  const withChance =
+    effectChance == null ? raw : raw.replace(/\$effect_chance|\{effect_chance\}/g, String(effectChance))
+  return normalizeText(withChance)
+}
+
+function resolveLocalizedEffectText(entries, locale, variant, effectChance) {
+  const lang = locale === 'es' ? 'es' : 'en'
+  const localized = entries.find((entry) => entry.language.name === lang)
+  if (!localized) return ''
+  const key = variant === 'short' ? 'short_effect' : 'effect'
+  const raw = localized?.[key]?.trim() || ''
   const withChance =
     effectChance == null ? raw : raw.replace(/\$effect_chance|\{effect_chance\}/g, String(effectChance))
   return normalizeText(withChance)
@@ -522,9 +619,19 @@ function buildShowdownAbilityEntries(entry) {
     .sort((a, b) => a.slot - b.slot)
 }
 
-function resolveEffectivePokemonData(pokemon, species, pokemonByName, showdownOverlay) {
+function buildOverrideAbilityEntries(formOverride) {
+  if (!formOverride?.abilityIds?.length) return []
+  return formOverride.abilityIds.map((abilityId, index) => ({
+    slot: index,
+    is_hidden: false,
+    ability: { name: abilityId },
+  }))
+}
+
+function resolveEffectivePokemonData(pokemon, species, pokemonByName, showdownOverlay, championsFormOverrides) {
   const showdownEntry = showdownOverlay.pokedex[toShowdownId(pokemon.name)] ?? null
   const basePokemon = resolveBasePokemonForSpecies(species, pokemonByName)
+  const formOverride = championsFormOverrides.entriesByFormId[pokemon.name] ?? null
 
   const moveEntries =
     Array.isArray(pokemon.moves) && pokemon.moves.length > 0
@@ -532,7 +639,9 @@ function resolveEffectivePokemonData(pokemon, species, pokemonByName, showdownOv
       : basePokemon?.moves ?? []
 
   const abilityEntries =
-    Array.isArray(pokemon.abilities) && pokemon.abilities.length > 0
+    formOverride?.abilityIds?.length
+      ? buildOverrideAbilityEntries(formOverride)
+      : Array.isArray(pokemon.abilities) && pokemon.abilities.length > 0
       ? pokemon.abilities
       : buildShowdownAbilityEntries(showdownEntry)
 
@@ -629,6 +738,55 @@ function abilityEntryFromShowdown(abilityId, ability, locale) {
   }
 }
 
+function localizedAbilityOverride(override, locale) {
+  if (!override) return null
+  return {
+    id: override.id,
+    name: locale === 'es' ? override.nameEs : override.nameEn,
+    shortEffect: locale === 'es' ? override.shortEffectEs : override.shortEffectEn,
+    effect: locale === 'es' ? override.effectEs : override.effectEn,
+  }
+}
+
+function resolveAbilityText(rawAbility, descriptionOverride, locale, variant) {
+  const fromApi =
+    locale === 'es'
+      ? rawAbility
+        ? resolveLocalizedEffectText(rawAbility.effect_entries, locale, variant)
+        : ''
+      : rawAbility
+        ? resolveEffectText(rawAbility.effect_entries, locale, variant)
+        : ''
+  if (fromApi) return fromApi
+  const localizedOverride = localizedAbilityOverride(descriptionOverride, locale)
+  return variant === 'short'
+    ? localizedOverride?.shortEffect ?? ''
+    : localizedOverride?.effect ?? ''
+}
+
+function resolveAbilityEntry(abilityId, rawAbility, championsOverride, descriptionOverride, showdownAbility, locale) {
+  const localizedChampionsOverride = localizedAbilityOverride(championsOverride, locale)
+  const localizedDescriptionOverride = localizedAbilityOverride(descriptionOverride, locale)
+
+  return {
+    id: abilityId,
+    name: rawAbility
+      ? resolveLocalizedName(rawAbility.names, locale, abilityId)
+      : localizedChampionsOverride?.name ||
+        localizedDescriptionOverride?.name ||
+        showdownAbility?.name ||
+        titleFromSlug(abilityId),
+    shortEffect:
+      resolveAbilityText(rawAbility, descriptionOverride, locale, 'short') ||
+      localizedChampionsOverride?.shortEffect ||
+      abilityEntryFromShowdown(abilityId, showdownAbility, locale).shortEffect,
+    effect:
+      resolveAbilityText(rawAbility, descriptionOverride, locale, 'long') ||
+      localizedChampionsOverride?.effect ||
+      abilityEntryFromShowdown(abilityId, showdownAbility, locale).effect,
+  }
+}
+
 function itemEntryFromShowdown(itemId, item, locale) {
   const normalizedId = normalizeItemId(item?.name || itemId)
   if (!normalizedId) return null
@@ -707,6 +865,8 @@ function pokemonEntryFromRaw(pokemon, species, effectiveData) {
           ],
     ),
     baseStats: effectiveData.stats,
+    heightMeters: typeof pokemon.height === 'number' && Number.isFinite(pokemon.height) ? pokemon.height / 10 : undefined,
+    weightKg: typeof pokemon.weight === 'number' && Number.isFinite(pokemon.weight) ? pokemon.weight / 10 : undefined,
     roleTags: inferRoleTags(
       pokemon.stats?.length
         ? pokemon
@@ -810,6 +970,8 @@ async function main() {
   const speciesByName = new Map(speciesRaw.map((species) => [species.name, species]))
   const pokemonByName = new Map(pokemonRaw.map((pokemon) => [pokemon.name, pokemon]))
   const showdownOverlay = await loadShowdownOverlay()
+  const championsFormOverrides = await loadChampionsFormOverrides()
+  const abilityDescriptionOverrides = await loadAbilityDescriptionOverrides()
   const usedAbilityIds = new Set()
   const usedMoveIds = new Set()
   const usedRequiredItemIds = new Set()
@@ -817,7 +979,13 @@ async function main() {
   for (const pokemon of pokemonRaw) {
     const species = speciesByName.get(pokemon.species.name)
     if (!species) continue
-    const effectiveData = resolveEffectivePokemonData(pokemon, species, pokemonByName, showdownOverlay)
+    const effectiveData = resolveEffectivePokemonData(
+      pokemon,
+      species,
+      pokemonByName,
+      showdownOverlay,
+      championsFormOverrides,
+    )
     for (const ability of effectiveData.abilityEntries) usedAbilityIds.add(ability.ability.name)
     for (const move of effectiveData.moveEntries) usedMoveIds.add(move.move.name)
     if (effectiveData.requiredItemId) usedRequiredItemIds.add(effectiveData.requiredItemId)
@@ -863,7 +1031,13 @@ async function main() {
       .map((pokemon) => {
         const species = speciesByName.get(pokemon.species.name)
         if (!species) return null
-        const effectiveData = resolveEffectivePokemonData(pokemon, species, pokemonByName, showdownOverlay)
+        const effectiveData = resolveEffectivePokemonData(
+          pokemon,
+          species,
+          pokemonByName,
+          showdownOverlay,
+          championsFormOverrides,
+        )
         const entry = pokemonEntryFromRaw(pokemon, species, effectiveData)
         entry.name = resolveLocalizedName(species.names, locale, pokemon.name)
         entry.evolutionChain = formsByPokemonId[pokemon.name] ?? [pokemon.name]
@@ -876,7 +1050,13 @@ async function main() {
       .map((pokemon) => {
         const species = speciesByName.get(pokemon.species.name)
         if (!species) return null
-        const effectiveData = resolveEffectivePokemonData(pokemon, species, pokemonByName, showdownOverlay)
+        const effectiveData = resolveEffectivePokemonData(
+          pokemon,
+          species,
+          pokemonByName,
+          showdownOverlay,
+          championsFormOverrides,
+        )
         const generationId = generationIdFromName(species.generation?.name)
         const chainMembers = formsByPokemonId[pokemon.name] ?? [pokemon.name]
         const evolutionChain = chainMembers
@@ -906,26 +1086,20 @@ async function main() {
             .sort((a, b) => a.slot - b.slot)
             .map((entry) => {
               const ability = abilityByName.get(entry.ability.name)
+              const abilityOverride = championsFormOverrides.abilitiesById[entry.ability.name] ?? null
+              const descriptionOverride = abilityDescriptionOverrides.abilitiesById[entry.ability.name] ?? null
+              const showdownAbility = showdownOverlay.abilities[toShowdownId(entry.ability.name)]
+              const resolvedAbility = resolveAbilityEntry(
+                entry.ability.name,
+                ability,
+                abilityOverride,
+                descriptionOverride,
+                showdownAbility,
+                locale,
+              )
               return {
-                id: entry.ability.name,
-                name: ability
-                  ? resolveLocalizedName(ability.names, locale, entry.ability.name)
-                  : showdownOverlay.abilities[toShowdownId(entry.ability.name)]?.name || titleFromSlug(entry.ability.name),
+                ...resolvedAbility,
                 isHidden: entry.is_hidden,
-                shortEffect: ability
-                  ? resolveEffectText(ability.effect_entries, locale, 'short')
-                  : abilityEntryFromShowdown(
-                      entry.ability.name,
-                      showdownOverlay.abilities[toShowdownId(entry.ability.name)],
-                      locale,
-                    ).shortEffect,
-                effect: ability
-                  ? resolveEffectText(ability.effect_entries, locale, 'long')
-                  : abilityEntryFromShowdown(
-                      entry.ability.name,
-                      showdownOverlay.abilities[toShowdownId(entry.ability.name)],
-                      locale,
-                    ).effect,
               }
             }),
           stats: effectiveData.stats,
@@ -952,19 +1126,22 @@ async function main() {
     const generationSummaries = new Map()
     for (const summary of profileSummaries) {
       if (!generationSummaries.has(summary.generationId)) {
-        generationSummaries.set(summary.generationId, new Map())
+        generationSummaries.set(summary.generationId, [])
       }
-      const byDexNumber = generationSummaries.get(summary.generationId)
-      if (!byDexNumber.has(summary.pokedexNumber)) {
-        byDexNumber.set(summary.pokedexNumber, summary)
-      }
+      generationSummaries.get(summary.generationId).push(summary)
     }
 
     const profilesByGeneration = new Map()
     for (const pokemon of pokemonRaw) {
       const species = speciesByName.get(pokemon.species.name)
       if (!species) continue
-      const effectiveData = resolveEffectivePokemonData(pokemon, species, pokemonByName, showdownOverlay)
+      const effectiveData = resolveEffectivePokemonData(
+        pokemon,
+        species,
+        pokemonByName,
+        showdownOverlay,
+        championsFormOverrides,
+      )
       const generationId = generationIdFromName(species.generation?.name)
       if (!profilesByGeneration.has(generationId)) profilesByGeneration.set(generationId, [])
       profilesByGeneration.get(generationId).push({
@@ -993,12 +1170,37 @@ async function main() {
         .filter((item, index, list) => list.findIndex((entry) => entry.id === item.id) === index)
         .sort((a, b) => a.name.localeCompare(b.name, locale)),
       abilities: abilityRaw
-        .map((ability) => abilityEntryFromRaw(ability, locale))
+        .map((ability) =>
+          resolveAbilityEntry(
+            ability.name,
+            ability,
+            championsFormOverrides.abilitiesById[ability.name] ?? null,
+            abilityDescriptionOverrides.abilitiesById[ability.name] ?? null,
+            showdownOverlay.abilities[toShowdownId(ability.name)],
+            locale,
+          ),
+        )
         .concat(
           [...usedAbilityIds]
             .filter((abilityId) => !abilityByName.has(abilityId))
             .map((abilityId) =>
-              abilityEntryFromShowdown(abilityId, showdownOverlay.abilities[toShowdownId(abilityId)], locale),
+              championsFormOverrides.abilitiesById[abilityId]
+                ? resolveAbilityEntry(
+                    abilityId,
+                    null,
+                    championsFormOverrides.abilitiesById[abilityId],
+                    abilityDescriptionOverrides.abilitiesById[abilityId] ?? null,
+                    showdownOverlay.abilities[toShowdownId(abilityId)],
+                    locale,
+                  )
+                : resolveAbilityEntry(
+                    abilityId,
+                    null,
+                    null,
+                    abilityDescriptionOverrides.abilitiesById[abilityId] ?? null,
+                    showdownOverlay.abilities[toShowdownId(abilityId)],
+                    locale,
+                  ),
             ),
         )
         .sort((a, b) => a.name.localeCompare(b.name, locale)),
@@ -1015,7 +1217,7 @@ async function main() {
         locale,
         generationId,
         generatedAt,
-        profiles: [...(generationSummaries.get(generationId)?.values() ?? [])].sort(
+        profiles: [...(generationSummaries.get(generationId) ?? [])].sort(
           (a, b) => a.pokedexNumber - b.pokedexNumber || a.name.localeCompare(b.name, locale),
         ),
         detailBucketsByPokemonId: {},

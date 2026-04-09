@@ -1665,6 +1665,8 @@ export const useAnalyticsStore = defineStore('analytics', () => {
       _hiCount: number
       _spreadCount: number
       _isBreaker: boolean
+      _offensePeak: number
+      _supportMoveCount: number
     }
     const rawMembers: RawOffensivePressureMember[] = []
 
@@ -1728,6 +1730,7 @@ export const useAnalyticsStore = defineStore('analytics', () => {
         if (MAJOR_SETUP_MOVE_IDS.has(entry.id) || MINOR_SETUP_MOVE_IDS.has(entry.id)) return false
         return true
       }).length
+      const supportMoveCount = moves.filter((moveId) => SUPPORT_ROLE_MOVE_IDS.has(moveId)).length
       const isUtilityBloat = utilityNonEnablingCount >= 3
 
       const finalStats = calculateBattleStats(
@@ -1745,8 +1748,14 @@ export const useAnalyticsStore = defineStore('analytics', () => {
       const verySlowNoTR = mode === 'vgc' && speedValue <= speedBenchmark - 35 && !teamEnable.hasTrickRoom
       const hasNearTailwindWindow = mode === 'vgc' && teamEnable.hasTailwind && speedDelta >= -15 && speedDelta < 10
       const bulkDecent = pokemon.baseStats.hp + pokemon.baseStats.def + pokemon.baseStats.spd >= 255
+      const offensePeak = Math.max(pokemon.baseStats.atk, pokemon.baseStats.spa)
       const supportPure =
-        atkCount <= 1 && !hasSetup && !hasImmediateBoost && (hasRedirection || utilityStatusCount >= 2)
+        !hasSetup &&
+        !hasImmediateBoost &&
+        (hasRedirection || supportMoveCount >= 2 || utilityStatusCount >= 3) &&
+        (atkCount === 0 ||
+          (atkCount <= 1 && offensePeak < 115) ||
+          (atkCount <= 2 && hiCount === 0 && !hasPriorityDamage && offensePeak < 105))
 
       let threatScore = 0
       const contributions: OffensivePressureMember['contributions'] = []
@@ -1996,6 +2005,8 @@ export const useAnalyticsStore = defineStore('analytics', () => {
         _hiCount: hiCount,
         _spreadCount: spreadCount,
         _isBreaker: isBreaker,
+        _offensePeak: offensePeak,
+        _supportMoveCount: supportMoveCount,
         contributions,
       })
     }
@@ -2042,8 +2053,26 @@ export const useAnalyticsStore = defineStore('analytics', () => {
           entry.hasPriorityDamage ||
           entry.isTRCleaner ||
           entry._hasNearTailwindWindow
+        const supportHeavyLowOffense =
+          entry._supportMoveCount >= 2 &&
+          !entry.hasSetup &&
+          !entry.hasImmediateBoost &&
+          entry._offensePeak < 110 &&
+          !entry.hasPriorityDamage &&
+          entry._spreadCount === 0
+        const hasCloserPressure =
+          entry.hasImmediateBoost ||
+          entry.hasSetup ||
+          entry.hasPriorityDamage ||
+          entry._spreadCount >= 1 ||
+          entry._offensePeak >= 115 ||
+          (entry._atkCount >= 3 && entry._hiCount >= 2)
         entry.closerCandidate =
-          entry._atkCount >= 2 && turnOrder && entry.closerScore >= dynamicCloserThreshold
+          entry._atkCount >= 2 &&
+          turnOrder &&
+          hasCloserPressure &&
+          !supportHeavyLowOffense &&
+          entry.closerScore >= dynamicCloserThreshold
         if (
           !entry.closerCandidate &&
           entry.isTRCleaner &&
@@ -2091,11 +2120,38 @@ export const useAnalyticsStore = defineStore('analytics', () => {
       .slice(0, maxClosers)
 
     // Fallback: if no explicit wincon candidate exists, keep one highest-offense anchor only.
-    if (selectedWincons.length === 0 && ranked.length > 0 && ranked[0].threatScore >= 6.8 && ranked[0].damagingMoves >= 2) {
-      selectedWincons.push(ranked[0])
+    if (selectedWincons.length === 0) {
+      const fallbackWincon = ranked.find(
+        (entry) =>
+          !entry._supportPure &&
+          entry.damagingMoves >= 2 &&
+          entry.winconScore >= 6.8 &&
+          (entry.hasSetup || entry.isTRCleaner || entry.hasImmediateBoost || entry._hiCount >= 2),
+      )
+      if (fallbackWincon) selectedWincons.push(fallbackWincon)
     }
-    if (selectedClosers.length === 0 && ranked.length > 0 && ranked[0].closerScore >= 6.6 && ranked[0].damagingMoves >= 2) {
-      selectedClosers.push(ranked[0])
+    if (selectedClosers.length === 0) {
+      const fallbackCloser = ranked.find(
+        (entry) =>
+          !entry._supportPure &&
+          entry.damagingMoves >= 2 &&
+          entry.closerScore >= 6.4 &&
+          !(
+            entry._supportMoveCount >= 2 &&
+            !entry.hasSetup &&
+            !entry.hasImmediateBoost &&
+            entry._offensePeak < 110 &&
+            !entry.hasPriorityDamage &&
+            entry._spreadCount === 0
+          ) &&
+          (entry.hasPriorityDamage || entry.speedDelta >= 10 || entry.isTRCleaner || entry._hasNearTailwindWindow) &&
+          (entry._hiCount >= 1 ||
+            entry.hasSetup ||
+            entry.hasImmediateBoost ||
+            entry._spreadCount >= 1 ||
+            entry._offensePeak >= 115),
+      )
+      if (fallbackCloser) selectedClosers.push(fallbackCloser)
     }
 
     const winconKey = new Set(selectedWincons.map((entry) => `${entry.slot}:${entry.pokemonId}`))

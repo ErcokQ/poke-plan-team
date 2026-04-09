@@ -19,6 +19,18 @@ function makeSlot(slot: 1 | 2 | 3 | 4 | 5 | 6, pokemonId: string, moveId: string
     currentHpPercent: 100,
     status: 'healthy',
     stages: { atk: 0, def: 0, spa: 0, spd: 0, spe: 0 },
+    combatContext: {
+      wasHitThisTurn: false,
+      tookDamageThisTurn: false,
+      statsLoweredThisTurn: false,
+      previousMoveFailed: false,
+      moveOrderHint: 'auto',
+      consecutiveMoveUses: 0,
+      timesHitThisBattle: 0,
+      alliesFaintedCount: 0,
+      stockpileCount: 0,
+      friendship: 255,
+    },
   }
 }
 
@@ -93,6 +105,7 @@ const pokemonById: Record<string, PokemonEntry> = {
     suggestedMoves: ['flame-strike'],
     defaultNature: 'jolly',
     baseStats: { hp: 80, atk: 120, def: 70, spa: 70, spd: 70, spe: 100 },
+    weightKg: 210,
     roleTags: ['sweeper'],
   },
   'defender-mon': {
@@ -106,6 +119,7 @@ const pokemonById: Record<string, PokemonEntry> = {
     suggestedMoves: ['flame-strike'],
     defaultNature: 'bold',
     baseStats: { hp: 90, atk: 70, def: 95, spa: 70, spd: 80, spe: 60 },
+    weightKg: 40,
     roleTags: ['wall'],
   },
 }
@@ -131,11 +145,191 @@ const moveById: Record<string, MoveEntry> = {
     pp: 10,
     tags: ['all-opponents'],
   },
+  facade: {
+    id: 'facade',
+    name: 'Facade',
+    type: 'normal',
+    category: 'physical',
+    power: 70,
+    accuracy: 100,
+    pp: 20,
+    tags: [],
+  },
+  hex: {
+    id: 'hex',
+    name: 'Hex',
+    type: 'ghost',
+    category: 'special',
+    power: 65,
+    accuracy: 100,
+    pp: 10,
+    tags: [],
+  },
+  'weather-ball': {
+    id: 'weather-ball',
+    name: 'Weather Ball',
+    type: 'normal',
+    category: 'special',
+    power: 50,
+    accuracy: 100,
+    pp: 10,
+    tags: [],
+  },
+  reversal: {
+    id: 'reversal',
+    name: 'Reversal',
+    type: 'fighting',
+    category: 'physical',
+    power: 20,
+    accuracy: 100,
+    pp: 15,
+    tags: [],
+  },
+  'electro-ball': {
+    id: 'electro-ball',
+    name: 'Electro Ball',
+    type: 'electric',
+    category: 'special',
+    power: 40,
+    accuracy: 100,
+    pp: 10,
+    tags: [],
+  },
+  'body-press': {
+    id: 'body-press',
+    name: 'Body Press',
+    type: 'fighting',
+    category: 'physical',
+    power: 80,
+    accuracy: 100,
+    pp: 10,
+    tags: [],
+  },
+  'foul-play': {
+    id: 'foul-play',
+    name: 'Foul Play',
+    type: 'dark',
+    category: 'physical',
+    power: 95,
+    accuracy: 100,
+    pp: 15,
+    tags: [],
+  },
+  psyshock: {
+    id: 'psyshock',
+    name: 'Psyshock',
+    type: 'psychic',
+    category: 'special',
+    power: 80,
+    accuracy: 100,
+    pp: 10,
+    tags: [],
+  },
+  assurance: {
+    id: 'assurance',
+    name: 'Assurance',
+    type: 'dark',
+    category: 'physical',
+    power: 60,
+    accuracy: 100,
+    pp: 10,
+    tags: [],
+  },
+  'bolt-beak': {
+    id: 'bolt-beak',
+    name: 'Bolt Beak',
+    type: 'electric',
+    category: 'physical',
+    power: 85,
+    accuracy: 100,
+    pp: 10,
+    tags: [],
+  },
+  'stomping-tantrum': {
+    id: 'stomping-tantrum',
+    name: 'Stomping Tantrum',
+    type: 'ground',
+    category: 'physical',
+    power: 75,
+    accuracy: 100,
+    pp: 10,
+    tags: [],
+  },
+  'rage-fist': {
+    id: 'rage-fist',
+    name: 'Rage Fist',
+    type: 'ghost',
+    category: 'physical',
+    power: 50,
+    accuracy: 100,
+    pp: 10,
+    tags: [],
+  },
+  'last-respects': {
+    id: 'last-respects',
+    name: 'Last Respects',
+    type: 'ghost',
+    category: 'physical',
+    power: 50,
+    accuracy: 100,
+    pp: 10,
+    tags: [],
+  },
+  'heavy-slam': {
+    id: 'heavy-slam',
+    name: 'Heavy Slam',
+    type: 'steel',
+    category: 'physical',
+    power: 40,
+    accuracy: 100,
+    pp: 10,
+    tags: [],
+  },
+  return: {
+    id: 'return',
+    name: 'Return',
+    type: 'normal',
+    category: 'physical',
+    power: 1,
+    accuracy: 100,
+    pp: 20,
+    tags: [],
+  },
+  fling: {
+    id: 'fling',
+    name: 'Fling',
+    type: 'dark',
+    category: 'physical',
+    power: 1,
+    accuracy: 100,
+    pp: 10,
+    tags: [],
+  },
+  'knock-off': {
+    id: 'knock-off',
+    name: 'Knock Off',
+    type: 'dark',
+    category: 'physical',
+    power: 65,
+    accuracy: 100,
+    pp: 20,
+    tags: [],
+  },
+}
+
+const itemById = {
+  'iron-ball': {
+    id: 'iron-ball',
+    name: 'Iron Ball',
+    tags: [],
+    flingPower: 130,
+  },
 }
 
 const resolver = {
   getPokemon: (_mode: DamageCalcScenario['mode'], pokemonId: string) => pokemonById[pokemonId],
   getMove: (moveId: string) => moveById[moveId],
+  getItem: (itemId: string) => itemById[itemId as keyof typeof itemById],
 }
 
 describe('damage-engine', () => {
@@ -194,5 +388,185 @@ describe('damage-engine', () => {
     const sunny = computePairDamage(sunScenario, resolver, 'A', 1, 1).resultsByMove[0]
 
     expect(sunny.max).toBeGreaterThan(base.max)
+  })
+
+  it('applies Facade based on the attacker status, not the defender status', () => {
+    const baseScenario = makeScenario('facade')
+    const attackerBurnedScenario = makeScenario('facade')
+    const defenderBurnedScenario = makeScenario('facade')
+
+    attackerBurnedScenario.sideA.slots[0].status = 'burn'
+    defenderBurnedScenario.sideB.slots[0].status = 'burn'
+
+    const base = computePairDamage(baseScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const attackerBurned = computePairDamage(attackerBurnedScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const defenderBurned = computePairDamage(defenderBurnedScenario, resolver, 'A', 1, 1).resultsByMove[0]
+
+    expect(Math.abs(attackerBurned.max - base.max)).toBeLessThanOrEqual(1)
+    expect(defenderBurned.max).toBe(base.max)
+  })
+
+  it('boosts Hex when the defender has a status condition', () => {
+    const baseScenario = makeScenario('hex')
+    const poisonedScenario = makeScenario('hex')
+    poisonedScenario.sideB.slots[0].status = 'poison'
+
+    const base = computePairDamage(baseScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const poisoned = computePairDamage(poisonedScenario, resolver, 'A', 1, 1).resultsByMove[0]
+
+    expect(poisoned.max).toBeGreaterThan(base.max)
+  })
+
+  it('changes Weather Ball under sun weather', () => {
+    const baseScenario = makeScenario('weather-ball')
+    const sunScenario = makeScenario('weather-ball')
+    sunScenario.field.weather = 'sun'
+
+    const base = computePairDamage(baseScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const sunny = computePairDamage(sunScenario, resolver, 'A', 1, 1).resultsByMove[0]
+
+    expect(sunny.max).toBeGreaterThan(base.max)
+  })
+
+  it('boosts Reversal when the attacker is low on HP', () => {
+    const baseScenario = makeScenario('reversal')
+    const lowHpScenario = makeScenario('reversal')
+    lowHpScenario.sideA.slots[0].currentHpPercent = 5
+
+    const base = computePairDamage(baseScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const lowHp = computePairDamage(lowHpScenario, resolver, 'A', 1, 1).resultsByMove[0]
+
+    expect(lowHp.max).toBeGreaterThan(base.max)
+  })
+
+  it('boosts Electro Ball when the attacker is much faster', () => {
+    const baseScenario = makeScenario('electro-ball')
+    const fastScenario = makeScenario('electro-ball')
+    fastScenario.sideA.slots[0].stages.spe = 6
+    fastScenario.sideB.slots[0].stages.spe = -6
+
+    const base = computePairDamage(baseScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const fast = computePairDamage(fastScenario, resolver, 'A', 1, 1).resultsByMove[0]
+
+    expect(fast.max).toBeGreaterThan(base.max)
+  })
+
+  it('uses item-dependent power for Fling and Knock Off', () => {
+    const flingScenario = makeScenario('fling')
+    flingScenario.sideA.slots[0].itemId = 'iron-ball'
+
+    const knockOffScenario = makeScenario('knock-off')
+    knockOffScenario.sideB.slots[0].itemId = 'iron-ball'
+
+    const fling = computePairDamage(flingScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const knockOff = computePairDamage(knockOffScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const knockOffBase = computePairDamage(makeScenario('knock-off'), resolver, 'A', 1, 1).resultsByMove[0]
+
+    expect(fling.max).toBeGreaterThan(0)
+    expect(knockOff.max).toBeGreaterThan(knockOffBase.max)
+  })
+
+  it('uses Defense for Body Press damage', () => {
+    const baseScenario = makeScenario('body-press')
+    const boostedDefenseScenario = makeScenario('body-press')
+    boostedDefenseScenario.sideA.slots[0].stages.def = 4
+
+    const base = computePairDamage(baseScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const boosted = computePairDamage(boostedDefenseScenario, resolver, 'A', 1, 1).resultsByMove[0]
+
+    expect(boosted.max).toBeGreaterThan(base.max)
+  })
+
+  it('uses defender Attack for Foul Play damage', () => {
+    const baseScenario = makeScenario('foul-play')
+    const boostedTargetScenario = makeScenario('foul-play')
+    boostedTargetScenario.sideB.slots[0].stages.atk = 4
+
+    const base = computePairDamage(baseScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const boostedTarget = computePairDamage(boostedTargetScenario, resolver, 'A', 1, 1).resultsByMove[0]
+
+    expect(boostedTarget.max).toBeGreaterThan(base.max)
+  })
+
+  it('uses defender Defense for Psyshock-style moves', () => {
+    const baseScenario = makeScenario('psyshock')
+    const boostedDefenseScenario = makeScenario('psyshock')
+    boostedDefenseScenario.sideB.slots[0].stages.def = 4
+
+    const base = computePairDamage(baseScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const boostedDefense = computePairDamage(boostedDefenseScenario, resolver, 'A', 1, 1).resultsByMove[0]
+
+    expect(boostedDefense.max).toBeLessThan(base.max)
+  })
+
+  it('boosts Assurance when the defender already took damage this turn', () => {
+    const baseScenario = makeScenario('assurance')
+    const chippedScenario = makeScenario('assurance')
+    chippedScenario.sideB.slots[0].combatContext.tookDamageThisTurn = true
+
+    const base = computePairDamage(baseScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const chipped = computePairDamage(chippedScenario, resolver, 'A', 1, 1).resultsByMove[0]
+
+    expect(chipped.max).toBeGreaterThan(base.max)
+  })
+
+  it('uses move order hints for Bolt Beak', () => {
+    const baseScenario = makeScenario('bolt-beak')
+    baseScenario.sideA.slots[0].combatContext.moveOrderHint = 'after-target'
+    const firstScenario = makeScenario('bolt-beak')
+    firstScenario.sideA.slots[0].combatContext.moveOrderHint = 'before-target'
+
+    const base = computePairDamage(baseScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const first = computePairDamage(firstScenario, resolver, 'A', 1, 1).resultsByMove[0]
+
+    expect(first.max).toBeGreaterThan(base.max)
+  })
+
+  it('boosts Stomping Tantrum when the previous move failed', () => {
+    const baseScenario = makeScenario('stomping-tantrum')
+    const failedScenario = makeScenario('stomping-tantrum')
+    failedScenario.sideA.slots[0].combatContext.previousMoveFailed = true
+
+    const base = computePairDamage(baseScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const failed = computePairDamage(failedScenario, resolver, 'A', 1, 1).resultsByMove[0]
+
+    expect(failed.max).toBeGreaterThan(base.max)
+  })
+
+  it('scales Rage Fist and Last Respects from combat counters', () => {
+    const rageScenario = makeScenario('rage-fist')
+    rageScenario.sideA.slots[0].combatContext.timesHitThisBattle = 4
+    const lastRespectScenario = makeScenario('last-respects')
+    lastRespectScenario.sideA.slots[0].combatContext.alliesFaintedCount = 3
+
+    const rage = computePairDamage(rageScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const lastRespects = computePairDamage(lastRespectScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const rageBase = computePairDamage(makeScenario('rage-fist'), resolver, 'A', 1, 1).resultsByMove[0]
+    const lastRespectsBase = computePairDamage(makeScenario('last-respects'), resolver, 'A', 1, 1).resultsByMove[0]
+
+    expect(rage.max).toBeGreaterThan(rageBase.max)
+    expect(lastRespects.max).toBeGreaterThan(lastRespectsBase.max)
+  })
+
+  it('uses weight data for Heavy Slam', () => {
+    const result = computePairDamage(makeScenario('heavy-slam'), resolver, 'A', 1, 1).resultsByMove[0]
+    const lighterAttackerScenario = makeScenario('heavy-slam')
+    pokemonById['attacker-mon'].weightKg = 50
+    const lighter = computePairDamage(lighterAttackerScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    pokemonById['attacker-mon'].weightKg = 210
+
+    expect(result.max).toBeGreaterThan(lighter.max)
+  })
+
+  it('scales Return from friendship', () => {
+    const maxFriendshipScenario = makeScenario('return')
+    const lowFriendshipScenario = makeScenario('return')
+    maxFriendshipScenario.sideA.slots[0].combatContext.friendship = 255
+    lowFriendshipScenario.sideA.slots[0].combatContext.friendship = 0
+
+    const maxFriendship = computePairDamage(maxFriendshipScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const lowFriendship = computePairDamage(lowFriendshipScenario, resolver, 'A', 1, 1).resultsByMove[0]
+
+    expect(maxFriendship.max).toBeGreaterThan(lowFriendship.max)
   })
 })

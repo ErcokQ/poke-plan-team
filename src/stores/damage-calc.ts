@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { BattleMode, MoveEntry, StatKey, TeamMember } from '@/models/domain'
 import type {
+  DamageCombatContext,
   DamageCalcScenario,
   DamageGeneration,
   DamageMatrixCell,
@@ -32,6 +33,21 @@ function protectMap(): Record<string, boolean> {
   return { '1': false, '2': false, '3': false, '4': false, '5': false, '6': false }
 }
 
+function defaultCombatContext(): DamageCombatContext {
+  return {
+    wasHitThisTurn: false,
+    tookDamageThisTurn: false,
+    statsLoweredThisTurn: false,
+    previousMoveFailed: false,
+    moveOrderHint: 'auto',
+    consecutiveMoveUses: 0,
+    timesHitThisBattle: 0,
+    alliesFaintedCount: 0,
+    stockpileCount: 0,
+    friendship: 255,
+  }
+}
+
 function defaultTargetMap(): Record<string, DamageSlotNumber> {
   return { '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6 }
 }
@@ -57,6 +73,7 @@ function createSlot(slot: DamageSlotNumber, level: number): DamageSlotSet {
     currentHpPercent: 100,
     status: 'healthy',
     stages: { atk: 0, def: 0, spa: 0, spd: 0, spe: 0 },
+    combatContext: defaultCombatContext(),
   }
 }
 
@@ -170,6 +187,7 @@ function findTeamMemberBySlot(members: TeamMember[], slot: DamageSlotNumber, fal
 
 function normalizeSlotSet(input: DamageSlotSet): DamageSlotSet {
   const canonicalPokemonId = canonicalizePokemonId(input.pokemonId ?? '')
+  const combatContext = input.combatContext ?? defaultCombatContext()
   return {
     ...input,
     pokemonId: canonicalPokemonId,
@@ -201,6 +219,21 @@ function normalizeSlotSet(input: DamageSlotSet): DamageSlotSet {
     },
     status: input.status ?? 'healthy',
     isTeraActive: Boolean(input.isTeraActive && input.teraType),
+    combatContext: {
+      wasHitThisTurn: Boolean(combatContext.wasHitThisTurn),
+      tookDamageThisTurn: Boolean(combatContext.tookDamageThisTurn),
+      statsLoweredThisTurn: Boolean(combatContext.statsLoweredThisTurn),
+      previousMoveFailed: Boolean(combatContext.previousMoveFailed),
+      moveOrderHint:
+        combatContext.moveOrderHint === 'before-target' || combatContext.moveOrderHint === 'after-target'
+          ? combatContext.moveOrderHint
+          : 'auto',
+      consecutiveMoveUses: clampInt(combatContext.consecutiveMoveUses ?? 0, 0, 5),
+      timesHitThisBattle: clampInt(combatContext.timesHitThisBattle ?? 0, 0, 6),
+      alliesFaintedCount: clampInt(combatContext.alliesFaintedCount ?? 0, 0, 5),
+      stockpileCount: clampInt(combatContext.stockpileCount ?? 0, 0, 3),
+      friendship: clampInt(combatContext.friendship ?? 255, 0, 255),
+    },
   }
 }
 
@@ -230,6 +263,68 @@ function guessNatureAndEvsByMoves(moves: MoveEntry[]): { natureId: string; evs: 
   return {
     natureId: 'jolly',
     evs: { hp: 4, atk: 252, def: 0, spa: 0, spd: 0, spe: 252 },
+  }
+}
+
+function normalizeScenario(mode: BattleMode, scenario: DamageCalcScenario): DamageCalcScenario {
+  const defaultScenario = createScenario(mode)
+  return {
+    ...defaultScenario,
+    ...scenario,
+    mode,
+    battleType: mode === 'vgc' ? 'doubles' : 'singles',
+    sideA: {
+      ...defaultScenario.sideA,
+      ...scenario.sideA,
+      slots: (scenario.sideA?.slots ?? defaultScenario.sideA.slots).map((slot) => normalizeSlotSet(slot)),
+      activeSlotIds: ensureActiveSlots(mode, scenario.sideA?.activeSlotIds ?? defaultScenario.sideA.activeSlotIds),
+      targetByAttacker: {
+        ...defaultScenario.sideA.targetByAttacker,
+        ...(scenario.sideA?.targetByAttacker ?? {}),
+      },
+    },
+    sideB: {
+      ...defaultScenario.sideB,
+      ...scenario.sideB,
+      slots: (scenario.sideB?.slots ?? defaultScenario.sideB.slots).map((slot) => normalizeSlotSet(slot)),
+      activeSlotIds: ensureActiveSlots(mode, scenario.sideB?.activeSlotIds ?? defaultScenario.sideB.activeSlotIds),
+      targetByAttacker: {
+        ...defaultScenario.sideB.targetByAttacker,
+        ...(scenario.sideB?.targetByAttacker ?? {}),
+      },
+    },
+    field: {
+      ...defaultScenario.field,
+      ...scenario.field,
+      sideA: {
+        ...defaultScenario.field.sideA,
+        ...(scenario.field?.sideA ?? {}),
+        protectBySlot: {
+          ...defaultScenario.field.sideA.protectBySlot,
+          ...(scenario.field?.sideA?.protectBySlot ?? {}),
+        },
+      },
+      sideB: {
+        ...defaultScenario.field.sideB,
+        ...(scenario.field?.sideB ?? {}),
+        protectBySlot: {
+          ...defaultScenario.field.sideB.protectBySlot,
+          ...(scenario.field?.sideB?.protectBySlot ?? {}),
+        },
+      },
+      globalFlags: {
+        ...defaultScenario.field.globalFlags,
+        ...(scenario.field?.globalFlags ?? {}),
+      },
+      advancedFlags: {
+        ...defaultScenario.field.advancedFlags,
+        ...(scenario.field?.advancedFlags ?? {}),
+      },
+    },
+    selectedPair: {
+      ...defaultScenario.selectedPair,
+      ...(scenario.selectedPair ?? {}),
+    },
   }
 }
 
@@ -273,6 +368,9 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
   })
   const pendingDynamicTeams = new Map<BattleMode, Promise<void>>()
 
+  vgcScenario.value = normalizeScenario('vgc', vgcScenario.value)
+  singlesScenario.value = normalizeScenario('singles', singlesScenario.value)
+
   function scenarioRef(mode: BattleMode) {
     return mode === 'vgc' ? vgcScenario : singlesScenario
   }
@@ -286,13 +384,22 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
     matrixCache.clear()
   }
 
+  function logComputationPerf(label: string, startedAt: number, context: string) {
+    if (!import.meta.env.DEV || typeof performance === 'undefined') return
+    const duration = performance.now() - startedAt
+    if (duration < 8) return
+    console.info(`[DamageCalcPerf] ${label} ${duration.toFixed(1)}ms ${context}`)
+  }
+
   function getScenario(mode: BattleMode): DamageCalcScenario {
     return scenarioRef(mode).value
   }
 
-  function setScenario(mode: BattleMode, next: DamageCalcScenario) {
+  function setScenario(mode: BattleMode, next: DamageCalcScenario, options?: { touch?: boolean }) {
     scenarioRef(mode).value = next
-    touch(mode)
+    if (options?.touch !== false) {
+      touch(mode)
+    }
   }
 
   function resetScenario(mode: BattleMode) {
@@ -328,6 +435,10 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
             evs: normalizeMemberEvs(member.evs),
             ivs: normalizeMemberIvs(member.ivs),
             level: defaultLevel,
+            currentHpPercent: 100,
+            status: 'healthy',
+            stages: { atk: 0, def: 0, spa: 0, spd: 0, spe: 0 },
+            combatContext: defaultCombatContext(),
             isTeraActive: false,
           },
         )
@@ -365,7 +476,7 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
       ...current[key],
       activeSlotIds: ensureActiveSlots(mode, slots),
     }
-    setScenario(mode, { ...current, [key]: nextSide })
+    setScenario(mode, { ...current, [key]: nextSide }, { touch: false })
   }
 
   function setTarget(mode: BattleMode, side: DamageSideId, attackerSlot: DamageSlotNumber, defenderSlot: DamageSlotNumber) {
@@ -393,6 +504,7 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
         evs: { ...entry.evs, ...(patch.evs ?? {}) },
         ivs: { ...entry.ivs, ...(patch.ivs ?? {}) },
         stages: { ...entry.stages, ...(patch.stages ?? {}) },
+        combatContext: { ...entry.combatContext, ...(patch.combatContext ?? {}) },
       }
       return normalizeSlotSet(merged)
     })
@@ -443,7 +555,7 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
         attackerSlot,
         defenderSlot,
       },
-    })
+    }, { touch: false })
   }
 
   function applyMetaTemplate(mode: BattleMode, side: DamageSideId, templateId: string) {
@@ -472,6 +584,8 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
           isTeraActive: false,
           currentHpPercent: 100,
           status: 'healthy',
+          stages: { atk: 0, def: 0, spa: 0, spd: 0, spe: 0 },
+          combatContext: defaultCombatContext(),
         },
       )
     })
@@ -648,16 +762,23 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
     if (cached) return cached
 
     const scenario = getScenario(mode)
+    const startedAt = typeof performance !== 'undefined' ? performance.now() : 0
     const result = computePairDamage(
       scenario,
       {
         getPokemon: (modeKey, pokemonId) => dexStore.getPokemon(modeKey, pokemonId),
         getMove: (moveId) => dexStore.getMove(moveId),
+        getItem: (itemId) => dexStore.getItem(itemId),
       },
       attackerSide,
       attackerSlot,
       defenderSlot,
       moveIndex,
+    )
+    logComputationPerf(
+      'pair',
+      startedAt,
+      `${mode}:${attackerSide}:${attackerSlot}->${defenderSlot}:${moveIndex ?? 'all'}`,
     )
     pairCache.set(cacheKey, result)
     return result
@@ -669,16 +790,23 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
     if (cached) return cached
 
     const scenario = getScenario(mode)
+    const startedAt = typeof performance !== 'undefined' ? performance.now() : 0
     const matrix = computeMatrixDamage(
       scenario,
       {
         getPokemon: (modeKey, pokemonId) => dexStore.getPokemon(modeKey, pokemonId),
         getMove: (moveId) => dexStore.getMove(moveId),
+        getItem: (itemId) => dexStore.getItem(itemId),
       },
       attackerSide,
     )
+    logComputationPerf('matrix', startedAt, `${mode}:${attackerSide}`)
     matrixCache.set(cacheKey, matrix)
     return matrix
+  }
+
+  function getScenarioVersion(mode: BattleMode): number {
+    return scenarioVersion.value[mode] ?? 0
   }
 
   return {
@@ -700,6 +828,7 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
     ensureMetaTemplatesLoaded,
     getMetaTemplateLoadStatus,
     getMetaTemplateLoadError,
+    getScenarioVersion,
     computePair,
     computeMatrix,
   }

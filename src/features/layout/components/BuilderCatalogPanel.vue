@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { useDebounce } from '@vueuse/core'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import type {
   BattleMode,
@@ -11,13 +11,17 @@ import type {
   TeamMember,
   TeamRole,
 } from '@/models/domain'
+import type { DexAvailabilityFilterKey } from '@/models/dex'
+import type { DamageSlotNumber } from '@/models/damage-calc'
 import { TEAM_ROLES, TYPE_KEYS } from '@/models/domain'
 import { useDexStore } from '@/stores/dex'
+import { useDamageCalcStore } from '@/stores/damage-calc'
 import { useMetaUsageStore } from '@/stores/meta-usage'
 import { useTeamStore } from '@/stores/team'
 import { useUiStore } from '@/stores/ui'
 import { TYPE_META } from '@/models/type-meta'
 import { effectivenessAgainstDual } from '@/models/type-chart'
+import { moveTypeGradientStyle } from '@/utils/move-type-style'
 import {
   getRequiredItemIdForPokemon,
   isItemLockedForPokemon,
@@ -25,7 +29,7 @@ import {
 } from '@/utils/form-item-rules'
 import { getEffectiveLearnsetMoveIds } from '@/utils/move-legality'
 import itemPanelIcon from '@/assets/pokesprite/icons/battle-item/x-attack.png'
-import mudkipSprite from '@/assets/pokesprite/pokemon-gen8/regular/mudkip.png'
+import { onPokemonSpriteError, primaryPokemonSpriteUrl } from '@/utils/pokemon-sprite'
 
 interface PanelMoveEntry {
   id: string
@@ -38,6 +42,7 @@ interface PanelMoveEntry {
   power: number | null
   accuracy: number | null
   pp: number | null
+  priority: number
   effect: string
 }
 
@@ -70,15 +75,35 @@ interface RankedPokemonEntry extends PanelPokemonEntry {
   score: number
 }
 
+interface ThreatEntry {
+  id: string
+  name: string
+  idNorm: string
+  nameNorm: string
+  abilityName: string
+  abilityNorm: string
+  pokedexNumber: number
+  types: PokemonTypeKey[]
+  availability: DexAvailabilityFilterKey[]
+  baseSpeed: number
+  usage: number
+  offenseBias: 'physical' | 'special' | 'mixed'
+  stabPressure: number
+  reasons: string[]
+  score: number
+}
+
 interface TeamComplementContext {
   missingRoles: TeamRole[]
   weaknesses: Record<PokemonTypeKey, number>
 }
 
 const route = useRoute()
+const router = useRouter()
 const { t, locale } = useI18n()
 const uiStore = useUiStore()
 const dexStore = useDexStore()
+const damageCalcStore = useDamageCalcStore()
 const metaUsageStore = useMetaUsageStore()
 const teamStore = useTeamStore()
 
@@ -88,12 +113,30 @@ const PREVIEW_LIMIT_BY_SOURCE = {
   pokemon: 48,
   items: 120,
   moves: 120,
+  threats: 24,
 } as const
 const SEARCH_LIMIT_BY_SOURCE = {
   pokemon: 140,
   items: 260,
   moves: 260,
+  threats: 80,
 } as const
+const THREAT_AVAILABILITY_OPTIONS: Array<{
+  key: 'all' | DexAvailabilityFilterKey
+  short: string
+  labelEs: string
+  labelEn: string
+}> = [
+  { key: 'all', short: 'Any', labelEs: 'Cualquier juego', labelEn: 'Any game' },
+  { key: 'scarlet-violet', short: 'SV', labelEs: 'Escarlata/Purpura', labelEn: 'Scarlet/Violet' },
+  { key: 'sword-shield', short: 'SwSh', labelEs: 'Espada/Escudo', labelEn: 'Sword/Shield' },
+  { key: 'pokemon-champions', short: 'CH', labelEs: 'Pokemon Champions', labelEn: 'Pokemon Champions' },
+]
+const THREAT_AVAILABILITY_PRIORITY: DexAvailabilityFilterKey[] = [
+  'pokemon-champions',
+  'scarlet-violet',
+  'sword-shield',
+]
 const EMPTY_SLOT_SHORTLIST_LIMIT = 260
 const FILLED_SLOT_SHORTLIST_LIMIT = 340
 const mode = computed<BattleMode>(() => (route.params.mode === 'singles' ? 'singles' : 'vgc'))
@@ -120,6 +163,8 @@ const lockedItemLabel = computed(() => {
 const metaStatus = computed(() => metaUsageStore.getModeStatus(mode.value))
 const isMetaLoading = computed(() => metaStatus.value === 'loading' || metaStatus.value === 'idle')
 const isMetaFallback = computed(() => metaStatus.value === 'error')
+const threatAvailabilityFilter = ref<'all' | DexAvailabilityFilterKey>('all')
+const damageCalcTargetSlot = ref<DamageSlotNumber>(1)
 
 watch(
   [mode, isBuilderRoute],
@@ -140,6 +185,7 @@ watch(mode, (nextMode, previousMode) => {
   if (nextMode === previousMode) return
   uiStore.setBuilderCatalogSource('pokemon')
   searchRaw.value = ''
+  damageCalcTargetSlot.value = nextMode === 'vgc' ? 1 : 1
 })
 
 watch(source, (nextSource, previousSource) => {
@@ -168,6 +214,21 @@ const usageByPokemonId = computed(() => {
   }
   return map
 })
+
+const damageCalcScenario = computed(() => damageCalcStore.getScenario(mode.value))
+const damageCalcTargetSlotOptions = computed<DamageSlotNumber[]>(() =>
+  mode.value === 'vgc' ? ([1, 2, 3, 4] as DamageSlotNumber[]) : ([1, 2, 3, 4, 5, 6] as DamageSlotNumber[]),
+)
+const damageCalcTargetMember = computed(() => {
+  return (
+    damageCalcScenario.value.sideB.slots.find((slotSet) => slotSet.slot === damageCalcTargetSlot.value) ?? null
+  )
+})
+const damageCalcTargetPokemonName = computed(() => {
+  const pokemonId = damageCalcTargetMember.value?.pokemonId
+  if (!pokemonId) return t('common.none')
+  return dexStore.getPokemon(mode.value, pokemonId)?.name ?? prettifySlug(pokemonId)
+})
 const teammateSynergyByCandidate = computed(() => {
   const map = new Map<string, number>()
   const relatedMembers = teamMembersWithoutCurrentSlot.value.filter((member) => member.pokemonId)
@@ -184,9 +245,26 @@ const teammateSynergyByCandidate = computed(() => {
 const contextualHint = computed(() => {
   if (source.value === 'items' && !activePokemon.value) return t('builder.catalogItemsNeedPokemon')
   if (source.value === 'moves' && !activePokemon.value) return t('builder.catalogMovesNeedPokemon')
+  if (source.value === 'threats' && !activePokemon.value) return t('builder.catalogThreatsNeedPokemon')
   if (source.value === 'pokemon' && !activePokemon.value) return t('builder.catalogPokemonHintEmpty')
   if (source.value === 'pokemon' && activePokemon.value) return t('builder.catalogPokemonHintFilled')
+  if (source.value === 'threats' && activePokemon.value) return t('builder.catalogThreatsHint')
   return ''
+})
+
+watch(source, (nextSource, previousSource) => {
+  if (nextSource === previousSource) return
+  if (nextSource === 'threats') {
+    threatAvailabilityFilter.value = preferredThreatAvailability()
+    const preferredSlot = damageCalcScenario.value.selectedPair.defenderSlot
+    if (damageCalcTargetSlotOptions.value.includes(preferredSlot)) {
+      damageCalcTargetSlot.value = preferredSlot
+      return
+    }
+    damageCalcTargetSlot.value = damageCalcTargetSlotOptions.value[0] ?? 1
+    return
+  }
+  threatAvailabilityFilter.value = 'all'
 })
 
 const metaStatusText = computed(() => {
@@ -216,6 +294,7 @@ const moveEntries = computed<PanelMoveEntry[]>(() => {
           power: null,
           accuracy: null,
           pp: null,
+          priority: 0,
           effect: '',
         } satisfies PanelMoveEntry
       }
@@ -230,6 +309,7 @@ const moveEntries = computed<PanelMoveEntry[]>(() => {
         power: move.power > 0 ? move.power : null,
         accuracy: move.accuracy ?? null,
         pp: move.pp ?? null,
+        priority: move.priority ?? 0,
         effect: move.description || move.effect || '',
       } satisfies PanelMoveEntry
     })
@@ -311,6 +391,152 @@ const filteredMoves = computed(() => {
   return applyRenderWindow(filtered, true, 'moves')
 })
 
+function availabilityForPokemon(pokemonId: string): DexAvailabilityFilterKey[] {
+  return dexStore.getGameAvailabilityForPokemon(pokemonId, localeCode())
+}
+
+function isTechnicalThreatForm(pokemonId: string): boolean {
+  return /(?:low-power-mode|drive-mode|aquatic-mode|glide-mode|limited-build|sprinting-build|swimming-build|gliding-build)$/.test(
+    pokemonId,
+  )
+}
+
+function threatAvailabilityLabel(filter: 'all' | DexAvailabilityFilterKey): string {
+  const option = THREAT_AVAILABILITY_OPTIONS.find((entry) => entry.key === filter)
+  if (!option) return filter
+  return locale.value === 'es' ? option.labelEs : option.labelEn
+}
+
+function preferredThreatAvailability(): 'all' | DexAvailabilityFilterKey {
+  if (!activePokemon.value) return 'all'
+  const availability = availabilityForPokemon(activePokemon.value.id)
+  return THREAT_AVAILABILITY_PRIORITY.find((key) => availability.includes(key)) ?? 'all'
+}
+
+function emptyDamageEvs() {
+  return { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 }
+}
+
+function maxDamageIvs() {
+  return { hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31 }
+}
+
+const scoredThreatEntries = computed<ThreatEntry[]>(() => {
+  const defender = activePokemon.value
+  if (!defender) return []
+
+  const entries: ThreatEntry[] = []
+
+  for (const pokemon of pokemonCatalog.value) {
+    if (pokemon.id === defender.id || isTechnicalThreatForm(pokemon.id)) continue
+
+    const stabPressure = Math.max(
+      ...pokemon.types.map((type) => effectivenessAgainstDual(type, defender.types[0], defender.types[1])),
+    )
+    const usage = usageValue(pokemon.id)
+    if (stabPressure <= 1 && usage <= 0) continue
+
+    const offenseBias =
+      pokemon.baseStats.atk - pokemon.baseStats.spa >= 20
+        ? 'physical'
+        : pokemon.baseStats.spa - pokemon.baseStats.atk >= 20
+          ? 'special'
+          : 'mixed'
+    const abilityName = dexStore.getAbilityMeta(pokemon.abilities[0] ?? '').name
+    const reasons: string[] = []
+
+    if (stabPressure >= 4) {
+      reasons.push(t('builder.threatReasonQuad'))
+    } else if (stabPressure > 1) {
+      reasons.push(t('builder.threatReasonSuper'))
+    }
+    if (pokemon.baseStats.spe >= 100) {
+      reasons.push(t('builder.threatReasonFast'))
+    }
+    if (usage >= 8) {
+      reasons.push(t('builder.threatReasonMeta'))
+    }
+
+    const pressureScore = stabPressure >= 4 ? 1 : stabPressure > 1 ? 0.72 : 0
+    const usageScore = Math.min(1, usage / 20)
+    const speedScore = Math.min(1, pokemon.baseStats.spe / 150)
+    const offenseScore = Math.min(1, Math.max(pokemon.baseStats.atk, pokemon.baseStats.spa) / 170)
+    const score = pressureScore * 0.5 + usageScore * 0.22 + speedScore * 0.18 + offenseScore * 0.1
+    const displayName = displayPokemonName(pokemon.id, pokemon.name)
+
+    entries.push({
+      id: pokemon.id,
+      name: displayName,
+      idNorm: normalizeText(pokemon.id),
+      nameNorm: normalizeText(displayName),
+      abilityName,
+      abilityNorm: normalizeText(abilityName),
+      pokedexNumber: pokemon.pokedexNumber,
+      types: pokemon.types,
+      availability: availabilityForPokemon(pokemon.id),
+      baseSpeed: pokemon.baseStats.spe,
+      usage,
+      offenseBias,
+      stabPressure,
+      reasons,
+      score,
+    })
+  }
+
+  return entries.sort(
+    (a, b) =>
+      b.stabPressure - a.stabPressure ||
+      b.score - a.score ||
+      b.usage - a.usage ||
+      b.baseSpeed - a.baseSpeed ||
+      a.name.localeCompare(b.name, localeCode()),
+  )
+})
+
+const rankedThreatEntries = computed<ThreatEntry[]>(() => {
+  const selectedAvailability =
+    threatAvailabilityFilter.value === 'all' ? null : threatAvailabilityFilter.value
+  const availabilityFiltered = selectedAvailability
+    ? scoredThreatEntries.value.filter((entry) => entry.availability.includes(selectedAvailability))
+    : scoredThreatEntries.value
+
+  const deduped = new Map<number, ThreatEntry>()
+  for (const entry of availabilityFiltered) {
+    const current = deduped.get(entry.pokedexNumber)
+    if (!current) {
+      deduped.set(entry.pokedexNumber, entry)
+      continue
+    }
+
+    const currentIsTechnical = isTechnicalThreatForm(current.id)
+    const nextIsTechnical = isTechnicalThreatForm(entry.id)
+    if (!nextIsTechnical && currentIsTechnical) {
+      deduped.set(entry.pokedexNumber, entry)
+      continue
+    }
+    if (nextIsTechnical && !currentIsTechnical) {
+      continue
+    }
+    if (entry.score > current.score || (entry.score === current.score && entry.usage > current.usage)) {
+      deduped.set(entry.pokedexNumber, entry)
+    }
+  }
+
+  return [...deduped.values()]
+})
+
+const filteredThreats = computed(() => {
+  const needle = normalizeText(searchDebounced.value)
+  if (!needle) return applyRenderWindow(rankedThreatEntries.value, false, 'threats')
+  const filtered = rankedThreatEntries.value.filter(
+    (entry) =>
+      entry.nameNorm.includes(needle) ||
+      entry.idNorm.includes(needle) ||
+      entry.abilityNorm.includes(needle),
+  )
+  return applyRenderWindow(filtered, true, 'threats')
+})
+
 const rankedPokemonEntries = computed<RankedPokemonEntry[]>(() => {
   const optimizeForPreview = !normalizeText(searchDebounced.value)
   if (activePokemon.value) {
@@ -343,7 +569,9 @@ const panelTitle = computed(() =>
     ? t('builder.catalogPanelItems')
     : source.value === 'pokemon'
       ? t('builder.catalogPanelPokemon')
-      : t('builder.catalogPanelMoves'),
+      : source.value === 'threats'
+        ? t('builder.catalogPanelThreats')
+        : t('builder.catalogPanelMoves'),
 )
 
 const searchPlaceholder = computed(() =>
@@ -351,7 +579,9 @@ const searchPlaceholder = computed(() =>
     ? t('builder.catalogSearchItems')
     : source.value === 'pokemon'
       ? t('builder.catalogSearchPokemon')
-      : t('builder.catalogSearchMoves'),
+      : source.value === 'threats'
+        ? t('builder.catalogSearchThreats')
+        : t('builder.catalogSearchMoves'),
 )
 
 function prettifySlug(raw: string): string {
@@ -373,7 +603,7 @@ function normalizeText(value: string): string {
 function applyRenderWindow<T>(
   entries: T[],
   isSearchActive: boolean,
-  sourceKind: 'pokemon' | 'items' | 'moves',
+  sourceKind: 'pokemon' | 'items' | 'moves' | 'threats',
 ): T[] {
   const limit = isSearchActive ? SEARCH_LIMIT_BY_SOURCE[sourceKind] : PREVIEW_LIMIT_BY_SOURCE[sourceKind]
   return entries.slice(0, limit)
@@ -385,6 +615,10 @@ function localeCode(): 'es' | 'en' {
 
 function typeLabel(type: PokemonTypeKey): string {
   return locale.value === 'es' ? TYPE_META[type].es : TYPE_META[type].en
+}
+
+function moveSurfaceStyle(type: PokemonTypeKey | null) {
+  return moveTypeGradientStyle(type)
 }
 
 function categoryLabel(category: MoveEntry['category'] | null): string {
@@ -399,61 +633,18 @@ function statLabel(value: number | null, suffix = ''): string {
   return `${value}${suffix}`
 }
 
+function priorityLabel(value: number): string {
+  return value >= 0 ? `+${value}` : String(value)
+}
+
+function threatOffenseBiasLabel(bias: ThreatEntry['offenseBias']): string {
+  if (bias === 'physical') return t('builder.threatBiasPhysical')
+  if (bias === 'special') return t('builder.threatBiasSpecial')
+  return t('builder.threatBiasMixed')
+}
+
 function spriteUrl(pokemonId: string): string {
-  if (!pokemonId) return mudkipSprite
-  return spriteCandidatesForPokemon(pokemonId)[0] ?? mudkipSprite
-}
-
-const spriteAliasFallback: Record<string, string> = {
-  'calyrex-shadow': 'calyrex-shadow-rider',
-  'calyrex-ice': 'calyrex-ice-rider',
-}
-
-function spriteCandidatesForPokemon(pokemonId: string): string[] {
-  if (!pokemonId) return [mudkipSprite]
-
-  const ids = [pokemonId]
-  const aliasId = spriteAliasFallback[pokemonId]
-  if (aliasId && aliasId !== pokemonId) ids.push(aliasId)
-
-  const prefersShowdown = pokemonId.includes('-')
-  const candidates: string[] = []
-
-  for (const id of ids) {
-    if (prefersShowdown) {
-      candidates.push(`https://play.pokemonshowdown.com/sprites/ani/${id}.gif`)
-      candidates.push(`https://img.pokemondb.net/sprites/home/normal/${id}.png`)
-    } else {
-      candidates.push(`https://img.pokemondb.net/sprites/home/normal/${id}.png`)
-      candidates.push(`https://play.pokemonshowdown.com/sprites/ani/${id}.gif`)
-    }
-    candidates.push(`https://play.pokemonshowdown.com/sprites/gen5/${id}.png`)
-  }
-
-  return [...new Set(candidates)]
-}
-
-function spriteIdFromUrl(url: string): string {
-  const match = url.match(/\/([^/?#]+)\.(?:png|gif)(?:[?#].*)?$/)
-  return match?.[1] ?? ''
-}
-
-function onSpriteError(event: Event) {
-  const target = event.target as HTMLImageElement
-  const pokemonId = target.dataset.spriteId || spriteIdFromUrl(target.src)
-  const candidates = spriteCandidatesForPokemon(pokemonId)
-  const currentIndex = Number(target.dataset.spriteFallbackIndex ?? '0')
-  const nextIndex = currentIndex + 1
-
-  if (nextIndex < candidates.length) {
-    target.dataset.spriteFallbackIndex = String(nextIndex)
-    target.src = candidates[nextIndex]
-    return
-  }
-
-  if (target.src !== mudkipSprite) {
-    target.src = mudkipSprite
-  }
+  return primaryPokemonSpriteUrl(pokemonId)
 }
 
 function formSuffixFromPokemonId(pokemonId: string): string {
@@ -560,6 +751,43 @@ function applyMoveSelection(moveId: string) {
     moves: nextMoves,
     roleTags: resolveRoleTagsForSet(nextMoves, activePokemon.value.roleTags, activePokemon.value),
   })
+}
+
+async function addThreatToDamageCalc(pokemonId: string) {
+  const pokemon = dexStore.getPokemon(mode.value, pokemonId)
+  if (!pokemon) return
+
+  const slot = damageCalcTargetSlot.value
+  const level = mode.value === 'vgc' ? 50 : 100
+
+  damageCalcStore.initFromBuilder(mode.value)
+  damageCalcStore.updateSlotSet(mode.value, 'B', slot, {
+    pokemonId,
+    abilityId: pokemon.abilities[0] ?? '',
+    itemId: resolveInitialItemIdForPokemon(pokemon),
+    natureId: pokemon.defaultNature || 'jolly',
+    teraType: pokemon.types[0],
+    isTeraActive: false,
+    moves: ['', '', '', ''],
+    evs: emptyDamageEvs(),
+    ivs: maxDamageIvs(),
+    level,
+    currentHpPercent: 100,
+    status: 'healthy',
+    stages: { atk: 0, def: 0, spa: 0, spd: 0, spe: 0 },
+  })
+
+  await damageCalcStore.applyBenchmark(mode.value, 'B', slot)
+
+  if (getRequiredItemIdForPokemon(pokemon)) {
+    damageCalcStore.updateSlotSet(mode.value, 'B', slot, {
+      itemId: resolveInitialItemIdForPokemon(pokemon),
+    })
+  }
+
+  damageCalcStore.setSelectedPair(mode.value, 'A', activeMember.value.slot, slot)
+  uiStore.setSelectedSlot(mode.value, activeMember.value.slot)
+  await router.push({ name: 'damage-calc', params: { mode: mode.value } })
 }
 
 function rankingFromWeightedIds(entries: Array<{ id: string; weight: number }>): Map<string, number> {
@@ -1031,6 +1259,55 @@ function rankPokemonForFilledSlot(targetPokemon: PokemonEntry, optimizeForPrevie
         :placeholder="searchPlaceholder"
       />
 
+      <div v-if="source === 'threats'" class="mt-2 flex flex-wrap gap-1.5">
+        <button
+          v-for="option in THREAT_AVAILABILITY_OPTIONS"
+          :key="`threat-game-${option.key}`"
+          type="button"
+          class="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] transition"
+          :class="
+            threatAvailabilityFilter === option.key
+              ? 'border-sky-500/60 bg-sky-500/15 text-sky-100'
+              : 'border-gray-700 bg-off-black/70 text-gray-300 hover:border-sky-500/35'
+          "
+          :title="threatAvailabilityLabel(option.key)"
+          @click="threatAvailabilityFilter = option.key"
+        >
+          <span class="font-semibold">{{ option.short }}</span>
+        </button>
+      </div>
+
+      <div v-if="source === 'threats'" class="mt-2 rounded-lg border border-gray-700 bg-black/30 px-3 py-2">
+        <div class="flex items-center gap-2">
+          <span class="text-[11px] text-gray-300">{{ t('builder.threatCalcTargetLabel') }}</span>
+          <select
+            v-model.number="damageCalcTargetSlot"
+            class="rounded-md border border-gray-700 bg-off-black/80 px-2 py-1 text-[11px] text-gray-100"
+          >
+            <option
+              v-for="slot in damageCalcTargetSlotOptions"
+              :key="`threat-calc-slot-${slot}`"
+              :value="slot"
+            >
+              {{ t('common.slot', { slot }) }}
+            </option>
+          </select>
+          <div class="ml-auto flex min-w-0 items-center gap-2 text-[11px]">
+            <span class="text-gray-400">{{ t('builder.threatCalcSlotCurrentLabel', { slot: damageCalcTargetSlot }) }}</span>
+            <img
+              :src="damageCalcTargetMember?.pokemonId ? spriteUrl(damageCalcTargetMember.pokemonId) : spriteUrl('mudkip')"
+              :alt="damageCalcTargetPokemonName"
+              :data-sprite-id="damageCalcTargetMember?.pokemonId || 'mudkip'"
+              :data-sprite-fallback-index="0"
+              class="h-4 w-4 shrink-0 object-contain"
+              @error="onPokemonSpriteError"
+            />
+            <span class="truncate text-gray-100">{{ damageCalcTargetPokemonName }}</span>
+            <span class="shrink-0 text-gray-500">{{ t('builder.threatCalcSlotWillReplace') }}</span>
+          </div>
+        </div>
+      </div>
+
       <div class="mt-3 min-h-0 flex-1 space-y-2 overflow-y-auto pr-1">
         <template v-if="source === 'items'">
           <div v-if="isItemSelectionLocked" class="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-[11px] text-amber-100">
@@ -1080,7 +1357,7 @@ function rankPokemonForFilledSlot(targetPokemon: PokemonEntry, optimizeForPrevie
                 :data-sprite-fallback-index="0"
                 class="h-8 w-8 shrink-0 rounded bg-black/25 object-contain"
                 loading="lazy"
-                @error="onSpriteError"
+                  @error="onPokemonSpriteError"
               />
               <div class="min-w-0 flex-1">
                 <p class="truncate text-xs font-semibold text-gray-100">
@@ -1102,6 +1379,67 @@ function rankPokemonForFilledSlot(targetPokemon: PokemonEntry, optimizeForPrevie
           <p v-if="filteredPokemon.length === 0" class="text-xs text-gray-500">{{ t('builder.catalogNoResults') }}</p>
         </template>
 
+        <template v-else-if="source === 'threats'">
+          <article
+            v-for="threat in filteredThreats"
+            :key="`threat-${threat.id}`"
+            class="rounded-lg border border-gray-700 bg-st-black/55 p-2"
+          >
+            <div class="flex items-start gap-2">
+              <img
+                :src="spriteUrl(threat.id)"
+                :alt="threat.name"
+                :data-sprite-id="threat.id"
+                :data-sprite-fallback-index="0"
+                class="h-8 w-8 shrink-0 rounded bg-black/25 object-contain"
+                loading="lazy"
+                  @error="onPokemonSpriteError"
+              />
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <p class="truncate text-xs font-semibold text-gray-100">
+                    #{{ String(threat.pokedexNumber).padStart(4, '0') }} {{ threat.name }}
+                  </p>
+                  <span class="rounded border border-gray-700 bg-off-black/70 px-1 py-0.5 text-[10px] text-gray-300">
+                    {{ t('builder.threatBaseSpeed') }} {{ threat.baseSpeed }}
+                  </span>
+                </div>
+                <div class="mt-1 flex flex-wrap gap-1">
+                  <span
+                    v-for="type in threat.types"
+                    :key="`threat-type-${threat.id}-${type}`"
+                    class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1 py-0.5 text-[10px] text-gray-300"
+                  >
+                    <img :src="TYPE_META[type].icon" :alt="typeLabel(type)" class="h-3 w-3" />
+                    {{ typeLabel(type) }}
+                  </span>
+                  <span class="rounded border border-gray-700 bg-off-black/70 px-1 py-0.5 text-[10px] text-gray-300">
+                    {{ threatOffenseBiasLabel(threat.offenseBias) }}
+                  </span>
+                </div>
+                <p class="mt-1 text-[11px] text-gray-300">
+                  <span class="font-semibold text-gray-200">{{ t('builder.threatAbility') }}:</span>
+                  {{ threat.abilityName }}
+                </p>
+                <p v-if="threat.reasons.length > 0" class="mt-1 text-[11px] text-gray-400">
+                  {{ threat.reasons.join(' · ') }}
+                </p>
+                <div class="mt-2 flex justify-end">
+                  <button
+                    type="button"
+                    class="rounded-md border border-sky-500/50 bg-sky-500/15 px-2.5 py-1 text-[11px] font-semibold text-sky-100 transition hover:border-sky-400 hover:bg-sky-500/25"
+                    @click="addThreatToDamageCalc(threat.id)"
+                  >
+                    {{ t('builder.threatAddToCalcButton', { slot: damageCalcTargetSlot }) }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+          <p v-if="!activePokemon" class="text-xs text-gray-500">{{ t('builder.catalogThreatsNeedPokemon') }}</p>
+          <p v-else-if="filteredThreats.length === 0" class="text-xs text-gray-500">{{ t('builder.catalogNoResults') }}</p>
+        </template>
+
         <template v-else>
           <button
             v-for="move in filteredMoves"
@@ -1109,6 +1447,7 @@ function rankPokemonForFilledSlot(targetPokemon: PokemonEntry, optimizeForPrevie
             type="button"
             class="w-full rounded-lg border p-2 text-left transition cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
             :class="activeMember.moves.includes(move.id) ? 'border-sky-500/70 bg-sky-500/15' : 'border-gray-700 bg-st-black/55 hover:border-sky-500/40'"
+            :style="moveSurfaceStyle(move.type)"
             :disabled="!activePokemon"
             @click="applyMoveSelection(move.id)"
           >
@@ -1136,6 +1475,9 @@ function rankPokemonForFilledSlot(targetPokemon: PokemonEntry, optimizeForPrevie
                   {{ t('builder.movePowerShort') }} {{ statLabel(move.power) }} |
                   {{ t('builder.moveAccuracyShort') }} {{ statLabel(move.accuracy, '%') }} |
                   {{ t('builder.movePpShort') }} {{ statLabel(move.pp) }}
+                  <template v-if="move.priority !== 0">
+                    | {{ t('builder.movePriorityShort') }} {{ priorityLabel(move.priority) }}
+                  </template>
                 </p>
                 <p class="mt-1 text-[11px] text-gray-400">{{ move.effect || t('builder.noMoveDescription') }}</p>
               </div>

@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "abilities": [
+    {
+      "id": "piercing-drill",
+      "nameEs": "Taladro Penetrante",
+      "nameEn": "Piercing Drill",
+      "shortEffectEs": "Potencia los movimientos cortantes y de perforacion del usuario.",
+      "shortEffectEn": "Powers up the user's slicing and drilling moves.",
+      "effectEs": "Potencia los movimientos cortantes y de perforacion del usuario.",
+      "effectEn": "Powers up the user's slicing and drilling moves."
+    },
+    {
+      "id": "spicy-spray",
+      "nameEs": "Rociado Picante",
+      "nameEn": "Spicy Spray",
+      "shortEffectEs": "Potencia los movimientos de tipo Fuego y los ataques en aerosol del usuario.",
+      "shortEffectEn": "Boosts the user's Fire-type moves and spray-based attacks.",
+      "effectEs": "Potencia los movimientos de tipo Fuego y los ataques en aerosol del usuario.",
+      "effectEn": "Boosts the user's Fire-type moves and spray-based attacks."
+    }
+  ],
+  "entries": [
+    { "formId": "clefable-mega", "abilityIds": ["magic-bounce"] },
+    { "formId": "victreebel-mega", "abilityIds": ["innards-out"] },
+    { "formId": "starmie-mega", "abilityIds": ["huge-power"] },
+    { "formId": "skarmory-mega", "abilityIds": ["stalwart"] },
+    { "formId": "excadrill-mega", "abilityIds": ["piercing-drill"] },
+    { "formId": "golurk-mega", "abilityIds": ["unseen-fist"] },
+    { "formId": "floette-mega", "abilityIds": ["fairy-aura"] },
+    { "formId": "meowstic-mega", "abilityIds": ["trace"] },
+    { "formId": "hawlucha-mega", "abilityIds": ["no-guard"] },
+    { "formId": "scovillain-mega", "abilityIds": ["spicy-spray"] },
+    { "formId": "glimmora-mega", "abilityIds": ["adaptability"] }
+  ]
+}

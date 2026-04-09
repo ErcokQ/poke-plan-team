@@ -39,6 +39,8 @@ import {
 } from '@/utils/form-item-rules'
 import { calculateBattleStats, getNatureModifier } from '@/utils/stat-calc'
 import { getEffectiveLearnsetMoveIds } from '@/utils/move-legality'
+import { moveTypeGradientStyle } from '@/utils/move-type-style'
+import { onPokemonSpriteError, primaryPokemonSpriteUrl } from '@/utils/pokemon-sprite'
 
 const route = useRoute()
 const { t, locale } = useI18n()
@@ -73,16 +75,31 @@ interface CompareDraft {
 }
 
 const NATURE_LABELS: Record<string, { es: string; en: string }> = {
+  hardy: { es: 'Fuerte', en: 'Hardy' },
+  lonely: { es: 'Huraña', en: 'Lonely' },
+  brave: { es: 'Audaz', en: 'Brave' },
   adamant: { es: 'Firme', en: 'Adamant' },
+  naughty: { es: 'Pícara', en: 'Naughty' },
+  docile: { es: 'Dócil', en: 'Docile' },
+  relaxed: { es: 'Plácida', en: 'Relaxed' },
+  lax: { es: 'Floja', en: 'Lax' },
+  hasty: { es: 'Activa', en: 'Hasty' },
   jolly: { es: 'Alegre', en: 'Jolly' },
+  serious: { es: 'Seria', en: 'Serious' },
   timid: { es: 'Miedosa', en: 'Timid' },
   modest: { es: 'Modesta', en: 'Modest' },
+  mild: { es: 'Afable', en: 'Mild' },
+  quiet: { es: 'Plácida', en: 'Quiet' },
+  bashful: { es: 'Tímida', en: 'Bashful' },
+  rash: { es: 'Alocada', en: 'Rash' },
   careful: { es: 'Cauta', en: 'Careful' },
   bold: { es: 'Osada', en: 'Bold' },
   calm: { es: 'Serena', en: 'Calm' },
   impish: { es: 'Agitada', en: 'Impish' },
+  gentle: { es: 'Amable', en: 'Gentle' },
   sassy: { es: 'Grosera', en: 'Sassy' },
   naive: { es: 'Ingenua', en: 'Naive' },
+  quirky: { es: 'Rara', en: 'Quirky' },
 }
 
 const mode = computed<BattleMode>(() => (route.params.mode === 'singles' ? 'singles' : 'vgc'))
@@ -175,7 +192,7 @@ const selectedItemFieldLabel = computed(() => {
   return selectedItem.value.name
 })
 const natureSelectOptions = computed<SearchOption[]>(() =>
-  dexStore.natures.map((nature) => ({ value: nature, label: natureLabel(nature) })),
+  dexStore.natures.map((nature) => ({ value: nature, label: natureOptionLabel(nature) })),
 )
 const selectedAbilityDescription = computed(() => {
   const abilityId = activeMember.value.abilityId
@@ -969,6 +986,10 @@ function openCatalogSource(source: 'pokemon' | 'items') {
   uiStore.setBuilderCatalogSource(source)
 }
 
+function openThreatsPanel() {
+  uiStore.setBuilderCatalogSource('threats')
+}
+
 function updateField(field: 'abilityId' | 'itemId' | 'natureId', value: string) {
   if (field === 'itemId') {
     if (isItemSelectionLocked.value) return
@@ -1097,6 +1118,18 @@ function natureLabel(natureId: string): string {
   return prettifySlug(natureId)
 }
 
+function natureEffectLabel(natureId: string): string {
+  const nature = getNatureModifier(natureId)
+  if (!nature.up || !nature.down) {
+    return localeCode() === 'es' ? 'Neutra' : 'Neutral'
+  }
+  return `+${localeStatLabel(nature.up)} / -${localeStatLabel(nature.down)}`
+}
+
+function natureOptionLabel(natureId: string): string {
+  return `${natureLabel(natureId)} (${natureEffectLabel(natureId)})`
+}
+
 function abilityLabel(abilityId: string): string {
   return abilityLabels.value[abilityId] ?? prettifySlug(abilityId)
 }
@@ -1131,6 +1164,11 @@ function selectedMovePp(index: number): string {
   return String(move.pp)
 }
 
+function selectedMovePriority(index: number): number {
+  const move = selectedMoveEntry(index)
+  return move?.priority ?? 0
+}
+
 function normalizeMoveType(value: unknown): (typeof TYPE_KEYS)[number] | null {
   if (typeof value !== 'string') return null
   return TYPE_KEYS.includes(value as (typeof TYPE_KEYS)[number]) ? (value as (typeof TYPE_KEYS)[number]) : null
@@ -1160,6 +1198,10 @@ function moveCategoryLabel(category: unknown): string {
   return '-'
 }
 
+function moveOptionSurfaceStyle(typeValue: unknown) {
+  return moveTypeGradientStyle(normalizeMoveType(typeValue))
+}
+
 function moveCategoryIcon(category: unknown): string | null {
   const normalized = normalizeMoveCategory(category)
   if (normalized === 'physical') return movePhysicalSeal
@@ -1185,6 +1227,12 @@ function moveAccuracyValueLabel(value: unknown): string {
   return `${normalized}%`
 }
 
+function movePriorityValueLabel(value: unknown): string {
+  const normalized = normalizeMoveNumber(value)
+  if (normalized == null) return '0'
+  return normalized >= 0 ? `+${normalized}` : String(normalized)
+}
+
 function onMoveFocusIn(index: number) {
   uiStore.setBuilderCatalogSource('moves')
   uiStore.setSelectedMoveIndex(mode.value, index as 0 | 1 | 2 | 3)
@@ -1204,58 +1252,7 @@ function isMovePopoverOpen(index: number): boolean {
 }
 
 function spriteUrl(pokemonId: string): string {
-  if (!pokemonId) return mudkipSprite
-  return spriteCandidatesForPokemon(pokemonId)[0] ?? mudkipSprite
-}
-
-const spriteAliasFallback: Record<string, string> = {
-  'calyrex-shadow': 'calyrex-shadow-rider',
-  'calyrex-ice': 'calyrex-ice-rider',
-}
-
-function spriteCandidatesForPokemon(pokemonId: string): string[] {
-  if (!pokemonId) return [mudkipSprite]
-
-  const ids = [pokemonId]
-  const aliasId = spriteAliasFallback[pokemonId]
-  if (aliasId && aliasId !== pokemonId) ids.push(aliasId)
-
-  const prefersShowdown = pokemonId.includes('-')
-  const candidates: string[] = []
-
-  for (const id of ids) {
-    if (prefersShowdown) {
-      candidates.push(`https://play.pokemonshowdown.com/sprites/ani/${id}.gif`)
-      candidates.push(`https://img.pokemondb.net/sprites/home/normal/${id}.png`)
-    } else {
-      candidates.push(`https://img.pokemondb.net/sprites/home/normal/${id}.png`)
-      candidates.push(`https://play.pokemonshowdown.com/sprites/ani/${id}.gif`)
-    }
-    candidates.push(`https://play.pokemonshowdown.com/sprites/gen5/${id}.png`)
-  }
-
-  return [...new Set(candidates)]
-}
-
-function spriteIdFromUrl(url: string): string {
-  const match = url.match(/\/([^/?#]+)\.(?:png|gif)(?:[?#].*)?$/)
-  return match?.[1] ?? ''
-}
-
-function onSpriteError(event: Event) {
-  const target = event.target as HTMLImageElement
-  const pokemonId = target.dataset.spriteId || spriteIdFromUrl(target.src)
-  const candidates = spriteCandidatesForPokemon(pokemonId)
-  const currentIndex = Number(target.dataset.spriteFallbackIndex ?? '0')
-  const nextIndex = currentIndex + 1
-
-  if (nextIndex < candidates.length) {
-    target.dataset.spriteFallbackIndex = String(nextIndex)
-    target.src = candidates[nextIndex]
-    return
-  }
-
-  target.src = mudkipSprite
+  return primaryPokemonSpriteUrl(pokemonId)
 }
 
 function statBarWidth(stat: StatKey): string {
@@ -1647,7 +1644,7 @@ watch(
                         :data-sprite-id="option.value"
                         :data-sprite-fallback-index="0"
                         class="h-4 w-4 shrink-0 object-contain"
-                        @error="onSpriteError"
+                        @error="onPokemonSpriteError"
                       />
                       <span class="truncate">{{ option.label }}</span>
                     </button>
@@ -1677,7 +1674,7 @@ watch(
                       :data-sprite-id="pokemon.id"
                       :data-sprite-fallback-index="0"
                       class="h-4 w-4 object-contain"
-                      @error="onSpriteError"
+                      @error="onPokemonSpriteError"
                     />
                     <span class="max-w-[10rem] truncate">#{{ String(pokemon.pokedexNumber).padStart(4, '0') }} {{ displayPokemonName(pokemon.id, pokemon.name) }}</span>
                   </button>
@@ -1812,38 +1809,47 @@ watch(
                   @update:model-value="updateMove(index, $event)"
                 >
                   <template #option="{ option }">
-                    <div class="flex items-start justify-between gap-2">
-                      <div class="min-w-0 flex-1">
-                        <p class="truncate font-semibold text-gray-100">{{ option.label }}</p>
-                        <p class="move-option-effect mt-0.5 text-[10px] text-gray-400">
-                          {{ option.meta?.effect || t('builder.noMoveDescription') }}
-                        </p>
-                      </div>
-                      <div class="shrink-0 text-right text-[10px] text-gray-300">
-                        <div class="mb-1 flex items-center justify-end gap-1">
-                          <span
-                            v-if="moveTypeIcon(option.meta?.type)"
-                            class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1 py-0.5"
-                          >
-                            <img :src="moveTypeIcon(option.meta?.type) || ''" :alt="moveTypeLabel(option.meta?.type)" class="h-3 w-3" />
-                            {{ moveTypeLabel(option.meta?.type) }}
-                          </span>
-                          <span class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1 py-0.5">
-                            <img
-                              v-if="moveCategoryIcon(option.meta?.category)"
-                              :src="moveCategoryIcon(option.meta?.category) || ''"
-                              :alt="moveCategoryLabel(option.meta?.category)"
-                              class="h-3 w-3"
-                            />
-                            {{ moveCategoryLabel(option.meta?.category) }}
-                          </span>
+                    <div
+                      class="-mx-2 -my-1.5 rounded-md px-2 py-1.5"
+                      :style="moveOptionSurfaceStyle(option.meta?.type)"
+                    >
+                      <div class="flex items-start justify-between gap-2">
+                        <div class="min-w-0 flex-1">
+                          <p class="truncate font-semibold text-gray-100">{{ option.label }}</p>
+                          <p class="move-option-effect mt-0.5 text-[10px] text-gray-400">
+                            {{ option.meta?.effect || t('builder.noMoveDescription') }}
+                          </p>
                         </div>
-                        <div class="font-mono text-[10px] text-gray-400">
-                          <span>{{ t('builder.movePowerShort') }} {{ moveValueLabel(option.meta?.power) }}</span>
-                          <span class="px-1">|</span>
-                          <span>{{ t('builder.moveAccuracyShort') }} {{ moveAccuracyValueLabel(option.meta?.accuracy) }}</span>
-                          <span class="px-1">|</span>
-                          <span>{{ t('builder.movePpShort') }} {{ moveValueLabel(option.meta?.pp) }}</span>
+                        <div class="shrink-0 text-right text-[10px] text-gray-300">
+                          <div class="mb-1 flex items-center justify-end gap-1">
+                            <span
+                              v-if="moveTypeIcon(option.meta?.type)"
+                              class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1 py-0.5"
+                            >
+                              <img :src="moveTypeIcon(option.meta?.type) || ''" :alt="moveTypeLabel(option.meta?.type)" class="h-3 w-3" />
+                              {{ moveTypeLabel(option.meta?.type) }}
+                            </span>
+                            <span class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1 py-0.5">
+                              <img
+                                v-if="moveCategoryIcon(option.meta?.category)"
+                                :src="moveCategoryIcon(option.meta?.category) || ''"
+                                :alt="moveCategoryLabel(option.meta?.category)"
+                                class="h-3 w-3"
+                              />
+                              {{ moveCategoryLabel(option.meta?.category) }}
+                            </span>
+                          </div>
+                          <div class="font-mono text-[10px] text-gray-400">
+                            <span>{{ t('builder.movePowerShort') }} {{ moveValueLabel(option.meta?.power) }}</span>
+                            <span class="px-1">|</span>
+                            <span>{{ t('builder.moveAccuracyShort') }} {{ moveAccuracyValueLabel(option.meta?.accuracy) }}</span>
+                            <span class="px-1">|</span>
+                            <span>{{ t('builder.movePpShort') }} {{ moveValueLabel(option.meta?.pp) }}</span>
+                            <template v-if="(option.meta?.priority ?? 0) !== 0">
+                              <span class="px-1">|</span>
+                              <span>{{ t('builder.movePriorityShort') }} {{ movePriorityValueLabel(option.meta?.priority) }}</span>
+                            </template>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -1877,6 +1883,10 @@ watch(
                   <p class="mt-1 text-gray-300">
                     <span class="font-semibold text-gray-200">{{ t('builder.movePp') }}:</span>
                     {{ selectedMovePp(index) }}
+                  </p>
+                  <p v-if="selectedMovePriority(index) !== 0" class="mt-1 text-gray-300">
+                    <span class="font-semibold text-gray-200">{{ t('builder.movePriority') }}:</span>
+                    {{ movePriorityValueLabel(selectedMovePriority(index)) }}
                   </p>
                   <p class="mt-1 text-gray-300">
                     <span class="font-semibold text-gray-200">{{ t('builder.moveEffect') }}:</span>
@@ -2043,7 +2053,7 @@ watch(
               :data-sprite-fallback-index="0"
               class="h-20 w-20 rounded bg-black/20 object-contain"
               loading="lazy"
-              @error="onSpriteError"
+              @error="onPokemonSpriteError"
             />
             <div>
               <p class="text-sm font-semibold text-gray-100">{{ displayPokemonName(activePokemon.id, activePokemon.name) }}</p>
@@ -2076,7 +2086,16 @@ watch(
           <div class="mb-3 rounded-lg border border-sky-500/30 bg-sky-500/10 p-2">
             <div class="flex items-center justify-between gap-2">
               <p class="text-xs font-semibold text-sky-200">{{ t('builder.speedTier') }}</p>
-              <p class="text-base font-semibold text-sky-100">{{ speedEffective }}</p>
+              <div class="flex items-center gap-2">
+                <button
+                  type="button"
+                  class="rounded-md border border-sky-500/45 bg-off-black/60 px-2 py-0.5 text-[11px] text-sky-100 transition hover:border-sky-400/70 hover:bg-sky-500/10"
+                  @click="openThreatsPanel"
+                >
+                  {{ t('builder.speedThreatsButton') }}
+                </button>
+                <p class="text-base font-semibold text-sky-100">{{ speedEffective }}</p>
+              </div>
             </div>
             <p class="text-[11px] text-gray-400">
               {{ t('builder.speedFinalValue', { value: speedFinal }) }}
@@ -2178,7 +2197,7 @@ watch(
                     :data-sprite-fallback-index="0"
                     class="h-4 w-4 rounded object-contain"
                     loading="lazy"
-                    @error="onSpriteError"
+                    @error="onPokemonSpriteError"
                   />
                   {{ displayPokemonName(evo.id, evo.name) }}
                 </div>
@@ -2272,7 +2291,7 @@ watch(
                     :data-sprite-id="activePokemon.id"
                     :data-sprite-fallback-index="0"
                     class="h-16 w-16 rounded bg-black/20 object-contain"
-                    @error="onSpriteError"
+                    @error="onPokemonSpriteError"
                   />
                   <div>
                     <p class="text-sm font-semibold text-gray-100">{{ displayPokemonName(activePokemon.id, activePokemon.name) }}</p>
@@ -2302,7 +2321,7 @@ watch(
                     :data-sprite-id="comparePokemon.id"
                     :data-sprite-fallback-index="0"
                     class="h-16 w-16 rounded bg-black/20 object-contain"
-                    @error="onSpriteError"
+                    @error="onPokemonSpriteError"
                   />
                   <div>
                     <p class="text-sm font-semibold text-gray-100">{{ displayPokemonName(comparePokemon.id, comparePokemon.name) }}</p>
@@ -2380,7 +2399,54 @@ watch(
                     :placeholder="`${t('builder.movePlaceholder')} ${index + 1}`"
                     :no-results-label="t('dex.noSearchResults')"
                     @update:model-value="updateCompareMove(index, $event)"
-                  />
+                  >
+                    <template #option="{ option }">
+                      <div
+                        class="-mx-2 -my-1.5 rounded-md px-2 py-1.5"
+                        :style="moveOptionSurfaceStyle(option.meta?.type)"
+                      >
+                        <div class="flex items-start justify-between gap-2">
+                          <div class="min-w-0 flex-1">
+                            <p class="truncate font-semibold text-gray-100">{{ option.label }}</p>
+                            <p class="move-option-effect mt-0.5 text-[10px] text-gray-400">
+                              {{ option.meta?.effect || t('builder.noMoveDescription') }}
+                            </p>
+                          </div>
+                          <div class="shrink-0 text-right text-[10px] text-gray-300">
+                            <div class="mb-1 flex items-center justify-end gap-1">
+                              <span
+                                v-if="moveTypeIcon(option.meta?.type)"
+                                class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1 py-0.5"
+                              >
+                                <img :src="moveTypeIcon(option.meta?.type) || ''" :alt="moveTypeLabel(option.meta?.type)" class="h-3 w-3" />
+                                {{ moveTypeLabel(option.meta?.type) }}
+                              </span>
+                              <span class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1 py-0.5">
+                                <img
+                                  v-if="moveCategoryIcon(option.meta?.category)"
+                                  :src="moveCategoryIcon(option.meta?.category) || ''"
+                                  :alt="moveCategoryLabel(option.meta?.category)"
+                                  class="h-3 w-3"
+                                />
+                                {{ moveCategoryLabel(option.meta?.category) }}
+                              </span>
+                            </div>
+                            <div class="font-mono text-[10px] text-gray-400">
+                              <span>{{ t('builder.movePowerShort') }} {{ moveValueLabel(option.meta?.power) }}</span>
+                              <span class="px-1">|</span>
+                              <span>{{ t('builder.moveAccuracyShort') }} {{ moveAccuracyValueLabel(option.meta?.accuracy) }}</span>
+                              <span class="px-1">|</span>
+                              <span>{{ t('builder.movePpShort') }} {{ moveValueLabel(option.meta?.pp) }}</span>
+                              <template v-if="(option.meta?.priority ?? 0) !== 0">
+                                <span class="px-1">|</span>
+                                <span>{{ t('builder.movePriorityShort') }} {{ movePriorityValueLabel(option.meta?.priority) }}</span>
+                              </template>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </template>
+                  </SearchableSelect>
                 </label>
               </div>
             </div>

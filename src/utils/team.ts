@@ -2,16 +2,31 @@ import type { BattleMode, PokemonTypeKey, StatBlock, Team, TeamMember } from '@/
 import { MAX_EV_PER_STAT, MAX_EVS, MAX_IV_PER_STAT, STATS } from '@/models/domain'
 
 export const NATURES = [
+  'hardy',
+  'lonely',
+  'brave',
   'adamant',
+  'naughty',
+  'docile',
+  'relaxed',
+  'lax',
+  'hasty',
   'jolly',
+  'serious',
   'timid',
   'modest',
+  'mild',
+  'quiet',
+  'bashful',
+  'rash',
   'careful',
   'bold',
   'calm',
   'impish',
+  'gentle',
   'sassy',
   'naive',
+  'quirky',
 ] as const
 
 export function emptyStats(value: number): StatBlock {

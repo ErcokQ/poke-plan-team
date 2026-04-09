@@ -53,15 +53,25 @@ const emit = defineEmits<{
 }>()
 
 const queryRaw = ref('')
+const isFiltering = ref(false)
 const queryDebounced = useDebounce(queryRaw, 160)
 const buttonRef = ref<InstanceType<typeof ComboboxButton> | null>(null)
 
 const selectedOption = computed(() => props.options.find((option) => option.value === props.modelValue))
 
+const preparedOptions = computed(() =>
+  props.options.map((option) => ({
+    option,
+    labelNorm: normalize(option.label),
+    valueNorm: normalize(option.value),
+  })),
+)
+
 watch(
   () => [props.modelValue, props.options] as const,
   () => {
     queryRaw.value = selectedOption.value?.label ?? ''
+    isFiltering.value = false
   },
   { immediate: true },
 )
@@ -76,7 +86,9 @@ function normalize(value: string): string {
 
 const filteredOptions = computed(() => {
   const needle = normalize(queryDebounced.value)
-  const boundedSlice = (options: SearchOption[]) => {
+  const boundedSlice = (
+    options: Array<{ option: SearchOption; labelNorm: string; valueNorm: string }>,
+  ) => {
     if (props.maxVisible > 0) return options.slice(0, props.maxVisible)
     if (options.length > props.largeListThreshold) {
       return options.slice(0, props.largeListPreview)
@@ -84,18 +96,15 @@ const filteredOptions = computed(() => {
     return options
   }
 
-  if (!needle) {
-    return boundedSlice(props.options)
+  if (!isFiltering.value || !needle) {
+    return boundedSlice(preparedOptions.value).map((entry) => entry.option)
   }
 
-  const filtered = props.options.filter((option) => {
-    const labelNorm = normalize(option.label)
-    if (labelNorm.includes(needle)) return true
-    const valueNorm = normalize(option.value)
-    return valueNorm.includes(needle)
-  })
+  const filtered = preparedOptions.value.filter(
+    (entry) => entry.labelNorm.includes(needle) || entry.valueNorm.includes(needle),
+  )
 
-  return boundedSlice(filtered)
+  return boundedSlice(filtered).map((entry) => entry.option)
 })
 
 const selectedValue = computed<SearchOption | null>(() => {
@@ -103,6 +112,7 @@ const selectedValue = computed<SearchOption | null>(() => {
 })
 
 function onSelect(option: SearchOption | null) {
+  isFiltering.value = false
   if (!option) {
     if (props.clearable) emit('update:modelValue', '')
     queryRaw.value = ''
@@ -114,19 +124,25 @@ function onSelect(option: SearchOption | null) {
 
 function onInput(event: Event) {
   queryRaw.value = (event.target as HTMLInputElement).value
+  isFiltering.value = true
 }
 
-function onFocus() {
+function onFocus(event: FocusEvent) {
   if (props.disabled) return
   const button = (buttonRef.value?.$el as HTMLButtonElement | undefined) ?? null
   if (button && button.getAttribute('aria-expanded') !== 'true') {
     button.click()
+  }
+  const input = event.target as HTMLInputElement | null
+  if (input) {
+    requestAnimationFrame(() => input.select())
   }
 }
 
 function onBlur() {
   setTimeout(() => {
     queryRaw.value = selectedOption.value?.label ?? ''
+    isFiltering.value = false
   }, 0)
 }
 </script>

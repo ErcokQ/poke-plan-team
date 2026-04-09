@@ -1351,4 +1351,3 @@ function pillarMapButtonClass(key: 'plan' | 'tempo' | 'matchups' | 'resources'):
     </div>
   </section>
 </template>
-

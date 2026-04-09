@@ -1,7 +1,9 @@
-import type { MoveEntry, PokemonEntry } from '@/models/domain'
+import type { ItemEntry, MoveEntry, PokemonEntry } from '@/models/domain'
 import type {
   DamageCalcScenario,
+  DamageCombatContext,
   DamageMatrixCell,
+  DamageMoveOrderHint,
   DamagePairComputation,
   DamageRollResult,
   DamageSideId,
@@ -15,6 +17,33 @@ import { getDamageRules, screenMultiplierForBattleType } from '@/utils/damage-ru
 interface DamageDexResolver {
   getPokemon: (mode: DamageCalcScenario['mode'], pokemonId: string) => PokemonEntry | undefined
   getMove: (moveId: string) => MoveEntry | undefined
+  getItem?: (itemId: string) => ItemEntry | undefined
+}
+
+type DamageSideRole = 'attacker' | 'defender'
+type OffensiveStatKey = 'atk' | 'spa' | 'def'
+type DefensiveStatClass = 'physical' | 'special'
+
+interface DamageStatProfile {
+  offenseOwner: DamageSideRole
+  offenseStat: OffensiveStatKey
+  offenseStage: OffensiveStatKey
+  defenseClass: DefensiveStatClass
+}
+
+function defaultCombatContext(): DamageCombatContext {
+  return {
+    wasHitThisTurn: false,
+    tookDamageThisTurn: false,
+    statsLoweredThisTurn: false,
+    previousMoveFailed: false,
+    moveOrderHint: 'auto',
+    consecutiveMoveUses: 0,
+    timesHitThisBattle: 0,
+    alliesFaintedCount: 0,
+    stockpileCount: 0,
+    friendship: 255,
+  }
 }
 
 function clamp(value: number, min: number, max: number): number {
@@ -106,30 +135,30 @@ function stabMultiplier(
   return stab
 }
 
-function weatherMultiplier(weather: DamageCalcScenario['field']['weather'], move: MoveEntry): number {
-  if (weather === 'heavy-rain' && move.type === 'fire') return 0
-  if (weather === 'harsh-sunshine' && move.type === 'water') return 0
+function weatherMultiplier(weather: DamageCalcScenario['field']['weather'], moveType: MoveEntry['type']): number {
+  if (weather === 'heavy-rain' && moveType === 'fire') return 0
+  if (weather === 'harsh-sunshine' && moveType === 'water') return 0
 
   if (weather === 'sun' || weather === 'harsh-sunshine') {
-    if (move.type === 'fire') return 1.5
-    if (move.type === 'water') return 0.5
+    if (moveType === 'fire') return 1.5
+    if (moveType === 'water') return 0.5
   }
   if (weather === 'rain' || weather === 'heavy-rain') {
-    if (move.type === 'water') return 1.5
-    if (move.type === 'fire') return 0.5
+    if (moveType === 'water') return 1.5
+    if (moveType === 'fire') return 0.5
   }
   return 1
 }
 
 function terrainMultiplier(
   terrain: DamageCalcScenario['field']['terrain'],
-  move: MoveEntry,
+  moveType: MoveEntry['type'],
   terrainOffenseMultiplier: number,
 ): number {
-  if (terrain === 'electric' && move.type === 'electric') return terrainOffenseMultiplier
-  if (terrain === 'grassy' && move.type === 'grass') return terrainOffenseMultiplier
-  if (terrain === 'psychic' && move.type === 'psychic') return terrainOffenseMultiplier
-  if (terrain === 'misty' && move.type === 'dragon') return 0.5
+  if (terrain === 'electric' && moveType === 'electric') return terrainOffenseMultiplier
+  if (terrain === 'grassy' && moveType === 'grass') return terrainOffenseMultiplier
+  if (terrain === 'psychic' && moveType === 'psychic') return terrainOffenseMultiplier
+  if (terrain === 'misty' && moveType === 'dragon') return 0.5
   return 1
 }
 
@@ -142,10 +171,11 @@ function friendlyModifier(itemId: string, move: MoveEntry): number {
   return 1
 }
 
-function applyAttackItemMultiplier(itemId: string, move: MoveEntry): number {
+function applyAttackItemMultiplier(itemId: string, move: MoveEntry, profile: DamageStatProfile): number {
   const item = itemId.trim().toLowerCase()
-  if (item === 'choice-band' && isPhysicalMove(move)) return 1.5
-  if (item === 'choice-specs' && isSpecialMove(move)) return 1.5
+  if (profile.offenseOwner !== 'attacker') return 1
+  if (item === 'choice-band' && profile.offenseStat === 'atk') return 1.5
+  if (item === 'choice-specs' && profile.offenseStat === 'spa') return 1.5
   if (item === 'booster-energy') return 1.3
   return 1
 }
@@ -162,9 +192,10 @@ function abilityDamageMultiplierOnAttack(abilityId: string, move: MoveEntry): nu
   return 1
 }
 
-function abilityAttackStatMultiplier(abilityId: string, move: MoveEntry, status: DamageSlotSet['status']): number {
-  if ((abilityIs(abilityId, 'huge-power') || abilityIs(abilityId, 'pure-power')) && isPhysicalMove(move)) return 2
-  if (abilityIs(abilityId, 'guts') && isPhysicalMove(move) && status !== 'healthy') return 1.5
+function abilityAttackStatMultiplier(abilityId: string, profile: DamageStatProfile, status: DamageSlotSet['status']): number {
+  if (profile.offenseOwner !== 'attacker') return 1
+  if ((abilityIs(abilityId, 'huge-power') || abilityIs(abilityId, 'pure-power')) && profile.offenseStat === 'atk') return 2
+  if (abilityIs(abilityId, 'guts') && profile.offenseStat === 'atk' && status !== 'healthy') return 1.5
   return 1
 }
 
@@ -193,25 +224,259 @@ function finalDefenderTypes(baseTypes: string[], defender: DamageSlotSet): [Move
   return [baseTypes[0] as MoveEntry['type'], baseTypes[1] as MoveEntry['type'] | undefined]
 }
 
-function moveEffectivePower(move: MoveEntry): number {
-  if (move.power > 0) return move.power
-  return 0
+function effectiveMoveType(
+  move: MoveEntry,
+  weather: DamageCalcScenario['field']['weather'],
+  terrain: DamageCalcScenario['field']['terrain'],
+): MoveEntry['type'] {
+  if (move.id === 'weather-ball') {
+    if (weather === 'sun' || weather === 'harsh-sunshine') return 'fire'
+    if (weather === 'rain' || weather === 'heavy-rain') return 'water'
+    if (weather === 'sand') return 'rock'
+    if (weather === 'snow') return 'ice'
+  }
+
+  if (move.id === 'terrain-pulse') {
+    if (terrain === 'electric') return 'electric'
+    if (terrain === 'grassy') return 'grass'
+    if (terrain === 'psychic') return 'psychic'
+    if (terrain === 'misty') return 'fairy'
+  }
+
+  return move.type
+}
+
+function moveEffectivePower(options: {
+  move: MoveEntry
+  attackerDex: PokemonEntry
+  defenderDex: PokemonEntry
+  attacker: DamageSlotSet
+  defender: DamageSlotSet
+  attackerSide: DamageSideId
+  attackerStats: ReturnType<typeof calculateBattleStats>
+  defenderStats: ReturnType<typeof calculateBattleStats>
+  attackerCurrentHp: number
+  attackerMaxHp: number
+  defenderCurrentHp: number
+  defenderMaxHp: number
+  weather: DamageCalcScenario['field']['weather']
+  terrain: DamageCalcScenario['field']['terrain']
+  scenario: DamageCalcScenario
+  resolver: DamageDexResolver
+}): number {
+  const {
+    move,
+    attackerDex,
+    defenderDex,
+    attacker,
+    defender,
+    attackerSide,
+    attackerStats,
+    defenderStats,
+    attackerCurrentHp,
+    attackerMaxHp,
+    defenderCurrentHp,
+    defenderMaxHp,
+    weather,
+    terrain,
+    scenario,
+    resolver,
+  } = options
+  const attackerContext = combatContextFor(attacker)
+  const defenderContext = combatContextFor(defender)
+  const moveOrderHint = resolveMoveOrderHint(
+    attacker,
+    defender,
+    move,
+    attackerSide,
+    attackerStats,
+    defenderStats,
+    scenario,
+  )
+
+  let power = move.power > 0 ? move.power : 0
+  if (power <= 0) return 0
+
+  switch (move.id) {
+    case 'facade':
+      if (attacker.status !== 'healthy') power *= 2
+      break
+    case 'hex':
+    case 'infernal-parade':
+      if (defender.status !== 'healthy') power *= 2
+      break
+    case 'venoshock':
+    case 'barb-barrage':
+      if (defender.status === 'poison' || defender.status === 'toxic') power *= 2
+      break
+    case 'brine':
+      if (defenderCurrentHp * 2 <= defenderMaxHp) power *= 2
+      break
+    case 'avalanche':
+    case 'revenge':
+      if (attackerContext.wasHitThisTurn) power *= 2
+      break
+    case 'assurance':
+      if (defenderContext.tookDamageThisTurn) power *= 2
+      break
+    case 'payback':
+      if (moveOrderHint === 'after-target') power *= 2
+      break
+    case 'bolt-beak':
+    case 'fishious-rend':
+      if (moveOrderHint === 'before-target') power *= 2
+      break
+    case 'lash-out':
+      if (attackerContext.statsLoweredThisTurn) power *= 2
+      break
+    case 'stomping-tantrum':
+      if (attackerContext.previousMoveFailed) power *= 2
+      break
+    case 'eruption':
+    case 'water-spout':
+    case 'dragon-energy':
+      power = Math.max(1, Math.floor((150 * attackerCurrentHp) / Math.max(1, attackerMaxHp)))
+      break
+    case 'acrobatics':
+      if (!attacker.itemId) power *= 2
+      break
+    case 'weather-ball':
+      power = weather === 'none' ? 50 : 100
+      break
+    case 'terrain-pulse':
+      power = terrain === 'none' ? 50 : 100
+      break
+    case 'psyblade':
+    case 'expanding-force':
+      if (terrain === 'electric' || terrain === 'psychic') power = Math.floor(power * 1.5)
+      break
+    case 'misty-explosion':
+      if (terrain === 'misty') power = Math.floor(power * 1.5)
+      break
+    case 'hydro-steam':
+      if (weather === 'sun' || weather === 'harsh-sunshine') power = Math.floor(power * 1.5)
+      break
+    case 'solar-beam':
+    case 'solar-blade':
+      if (weather === 'rain' || weather === 'heavy-rain' || weather === 'sand' || weather === 'snow') {
+        power = Math.floor(power * 0.5)
+      }
+      break
+    case 'flail':
+    case 'reversal': {
+      const ratio = attackerCurrentHp / Math.max(1, attackerMaxHp)
+      if (ratio <= 1 / 48) power = 200
+      else if (ratio <= 1 / 5) power = 150
+      else if (ratio <= 7 / 20) power = 100
+      else if (ratio <= 35 / 100) power = 80
+      else if (ratio <= 7 / 10) power = 40
+      else power = 20
+      break
+    }
+    case 'crush-grip':
+    case 'wring-out': {
+      power = Math.max(1, Math.floor((120 * defenderCurrentHp) / Math.max(1, defenderMaxHp)))
+      break
+    }
+    case 'hard-press': {
+      power = Math.max(1, Math.floor((100 * defenderCurrentHp) / Math.max(1, defenderMaxHp)))
+      break
+    }
+    case 'stored-power':
+    case 'power-trip':
+      power += statStageSum(attacker.stages) * 20
+      break
+    case 'punishment':
+      power = Math.min(200, 60 + statStageSum(defender.stages) * 20)
+      break
+    case 'fling': {
+      const item = attacker.itemId ? resolver.getItem?.(attacker.itemId) : undefined
+      power = item?.flingPower ?? 0
+      break
+    }
+    case 'electro-ball': {
+      const attackerSpeed = effectiveSpeed(attacker, attackerStats.spe, attackerSide, scenario)
+      const defenderSpeed = effectiveSpeed(
+        defender,
+        defenderStats.spe,
+        attackerSide === 'A' ? 'B' : 'A',
+        scenario,
+      )
+      const ratio = attackerSpeed / Math.max(1, defenderSpeed)
+      if (ratio >= 4) power = 150
+      else if (ratio >= 3) power = 120
+      else if (ratio >= 2) power = 80
+      else if (ratio > 1) power = 60
+      else power = 40
+      break
+    }
+    case 'gyro-ball': {
+      const attackerSpeed = effectiveSpeed(attacker, attackerStats.spe, attackerSide, scenario)
+      const defenderSpeed = effectiveSpeed(
+        defender,
+        defenderStats.spe,
+        attackerSide === 'A' ? 'B' : 'A',
+        scenario,
+      )
+      power = Math.max(1, Math.min(150, Math.floor((25 * defenderSpeed) / Math.max(1, attackerSpeed))))
+      break
+    }
+    case 'knock-off':
+      if (defender.itemId) power = Math.floor(power * 1.5)
+      break
+    case 'fury-cutter': {
+      const chainCount = Math.max(1, attackerContext.consecutiveMoveUses || 1)
+      power = Math.min(160, power * 2 ** (chainCount - 1))
+      break
+    }
+    case 'rollout':
+    case 'ice-ball': {
+      const chainCount = Math.max(1, attackerContext.consecutiveMoveUses || 1)
+      power = Math.min(480, power * 2 ** (chainCount - 1))
+      break
+    }
+    case 'rage-fist':
+      power = Math.min(350, 50 + attackerContext.timesHitThisBattle * 50)
+      break
+    case 'last-respects':
+      power = 50 + attackerContext.alliesFaintedCount * 50
+      break
+    case 'spit-up':
+      power = attackerContext.stockpileCount <= 0 ? 0 : attackerContext.stockpileCount * 100
+      break
+    case 'return':
+      power = Math.max(1, Math.floor((attackerContext.friendship * 10) / 25))
+      break
+    case 'frustration':
+      power = Math.max(1, Math.floor(((255 - attackerContext.friendship) * 10) / 25))
+      break
+    case 'low-kick':
+    case 'grass-knot':
+      power = lowKickPower(weightKgForPokemon(defenderDex))
+      break
+    case 'heavy-slam':
+    case 'heat-crash':
+      power = weightRatioPower(weightKgForPokemon(attackerDex), weightKgForPokemon(defenderDex))
+      break
+  }
+
+  return power
 }
 
 function koTextFromRolls(rolls: number[], currentHp: number): string {
-  if (rolls.length === 0 || currentHp <= 0) return 'Estimated no damage'
+  if (rolls.length === 0 || currentHp <= 0) return 'noDamage'
 
   const minRoll = Math.min(...rolls)
   const maxRoll = Math.max(...rolls)
 
-  if (minRoll >= currentHp) return 'Estimated guaranteed OHKO'
-  if (maxRoll >= currentHp) return 'Estimated possible OHKO'
-  if (minRoll * 2 >= currentHp) return 'Estimated guaranteed 2HKO'
-  if (maxRoll * 2 >= currentHp) return 'Estimated possible 2HKO'
-  if (minRoll * 3 >= currentHp) return 'Estimated guaranteed 3HKO'
-  if (maxRoll * 3 >= currentHp) return 'Estimated possible 3HKO'
-  if (maxRoll * 4 >= currentHp) return 'Estimated possible 4HKO'
-  return 'Estimated 5+ hits to KO'
+  if (minRoll >= currentHp) return 'guaranteedOhko'
+  if (maxRoll >= currentHp) return 'possibleOhko'
+  if (minRoll * 2 >= currentHp) return 'guaranteed2hko'
+  if (maxRoll * 2 >= currentHp) return 'possible2hko'
+  if (minRoll * 3 >= currentHp) return 'guaranteed3hko'
+  if (maxRoll * 3 >= currentHp) return 'possible3hko'
+  if (maxRoll * 4 >= currentHp) return 'possible4hko'
+  return 'fivePlusHits'
 }
 
 function statusActionMultiplier(scenario: DamageCalcScenario, attacker: DamageSlotSet, move: MoveEntry): number {
@@ -238,6 +503,191 @@ function residualFractionByStatus(status: DamageSlotSet['status'], generation: D
   if (status === 'poison') return 1 / 8
   if (status === 'toxic') return 1 / 16
   return 0
+}
+
+function resolveDamageStatProfile(
+  move: MoveEntry,
+  attackerStats: ReturnType<typeof calculateBattleStats>,
+  defenderStats: ReturnType<typeof calculateBattleStats>,
+  attacker: DamageSlotSet,
+  defender: DamageSlotSet,
+  scenario: DamageCalcScenario,
+): DamageStatProfile {
+  switch (move.id) {
+    case 'body-press':
+      return {
+        offenseOwner: 'attacker',
+        offenseStat: 'def',
+        offenseStage: 'def',
+        defenseClass: 'physical',
+      }
+    case 'psyshock':
+    case 'psystrike':
+    case 'secret-sword':
+      return {
+        offenseOwner: 'attacker',
+        offenseStat: 'spa',
+        offenseStage: 'spa',
+        defenseClass: 'physical',
+      }
+    case 'foul-play':
+      return {
+        offenseOwner: 'defender',
+        offenseStat: 'atk',
+        offenseStage: 'atk',
+        defenseClass: 'physical',
+      }
+    case 'photon-geyser':
+      if (attackerStats.atk > attackerStats.spa) {
+        return {
+          offenseOwner: 'attacker',
+          offenseStat: 'atk',
+          offenseStage: 'atk',
+          defenseClass: 'physical',
+        }
+      }
+      return {
+        offenseOwner: 'attacker',
+        offenseStat: 'spa',
+        offenseStage: 'spa',
+        defenseClass: 'special',
+      }
+    case 'shell-side-arm': {
+      const attackerAtk = Math.floor(attackerStats.atk * stageMultiplier(attacker.stages.atk ?? 0))
+      const attackerSpa = Math.floor(attackerStats.spa * stageMultiplier(attacker.stages.spa ?? 0))
+      const defenderDef = Math.floor(defenderStats.def * stageMultiplier(defender.stages.def ?? 0))
+      const defenderSpd = Math.floor(defenderStats.spd * stageMultiplier(defender.stages.spd ?? 0))
+      const physicalScore = attackerAtk / Math.max(1, defenderDef)
+      const specialScore = attackerSpa / Math.max(1, defenderSpd)
+      return physicalScore > specialScore
+        ? {
+            offenseOwner: 'attacker',
+            offenseStat: 'atk',
+            offenseStage: 'atk',
+            defenseClass: 'physical',
+          }
+        : {
+            offenseOwner: 'attacker',
+            offenseStat: 'spa',
+            offenseStage: 'spa',
+            defenseClass: 'special',
+          }
+    }
+    case 'terrain-pulse':
+      if (attacker.isTeraActive && attacker.teraType && scenario.field.terrain !== 'none') {
+        return {
+          offenseOwner: 'attacker',
+          offenseStat: 'spa',
+          offenseStage: 'spa',
+          defenseClass: 'special',
+        }
+      }
+      break
+  }
+
+  if (move.category === 'physical') {
+    return {
+      offenseOwner: 'attacker',
+      offenseStat: 'atk',
+      offenseStage: 'atk',
+      defenseClass: 'physical',
+    }
+  }
+
+  return {
+    offenseOwner: 'attacker',
+    offenseStat: 'spa',
+    offenseStage: 'spa',
+    defenseClass: 'special',
+  }
+}
+
+function statStageSum(stages: DamageSlotSet['stages']): number {
+  return (stages.atk ?? 0) + (stages.def ?? 0) + (stages.spa ?? 0) + (stages.spd ?? 0) + (stages.spe ?? 0)
+}
+
+function effectiveSpeed(
+  slot: DamageSlotSet,
+  baseSpeed: number,
+  side: DamageSideId,
+  scenario: DamageCalcScenario,
+): number {
+  let speed = Math.floor(baseSpeed * stageMultiplier(slot.stages.spe ?? 0))
+
+  if (slot.itemId === 'choice-scarf') speed = Math.floor(speed * 1.5)
+  if (slot.status === 'paralyze') speed = Math.floor(speed * 0.5)
+  if (abilityIs(slot.abilityId, 'quick-feet') && slot.status !== 'healthy') speed = Math.floor(speed * 1.5)
+
+  const weather = scenario.field.weather
+  if (abilityIs(slot.abilityId, 'chlorophyll') && (weather === 'sun' || weather === 'harsh-sunshine')) speed *= 2
+  if (abilityIs(slot.abilityId, 'swift-swim') && (weather === 'rain' || weather === 'heavy-rain')) speed *= 2
+  if (abilityIs(slot.abilityId, 'sand-rush') && weather === 'sand') speed *= 2
+  if (abilityIs(slot.abilityId, 'slush-rush') && weather === 'snow') speed *= 2
+  if (abilityIs(slot.abilityId, 'surge-surfer') && scenario.field.terrain === 'electric') speed *= 2
+
+  const hasTailwind =
+    side === 'A'
+      ? Boolean(scenario.field.advancedFlags.tailwindA)
+      : Boolean(scenario.field.advancedFlags.tailwindB)
+  if (hasTailwind) speed *= 2
+
+  return Math.max(1, speed)
+}
+
+function combatContextFor(slot: DamageSlotSet): DamageCombatContext {
+  return slot.combatContext ?? defaultCombatContext()
+}
+
+function resolveMoveOrderHint(
+  attacker: DamageSlotSet,
+  defender: DamageSlotSet,
+  move: MoveEntry,
+  attackerSide: DamageSideId,
+  attackerStats: ReturnType<typeof calculateBattleStats>,
+  defenderStats: ReturnType<typeof calculateBattleStats>,
+  scenario: DamageCalcScenario,
+): DamageMoveOrderHint {
+  const hint = combatContextFor(attacker).moveOrderHint
+  if (hint !== 'auto') return hint
+
+  if ((move.priority ?? 0) > 0) return 'before-target'
+  if ((move.priority ?? 0) < 0) return 'after-target'
+
+  const attackerSpeed = effectiveSpeed(attacker, attackerStats.spe, attackerSide, scenario)
+  const defenderSpeed = effectiveSpeed(
+    defender,
+    defenderStats.spe,
+    attackerSide === 'A' ? 'B' : 'A',
+    scenario,
+  )
+
+  const trickRoom = Boolean(scenario.field.advancedFlags.trickRoom)
+  if (attackerSpeed === defenderSpeed) return 'auto'
+  if (trickRoom) return attackerSpeed < defenderSpeed ? 'before-target' : 'after-target'
+  return attackerSpeed > defenderSpeed ? 'before-target' : 'after-target'
+}
+
+function weightKgForPokemon(pokemon?: PokemonEntry): number {
+  return pokemon?.weightKg && Number.isFinite(pokemon.weightKg) ? pokemon.weightKg : 0
+}
+
+function lowKickPower(targetWeightKg: number): number {
+  if (targetWeightKg < 10) return 20
+  if (targetWeightKg < 25) return 40
+  if (targetWeightKg < 50) return 60
+  if (targetWeightKg < 100) return 80
+  if (targetWeightKg < 200) return 100
+  return 120
+}
+
+function weightRatioPower(attackerWeightKg: number, defenderWeightKg: number): number {
+  if (attackerWeightKg <= 0 || defenderWeightKg <= 0) return 40
+  const ratio = attackerWeightKg / Math.max(0.1, defenderWeightKg)
+  if (ratio >= 5) return 120
+  if (ratio >= 4) return 100
+  if (ratio >= 3) return 80
+  if (ratio >= 2) return 60
+  return 40
 }
 
 function computeMoveDamage(
@@ -271,7 +721,7 @@ function computeMoveDamage(
       rolls: Array.from({ length: 16 }, () => 0),
       minPercent: 0,
       maxPercent: 0,
-      koText: 'Status move',
+      koText: 'statusMove',
       moveId: move.id,
       moveName: move.name,
     }
@@ -293,15 +743,22 @@ function computeMoveDamage(
   )
 
   const critical = Boolean(options.forceCritical)
-  const attackStage =
-    move.category === 'physical' ? attacker.stages.atk ?? 0 : attacker.stages.spa ?? 0
-  const defenseStage =
-    move.category === 'physical' ? defender.stages.def ?? 0 : defender.stages.spd ?? 0
+  const statProfile = resolveDamageStatProfile(
+    move,
+    attackerStats,
+    defenderStats,
+    attacker,
+    defender,
+    scenario,
+  )
 
   const attackerBaseTypes = attackerDex.types.length > 0 ? attackerDex.types : ['normal']
   const defenderBaseTypes = defenderDex.types.length > 0 ? defenderDex.types : ['normal']
   const defenderTypes = finalDefenderTypes(defenderBaseTypes, defender)
-  const typeMult = moveTypeEffectiveness(move.type, defenderTypes)
+  const attackerCurrentHp = calcCurrentHp(attackerStats.hp, attacker.currentHpPercent)
+  const defenderCurrentHp = calcCurrentHp(defenderStats.hp, defender.currentHpPercent)
+  const resolvedMoveType = effectiveMoveType(move, scenario.field.weather, scenario.field.terrain)
+  const typeMult = moveTypeEffectiveness(resolvedMoveType, defenderTypes)
   if (typeMult === 0) {
     return {
       min: 0,
@@ -309,23 +766,28 @@ function computeMoveDamage(
       rolls: Array.from({ length: 16 }, () => 0),
       minPercent: 0,
       maxPercent: 0,
-      koText: 'No effect',
+      koText: 'noEffect',
       moveId: move.id,
       moveName: move.name,
     }
   }
 
   const magicRoomActive = scenario.field.globalFlags.magicRoom
-  let atkValue = move.category === 'physical' ? attackerStats.atk : attackerStats.spa
-  let defValue = move.category === 'physical' ? defenderStats.def : defenderStats.spd
+  const offenseOwnerStats = statProfile.offenseOwner === 'attacker' ? attackerStats : defenderStats
+  const offenseOwnerStages = statProfile.offenseOwner === 'attacker' ? attacker.stages : defender.stages
+  const attackStage = offenseOwnerStages[statProfile.offenseStage] ?? 0
+  const defenseStage = statProfile.defenseClass === 'physical' ? defender.stages.def ?? 0 : defender.stages.spd ?? 0
+
+  let atkValue = offenseOwnerStats[statProfile.offenseStat]
+  let defValue = statProfile.defenseClass === 'physical' ? defenderStats.def : defenderStats.spd
   if (scenario.field.globalFlags.wonderRoom) {
-    defValue = move.category === 'physical' ? defenderStats.spd : defenderStats.def
+    defValue = statProfile.defenseClass === 'physical' ? defenderStats.spd : defenderStats.def
   }
 
   atkValue = Math.floor(atkValue * stageMultiplier(attackStage))
   defValue = Math.floor(defValue * stageMultiplier(defenseStage))
-  atkValue = Math.floor(atkValue * abilityAttackStatMultiplier(attacker.abilityId, move, attacker.status))
-  atkValue = Math.floor(atkValue * (magicRoomActive ? 1 : applyAttackItemMultiplier(attacker.itemId, move)))
+  atkValue = Math.floor(atkValue * abilityAttackStatMultiplier(attacker.abilityId, statProfile, attacker.status))
+  atkValue = Math.floor(atkValue * (magicRoomActive ? 1 : applyAttackItemMultiplier(attacker.itemId, move, statProfile)))
   if (isSpecialMove(move) && scenario.field.weather === 'sand' && isRockType(defenderTypes.filter(Boolean) as string[])) {
     defValue = Math.floor(defValue * 1.5)
   }
@@ -335,14 +797,31 @@ function computeMoveDamage(
   defValue = Math.floor(defValue * (magicRoomActive ? 1 : applyDefenseItemMultiplier(defender.itemId, move)))
 
   const level = clamp(attacker.level, 1, 100)
-  const power = moveEffectivePower(move)
+  const power = moveEffectivePower({
+    move,
+    attackerDex,
+    defenderDex,
+    attacker,
+    defender,
+    attackerSide,
+    attackerStats,
+    defenderStats,
+    attackerCurrentHp,
+    attackerMaxHp: attackerStats.hp,
+    defenderCurrentHp,
+    defenderMaxHp: defenderStats.hp,
+    weather: scenario.field.weather,
+    terrain: scenario.field.terrain,
+    scenario,
+    resolver,
+  })
   const raw = Math.floor(Math.floor(((Math.floor((2 * level) / 5) + 2) * power * Math.max(1, atkValue)) / Math.max(1, defValue)) / 50) + 2
 
   let modifier = 1
-  modifier *= weatherMultiplier(scenario.field.weather, move)
-  modifier *= terrainMultiplier(scenario.field.terrain, move, rules.terrainOffenseMultiplier)
+  modifier *= weatherMultiplier(scenario.field.weather, resolvedMoveType)
+  modifier *= terrainMultiplier(scenario.field.terrain, resolvedMoveType, rules.terrainOffenseMultiplier)
   modifier *= typeMult
-  modifier *= stabMultiplier(move, attackerBaseTypes, attacker)
+  modifier *= stabMultiplier({ ...move, type: resolvedMoveType }, attackerBaseTypes, attacker)
   modifier *= friendlyModifier(attacker.itemId, move)
   modifier *= abilityDamageMultiplierOnAttack(attacker.abilityId, move)
 
@@ -362,7 +841,6 @@ function computeMoveDamage(
   if (attacker.status === 'burn' && isPhysicalMove(move) && !abilityIs(attacker.abilityId, 'guts')) {
     modifier *= rules.burnPhysicalMultiplier
   }
-  if (attacker.status !== 'healthy' && move.id === 'facade') modifier *= 2
   modifier *= statusActionMultiplier(scenario, attacker, move)
 
   const assumeSpreadHitsMultipleTargets =
@@ -380,7 +858,6 @@ function computeMoveDamage(
   if (attackerField.battery && isSpecialMove(move)) modifier *= 1.3
   if (defenderField.friendGuard) modifier *= 0.75
 
-  const defenderCurrentHp = calcCurrentHp(defenderStats.hp, defender.currentHpPercent)
   const defenderAtFullHp = defender.currentHpPercent >= 100
   modifier *= defenderAbilityModifier(defender.abilityId, move, typeMult, defenderAtFullHp)
 
@@ -408,7 +885,8 @@ function computeMoveDamage(
     rolls,
     minPercent,
     maxPercent,
-    koText: residualDamage > 0 ? `${baseKoText} (estimated with residual: ${residualKoText})` : baseKoText,
+    koText: baseKoText,
+    koResidualText: residualDamage > 0 ? residualKoText : undefined,
     moveId: move.id,
     moveName: move.name,
   }
@@ -483,7 +961,8 @@ export function computeMatrixDamage(
         bestMoveName: best?.moveName ?? '-',
         minPercent: best?.minPercent ?? 0,
         maxPercent: best?.maxPercent ?? 0,
-        koText: best?.koText ?? 'No move',
+        koText: best?.koText ?? 'noMove',
+        koResidualText: best?.koResidualText,
       })
     }
   }

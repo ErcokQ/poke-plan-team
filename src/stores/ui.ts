@@ -1,7 +1,8 @@
 import { computed } from 'vue'
 import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
-import type { BattleMode, LocaleCode, MobileTab } from '@/models/domain'
+import type { BattleMode, LocaleCode, MobileTab, PokemonTypeKey } from '@/models/domain'
+import type { DexAvailabilityFilterKey } from '@/models/dex'
 
 interface UiPreferences {
   locale: LocaleCode
@@ -9,6 +10,9 @@ interface UiPreferences {
   selectedTeamByMode: Record<BattleMode, string>
   selectedSlotByMode: Record<BattleMode, 1 | 2 | 3 | 4 | 5 | 6>
   selectedMoveIndexByMode: Record<BattleMode, 0 | 1 | 2 | 3>
+  dexGenerationByMode: Record<BattleMode, number>
+  dexTypeFilterByMode: Record<BattleMode, PokemonTypeKey | ''>
+  dexAvailabilityFilterByMode: Record<BattleMode, 'all' | DexAvailabilityFilterKey>
 }
 
 export const useUiStore = defineStore('ui', () => {
@@ -27,11 +31,23 @@ export const useUiStore = defineStore('ui', () => {
       vgc: 0,
       singles: 0,
     },
+    dexGenerationByMode: {
+      vgc: 1,
+      singles: 1,
+    },
+    dexTypeFilterByMode: {
+      vgc: '',
+      singles: '',
+    },
+    dexAvailabilityFilterByMode: {
+      vgc: 'all',
+      singles: 'all',
+    },
   }
 
   const preferences = useStorage<UiPreferences>('pokeplan.v1.preferences', defaults)
   const favoritePokemonIds = useStorage<string[]>('pokeplan.v1.favorites', [])
-  const builderCatalogSource = useStorage<'pokemon' | 'moves' | 'items'>(
+  const builderCatalogSource = useStorage<'pokemon' | 'moves' | 'items' | 'threats'>(
     'pokeplan.v1.builderCatalogSource',
     'moves',
   )
@@ -51,6 +67,9 @@ export const useUiStore = defineStore('ui', () => {
       selectedTeamByMode?: Partial<Record<BattleMode, string>>
       selectedSlotByMode?: Partial<Record<BattleMode, number>>
       selectedMoveIndexByMode?: Partial<Record<BattleMode, number>>
+      dexGenerationByMode?: Partial<Record<BattleMode, number>>
+      dexTypeFilterByMode?: Partial<Record<BattleMode, string>>
+      dexAvailabilityFilterByMode?: Partial<Record<BattleMode, string>>
     }
 
     preferences.value = {
@@ -70,6 +89,18 @@ export const useUiStore = defineStore('ui', () => {
       selectedMoveIndexByMode: {
         vgc: toValidMoveIndex(current.selectedMoveIndexByMode?.vgc),
         singles: toValidMoveIndex(current.selectedMoveIndexByMode?.singles),
+      },
+      dexGenerationByMode: {
+        vgc: toValidDexGeneration(current.dexGenerationByMode?.vgc),
+        singles: toValidDexGeneration(current.dexGenerationByMode?.singles),
+      },
+      dexTypeFilterByMode: {
+        vgc: toValidDexTypeFilter(current.dexTypeFilterByMode?.vgc),
+        singles: toValidDexTypeFilter(current.dexTypeFilterByMode?.singles),
+      },
+      dexAvailabilityFilterByMode: {
+        vgc: toValidDexAvailabilityFilter(current.dexAvailabilityFilterByMode?.vgc),
+        singles: toValidDexAvailabilityFilter(current.dexAvailabilityFilterByMode?.singles),
       },
     }
 
@@ -121,6 +152,31 @@ export const useUiStore = defineStore('ui', () => {
     return preferences.value.selectedMoveIndexByMode[mode]
   }
 
+  function setDexGeneration(mode: BattleMode, generation: number) {
+    preferences.value.dexGenerationByMode[mode] = toValidDexGeneration(generation)
+  }
+
+  function getDexGeneration(mode: BattleMode): number {
+    return toValidDexGeneration(preferences.value.dexGenerationByMode[mode])
+  }
+
+  function setDexTypeFilter(mode: BattleMode, filter: PokemonTypeKey | null) {
+    preferences.value.dexTypeFilterByMode[mode] = filter ?? ''
+  }
+
+  function getDexTypeFilter(mode: BattleMode): PokemonTypeKey | null {
+    const value = preferences.value.dexTypeFilterByMode[mode]
+    return value ? value : null
+  }
+
+  function setDexAvailabilityFilter(mode: BattleMode, filter: 'all' | DexAvailabilityFilterKey) {
+    preferences.value.dexAvailabilityFilterByMode[mode] = toValidDexAvailabilityFilter(filter)
+  }
+
+  function getDexAvailabilityFilter(mode: BattleMode): 'all' | DexAvailabilityFilterKey {
+    return toValidDexAvailabilityFilter(preferences.value.dexAvailabilityFilterByMode[mode])
+  }
+
   function getFavoritePokemonIds(): string[] {
     return favoritePokemonIds.value
   }
@@ -138,7 +194,7 @@ export const useUiStore = defineStore('ui', () => {
     favoritePokemonIds.value = [...favoritePokemonIds.value, pokemonId]
   }
 
-  function setBuilderCatalogSource(source: 'pokemon' | 'moves' | 'items') {
+  function setBuilderCatalogSource(source: 'pokemon' | 'moves' | 'items' | 'threats') {
     builderCatalogSource.value = source
   }
 
@@ -157,6 +213,12 @@ export const useUiStore = defineStore('ui', () => {
     getSelectedSlot,
     setSelectedMoveIndex,
     getSelectedMoveIndex,
+    setDexGeneration,
+    getDexGeneration,
+    setDexTypeFilter,
+    getDexTypeFilter,
+    setDexAvailabilityFilter,
+    getDexAvailabilityFilter,
     getFavoritePokemonIds,
     isFavoritePokemon,
     toggleFavoritePokemon,
@@ -164,3 +226,41 @@ export const useUiStore = defineStore('ui', () => {
     setBuilderCatalogSource,
   }
 })
+
+function toValidDexGeneration(value: unknown): number {
+  return typeof value === 'number' && value >= 1 && value <= 9 ? Math.trunc(value) : 1
+}
+
+function toValidDexTypeFilter(value: unknown): PokemonTypeKey | '' {
+  const validTypes = new Set<PokemonTypeKey>([
+    'normal',
+    'fire',
+    'water',
+    'electric',
+    'grass',
+    'ice',
+    'fighting',
+    'poison',
+    'ground',
+    'flying',
+    'psychic',
+    'bug',
+    'rock',
+    'ghost',
+    'dragon',
+    'dark',
+    'steel',
+    'fairy',
+  ])
+
+  return typeof value === 'string' && validTypes.has(value as PokemonTypeKey) ? (value as PokemonTypeKey) : ''
+}
+
+function toValidDexAvailabilityFilter(value: unknown): 'all' | DexAvailabilityFilterKey {
+  return value === 'scarlet-violet' ||
+    value === 'sword-shield' ||
+    value === 'pokemon-champions' ||
+    value === 'all'
+    ? value
+    : 'all'
+}

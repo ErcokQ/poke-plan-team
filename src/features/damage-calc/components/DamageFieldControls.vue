@@ -85,6 +85,11 @@ const protectLeadSlotsA = computed(() =>
 const protectLeadSlotsB = computed(() =>
   props.isVgc ? (props.scenario.sideB.activeSlotIds.slice(0, 2) as DamageSlotNumber[]) : [],
 )
+
+function sideFlagValue(side: DamageSideId, key: SideBooleanFlagKey): boolean | number {
+  const sideField = side === 'A' ? props.scenario.field.sideA : props.scenario.field.sideB
+  return sideField[key]
+}
 </script>
 
 <template>
@@ -179,7 +184,7 @@ const protectLeadSlotsB = computed(() =>
             <input
               class="accent-sky-400"
               type="checkbox"
-              :checked="Boolean(props.scenario.field.sideA[flag.key])"
+              :checked="Boolean(sideFlagValue('A', flag.key))"
               @change="emit('update-side-flag', { side: 'A', key: flag.key, value: ($event.target as HTMLInputElement).checked })"
             />
             {{ flag.label }}
@@ -261,7 +266,7 @@ const protectLeadSlotsB = computed(() =>
             <input
               class="accent-sky-400"
               type="checkbox"
-              :checked="Boolean(props.scenario.field.sideB[flag.key])"
+              :checked="Boolean(sideFlagValue('B', flag.key))"
               @change="emit('update-side-flag', { side: 'B', key: flag.key, value: ($event.target as HTMLInputElement).checked })"
             />
             {{ flag.label }}

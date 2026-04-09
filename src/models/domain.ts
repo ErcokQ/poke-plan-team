@@ -28,6 +28,8 @@ export interface PokemonEntry {
   learnsetMoves?: string[]
   defaultNature: string
   baseStats: StatBlock
+  heightMeters?: number
+  weightKg?: number
   roleTags: TeamRole[]
 }
 

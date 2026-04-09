@@ -2,9 +2,11 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { DamageMatrixCell, DamageSelectedPair, DamageSideId, DamageSlotNumber } from '@/models/damage-calc'
+import { onPokemonSpriteError } from '@/utils/pokemon-sprite'
 
 interface MatrixEntry {
   slot: DamageSlotNumber
+  pokemonId: string
   name: string
   sprite: string
 }
@@ -26,6 +28,10 @@ const { t } = useI18n()
 
 function findCell(attackerSlot: DamageSlotNumber, defenderSlot: DamageSlotNumber): DamageMatrixCell | undefined {
   return cellIndex.value.get(`${attackerSlot}-${defenderSlot}`)
+}
+
+function onSpriteError(event: Event) {
+  onPokemonSpriteError(event)
 }
 
 function cellClass(cell: DamageMatrixCell | undefined): string {
@@ -53,6 +59,18 @@ function isSelected(attackerSlot: DamageSlotNumber, defenderSlot: DamageSlotNumb
   )
 }
 
+function formatKoText(cell: DamageMatrixCell | undefined): string {
+  if (!cell) return '-'
+
+  const baseText = t(`damageCalc.ko.${cell.koText}`)
+  if (!cell.koResidualText) return baseText
+
+  return t('damageCalc.ko.withResidual', {
+    base: baseText,
+    residual: t(`damageCalc.ko.${cell.koResidualText}`),
+  })
+}
+
 const orderedAttackerEntries = computed(() => props.attackerEntries)
 const orderedDefenderEntries = computed(() => props.defenderEntries)
 const cellIndex = computed(() => {
@@ -76,7 +94,14 @@ const cellIndex = computed(() => {
             class="px-2 py-1 text-center font-semibold text-sky-200"
           >
             <div class="flex min-w-[120px] items-center justify-center gap-2">
-              <img :src="defender.sprite" :alt="defender.name" class="h-5 w-5 rounded bg-black/20 object-contain" />
+              <img
+                :src="defender.sprite"
+                :alt="defender.name"
+                :data-sprite-id="defender.pokemonId"
+                :data-sprite-fallback-index="0"
+                class="h-5 w-5 rounded bg-black/20 object-contain"
+                @error="onSpriteError"
+              />
               <span class="truncate text-xs">{{ defender.name }}</span>
             </div>
           </th>
@@ -86,7 +111,14 @@ const cellIndex = computed(() => {
         <tr v-for="attacker in orderedAttackerEntries" :key="`atk-row-${attacker.slot}`">
           <th class="px-2 py-1 text-left font-semibold text-cyan-200">
             <div class="flex min-w-[120px] items-center gap-2">
-              <img :src="attacker.sprite" :alt="attacker.name" class="h-5 w-5 rounded bg-black/20 object-contain" />
+              <img
+                :src="attacker.sprite"
+                :alt="attacker.name"
+                :data-sprite-id="attacker.pokemonId"
+                :data-sprite-fallback-index="0"
+                class="h-5 w-5 rounded bg-black/20 object-contain"
+                @error="onSpriteError"
+              />
               <span class="truncate text-xs">{{ attacker.name }}</span>
             </div>
           </th>
@@ -106,12 +138,19 @@ const cellIndex = computed(() => {
               @click="emit('select-pair', { attackerSlot: attacker.slot, defenderSlot: defender.slot })"
             >
               <template v-if="findCell(attacker.slot, defender.slot) && !isFilteredOut(findCell(attacker.slot, defender.slot))">
-                <span class="font-semibold">{{ findCell(attacker.slot, defender.slot)?.maxPercent.toFixed(1) ?? '0.0' }}%</span>
+                <span class="font-semibold">
+                  {{
+                    t('damageCalc.matrixDamageRange', {
+                      min: findCell(attacker.slot, defender.slot)?.minPercent.toFixed(1) ?? '0.0',
+                      max: findCell(attacker.slot, defender.slot)?.maxPercent.toFixed(1) ?? '0.0',
+                    })
+                  }}
+                </span>
                 <span class="text-[10px] opacity-80">
                   {{ findCell(attacker.slot, defender.slot)?.bestMoveName ?? '-' }}
                 </span>
                 <span class="text-[10px] opacity-70">
-                  {{ findCell(attacker.slot, defender.slot)?.koText ?? '-' }}
+                  {{ formatKoText(findCell(attacker.slot, defender.slot)) }}
                 </span>
               </template>
               <template v-else-if="isFilteredOut(findCell(attacker.slot, defender.slot))">

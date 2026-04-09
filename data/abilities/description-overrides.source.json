@@ -1,0 +1,635 @@
+{
+  "version": 1,
+  "abilities": [
+    {
+      "id": "overgrow",
+      "shortEffectEs": "Potencia los movimientos de tipo Planta cuando los PS bajan a 1/3 o menos.",
+      "effectEs": "Cuando este Pokemon tiene 1/3 o menos de sus PS maximos, sus movimientos de tipo Planta infligen 1.5 veces su dano habitual."
+    },
+    {
+      "id": "chlorophyll",
+      "shortEffectEs": "Duplica la Velocidad bajo sol intenso.",
+      "effectEs": "La Velocidad de este Pokemon se duplica mientras haya sol intenso. Este bonus no cuenta como modificador de estadisticas."
+    },
+    {
+      "id": "water-absorb",
+      "shortEffectEs": "Absorbe movimientos de tipo Agua y recupera 1/4 de los PS maximos.",
+      "effectEs": "Si recibe un movimiento de tipo Agua, no sufre dano y recupera 1/4 de sus PS maximos."
+    },
+    {
+      "id": "volt-absorb",
+      "shortEffectEs": "Absorbe movimientos de tipo Electrico y recupera 1/4 de los PS maximos.",
+      "effectEs": "Si recibe un movimiento de tipo Electrico, no sufre dano y recupera 1/4 de sus PS maximos."
+    },
+    {
+      "id": "flash-fire",
+      "shortEffectEs": "Da inmunidad al tipo Fuego y potencia sus movimientos de ese tipo tras activarse.",
+      "effectEs": "Si recibe un movimiento de tipo Fuego, no sufre dano. Despues, sus movimientos de tipo Fuego infligen 1.5 veces su dano habitual hasta que abandona el combate."
+    },
+    {
+      "id": "cloud-nine",
+      "shortEffectEs": "Anula los efectos del clima mientras este en combate.",
+      "effectEs": "Anula todos los efectos del clima activo, aunque no cambia el propio clima."
+    },
+    {
+      "id": "air-lock",
+      "shortEffectEs": "Anula los efectos del clima mientras este en combate.",
+      "effectEs": "Anula todos los efectos del clima activo, aunque no cambia el propio clima."
+    },
+    {
+      "id": "adaptability",
+      "shortEffectEs": "Aumenta el bonus de STAB de 1.5x a 2x.",
+      "effectEs": "Los movimientos del mismo tipo que el usuario pasan de recibir un bonus de dano de 1.5x a 2x."
+    },
+    {
+      "id": "super-luck",
+      "shortEffectEs": "Aumenta un nivel la probabilidad de golpe critico de sus movimientos.",
+      "effectEs": "Los movimientos del usuario tienen una probabilidad de golpe critico aumentada en un nivel."
+    },
+    {
+      "id": "guts",
+      "shortEffectEs": "Aumenta el Ataque 1.5x si sufre un problema de estado.",
+      "effectEs": "Si el usuario sufre un problema de estado importante, su Ataque se multiplica por 1.5."
+    },
+    {
+      "id": "huge-power",
+      "shortEffectEs": "Duplica el Ataque del usuario.",
+      "effectEs": "El Ataque del usuario se multiplica por 2."
+    },
+    {
+      "id": "swift-swim",
+      "shortEffectEs": "Duplica la Velocidad bajo lluvia.",
+      "effectEs": "La Velocidad del usuario se duplica mientras llueve."
+    },
+    {
+      "id": "intimidate",
+      "shortEffectEs": "Al entrar en combate, baja un nivel el Ataque de los rivales adyacentes.",
+      "effectEs": "Cuando entra en combate, intimida a los rivales adyacentes y reduce su Ataque en un nivel."
+    },
+    {
+      "id": "levitate",
+      "shortEffectEs": "Da inmunidad a los movimientos de tipo Tierra.",
+      "effectEs": "El usuario es inmune a los movimientos de tipo Tierra gracias a que levita."
+    },
+    {
+      "id": "pressure",
+      "shortEffectEs": "Hace que el rival gaste mas PP al usar movimientos contra el usuario.",
+      "effectEs": "Los movimientos usados contra el usuario consumen 1 PP adicional."
+    },
+    {
+      "id": "magic-bounce",
+      "shortEffectEs": "Refleja movimientos de estado y otros efectos dirigidos al usuario.",
+      "effectEs": "Devuelve al rival la mayoria de movimientos de estado y efectos indirectos dirigidos al usuario."
+    },
+    {
+      "id": "trace",
+      "shortEffectEs": "Copia la habilidad de un rival al entrar en combate.",
+      "effectEs": "Al entrar en combate, copia la habilidad de uno de los rivales."
+    },
+    {
+      "id": "multiscale",
+      "shortEffectEs": "Reduce a la mitad el dano recibido con los PS al maximo.",
+      "effectEs": "Si el usuario tiene todos sus PS, el dano de los ataques que reciba se reduce a la mitad."
+    },
+    {
+      "id": "steelworker",
+      "shortEffectEs": "Potencia 1.5x los movimientos de tipo Acero.",
+      "effectEs": "Los movimientos de tipo Acero del usuario infligen 1.5 veces su dano habitual."
+    },
+    {
+      "id": "stalwart",
+      "shortEffectEs": "Ignora efectos que redirigen movimientos o atraen objetivos.",
+      "effectEs": "Los movimientos del usuario ignoran habilidades o efectos que atraen o redirigen ataques."
+    },
+    {
+      "id": "gale-wings",
+      "shortEffectEs": "Los movimientos de tipo Volador ganan +1 de prioridad con los PS al maximo.",
+      "effectEs": "Mientras el usuario tenga todos sus PS, sus movimientos de tipo Volador obtienen +1 de prioridad."
+    },
+    {
+      "id": "forewarn",
+      "shortEffectEs": "Revela el movimiento mas potente del rival al entrar en combate.",
+      "effectEs": "Al entrar en combate, identifica el movimiento de mayor potencia del rival."
+    },
+    {
+      "id": "parental-bond",
+      "shortEffectEs": "Los movimientos de dano golpean dos veces; el segundo golpe es mas debil.",
+      "effectEs": "Los movimientos que infligen dano golpean dos veces. El segundo impacto tiene menor potencia."
+    },
+    {
+      "id": "bulletproof",
+      "shortEffectEs": "Da inmunidad a movimientos de bala, bola y bomba.",
+      "effectEs": "El usuario es inmune a movimientos clasificados como proyectiles, balas, bolas o bombas."
+    },
+    {
+      "id": "poison-heal",
+      "shortEffectEs": "Si esta envenenado, recupera 1/8 de los PS maximos cada turno en lugar de perder PS.",
+      "effectEs": "Cuando esta envenenado, el usuario se cura 1/8 de sus PS maximos al final de cada turno en vez de recibir dano."
+    },
+    {
+      "id": "weak-armor",
+      "shortEffectEs": "Al recibir un movimiento fisico, baja Defensa y sube Velocidad.",
+      "effectEs": "Si recibe un movimiento fisico, su Defensa baja un nivel y su Velocidad sube dos niveles."
+    },
+    {
+      "id": "prism-armor",
+      "shortEffectEs": "Reduce el dano de los movimientos supereficaces.",
+      "effectEs": "El dano recibido por movimientos supereficaces se reduce a 0.75x."
+    },
+    {
+      "id": "reckless",
+      "shortEffectEs": "Potencia 1.2x los movimientos que causan recoil o dano de retroceso.",
+      "effectEs": "Los movimientos con recoil o dano de retroceso del usuario infligen 1.2 veces su dano habitual."
+    },
+    {
+      "id": "fairy-aura",
+      "shortEffectEs": "Potencia 1.33x los movimientos de tipo Hada de todos los Pokemon en combate.",
+      "effectEs": "Los movimientos de tipo Hada de aliados y rivales infligen 1.33 veces su dano habitual."
+    },
+    {
+      "id": "dark-aura",
+      "shortEffectEs": "Potencia 1.33x los movimientos de tipo Siniestro de todos los Pokemon en combate.",
+      "effectEs": "Los movimientos de tipo Siniestro de aliados y rivales infligen 1.33 veces su dano habitual."
+    },
+    {
+      "id": "truant",
+      "shortEffectEs": "El usuario se salta un turno de cada dos.",
+      "effectEs": "Despues de usar un movimiento, el usuario debera holgazanear en el siguiente turno."
+    },
+    {
+      "id": "moxie",
+      "shortEffectEs": "Sube un nivel el Ataque tras debilitar a un Pokemon rival.",
+      "effectEs": "Cada vez que el usuario debilita a un Pokemon, su Ataque aumenta un nivel."
+    },
+    {
+      "id": "prankster",
+      "shortEffectEs": "Da +1 de prioridad a los movimientos de estado.",
+      "effectEs": "Los movimientos de estado del usuario obtienen +1 de prioridad."
+    },
+    {
+      "id": "rock-head",
+      "shortEffectEs": "Evita el dano por recoil.",
+      "effectEs": "El usuario no recibe dano por recoil de sus propios movimientos."
+    },
+    {
+      "id": "toxic-chain",
+      "shortEffectEs": "Puede envenenar gravemente al objetivo al golpear con un movimiento.",
+      "effectEs": "Al infligir dano con un movimiento, puede causar envenenamiento grave al objetivo."
+    },
+    {
+      "id": "analytic",
+      "shortEffectEs": "Potencia 1.3x los movimientos si el usuario actua despues del objetivo.",
+      "effectEs": "Los movimientos del usuario infligen 1.3 veces su dano habitual cuando actua despues del objetivo."
+    },
+    {
+      "id": "clear-body",
+      "shortEffectEs": "Evita que otros Pokemon reduzcan sus estadisticas.",
+      "effectEs": "Los movimientos y habilidades de otros Pokemon no pueden reducir las estadisticas del usuario."
+    },
+    {
+      "id": "natural-cure",
+      "shortEffectEs": "Cura los problemas de estado al retirarse del combate.",
+      "effectEs": "Cuando abandona el combate, el usuario se cura de sus problemas de estado."
+    },
+    {
+      "id": "lightning-rod",
+      "shortEffectEs": "Atrae movimientos de tipo Electrico, les da inmunidad y sube el Ataque Especial.",
+      "effectEs": "Los movimientos de tipo Electrico dirigidos al usuario no le hacen dano. En su lugar, su Ataque Especial aumenta un nivel."
+    },
+    {
+      "id": "serene-grace",
+      "shortEffectEs": "Aumenta la probabilidad de efectos secundarios de sus movimientos.",
+      "effectEs": "La probabilidad de que sus movimientos causen efectos secundarios se duplica."
+    },
+    {
+      "id": "blaze",
+      "shortEffectEs": "Potencia los movimientos de tipo Fuego cuando le quedan pocos PS.",
+      "effectEs": "Cuando este Pokemon tiene 1/3 o menos de sus PS maximos, sus movimientos de tipo Fuego infligen 1.5 veces su dano habitual."
+    },
+    {
+      "id": "torrent",
+      "shortEffectEs": "Potencia los movimientos de tipo Agua cuando le quedan pocos PS.",
+      "effectEs": "Cuando este Pokemon tiene 1/3 o menos de sus PS maximos, sus movimientos de tipo Agua infligen 1.5 veces su dano habitual."
+    },
+    {
+      "id": "swarm",
+      "shortEffectEs": "Potencia los movimientos de tipo Bicho cuando le quedan pocos PS.",
+      "effectEs": "Cuando este Pokemon tiene 1/3 o menos de sus PS maximos, sus movimientos de tipo Bicho infligen 1.5 veces su dano habitual."
+    },
+    {
+      "id": "drought",
+      "shortEffectEs": "Activa sol al entrar en combate.",
+      "effectEs": "Al entrar en combate, el clima pasa a ser soleado."
+    },
+    {
+      "id": "sheer-force",
+      "shortEffectEs": "Potencia movimientos con efectos secundarios, pero los anula.",
+      "effectEs": "Los movimientos con efectos secundarios del usuario infligen mas dano, pero esos efectos secundarios dejan de aplicarse."
+    },
+    {
+      "id": "contrary",
+      "shortEffectEs": "Invierte las subidas y bajadas de estadisticas.",
+      "effectEs": "Todos los cambios de estadisticas se invierten: las subidas pasan a ser bajadas y viceversa."
+    },
+    {
+      "id": "unnerve",
+      "shortEffectEs": "Impide que los rivales consuman Bayas.",
+      "effectEs": "Los rivales no pueden comer Bayas mientras el usuario este en combate."
+    },
+    {
+      "id": "defiant",
+      "shortEffectEs": "Sube mucho el Ataque si un rival le baja cualquier estadistica.",
+      "effectEs": "Si un rival reduce cualquiera de sus estadisticas, el Ataque del usuario aumenta mucho."
+    },
+    {
+      "id": "aura-break",
+      "shortEffectEs": "Invierte los efectos de las auras y reduce la potencia de esos movimientos.",
+      "effectEs": "Las habilidades de aura se invierten, asi que reducen la potencia de los movimientos afectados en vez de aumentarla."
+    },
+    {
+      "id": "stamina",
+      "shortEffectEs": "Aumenta la Defensa al recibir un ataque.",
+      "effectEs": "Cada vez que recibe un ataque, la Defensa del usuario aumenta un nivel."
+    },
+    {
+      "id": "emergency-exit",
+      "shortEffectEs": "Se retira del combate cuando sus PS bajan a la mitad o menos.",
+      "effectEs": "Si sus PS se reducen a la mitad o menos, el usuario abandona el combate para evitar males mayores."
+    },
+    {
+      "id": "merciless",
+      "shortEffectEs": "Siempre asesta golpes criticos a objetivos envenenados.",
+      "effectEs": "Los movimientos del usuario siempre son golpes criticos si el objetivo esta envenenado."
+    },
+    {
+      "id": "stakeout",
+      "shortEffectEs": "Duplica el dano si golpea a un Pokemon que acaba de entrar.",
+      "effectEs": "Si el objetivo entra ese mismo turno o sustituye a otro Pokemon, el dano del movimiento se duplica."
+    },
+    {
+      "id": "purifying-salt",
+      "shortEffectEs": "Protege de problemas de estado y reduce el dano de tipo Fantasma.",
+      "effectEs": "La sal pura del usuario lo protege de los problemas de estado y reduce a la mitad el dano que recibe de movimientos de tipo Fantasma."
+    },
+    {
+      "id": "well-baked-body",
+      "shortEffectEs": "Da inmunidad al tipo Fuego y sube mucho la Defensa al activarse.",
+      "effectEs": "Si recibe un movimiento de tipo Fuego, no sufre dano y su Defensa aumenta mucho."
+    },
+    {
+      "id": "wind-rider",
+      "shortEffectEs": "Sube el Ataque con Viento Afin o movimientos de viento y da inmunidad a estos ultimos.",
+      "effectEs": "Si hay Viento Afin o el usuario recibe un movimiento basado en viento, su Ataque aumenta. Ademas, no recibe dano de esos movimientos."
+    },
+    {
+      "id": "rocky-payload",
+      "shortEffectEs": "Potencia los movimientos de tipo Roca.",
+      "effectEs": "Los movimientos de tipo Roca del usuario infligen mas dano."
+    },
+    {
+      "id": "zero-to-hero",
+      "shortEffectEs": "Adopta la forma heroica al retirarse del combate.",
+      "effectEs": "Cuando se retira del combate, el usuario cambia a su forma heroica."
+    },
+    {
+      "id": "commander",
+      "shortEffectEs": "Si entra junto a Dondozo aliado, se mete en su boca y lo comanda.",
+      "effectEs": "Si entra en combate junto a un Dondozo aliado, el usuario se introduce en su boca para tomar el control."
+    },
+    {
+      "id": "electromorphosis",
+      "shortEffectEs": "Al recibir dano, potencia su siguiente movimiento de tipo Electrico.",
+      "effectEs": "Cuando recibe dano, su cuerpo se carga de electricidad y su siguiente movimiento de tipo Electrico se potencia."
+    },
+    {
+      "id": "protosynthesis",
+      "shortEffectEs": "Con sol o Energia Potenciadora, aumenta su estadistica mas alta.",
+      "effectEs": "Si hace sol o lleva Energia Potenciadora, la estadistica mas alta del usuario aumenta."
+    },
+    {
+      "id": "beads-of-ruin",
+      "shortEffectEs": "Reduce la Defensa Especial de los Pokemon activos que no tengan esta habilidad.",
+      "effectEs": "Los Pokemon activos que no tengan esta habilidad ven reducida su Defensa Especial a 0.75x."
+    },
+    {
+      "id": "power-construct",
+      "shortEffectEs": "Zygarde cambia a su Forma Completa al final del turno si queda a la mitad de PS o menos.",
+      "effectEs": "Si Zygarde 10% o Zygarde 50% termina el turno con la mitad de sus PS maximos o menos, cambia a su Forma Completa."
+    },
+    {
+      "id": "infiltrator",
+      "shortEffectEs": "Sus movimientos ignoran Sustituto y pantallas del rival.",
+      "effectEs": "Los movimientos del usuario ignoran Sustituto, Reflejo, Pantalla Luz, Velo Aurora, Neblina y Velo Sagrado del rival."
+    },
+    {
+      "id": "steely-spirit",
+      "shortEffectEs": "Potencia los movimientos de tipo Acero del usuario y sus aliados.",
+      "effectEs": "Los movimientos de tipo Acero del usuario y de sus aliados infligen 1.5 veces su dano habitual."
+    },
+    {
+      "id": "healer",
+      "shortEffectEs": "Puede curar el problema de estado de un aliado al final del turno.",
+      "effectEs": "Al final de cada turno, hay un 30% de probabilidad de curar el problema de estado de un aliado adyacente."
+    },
+    {
+      "id": "wandering-spirit",
+      "shortEffectEs": "Intercambia la habilidad con quien le golpee con contacto.",
+      "effectEs": "Si un Pokemon golpea al usuario con un movimiento de contacto, ambos intercambian sus habilidades."
+    },
+    {
+      "id": "screen-cleaner",
+      "shortEffectEs": "Al entrar, elimina Reflejo, Pantalla Luz y Velo Aurora de ambos lados.",
+      "effectEs": "Cuando entra en combate, desaparecen Reflejo, Pantalla Luz y Velo Aurora de ambos lados del campo."
+    },
+    {
+      "id": "anticipation",
+      "shortEffectEs": "Se estremece si el rival tiene un movimiento fulminante o supereficaz.",
+      "effectEs": "Al entrar en combate, el usuario se estremece si algun rival conoce un movimiento fulminante o un movimiento supereficaz contra el."
+    },
+    {
+      "id": "battle-armor",
+      "shortEffectEs": "Evita recibir golpes criticos.",
+      "effectEs": "La armadura del usuario evita que reciba golpes criticos."
+    },
+    {
+      "id": "gooey",
+      "shortEffectEs": "Baja la Velocidad de quien le golpee con contacto.",
+      "effectEs": "Los Pokemon que golpean al usuario con un movimiento de contacto ven reducida su Velocidad en un nivel."
+    },
+    {
+      "id": "battery",
+      "shortEffectEs": "Potencia los movimientos especiales de sus aliados.",
+      "effectEs": "Los movimientos especiales de los aliados del usuario infligen 1.3 veces su dano habitual."
+    },
+    {
+      "id": "frisk",
+      "shortEffectEs": "Revela los objetos de los rivales al entrar en combate.",
+      "effectEs": "Al entrar en combate, el usuario identifica los objetos equipados por todos los rivales."
+    },
+    {
+      "id": "vessel-of-ruin",
+      "shortEffectEs": "Reduce el Ataque Especial de los Pokemon activos que no tengan esta habilidad.",
+      "effectEs": "Los Pokemon activos que no tengan esta habilidad ven reducido su Ataque Especial a 0.75x."
+    },
+    {
+      "id": "color-change",
+      "shortEffectEs": "Cambia su tipo al del movimiento que le golpea.",
+      "effectEs": "Si recibe dano de un movimiento, el tipo del usuario cambia al del movimiento que le golpeo, salvo que ya tenga ese tipo."
+    },
+    {
+      "id": "toxic-debris",
+      "shortEffectEs": "Si recibe un ataque fisico, pone Púas Tóxicas en el lado rival.",
+      "effectEs": "Cuando el usuario recibe un ataque fisico, esparce Púas Tóxicas en el campo del rival."
+    },
+    {
+      "id": "shell-armor",
+      "shortEffectEs": "Evita recibir golpes criticos.",
+      "effectEs": "El caparazon del usuario evita que reciba golpes criticos."
+    },
+    {
+      "id": "sand-stream",
+      "shortEffectEs": "Invoca tormenta de arena al entrar en combate.",
+      "effectEs": "Al entrar en combate, el usuario desata una tormenta de arena."
+    },
+    {
+      "id": "rattled",
+      "shortEffectEs": "Sube la Velocidad si recibe un movimiento Bicho, Fantasma o Siniestro, o si Intimidacion le afecta.",
+      "effectEs": "La Velocidad del usuario aumenta un nivel si recibe un movimiento de tipo Bicho, Fantasma o Siniestro, o si sufre Intimidacion."
+    },
+    {
+      "id": "armor-tail",
+      "shortEffectEs": "Protege al usuario y sus aliados de movimientos con prioridad.",
+      "effectEs": "Los rivales no pueden usar movimientos con prioridad contra el usuario ni sus aliados."
+    },
+    {
+      "id": "surge-surfer",
+      "shortEffectEs": "Duplica la Velocidad en Campo Electrico.",
+      "effectEs": "Mientras haya Campo Electrico, la Velocidad del usuario se duplica."
+    },
+    {
+      "id": "storm-drain",
+      "shortEffectEs": "Atrae movimientos de tipo Agua, da inmunidad y sube el Ataque Especial.",
+      "effectEs": "Los movimientos de tipo Agua dirigidos al usuario no le hacen dano. En su lugar, su Ataque Especial aumenta un nivel."
+    },
+    {
+      "id": "berserk",
+      "shortEffectEs": "Sube el Ataque Especial al quedar a la mitad de PS o menos.",
+      "effectEs": "Si los PS del usuario bajan a la mitad o menos, su Ataque Especial aumenta un nivel."
+    },
+    {
+      "id": "steam-engine",
+      "shortEffectEs": "Sube mucho la Velocidad al recibir un movimiento de Agua o Fuego.",
+      "effectEs": "Si recibe dano de un movimiento de tipo Agua o Fuego, la Velocidad del usuario aumenta mucho."
+    },
+    {
+      "id": "friend-guard",
+      "shortEffectEs": "Reduce el dano que reciben sus aliados.",
+      "effectEs": "Los aliados del usuario reciben solo 3/4 del dano habitual de los ataques rivales."
+    },
+    {
+      "id": "soul-heart",
+      "shortEffectEs": "Sube el Ataque Especial cuando otro Pokemon se debilita.",
+      "effectEs": "Cada vez que otro Pokemon se debilita, el Ataque Especial del usuario aumenta un nivel."
+    },
+    {
+      "id": "anger-shell",
+      "shortEffectEs": "Al bajar a la mitad de PS o menos, sube sus estadisticas ofensivas y Velocidad, pero baja sus defensas.",
+      "effectEs": "Cuando baja a la mitad de sus PS maximos o menos, el usuario gana Ataque, Ataque Especial y Velocidad, pero pierde Defensa y Defensa Especial."
+    },
+    {
+      "id": "mirror-armor",
+      "shortEffectEs": "Devuelve al rival las bajadas de estadisticas que le provoque.",
+      "effectEs": "Si un rival intentara bajar las estadisticas del usuario, esa bajada se refleja sobre el atacante."
+    },
+    {
+      "id": "corrosion",
+      "shortEffectEs": "Puede envenenar incluso a Pokemon de tipo Acero o Veneno.",
+      "effectEs": "Los movimientos del usuario pueden envenenar o envenenar gravemente a Pokemon de tipo Acero o Veneno."
+    },
+    {
+      "id": "sharpness",
+      "shortEffectEs": "Potencia los movimientos cortantes.",
+      "effectEs": "Los movimientos cortantes del usuario infligen 1.5 veces su dano habitual."
+    },
+    {
+      "id": "hyper-cutter",
+      "shortEffectEs": "Evita que otros Pokemon le bajen el Ataque.",
+      "effectEs": "Los rivales no pueden reducir el Ataque del usuario."
+    },
+    {
+      "id": "harvest",
+      "shortEffectEs": "Puede recuperar una Baya consumida al final del turno; siempre lo hace con sol.",
+      "effectEs": "Si la ultima baya consumida por el usuario fue una Baya, al final del turno hay un 50% de probabilidad de recuperarla, o del 100% si hace sol."
+    },
+    {
+      "id": "tinted-lens",
+      "shortEffectEs": "Duplica el dano de los movimientos poco eficaces.",
+      "effectEs": "Los movimientos del usuario que sean poco eficaces sobre el objetivo infligen el doble de dano."
+    },
+    {
+      "id": "good-as-gold",
+      "shortEffectEs": "Es inmune a movimientos de estado.",
+      "effectEs": "Los movimientos de estado usados por otros Pokemon no afectan al usuario."
+    },
+    {
+      "id": "rain-dish",
+      "shortEffectEs": "Recupera PS cada turno si esta lloviendo.",
+      "effectEs": "Mientras llueve, el usuario recupera 1/16 de sus PS maximos al final de cada turno."
+    },
+    {
+      "id": "leaf-guard",
+      "shortEffectEs": "Con sol, evita problemas de estado.",
+      "effectEs": "Mientras hace sol, el usuario no puede sufrir problemas de estado."
+    },
+    {
+      "id": "download",
+      "shortEffectEs": "Al entrar, sube Ataque o Ataque Especial segun la defensa mas baja del rival.",
+      "effectEs": "Al entrar en combate, compara las defensas del rival y aumenta Ataque o Ataque Especial en un nivel segun cual sea mas conveniente."
+    },
+    {
+      "id": "oblivious",
+      "shortEffectEs": "Evita enamoramiento, Mofa e Intimidacion.",
+      "effectEs": "El usuario no puede ser enamorado ni provocado, y es inmune a los efectos de Intimidacion."
+    },
+    {
+      "id": "aftermath",
+      "shortEffectEs": "Si cae por un movimiento de contacto, hiere al atacante.",
+      "effectEs": "Si el usuario es debilitado por un movimiento de contacto, el atacante pierde 1/4 de sus PS maximos."
+    },
+    {
+      "id": "seed-sower",
+      "shortEffectEs": "Al recibir un ataque, activa el Campo de Hierba.",
+      "effectEs": "Cuando recibe un ataque, el usuario hace que empiece el efecto de Campo de Hierba."
+    },
+    {
+      "id": "disguise",
+      "shortEffectEs": "El primer golpe directo no le hace dano normal y rompe el disfraz.",
+      "effectEs": "La primera vez que recibe un ataque directo, el golpe se bloquea, el disfraz se rompe y el usuario pierde 1/8 de sus PS maximos."
+    },
+    {
+      "id": "flower-gift",
+      "shortEffectEs": "Con sol, Cherrim y sus aliados aumentan Ataque y Defensa Especial.",
+      "effectEs": "Si hace sol y el usuario es Cherrim, el Ataque y la Defensa Especial del usuario y sus aliados aumentan."
+    },
+    {
+      "id": "dragonize",
+      "shortEffectEs": "Los movimientos de tipo Normal se vuelven Dragon y se potencian.",
+      "effectEs": "Los movimientos de tipo Normal del usuario pasan a ser de tipo Dragon y su potencia aumenta."
+    },
+    {
+      "id": "effect-spore",
+      "shortEffectEs": "Quien le golpee con contacto puede dormirse, envenenarse o paralizarse.",
+      "effectEs": "Los Pokemon que golpean al usuario con contacto pueden acabar dormidos, envenenados o paralizados."
+    },
+    {
+      "id": "static",
+      "shortEffectEs": "Quien le golpee con contacto puede quedar paralizado.",
+      "effectEs": "Los Pokemon que golpean al usuario con un movimiento de contacto tienen una probabilidad de quedar paralizados."
+    },
+    {
+      "id": "electric-surge",
+      "shortEffectEs": "Activa el Campo Electrico al entrar en combate.",
+      "effectEs": "Cuando entra en combate, el usuario activa el efecto de Campo Electrico."
+    },
+    {
+      "id": "motor-drive",
+      "shortEffectEs": "Da inmunidad al tipo Electrico y sube la Velocidad al activarse.",
+      "effectEs": "Si recibe un movimiento de tipo Electrico, no sufre dano y la Velocidad del usuario aumenta un nivel."
+    },
+    {
+      "id": "skill-link",
+      "shortEffectEs": "Los movimientos multigolpe siempre alcanzan el maximo de impactos.",
+      "effectEs": "Los movimientos multigolpe del usuario siempre golpean el numero maximo de veces."
+    },
+    {
+      "id": "wind-power",
+      "shortEffectEs": "Se carga al recibir un movimiento de viento o al empezar Viento Afin.",
+      "effectEs": "Cuando recibe un movimiento de viento o empieza Viento Afin, el usuario obtiene el efecto de Carga."
+    },
+    {
+      "id": "pure-power",
+      "shortEffectEs": "Duplica el Ataque del usuario.",
+      "effectEs": "El Ataque del usuario se multiplica por 2."
+    },
+    {
+      "id": "hustle",
+      "shortEffectEs": "Aumenta el Ataque, pero reduce la precision de sus movimientos fisicos.",
+      "effectEs": "El Ataque del usuario aumenta 1.5x, pero la precision de sus movimientos fisicos se reduce."
+    },
+    {
+      "id": "ice-scales",
+      "shortEffectEs": "Reduce a la mitad el dano recibido por ataques especiales.",
+      "effectEs": "Los ataques especiales infligen solo la mitad del dano habitual al usuario."
+    },
+    {
+      "id": "marvel-scale",
+      "shortEffectEs": "Si sufre un problema de estado, su Defensa aumenta.",
+      "effectEs": "Mientras el usuario tenga un problema de estado importante, su Defensa se multiplica por 1.5."
+    },
+    {
+      "id": "shields-down",
+      "shortEffectEs": "Minior cambia entre forma Meteoro y Nucleo segun sus PS.",
+      "effectEs": "Si el usuario es Minior, adopta forma Nucleo con la mitad de PS o menos; en caso contrario permanece en forma Meteoro."
+    },
+    {
+      "id": "magma-armor",
+      "shortEffectEs": "Evita quedar congelado.",
+      "effectEs": "El usuario no puede congelarse. Si obtiene esta habilidad estando congelado, se cura."
+    },
+    {
+      "id": "dauntless-shield",
+      "shortEffectEs": "Al entrar, sube la Defensa una vez por combate.",
+      "effectEs": "Cuando entra en combate, la Defensa del usuario aumenta un nivel. Solo puede activarse una vez por combate."
+    },
+    {
+      "id": "sword-of-ruin",
+      "shortEffectEs": "Reduce la Defensa de los Pokemon activos que no tengan esta habilidad.",
+      "effectEs": "Los Pokemon activos que no tengan esta habilidad ven reducida su Defensa a 0.75x."
+    },
+    {
+      "id": "intrepid-sword",
+      "shortEffectEs": "Al entrar, sube el Ataque una vez por combate.",
+      "effectEs": "Cuando entra en combate, el Ataque del usuario aumenta un nivel. Solo puede activarse una vez por combate."
+    },
+    {
+      "id": "vital-spirit",
+      "shortEffectEs": "Evita dormirse.",
+      "effectEs": "El usuario no puede dormirse. Si obtiene esta habilidad estando dormido, se despierta."
+    },
+    {
+      "id": "technician",
+      "shortEffectEs": "Potencia los movimientos de potencia 60 o menos.",
+      "effectEs": "Los movimientos del usuario con potencia base de 60 o menos infligen 1.5 veces su dano habitual."
+    },
+    {
+      "id": "sand-spit",
+      "shortEffectEs": "Al recibir un ataque, activa tormenta de arena.",
+      "effectEs": "Cuando recibe un ataque, el usuario hace que empiece una tormenta de arena."
+    },
+    {
+      "id": "filter",
+      "shortEffectEs": "Reduce el dano recibido de movimientos supereficaces.",
+      "effectEs": "Los movimientos supereficaces infligen al usuario solo 3/4 del dano habitual."
+    },
+    {
+      "id": "defeatist",
+      "shortEffectEs": "Con la mitad de PS o menos, Ataque y Ataque Especial se reducen.",
+      "effectEs": "Mientras el usuario tenga la mitad de sus PS maximos o menos, su Ataque y Ataque Especial se reducen a la mitad."
+    },
+    {
+      "id": "limber",
+      "shortEffectEs": "Evita la paralisis.",
+      "effectEs": "El usuario no puede quedar paralizado. Si obtiene esta habilidad estando paralizado, se cura."
+    },
+    {
+      "id": "inner-focus",
+      "shortEffectEs": "Evita el retroceso y es inmune a Intimidacion.",
+      "effectEs": "El usuario no puede amedrentarse ni sufrir los efectos de Intimidacion."
+    },
+    {
+      "id": "sniper",
+      "shortEffectEs": "Aumenta el dano de los golpes criticos.",
+      "effectEs": "Si el usuario asesta un golpe critico, el dano adicional del critico se multiplica."
+    }
+  ]
+}

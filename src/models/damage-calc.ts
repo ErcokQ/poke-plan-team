@@ -14,8 +14,22 @@ export type DamageGeneration =
 export type DamageBattleType = 'singles' | 'doubles'
 export type DamageSideId = 'A' | 'B'
 export type DamageStatus = 'healthy' | 'burn' | 'poison' | 'toxic' | 'paralyze' | 'sleep' | 'freeze'
+export type DamageMoveOrderHint = 'auto' | 'before-target' | 'after-target'
 
 export type DamageSlotNumber = TeamMember['slot']
+
+export interface DamageCombatContext {
+  wasHitThisTurn: boolean
+  tookDamageThisTurn: boolean
+  statsLoweredThisTurn: boolean
+  previousMoveFailed: boolean
+  moveOrderHint: DamageMoveOrderHint
+  consecutiveMoveUses: number
+  timesHitThisBattle: number
+  alliesFaintedCount: number
+  stockpileCount: number
+  friendship: number
+}
 
 export interface DamageSlotSet {
   slot: DamageSlotNumber
@@ -32,6 +46,7 @@ export interface DamageSlotSet {
   currentHpPercent: number
   status: DamageStatus
   stages: Record<'atk' | 'def' | 'spa' | 'spd' | 'spe', number>
+  combatContext: DamageCombatContext
 }
 
 export interface DamageSideState {
@@ -95,6 +110,7 @@ export interface DamageRollResult {
   minPercent: number
   maxPercent: number
   koText: string
+  koResidualText?: string
   moveId: string
   moveName: string
 }
@@ -108,6 +124,7 @@ export interface DamageMatrixCell {
   minPercent: number
   maxPercent: number
   koText: string
+  koResidualText?: string
 }
 
 export interface DamagePairComputation {
@@ -117,4 +134,3 @@ export interface DamagePairComputation {
   resultsByMove: DamageRollResult[]
   best: DamageRollResult | null
 }
-
