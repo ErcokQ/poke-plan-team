@@ -27,6 +27,7 @@ const hasCompletedInitialHydration = ref(false)
 const bootPhase = ref<'catalog' | 'dex' | 'cache'>('catalog')
 let bootPhaseTimerA: ReturnType<typeof setTimeout> | null = null
 let bootPhaseTimerB: ReturnType<typeof setTimeout> | null = null
+let bootLoaderTimeout: ReturnType<typeof setTimeout> | null = null
 
 const mode = computed<BattleMode>(() => (route.params.mode === 'singles' ? 'singles' : 'vgc'))
 const isWideCanvasRoute = computed(() => {
@@ -49,7 +50,7 @@ const insightsPreset = computed<'builder' | 'analytics' | 'strategy' | 'dex'>(()
 })
 const dexSource = String(import.meta.env.VITE_DEX_SOURCE ?? 'snapshot').toLowerCase()
 const showInitialAppLoader = computed(
-  () => !hasCompletedInitialHydration.value && dexStore.hydrationStatus !== 'ready',
+  () => !hasCompletedInitialHydration.value && dexStore.hydrationStatus === 'loading',
 )
 const appLoaderTitle = computed(() => t('app.bootTitle'))
 const appLoaderBody = computed(() =>
@@ -141,6 +142,10 @@ function clearBootPhaseTimers() {
     clearTimeout(bootPhaseTimerB)
     bootPhaseTimerB = null
   }
+  if (bootLoaderTimeout) {
+    clearTimeout(bootLoaderTimeout)
+    bootLoaderTimeout = null
+  }
 }
 
 function startBootPhaseSequence() {
@@ -152,6 +157,9 @@ function startBootPhaseSequence() {
   bootPhaseTimerB = setTimeout(() => {
     bootPhase.value = 'cache'
   }, 1900)
+  bootLoaderTimeout = setTimeout(() => {
+    hasCompletedInitialHydration.value = true
+  }, 12000)
 }
 
 onMounted(() => {
@@ -193,6 +201,7 @@ watch(
     }
     if (status === 'error') {
       clearBootPhaseTimers()
+      hasCompletedInitialHydration.value = true
     }
   },
   { immediate: true },

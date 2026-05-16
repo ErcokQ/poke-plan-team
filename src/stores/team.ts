@@ -2,6 +2,7 @@ import { computed } from 'vue'
 import { defineStore } from 'pinia'
 import type { BattleMode, Team, TeamMember } from '@/models/domain'
 import { useBufferedStorage } from '@/utils/buffered-storage'
+import { canonicalizePokemonId } from '@/utils/showdown'
 import { createEmptyTeam, normalizeEvs } from '@/utils/team'
 import {
   exportTeamAsFullJson,
@@ -20,6 +21,22 @@ export const useTeamStore = defineStore('team', () => {
   })
   const uiStore = useUiStore()
 
+  function normalizeMemberIdentity(member: TeamMember): TeamMember {
+    const canonicalPokemonId = member.pokemonId ? canonicalizePokemonId(member.pokemonId) || member.pokemonId : ''
+    if (canonicalPokemonId !== member.pokemonId) {
+      member.pokemonId = canonicalPokemonId
+    }
+    return member
+  }
+
+  function normalizeStoredTeams() {
+    for (const team of teams.value) {
+      for (const member of team.members) {
+        normalizeMemberIdentity(member)
+      }
+    }
+  }
+
   function ensureSeeded() {
     const hasVgc = teams.value.some((team) => team.mode === 'vgc')
     const hasSingles = teams.value.some((team) => team.mode === 'singles')
@@ -36,6 +53,7 @@ export const useTeamStore = defineStore('team', () => {
     })
   }
 
+  normalizeStoredTeams()
   ensureSeeded()
 
   const sortedTeams = computed(() => {
@@ -114,7 +132,14 @@ export const useTeamStore = defineStore('team', () => {
     const target = team.members.find((member) => member.slot === slot)
     if (!target) return
 
+    if (typeof patch.pokemonId === 'string') {
+      patch = {
+        ...patch,
+        pokemonId: patch.pokemonId ? canonicalizePokemonId(patch.pokemonId) || patch.pokemonId : '',
+      }
+    }
     Object.assign(target, patch)
+    normalizeMemberIdentity(target)
     const normalized = normalizeEvs(target)
     Object.assign(target, normalized)
     team.updatedAt = new Date().toISOString()
@@ -134,6 +159,7 @@ export const useTeamStore = defineStore('team', () => {
     const parsed = parseTeamImportPayload(raw, mode)
     const imported = parsed.team
     imported.mode = mode
+    imported.members.forEach(normalizeMemberIdentity)
     imported.id = crypto.randomUUID()
     imported.createdAt = new Date().toISOString()
     imported.updatedAt = new Date().toISOString()
@@ -145,6 +171,7 @@ export const useTeamStore = defineStore('team', () => {
   function importFromShowdown(raw: string, mode: BattleMode) {
     const template = createEmptyTeam(mode, mode === 'vgc' ? 'Imported VGC Team' : 'Imported Singles Team')
     const parsed = importTeamFromShowdown(raw, mode, template)
+    parsed.members = parsed.members.map((member) => normalizeEvs(normalizeMemberIdentity(member)))
     parsed.id = crypto.randomUUID()
     teams.value.push(parsed)
     uiStore.setSelectedTeam(mode, parsed.id)

@@ -38,6 +38,7 @@ import movesRaw from '@/data/mock/moves.json'
 import itemsRaw from '@/data/mock/items.json'
 import archetypesVgcRaw from '@/data/mock/archetypes.vgc.json'
 import archetypesSinglesRaw from '@/data/mock/archetypes.singles.json'
+import { canonicalizePokemonId } from '@/utils/showdown'
 
 const DEX_SOURCE = String(import.meta.env.VITE_DEX_SOURCE ?? 'snapshot').toLowerCase()
 const DEX_CACHE_TTL_MS = 24 * 60 * 60 * 1000
@@ -395,16 +396,7 @@ export const useDexStore = defineStore('dex', () => {
 
   function summarySupportsChampions(summary: DexPokemonProfileSummary): boolean {
     if (championsAvailabilityIds.value.size === 0) return false
-    if (championsAvailabilityIds.value.has(summary.id)) return true
-
-    for (const evolutionEntry of summary.evolutionChain) {
-      if (championsAvailabilityIds.value.has(evolutionEntry.id)) return true
-      for (const variant of evolutionEntry.variants) {
-        if (championsAvailabilityIds.value.has(variant.id)) return true
-      }
-    }
-
-    return false
+    return championsAvailabilityIds.value.has(summary.id)
   }
 
   function withAvailabilityOverlay(summary: DexPokemonProfileSummary): DexPokemonProfileSummary {
@@ -440,7 +432,8 @@ export const useDexStore = defineStore('dex', () => {
   }
 
   function getPokemon(mode: BattleMode, id: string): PokemonEntry | undefined {
-    return pokemonMap.value[mode].get(id)
+    const canonicalId = canonicalizePokemonId(id)
+    return pokemonMap.value[mode].get(canonicalId || id)
   }
 
   function getMove(id: string): MoveEntry | undefined {
@@ -464,7 +457,8 @@ export const useDexStore = defineStore('dex', () => {
   }
 
   function getPokemonProfileSummary(id: string, locale: LocaleCode = hydratedLocale.value ?? 'es') {
-    const summary = profileSummariesByLocale.value[locale]?.[id]
+    const canonicalId = canonicalizePokemonId(id)
+    const summary = profileSummariesByLocale.value[locale]?.[canonicalId || id]
     return summary ? withAvailabilityOverlay(summary) : undefined
   }
 
@@ -490,7 +484,8 @@ export const useDexStore = defineStore('dex', () => {
   }
 
   function getPokemonProfileDetails(id: string, locale: LocaleCode = hydratedLocale.value ?? 'es') {
-    return profileDetailsByLocale.value[locale]?.[id]
+    const canonicalId = canonicalizePokemonId(id)
+    return profileDetailsByLocale.value[locale]?.[canonicalId || id]
   }
 
   function getPokemonProfile(id: string, locale: LocaleCode = hydratedLocale.value ?? 'es'): DexPokemonProfile | null {
@@ -611,7 +606,8 @@ export const useDexStore = defineStore('dex', () => {
 
   function getPokemonForms(locale: LocaleCode, pokemonId: string): PokemonEntry[] {
     if (!pokemonId) return []
-    const ids = formsByLocaleAndPokemon.value[pokemonId] ?? [pokemonId]
+    const canonicalId = canonicalizePokemonId(pokemonId) || pokemonId
+    const ids = formsByLocaleAndPokemon.value[canonicalId] ?? [canonicalId]
     return ids
       .map((id) => getPokemon('vgc', id) ?? getPokemon('singles', id))
       .filter((entry): entry is PokemonEntry => Boolean(entry))

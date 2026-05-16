@@ -127,11 +127,41 @@ export interface StrategySection {
   bullets: string[]
 }
 
+export type StrategyThreatSeenTag = 'common' | 'danger' | 'prep' | 'solved'
+
+export interface StrategyThreatSetProfile {
+  commonMoves: string[]
+  commonItems: string[]
+  commonAbilities: string[]
+  commonTeraTypes: PokemonTypeKey[]
+  commonPartners: string[]
+}
+
+export interface StrategyQuickAction {
+  id: 'open-damage-calc' | 'load-quick-rival'
+}
+
+export interface StrategyViewState {
+  selectedThreatPokemonId: string | null
+}
+
+export interface StrategyThreatNote extends StrategyThreatSetProfile {
+  pokemonId: string
+  timesSeen: number
+  lastSeenAt: string
+  tags: StrategyThreatSeenTag[]
+  notes: string
+  responsePlan: string
+  lastEditedAt: string
+}
+
 export interface StrategyDraft {
   mode: BattleMode
   teamId: string
   autoSections: StrategySection[]
   userEdits: string
+  threatNotes: StrategyThreatNote[]
+  selectedThreatPokemonId: string | null
   updatedAt: string
 }
 

@@ -31,6 +31,48 @@ interface DamageStatProfile {
   defenseClass: DefensiveStatClass
 }
 
+const ITEM_TYPE_DAMAGE_BOOSTS: Record<string, MoveEntry['type']> = {
+  'black-belt': 'fighting',
+  'black-glasses': 'dark',
+  charcoal: 'fire',
+  'dragon-fang': 'dragon',
+  'dread-plate': 'dark',
+  'draco-plate': 'dragon',
+  'earth-plate': 'ground',
+  'fist-plate': 'fighting',
+  'flame-plate': 'fire',
+  'hard-stone': 'rock',
+  'icicle-plate': 'ice',
+  'insect-plate': 'bug',
+  'iron-plate': 'steel',
+  magnet: 'electric',
+  'meadow-plate': 'grass',
+  'metal-coat': 'steel',
+  'mind-plate': 'psychic',
+  'miracle-seed': 'grass',
+  'mystic-water': 'water',
+  'never-melt-ice': 'ice',
+  'odd-incense': 'psychic',
+  'pixie-plate': 'fairy',
+  'poison-barb': 'poison',
+  'rock-incense': 'rock',
+  'rose-incense': 'grass',
+  'sea-incense': 'water',
+  'sharp-beak': 'flying',
+  'silk-scarf': 'normal',
+  'silver-powder': 'bug',
+  'soft-sand': 'ground',
+  'spell-tag': 'ghost',
+  'spooky-plate': 'ghost',
+  'splash-plate': 'water',
+  'stone-plate': 'rock',
+  'sky-plate': 'flying',
+  'toxic-plate': 'poison',
+  'twisted-spoon': 'psychic',
+  'wave-incense': 'water',
+  'zap-plate': 'electric',
+}
+
 function defaultCombatContext(): DamageCombatContext {
   return {
     wasHitThisTurn: false,
@@ -162,11 +204,12 @@ function terrainMultiplier(
   return 1
 }
 
-function friendlyModifier(itemId: string, move: MoveEntry): number {
+function friendlyModifier(itemId: string, move: MoveEntry, resolvedMoveType: MoveEntry['type']): number {
   const item = itemId.trim().toLowerCase()
   if (item === 'life-orb') return 1.3
   if (item === 'muscle-band' && isPhysicalMove(move)) return 1.1
   if (item === 'wise-glasses' && isSpecialMove(move)) return 1.1
+  if (ITEM_TYPE_DAMAGE_BOOSTS[item] === resolvedMoveType) return 1.2
   if (item === 'expert-belt') return 1
   return 1
 }
@@ -189,6 +232,12 @@ function applyDefenseItemMultiplier(itemId: string, move: MoveEntry): number {
 function abilityDamageMultiplierOnAttack(abilityId: string, move: MoveEntry): number {
   if (abilityIs(abilityId, 'tinted-lens')) return 1
   if (abilityIs(abilityId, 'solar-power') && isSpecialMove(move)) return 1.5
+  return 1
+}
+
+function abilityPowerMultiplier(abilityId: string, power: number): number {
+  if (power <= 0) return 1
+  if (abilityIs(abilityId, 'technician') && power <= 60) return 1.5
   return 1
 }
 
@@ -690,6 +739,14 @@ function weightRatioPower(attackerWeightKg: number, defenderWeightKg: number): n
   return 40
 }
 
+function escalatingHitPowers(moveId: string, basePower: number): number[] | null {
+  if (basePower <= 0) return null
+  if (moveId === 'triple-axel' || moveId === 'triple-kick') {
+    return [basePower, basePower * 2, basePower * 3]
+  }
+  return null
+}
+
 function computeMoveDamage(
   scenario: DamageCalcScenario,
   resolver: DamageDexResolver,
@@ -815,14 +872,17 @@ function computeMoveDamage(
     scenario,
     resolver,
   })
-  const raw = Math.floor(Math.floor(((Math.floor((2 * level) / 5) + 2) * power * Math.max(1, atkValue)) / Math.max(1, defValue)) / 50) + 2
+  const adjustedPower = Math.max(1, Math.floor(power * abilityPowerMultiplier(attacker.abilityId, power)))
+  const raw = Math.floor(
+    Math.floor(((Math.floor((2 * level) / 5) + 2) * adjustedPower * Math.max(1, atkValue)) / Math.max(1, defValue)) / 50,
+  ) + 2
 
   let modifier = 1
   modifier *= weatherMultiplier(scenario.field.weather, resolvedMoveType)
   modifier *= terrainMultiplier(scenario.field.terrain, resolvedMoveType, rules.terrainOffenseMultiplier)
   modifier *= typeMult
   modifier *= stabMultiplier({ ...move, type: resolvedMoveType }, attackerBaseTypes, attacker)
-  modifier *= friendlyModifier(attacker.itemId, move)
+  modifier *= friendlyModifier(attacker.itemId, move, resolvedMoveType)
   modifier *= abilityDamageMultiplierOnAttack(attacker.abilityId, move)
 
   if (abilityIs(attacker.abilityId, 'tinted-lens') && typeMult > 0 && typeMult < 1) modifier *= 2
@@ -859,6 +919,7 @@ function computeMoveDamage(
   if (defenderField.friendGuard) modifier *= 0.75
 
   const defenderAtFullHp = defender.currentHpPercent >= 100
+  const baseModifier = modifier
   modifier *= defenderAbilityModifier(defender.abilityId, move, typeMult, defenderAtFullHp)
 
   const residualFraction = residualFractionByStatus(defender.status, rules.generation)
@@ -866,7 +927,41 @@ function computeMoveDamage(
     residualFraction > 0 ? Math.max(1, Math.floor(defenderStats.hp * residualFraction)) : 0
   const defenderHpAfterResidual = residualDamage > 0 ? Math.max(1, defenderCurrentHp - residualDamage) : defenderCurrentHp
 
-  const rolls = rules.randomRolls.map((random) => {
+  const multiHitPowers = escalatingHitPowers(move.id, adjustedPower)
+  const sequenceRolls =
+    multiHitPowers && multiHitPowers.length > 0
+      ? {
+          fresh: rules.randomRolls.map((random) => {
+            const total = multiHitPowers.reduce((sum, hitPower, hitIndex) => {
+              const hitRaw =
+                Math.floor(
+                  Math.floor(((Math.floor((2 * level) / 5) + 2) * hitPower * Math.max(1, atkValue)) / Math.max(1, defValue)) / 50,
+                ) + 2
+              const hitModifier =
+                baseModifier *
+                defenderAbilityModifier(defender.abilityId, move, typeMult, hitIndex === 0 && defenderAtFullHp)
+              return sum + Math.max(1, Math.floor(hitRaw * hitModifier * random))
+            }, 0)
+            return Math.max(1, total)
+          }),
+          chipped: rules.randomRolls.map((random) => {
+            const total = multiHitPowers.reduce((sum, hitPower) => {
+              const hitRaw =
+                Math.floor(
+                  Math.floor(((Math.floor((2 * level) / 5) + 2) * hitPower * Math.max(1, atkValue)) / Math.max(1, defValue)) / 50,
+                ) + 2
+              const hitModifier = baseModifier * defenderAbilityModifier(defender.abilityId, move, typeMult, false)
+              return sum + Math.max(1, Math.floor(hitRaw * hitModifier * random))
+            }, 0)
+            return Math.max(1, total)
+          }),
+          hitsPerUse: multiHitPowers.length,
+        }
+      : undefined
+
+  const rolls = sequenceRolls
+    ? (defenderAtFullHp ? sequenceRolls.fresh : sequenceRolls.chipped)
+    : rules.randomRolls.map((random) => {
     const value = Math.floor(raw * modifier * random)
     return Math.max(1, value)
   })
@@ -883,6 +978,7 @@ function computeMoveDamage(
     min,
     max,
     rolls,
+    sequenceRolls,
     minPercent,
     maxPercent,
     koText: baseKoText,

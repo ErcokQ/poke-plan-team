@@ -1,4 +1,5 @@
 import type { BattleMode, PokemonTypeKey, StatKey, TeamMember } from '@/models/domain'
+import type { DexAvailabilityFilterKey } from './dex'
 
 export type DamageGeneration =
   | 'gen1'
@@ -107,6 +108,11 @@ export interface DamageRollResult {
   min: number
   max: number
   rolls: number[]
+  sequenceRolls?: {
+    fresh: number[]
+    chipped: number[]
+    hitsPerUse: number
+  }
   minPercent: number
   maxPercent: number
   koText: string
@@ -133,4 +139,23 @@ export interface DamagePairComputation {
   defenderSlot: DamageSlotNumber
   resultsByMove: DamageRollResult[]
   best: DamageRollResult | null
+}
+
+export type DamageLineThreatFocus = 'leads' | 'line'
+
+export interface DamageLineThreatEntry {
+  id: string
+  name: string
+  pokedexNumber: number
+  types: PokemonTypeKey[]
+  availability: DexAvailabilityFilterKey[]
+  baseSpeed: number
+  usage: number
+  abilityName: string
+  offenseBias: 'physical' | 'special' | 'mixed'
+  reasons: string[]
+  leadPressure: number
+  linePressure: number
+  tempoScore: number
+  score: number
 }

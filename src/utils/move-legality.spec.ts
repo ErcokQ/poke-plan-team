@@ -57,4 +57,49 @@ describe('move legality helper', () => {
     const result = getEffectiveLearnsetMoveIds(kingambit, (id) => byId.get(id))
     expect(result).toContain('sucker-punch')
   })
+
+  it('includes regional pre-evolution learnsets when the snapshot resolves the right lineage', () => {
+    const sneaselHisui = buildPokemon('sneasel-hisui', ['fake-out'])
+    sneaselHisui.types = ['fighting', 'poison']
+
+    const sneasler = buildPokemon('sneasler', ['dire-claw'], ['sneasel-hisui'])
+    sneasler.types = ['fighting', 'poison']
+
+    const byId = new Map<string, PokemonEntry>([
+      ['sneasel-hisui', sneaselHisui],
+      ['sneasler', sneasler],
+    ])
+
+    const result = getEffectiveLearnsetMoveIds(sneasler, (id) => byId.get(id))
+    expect(result).toContain('fake-out')
+    expect(result).toContain('dire-claw')
+  })
+
+  it('applies local learnset overrides for missing snapshot moves', () => {
+    const aegislash = buildPokemon('aegislash-shield', ['shadow-ball', 'flash-cannon'])
+
+    const result = getEffectiveLearnsetMoveIds(aegislash, () => undefined)
+
+    expect(result).toContain('poltergeist')
+    expect(result).toContain('shadow-ball')
+  })
+
+  it('includes Champions-only local move overrides when the base learnset is missing them', () => {
+    const starmie = buildPokemon('starmie', ['surf', 'ice-beam'])
+
+    const result = getEffectiveLearnsetMoveIds(starmie, () => undefined)
+
+    expect(result).toContain('aqua-jet')
+    expect(result).toContain('liquidation')
+    expect(result).toContain('surf')
+  })
+
+  it('includes Primarina local move overrides when the snapshot learnset omits scald', () => {
+    const primarina = buildPokemon('primarina', ['surf', 'moonblast'])
+
+    const result = getEffectiveLearnsetMoveIds(primarina, () => undefined)
+
+    expect(result).toContain('scald')
+    expect(result).toContain('surf')
+  })
 })

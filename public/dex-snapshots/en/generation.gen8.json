@@ -2,7 +2,7 @@
   "version": "v1",
   "locale": "en",
   "generationId": 8,
-  "generatedAt": "2026-04-09T04:23:54.270Z",
+  "generatedAt": "2026-04-17T18:43:31.043Z",
   "profiles": [
     {
       "id": "grookey",
@@ -62,6 +62,24 @@
           "name": "Grookey",
           "pokedexNumber": 810,
           "variants": []
+        },
+        {
+          "id": "thwackey",
+          "name": "Thwackey",
+          "pokedexNumber": 811,
+          "variants": []
+        },
+        {
+          "id": "rillaboom",
+          "name": "Rillaboom",
+          "pokedexNumber": 812,
+          "variants": [
+            {
+              "id": "rillaboom-gmax",
+              "name": "Rillaboom Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -125,10 +143,28 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "grookey",
+          "name": "Grookey",
+          "pokedexNumber": 810,
+          "variants": []
+        },
+        {
           "id": "thwackey",
           "name": "Thwackey",
           "pokedexNumber": 811,
           "variants": []
+        },
+        {
+          "id": "rillaboom",
+          "name": "Rillaboom",
+          "pokedexNumber": 812,
+          "variants": [
+            {
+              "id": "rillaboom-gmax",
+              "name": "Rillaboom Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -192,19 +228,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "rillaboom",
-          "name": "Rillaboom",
-          "pokedexNumber": 812,
-          "variants": [
-            {
-              "id": "rillaboom-gmax",
-              "name": "Rillaboom Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "grookey",
+          "name": "Grookey",
+          "pokedexNumber": 810,
+          "variants": []
         },
         {
-          "id": "rillaboom-gmax",
+          "id": "thwackey",
+          "name": "Thwackey",
+          "pokedexNumber": 811,
+          "variants": []
+        },
+        {
+          "id": "rillaboom",
           "name": "Rillaboom",
           "pokedexNumber": 812,
           "variants": [
@@ -277,19 +313,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "rillaboom",
-          "name": "Rillaboom",
-          "pokedexNumber": 812,
-          "variants": [
-            {
-              "id": "rillaboom-gmax",
-              "name": "Rillaboom Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "grookey",
+          "name": "Grookey",
+          "pokedexNumber": 810,
+          "variants": []
         },
         {
-          "id": "rillaboom-gmax",
+          "id": "thwackey",
+          "name": "Thwackey",
+          "pokedexNumber": 811,
+          "variants": []
+        },
+        {
+          "id": "rillaboom",
           "name": "Rillaboom",
           "pokedexNumber": 812,
           "variants": [
@@ -366,6 +402,24 @@
           "name": "Scorbunny",
           "pokedexNumber": 813,
           "variants": []
+        },
+        {
+          "id": "raboot",
+          "name": "Raboot",
+          "pokedexNumber": 814,
+          "variants": []
+        },
+        {
+          "id": "cinderace",
+          "name": "Cinderace",
+          "pokedexNumber": 815,
+          "variants": [
+            {
+              "id": "cinderace-gmax",
+              "name": "Cinderace Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -429,10 +483,28 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "scorbunny",
+          "name": "Scorbunny",
+          "pokedexNumber": 813,
+          "variants": []
+        },
+        {
           "id": "raboot",
           "name": "Raboot",
           "pokedexNumber": 814,
           "variants": []
+        },
+        {
+          "id": "cinderace",
+          "name": "Cinderace",
+          "pokedexNumber": 815,
+          "variants": [
+            {
+              "id": "cinderace-gmax",
+              "name": "Cinderace Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -496,19 +568,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "cinderace",
-          "name": "Cinderace",
-          "pokedexNumber": 815,
-          "variants": [
-            {
-              "id": "cinderace-gmax",
-              "name": "Cinderace Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "scorbunny",
+          "name": "Scorbunny",
+          "pokedexNumber": 813,
+          "variants": []
         },
         {
-          "id": "cinderace-gmax",
+          "id": "raboot",
+          "name": "Raboot",
+          "pokedexNumber": 814,
+          "variants": []
+        },
+        {
+          "id": "cinderace",
           "name": "Cinderace",
           "pokedexNumber": 815,
           "variants": [
@@ -581,19 +653,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "cinderace",
-          "name": "Cinderace",
-          "pokedexNumber": 815,
-          "variants": [
-            {
-              "id": "cinderace-gmax",
-              "name": "Cinderace Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "scorbunny",
+          "name": "Scorbunny",
+          "pokedexNumber": 813,
+          "variants": []
         },
         {
-          "id": "cinderace-gmax",
+          "id": "raboot",
+          "name": "Raboot",
+          "pokedexNumber": 814,
+          "variants": []
+        },
+        {
+          "id": "cinderace",
           "name": "Cinderace",
           "pokedexNumber": 815,
           "variants": [
@@ -670,6 +742,24 @@
           "name": "Sobble",
           "pokedexNumber": 816,
           "variants": []
+        },
+        {
+          "id": "drizzile",
+          "name": "Drizzile",
+          "pokedexNumber": 817,
+          "variants": []
+        },
+        {
+          "id": "inteleon",
+          "name": "Inteleon",
+          "pokedexNumber": 818,
+          "variants": [
+            {
+              "id": "inteleon-gmax",
+              "name": "Inteleon Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -733,10 +823,28 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "sobble",
+          "name": "Sobble",
+          "pokedexNumber": 816,
+          "variants": []
+        },
+        {
           "id": "drizzile",
           "name": "Drizzile",
           "pokedexNumber": 817,
           "variants": []
+        },
+        {
+          "id": "inteleon",
+          "name": "Inteleon",
+          "pokedexNumber": 818,
+          "variants": [
+            {
+              "id": "inteleon-gmax",
+              "name": "Inteleon Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -800,19 +908,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "inteleon",
-          "name": "Inteleon",
-          "pokedexNumber": 818,
-          "variants": [
-            {
-              "id": "inteleon-gmax",
-              "name": "Inteleon Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "sobble",
+          "name": "Sobble",
+          "pokedexNumber": 816,
+          "variants": []
         },
         {
-          "id": "inteleon-gmax",
+          "id": "drizzile",
+          "name": "Drizzile",
+          "pokedexNumber": 817,
+          "variants": []
+        },
+        {
+          "id": "inteleon",
           "name": "Inteleon",
           "pokedexNumber": 818,
           "variants": [
@@ -885,19 +993,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "inteleon",
-          "name": "Inteleon",
-          "pokedexNumber": 818,
-          "variants": [
-            {
-              "id": "inteleon-gmax",
-              "name": "Inteleon Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "sobble",
+          "name": "Sobble",
+          "pokedexNumber": 816,
+          "variants": []
         },
         {
-          "id": "inteleon-gmax",
+          "id": "drizzile",
+          "name": "Drizzile",
+          "pokedexNumber": 817,
+          "variants": []
+        },
+        {
+          "id": "inteleon",
           "name": "Inteleon",
           "pokedexNumber": 818,
           "variants": [
@@ -973,6 +1081,12 @@
           "name": "Skwovet",
           "pokedexNumber": 819,
           "variants": []
+        },
+        {
+          "id": "greedent",
+          "name": "Greedent",
+          "pokedexNumber": 820,
+          "variants": []
         }
       ],
       "sprites": {
@@ -1034,6 +1148,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "skwovet",
+          "name": "Skwovet",
+          "pokedexNumber": 819,
+          "variants": []
+        },
         {
           "id": "greedent",
           "name": "Greedent",
@@ -1112,6 +1232,24 @@
           "name": "Rookidee",
           "pokedexNumber": 821,
           "variants": []
+        },
+        {
+          "id": "corvisquire",
+          "name": "Corvisquire",
+          "pokedexNumber": 822,
+          "variants": []
+        },
+        {
+          "id": "corviknight",
+          "name": "Corviknight",
+          "pokedexNumber": 823,
+          "variants": [
+            {
+              "id": "corviknight-gmax",
+              "name": "Corviknight Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -1181,10 +1319,28 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "rookidee",
+          "name": "Rookidee",
+          "pokedexNumber": 821,
+          "variants": []
+        },
+        {
           "id": "corvisquire",
           "name": "Corvisquire",
           "pokedexNumber": 822,
           "variants": []
+        },
+        {
+          "id": "corviknight",
+          "name": "Corviknight",
+          "pokedexNumber": 823,
+          "variants": [
+            {
+              "id": "corviknight-gmax",
+              "name": "Corviknight Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -1255,19 +1411,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "corviknight",
-          "name": "Corviknight",
-          "pokedexNumber": 823,
-          "variants": [
-            {
-              "id": "corviknight-gmax",
-              "name": "Corviknight Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "rookidee",
+          "name": "Rookidee",
+          "pokedexNumber": 821,
+          "variants": []
         },
         {
-          "id": "corviknight-gmax",
+          "id": "corvisquire",
+          "name": "Corvisquire",
+          "pokedexNumber": 822,
+          "variants": []
+        },
+        {
+          "id": "corviknight",
           "name": "Corviknight",
           "pokedexNumber": 823,
           "variants": [
@@ -1347,19 +1503,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "corviknight",
-          "name": "Corviknight",
-          "pokedexNumber": 823,
-          "variants": [
-            {
-              "id": "corviknight-gmax",
-              "name": "Corviknight Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "rookidee",
+          "name": "Rookidee",
+          "pokedexNumber": 821,
+          "variants": []
         },
         {
-          "id": "corviknight-gmax",
+          "id": "corvisquire",
+          "name": "Corvisquire",
+          "pokedexNumber": 822,
+          "variants": []
+        },
+        {
+          "id": "corviknight",
           "name": "Corviknight",
           "pokedexNumber": 823,
           "variants": [
@@ -1441,6 +1597,24 @@
           "name": "Blipbug",
           "pokedexNumber": 824,
           "variants": []
+        },
+        {
+          "id": "dottler",
+          "name": "Dottler",
+          "pokedexNumber": 825,
+          "variants": []
+        },
+        {
+          "id": "orbeetle",
+          "name": "Orbeetle",
+          "pokedexNumber": 826,
+          "variants": [
+            {
+              "id": "orbeetle-gmax",
+              "name": "Orbeetle Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -1510,10 +1684,28 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "blipbug",
+          "name": "Blipbug",
+          "pokedexNumber": 824,
+          "variants": []
+        },
+        {
           "id": "dottler",
           "name": "Dottler",
           "pokedexNumber": 825,
           "variants": []
+        },
+        {
+          "id": "orbeetle",
+          "name": "Orbeetle",
+          "pokedexNumber": 826,
+          "variants": [
+            {
+              "id": "orbeetle-gmax",
+              "name": "Orbeetle Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -1583,19 +1775,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "orbeetle",
-          "name": "Orbeetle",
-          "pokedexNumber": 826,
-          "variants": [
-            {
-              "id": "orbeetle-gmax",
-              "name": "Orbeetle Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "blipbug",
+          "name": "Blipbug",
+          "pokedexNumber": 824,
+          "variants": []
         },
         {
-          "id": "orbeetle-gmax",
+          "id": "dottler",
+          "name": "Dottler",
+          "pokedexNumber": 825,
+          "variants": []
+        },
+        {
+          "id": "orbeetle",
           "name": "Orbeetle",
           "pokedexNumber": 826,
           "variants": [
@@ -1674,19 +1866,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "orbeetle",
-          "name": "Orbeetle",
-          "pokedexNumber": 826,
-          "variants": [
-            {
-              "id": "orbeetle-gmax",
-              "name": "Orbeetle Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "blipbug",
+          "name": "Blipbug",
+          "pokedexNumber": 824,
+          "variants": []
         },
         {
-          "id": "orbeetle-gmax",
+          "id": "dottler",
+          "name": "Dottler",
+          "pokedexNumber": 825,
+          "variants": []
+        },
+        {
+          "id": "orbeetle",
           "name": "Orbeetle",
           "pokedexNumber": 826,
           "variants": [
@@ -1768,6 +1960,12 @@
           "name": "Nickit",
           "pokedexNumber": 827,
           "variants": []
+        },
+        {
+          "id": "thievul",
+          "name": "Thievul",
+          "pokedexNumber": 828,
+          "variants": []
         }
       ],
       "sprites": {
@@ -1835,6 +2033,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "nickit",
+          "name": "Nickit",
+          "pokedexNumber": 827,
+          "variants": []
+        },
         {
           "id": "thievul",
           "name": "Thievul",
@@ -1912,6 +2116,12 @@
           "name": "Gossifleur",
           "pokedexNumber": 829,
           "variants": []
+        },
+        {
+          "id": "eldegoss",
+          "name": "Eldegoss",
+          "pokedexNumber": 830,
+          "variants": []
         }
       ],
       "sprites": {
@@ -1979,6 +2189,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "gossifleur",
+          "name": "Gossifleur",
+          "pokedexNumber": 829,
+          "variants": []
+        },
         {
           "id": "eldegoss",
           "name": "Eldegoss",
@@ -2056,6 +2272,12 @@
           "name": "Wooloo",
           "pokedexNumber": 831,
           "variants": []
+        },
+        {
+          "id": "dubwool",
+          "name": "Dubwool",
+          "pokedexNumber": 832,
+          "variants": []
         }
       ],
       "sprites": {
@@ -2123,6 +2345,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "wooloo",
+          "name": "Wooloo",
+          "pokedexNumber": 831,
+          "variants": []
+        },
         {
           "id": "dubwool",
           "name": "Dubwool",
@@ -2202,6 +2430,18 @@
           "name": "Chewtle",
           "pokedexNumber": 833,
           "variants": []
+        },
+        {
+          "id": "drednaw",
+          "name": "Drednaw",
+          "pokedexNumber": 834,
+          "variants": [
+            {
+              "id": "drednaw-gmax",
+              "name": "Drednaw Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -2273,19 +2513,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "drednaw",
-          "name": "Drednaw",
-          "pokedexNumber": 834,
-          "variants": [
-            {
-              "id": "drednaw-gmax",
-              "name": "Drednaw Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "chewtle",
+          "name": "Chewtle",
+          "pokedexNumber": 833,
+          "variants": []
         },
         {
-          "id": "drednaw-gmax",
+          "id": "drednaw",
           "name": "Drednaw",
           "pokedexNumber": 834,
           "variants": [
@@ -2366,19 +2600,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "drednaw",
-          "name": "Drednaw",
-          "pokedexNumber": 834,
-          "variants": [
-            {
-              "id": "drednaw-gmax",
-              "name": "Drednaw Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "chewtle",
+          "name": "Chewtle",
+          "pokedexNumber": 833,
+          "variants": []
         },
         {
-          "id": "drednaw-gmax",
+          "id": "drednaw",
           "name": "Drednaw",
           "pokedexNumber": 834,
           "variants": [
@@ -2453,6 +2681,12 @@
           "name": "Yamper",
           "pokedexNumber": 835,
           "variants": []
+        },
+        {
+          "id": "boltund",
+          "name": "Boltund",
+          "pokedexNumber": 836,
+          "variants": []
         }
       ],
       "sprites": {
@@ -2513,6 +2747,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "yamper",
+          "name": "Yamper",
+          "pokedexNumber": 835,
+          "variants": []
+        },
         {
           "id": "boltund",
           "name": "Boltund",
@@ -2591,6 +2831,24 @@
           "name": "Rolycoly",
           "pokedexNumber": 837,
           "variants": []
+        },
+        {
+          "id": "carkol",
+          "name": "Carkol",
+          "pokedexNumber": 838,
+          "variants": []
+        },
+        {
+          "id": "coalossal",
+          "name": "Coalossal",
+          "pokedexNumber": 839,
+          "variants": [
+            {
+              "id": "coalossal-gmax",
+              "name": "Coalossal Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -2661,10 +2919,28 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "rolycoly",
+          "name": "Rolycoly",
+          "pokedexNumber": 837,
+          "variants": []
+        },
+        {
           "id": "carkol",
           "name": "Carkol",
           "pokedexNumber": 838,
           "variants": []
+        },
+        {
+          "id": "coalossal",
+          "name": "Coalossal",
+          "pokedexNumber": 839,
+          "variants": [
+            {
+              "id": "coalossal-gmax",
+              "name": "Coalossal Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -2735,19 +3011,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "coalossal",
-          "name": "Coalossal",
-          "pokedexNumber": 839,
-          "variants": [
-            {
-              "id": "coalossal-gmax",
-              "name": "Coalossal Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "rolycoly",
+          "name": "Rolycoly",
+          "pokedexNumber": 837,
+          "variants": []
         },
         {
-          "id": "coalossal-gmax",
+          "id": "carkol",
+          "name": "Carkol",
+          "pokedexNumber": 838,
+          "variants": []
+        },
+        {
+          "id": "coalossal",
           "name": "Coalossal",
           "pokedexNumber": 839,
           "variants": [
@@ -2827,19 +3103,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "coalossal",
-          "name": "Coalossal",
-          "pokedexNumber": 839,
-          "variants": [
-            {
-              "id": "coalossal-gmax",
-              "name": "Coalossal Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "rolycoly",
+          "name": "Rolycoly",
+          "pokedexNumber": 837,
+          "variants": []
         },
         {
-          "id": "coalossal-gmax",
+          "id": "carkol",
+          "name": "Carkol",
+          "pokedexNumber": 838,
+          "variants": []
+        },
+        {
+          "id": "coalossal",
           "name": "Coalossal",
           "pokedexNumber": 839,
           "variants": [
@@ -2924,6 +3200,42 @@
           "name": "Applin",
           "pokedexNumber": 840,
           "variants": []
+        },
+        {
+          "id": "flapple",
+          "name": "Flapple",
+          "pokedexNumber": 841,
+          "variants": [
+            {
+              "id": "flapple-gmax",
+              "name": "Flapple Gmax",
+              "kind": "gmax"
+            }
+          ]
+        },
+        {
+          "id": "appletun",
+          "name": "Appletun",
+          "pokedexNumber": 842,
+          "variants": [
+            {
+              "id": "appletun-gmax",
+              "name": "Appletun Gmax",
+              "kind": "gmax"
+            }
+          ]
+        },
+        {
+          "id": "dipplin",
+          "name": "Dipplin",
+          "pokedexNumber": 1011,
+          "variants": []
+        },
+        {
+          "id": "hydrapple",
+          "name": "Hydrapple",
+          "pokedexNumber": 1019,
+          "variants": []
         }
       ],
       "sprites": {
@@ -2995,6 +3307,12 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "applin",
+          "name": "Applin",
+          "pokedexNumber": 840,
+          "variants": []
+        },
+        {
           "id": "flapple",
           "name": "Flapple",
           "pokedexNumber": 841,
@@ -3007,16 +3325,28 @@
           ]
         },
         {
-          "id": "flapple-gmax",
-          "name": "Flapple",
-          "pokedexNumber": 841,
+          "id": "appletun",
+          "name": "Appletun",
+          "pokedexNumber": 842,
           "variants": [
             {
-              "id": "flapple-gmax",
-              "name": "Flapple Gmax",
+              "id": "appletun-gmax",
+              "name": "Appletun Gmax",
               "kind": "gmax"
             }
           ]
+        },
+        {
+          "id": "dipplin",
+          "name": "Dipplin",
+          "pokedexNumber": 1011,
+          "variants": []
+        },
+        {
+          "id": "hydrapple",
+          "name": "Hydrapple",
+          "pokedexNumber": 1019,
+          "variants": []
         }
       ],
       "sprites": {
@@ -3088,6 +3418,12 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "applin",
+          "name": "Applin",
+          "pokedexNumber": 840,
+          "variants": []
+        },
+        {
           "id": "flapple",
           "name": "Flapple",
           "pokedexNumber": 841,
@@ -3100,16 +3436,28 @@
           ]
         },
         {
-          "id": "flapple-gmax",
-          "name": "Flapple",
-          "pokedexNumber": 841,
+          "id": "appletun",
+          "name": "Appletun",
+          "pokedexNumber": 842,
           "variants": [
             {
-              "id": "flapple-gmax",
-              "name": "Flapple Gmax",
+              "id": "appletun-gmax",
+              "name": "Appletun Gmax",
               "kind": "gmax"
             }
           ]
+        },
+        {
+          "id": "dipplin",
+          "name": "Dipplin",
+          "pokedexNumber": 1011,
+          "variants": []
+        },
+        {
+          "id": "hydrapple",
+          "name": "Hydrapple",
+          "pokedexNumber": 1019,
+          "variants": []
         }
       ],
       "sprites": {
@@ -3181,6 +3529,24 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "applin",
+          "name": "Applin",
+          "pokedexNumber": 840,
+          "variants": []
+        },
+        {
+          "id": "flapple",
+          "name": "Flapple",
+          "pokedexNumber": 841,
+          "variants": [
+            {
+              "id": "flapple-gmax",
+              "name": "Flapple Gmax",
+              "kind": "gmax"
+            }
+          ]
+        },
+        {
           "id": "appletun",
           "name": "Appletun",
           "pokedexNumber": 842,
@@ -3193,16 +3559,16 @@
           ]
         },
         {
-          "id": "appletun-gmax",
-          "name": "Appletun",
-          "pokedexNumber": 842,
-          "variants": [
-            {
-              "id": "appletun-gmax",
-              "name": "Appletun Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "dipplin",
+          "name": "Dipplin",
+          "pokedexNumber": 1011,
+          "variants": []
+        },
+        {
+          "id": "hydrapple",
+          "name": "Hydrapple",
+          "pokedexNumber": 1019,
+          "variants": []
         }
       ],
       "sprites": {
@@ -3274,6 +3640,24 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "applin",
+          "name": "Applin",
+          "pokedexNumber": 840,
+          "variants": []
+        },
+        {
+          "id": "flapple",
+          "name": "Flapple",
+          "pokedexNumber": 841,
+          "variants": [
+            {
+              "id": "flapple-gmax",
+              "name": "Flapple Gmax",
+              "kind": "gmax"
+            }
+          ]
+        },
+        {
           "id": "appletun",
           "name": "Appletun",
           "pokedexNumber": 842,
@@ -3286,16 +3670,16 @@
           ]
         },
         {
-          "id": "appletun-gmax",
-          "name": "Appletun",
-          "pokedexNumber": 842,
-          "variants": [
-            {
-              "id": "appletun-gmax",
-              "name": "Appletun Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "dipplin",
+          "name": "Dipplin",
+          "pokedexNumber": 1011,
+          "variants": []
+        },
+        {
+          "id": "hydrapple",
+          "name": "Hydrapple",
+          "pokedexNumber": 1019,
+          "variants": []
         }
       ],
       "sprites": {
@@ -3370,6 +3754,18 @@
           "name": "Silicobra",
           "pokedexNumber": 843,
           "variants": []
+        },
+        {
+          "id": "sandaconda",
+          "name": "Sandaconda",
+          "pokedexNumber": 844,
+          "variants": [
+            {
+              "id": "sandaconda-gmax",
+              "name": "Sandaconda Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -3440,19 +3836,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "sandaconda",
-          "name": "Sandaconda",
-          "pokedexNumber": 844,
-          "variants": [
-            {
-              "id": "sandaconda-gmax",
-              "name": "Sandaconda Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "silicobra",
+          "name": "Silicobra",
+          "pokedexNumber": 843,
+          "variants": []
         },
         {
-          "id": "sandaconda-gmax",
+          "id": "sandaconda",
           "name": "Sandaconda",
           "pokedexNumber": 844,
           "variants": [
@@ -3532,19 +3922,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "sandaconda",
-          "name": "Sandaconda",
-          "pokedexNumber": 844,
-          "variants": [
-            {
-              "id": "sandaconda-gmax",
-              "name": "Sandaconda Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "silicobra",
+          "name": "Silicobra",
+          "pokedexNumber": 843,
+          "variants": []
         },
         {
-          "id": "sandaconda-gmax",
+          "id": "sandaconda",
           "name": "Sandaconda",
           "pokedexNumber": 844,
           "variants": [
@@ -3612,40 +3996,6 @@
       "evolutionChain": [
         {
           "id": "cramorant",
-          "name": "Cramorant",
-          "pokedexNumber": 845,
-          "variants": [
-            {
-              "id": "cramorant-gorging",
-              "name": "Cramorant Gorging",
-              "kind": "form"
-            },
-            {
-              "id": "cramorant-gulping",
-              "name": "Cramorant Gulping",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "cramorant-gulping",
-          "name": "Cramorant",
-          "pokedexNumber": 845,
-          "variants": [
-            {
-              "id": "cramorant-gorging",
-              "name": "Cramorant Gorging",
-              "kind": "form"
-            },
-            {
-              "id": "cramorant-gulping",
-              "name": "Cramorant Gulping",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "cramorant-gorging",
           "name": "Cramorant",
           "pokedexNumber": 845,
           "variants": [
@@ -3732,40 +4082,6 @@
               "kind": "form"
             }
           ]
-        },
-        {
-          "id": "cramorant-gulping",
-          "name": "Cramorant",
-          "pokedexNumber": 845,
-          "variants": [
-            {
-              "id": "cramorant-gorging",
-              "name": "Cramorant Gorging",
-              "kind": "form"
-            },
-            {
-              "id": "cramorant-gulping",
-              "name": "Cramorant Gulping",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "cramorant-gorging",
-          "name": "Cramorant",
-          "pokedexNumber": 845,
-          "variants": [
-            {
-              "id": "cramorant-gorging",
-              "name": "Cramorant Gorging",
-              "kind": "form"
-            },
-            {
-              "id": "cramorant-gulping",
-              "name": "Cramorant Gulping",
-              "kind": "form"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -3824,40 +4140,6 @@
       "evolutionChain": [
         {
           "id": "cramorant",
-          "name": "Cramorant",
-          "pokedexNumber": 845,
-          "variants": [
-            {
-              "id": "cramorant-gorging",
-              "name": "Cramorant Gorging",
-              "kind": "form"
-            },
-            {
-              "id": "cramorant-gulping",
-              "name": "Cramorant Gulping",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "cramorant-gulping",
-          "name": "Cramorant",
-          "pokedexNumber": 845,
-          "variants": [
-            {
-              "id": "cramorant-gorging",
-              "name": "Cramorant Gorging",
-              "kind": "form"
-            },
-            {
-              "id": "cramorant-gulping",
-              "name": "Cramorant Gulping",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "cramorant-gorging",
           "name": "Cramorant",
           "pokedexNumber": 845,
           "variants": [
@@ -3938,6 +4220,12 @@
           "name": "Arrokuda",
           "pokedexNumber": 846,
           "variants": []
+        },
+        {
+          "id": "barraskewda",
+          "name": "Barraskewda",
+          "pokedexNumber": 847,
+          "variants": []
         }
       ],
       "sprites": {
@@ -3999,6 +4287,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "arrokuda",
+          "name": "Arrokuda",
+          "pokedexNumber": 846,
+          "variants": []
+        },
         {
           "id": "barraskewda",
           "name": "Barraskewda",
@@ -4078,6 +4372,28 @@
           "name": "Toxel",
           "pokedexNumber": 848,
           "variants": []
+        },
+        {
+          "id": "toxtricity-amped",
+          "name": "Toxtricity",
+          "pokedexNumber": 849,
+          "variants": [
+            {
+              "id": "toxtricity-amped-gmax",
+              "name": "Toxtricity Gmax",
+              "kind": "gmax"
+            },
+            {
+              "id": "toxtricity-low-key",
+              "name": "Toxtricity Low Key",
+              "kind": "form"
+            },
+            {
+              "id": "toxtricity-low-key-gmax",
+              "name": "Toxtricity Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -4148,73 +4464,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "toxel",
+          "name": "Toxel",
+          "pokedexNumber": 848,
+          "variants": []
+        },
+        {
           "id": "toxtricity-amped",
-          "name": "Toxtricity",
-          "pokedexNumber": 849,
-          "variants": [
-            {
-              "id": "toxtricity-amped-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "toxtricity-low-key",
-              "name": "Toxtricity Low Key",
-              "kind": "form"
-            },
-            {
-              "id": "toxtricity-low-key-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "toxtricity-low-key",
-          "name": "Toxtricity",
-          "pokedexNumber": 849,
-          "variants": [
-            {
-              "id": "toxtricity-amped-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "toxtricity-low-key",
-              "name": "Toxtricity Low Key",
-              "kind": "form"
-            },
-            {
-              "id": "toxtricity-low-key-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "toxtricity-amped-gmax",
-          "name": "Toxtricity",
-          "pokedexNumber": 849,
-          "variants": [
-            {
-              "id": "toxtricity-amped-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "toxtricity-low-key",
-              "name": "Toxtricity Low Key",
-              "kind": "form"
-            },
-            {
-              "id": "toxtricity-low-key-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "toxtricity-low-key-gmax",
           "name": "Toxtricity",
           "pokedexNumber": 849,
           "variants": [
@@ -4304,73 +4560,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "toxel",
+          "name": "Toxel",
+          "pokedexNumber": 848,
+          "variants": []
+        },
+        {
           "id": "toxtricity-amped",
-          "name": "Toxtricity",
-          "pokedexNumber": 849,
-          "variants": [
-            {
-              "id": "toxtricity-amped-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "toxtricity-low-key",
-              "name": "Toxtricity Low Key",
-              "kind": "form"
-            },
-            {
-              "id": "toxtricity-low-key-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "toxtricity-low-key",
-          "name": "Toxtricity",
-          "pokedexNumber": 849,
-          "variants": [
-            {
-              "id": "toxtricity-amped-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "toxtricity-low-key",
-              "name": "Toxtricity Low Key",
-              "kind": "form"
-            },
-            {
-              "id": "toxtricity-low-key-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "toxtricity-amped-gmax",
-          "name": "Toxtricity",
-          "pokedexNumber": 849,
-          "variants": [
-            {
-              "id": "toxtricity-amped-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "toxtricity-low-key",
-              "name": "Toxtricity Low Key",
-              "kind": "form"
-            },
-            {
-              "id": "toxtricity-low-key-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "toxtricity-low-key-gmax",
           "name": "Toxtricity",
           "pokedexNumber": 849,
           "variants": [
@@ -4460,73 +4656,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "toxel",
+          "name": "Toxel",
+          "pokedexNumber": 848,
+          "variants": []
+        },
+        {
           "id": "toxtricity-amped",
-          "name": "Toxtricity",
-          "pokedexNumber": 849,
-          "variants": [
-            {
-              "id": "toxtricity-amped-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "toxtricity-low-key",
-              "name": "Toxtricity Low Key",
-              "kind": "form"
-            },
-            {
-              "id": "toxtricity-low-key-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "toxtricity-low-key",
-          "name": "Toxtricity",
-          "pokedexNumber": 849,
-          "variants": [
-            {
-              "id": "toxtricity-amped-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "toxtricity-low-key",
-              "name": "Toxtricity Low Key",
-              "kind": "form"
-            },
-            {
-              "id": "toxtricity-low-key-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "toxtricity-amped-gmax",
-          "name": "Toxtricity",
-          "pokedexNumber": 849,
-          "variants": [
-            {
-              "id": "toxtricity-amped-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "toxtricity-low-key",
-              "name": "Toxtricity Low Key",
-              "kind": "form"
-            },
-            {
-              "id": "toxtricity-low-key-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "toxtricity-low-key-gmax",
           "name": "Toxtricity",
           "pokedexNumber": 849,
           "variants": [
@@ -4616,73 +4752,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "toxel",
+          "name": "Toxel",
+          "pokedexNumber": 848,
+          "variants": []
+        },
+        {
           "id": "toxtricity-amped",
-          "name": "Toxtricity",
-          "pokedexNumber": 849,
-          "variants": [
-            {
-              "id": "toxtricity-amped-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "toxtricity-low-key",
-              "name": "Toxtricity Low Key",
-              "kind": "form"
-            },
-            {
-              "id": "toxtricity-low-key-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "toxtricity-low-key",
-          "name": "Toxtricity",
-          "pokedexNumber": 849,
-          "variants": [
-            {
-              "id": "toxtricity-amped-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "toxtricity-low-key",
-              "name": "Toxtricity Low Key",
-              "kind": "form"
-            },
-            {
-              "id": "toxtricity-low-key-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "toxtricity-amped-gmax",
-          "name": "Toxtricity",
-          "pokedexNumber": 849,
-          "variants": [
-            {
-              "id": "toxtricity-amped-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "toxtricity-low-key",
-              "name": "Toxtricity Low Key",
-              "kind": "form"
-            },
-            {
-              "id": "toxtricity-low-key-gmax",
-              "name": "Toxtricity Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "toxtricity-low-key-gmax",
           "name": "Toxtricity",
           "pokedexNumber": 849,
           "variants": [
@@ -4775,6 +4851,18 @@
           "name": "Sizzlipede",
           "pokedexNumber": 850,
           "variants": []
+        },
+        {
+          "id": "centiskorch",
+          "name": "Centiskorch",
+          "pokedexNumber": 851,
+          "variants": [
+            {
+              "id": "centiskorch-gmax",
+              "name": "Centiskorch Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -4844,19 +4932,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "centiskorch",
-          "name": "Centiskorch",
-          "pokedexNumber": 851,
-          "variants": [
-            {
-              "id": "centiskorch-gmax",
-              "name": "Centiskorch Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "sizzlipede",
+          "name": "Sizzlipede",
+          "pokedexNumber": 850,
+          "variants": []
         },
         {
-          "id": "centiskorch-gmax",
+          "id": "centiskorch",
           "name": "Centiskorch",
           "pokedexNumber": 851,
           "variants": [
@@ -4935,19 +5017,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "centiskorch",
-          "name": "Centiskorch",
-          "pokedexNumber": 851,
-          "variants": [
-            {
-              "id": "centiskorch-gmax",
-              "name": "Centiskorch Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "sizzlipede",
+          "name": "Sizzlipede",
+          "pokedexNumber": 850,
+          "variants": []
         },
         {
-          "id": "centiskorch-gmax",
+          "id": "centiskorch",
           "name": "Centiskorch",
           "pokedexNumber": 851,
           "variants": [
@@ -5023,6 +5099,12 @@
           "name": "Clobbopus",
           "pokedexNumber": 852,
           "variants": []
+        },
+        {
+          "id": "grapploct",
+          "name": "Grapploct",
+          "pokedexNumber": 853,
+          "variants": []
         }
       ],
       "sprites": {
@@ -5084,6 +5166,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "clobbopus",
+          "name": "Clobbopus",
+          "pokedexNumber": 852,
+          "variants": []
+        },
         {
           "id": "grapploct",
           "name": "Grapploct",
@@ -5156,6 +5244,12 @@
           "name": "Sinistea",
           "pokedexNumber": 854,
           "variants": []
+        },
+        {
+          "id": "polteageist",
+          "name": "Polteageist",
+          "pokedexNumber": 855,
+          "variants": []
         }
       ],
       "sprites": {
@@ -5218,6 +5312,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "sinistea",
+          "name": "Sinistea",
+          "pokedexNumber": 854,
+          "variants": []
+        },
         {
           "id": "polteageist",
           "name": "Polteageist",
@@ -5296,6 +5396,24 @@
           "name": "Hatenna",
           "pokedexNumber": 856,
           "variants": []
+        },
+        {
+          "id": "hattrem",
+          "name": "Hattrem",
+          "pokedexNumber": 857,
+          "variants": []
+        },
+        {
+          "id": "hatterene",
+          "name": "Hatterene",
+          "pokedexNumber": 858,
+          "variants": [
+            {
+              "id": "hatterene-gmax",
+              "name": "Hatterene Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -5365,10 +5483,28 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "hatenna",
+          "name": "Hatenna",
+          "pokedexNumber": 856,
+          "variants": []
+        },
+        {
           "id": "hattrem",
           "name": "Hattrem",
           "pokedexNumber": 857,
           "variants": []
+        },
+        {
+          "id": "hatterene",
+          "name": "Hatterene",
+          "pokedexNumber": 858,
+          "variants": [
+            {
+              "id": "hatterene-gmax",
+              "name": "Hatterene Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -5439,19 +5575,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "hatterene",
-          "name": "Hatterene",
-          "pokedexNumber": 858,
-          "variants": [
-            {
-              "id": "hatterene-gmax",
-              "name": "Hatterene Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "hatenna",
+          "name": "Hatenna",
+          "pokedexNumber": 856,
+          "variants": []
         },
         {
-          "id": "hatterene-gmax",
+          "id": "hattrem",
+          "name": "Hattrem",
+          "pokedexNumber": 857,
+          "variants": []
+        },
+        {
+          "id": "hatterene",
           "name": "Hatterene",
           "pokedexNumber": 858,
           "variants": [
@@ -5531,19 +5667,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "hatterene",
-          "name": "Hatterene",
-          "pokedexNumber": 858,
-          "variants": [
-            {
-              "id": "hatterene-gmax",
-              "name": "Hatterene Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "hatenna",
+          "name": "Hatenna",
+          "pokedexNumber": 856,
+          "variants": []
         },
         {
-          "id": "hatterene-gmax",
+          "id": "hattrem",
+          "name": "Hattrem",
+          "pokedexNumber": 857,
+          "variants": []
+        },
+        {
+          "id": "hatterene",
           "name": "Hatterene",
           "pokedexNumber": 858,
           "variants": [
@@ -5628,6 +5764,24 @@
           "name": "Impidimp",
           "pokedexNumber": 859,
           "variants": []
+        },
+        {
+          "id": "morgrem",
+          "name": "Morgrem",
+          "pokedexNumber": 860,
+          "variants": []
+        },
+        {
+          "id": "grimmsnarl",
+          "name": "Grimmsnarl",
+          "pokedexNumber": 861,
+          "variants": [
+            {
+              "id": "grimmsnarl-gmax",
+              "name": "Grimmsnarl Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -5699,10 +5853,28 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "impidimp",
+          "name": "Impidimp",
+          "pokedexNumber": 859,
+          "variants": []
+        },
+        {
           "id": "morgrem",
           "name": "Morgrem",
           "pokedexNumber": 860,
           "variants": []
+        },
+        {
+          "id": "grimmsnarl",
+          "name": "Grimmsnarl",
+          "pokedexNumber": 861,
+          "variants": [
+            {
+              "id": "grimmsnarl-gmax",
+              "name": "Grimmsnarl Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -5774,19 +5946,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "grimmsnarl",
-          "name": "Grimmsnarl",
-          "pokedexNumber": 861,
-          "variants": [
-            {
-              "id": "grimmsnarl-gmax",
-              "name": "Grimmsnarl Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "impidimp",
+          "name": "Impidimp",
+          "pokedexNumber": 859,
+          "variants": []
         },
         {
-          "id": "grimmsnarl-gmax",
+          "id": "morgrem",
+          "name": "Morgrem",
+          "pokedexNumber": 860,
+          "variants": []
+        },
+        {
+          "id": "grimmsnarl",
           "name": "Grimmsnarl",
           "pokedexNumber": 861,
           "variants": [
@@ -5867,19 +6039,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "grimmsnarl",
-          "name": "Grimmsnarl",
-          "pokedexNumber": 861,
-          "variants": [
-            {
-              "id": "grimmsnarl-gmax",
-              "name": "Grimmsnarl Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "impidimp",
+          "name": "Impidimp",
+          "pokedexNumber": 859,
+          "variants": []
         },
         {
-          "id": "grimmsnarl-gmax",
+          "id": "morgrem",
+          "name": "Morgrem",
+          "pokedexNumber": 860,
+          "variants": []
+        },
+        {
+          "id": "grimmsnarl",
           "name": "Grimmsnarl",
           "pokedexNumber": 861,
           "variants": [
@@ -5958,6 +6130,30 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "zigzagoon-galar",
+          "name": "Zigzagoon",
+          "pokedexNumber": 263,
+          "variants": [
+            {
+              "id": "zigzagoon-galar",
+              "name": "Zigzagoon Galar",
+              "kind": "regional"
+            }
+          ]
+        },
+        {
+          "id": "linoone-galar",
+          "name": "Linoone",
+          "pokedexNumber": 264,
+          "variants": [
+            {
+              "id": "linoone-galar",
+              "name": "Linoone Galar",
+              "kind": "regional"
+            }
+          ]
+        },
+        {
           "id": "obstagoon",
           "name": "Obstagoon",
           "pokedexNumber": 862,
@@ -6030,6 +6226,28 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "meowth-galar",
+          "name": "Meowth",
+          "pokedexNumber": 52,
+          "variants": [
+            {
+              "id": "meowth-alola",
+              "name": "Meowth Alola",
+              "kind": "regional"
+            },
+            {
+              "id": "meowth-galar",
+              "name": "Meowth Galar",
+              "kind": "regional"
+            },
+            {
+              "id": "meowth-gmax",
+              "name": "Meowth Gmax",
+              "kind": "gmax"
+            }
+          ]
+        },
+        {
           "id": "perrserker",
           "name": "Perrserker",
           "pokedexNumber": 863,
@@ -6096,6 +6314,18 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "corsola-galar",
+          "name": "Corsola",
+          "pokedexNumber": 222,
+          "variants": [
+            {
+              "id": "corsola-galar",
+              "name": "Corsola Galar",
+              "kind": "regional"
+            }
+          ]
+        },
+        {
           "id": "cursola",
           "name": "Cursola",
           "pokedexNumber": 864,
@@ -6161,6 +6391,18 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "farfetchd-galar",
+          "name": "Farfetch’d",
+          "pokedexNumber": 83,
+          "variants": [
+            {
+              "id": "farfetchd-galar",
+              "name": "Farfetch’d Galar",
+              "kind": "regional"
+            }
+          ]
+        },
         {
           "id": "sirfetchd",
           "name": "Sirfetch’d",
@@ -6235,6 +6477,24 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "mr-mime-galar",
+          "name": "Mr. Mime",
+          "pokedexNumber": 122,
+          "variants": [
+            {
+              "id": "mr-mime-galar",
+              "name": "Mr. Mime Galar",
+              "kind": "regional"
+            }
+          ]
+        },
+        {
+          "id": "mime-jr",
+          "name": "Mime Jr.",
+          "pokedexNumber": 439,
+          "variants": []
+        },
+        {
           "id": "mr-rime",
           "name": "Mr. Rime",
           "pokedexNumber": 866,
@@ -6294,6 +6554,18 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "yamask-galar",
+          "name": "Yamask",
+          "pokedexNumber": 562,
+          "variants": [
+            {
+              "id": "yamask-galar",
+              "name": "Yamask Galar",
+              "kind": "regional"
+            }
+          ]
+        },
         {
           "id": "runerigus",
           "name": "Runerigus",
@@ -6366,6 +6638,18 @@
           "name": "Milcery",
           "pokedexNumber": 868,
           "variants": []
+        },
+        {
+          "id": "alcremie",
+          "name": "Alcremie",
+          "pokedexNumber": 869,
+          "variants": [
+            {
+              "id": "alcremie-gmax",
+              "name": "Alcremie Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -6429,19 +6713,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "alcremie",
-          "name": "Alcremie",
-          "pokedexNumber": 869,
-          "variants": [
-            {
-              "id": "alcremie-gmax",
-              "name": "Alcremie Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "milcery",
+          "name": "Milcery",
+          "pokedexNumber": 868,
+          "variants": []
         },
         {
-          "id": "alcremie-gmax",
+          "id": "alcremie",
           "name": "Alcremie",
           "pokedexNumber": 869,
           "variants": [
@@ -6514,19 +6792,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "alcremie",
-          "name": "Alcremie",
-          "pokedexNumber": 869,
-          "variants": [
-            {
-              "id": "alcremie-gmax",
-              "name": "Alcremie Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "milcery",
+          "name": "Milcery",
+          "pokedexNumber": 868,
+          "variants": []
         },
         {
-          "id": "alcremie-gmax",
+          "id": "alcremie",
           "name": "Alcremie",
           "pokedexNumber": 869,
           "variants": [
@@ -6609,18 +6881,6 @@
               "kind": "mega"
             }
           ]
-        },
-        {
-          "id": "falinks-mega",
-          "name": "Falinks",
-          "pokedexNumber": 870,
-          "variants": [
-            {
-              "id": "falinks-mega",
-              "name": "Falinks Mega",
-              "kind": "mega"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -6685,18 +6945,6 @@
       "evolutionChain": [
         {
           "id": "falinks",
-          "name": "Falinks",
-          "pokedexNumber": 870,
-          "variants": [
-            {
-              "id": "falinks-mega",
-              "name": "Falinks Mega",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "falinks-mega",
           "name": "Falinks",
           "pokedexNumber": 870,
           "variants": [
@@ -6840,6 +7088,12 @@
           "name": "Snom",
           "pokedexNumber": 872,
           "variants": []
+        },
+        {
+          "id": "frosmoth",
+          "name": "Frosmoth",
+          "pokedexNumber": 873,
+          "variants": []
         }
       ],
       "sprites": {
@@ -6902,6 +7156,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "snom",
+          "name": "Snom",
+          "pokedexNumber": 872,
+          "variants": []
+        },
         {
           "id": "frosmoth",
           "name": "Frosmoth",
@@ -7032,18 +7292,6 @@
               "kind": "form"
             }
           ]
-        },
-        {
-          "id": "eiscue-noice",
-          "name": "Eiscue",
-          "pokedexNumber": 875,
-          "variants": [
-            {
-              "id": "eiscue-noice",
-              "name": "Eiscue Noice",
-              "kind": "form"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -7101,18 +7349,6 @@
       "evolutionChain": [
         {
           "id": "eiscue-ice",
-          "name": "Eiscue",
-          "pokedexNumber": 875,
-          "variants": [
-            {
-              "id": "eiscue-noice",
-              "name": "Eiscue Noice",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "eiscue-noice",
           "name": "Eiscue",
           "pokedexNumber": 875,
           "variants": [
@@ -7202,18 +7438,6 @@
               "kind": "form"
             }
           ]
-        },
-        {
-          "id": "indeedee-female",
-          "name": "Indeedee",
-          "pokedexNumber": 876,
-          "variants": [
-            {
-              "id": "indeedee-female",
-              "name": "Indeedee Female",
-              "kind": "form"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -7294,18 +7518,6 @@
               "kind": "form"
             }
           ]
-        },
-        {
-          "id": "indeedee-female",
-          "name": "Indeedee",
-          "pokedexNumber": 876,
-          "variants": [
-            {
-              "id": "indeedee-female",
-              "name": "Indeedee Female",
-              "kind": "form"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -7364,18 +7576,6 @@
       "evolutionChain": [
         {
           "id": "morpeko-full-belly",
-          "name": "Morpeko",
-          "pokedexNumber": 877,
-          "variants": [
-            {
-              "id": "morpeko-hangry",
-              "name": "Morpeko Hangry",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "morpeko-hangry",
           "name": "Morpeko",
           "pokedexNumber": 877,
           "variants": [
@@ -7452,18 +7652,6 @@
               "kind": "form"
             }
           ]
-        },
-        {
-          "id": "morpeko-hangry",
-          "name": "Morpeko",
-          "pokedexNumber": 877,
-          "variants": [
-            {
-              "id": "morpeko-hangry",
-              "name": "Morpeko Hangry",
-              "kind": "form"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -7531,6 +7719,18 @@
           "name": "Cufant",
           "pokedexNumber": 878,
           "variants": []
+        },
+        {
+          "id": "copperajah",
+          "name": "Copperajah",
+          "pokedexNumber": 879,
+          "variants": [
+            {
+              "id": "copperajah-gmax",
+              "name": "Copperajah Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -7594,19 +7794,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "copperajah",
-          "name": "Copperajah",
-          "pokedexNumber": 879,
-          "variants": [
-            {
-              "id": "copperajah-gmax",
-              "name": "Copperajah Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "cufant",
+          "name": "Cufant",
+          "pokedexNumber": 878,
+          "variants": []
         },
         {
-          "id": "copperajah-gmax",
+          "id": "copperajah",
           "name": "Copperajah",
           "pokedexNumber": 879,
           "variants": [
@@ -7679,19 +7873,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "copperajah",
-          "name": "Copperajah",
-          "pokedexNumber": 879,
-          "variants": [
-            {
-              "id": "copperajah-gmax",
-              "name": "Copperajah Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "cufant",
+          "name": "Cufant",
+          "pokedexNumber": 878,
+          "variants": []
         },
         {
-          "id": "copperajah-gmax",
+          "id": "copperajah",
           "name": "Copperajah",
           "pokedexNumber": 879,
           "variants": [
@@ -8076,16 +8264,10 @@
           ]
         },
         {
-          "id": "duraludon-gmax",
-          "name": "Duraludon",
-          "pokedexNumber": 884,
-          "variants": [
-            {
-              "id": "duraludon-gmax",
-              "name": "Duraludon Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "archaludon",
+          "name": "Archaludon",
+          "pokedexNumber": 1018,
+          "variants": []
         }
       ],
       "sprites": {
@@ -8169,16 +8351,10 @@
           ]
         },
         {
-          "id": "duraludon-gmax",
-          "name": "Duraludon",
-          "pokedexNumber": 884,
-          "variants": [
-            {
-              "id": "duraludon-gmax",
-              "name": "Duraludon Gmax",
-              "kind": "gmax"
-            }
-          ]
+          "id": "archaludon",
+          "name": "Archaludon",
+          "pokedexNumber": 1018,
+          "variants": []
         }
       ],
       "sprites": {
@@ -8254,6 +8430,18 @@
           "name": "Dreepy",
           "pokedexNumber": 885,
           "variants": []
+        },
+        {
+          "id": "drakloak",
+          "name": "Drakloak",
+          "pokedexNumber": 886,
+          "variants": []
+        },
+        {
+          "id": "dragapult",
+          "name": "Dragapult",
+          "pokedexNumber": 887,
+          "variants": []
         }
       ],
       "sprites": {
@@ -8325,9 +8513,21 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "dreepy",
+          "name": "Dreepy",
+          "pokedexNumber": 885,
+          "variants": []
+        },
+        {
           "id": "drakloak",
           "name": "Drakloak",
           "pokedexNumber": 886,
+          "variants": []
+        },
+        {
+          "id": "dragapult",
+          "name": "Dragapult",
+          "pokedexNumber": 887,
           "variants": []
         }
       ],
@@ -8400,6 +8600,18 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "dreepy",
+          "name": "Dreepy",
+          "pokedexNumber": 885,
+          "variants": []
+        },
+        {
+          "id": "drakloak",
+          "name": "Drakloak",
+          "pokedexNumber": 886,
+          "variants": []
+        },
+        {
           "id": "dragapult",
           "name": "Dragapult",
           "pokedexNumber": 887,
@@ -8459,18 +8671,6 @@
       "evolutionChain": [
         {
           "id": "zacian",
-          "name": "Zacian",
-          "pokedexNumber": 888,
-          "variants": [
-            {
-              "id": "zacian-crowned",
-              "name": "Zacian Crowned",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "zacian-crowned",
           "name": "Zacian",
           "pokedexNumber": 888,
           "variants": [
@@ -8545,18 +8745,6 @@
               "kind": "style"
             }
           ]
-        },
-        {
-          "id": "zacian-crowned",
-          "name": "Zacian",
-          "pokedexNumber": 888,
-          "variants": [
-            {
-              "id": "zacian-crowned",
-              "name": "Zacian Crowned",
-              "kind": "style"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -8612,18 +8800,6 @@
       "evolutionChain": [
         {
           "id": "zamazenta",
-          "name": "Zamazenta",
-          "pokedexNumber": 889,
-          "variants": [
-            {
-              "id": "zamazenta-crowned",
-              "name": "Zamazenta Crowned",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "zamazenta-crowned",
           "name": "Zamazenta",
           "pokedexNumber": 889,
           "variants": [
@@ -8698,18 +8874,6 @@
               "kind": "style"
             }
           ]
-        },
-        {
-          "id": "zamazenta-crowned",
-          "name": "Zamazenta",
-          "pokedexNumber": 889,
-          "variants": [
-            {
-              "id": "zamazenta-crowned",
-              "name": "Zamazenta Crowned",
-              "kind": "style"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -8766,18 +8930,6 @@
       "evolutionChain": [
         {
           "id": "eternatus",
-          "name": "Eternatus",
-          "pokedexNumber": 890,
-          "variants": [
-            {
-              "id": "eternatus-eternamax",
-              "name": "Eternatus Eternamax",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "eternatus-eternamax",
           "name": "Eternatus",
           "pokedexNumber": 890,
           "variants": [
@@ -8852,18 +9004,6 @@
               "kind": "form"
             }
           ]
-        },
-        {
-          "id": "eternatus-eternamax",
-          "name": "Eternatus",
-          "pokedexNumber": 890,
-          "variants": [
-            {
-              "id": "eternatus-eternamax",
-              "name": "Eternatus Eternamax",
-              "kind": "form"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -8922,6 +9062,28 @@
           "name": "Kubfu",
           "pokedexNumber": 891,
           "variants": []
+        },
+        {
+          "id": "urshifu-single-strike",
+          "name": "Urshifu",
+          "pokedexNumber": 892,
+          "variants": [
+            {
+              "id": "urshifu-rapid-strike",
+              "name": "Urshifu Rapid Strike",
+              "kind": "style"
+            },
+            {
+              "id": "urshifu-rapid-strike-gmax",
+              "name": "Urshifu Gmax",
+              "kind": "gmax"
+            },
+            {
+              "id": "urshifu-single-strike-gmax",
+              "name": "Urshifu Gmax",
+              "kind": "gmax"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -8977,73 +9139,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "kubfu",
+          "name": "Kubfu",
+          "pokedexNumber": 891,
+          "variants": []
+        },
+        {
           "id": "urshifu-single-strike",
-          "name": "Urshifu",
-          "pokedexNumber": 892,
-          "variants": [
-            {
-              "id": "urshifu-rapid-strike",
-              "name": "Urshifu Rapid Strike",
-              "kind": "style"
-            },
-            {
-              "id": "urshifu-rapid-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "urshifu-single-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "urshifu-rapid-strike",
-          "name": "Urshifu",
-          "pokedexNumber": 892,
-          "variants": [
-            {
-              "id": "urshifu-rapid-strike",
-              "name": "Urshifu Rapid Strike",
-              "kind": "style"
-            },
-            {
-              "id": "urshifu-rapid-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "urshifu-single-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "urshifu-single-strike-gmax",
-          "name": "Urshifu",
-          "pokedexNumber": 892,
-          "variants": [
-            {
-              "id": "urshifu-rapid-strike",
-              "name": "Urshifu Rapid Strike",
-              "kind": "style"
-            },
-            {
-              "id": "urshifu-rapid-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "urshifu-single-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "urshifu-rapid-strike-gmax",
           "name": "Urshifu",
           "pokedexNumber": 892,
           "variants": [
@@ -9118,73 +9220,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "kubfu",
+          "name": "Kubfu",
+          "pokedexNumber": 891,
+          "variants": []
+        },
+        {
           "id": "urshifu-single-strike",
-          "name": "Urshifu",
-          "pokedexNumber": 892,
-          "variants": [
-            {
-              "id": "urshifu-rapid-strike",
-              "name": "Urshifu Rapid Strike",
-              "kind": "style"
-            },
-            {
-              "id": "urshifu-rapid-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "urshifu-single-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "urshifu-rapid-strike",
-          "name": "Urshifu",
-          "pokedexNumber": 892,
-          "variants": [
-            {
-              "id": "urshifu-rapid-strike",
-              "name": "Urshifu Rapid Strike",
-              "kind": "style"
-            },
-            {
-              "id": "urshifu-rapid-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "urshifu-single-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "urshifu-single-strike-gmax",
-          "name": "Urshifu",
-          "pokedexNumber": 892,
-          "variants": [
-            {
-              "id": "urshifu-rapid-strike",
-              "name": "Urshifu Rapid Strike",
-              "kind": "style"
-            },
-            {
-              "id": "urshifu-rapid-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "urshifu-single-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "urshifu-rapid-strike-gmax",
           "name": "Urshifu",
           "pokedexNumber": 892,
           "variants": [
@@ -9259,73 +9301,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "kubfu",
+          "name": "Kubfu",
+          "pokedexNumber": 891,
+          "variants": []
+        },
+        {
           "id": "urshifu-single-strike",
-          "name": "Urshifu",
-          "pokedexNumber": 892,
-          "variants": [
-            {
-              "id": "urshifu-rapid-strike",
-              "name": "Urshifu Rapid Strike",
-              "kind": "style"
-            },
-            {
-              "id": "urshifu-rapid-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "urshifu-single-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "urshifu-rapid-strike",
-          "name": "Urshifu",
-          "pokedexNumber": 892,
-          "variants": [
-            {
-              "id": "urshifu-rapid-strike",
-              "name": "Urshifu Rapid Strike",
-              "kind": "style"
-            },
-            {
-              "id": "urshifu-rapid-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "urshifu-single-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "urshifu-single-strike-gmax",
-          "name": "Urshifu",
-          "pokedexNumber": 892,
-          "variants": [
-            {
-              "id": "urshifu-rapid-strike",
-              "name": "Urshifu Rapid Strike",
-              "kind": "style"
-            },
-            {
-              "id": "urshifu-rapid-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "urshifu-single-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "urshifu-rapid-strike-gmax",
           "name": "Urshifu",
           "pokedexNumber": 892,
           "variants": [
@@ -9400,73 +9382,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "kubfu",
+          "name": "Kubfu",
+          "pokedexNumber": 891,
+          "variants": []
+        },
+        {
           "id": "urshifu-single-strike",
-          "name": "Urshifu",
-          "pokedexNumber": 892,
-          "variants": [
-            {
-              "id": "urshifu-rapid-strike",
-              "name": "Urshifu Rapid Strike",
-              "kind": "style"
-            },
-            {
-              "id": "urshifu-rapid-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "urshifu-single-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "urshifu-rapid-strike",
-          "name": "Urshifu",
-          "pokedexNumber": 892,
-          "variants": [
-            {
-              "id": "urshifu-rapid-strike",
-              "name": "Urshifu Rapid Strike",
-              "kind": "style"
-            },
-            {
-              "id": "urshifu-rapid-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "urshifu-single-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "urshifu-single-strike-gmax",
-          "name": "Urshifu",
-          "pokedexNumber": 892,
-          "variants": [
-            {
-              "id": "urshifu-rapid-strike",
-              "name": "Urshifu Rapid Strike",
-              "kind": "style"
-            },
-            {
-              "id": "urshifu-rapid-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            },
-            {
-              "id": "urshifu-single-strike-gmax",
-              "name": "Urshifu Gmax",
-              "kind": "gmax"
-            }
-          ]
-        },
-        {
-          "id": "urshifu-rapid-strike-gmax",
           "name": "Urshifu",
           "pokedexNumber": 892,
           "variants": [
@@ -9551,18 +9473,6 @@
               "kind": "form"
             }
           ]
-        },
-        {
-          "id": "zarude-dada",
-          "name": "Zarude",
-          "pokedexNumber": 893,
-          "variants": [
-            {
-              "id": "zarude-dada",
-              "name": "Zarude Dada",
-              "kind": "form"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -9619,18 +9529,6 @@
       "evolutionChain": [
         {
           "id": "zarude",
-          "name": "Zarude",
-          "pokedexNumber": 893,
-          "variants": [
-            {
-              "id": "zarude-dada",
-              "name": "Zarude Dada",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "zarude-dada",
           "name": "Zarude",
           "pokedexNumber": 893,
           "variants": [
@@ -9942,40 +9840,6 @@
               "kind": "form"
             }
           ]
-        },
-        {
-          "id": "calyrex-ice",
-          "name": "Calyrex",
-          "pokedexNumber": 898,
-          "variants": [
-            {
-              "id": "calyrex-ice",
-              "name": "Calyrex Ice",
-              "kind": "form"
-            },
-            {
-              "id": "calyrex-shadow",
-              "name": "Calyrex Shadow",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "calyrex-shadow",
-          "name": "Calyrex",
-          "pokedexNumber": 898,
-          "variants": [
-            {
-              "id": "calyrex-ice",
-              "name": "Calyrex Ice",
-              "kind": "form"
-            },
-            {
-              "id": "calyrex-shadow",
-              "name": "Calyrex Shadow",
-              "kind": "form"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -10032,40 +9896,6 @@
       "evolutionChain": [
         {
           "id": "calyrex",
-          "name": "Calyrex",
-          "pokedexNumber": 898,
-          "variants": [
-            {
-              "id": "calyrex-ice",
-              "name": "Calyrex Ice",
-              "kind": "form"
-            },
-            {
-              "id": "calyrex-shadow",
-              "name": "Calyrex Shadow",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "calyrex-ice",
-          "name": "Calyrex",
-          "pokedexNumber": 898,
-          "variants": [
-            {
-              "id": "calyrex-ice",
-              "name": "Calyrex Ice",
-              "kind": "form"
-            },
-            {
-              "id": "calyrex-shadow",
-              "name": "Calyrex Shadow",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "calyrex-shadow",
           "name": "Calyrex",
           "pokedexNumber": 898,
           "variants": [
@@ -10150,40 +9980,6 @@
               "kind": "form"
             }
           ]
-        },
-        {
-          "id": "calyrex-ice",
-          "name": "Calyrex",
-          "pokedexNumber": 898,
-          "variants": [
-            {
-              "id": "calyrex-ice",
-              "name": "Calyrex Ice",
-              "kind": "form"
-            },
-            {
-              "id": "calyrex-shadow",
-              "name": "Calyrex Shadow",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "calyrex-shadow",
-          "name": "Calyrex",
-          "pokedexNumber": 898,
-          "variants": [
-            {
-              "id": "calyrex-ice",
-              "name": "Calyrex Ice",
-              "kind": "form"
-            },
-            {
-              "id": "calyrex-shadow",
-              "name": "Calyrex Shadow",
-              "kind": "form"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -10250,6 +10046,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "stantler",
+          "name": "Stantler",
+          "pokedexNumber": 234,
+          "variants": []
+        },
         {
           "id": "wyrdeer",
           "name": "Wyrdeer",
@@ -10324,6 +10126,24 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "scyther",
+          "name": "Scyther",
+          "pokedexNumber": 123,
+          "variants": []
+        },
+        {
+          "id": "scizor",
+          "name": "Scizor",
+          "pokedexNumber": 212,
+          "variants": [
+            {
+              "id": "scizor-mega",
+              "name": "Scizor Mega",
+              "kind": "mega"
+            }
+          ]
+        },
+        {
           "id": "kleavor",
           "name": "Kleavor",
           "pokedexNumber": 900,
@@ -10397,19 +10217,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "ursaluna",
-          "name": "Ursaluna",
-          "pokedexNumber": 901,
-          "variants": [
-            {
-              "id": "ursaluna-bloodmoon",
-              "name": "Ursaluna Bloodmoon",
-              "kind": "form"
-            }
-          ]
+          "id": "teddiursa",
+          "name": "Teddiursa",
+          "pokedexNumber": 216,
+          "variants": []
         },
         {
-          "id": "ursaluna-bloodmoon",
+          "id": "ursaring",
+          "name": "Ursaring",
+          "pokedexNumber": 217,
+          "variants": []
+        },
+        {
+          "id": "ursaluna",
           "name": "Ursaluna",
           "pokedexNumber": 901,
           "variants": [
@@ -10474,19 +10294,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "ursaluna",
-          "name": "Ursaluna",
-          "pokedexNumber": 901,
-          "variants": [
-            {
-              "id": "ursaluna-bloodmoon",
-              "name": "Ursaluna Bloodmoon",
-              "kind": "form"
-            }
-          ]
+          "id": "teddiursa",
+          "name": "Teddiursa",
+          "pokedexNumber": 216,
+          "variants": []
         },
         {
-          "id": "ursaluna-bloodmoon",
+          "id": "ursaring",
+          "name": "Ursaring",
+          "pokedexNumber": 217,
+          "variants": []
+        },
+        {
+          "id": "ursaluna",
           "name": "Ursaluna",
           "pokedexNumber": 901,
           "variants": [
@@ -10565,19 +10385,24 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "basculegion-male",
-          "name": "Basculegion",
-          "pokedexNumber": 902,
+          "id": "basculin-white-striped",
+          "name": "Basculin",
+          "pokedexNumber": 550,
           "variants": [
             {
-              "id": "basculegion-female",
-              "name": "Basculegion Female",
+              "id": "basculin-blue-striped",
+              "name": "Basculin Blue Striped",
+              "kind": "form"
+            },
+            {
+              "id": "basculin-white-striped",
+              "name": "Basculin White Striped",
               "kind": "form"
             }
           ]
         },
         {
-          "id": "basculegion-female",
+          "id": "basculegion-male",
           "name": "Basculegion",
           "pokedexNumber": 902,
           "variants": [
@@ -10656,13 +10481,18 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "basculegion-male",
-          "name": "Basculegion",
-          "pokedexNumber": 902,
+          "id": "basculin-white-striped",
+          "name": "Basculin",
+          "pokedexNumber": 550,
           "variants": [
             {
-              "id": "basculegion-female",
-              "name": "Basculegion Female",
+              "id": "basculin-blue-striped",
+              "name": "Basculin Blue Striped",
+              "kind": "form"
+            },
+            {
+              "id": "basculin-white-striped",
+              "name": "Basculin White Striped",
               "kind": "form"
             }
           ]
@@ -10745,6 +10575,18 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "sneasel-hisui",
+          "name": "Sneasel",
+          "pokedexNumber": 215,
+          "variants": [
+            {
+              "id": "sneasel-hisui",
+              "name": "Sneasel Hisui",
+              "kind": "regional"
+            }
+          ]
+        },
+        {
           "id": "sneasler",
           "name": "Sneasler",
           "pokedexNumber": 903,
@@ -10817,6 +10659,18 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "qwilfish-hisui",
+          "name": "Qwilfish",
+          "pokedexNumber": 211,
+          "variants": [
+            {
+              "id": "qwilfish-hisui",
+              "name": "Qwilfish Hisui",
+              "kind": "regional"
+            }
+          ]
+        },
         {
           "id": "overqwil",
           "name": "Overqwil",
@@ -10892,18 +10746,6 @@
               "kind": "style"
             }
           ]
-        },
-        {
-          "id": "enamorus-therian",
-          "name": "Enamorus",
-          "pokedexNumber": 905,
-          "variants": [
-            {
-              "id": "enamorus-therian",
-              "name": "Enamorus Therian",
-              "kind": "style"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -10958,18 +10800,6 @@
       "evolutionChain": [
         {
           "id": "enamorus-incarnate",
-          "name": "Enamorus",
-          "pokedexNumber": 905,
-          "variants": [
-            {
-              "id": "enamorus-therian",
-              "name": "Enamorus Therian",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "enamorus-therian",
           "name": "Enamorus",
           "pokedexNumber": 905,
           "variants": [

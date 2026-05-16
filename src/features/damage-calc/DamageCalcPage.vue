@@ -9,10 +9,14 @@ import moveStatusSeal from '@/assets/pokesprite/misc/seals/home/move-status.png'
 import type {
   BattleMode,
   LocaleCode,
+  MoveEntry,
+  PokemonEntry,
   PokemonTypeKey,
   StatKey,
 } from '@/models/domain'
 import type {
+  DamageLineThreatEntry,
+  DamageLineThreatFocus,
   DamageMatrixCell,
   DamagePairComputation,
   DamageGeneration,
@@ -23,11 +27,15 @@ import type {
   DamageSlotNumber,
   DamageStatus,
 } from '@/models/damage-calc'
+import type { DexAvailabilityFilterKey } from '@/models/dex'
 import { TYPE_KEYS } from '@/models/domain'
 import { TYPE_META } from '@/models/type-meta'
+import { effectivenessAgainstDual } from '@/models/type-chart'
 import { useDamageCalcStore } from '@/stores/damage-calc'
 import { useDexStore } from '@/stores/dex'
+import { useMetaUsageStore } from '@/stores/meta-usage'
 import { useTeamStore } from '@/stores/team'
+import { useUiStore } from '@/stores/ui'
 import { getEffectiveLearnsetMoveIds } from '@/utils/move-legality'
 import { moveTypeGradientStyle } from '@/utils/move-type-style'
 import { onPokemonSpriteError, primaryPokemonSpriteUrl } from '@/utils/pokemon-sprite'
@@ -82,7 +90,9 @@ const route = useRoute()
 const { t, locale } = useI18n()
 const damageCalcStore = useDamageCalcStore()
 const dexStore = useDexStore()
+const metaUsageStore = useMetaUsageStore()
 const teamStore = useTeamStore()
+const uiStore = useUiStore()
 
 type DamageCalcStep = 'teams' | 'results'
 type EditorMode = 'simple' | 'advanced'
@@ -111,6 +121,49 @@ interface FloatingPosition {
   y: number
 }
 
+interface DamageLineThreatSection {
+  key: 'leads' | 'line' | 'tempo'
+  title: string
+  entries: DamageLineThreatEntry[]
+}
+
+interface StatEditorItemImpact {
+  label: string
+  detail: string
+  tone: 'sky' | 'emerald' | 'amber'
+}
+
+const LINE_THREAT_AVAILABILITY_OPTIONS: Array<{
+  key: 'all' | DexAvailabilityFilterKey
+  short: string
+  labelEs: string
+  labelEn: string
+}> = [
+  { key: 'all', short: 'Any', labelEs: 'Cualquier juego', labelEn: 'Any game' },
+  { key: 'scarlet-violet', short: 'SV', labelEs: 'Escarlata/Purpura', labelEn: 'Scarlet/Violet' },
+  { key: 'sword-shield', short: 'SwSh', labelEs: 'Espada/Escudo', labelEn: 'Sword/Shield' },
+  { key: 'pokemon-champions', short: 'CH', labelEs: 'Pokemon Champions', labelEn: 'Pokemon Champions' },
+]
+
+const LINE_THREAT_SPREAD_MOVE_IDS = new Set([
+  'rock-slide',
+  'earthquake',
+  'heat-wave',
+  'dazzling-gleam',
+  'snarl',
+  'icy-wind',
+  'muddy-water',
+  'discharge',
+  'blizzard',
+  'eruption',
+  'surf',
+  'hyper-voice',
+  'make-it-rain',
+  'bleakwind-storm',
+  'sludge-wave',
+  'boomburst',
+])
+
 const matrixAttackerSide = ref<DamageSideId>('A')
 const activeStep = ref<DamageCalcStep>('teams')
 const editorMode = ref<EditorMode>('simple')
@@ -136,6 +189,9 @@ const statEditorDraft = ref<StatEditorDraftState | null>(null)
 const statEditorPosition = ref<FloatingPosition>({ x: 24, y: 96 })
 const statEditorDrag = ref<{ startX: number; startY: number; originX: number; originY: number } | null>(null)
 const applyToBuilderMessage = ref('')
+const lineThreatModalOpen = ref(false)
+const lineThreatFocus = ref<DamageLineThreatFocus>('leads')
+const lineThreatAvailabilityFilter = ref<'all' | DexAvailabilityFilterKey>('all')
 
 const mode = computed<BattleMode>(() => (route.params.mode === 'singles' ? 'singles' : 'vgc'))
 const isVgc = computed(() => mode.value === 'vgc')
@@ -341,6 +397,28 @@ function signed(value: number): string {
   return String(value)
 }
 
+function effectiveEvContribution(evValue: number): number {
+  return Math.floor(Math.max(0, evValue) / 4)
+}
+
+function evProgressToNextPoint(evValue: number): number {
+  return Math.max(0, 4 - (Math.max(0, evValue) % 4 || 4))
+}
+
+function evStepHint(evValue: number): string {
+  const normalized = Math.max(0, evValue)
+  const remainder = normalized % 4
+  if (remainder === 0) {
+    return t('damageCalc.evStepReady', {
+      value: effectiveEvContribution(normalized),
+    })
+  }
+  return t('damageCalc.evStepPending', {
+    value: effectiveEvContribution(normalized),
+    next: 4 - remainder,
+  })
+}
+
 async function ensureScenarioDexReferencesLoaded() {
   const slotSets = [...scenario.value.sideA.slots, ...scenario.value.sideB.slots]
 
@@ -442,6 +520,7 @@ function swapIntoLead(side: DamageSideId, leadSlot: DamageSlotNumber, candidateS
     active[leadIndex] = candidateSlot
   }
   damageCalcStore.setActiveSlots(mode.value, side, active as DamageSlotNumber[])
+  syncSelectedPairWithDefaultTarget(matrixAttackerSide.value)
 }
 
 function promptSwapWithReserve(side: DamageSideId, reserveSlot: DamageSlotNumber) {
@@ -600,6 +679,279 @@ function pokemonNameById(pokemonId: string): string {
 function typeLabel(type: PokemonTypeKey): string {
   return locale.value === 'es' ? TYPE_META[type].es : TYPE_META[type].en
 }
+
+function lineThreatAvailabilityLabel(filter: 'all' | DexAvailabilityFilterKey): string {
+  const option = LINE_THREAT_AVAILABILITY_OPTIONS.find((entry) => entry.key === filter)
+  if (!option) return filter
+  return locale.value === 'es' ? option.labelEs : option.labelEn
+}
+
+function lineThreatBiasLabel(bias: DamageLineThreatEntry['offenseBias']): string {
+  if (bias === 'physical') return t('damageCalc.lineThreatBiasPhysical')
+  if (bias === 'special') return t('damageCalc.lineThreatBiasSpecial')
+  return t('damageCalc.lineThreatBiasMixed')
+}
+
+function isTechnicalLineThreatForm(pokemonId: string): boolean {
+  return /(?:low-power-mode|drive-mode|aquatic-mode|glide-mode|limited-build|sprinting-build|swimming-build|gliding-build)$/.test(
+    pokemonId,
+  )
+}
+
+function slotSetPokemon(slotSet: { pokemonId: string } | undefined): PokemonEntry | undefined {
+  if (!slotSet?.pokemonId) return undefined
+  return dexStore.getPokemon(mode.value, slotSet.pokemonId)
+}
+
+function slotSetCalculatedSpeed(slotSet: { pokemonId: string; ivs: Record<StatKey, number>; evs: Record<StatKey, number>; level: number; natureId: string } | undefined): number {
+  const pokemon = slotSetPokemon(slotSet)
+  if (!slotSet || !pokemon) return 0
+  return calculateBattleStats(pokemon.baseStats, slotSet.ivs, slotSet.evs, slotSet.level, slotSet.natureId).spe
+}
+
+function uniqueMoveEntries(pokemon: PokemonEntry): MoveEntry[] {
+  const orderedIds = [...pokemon.suggestedMoves, ...(pokemon.learnsetMoves ?? []).slice(0, 18)]
+  const seen = new Set<string>()
+  const entries: MoveEntry[] = []
+  for (const moveId of orderedIds) {
+    if (!moveId || seen.has(moveId)) continue
+    seen.add(moveId)
+    const move = dexStore.getMove(moveId)
+    if (move) entries.push(move)
+  }
+  return entries
+}
+
+function isSpreadMoveCandidate(move: MoveEntry): boolean {
+  return LINE_THREAT_SPREAD_MOVE_IDS.has(move.id) || move.tags.includes('spread')
+}
+
+function lineThreatAvailabilityForPokemon(pokemonId: string): DexAvailabilityFilterKey[] {
+  return dexStore.getGameAvailabilityForPokemon(pokemonId, localeCode())
+}
+
+const lineThreatTargetLine = computed(() =>
+  isVgc.value ? lineupSlots('A').filter((slotSet) => Boolean(slotSet.pokemonId)).slice(0, 4) : [],
+)
+
+const lineThreatLeadTargets = computed(() =>
+  isVgc.value ? leadSlots('A').filter((slotSet) => Boolean(slotSet.pokemonId)) : [],
+)
+
+const lineThreatLineLabel = computed(() =>
+  lineThreatTargetLine.value.map((slotSet) => pokemonNameById(slotSet.pokemonId)).join(' / '),
+)
+
+const canOpenLineThreats = computed(() => isVgc.value && lineThreatTargetLine.value.length === 4)
+
+const lineThreatLeadSpeedBenchmark = computed(() =>
+  Math.max(0, ...lineThreatLeadTargets.value.map((slotSet) => slotSetCalculatedSpeed(slotSet))),
+)
+
+const lineThreatEntries = computed<DamageLineThreatEntry[]>(() => {
+  if (!lineThreatModalOpen.value || !canOpenLineThreats.value) return []
+
+  const selectedAvailability = lineThreatAvailabilityFilter.value === 'all' ? null : lineThreatAvailabilityFilter.value
+  const targetLine = lineThreatTargetLine.value
+  const leads = lineThreatLeadTargets.value
+  const entries: DamageLineThreatEntry[] = []
+
+  for (const pokemon of dexStore.getPokemonByMode(mode.value)) {
+    if (!pokemon.id || isTechnicalLineThreatForm(pokemon.id)) continue
+
+    const availability = lineThreatAvailabilityForPokemon(pokemon.id)
+    if (selectedAvailability && !availability.includes(selectedAvailability)) continue
+
+    const movePool = uniqueMoveEntries(pokemon)
+    const damagingMoves = movePool.filter((move) => move.category !== 'status' && (move.power ?? 0) > 0)
+    const stabMoves = damagingMoves.filter((move) => pokemon.types.includes(move.type))
+    const stabTypes = [...new Set((stabMoves.length > 0 ? stabMoves : damagingMoves).map((move) => move.type))]
+    const offensePeak = Math.max(pokemon.baseStats.atk, pokemon.baseStats.spa)
+    const supportMoveCount = movePool.filter((move) => move.category === 'status').length
+    const hasPriorityDamage = damagingMoves.some((move) => (move.priority ?? 0) > 0)
+    const hasSpread = isVgc.value && damagingMoves.some(isSpreadMoveCandidate)
+    const usage = metaUsageStore.getPokemonMeta(mode.value, pokemon.id)?.usage ?? 0
+
+    if (damagingMoves.length === 0 && offensePeak < 110 && usage < 6) continue
+
+    const offenseBias =
+      pokemon.baseStats.atk - pokemon.baseStats.spa >= 20
+        ? 'physical'
+        : pokemon.baseStats.spa - pokemon.baseStats.atk >= 20
+          ? 'special'
+          : 'mixed'
+
+    const threatFactors = targetLine.map((slotSet) => {
+      const target = slotSetPokemon(slotSet)
+      if (!target) return 0
+      return Math.max(
+        0,
+        ...stabTypes.map((attackType) => effectivenessAgainstDual(attackType, target.types[0], target.types[1])),
+      )
+    })
+
+    const leadFactors = threatFactors.slice(0, leads.length)
+    const leadThreatCount = leadFactors.filter((factor) => factor >= 2).length
+    const lineThreatCount = threatFactors.filter((factor) => factor >= 2).length
+    const bestLeadPressure = Math.max(0, ...leadFactors)
+    const bestLinePressure = Math.max(0, ...threatFactors)
+    const fasterThanLeadsCount = leads.filter((slotSet) => pokemon.baseStats.spe > slotSetCalculatedSpeed(slotSet)).length
+    const supportHeavyLowOffense =
+      supportMoveCount >= 2 && damagingMoves.length <= 2 && offensePeak < 110 && !hasPriorityDamage && !hasSpread
+
+    if (supportHeavyLowOffense && leadThreatCount === 0 && lineThreatCount <= 1 && fasterThanLeadsCount === 0) continue
+
+    const reasons: string[] = []
+    if (leadThreatCount >= 2) {
+      reasons.push(t('damageCalc.lineThreatReasonBothLeads'))
+    } else if (lineThreatCount >= 3) {
+      reasons.push(t('damageCalc.lineThreatReasonLineThree'))
+    } else if (bestLeadPressure >= 2 || bestLinePressure >= 2) {
+      reasons.push(t('damageCalc.lineThreatReasonStab'))
+    }
+    if (fasterThanLeadsCount >= 1) {
+      reasons.push(t('damageCalc.lineThreatReasonFastLeads'))
+    }
+    if (hasPriorityDamage) {
+      reasons.push(t('damageCalc.lineThreatReasonPriority'))
+    } else if (hasSpread) {
+      reasons.push(t('damageCalc.lineThreatReasonSpread'))
+    } else if (offensePeak >= 125) {
+      reasons.push(t('damageCalc.lineThreatReasonOffense'))
+    }
+
+    const usageScore = Math.min(1, usage / 25)
+    const offenseScore = Math.min(1, offensePeak / 170)
+    const speedScore = leads.length > 0 ? fasterThanLeadsCount / leads.length : 0
+    const leadCoverageScore = leads.length > 0 ? leadThreatCount / leads.length : 0
+    const lineCoverageScore = targetLine.length > 0 ? lineThreatCount / targetLine.length : 0
+    const priorityScore = hasPriorityDamage ? 0.9 : 0
+    const spreadScore = hasSpread ? 0.75 : 0
+    const leadPressure =
+      leadCoverageScore * 2.5 +
+      (bestLeadPressure >= 4 ? 1.2 : bestLeadPressure >= 2 ? 0.8 : 0) +
+      speedScore * 1.3 +
+      priorityScore * 0.75 +
+      offenseScore * 0.8
+    const linePressure =
+      lineCoverageScore * 2.8 +
+      (bestLinePressure >= 4 ? 1.3 : bestLinePressure >= 2 ? 0.9 : 0) +
+      spreadScore * 0.8 +
+      offenseScore * 0.9
+    const tempoScore = speedScore * 1.8 + priorityScore * 1.4 + spreadScore * 0.9 + usageScore * 0.55
+    const score = leadPressure * 0.42 + linePressure * 0.38 + tempoScore * 0.2 + usageScore * 0.25 - (supportHeavyLowOffense ? 1.25 : 0)
+
+    entries.push({
+      id: pokemon.id,
+      name: pokemonNameById(pokemon.id),
+      pokedexNumber: pokemon.pokedexNumber,
+      types: pokemon.types,
+      availability,
+      baseSpeed: pokemon.baseStats.spe,
+      usage,
+      abilityName: dexStore.getAbilityMeta(pokemon.abilities[0] ?? '').name,
+      offenseBias,
+      reasons: reasons.slice(0, 3),
+      leadPressure,
+      linePressure,
+      tempoScore,
+      score,
+    })
+  }
+
+  return entries
+})
+
+function dedupeLineThreatEntries(
+  entries: DamageLineThreatEntry[],
+  scoreResolver: (entry: DamageLineThreatEntry) => number,
+): DamageLineThreatEntry[] {
+  const deduped = new Map<number, DamageLineThreatEntry>()
+  for (const entry of entries) {
+    const current = deduped.get(entry.pokedexNumber)
+    if (!current) {
+      deduped.set(entry.pokedexNumber, entry)
+      continue
+    }
+
+    const currentTechnical = isTechnicalLineThreatForm(current.id)
+    const nextTechnical = isTechnicalLineThreatForm(entry.id)
+    if (!nextTechnical && currentTechnical) {
+      deduped.set(entry.pokedexNumber, entry)
+      continue
+    }
+    if (nextTechnical && !currentTechnical) continue
+
+    const currentScore = scoreResolver(current)
+    const nextScore = scoreResolver(entry)
+    if (nextScore > currentScore || (nextScore === currentScore && entry.usage > current.usage)) {
+      deduped.set(entry.pokedexNumber, entry)
+    }
+  }
+  return [...deduped.values()]
+}
+
+const lineThreatSections = computed<DamageLineThreatSection[]>(() => {
+  if (!lineThreatModalOpen.value || !canOpenLineThreats.value) return []
+
+  const leadEntries = dedupeLineThreatEntries(
+    lineThreatEntries.value
+      .filter((entry) => entry.leadPressure >= 1.35 || entry.reasons.includes(t('damageCalc.lineThreatReasonBothLeads')))
+      .sort((a, b) =>
+        (lineThreatFocus.value === 'leads'
+          ? b.leadPressure * 1.35 + b.tempoScore * 0.45 + b.score * 0.5
+          : b.leadPressure + b.tempoScore * 0.35 + b.score * 0.4) -
+        (lineThreatFocus.value === 'leads'
+          ? a.leadPressure * 1.35 + a.tempoScore * 0.45 + a.score * 0.5
+          : a.leadPressure + a.tempoScore * 0.35 + a.score * 0.4),
+      ),
+    (entry) => entry.leadPressure * 1.35 + entry.tempoScore * 0.45 + entry.score * 0.5,
+  ).slice(0, 6)
+
+  const lineEntries = dedupeLineThreatEntries(
+    lineThreatEntries.value
+      .filter((entry) => entry.linePressure >= 1.45 || entry.reasons.includes(t('damageCalc.lineThreatReasonLineThree')))
+      .sort((a, b) =>
+        (lineThreatFocus.value === 'line'
+          ? b.linePressure * 1.35 + b.score * 0.55 + b.tempoScore * 0.2
+          : b.linePressure + b.score * 0.45) -
+        (lineThreatFocus.value === 'line'
+          ? a.linePressure * 1.35 + a.score * 0.55 + a.tempoScore * 0.2
+          : a.linePressure + a.score * 0.45),
+      ),
+    (entry) => entry.linePressure * 1.35 + entry.score * 0.55 + entry.tempoScore * 0.2,
+  ).slice(0, 6)
+
+  const tempoEntries = dedupeLineThreatEntries(
+    lineThreatEntries.value
+      .filter((entry) => entry.tempoScore >= 1.3)
+      .sort((a, b) => b.tempoScore + b.leadPressure * 0.4 + b.score * 0.25 - (a.tempoScore + a.leadPressure * 0.4 + a.score * 0.25)),
+    (entry) => entry.tempoScore + entry.leadPressure * 0.4 + entry.score * 0.25,
+  ).slice(0, 6)
+
+  const orderedKeys =
+    lineThreatFocus.value === 'leads' ? (['leads', 'line', 'tempo'] as const) : (['line', 'leads', 'tempo'] as const)
+
+  const sectionsByKey: Record<DamageLineThreatSection['key'], DamageLineThreatSection> = {
+    leads: {
+      key: 'leads',
+      title: t('damageCalc.lineThreatSectionLeads'),
+      entries: leadEntries,
+    },
+    line: {
+      key: 'line',
+      title: t('damageCalc.lineThreatSectionLine'),
+      entries: lineEntries,
+    },
+    tempo: {
+      key: 'tempo',
+      title: t('damageCalc.lineThreatSectionTempo'),
+      entries: tempoEntries,
+    },
+  }
+
+  return orderedKeys.map((key) => sectionsByKey[key])
+})
 
 function normalizeMoveType(typeValue: unknown): PokemonTypeKey | null {
   if (typeof typeValue !== 'string') return null
@@ -1274,6 +1626,41 @@ const selectedPairDefenderName = computed(() =>
   pokemonNameById(selectedPairDefenderSlotSet.value?.pokemonId ?? ''),
 )
 
+const selectedPairDefenderPokemon = computed(() => {
+  const pokemonId = selectedPairDefenderSlotSet.value?.pokemonId ?? ''
+  if (!pokemonId) return undefined
+  return dexStore.getPokemon(mode.value, pokemonId)
+})
+
+const selectedPairDefenderStats = computed(() => {
+  const slotSet = selectedPairDefenderSlotSet.value
+  const pokemon = selectedPairDefenderPokemon.value
+  if (!slotSet || !pokemon) return undefined
+  return calculateBattleStats(pokemon.baseStats, slotSet.ivs, slotSet.evs, slotSet.level, slotSet.natureId)
+})
+
+const selectedPairDefenderMaxHp = computed(() => selectedPairDefenderStats.value?.hp ?? 0)
+
+const selectedPairDefenderCurrentHp = computed(() => {
+  const slotSet = selectedPairDefenderSlotSet.value
+  const maxHp = selectedPairDefenderMaxHp.value
+  if (!slotSet || maxHp <= 0) return 0
+  const safePercent = Math.min(100, Math.max(1, slotSet.currentHpPercent))
+  return Math.max(1, Math.floor((maxHp * safePercent) / 100))
+})
+
+const selectedPairDefenderItemName = computed(() => {
+  const itemId = selectedPairDefenderSlotSet.value?.itemId ?? ''
+  if (!itemId) return ''
+  return dexStore.getItem(itemId)?.name ?? ''
+})
+
+const selectedPairDefenderAbilityName = computed(() => {
+  const abilityId = selectedPairDefenderSlotSet.value?.abilityId ?? ''
+  if (!abilityId) return ''
+  return dexStore.getAbilityMeta(abilityId).name
+})
+
 const selectedPairMoveOptions = computed<SearchOption[]>(() =>
   moveOptionsForPokemon(selectedPairAttackerSlotSet.value?.pokemonId ?? ''),
 )
@@ -1311,6 +1698,12 @@ const statEditorNatureId = computed(() =>
   statEditorSlotSet.value?.natureId || statEditorPokemon.value?.defaultNature || 'hardy',
 )
 
+const statEditorItemName = computed(() => {
+  const itemId = statEditorSlotSet.value?.itemId ?? ''
+  if (!itemId) return ''
+  return dexStore.getItem(itemId)?.name ?? prettifySlug(itemId)
+})
+
 const statEditorCalculatedStats = computed(() => {
   const slotSet = statEditorSlotSet.value
   const pokemon = statEditorPokemon.value
@@ -1326,6 +1719,93 @@ const statEditorCalculatedStats = computed(() => {
     statEditorNatureId.value,
   )
 })
+
+const statEditorItemImpacts = computed<StatEditorItemImpact[]>(() => {
+  const slotSet = statEditorSlotSet.value
+  const stats = statEditorCalculatedStats.value
+  const itemId = slotSet?.itemId?.trim().toLowerCase() ?? ''
+  if (!itemId) return []
+
+  if (itemId === 'choice-scarf') {
+    return [
+      {
+        label: t('damageCalc.itemImpactSpeed'),
+        detail: t('damageCalc.itemImpactSpeedScarf', {
+          before: stats.spe,
+          after: Math.floor(stats.spe * 1.5),
+        }),
+        tone: 'sky',
+      },
+    ]
+  }
+
+  if (itemId === 'assault-vest') {
+    return [
+      {
+        label: t('damageCalc.itemImpactSpd'),
+        detail: t('damageCalc.itemImpactSpdVest', {
+          before: stats.spd,
+          after: Math.floor(stats.spd * 1.5),
+        }),
+        tone: 'sky',
+      },
+    ]
+  }
+
+  if (itemId === 'choice-band') {
+    return [
+      {
+        label: t('damageCalc.itemImpactAtk'),
+        detail: t('damageCalc.itemImpactAtkBand', {
+          before: stats.atk,
+          after: Math.floor(stats.atk * 1.5),
+        }),
+        tone: 'emerald',
+      },
+    ]
+  }
+
+  if (itemId === 'choice-specs') {
+    return [
+      {
+        label: t('damageCalc.itemImpactSpa'),
+        detail: t('damageCalc.itemImpactSpaSpecs', {
+          before: stats.spa,
+          after: Math.floor(stats.spa * 1.5),
+        }),
+        tone: 'emerald',
+      },
+    ]
+  }
+
+  if (itemId === 'life-orb') {
+    return [
+      {
+        label: t('damageCalc.itemImpactDamage'),
+        detail: t('damageCalc.itemImpactDamageLifeOrb'),
+        tone: 'amber',
+      },
+    ]
+  }
+
+  if (itemId === 'expert-belt') {
+    return [
+      {
+        label: t('damageCalc.itemImpactDamage'),
+        detail: t('damageCalc.itemImpactDamageExpertBelt'),
+        tone: 'amber',
+      },
+    ]
+  }
+
+  return []
+})
+
+function statEditorItemImpactClass(tone: StatEditorItemImpact['tone']): string {
+  if (tone === 'emerald') return 'border-emerald-500/25 bg-emerald-500/10 text-emerald-100'
+  if (tone === 'amber') return 'border-amber-500/25 bg-amber-500/10 text-amber-100'
+  return 'border-sky-500/25 bg-sky-500/10 text-sky-100'
+}
 
 const statEditorBaselineStats = computed(() => {
   const slotSet = statEditorSlotSet.value
@@ -1373,7 +1853,7 @@ function updateStatEditorEv(key: TeamStatKey, value: string) {
   if (!statEditorModal.value.open || !statEditorModal.value.slot) return
   if (!statEditorDraft.value) return
   const numeric = Number(value)
-  const clamped = Math.max(0, Math.min(252, Math.floor((Number.isFinite(numeric) ? numeric : 0) / 4) * 4))
+  const clamped = Math.max(0, Math.min(252, Math.floor(Number.isFinite(numeric) ? numeric : 0)))
   statEditorDraft.value = {
     ...statEditorDraft.value,
     evs: {
@@ -1468,10 +1948,15 @@ watch(
   () => {
     damageCalcStore.initFromBuilder(mode.value)
     void damageCalcStore.ensureMetaTemplatesLoaded(mode.value)
+    void metaUsageStore.ensureModeLoaded(mode.value)
     void ensureScenarioDexReferencesLoaded()
     moveOptionsCache.value.clear()
     selectedTemplateB.value = ''
     customTeamBName.value = ''
+    lineThreatAvailabilityFilter.value = uiStore.getDamageCalcThreatAvailabilityFilter(mode.value)
+    if (mode.value !== 'vgc') {
+      lineThreatModalOpen.value = false
+    }
   },
   { immediate: true },
 )
@@ -1552,6 +2037,13 @@ watch(
   },
 )
 
+watch(
+  [mode, lineThreatAvailabilityFilter],
+  ([currentMode, filter]) => {
+    uiStore.setDamageCalcThreatAvailabilityFilter(currentMode, filter)
+  },
+)
+
 watch(matrixAttackerSide, (side) => {
   syncSelectedPairWithDefaultTarget(side)
 })
@@ -1559,7 +2051,9 @@ watch(matrixAttackerSide, (side) => {
 watch(activeStep, (step) => {
   if (step === 'results') {
     syncSelectedPairWithDefaultTarget(matrixAttackerSide.value)
+    return
   }
+  lineThreatModalOpen.value = false
 })
 
 watch(selectedTemplateB, (templateId) => {
@@ -1766,6 +2260,14 @@ watch(selectedTemplateB, (templateId) => {
                 {{ t('damageCalc.filterKo') }}
               </button>
             </div>
+            <button
+              v-if="canOpenLineThreats"
+              type="button"
+              class="rounded-lg border border-violet-500/45 bg-violet-500/10 px-2.5 py-1.5 text-xs font-semibold text-violet-100 hover:border-violet-400"
+              @click="lineThreatModalOpen = true"
+            >
+              {{ t('damageCalc.lineThreatsOpen') }}
+            </button>
           </div>
         </div>
         <p class="mb-2 text-[11px] text-gray-400">
@@ -2008,6 +2510,14 @@ watch(selectedTemplateB, (templateId) => {
           :attacker-name="selectedPairAttackerName"
           :defender-name="selectedPairDefenderName"
           :can-sync-moves-to-builder="canSyncSelectedPairMovesToBuilder"
+          :defender-current-hp="selectedPairDefenderCurrentHp"
+          :defender-max-hp="selectedPairDefenderMaxHp"
+          :defender-item-id="selectedPairDefenderSlotSet?.itemId"
+          :defender-item-name="selectedPairDefenderItemName"
+          :defender-ability-id="selectedPairDefenderSlotSet?.abilityId"
+          :defender-ability-name="selectedPairDefenderAbilityName"
+          :defender-status="selectedPairDefenderSlotSet?.status"
+          :defender-types="selectedPairDefenderPokemon?.types"
           @update-move="updateMoveFromPairDetail($event.moveIndex, $event.moveId)"
           @sync-moves-to-builder="syncSelectedPairMovesToBuilder"
         />
@@ -2939,6 +3449,148 @@ watch(selectedTemplateB, (templateId) => {
     </div>
 
     <div
+      v-if="lineThreatModalOpen && canOpenLineThreats"
+      class="fixed inset-0 z-40 flex items-center justify-center bg-black/65 p-4"
+      @click.self="lineThreatModalOpen = false"
+    >
+      <article class="flex max-h-[calc(100vh-32px)] w-full max-w-5xl flex-col overflow-hidden rounded-xl border border-violet-500/35 bg-off-black/95 shadow-2xl shadow-black/50">
+        <header class="border-b border-violet-500/20 px-4 py-3">
+          <div class="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+            <div class="min-w-0">
+              <h3 class="text-sm font-semibold text-violet-100">{{ t('damageCalc.lineThreatsTitle') }}</h3>
+              <p class="mt-1 text-xs text-gray-300">
+                {{ t('damageCalc.lineThreatsSubtitle', { line: lineThreatLineLabel || t('common.none') }) }}
+              </p>
+              <p class="mt-1 text-[11px] text-gray-400">
+                {{ t('damageCalc.lineThreatsFilterHint', { game: lineThreatAvailabilityLabel(lineThreatAvailabilityFilter) }) }}
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-2 lg:items-end">
+              <div class="inline-flex rounded-lg border border-gray-700 bg-st-black/60 p-1 text-xs">
+                <button
+                  v-for="option in LINE_THREAT_AVAILABILITY_OPTIONS"
+                  :key="`line-threat-filter-${option.key}`"
+                  type="button"
+                  class="rounded px-2 py-1"
+                  :class="
+                    lineThreatAvailabilityFilter === option.key
+                      ? 'bg-violet-500/20 text-violet-100'
+                      : 'text-gray-300'
+                  "
+                  @click="lineThreatAvailabilityFilter = option.key"
+                >
+                  {{ option.short }}
+                </button>
+              </div>
+              <div class="inline-flex rounded-lg border border-gray-700 bg-st-black/60 p-1 text-xs">
+                <button
+                  type="button"
+                  class="rounded px-2 py-1"
+                  :class="lineThreatFocus === 'leads' ? 'bg-cyan-500/20 text-cyan-100' : 'text-gray-300'"
+                  @click="lineThreatFocus = 'leads'"
+                >
+                  {{ t('damageCalc.lineThreatsFocusLeads') }}
+                </button>
+                <button
+                  type="button"
+                  class="rounded px-2 py-1"
+                  :class="lineThreatFocus === 'line' ? 'bg-cyan-500/20 text-cyan-100' : 'text-gray-300'"
+                  @click="lineThreatFocus = 'line'"
+                >
+                  {{ t('damageCalc.lineThreatsFocusLine') }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="overflow-auto px-4 py-3">
+          <div class="grid gap-3 xl:grid-cols-3">
+            <section
+              v-for="section in lineThreatSections"
+              :key="`line-threat-section-${section.key}`"
+              class="rounded-xl border border-gray-700 bg-st-black/45 p-3"
+            >
+              <div class="mb-2 flex items-center justify-between gap-2">
+                <h4 class="text-xs font-semibold uppercase tracking-wide text-violet-100">
+                  {{ section.title }}
+                </h4>
+                <span class="text-[11px] text-gray-400">{{ section.entries.length }}</span>
+              </div>
+
+              <div v-if="section.entries.length > 0" class="space-y-2">
+                <article
+                  v-for="entry in section.entries"
+                  :key="`line-threat-${section.key}-${entry.id}`"
+                  class="rounded-lg border border-gray-700 bg-off-black/60 p-2"
+                >
+                  <div class="flex items-start gap-2">
+                    <img
+                      :src="spriteUrl(entry.id)"
+                      :alt="entry.name"
+                      :data-sprite-id="entry.id"
+                      :data-sprite-fallback-index="0"
+                      class="h-10 w-10 rounded bg-black/20 object-contain"
+                      loading="lazy"
+                      @error="onSpriteError"
+                    />
+                    <div class="min-w-0 flex-1">
+                      <div class="flex flex-wrap items-center gap-1.5">
+                        <p class="truncate text-sm font-semibold text-gray-100">{{ entry.name }}</p>
+                        <span class="rounded border border-gray-700 bg-st-black/60 px-1.5 py-0.5 text-[10px] text-gray-300">
+                          #{{ String(entry.pokedexNumber).padStart(4, '0') }}
+                        </span>
+                        <span class="rounded border border-cyan-500/35 bg-cyan-500/10 px-1.5 py-0.5 text-[10px] text-cyan-100">
+                          {{ lineThreatBiasLabel(entry.offenseBias) }}
+                        </span>
+                        <span class="rounded border border-gray-700 bg-st-black/60 px-1.5 py-0.5 text-[10px] text-gray-300">
+                          {{ t('damageCalc.lineThreatsSpeedShort', { value: entry.baseSpeed }) }}
+                        </span>
+                      </div>
+
+                      <div class="mt-1 flex flex-wrap items-center gap-1.5">
+                        <span
+                          v-for="type in entry.types"
+                          :key="`line-threat-type-${entry.id}-${type}`"
+                          class="inline-flex items-center gap-1 rounded border border-gray-700 bg-st-black/60 px-1.5 py-0.5 text-[10px] text-gray-200"
+                        >
+                          <img :src="TYPE_META[type].icon" :alt="typeLabel(type)" class="h-3 w-3 object-contain" />
+                          {{ typeLabel(type) }}
+                        </span>
+                      </div>
+
+                      <p class="mt-1 text-[11px] text-gray-400">
+                        {{ t('damageCalc.lineThreatsAbilityLabel', { ability: entry.abilityName || t('common.none') }) }}
+                      </p>
+                      <p v-if="entry.reasons.length > 0" class="mt-1 text-[11px] text-violet-100">
+                        {{ entry.reasons.join(' · ') }}
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              <p v-else class="rounded-lg border border-dashed border-gray-700 bg-off-black/40 px-3 py-4 text-center text-xs text-gray-400">
+                {{ t('damageCalc.lineThreatsEmpty') }}
+              </p>
+            </section>
+          </div>
+        </div>
+
+        <footer class="flex justify-end border-t border-violet-500/20 px-4 py-3">
+          <button
+            type="button"
+            class="rounded-md border border-gray-700 bg-st-black/60 px-3 py-1.5 text-xs text-gray-200"
+            @click="lineThreatModalOpen = false"
+          >
+            {{ t('common.cancel') }}
+          </button>
+        </footer>
+      </article>
+    </div>
+
+    <div
       v-if="swapModal.open"
       class="fixed inset-0 z-40 flex items-center justify-center bg-black/65 p-4"
       @click.self="closeSwapModal"
@@ -3057,10 +3709,13 @@ watch(selectedTemplateB, (templateId) => {
                   type="range"
                   min="0"
                   max="252"
-                  step="4"
+                  step="1"
                   :value="statEditorDraft?.evs[key] ?? statEditorSlotSet.evs[key]"
                   @input="updateStatEditorEv(key, ($event.target as HTMLInputElement).value)"
                 />
+                <p class="mt-1 text-[10px] text-gray-500">
+                  {{ evStepHint(statEditorDraft?.evs[key] ?? statEditorSlotSet.evs[key]) }}
+                </p>
               </label>
             </div>
           </div>
@@ -3131,6 +3786,27 @@ watch(selectedTemplateB, (templateId) => {
                 <p class="font-medium text-sky-100">{{ natureLabel(statEditorNatureId) }}</p>
                 <p>{{ natureEffectLabel(statEditorNatureId) }}</p>
               </div>
+            </div>
+
+            <div v-if="statEditorSlotSet.itemId" class="mt-3 rounded-md border border-sky-500/20 bg-sky-500/5 px-2 py-2">
+              <div class="flex items-center justify-between gap-2">
+                <p class="text-[11px] font-semibold text-sky-100">{{ t('damageCalc.itemImpactTitle') }}</p>
+                <p class="text-[11px] text-gray-300">{{ statEditorItemName || prettifySlug(statEditorSlotSet.itemId) }}</p>
+              </div>
+              <div v-if="statEditorItemImpacts.length > 0" class="mt-2 space-y-1.5">
+                <div
+                  v-for="impact in statEditorItemImpacts"
+                  :key="`modal-item-impact-${impact.label}`"
+                  class="rounded-md border px-2 py-1.5 text-[11px]"
+                  :class="statEditorItemImpactClass(impact.tone)"
+                >
+                  <p class="font-semibold">{{ impact.label }}</p>
+                  <p class="mt-0.5">{{ impact.detail }}</p>
+                </div>
+              </div>
+              <p v-else class="mt-2 text-[11px] text-gray-400">
+                {{ t('damageCalc.itemImpactNoDirectStatChange') }}
+              </p>
             </div>
 
             <div v-if="statEditorPokemon" class="mt-3 space-y-1.5">

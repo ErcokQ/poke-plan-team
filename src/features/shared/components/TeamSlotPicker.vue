@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 import mudkipSprite from '@/assets/pokesprite/pokemon-gen8/regular/mudkip.png'
 import type { BattleMode, TeamMember } from '@/models/domain'
 import { useDexStore } from '@/stores/dex'
+import { onPokemonSpriteError, primaryPokemonSpriteUrl } from '@/utils/pokemon-sprite'
 import { memberIsComplete } from '@/utils/team'
 
 interface Props {
@@ -69,60 +70,7 @@ function displayPokemonName(pokemonId: string, baseName: string): string {
 }
 
 function spriteUrl(pokemonId: string): string {
-  if (!pokemonId) return mudkipSprite
-  return spriteCandidatesForPokemon(pokemonId)[0] ?? mudkipSprite
-}
-
-const spriteAliasFallback: Record<string, string> = {
-  'calyrex-shadow': 'calyrex-shadow-rider',
-  'calyrex-ice': 'calyrex-ice-rider',
-}
-
-function spriteCandidatesForPokemon(pokemonId: string): string[] {
-  if (!pokemonId) return [mudkipSprite]
-
-  const ids = [pokemonId]
-  const aliasId = spriteAliasFallback[pokemonId]
-  if (aliasId && aliasId !== pokemonId) ids.push(aliasId)
-
-  const prefersShowdown = pokemonId.includes('-')
-  const candidates: string[] = []
-
-  for (const id of ids) {
-    if (prefersShowdown) {
-      candidates.push(`https://play.pokemonshowdown.com/sprites/ani/${id}.gif`)
-      candidates.push(`https://img.pokemondb.net/sprites/home/normal/${id}.png`)
-    } else {
-      candidates.push(`https://img.pokemondb.net/sprites/home/normal/${id}.png`)
-      candidates.push(`https://play.pokemonshowdown.com/sprites/ani/${id}.gif`)
-    }
-    candidates.push(`https://play.pokemonshowdown.com/sprites/gen5/${id}.png`)
-  }
-
-  return [...new Set(candidates)]
-}
-
-function spriteIdFromUrl(url: string): string {
-  const match = url.match(/\/([^/?#]+)\.(?:png|gif)(?:[?#].*)?$/)
-  return match?.[1] ?? ''
-}
-
-function onSpriteError(event: Event) {
-  const target = event.target as HTMLImageElement
-  const pokemonId = target.dataset.spriteId || spriteIdFromUrl(target.src)
-  const candidates = spriteCandidatesForPokemon(pokemonId)
-  const currentIndex = Number(target.dataset.spriteFallbackIndex ?? '0')
-  const nextIndex = currentIndex + 1
-
-  if (nextIndex < candidates.length) {
-    target.dataset.spriteFallbackIndex = String(nextIndex)
-    target.src = candidates[nextIndex]
-    return
-  }
-
-  if (target.src !== mudkipSprite) {
-    target.src = mudkipSprite
-  }
+  return pokemonId ? primaryPokemonSpriteUrl(pokemonId) : mudkipSprite
 }
 </script>
 
@@ -152,16 +100,16 @@ function onSpriteError(event: Event) {
           </span>
         </div>
         <div class="flex items-center gap-2">
-          <img
-            :src="spriteUrl(member.pokemonId)"
-            :alt="pokemonNameFor(member)"
-            :data-sprite-id="member.pokemonId"
-            :data-sprite-fallback-index="0"
+            <img
+              :src="spriteUrl(member.pokemonId)"
+              :alt="pokemonNameFor(member)"
+              :data-sprite-id="member.pokemonId"
+              :data-sprite-fallback-index="0"
             class="h-10 w-10 rounded bg-black/20 object-contain transition"
-            :class="member.pokemonId ? '' : 'opacity-70 grayscale'"
-            loading="lazy"
-            @error="onSpriteError"
-          />
+              :class="member.pokemonId ? '' : 'opacity-70 grayscale'"
+              loading="lazy"
+              @error="onPokemonSpriteError"
+            />
           <p class="line-clamp-2 text-xs text-gray-200">{{ pokemonNameFor(member) }}</p>
         </div>
       </button>

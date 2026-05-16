@@ -1,23 +1,42 @@
+import { canonicalizePokemonId } from '@/utils/showdown'
 import mudkipSprite from '@/assets/pokesprite/pokemon-gen8/regular/mudkip.png'
 
 const spriteAliasFallback: Record<string, string> = {
   'calyrex-shadow': 'calyrex-shadow-rider',
   'calyrex-ice': 'calyrex-ice-rider',
+  maushold: 'maushold-family-of-three',
+  'maushold-four': 'maushold-family-of-three',
+  'maushold-three': 'maushold-family-of-three',
+  'maushold-family-of-four': 'maushold-family-of-three',
 }
 
 const spriteUrlOverrides: Record<string, string[]> = {
   'floette-mega': ['https://www.serebii.net/legendsz-a/pokemon/670-m.png'],
   'drampa-mega': ['https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10302.png'],
+  'maushold-family-of-four': [
+    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/925.png',
+    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/925.png',
+    'https://play.pokemonshowdown.com/sprites/ani/maushold-family-of-three.gif',
+  ],
+  'maushold-family-of-three': [
+    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/925.png',
+    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/925.png',
+    'https://play.pokemonshowdown.com/sprites/ani/maushold-family-of-three.gif',
+  ],
 }
 
 export function spriteCandidatesForPokemon(pokemonId: string): string[] {
   if (!pokemonId) return [mudkipSprite]
 
-  const ids = [pokemonId]
-  const aliasId = spriteAliasFallback[pokemonId]
-  if (aliasId && aliasId !== pokemonId) ids.push(aliasId)
+  const canonicalId = canonicalizePokemonId(pokemonId) || pokemonId
+  const ids = [canonicalId]
+  if (pokemonId !== canonicalId) ids.push(pokemonId)
+  for (const sourceId of [...ids]) {
+    const aliasId = spriteAliasFallback[sourceId]
+    if (aliasId && aliasId !== sourceId) ids.push(aliasId)
+  }
 
-  const prefersShowdown = pokemonId.includes('-')
+  const prefersShowdown = canonicalId.includes('-')
   const candidates: string[] = []
 
   for (const id of ids) {
@@ -29,6 +48,10 @@ export function spriteCandidatesForPokemon(pokemonId: string): string[] {
       candidates.push(`https://play.pokemonshowdown.com/sprites/ani/${id}.gif`)
     }
     candidates.push(`https://play.pokemonshowdown.com/sprites/gen5/${id}.png`)
+  }
+
+  if (spriteUrlOverrides[canonicalId]?.length) {
+    candidates.push(...spriteUrlOverrides[canonicalId])
   }
 
   if (spriteUrlOverrides[pokemonId]?.length) {

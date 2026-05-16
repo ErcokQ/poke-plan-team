@@ -1,16 +1,21 @@
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
+import type { CSSProperties } from 'vue'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import mudkipSprite from '@/assets/pokesprite/pokemon-gen8/regular/mudkip.png'
+import SearchableSelect from '@/features/shared/components/SearchableSelect.vue'
 import { MAX_IV_PER_STAT, STATS, TYPE_KEYS, type BattleMode, type LocaleCode, type PokemonTypeKey } from '@/models/domain'
 import type { DexAvailabilityFilterKey, DexPokemonProfile } from '@/models/dex'
 import { TYPE_META } from '@/models/type-meta'
 import { effectivenessAgainstDual } from '@/models/type-chart'
 import { useDexStore } from '@/stores/dex'
+import { useMetaUsageStore } from '@/stores/meta-usage'
 import { useTeamStore } from '@/stores/team'
 import { useUiStore } from '@/stores/ui'
+import { getEffectiveLearnsetMoveIds } from '@/utils/move-legality'
+import { moveTypeGradientStyle } from '@/utils/move-type-style'
 import { onPokemonSpriteError, primaryPokemonSpriteUrl } from '@/utils/pokemon-sprite'
 
 interface GenerationTab {
@@ -48,6 +53,19 @@ type GenerationTypeFilterOption = {
 type GenerationAvailabilityFilterOption = {
   key: DexAvailabilityFilterKey
   count: number
+}
+type MetaSpotlightView = 'vgc' | 'singles'
+type MetaSpotlightEntry = {
+  id: string
+  name: string
+  pokedexNumber: number
+  usage?: number
+  types: PokemonTypeKey[]
+}
+type SearchableOption = {
+  value: string
+  label: string
+  meta?: Record<string, unknown>
 }
 type DexGenerationEntry = ReturnType<typeof useDexStore>['getGenerationEntries'] extends (
   generationId: number,
@@ -175,6 +193,7 @@ const route = useRoute()
 const router = useRouter()
 const { t, locale } = useI18n()
 const dexStore = useDexStore()
+const metaUsageStore = useMetaUsageStore()
 const teamStore = useTeamStore()
 const uiStore = useUiStore()
 
@@ -186,6 +205,7 @@ const isLoading = ref(false)
 const loadError = ref('')
 const typeFilter = ref<PokemonTypeKey | null>(null)
 const availabilityFilter = ref<'all' | DexAvailabilityFilterKey>('all')
+const learnedMoveFilter = ref('')
 
 const selectedProfile = ref<DexPokemonProfile | null>(null)
 const isProfileLoading = ref(false)
@@ -205,6 +225,8 @@ const selectedVersionFilter = ref('history')
 const addToTeamSlot = ref<1 | 2 | 3 | 4 | 5 | 6>(1)
 const addToTeamMessage = ref('')
 const addToTeamError = ref(false)
+const metaSpotlightView = ref<MetaSpotlightView>('vgc')
+const metaSpotlightModalOpen = ref(false)
 
 const slotOptions: Array<1 | 2 | 3 | 4 | 5 | 6> = [1, 2, 3, 4, 5, 6]
 const mode = computed<BattleMode>(() => (route.params.mode === 'singles' ? 'singles' : 'vgc'))
@@ -213,9 +235,12 @@ function applyDexPreferences(nextMode: BattleMode) {
   activeGeneration.value = uiStore.getDexGeneration(nextMode)
   typeFilter.value = uiStore.getDexTypeFilter(nextMode)
   availabilityFilter.value = uiStore.getDexAvailabilityFilter(nextMode)
+  learnedMoveFilter.value = uiStore.getDexMoveFilter(nextMode)
 }
 
 applyDexPreferences(mode.value)
+void metaUsageStore.ensureModeLoaded('vgc')
+void metaUsageStore.ensureModeLoaded('singles')
 
 const currentTab = computed(() => generationTabs.find((tab) => tab.id === activeGeneration.value) ?? generationTabs[0])
 
@@ -318,18 +343,102 @@ const generationAvailabilityFilters = computed<GenerationAvailabilityFilterOptio
   })).filter((entry) => entry.count > 0)
 })
 
+const metaSpotlightStatuses = computed(() => ({
+  vgc: metaUsageStore.getModeStatus('vgc'),
+  singles: metaUsageStore.getModeStatus('singles'),
+}))
+
+const topVgcEntries = computed<MetaSpotlightEntry[]>(() => {
+  return entries.value
+    .map((entry) => ({
+      id: entry.id,
+      name: entry.name,
+      pokedexNumber: entry.pokedexNumber,
+      usage: metaUsageStore.getPokemonMeta('vgc', entry.id)?.usage ?? 0,
+      types: entry.types,
+    }))
+    .filter((entry) => (entry.usage ?? 0) > 0)
+    .sort((a, b) => (b.usage ?? 0) - (a.usage ?? 0) || a.pokedexNumber - b.pokedexNumber)
+    .slice(0, 6)
+})
+
+const topSinglesEntries = computed<MetaSpotlightEntry[]>(() => {
+  return entries.value
+    .map((entry) => ({
+      id: entry.id,
+      name: entry.name,
+      pokedexNumber: entry.pokedexNumber,
+      usage: metaUsageStore.getPokemonMeta('singles', entry.id)?.usage ?? 0,
+      types: entry.types,
+    }))
+    .filter((entry) => (entry.usage ?? 0) > 0)
+    .sort((a, b) => (b.usage ?? 0) - (a.usage ?? 0) || a.pokedexNumber - b.pokedexNumber)
+    .slice(0, 6)
+})
+
+
 const selectedAvailabilityOption = computed(() => {
   if (availabilityFilter.value === 'all') return null
   return GAME_AVAILABILITY_OPTIONS.find((option) => option.key === availabilityFilter.value) ?? null
 })
 
 const hasSearchQuery = computed(() => pokemonSearch.value.trim().length > 0)
+const hasMoveFilter = computed(() => learnedMoveFilter.value.trim().length > 0)
 const hasActiveDexFilters = computed(
-  () => hasSearchQuery.value || typeFilter.value !== null || availabilityFilter.value !== 'all',
+  () =>
+    hasSearchQuery.value ||
+    hasMoveFilter.value ||
+    typeFilter.value !== null ||
+    availabilityFilter.value !== 'all',
 )
+
+const learnedMoveFilterOption = computed(() => {
+  if (!learnedMoveFilter.value) return null
+  return dexStore.getMove(learnedMoveFilter.value) ?? null
+})
+
+const learnedMoveInputStyle = computed<CSSProperties | undefined>(() =>
+  moveTypeGradientStyle(learnedMoveFilterOption.value?.type),
+)
+
+const learnedMoveFilterOptions = computed<SearchableOption[]>(() => {
+  return dexStore.moves
+    .map((move) => ({
+      value: move.id,
+      label: move.name,
+      meta: {
+        type: move.type,
+        category: move.category,
+        power: move.power,
+      },
+    }))
+    .sort((a, b) => a.label.localeCompare(b.label, locale.value))
+})
+
+const matchingPokemonIdsForMoveFilter = computed<Set<string> | null>(() => {
+  const selectedMoveId = learnedMoveFilter.value
+  if (!selectedMoveId) return null
+
+  const matchingIds = new Set<string>()
+  for (const entry of entries.value) {
+    const pokemon = dexStore.getPokemon(mode.value, entry.id)
+    const moveIds = [
+      ...new Set([
+        ...getEffectiveLearnsetMoveIds(pokemon, (pokemonId) => dexStore.getPokemon(mode.value, pokemonId)),
+        ...(pokemon?.suggestedMoves ?? []),
+      ]),
+    ]
+    const matchesMove = moveIds.includes(selectedMoveId)
+
+    if (matchesMove) matchingIds.add(entry.id)
+  }
+
+  return matchingIds
+})
 
 const filteredEntries = computed(() => {
   const query = normalizeSearchText(pokemonSearch.value)
+  const moveMatches = matchingPokemonIdsForMoveFilter.value
 
   return entries.value.filter((entry) => {
     const matchesType = !typeFilter.value || entry.types.includes(typeFilter.value)
@@ -339,6 +448,9 @@ const filteredEntries = computed(() => {
       availabilityFilter.value === 'all' ||
       (entry.gameAvailability ?? []).includes(availabilityFilter.value)
     if (!matchesAvailability) return false
+
+    const matchesLearnedMove = !moveMatches || moveMatches.has(entry.id)
+    if (!matchesLearnedMove) return false
 
     if (!query) return true
 
@@ -351,6 +463,11 @@ const filteredEntries = computed(() => {
 })
 
 const noResultsMessage = computed(() => {
+  if (hasMoveFilter.value) {
+    return t('dex.noResultsForLearnedMove', {
+      move: learnedMoveFilterOption.value?.name ?? learnedMoveFilter.value.trim(),
+    })
+  }
   if (typeFilter.value && availabilityFilter.value !== 'all' && hasSearchQuery.value) {
     return t('dex.noResultsWithTypeAvailabilityAndSearch', {
       type: typeLabel(typeFilter.value),
@@ -447,6 +564,11 @@ function regionLabel(tab: GenerationTab): string {
 
 function typeLabel(type: PokemonTypeKey): string {
   return locale.value === 'es' ? TYPE_META[type].es : TYPE_META[type].en
+}
+
+function usageLabel(value: number | undefined): string {
+  if (typeof value !== 'number' || !Number.isFinite(value)) return '-'
+  return `${value.toFixed(1)}%`
 }
 
 function availabilityFilterLabel(filter: 'all' | DexAvailabilityFilterKey): string {
@@ -617,6 +739,7 @@ function toggleTypeFilter(type: PokemonTypeKey) {
 
 function clearDexFilters() {
   pokemonSearch.value = ''
+  learnedMoveFilter.value = ''
   typeFilter.value = null
   availabilityFilter.value = 'all'
 }
@@ -948,6 +1071,14 @@ watch(
 )
 
 watch(
+  [mode, learnedMoveFilter],
+  ([currentMode, filter]) => {
+    uiStore.setDexMoveFilter(currentMode, filter)
+  },
+  { immediate: true },
+)
+
+watch(
   generationTypeFilters,
   (options) => {
     if (entries.value.length === 0) return
@@ -1171,15 +1302,67 @@ watch(
           </button>
         </div>
       </div>
-      <div class="mb-4 flex items-center gap-2">
-        <input v-model="pokemonSearch" type="text"
-          class="w-full rounded-md border border-gray-700 bg-off-black/70 px-2.5 py-2 text-sm text-gray-100 placeholder:text-gray-500"
-          :placeholder="t('dex.searchPokemon')" />
-        <button v-if="pokemonSearch.trim()"
-          class="rounded-md border border-gray-700 px-2 py-2 text-xs text-gray-200 hover:border-sky-500/50"
-          @click="pokemonSearch = ''">
-          X
-        </button>
+      <div class="mb-4 flex flex-col gap-2 xl:flex-row xl:items-center">
+        <div class="flex min-w-0 flex-1 items-center gap-2">
+          <input v-model="pokemonSearch" type="text"
+            class="w-full rounded-md border border-gray-700 bg-off-black/70 px-2.5 py-2 text-sm text-gray-100 placeholder:text-gray-500"
+            :placeholder="t('dex.searchPokemon')" />
+          <button v-if="pokemonSearch.trim()"
+            class="rounded-md border border-gray-700 px-2 py-2 text-xs text-gray-200 hover:border-sky-500/50"
+            @click="pokemonSearch = ''">
+            X
+          </button>
+        </div>
+        <div class="flex min-w-0 flex-1 items-center gap-2">
+          <div class="min-w-0 flex-1">
+            <SearchableSelect
+              v-model="learnedMoveFilter"
+              :options="learnedMoveFilterOptions"
+              :placeholder="t('dex.searchLearnedMove')"
+              :no-results-label="t('dex.searchLearnedMoveNoResults')"
+              :large-list-threshold="250"
+              :large-list-preview="120"
+              :input-style="learnedMoveInputStyle"
+            >
+              <template #option="{ option }">
+                <div
+                  class="-mx-2 -my-1.5 rounded-md px-2 py-1.5"
+                  :style="moveTypeGradientStyle(option.meta?.type as PokemonTypeKey | undefined)"
+                >
+                  <div class="flex items-center justify-between gap-3">
+                    <span class="truncate font-semibold text-gray-100">{{ option.label }}</span>
+                    <span
+                      v-if="option.meta?.type"
+                      class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1.5 py-0.5 text-[10px] text-gray-200"
+                    >
+                      <img
+                        :src="TYPE_META[option.meta.type as PokemonTypeKey].icon"
+                        :alt="typeLabel(option.meta.type as PokemonTypeKey)"
+                        class="h-3 w-3"
+                      />
+                      {{ typeLabel(option.meta.type as PokemonTypeKey) }}
+                    </span>
+                  </div>
+                </div>
+              </template>
+            </SearchableSelect>
+          </div>
+          <button
+            v-if="learnedMoveFilter"
+            class="rounded-md border border-gray-700 px-2 py-2 text-xs text-gray-200 hover:border-sky-500/50"
+            @click="learnedMoveFilter = ''"
+          >
+            X
+          </button>
+        </div>
+        <div class="flex justify-end xl:shrink-0">
+          <button
+            class="rounded-md border border-violet-500/35 bg-violet-500/10 px-3 py-2 text-xs font-semibold text-violet-100 transition hover:border-violet-400/60"
+            @click="metaSpotlightModalOpen = true"
+          >
+            {{ t('dex.metaSpotlightOpen') }}
+          </button>
+        </div>
       </div>
 
       <p v-if="isLoading" class="text-sm text-gray-300">{{ t('dex.loading') }}</p>
@@ -1223,6 +1406,134 @@ watch(
     </article>
 
     <Teleport to="body">
+      <div
+        v-if="metaSpotlightModalOpen"
+        class="fixed inset-0 z-40 flex items-center justify-center bg-black/65 p-4"
+        @click.self="metaSpotlightModalOpen = false"
+      >
+        <article class="w-full max-w-4xl rounded-xl border border-violet-500/35 bg-off-black/95 p-4 shadow-2xl shadow-black/50">
+          <div class="mb-3 flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <h3 class="text-sm font-semibold text-violet-100">{{ t('dex.metaSpotlightTitle') }}</h3>
+              <p class="mt-1 text-xs text-gray-400">
+                {{ t('dex.metaSpotlightSubtitle', { generation: currentTab.key, region: regionLabel(currentTab) }) }}
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="inline-flex rounded-lg border border-gray-700 bg-off-black/70 p-1 text-xs">
+                <button
+                  type="button"
+                  class="rounded px-2.5 py-1"
+                  :class="metaSpotlightView === 'vgc' ? 'bg-violet-500/20 text-violet-100' : 'text-gray-300'"
+                  @click="metaSpotlightView = 'vgc'"
+                >
+                  VGC
+                </button>
+                <button
+                  type="button"
+                  class="rounded px-2.5 py-1"
+                  :class="metaSpotlightView === 'singles' ? 'bg-violet-500/20 text-violet-100' : 'text-gray-300'"
+                  @click="metaSpotlightView = 'singles'"
+                >
+                  Singles
+                </button>
+              </div>
+              <button
+                type="button"
+                class="rounded-md border border-gray-700 bg-st-black/60 px-3 py-1.5 text-xs text-gray-200"
+                @click="metaSpotlightModalOpen = false"
+              >
+                {{ t('common.cancel') }}
+              </button>
+            </div>
+          </div>
+
+          <div class="grid gap-3 md:grid-cols-2">
+            <article
+              class="rounded-lg border p-3 transition"
+              :class="metaSpotlightView === 'vgc' ? 'border-violet-400/50 bg-violet-500/10' : 'border-gray-700 bg-black/25'"
+            >
+              <div class="mb-2 flex items-center justify-between gap-2">
+                <h4 class="text-xs font-semibold uppercase tracking-wide text-violet-100">{{ t('dex.metaSpotlightVgc') }}</h4>
+                <span class="rounded border border-violet-500/35 bg-violet-500/10 px-1.5 py-0.5 text-[10px] text-violet-100">
+                  {{ topVgcEntries.length }}
+                </span>
+              </div>
+              <p v-if="metaSpotlightStatuses.vgc === 'loading'" class="text-xs text-cyan-200">
+                {{ t('dex.metaSpotlightLoading') }}
+              </p>
+              <div v-else-if="topVgcEntries.length > 0" class="space-y-2">
+                <button
+                  v-for="entry in topVgcEntries"
+                  :key="`spotlight-vgc-modal-${entry.id}`"
+                  class="flex w-full items-center gap-2 rounded-md border border-gray-700 bg-black/35 px-2 py-1.5 text-left transition hover:border-violet-400/50"
+                  @click="openPokemonModal(entry.id); metaSpotlightModalOpen = false"
+                >
+                  <img :src="spriteUrl(entry.id)" :alt="entry.name" :data-sprite-id="entry.id"
+                    data-sprite-fallback-index="0" class="h-8 w-8 rounded bg-black/20 object-contain" loading="lazy"
+                    @error="onSpriteError" />
+                  <div class="min-w-0 flex-1">
+                    <div class="flex items-center justify-between gap-2">
+                      <span class="truncate text-xs font-semibold text-gray-100">{{ entry.name }}</span>
+                      <span class="text-[11px] text-violet-100">{{ usageLabel(entry.usage) }}</span>
+                    </div>
+                    <div class="mt-1 flex flex-wrap gap-1">
+                      <span v-for="type in entry.types" :key="`spotlight-vgc-modal-${entry.id}-${type}`"
+                        class="inline-flex items-center gap-1 rounded border border-gray-700 bg-black/40 px-1.5 py-0.5 text-[10px] text-gray-200">
+                        <img :src="TYPE_META[type].icon" :alt="typeLabel(type)" class="h-3 w-3" />
+                        {{ typeLabel(type) }}
+                      </span>
+                    </div>
+                  </div>
+                </button>
+              </div>
+              <p v-else class="text-xs text-gray-400">{{ t('dex.metaSpotlightEmpty') }}</p>
+            </article>
+
+            <article
+              class="rounded-lg border p-3 transition"
+              :class="metaSpotlightView === 'singles' ? 'border-violet-400/50 bg-violet-500/10' : 'border-gray-700 bg-black/25'"
+            >
+              <div class="mb-2 flex items-center justify-between gap-2">
+                <h4 class="text-xs font-semibold uppercase tracking-wide text-violet-100">{{ t('dex.metaSpotlightSingles') }}</h4>
+                <span class="rounded border border-violet-500/35 bg-violet-500/10 px-1.5 py-0.5 text-[10px] text-violet-100">
+                  {{ topSinglesEntries.length }}
+                </span>
+              </div>
+              <p v-if="metaSpotlightStatuses.singles === 'loading'" class="text-xs text-cyan-200">
+                {{ t('dex.metaSpotlightLoading') }}
+              </p>
+              <div v-else-if="topSinglesEntries.length > 0" class="space-y-2">
+                <button
+                  v-for="entry in topSinglesEntries"
+                  :key="`spotlight-singles-modal-${entry.id}`"
+                  class="flex w-full items-center gap-2 rounded-md border border-gray-700 bg-black/35 px-2 py-1.5 text-left transition hover:border-violet-400/50"
+                  @click="openPokemonModal(entry.id); metaSpotlightModalOpen = false"
+                >
+                  <img :src="spriteUrl(entry.id)" :alt="entry.name" :data-sprite-id="entry.id"
+                    data-sprite-fallback-index="0" class="h-8 w-8 rounded bg-black/20 object-contain" loading="lazy"
+                    @error="onSpriteError" />
+                  <div class="min-w-0 flex-1">
+                    <div class="flex items-center justify-between gap-2">
+                      <span class="truncate text-xs font-semibold text-gray-100">{{ entry.name }}</span>
+                      <span class="text-[11px] text-violet-100">{{ usageLabel(entry.usage) }}</span>
+                    </div>
+                    <div class="mt-1 flex flex-wrap gap-1">
+                      <span v-for="type in entry.types" :key="`spotlight-singles-modal-${entry.id}-${type}`"
+                        class="inline-flex items-center gap-1 rounded border border-gray-700 bg-black/40 px-1.5 py-0.5 text-[10px] text-gray-200">
+                        <img :src="TYPE_META[type].icon" :alt="typeLabel(type)" class="h-3 w-3" />
+                        {{ typeLabel(type) }}
+                      </span>
+                    </div>
+                  </div>
+                </button>
+              </div>
+              <p v-else class="text-xs text-gray-400">{{ t('dex.metaSpotlightEmpty') }}</p>
+            </article>
+          </div>
+        </article>
+      </div>
+
       <div v-if="selectedPokemonId" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-3 md:p-6"
         @click="closePokemonModal">
         <article

@@ -82,6 +82,7 @@ function normalizeId(value: string): string {
 }
 
 const pokemonIdAliasMap: Record<string, string> = {
+  aegislash: 'aegislash-shield',
   'calyrex-shadow': 'calyrex-shadow',
   'calyrex-shadow-rider': 'calyrex-shadow',
   'calyrex-shadowrider': 'calyrex-shadow',
@@ -99,6 +100,9 @@ const pokemonIdAliasMap: Record<string, string> = {
   'ogerpon-wellspring': 'ogerpon-wellspring-mask',
   'ogerpon-hearthflame': 'ogerpon-hearthflame-mask',
   'ogerpon-cornerstone': 'ogerpon-cornerstone-mask',
+  maushold: 'maushold-family-of-four',
+  'maushold-four': 'maushold-family-of-four',
+  'maushold-three': 'maushold-family-of-three',
 }
 
 export function canonicalizePokemonId(value: string): string {
@@ -106,6 +110,16 @@ export function canonicalizePokemonId(value: string): string {
   if (!normalized) return ''
 
   if (pokemonIdAliasMap[normalized]) return pokemonIdAliasMap[normalized]
+
+  if (
+    normalized.startsWith('maushold') ||
+    normalized.startsWith('mousehold') ||
+    normalized.startsWith('mausehold') ||
+    normalized.startsWith('moushold')
+  ) {
+    if (/(?:^|-)(?:three|3)(?:-|$)/.test(normalized)) return 'maushold-family-of-three'
+    return 'maushold-family-of-four'
+  }
 
   if (normalized.startsWith('calyrex-shadow')) return 'calyrex-shadow'
   if (normalized.startsWith('calyrex-ice')) return 'calyrex-ice'

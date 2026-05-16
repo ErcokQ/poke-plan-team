@@ -1028,7 +1028,7 @@ function updateStat(kind: 'evs' | 'ivs', stat: StatKey, value: number) {
       0,
     )
     const maxForStat = Math.max(0, Math.min(MAX_EV_PER_STAT, MAX_EVS - otherTotal))
-    const normalized = Math.max(0, Math.min(maxForStat, Math.floor((Number(value) || 0) / 4) * 4))
+    const normalized = Math.max(0, Math.min(maxForStat, Math.floor(Number(value) || 0)))
     teamStore.updateMember(mode.value, activeMember.value.slot, {
       evs: { ...activeMember.value.evs, [stat]: normalized },
     })
@@ -1423,7 +1423,7 @@ function updateCompareStat(kind: 'evs' | 'ivs', stat: StatKey, value: number) {
       0,
     )
     const maxForStat = Math.max(0, Math.min(MAX_EV_PER_STAT, MAX_EVS - otherTotal))
-    const normalized = Math.max(0, Math.min(maxForStat, Math.floor((Number(value) || 0) / 4) * 4))
+    const normalized = Math.max(0, Math.min(maxForStat, Math.floor(Number(value) || 0)))
     compareDraft.value = {
       ...compareDraft.value,
       evs: { ...compareDraft.value.evs, [stat]: normalized },
@@ -1935,7 +1935,7 @@ watch(
                         type="range"
                         min="0"
                         :max="evMaxForStat(stat)"
-                        step="4"
+                        step="1"
                         :value="activeMember.evs[stat]"
                         @input="updateStat('evs', stat, Number(($event.target as HTMLInputElement).value))"
                       />
@@ -1944,7 +1944,7 @@ watch(
                         type="number"
                         min="0"
                         :max="evMaxForStat(stat)"
-                        step="4"
+                        step="1"
                         :value="activeMember.evs[stat]"
                         @input="updateStat('evs', stat, Number(($event.target as HTMLInputElement).value))"
                       />
@@ -2469,7 +2469,7 @@ watch(
                       type="range"
                       min="0"
                       :max="compareEvMaxForStat(stat)"
-                      step="4"
+                      step="1"
                       :value="compareDraft.evs[stat]"
                       :disabled="!comparePokemon"
                       @input="updateCompareStat('evs', stat, Number(($event.target as HTMLInputElement).value))"
@@ -2479,7 +2479,7 @@ watch(
                       type="number"
                       min="0"
                       :max="compareEvMaxForStat(stat)"
-                      step="4"
+                      step="1"
                       :value="compareDraft.evs[stat]"
                       :disabled="!comparePokemon"
                       @change="updateCompareStat('evs', stat, Number(($event.target as HTMLInputElement).value))"

@@ -7,7 +7,7 @@
     "node": "^20.19.0 || >=22.12.0"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "node -e \"const p=require('node:path'); const u=require('node:url'); import(u.pathToFileURL(p.resolve(p.dirname(process.env.npm_package_json), 'scripts/dev-vite.mjs')).href)\" --",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "test:unit": "vitest",

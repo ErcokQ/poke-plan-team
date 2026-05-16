@@ -1,10 +1,113 @@
 import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
-import type { BattleMode, StrategyDraft, StrategySection } from '@/models/domain'
+import type {
+  BattleMode,
+  PokemonTypeKey,
+  StrategyDraft,
+  StrategySection,
+  StrategyThreatNote,
+  StrategyThreatSeenTag,
+} from '@/models/domain'
 import { useAnalyticsStore } from './analytics'
 import { useDexStore } from './dex'
 import { useTeamStore } from './team'
 import { useUiStore } from './ui'
+
+function nowIso(): string {
+  return new Date().toISOString()
+}
+
+function createEmptyThreatNote(pokemonId: string): StrategyThreatNote {
+  const timestamp = nowIso()
+  return {
+    pokemonId,
+    timesSeen: 0,
+    lastSeenAt: timestamp,
+    commonMoves: [],
+    commonItems: [],
+    commonAbilities: [],
+    commonTeraTypes: [],
+    commonPartners: [],
+    tags: [],
+    notes: '',
+    responsePlan: '',
+    lastEditedAt: timestamp,
+  }
+}
+
+function uniqueStrings(values: string[]): string[] {
+  const seen = new Set<string>()
+  const result: string[] = []
+  for (const value of values) {
+    if (!value || seen.has(value)) continue
+    seen.add(value)
+    result.push(value)
+  }
+  return result
+}
+
+function uniqueTeraTypes(values: PokemonTypeKey[]): PokemonTypeKey[] {
+  const seen = new Set<PokemonTypeKey>()
+  const result: PokemonTypeKey[] = []
+  for (const value of values) {
+    if (seen.has(value)) continue
+    seen.add(value)
+    result.push(value)
+  }
+  return result
+}
+
+function normalizeThreatNote(raw: Partial<StrategyThreatNote> & { pokemonId: string }): StrategyThreatNote {
+  const fallback = createEmptyThreatNote(raw.pokemonId)
+  return {
+    pokemonId: raw.pokemonId,
+    timesSeen: Math.max(0, Math.floor(raw.timesSeen ?? fallback.timesSeen)),
+    lastSeenAt: raw.lastSeenAt || fallback.lastSeenAt,
+    commonMoves: uniqueStrings(raw.commonMoves ?? fallback.commonMoves),
+    commonItems: uniqueStrings(raw.commonItems ?? fallback.commonItems),
+    commonAbilities: uniqueStrings(raw.commonAbilities ?? fallback.commonAbilities),
+    commonTeraTypes: uniqueTeraTypes(raw.commonTeraTypes ?? fallback.commonTeraTypes),
+    commonPartners: uniqueStrings(raw.commonPartners ?? fallback.commonPartners),
+    tags: uniqueStrings(raw.tags ?? fallback.tags) as StrategyThreatSeenTag[],
+    notes: raw.notes ?? fallback.notes,
+    responsePlan: raw.responsePlan ?? fallback.responsePlan,
+    lastEditedAt: raw.lastEditedAt || fallback.lastEditedAt,
+  }
+}
+
+function isNormalizedThreatNote(raw: unknown): raw is StrategyThreatNote {
+  if (!raw || typeof raw !== 'object') return false
+  const note = raw as Partial<StrategyThreatNote>
+  return (
+    typeof note.pokemonId === 'string' &&
+    typeof note.timesSeen === 'number' &&
+    typeof note.lastSeenAt === 'string' &&
+    Array.isArray(note.commonMoves) &&
+    Array.isArray(note.commonItems) &&
+    Array.isArray(note.commonAbilities) &&
+    Array.isArray(note.commonTeraTypes) &&
+    Array.isArray(note.commonPartners) &&
+    Array.isArray(note.tags) &&
+    typeof note.notes === 'string' &&
+    typeof note.responsePlan === 'string' &&
+    typeof note.lastEditedAt === 'string'
+  )
+}
+
+function isNormalizedDraft(raw: unknown, mode: BattleMode, teamId: string): raw is StrategyDraft {
+  if (!raw || typeof raw !== 'object') return false
+  const draft = raw as Partial<StrategyDraft>
+  return (
+    draft.mode === mode &&
+    draft.teamId === teamId &&
+    Array.isArray(draft.autoSections) &&
+    typeof draft.userEdits === 'string' &&
+    Array.isArray(draft.threatNotes) &&
+    draft.threatNotes.every((entry) => isNormalizedThreatNote(entry)) &&
+    (draft.selectedThreatPokemonId === null || typeof draft.selectedThreatPokemonId === 'string') &&
+    typeof draft.updatedAt === 'string'
+  )
+}
 
 export const useStrategyStore = defineStore('strategy', () => {
   const drafts = useStorage<Record<string, StrategyDraft>>('pokeplan.v1.strategy', {})
@@ -78,7 +181,7 @@ export const useStrategyStore = defineStore('strategy', () => {
           ],
         },
         {
-        title: isEs ? 'Enfoque de matchups' : 'Matchup focus',
+          title: isEs ? 'Enfoque de matchups' : 'Matchup focus',
           bullets: archetypes.map((archetype) => `Vs ${archetype.name}: ${archetype.summary}.`),
         },
       ]
@@ -123,33 +226,255 @@ export const useStrategyStore = defineStore('strategy', () => {
     ]
   }
 
+  function normalizeDraft(mode: BattleMode, teamId: string, raw?: Partial<StrategyDraft>): StrategyDraft {
+    const threatNotes = (raw?.threatNotes ?? [])
+      .filter((entry): entry is StrategyThreatNote => Boolean(entry?.pokemonId))
+      .map((entry) => normalizeThreatNote(entry))
+
+    const selectedThreatPokemonId =
+      raw?.selectedThreatPokemonId && threatNotes.some((entry) => entry.pokemonId === raw.selectedThreatPokemonId)
+        ? raw.selectedThreatPokemonId
+        : threatNotes[0]?.pokemonId ?? null
+
+    return {
+      mode,
+      teamId,
+      autoSections: raw?.autoSections ?? buildAutoSections(mode),
+      userEdits: raw?.userEdits ?? '',
+      threatNotes,
+      selectedThreatPokemonId,
+      updatedAt: raw?.updatedAt ?? nowIso(),
+    }
+  }
+
   function ensureDraft(mode: BattleMode): StrategyDraft {
     const team = teamStore.getActiveTeam(mode)
     const key = draftKey(mode, team.id)
-
-    if (!drafts.value[key]) {
-      drafts.value[key] = {
-        mode,
-        teamId: team.id,
-        autoSections: buildAutoSections(mode),
-        userEdits: '',
-        updatedAt: new Date().toISOString(),
-      }
+    const current = drafts.value[key]
+    if (isNormalizedDraft(current, mode, team.id)) {
+      return current
     }
+    const normalized = normalizeDraft(mode, team.id, current)
+    drafts.value[key] = normalized
+    return normalized
+  }
 
-    return drafts.value[key]
+  function touchDraft(draft: StrategyDraft) {
+    draft.updatedAt = nowIso()
+  }
+
+  function sortThreatNotes(mode: BattleMode, threatNotes: StrategyThreatNote[]) {
+    const isEs = uiStore.locale === 'es'
+    return [...threatNotes].sort((a, b) => {
+      if (b.timesSeen !== a.timesSeen) return b.timesSeen - a.timesSeen
+      const dateCompare = (b.lastSeenAt || '').localeCompare(a.lastSeenAt || '')
+      if (dateCompare !== 0) return dateCompare
+      const aName = dexStore.getPokemon(mode, a.pokemonId)?.name ?? a.pokemonId
+      const bName = dexStore.getPokemon(mode, b.pokemonId)?.name ?? b.pokemonId
+      return aName.localeCompare(bName, isEs ? 'es' : 'en')
+    })
+  }
+
+  function applyThreatNotes(mode: BattleMode, nextNotes: StrategyThreatNote[]) {
+    const draft = ensureDraft(mode)
+    draft.threatNotes = sortThreatNotes(mode, nextNotes)
+    if (!draft.selectedThreatPokemonId || !draft.threatNotes.some((entry) => entry.pokemonId === draft.selectedThreatPokemonId)) {
+      draft.selectedThreatPokemonId = draft.threatNotes[0]?.pokemonId ?? null
+    }
+    touchDraft(draft)
+  }
+
+  function findThreatIndex(draft: StrategyDraft, pokemonId: string): number {
+    return draft.threatNotes.findIndex((entry) => entry.pokemonId === pokemonId)
+  }
+
+  function upsertThreatNote(mode: BattleMode, pokemonId: string, patch: Partial<StrategyThreatNote> = {}) {
+    if (!pokemonId) return
+    const draft = ensureDraft(mode)
+    const index = findThreatIndex(draft, pokemonId)
+    const current = index >= 0 ? draft.threatNotes[index] : createEmptyThreatNote(pokemonId)
+    const merged = normalizeThreatNote({
+      ...current,
+      ...patch,
+      pokemonId,
+      lastEditedAt: nowIso(),
+    })
+    const nextNotes = [...draft.threatNotes]
+    if (index >= 0) nextNotes[index] = merged
+    else nextNotes.push(merged)
+    applyThreatNotes(mode, nextNotes)
+    const refreshed = ensureDraft(mode)
+    refreshed.selectedThreatPokemonId = pokemonId
+  }
+
+  function incrementThreatSeen(mode: BattleMode, pokemonId: string) {
+    const draft = ensureDraft(mode)
+    const index = findThreatIndex(draft, pokemonId)
+    const current = index >= 0 ? draft.threatNotes[index] : createEmptyThreatNote(pokemonId)
+    upsertThreatNote(mode, pokemonId, {
+      ...current,
+      timesSeen: current.timesSeen + 1,
+      lastSeenAt: nowIso(),
+    })
+  }
+
+  function toggleThreatTag(mode: BattleMode, pokemonId: string, tag: StrategyThreatSeenTag) {
+    const draft = ensureDraft(mode)
+    const current = draft.threatNotes.find((entry) => entry.pokemonId === pokemonId) ?? createEmptyThreatNote(pokemonId)
+    const tags = current.tags.includes(tag)
+      ? current.tags.filter((entry) => entry !== tag)
+      : [...current.tags, tag]
+    upsertThreatNote(mode, pokemonId, {
+      ...current,
+      tags,
+    })
+  }
+
+  function appendThreatMove(mode: BattleMode, pokemonId: string, moveId: string) {
+    if (!moveId) return
+    const draft = ensureDraft(mode)
+    const current = draft.threatNotes.find((entry) => entry.pokemonId === pokemonId) ?? createEmptyThreatNote(pokemonId)
+    upsertThreatNote(mode, pokemonId, {
+      ...current,
+      commonMoves: uniqueStrings([...current.commonMoves, moveId]),
+    })
+  }
+
+  function appendThreatItem(mode: BattleMode, pokemonId: string, itemId: string) {
+    if (!itemId) return
+    const draft = ensureDraft(mode)
+    const current = draft.threatNotes.find((entry) => entry.pokemonId === pokemonId) ?? createEmptyThreatNote(pokemonId)
+    upsertThreatNote(mode, pokemonId, {
+      ...current,
+      commonItems: uniqueStrings([...current.commonItems, itemId]),
+    })
+  }
+
+  function appendThreatAbility(mode: BattleMode, pokemonId: string, abilityId: string) {
+    if (!abilityId) return
+    const draft = ensureDraft(mode)
+    const current = draft.threatNotes.find((entry) => entry.pokemonId === pokemonId) ?? createEmptyThreatNote(pokemonId)
+    upsertThreatNote(mode, pokemonId, {
+      ...current,
+      commonAbilities: uniqueStrings([...current.commonAbilities, abilityId]),
+    })
+  }
+
+  function appendThreatTera(mode: BattleMode, pokemonId: string, teraType: PokemonTypeKey) {
+    if (!teraType) return
+    const draft = ensureDraft(mode)
+    const current = draft.threatNotes.find((entry) => entry.pokemonId === pokemonId) ?? createEmptyThreatNote(pokemonId)
+    upsertThreatNote(mode, pokemonId, {
+      ...current,
+      commonTeraTypes: uniqueTeraTypes([...current.commonTeraTypes, teraType]),
+    })
+  }
+
+  function appendThreatPartner(mode: BattleMode, pokemonId: string, partnerPokemonId: string) {
+    if (!partnerPokemonId) return
+    const draft = ensureDraft(mode)
+    const current = draft.threatNotes.find((entry) => entry.pokemonId === pokemonId) ?? createEmptyThreatNote(pokemonId)
+    upsertThreatNote(mode, pokemonId, {
+      ...current,
+      commonPartners: uniqueStrings([...current.commonPartners, partnerPokemonId]),
+    })
+  }
+
+  function removeThreatMove(mode: BattleMode, pokemonId: string, moveId: string) {
+    const draft = ensureDraft(mode)
+    const current = draft.threatNotes.find((entry) => entry.pokemonId === pokemonId)
+    if (!current) return
+    upsertThreatNote(mode, pokemonId, {
+      ...current,
+      commonMoves: current.commonMoves.filter((entry) => entry !== moveId),
+    })
+  }
+
+  function removeThreatItem(mode: BattleMode, pokemonId: string, itemId: string) {
+    const draft = ensureDraft(mode)
+    const current = draft.threatNotes.find((entry) => entry.pokemonId === pokemonId)
+    if (!current) return
+    upsertThreatNote(mode, pokemonId, {
+      ...current,
+      commonItems: current.commonItems.filter((entry) => entry !== itemId),
+    })
+  }
+
+  function removeThreatAbility(mode: BattleMode, pokemonId: string, abilityId: string) {
+    const draft = ensureDraft(mode)
+    const current = draft.threatNotes.find((entry) => entry.pokemonId === pokemonId)
+    if (!current) return
+    upsertThreatNote(mode, pokemonId, {
+      ...current,
+      commonAbilities: current.commonAbilities.filter((entry) => entry !== abilityId),
+    })
+  }
+
+  function removeThreatTera(mode: BattleMode, pokemonId: string, teraType: PokemonTypeKey) {
+    const draft = ensureDraft(mode)
+    const current = draft.threatNotes.find((entry) => entry.pokemonId === pokemonId)
+    if (!current) return
+    upsertThreatNote(mode, pokemonId, {
+      ...current,
+      commonTeraTypes: current.commonTeraTypes.filter((entry) => entry !== teraType),
+    })
+  }
+
+  function removeThreatPartner(mode: BattleMode, pokemonId: string, partnerPokemonId: string) {
+    const draft = ensureDraft(mode)
+    const current = draft.threatNotes.find((entry) => entry.pokemonId === pokemonId)
+    if (!current) return
+    upsertThreatNote(mode, pokemonId, {
+      ...current,
+      commonPartners: current.commonPartners.filter((entry) => entry !== partnerPokemonId),
+    })
+  }
+
+  function setThreatNotes(mode: BattleMode, pokemonId: string, notes: string) {
+    const draft = ensureDraft(mode)
+    const current = draft.threatNotes.find((entry) => entry.pokemonId === pokemonId) ?? createEmptyThreatNote(pokemonId)
+    upsertThreatNote(mode, pokemonId, {
+      ...current,
+      notes,
+    })
+  }
+
+  function setThreatResponsePlan(mode: BattleMode, pokemonId: string, plan: string) {
+    const draft = ensureDraft(mode)
+    const current = draft.threatNotes.find((entry) => entry.pokemonId === pokemonId) ?? createEmptyThreatNote(pokemonId)
+    upsertThreatNote(mode, pokemonId, {
+      ...current,
+      responsePlan: plan,
+    })
+  }
+
+  function setSelectedThreat(mode: BattleMode, pokemonId: string | null) {
+    const draft = ensureDraft(mode)
+    draft.selectedThreatPokemonId =
+      pokemonId && draft.threatNotes.some((entry) => entry.pokemonId === pokemonId)
+        ? pokemonId
+        : draft.threatNotes[0]?.pokemonId ?? null
+    touchDraft(draft)
+  }
+
+  function removeThreatNote(mode: BattleMode, pokemonId: string) {
+    const draft = ensureDraft(mode)
+    applyThreatNotes(
+      mode,
+      draft.threatNotes.filter((entry) => entry.pokemonId !== pokemonId),
+    )
   }
 
   function regenerate(mode: BattleMode) {
     const draft = ensureDraft(mode)
     draft.autoSections = buildAutoSections(mode)
-    draft.updatedAt = new Date().toISOString()
+    touchDraft(draft)
   }
 
   function setUserEdits(mode: BattleMode, value: string) {
     const draft = ensureDraft(mode)
     draft.userEdits = value
-    draft.updatedAt = new Date().toISOString()
+    touchDraft(draft)
   }
 
   return {
@@ -157,5 +482,22 @@ export const useStrategyStore = defineStore('strategy', () => {
     ensureDraft,
     regenerate,
     setUserEdits,
+    upsertThreatNote,
+    incrementThreatSeen,
+    toggleThreatTag,
+    appendThreatMove,
+    appendThreatItem,
+    appendThreatAbility,
+    appendThreatTera,
+    appendThreatPartner,
+    removeThreatMove,
+    removeThreatItem,
+    removeThreatAbility,
+    removeThreatTera,
+    removeThreatPartner,
+    setThreatNotes,
+    setThreatResponsePlan,
+    setSelectedThreat,
+    removeThreatNote,
   }
 })

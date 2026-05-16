@@ -2,7 +2,7 @@
   "version": "v1",
   "locale": "en",
   "generationId": 9,
-  "generatedAt": "2026-04-09T04:23:54.270Z",
+  "generatedAt": "2026-04-17T18:43:31.043Z",
   "profiles": [
     {
       "id": "sprigatito",
@@ -60,6 +60,18 @@
           "id": "sprigatito",
           "name": "Sprigatito",
           "pokedexNumber": 906,
+          "variants": []
+        },
+        {
+          "id": "floragato",
+          "name": "Floragato",
+          "pokedexNumber": 907,
+          "variants": []
+        },
+        {
+          "id": "meowscarada",
+          "name": "Meowscarada",
+          "pokedexNumber": 908,
           "variants": []
         }
       ],
@@ -123,9 +135,21 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "sprigatito",
+          "name": "Sprigatito",
+          "pokedexNumber": 906,
+          "variants": []
+        },
+        {
           "id": "floragato",
           "name": "Floragato",
           "pokedexNumber": 907,
+          "variants": []
+        },
+        {
+          "id": "meowscarada",
+          "name": "Meowscarada",
+          "pokedexNumber": 908,
           "variants": []
         }
       ],
@@ -189,6 +213,18 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "sprigatito",
+          "name": "Sprigatito",
+          "pokedexNumber": 906,
+          "variants": []
+        },
+        {
+          "id": "floragato",
+          "name": "Floragato",
+          "pokedexNumber": 907,
+          "variants": []
+        },
         {
           "id": "meowscarada",
           "name": "Meowscarada",
@@ -259,6 +295,18 @@
           "name": "Fuecoco",
           "pokedexNumber": 909,
           "variants": []
+        },
+        {
+          "id": "crocalor",
+          "name": "Crocalor",
+          "pokedexNumber": 910,
+          "variants": []
+        },
+        {
+          "id": "skeledirge",
+          "name": "Skeledirge",
+          "pokedexNumber": 911,
+          "variants": []
         }
       ],
       "sprites": {
@@ -320,9 +368,21 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "fuecoco",
+          "name": "Fuecoco",
+          "pokedexNumber": 909,
+          "variants": []
+        },
+        {
           "id": "crocalor",
           "name": "Crocalor",
           "pokedexNumber": 910,
+          "variants": []
+        },
+        {
+          "id": "skeledirge",
+          "name": "Skeledirge",
+          "pokedexNumber": 911,
           "variants": []
         }
       ],
@@ -385,6 +445,18 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "fuecoco",
+          "name": "Fuecoco",
+          "pokedexNumber": 909,
+          "variants": []
+        },
+        {
+          "id": "crocalor",
+          "name": "Crocalor",
+          "pokedexNumber": 910,
+          "variants": []
+        },
         {
           "id": "skeledirge",
           "name": "Skeledirge",
@@ -456,6 +528,18 @@
           "name": "Quaxly",
           "pokedexNumber": 912,
           "variants": []
+        },
+        {
+          "id": "quaxwell",
+          "name": "Quaxwell",
+          "pokedexNumber": 913,
+          "variants": []
+        },
+        {
+          "id": "quaquaval",
+          "name": "Quaquaval",
+          "pokedexNumber": 914,
+          "variants": []
         }
       ],
       "sprites": {
@@ -518,9 +602,21 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "quaxly",
+          "name": "Quaxly",
+          "pokedexNumber": 912,
+          "variants": []
+        },
+        {
           "id": "quaxwell",
           "name": "Quaxwell",
           "pokedexNumber": 913,
+          "variants": []
+        },
+        {
+          "id": "quaquaval",
+          "name": "Quaquaval",
+          "pokedexNumber": 914,
           "variants": []
         }
       ],
@@ -584,6 +680,18 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "quaxly",
+          "name": "Quaxly",
+          "pokedexNumber": 912,
+          "variants": []
+        },
+        {
+          "id": "quaxwell",
+          "name": "Quaxwell",
+          "pokedexNumber": 913,
+          "variants": []
+        },
         {
           "id": "quaquaval",
           "name": "Quaquaval",
@@ -661,6 +769,18 @@
           "name": "Lechonk",
           "pokedexNumber": 915,
           "variants": []
+        },
+        {
+          "id": "oinkologne-male",
+          "name": "Oinkologne",
+          "pokedexNumber": 916,
+          "variants": [
+            {
+              "id": "oinkologne-female",
+              "name": "Oinkologne Female",
+              "kind": "form"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -729,19 +849,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "oinkologne-male",
-          "name": "Oinkologne",
-          "pokedexNumber": 916,
-          "variants": [
-            {
-              "id": "oinkologne-female",
-              "name": "Oinkologne Female",
-              "kind": "form"
-            }
-          ]
+          "id": "lechonk",
+          "name": "Lechonk",
+          "pokedexNumber": 915,
+          "variants": []
         },
         {
-          "id": "oinkologne-female",
+          "id": "oinkologne-male",
           "name": "Oinkologne",
           "pokedexNumber": 916,
           "variants": [
@@ -819,19 +933,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "oinkologne-male",
-          "name": "Oinkologne",
-          "pokedexNumber": 916,
-          "variants": [
-            {
-              "id": "oinkologne-female",
-              "name": "Oinkologne Female",
-              "kind": "form"
-            }
-          ]
+          "id": "lechonk",
+          "name": "Lechonk",
+          "pokedexNumber": 915,
+          "variants": []
         },
         {
-          "id": "oinkologne-female",
+          "id": "oinkologne-male",
           "name": "Oinkologne",
           "pokedexNumber": 916,
           "variants": [
@@ -906,6 +1014,12 @@
           "name": "Tarountula",
           "pokedexNumber": 917,
           "variants": []
+        },
+        {
+          "id": "spidops",
+          "name": "Spidops",
+          "pokedexNumber": 918,
+          "variants": []
         }
       ],
       "sprites": {
@@ -966,6 +1080,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "tarountula",
+          "name": "Tarountula",
+          "pokedexNumber": 917,
+          "variants": []
+        },
         {
           "id": "spidops",
           "name": "Spidops",
@@ -1036,6 +1156,12 @@
           "name": "Nymble",
           "pokedexNumber": 919,
           "variants": []
+        },
+        {
+          "id": "lokix",
+          "name": "Lokix",
+          "pokedexNumber": 920,
+          "variants": []
         }
       ],
       "sprites": {
@@ -1097,6 +1223,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "nymble",
+          "name": "Nymble",
+          "pokedexNumber": 919,
+          "variants": []
+        },
         {
           "id": "lokix",
           "name": "Lokix",
@@ -1174,6 +1306,18 @@
           "name": "Pawmi",
           "pokedexNumber": 921,
           "variants": []
+        },
+        {
+          "id": "pawmo",
+          "name": "Pawmo",
+          "pokedexNumber": 922,
+          "variants": []
+        },
+        {
+          "id": "pawmot",
+          "name": "Pawmot",
+          "pokedexNumber": 923,
+          "variants": []
         }
       ],
       "sprites": {
@@ -1243,9 +1387,21 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "pawmi",
+          "name": "Pawmi",
+          "pokedexNumber": 921,
+          "variants": []
+        },
+        {
           "id": "pawmo",
           "name": "Pawmo",
           "pokedexNumber": 922,
+          "variants": []
+        },
+        {
+          "id": "pawmot",
+          "name": "Pawmot",
+          "pokedexNumber": 923,
           "variants": []
         }
       ],
@@ -1315,6 +1471,18 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "pawmi",
+          "name": "Pawmi",
+          "pokedexNumber": 921,
+          "variants": []
+        },
+        {
+          "id": "pawmo",
+          "name": "Pawmo",
+          "pokedexNumber": 922,
+          "variants": []
+        },
         {
           "id": "pawmot",
           "name": "Pawmot",
@@ -1393,6 +1561,18 @@
           "name": "Tandemaus",
           "pokedexNumber": 924,
           "variants": []
+        },
+        {
+          "id": "maushold-family-of-four",
+          "name": "Maushold",
+          "pokedexNumber": 925,
+          "variants": [
+            {
+              "id": "maushold-family-of-three",
+              "name": "Maushold Family Of Three",
+              "kind": "form"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -1462,19 +1642,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "maushold-family-of-four",
-          "name": "Maushold",
-          "pokedexNumber": 925,
-          "variants": [
-            {
-              "id": "maushold-family-of-three",
-              "name": "Maushold Family Of Three",
-              "kind": "form"
-            }
-          ]
+          "id": "tandemaus",
+          "name": "Tandemaus",
+          "pokedexNumber": 924,
+          "variants": []
         },
         {
-          "id": "maushold-family-of-three",
+          "id": "maushold-family-of-four",
           "name": "Maushold",
           "pokedexNumber": 925,
           "variants": [
@@ -1553,19 +1727,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "maushold-family-of-four",
-          "name": "Maushold",
-          "pokedexNumber": 925,
-          "variants": [
-            {
-              "id": "maushold-family-of-three",
-              "name": "Maushold Family Of Three",
-              "kind": "form"
-            }
-          ]
+          "id": "tandemaus",
+          "name": "Tandemaus",
+          "pokedexNumber": 924,
+          "variants": []
         },
         {
-          "id": "maushold-family-of-three",
+          "id": "maushold-family-of-four",
           "name": "Maushold",
           "pokedexNumber": 925,
           "variants": [
@@ -1641,6 +1809,12 @@
           "name": "Fidough",
           "pokedexNumber": 926,
           "variants": []
+        },
+        {
+          "id": "dachsbun",
+          "name": "Dachsbun",
+          "pokedexNumber": 927,
+          "variants": []
         }
       ],
       "sprites": {
@@ -1702,6 +1876,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "fidough",
+          "name": "Fidough",
+          "pokedexNumber": 926,
+          "variants": []
+        },
         {
           "id": "dachsbun",
           "name": "Dachsbun",
@@ -1773,6 +1953,18 @@
           "name": "Smoliv",
           "pokedexNumber": 928,
           "variants": []
+        },
+        {
+          "id": "dolliv",
+          "name": "Dolliv",
+          "pokedexNumber": 929,
+          "variants": []
+        },
+        {
+          "id": "arboliva",
+          "name": "Arboliva",
+          "pokedexNumber": 930,
+          "variants": []
         }
       ],
       "sprites": {
@@ -1835,9 +2027,21 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "smoliv",
+          "name": "Smoliv",
+          "pokedexNumber": 928,
+          "variants": []
+        },
+        {
           "id": "dolliv",
           "name": "Dolliv",
           "pokedexNumber": 929,
+          "variants": []
+        },
+        {
+          "id": "arboliva",
+          "name": "Arboliva",
+          "pokedexNumber": 930,
           "variants": []
         }
       ],
@@ -1900,6 +2104,18 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "smoliv",
+          "name": "Smoliv",
+          "pokedexNumber": 928,
+          "variants": []
+        },
+        {
+          "id": "dolliv",
+          "name": "Dolliv",
+          "pokedexNumber": 929,
+          "variants": []
+        },
         {
           "id": "arboliva",
           "name": "Arboliva",
@@ -1975,72 +2191,6 @@
       "evolutionChain": [
         {
           "id": "squawkabilly-green-plumage",
-          "name": "Squawkabilly",
-          "pokedexNumber": 931,
-          "variants": [
-            {
-              "id": "squawkabilly-blue-plumage",
-              "name": "Squawkabilly Blue Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-white-plumage",
-              "name": "Squawkabilly White Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-yellow-plumage",
-              "name": "Squawkabilly Yellow Plumage",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "squawkabilly-blue-plumage",
-          "name": "Squawkabilly",
-          "pokedexNumber": 931,
-          "variants": [
-            {
-              "id": "squawkabilly-blue-plumage",
-              "name": "Squawkabilly Blue Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-white-plumage",
-              "name": "Squawkabilly White Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-yellow-plumage",
-              "name": "Squawkabilly Yellow Plumage",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "squawkabilly-yellow-plumage",
-          "name": "Squawkabilly",
-          "pokedexNumber": 931,
-          "variants": [
-            {
-              "id": "squawkabilly-blue-plumage",
-              "name": "Squawkabilly Blue Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-white-plumage",
-              "name": "Squawkabilly White Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-yellow-plumage",
-              "name": "Squawkabilly Yellow Plumage",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "squawkabilly-white-plumage",
           "name": "Squawkabilly",
           "pokedexNumber": 931,
           "variants": [
@@ -2149,72 +2299,6 @@
               "kind": "form"
             }
           ]
-        },
-        {
-          "id": "squawkabilly-blue-plumage",
-          "name": "Squawkabilly",
-          "pokedexNumber": 931,
-          "variants": [
-            {
-              "id": "squawkabilly-blue-plumage",
-              "name": "Squawkabilly Blue Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-white-plumage",
-              "name": "Squawkabilly White Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-yellow-plumage",
-              "name": "Squawkabilly Yellow Plumage",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "squawkabilly-yellow-plumage",
-          "name": "Squawkabilly",
-          "pokedexNumber": 931,
-          "variants": [
-            {
-              "id": "squawkabilly-blue-plumage",
-              "name": "Squawkabilly Blue Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-white-plumage",
-              "name": "Squawkabilly White Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-yellow-plumage",
-              "name": "Squawkabilly Yellow Plumage",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "squawkabilly-white-plumage",
-          "name": "Squawkabilly",
-          "pokedexNumber": 931,
-          "variants": [
-            {
-              "id": "squawkabilly-blue-plumage",
-              "name": "Squawkabilly Blue Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-white-plumage",
-              "name": "Squawkabilly White Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-yellow-plumage",
-              "name": "Squawkabilly Yellow Plumage",
-              "kind": "form"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -2285,72 +2369,6 @@
       "evolutionChain": [
         {
           "id": "squawkabilly-green-plumage",
-          "name": "Squawkabilly",
-          "pokedexNumber": 931,
-          "variants": [
-            {
-              "id": "squawkabilly-blue-plumage",
-              "name": "Squawkabilly Blue Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-white-plumage",
-              "name": "Squawkabilly White Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-yellow-plumage",
-              "name": "Squawkabilly Yellow Plumage",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "squawkabilly-blue-plumage",
-          "name": "Squawkabilly",
-          "pokedexNumber": 931,
-          "variants": [
-            {
-              "id": "squawkabilly-blue-plumage",
-              "name": "Squawkabilly Blue Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-white-plumage",
-              "name": "Squawkabilly White Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-yellow-plumage",
-              "name": "Squawkabilly Yellow Plumage",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "squawkabilly-yellow-plumage",
-          "name": "Squawkabilly",
-          "pokedexNumber": 931,
-          "variants": [
-            {
-              "id": "squawkabilly-blue-plumage",
-              "name": "Squawkabilly Blue Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-white-plumage",
-              "name": "Squawkabilly White Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-yellow-plumage",
-              "name": "Squawkabilly Yellow Plumage",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "squawkabilly-white-plumage",
           "name": "Squawkabilly",
           "pokedexNumber": 931,
           "variants": [
@@ -2459,72 +2477,6 @@
               "kind": "form"
             }
           ]
-        },
-        {
-          "id": "squawkabilly-blue-plumage",
-          "name": "Squawkabilly",
-          "pokedexNumber": 931,
-          "variants": [
-            {
-              "id": "squawkabilly-blue-plumage",
-              "name": "Squawkabilly Blue Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-white-plumage",
-              "name": "Squawkabilly White Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-yellow-plumage",
-              "name": "Squawkabilly Yellow Plumage",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "squawkabilly-yellow-plumage",
-          "name": "Squawkabilly",
-          "pokedexNumber": 931,
-          "variants": [
-            {
-              "id": "squawkabilly-blue-plumage",
-              "name": "Squawkabilly Blue Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-white-plumage",
-              "name": "Squawkabilly White Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-yellow-plumage",
-              "name": "Squawkabilly Yellow Plumage",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "squawkabilly-white-plumage",
-          "name": "Squawkabilly",
-          "pokedexNumber": 931,
-          "variants": [
-            {
-              "id": "squawkabilly-blue-plumage",
-              "name": "Squawkabilly Blue Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-white-plumage",
-              "name": "Squawkabilly White Plumage",
-              "kind": "form"
-            },
-            {
-              "id": "squawkabilly-yellow-plumage",
-              "name": "Squawkabilly Yellow Plumage",
-              "kind": "form"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -2597,6 +2549,18 @@
           "name": "Nacli",
           "pokedexNumber": 932,
           "variants": []
+        },
+        {
+          "id": "naclstack",
+          "name": "Naclstack",
+          "pokedexNumber": 933,
+          "variants": []
+        },
+        {
+          "id": "garganacl",
+          "name": "Garganacl",
+          "pokedexNumber": 934,
+          "variants": []
         }
       ],
       "sprites": {
@@ -2665,9 +2629,21 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "nacli",
+          "name": "Nacli",
+          "pokedexNumber": 932,
+          "variants": []
+        },
+        {
           "id": "naclstack",
           "name": "Naclstack",
           "pokedexNumber": 933,
+          "variants": []
+        },
+        {
+          "id": "garganacl",
+          "name": "Garganacl",
+          "pokedexNumber": 934,
           "variants": []
         }
       ],
@@ -2736,6 +2712,18 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "nacli",
+          "name": "Nacli",
+          "pokedexNumber": 932,
+          "variants": []
+        },
+        {
+          "id": "naclstack",
+          "name": "Naclstack",
+          "pokedexNumber": 933,
+          "variants": []
+        },
         {
           "id": "garganacl",
           "name": "Garganacl",
@@ -2806,6 +2794,18 @@
           "name": "Charcadet",
           "pokedexNumber": 935,
           "variants": []
+        },
+        {
+          "id": "armarouge",
+          "name": "Armarouge",
+          "pokedexNumber": 936,
+          "variants": []
+        },
+        {
+          "id": "ceruledge",
+          "name": "Ceruledge",
+          "pokedexNumber": 937,
+          "variants": []
         }
       ],
       "sprites": {
@@ -2868,9 +2868,21 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "charcadet",
+          "name": "Charcadet",
+          "pokedexNumber": 935,
+          "variants": []
+        },
+        {
           "id": "armarouge",
           "name": "Armarouge",
           "pokedexNumber": 936,
+          "variants": []
+        },
+        {
+          "id": "ceruledge",
+          "name": "Ceruledge",
+          "pokedexNumber": 937,
           "variants": []
         }
       ],
@@ -2933,6 +2945,18 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "charcadet",
+          "name": "Charcadet",
+          "pokedexNumber": 935,
+          "variants": []
+        },
+        {
+          "id": "armarouge",
+          "name": "Armarouge",
+          "pokedexNumber": 936,
+          "variants": []
+        },
         {
           "id": "ceruledge",
           "name": "Ceruledge",
@@ -3010,6 +3034,12 @@
           "name": "Tadbulb",
           "pokedexNumber": 938,
           "variants": []
+        },
+        {
+          "id": "bellibolt",
+          "name": "Bellibolt",
+          "pokedexNumber": 939,
+          "variants": []
         }
       ],
       "sprites": {
@@ -3077,6 +3107,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "tadbulb",
+          "name": "Tadbulb",
+          "pokedexNumber": 938,
+          "variants": []
+        },
         {
           "id": "bellibolt",
           "name": "Bellibolt",
@@ -3156,6 +3192,12 @@
           "name": "Wattrel",
           "pokedexNumber": 940,
           "variants": []
+        },
+        {
+          "id": "kilowattrel",
+          "name": "Kilowattrel",
+          "pokedexNumber": 941,
+          "variants": []
         }
       ],
       "sprites": {
@@ -3225,6 +3267,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "wattrel",
+          "name": "Wattrel",
+          "pokedexNumber": 940,
+          "variants": []
+        },
         {
           "id": "kilowattrel",
           "name": "Kilowattrel",
@@ -3302,6 +3350,12 @@
           "name": "Maschiff",
           "pokedexNumber": 942,
           "variants": []
+        },
+        {
+          "id": "mabosstiff",
+          "name": "Mabosstiff",
+          "pokedexNumber": 943,
+          "variants": []
         }
       ],
       "sprites": {
@@ -3369,6 +3423,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "maschiff",
+          "name": "Maschiff",
+          "pokedexNumber": 942,
+          "variants": []
+        },
         {
           "id": "mabosstiff",
           "name": "Mabosstiff",
@@ -3447,6 +3507,12 @@
           "name": "Shroodle",
           "pokedexNumber": 944,
           "variants": []
+        },
+        {
+          "id": "grafaiai",
+          "name": "Grafaiai",
+          "pokedexNumber": 945,
+          "variants": []
         }
       ],
       "sprites": {
@@ -3515,6 +3581,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "shroodle",
+          "name": "Shroodle",
+          "pokedexNumber": 944,
+          "variants": []
+        },
         {
           "id": "grafaiai",
           "name": "Grafaiai",
@@ -3586,6 +3658,12 @@
           "name": "Bramblin",
           "pokedexNumber": 946,
           "variants": []
+        },
+        {
+          "id": "brambleghast",
+          "name": "Brambleghast",
+          "pokedexNumber": 947,
+          "variants": []
         }
       ],
       "sprites": {
@@ -3647,6 +3725,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "bramblin",
+          "name": "Bramblin",
+          "pokedexNumber": 946,
+          "variants": []
+        },
         {
           "id": "brambleghast",
           "name": "Brambleghast",
@@ -3711,6 +3795,12 @@
           "name": "Toedscool",
           "pokedexNumber": 948,
           "variants": []
+        },
+        {
+          "id": "toedscruel",
+          "name": "Toedscruel",
+          "pokedexNumber": 949,
+          "variants": []
         }
       ],
       "sprites": {
@@ -3765,6 +3855,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "toedscool",
+          "name": "Toedscool",
+          "pokedexNumber": 948,
+          "variants": []
+        },
         {
           "id": "toedscruel",
           "name": "Toedscruel",
@@ -3914,6 +4010,18 @@
           "name": "Capsakid",
           "pokedexNumber": 951,
           "variants": []
+        },
+        {
+          "id": "scovillain",
+          "name": "Scovillain",
+          "pokedexNumber": 952,
+          "variants": [
+            {
+              "id": "scovillain-mega",
+              "name": "Scovillain Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -3983,19 +4091,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "scovillain",
-          "name": "Scovillain",
-          "pokedexNumber": 952,
-          "variants": [
-            {
-              "id": "scovillain-mega",
-              "name": "Scovillain Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "capsakid",
+          "name": "Capsakid",
+          "pokedexNumber": 951,
+          "variants": []
         },
         {
-          "id": "scovillain-mega",
+          "id": "scovillain",
           "name": "Scovillain",
           "pokedexNumber": 952,
           "variants": [
@@ -4028,8 +4130,8 @@
         {
           "id": "spicy-spray",
           "name": "Spicy Spray",
-          "shortEffect": "Boosts the user's Fire-type moves and spray-based attacks.",
-          "effect": "Boosts the user's Fire-type moves and spray-based attacks.",
+          "shortEffect": "When the Pokémon takes damage from a move, it burns the attacker.",
+          "effect": "When the Pokémon takes damage from a move, it burns the attacker.",
           "isHidden": false
         }
       ],
@@ -4060,19 +4162,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "scovillain",
-          "name": "Scovillain",
-          "pokedexNumber": 952,
-          "variants": [
-            {
-              "id": "scovillain-mega",
-              "name": "Scovillain Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "capsakid",
+          "name": "Capsakid",
+          "pokedexNumber": 951,
+          "variants": []
         },
         {
-          "id": "scovillain-mega",
+          "id": "scovillain",
           "name": "Scovillain",
           "pokedexNumber": 952,
           "variants": [
@@ -4147,6 +4243,12 @@
           "name": "Rellor",
           "pokedexNumber": 953,
           "variants": []
+        },
+        {
+          "id": "rabsca",
+          "name": "Rabsca",
+          "pokedexNumber": 954,
+          "variants": []
         }
       ],
       "sprites": {
@@ -4208,6 +4310,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "rellor",
+          "name": "Rellor",
+          "pokedexNumber": 953,
+          "variants": []
+        },
         {
           "id": "rabsca",
           "name": "Rabsca",
@@ -4285,6 +4393,12 @@
           "name": "Flittle",
           "pokedexNumber": 955,
           "variants": []
+        },
+        {
+          "id": "espathra",
+          "name": "Espathra",
+          "pokedexNumber": 956,
+          "variants": []
         }
       ],
       "sprites": {
@@ -4352,6 +4466,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "flittle",
+          "name": "Flittle",
+          "pokedexNumber": 955,
+          "variants": []
+        },
         {
           "id": "espathra",
           "name": "Espathra",
@@ -4430,6 +4550,18 @@
           "name": "Tinkatink",
           "pokedexNumber": 957,
           "variants": []
+        },
+        {
+          "id": "tinkatuff",
+          "name": "Tinkatuff",
+          "pokedexNumber": 958,
+          "variants": []
+        },
+        {
+          "id": "tinkaton",
+          "name": "Tinkaton",
+          "pokedexNumber": 959,
+          "variants": []
         }
       ],
       "sprites": {
@@ -4499,9 +4631,21 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "tinkatink",
+          "name": "Tinkatink",
+          "pokedexNumber": 957,
+          "variants": []
+        },
+        {
           "id": "tinkatuff",
           "name": "Tinkatuff",
           "pokedexNumber": 958,
+          "variants": []
+        },
+        {
+          "id": "tinkaton",
+          "name": "Tinkaton",
+          "pokedexNumber": 959,
           "variants": []
         }
       ],
@@ -4571,6 +4715,18 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "tinkatink",
+          "name": "Tinkatink",
+          "pokedexNumber": 957,
+          "variants": []
+        },
+        {
+          "id": "tinkatuff",
+          "name": "Tinkatuff",
+          "pokedexNumber": 958,
+          "variants": []
+        },
         {
           "id": "tinkaton",
           "name": "Tinkaton",
@@ -4648,6 +4804,12 @@
           "name": "Wiglett",
           "pokedexNumber": 960,
           "variants": []
+        },
+        {
+          "id": "wugtrio",
+          "name": "Wugtrio",
+          "pokedexNumber": 961,
+          "variants": []
         }
       ],
       "sprites": {
@@ -4715,6 +4877,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "wiglett",
+          "name": "Wiglett",
+          "pokedexNumber": 960,
+          "variants": []
+        },
         {
           "id": "wugtrio",
           "name": "Wugtrio",
@@ -4852,6 +5020,18 @@
           "name": "Finizen",
           "pokedexNumber": 963,
           "variants": []
+        },
+        {
+          "id": "palafin-zero",
+          "name": "Palafin",
+          "pokedexNumber": 964,
+          "variants": [
+            {
+              "id": "palafin-hero",
+              "name": "Palafin Hero",
+              "kind": "style"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -4907,19 +5087,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "palafin-zero",
-          "name": "Palafin",
-          "pokedexNumber": 964,
-          "variants": [
-            {
-              "id": "palafin-hero",
-              "name": "Palafin Hero",
-              "kind": "style"
-            }
-          ]
+          "id": "finizen",
+          "name": "Finizen",
+          "pokedexNumber": 963,
+          "variants": []
         },
         {
-          "id": "palafin-hero",
+          "id": "palafin-zero",
           "name": "Palafin",
           "pokedexNumber": 964,
           "variants": [
@@ -4984,19 +5158,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "palafin-zero",
-          "name": "Palafin",
-          "pokedexNumber": 964,
-          "variants": [
-            {
-              "id": "palafin-hero",
-              "name": "Palafin Hero",
-              "kind": "style"
-            }
-          ]
+          "id": "finizen",
+          "name": "Finizen",
+          "pokedexNumber": 963,
+          "variants": []
         },
         {
-          "id": "palafin-hero",
+          "id": "palafin-zero",
           "name": "Palafin",
           "pokedexNumber": 964,
           "variants": [
@@ -5072,6 +5240,12 @@
           "name": "Varoom",
           "pokedexNumber": 965,
           "variants": []
+        },
+        {
+          "id": "revavroom",
+          "name": "Revavroom",
+          "pokedexNumber": 966,
+          "variants": []
         }
       ],
       "sprites": {
@@ -5133,6 +5307,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "varoom",
+          "name": "Varoom",
+          "pokedexNumber": 965,
+          "variants": []
+        },
         {
           "id": "revavroom",
           "name": "Revavroom",
@@ -5335,6 +5515,18 @@
           "name": "Glimmet",
           "pokedexNumber": 969,
           "variants": []
+        },
+        {
+          "id": "glimmora",
+          "name": "Glimmora",
+          "pokedexNumber": 970,
+          "variants": [
+            {
+              "id": "glimmora-mega",
+              "name": "Glimmora Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -5397,19 +5589,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "glimmora",
-          "name": "Glimmora",
-          "pokedexNumber": 970,
-          "variants": [
-            {
-              "id": "glimmora-mega",
-              "name": "Glimmora Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "glimmet",
+          "name": "Glimmet",
+          "pokedexNumber": 969,
+          "variants": []
         },
         {
-          "id": "glimmora-mega",
+          "id": "glimmora",
           "name": "Glimmora",
           "pokedexNumber": 970,
           "variants": [
@@ -5474,19 +5660,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "glimmora",
-          "name": "Glimmora",
-          "pokedexNumber": 970,
-          "variants": [
-            {
-              "id": "glimmora-mega",
-              "name": "Glimmora Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "glimmet",
+          "name": "Glimmet",
+          "pokedexNumber": 969,
+          "variants": []
         },
         {
-          "id": "glimmora-mega",
+          "id": "glimmora",
           "name": "Glimmora",
           "pokedexNumber": 970,
           "variants": [
@@ -5561,6 +5741,12 @@
           "name": "Greavard",
           "pokedexNumber": 971,
           "variants": []
+        },
+        {
+          "id": "houndstone",
+          "name": "Houndstone",
+          "pokedexNumber": 972,
+          "variants": []
         }
       ],
       "sprites": {
@@ -5621,6 +5807,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "greavard",
+          "name": "Greavard",
+          "pokedexNumber": 971,
+          "variants": []
+        },
         {
           "id": "houndstone",
           "name": "Houndstone",
@@ -5771,6 +5963,12 @@
           "name": "Cetoddle",
           "pokedexNumber": 974,
           "variants": []
+        },
+        {
+          "id": "cetitan",
+          "name": "Cetitan",
+          "pokedexNumber": 975,
+          "variants": []
         }
       ],
       "sprites": {
@@ -5838,6 +6036,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "cetoddle",
+          "name": "Cetoddle",
+          "pokedexNumber": 974,
+          "variants": []
+        },
         {
           "id": "cetitan",
           "name": "Cetitan",
@@ -6073,166 +6277,6 @@
               "kind": "mega"
             }
           ]
-        },
-        {
-          "id": "tatsugiri-droopy",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-stretchy",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-curly-mega",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-droopy-mega",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-stretchy-mega",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -6296,166 +6340,6 @@
       "evolutionChain": [
         {
           "id": "tatsugiri-curly",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-droopy",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-stretchy",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-curly-mega",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-droopy-mega",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-stretchy-mega",
           "name": "Tatsugiri",
           "pokedexNumber": 978,
           "variants": [
@@ -6577,166 +6461,6 @@
               "kind": "mega"
             }
           ]
-        },
-        {
-          "id": "tatsugiri-droopy",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-stretchy",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-curly-mega",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-droopy-mega",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-stretchy-mega",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -6800,166 +6524,6 @@
       "evolutionChain": [
         {
           "id": "tatsugiri-curly",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-droopy",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-stretchy",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-curly-mega",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-droopy-mega",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-stretchy-mega",
           "name": "Tatsugiri",
           "pokedexNumber": 978,
           "variants": [
@@ -7081,166 +6645,6 @@
               "kind": "mega"
             }
           ]
-        },
-        {
-          "id": "tatsugiri-droopy",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-stretchy",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-curly-mega",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-droopy-mega",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-stretchy-mega",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -7304,166 +6708,6 @@
       "evolutionChain": [
         {
           "id": "tatsugiri-curly",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-droopy",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-stretchy",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-curly-mega",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-droopy-mega",
-          "name": "Tatsugiri",
-          "pokedexNumber": 978,
-          "variants": [
-            {
-              "id": "tatsugiri-curly-mega",
-              "name": "Tatsugiri Mega CURLY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-droopy",
-              "name": "Tatsugiri Droopy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-droopy-mega",
-              "name": "Tatsugiri Mega DROOPY",
-              "kind": "mega"
-            },
-            {
-              "id": "tatsugiri-stretchy",
-              "name": "Tatsugiri Stretchy",
-              "kind": "form"
-            },
-            {
-              "id": "tatsugiri-stretchy-mega",
-              "name": "Tatsugiri Mega STRETCHY",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "tatsugiri-stretchy-mega",
           "name": "Tatsugiri",
           "pokedexNumber": 978,
           "variants": [
@@ -7562,6 +6806,18 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "mankey",
+          "name": "Mankey",
+          "pokedexNumber": 56,
+          "variants": []
+        },
+        {
+          "id": "primeape",
+          "name": "Primeape",
+          "pokedexNumber": 57,
+          "variants": []
+        },
+        {
           "id": "annihilape",
           "name": "Annihilape",
           "pokedexNumber": 979,
@@ -7636,6 +6892,18 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "wooper-paldea",
+          "name": "Wooper",
+          "pokedexNumber": 194,
+          "variants": [
+            {
+              "id": "wooper-paldea",
+              "name": "Wooper Paldea",
+              "kind": "regional"
+            }
+          ]
+        },
+        {
           "id": "clodsire",
           "name": "Clodsire",
           "pokedexNumber": 980,
@@ -7709,6 +6977,12 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "girafarig",
+          "name": "Girafarig",
+          "pokedexNumber": 203,
+          "variants": []
+        },
+        {
           "id": "farigiraf",
           "name": "Farigiraf",
           "pokedexNumber": 981,
@@ -7781,19 +7055,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "dudunsparce-two-segment",
-          "name": "Dudunsparce",
-          "pokedexNumber": 982,
-          "variants": [
-            {
-              "id": "dudunsparce-three-segment",
-              "name": "Dudunsparce Three Segment",
-              "kind": "form"
-            }
-          ]
+          "id": "dunsparce",
+          "name": "Dunsparce",
+          "pokedexNumber": 206,
+          "variants": []
         },
         {
-          "id": "dudunsparce-three-segment",
+          "id": "dudunsparce-two-segment",
           "name": "Dudunsparce",
           "pokedexNumber": 982,
           "variants": [
@@ -7871,19 +7139,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "dudunsparce-two-segment",
-          "name": "Dudunsparce",
-          "pokedexNumber": 982,
-          "variants": [
-            {
-              "id": "dudunsparce-three-segment",
-              "name": "Dudunsparce Three Segment",
-              "kind": "form"
-            }
-          ]
+          "id": "dunsparce",
+          "name": "Dunsparce",
+          "pokedexNumber": 206,
+          "variants": []
         },
         {
-          "id": "dudunsparce-three-segment",
+          "id": "dudunsparce-two-segment",
           "name": "Dudunsparce",
           "pokedexNumber": 982,
           "variants": [
@@ -7961,6 +7223,18 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "pawniard",
+          "name": "Pawniard",
+          "pokedexNumber": 624,
+          "variants": []
+        },
+        {
+          "id": "bisharp",
+          "name": "Bisharp",
+          "pokedexNumber": 625,
+          "variants": []
+        },
         {
           "id": "kingambit",
           "name": "Kingambit",
@@ -8741,6 +8015,24 @@
           "name": "Frigibax",
           "pokedexNumber": 996,
           "variants": []
+        },
+        {
+          "id": "arctibax",
+          "name": "Arctibax",
+          "pokedexNumber": 997,
+          "variants": []
+        },
+        {
+          "id": "baxcalibur",
+          "name": "Baxcalibur",
+          "pokedexNumber": 998,
+          "variants": [
+            {
+              "id": "baxcalibur-mega",
+              "name": "Baxcalibur Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -8804,10 +8096,28 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "frigibax",
+          "name": "Frigibax",
+          "pokedexNumber": 996,
+          "variants": []
+        },
+        {
           "id": "arctibax",
           "name": "Arctibax",
           "pokedexNumber": 997,
           "variants": []
+        },
+        {
+          "id": "baxcalibur",
+          "name": "Baxcalibur",
+          "pokedexNumber": 998,
+          "variants": [
+            {
+              "id": "baxcalibur-mega",
+              "name": "Baxcalibur Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -8871,19 +8181,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "baxcalibur",
-          "name": "Baxcalibur",
-          "pokedexNumber": 998,
-          "variants": [
-            {
-              "id": "baxcalibur-mega",
-              "name": "Baxcalibur Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "frigibax",
+          "name": "Frigibax",
+          "pokedexNumber": 996,
+          "variants": []
         },
         {
-          "id": "baxcalibur-mega",
+          "id": "arctibax",
+          "name": "Arctibax",
+          "pokedexNumber": 997,
+          "variants": []
+        },
+        {
+          "id": "baxcalibur",
           "name": "Baxcalibur",
           "pokedexNumber": 998,
           "variants": [
@@ -8956,19 +8266,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "baxcalibur",
-          "name": "Baxcalibur",
-          "pokedexNumber": 998,
-          "variants": [
-            {
-              "id": "baxcalibur-mega",
-              "name": "Baxcalibur Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "frigibax",
+          "name": "Frigibax",
+          "pokedexNumber": 996,
+          "variants": []
         },
         {
-          "id": "baxcalibur-mega",
+          "id": "arctibax",
+          "name": "Arctibax",
+          "pokedexNumber": 997,
+          "variants": []
+        },
+        {
+          "id": "baxcalibur",
           "name": "Baxcalibur",
           "pokedexNumber": 998,
           "variants": [
@@ -9044,16 +8354,10 @@
           ]
         },
         {
-          "id": "gimmighoul-roaming",
-          "name": "Gimmighoul",
-          "pokedexNumber": 999,
-          "variants": [
-            {
-              "id": "gimmighoul-roaming",
-              "name": "Gimmighoul Roaming",
-              "kind": "form"
-            }
-          ]
+          "id": "gholdengo",
+          "name": "Gholdengo",
+          "pokedexNumber": 1000,
+          "variants": []
         }
       ],
       "sprites": {
@@ -9120,16 +8424,10 @@
           ]
         },
         {
-          "id": "gimmighoul-roaming",
-          "name": "Gimmighoul",
-          "pokedexNumber": 999,
-          "variants": [
-            {
-              "id": "gimmighoul-roaming",
-              "name": "Gimmighoul Roaming",
-              "kind": "form"
-            }
-          ]
+          "id": "gholdengo",
+          "name": "Gholdengo",
+          "pokedexNumber": 1000,
+          "variants": []
         }
       ],
       "sprites": {
@@ -9184,6 +8482,18 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "gimmighoul",
+          "name": "Gimmighoul",
+          "pokedexNumber": 999,
+          "variants": [
+            {
+              "id": "gimmighoul-roaming",
+              "name": "Gimmighoul Roaming",
+              "kind": "form"
+            }
+          ]
+        },
         {
           "id": "gholdengo",
           "name": "Gholdengo",
@@ -9623,114 +8933,6 @@
               "kind": "form"
             }
           ]
-        },
-        {
-          "id": "koraidon-limited-build",
-          "name": "Koraidon",
-          "pokedexNumber": 1007,
-          "variants": [
-            {
-              "id": "koraidon-gliding-build",
-              "name": "Koraidon Gliding Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-limited-build",
-              "name": "Koraidon Limited Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-sprinting-build",
-              "name": "Koraidon Sprinting Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-swimming-build",
-              "name": "Koraidon Swimming Build",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "koraidon-sprinting-build",
-          "name": "Koraidon",
-          "pokedexNumber": 1007,
-          "variants": [
-            {
-              "id": "koraidon-gliding-build",
-              "name": "Koraidon Gliding Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-limited-build",
-              "name": "Koraidon Limited Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-sprinting-build",
-              "name": "Koraidon Sprinting Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-swimming-build",
-              "name": "Koraidon Swimming Build",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "koraidon-swimming-build",
-          "name": "Koraidon",
-          "pokedexNumber": 1007,
-          "variants": [
-            {
-              "id": "koraidon-gliding-build",
-              "name": "Koraidon Gliding Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-limited-build",
-              "name": "Koraidon Limited Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-sprinting-build",
-              "name": "Koraidon Sprinting Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-swimming-build",
-              "name": "Koraidon Swimming Build",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "koraidon-gliding-build",
-          "name": "Koraidon",
-          "pokedexNumber": 1007,
-          "variants": [
-            {
-              "id": "koraidon-gliding-build",
-              "name": "Koraidon Gliding Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-limited-build",
-              "name": "Koraidon Limited Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-sprinting-build",
-              "name": "Koraidon Sprinting Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-swimming-build",
-              "name": "Koraidon Swimming Build",
-              "kind": "form"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -9787,114 +8989,6 @@
       "evolutionChain": [
         {
           "id": "koraidon",
-          "name": "Koraidon",
-          "pokedexNumber": 1007,
-          "variants": [
-            {
-              "id": "koraidon-gliding-build",
-              "name": "Koraidon Gliding Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-limited-build",
-              "name": "Koraidon Limited Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-sprinting-build",
-              "name": "Koraidon Sprinting Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-swimming-build",
-              "name": "Koraidon Swimming Build",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "koraidon-limited-build",
-          "name": "Koraidon",
-          "pokedexNumber": 1007,
-          "variants": [
-            {
-              "id": "koraidon-gliding-build",
-              "name": "Koraidon Gliding Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-limited-build",
-              "name": "Koraidon Limited Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-sprinting-build",
-              "name": "Koraidon Sprinting Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-swimming-build",
-              "name": "Koraidon Swimming Build",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "koraidon-sprinting-build",
-          "name": "Koraidon",
-          "pokedexNumber": 1007,
-          "variants": [
-            {
-              "id": "koraidon-gliding-build",
-              "name": "Koraidon Gliding Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-limited-build",
-              "name": "Koraidon Limited Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-sprinting-build",
-              "name": "Koraidon Sprinting Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-swimming-build",
-              "name": "Koraidon Swimming Build",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "koraidon-swimming-build",
-          "name": "Koraidon",
-          "pokedexNumber": 1007,
-          "variants": [
-            {
-              "id": "koraidon-gliding-build",
-              "name": "Koraidon Gliding Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-limited-build",
-              "name": "Koraidon Limited Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-sprinting-build",
-              "name": "Koraidon Sprinting Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-swimming-build",
-              "name": "Koraidon Swimming Build",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "koraidon-gliding-build",
           "name": "Koraidon",
           "pokedexNumber": 1007,
           "variants": [
@@ -9999,114 +9093,6 @@
               "kind": "form"
             }
           ]
-        },
-        {
-          "id": "koraidon-limited-build",
-          "name": "Koraidon",
-          "pokedexNumber": 1007,
-          "variants": [
-            {
-              "id": "koraidon-gliding-build",
-              "name": "Koraidon Gliding Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-limited-build",
-              "name": "Koraidon Limited Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-sprinting-build",
-              "name": "Koraidon Sprinting Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-swimming-build",
-              "name": "Koraidon Swimming Build",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "koraidon-sprinting-build",
-          "name": "Koraidon",
-          "pokedexNumber": 1007,
-          "variants": [
-            {
-              "id": "koraidon-gliding-build",
-              "name": "Koraidon Gliding Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-limited-build",
-              "name": "Koraidon Limited Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-sprinting-build",
-              "name": "Koraidon Sprinting Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-swimming-build",
-              "name": "Koraidon Swimming Build",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "koraidon-swimming-build",
-          "name": "Koraidon",
-          "pokedexNumber": 1007,
-          "variants": [
-            {
-              "id": "koraidon-gliding-build",
-              "name": "Koraidon Gliding Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-limited-build",
-              "name": "Koraidon Limited Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-sprinting-build",
-              "name": "Koraidon Sprinting Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-swimming-build",
-              "name": "Koraidon Swimming Build",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "koraidon-gliding-build",
-          "name": "Koraidon",
-          "pokedexNumber": 1007,
-          "variants": [
-            {
-              "id": "koraidon-gliding-build",
-              "name": "Koraidon Gliding Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-limited-build",
-              "name": "Koraidon Limited Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-sprinting-build",
-              "name": "Koraidon Sprinting Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-swimming-build",
-              "name": "Koraidon Swimming Build",
-              "kind": "form"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -10163,114 +9149,6 @@
       "evolutionChain": [
         {
           "id": "koraidon",
-          "name": "Koraidon",
-          "pokedexNumber": 1007,
-          "variants": [
-            {
-              "id": "koraidon-gliding-build",
-              "name": "Koraidon Gliding Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-limited-build",
-              "name": "Koraidon Limited Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-sprinting-build",
-              "name": "Koraidon Sprinting Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-swimming-build",
-              "name": "Koraidon Swimming Build",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "koraidon-limited-build",
-          "name": "Koraidon",
-          "pokedexNumber": 1007,
-          "variants": [
-            {
-              "id": "koraidon-gliding-build",
-              "name": "Koraidon Gliding Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-limited-build",
-              "name": "Koraidon Limited Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-sprinting-build",
-              "name": "Koraidon Sprinting Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-swimming-build",
-              "name": "Koraidon Swimming Build",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "koraidon-sprinting-build",
-          "name": "Koraidon",
-          "pokedexNumber": 1007,
-          "variants": [
-            {
-              "id": "koraidon-gliding-build",
-              "name": "Koraidon Gliding Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-limited-build",
-              "name": "Koraidon Limited Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-sprinting-build",
-              "name": "Koraidon Sprinting Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-swimming-build",
-              "name": "Koraidon Swimming Build",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "koraidon-swimming-build",
-          "name": "Koraidon",
-          "pokedexNumber": 1007,
-          "variants": [
-            {
-              "id": "koraidon-gliding-build",
-              "name": "Koraidon Gliding Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-limited-build",
-              "name": "Koraidon Limited Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-sprinting-build",
-              "name": "Koraidon Sprinting Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-swimming-build",
-              "name": "Koraidon Swimming Build",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "koraidon-gliding-build",
           "name": "Koraidon",
           "pokedexNumber": 1007,
           "variants": [
@@ -10375,114 +9253,6 @@
               "kind": "form"
             }
           ]
-        },
-        {
-          "id": "koraidon-limited-build",
-          "name": "Koraidon",
-          "pokedexNumber": 1007,
-          "variants": [
-            {
-              "id": "koraidon-gliding-build",
-              "name": "Koraidon Gliding Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-limited-build",
-              "name": "Koraidon Limited Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-sprinting-build",
-              "name": "Koraidon Sprinting Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-swimming-build",
-              "name": "Koraidon Swimming Build",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "koraidon-sprinting-build",
-          "name": "Koraidon",
-          "pokedexNumber": 1007,
-          "variants": [
-            {
-              "id": "koraidon-gliding-build",
-              "name": "Koraidon Gliding Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-limited-build",
-              "name": "Koraidon Limited Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-sprinting-build",
-              "name": "Koraidon Sprinting Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-swimming-build",
-              "name": "Koraidon Swimming Build",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "koraidon-swimming-build",
-          "name": "Koraidon",
-          "pokedexNumber": 1007,
-          "variants": [
-            {
-              "id": "koraidon-gliding-build",
-              "name": "Koraidon Gliding Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-limited-build",
-              "name": "Koraidon Limited Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-sprinting-build",
-              "name": "Koraidon Sprinting Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-swimming-build",
-              "name": "Koraidon Swimming Build",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "koraidon-gliding-build",
-          "name": "Koraidon",
-          "pokedexNumber": 1007,
-          "variants": [
-            {
-              "id": "koraidon-gliding-build",
-              "name": "Koraidon Gliding Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-limited-build",
-              "name": "Koraidon Limited Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-sprinting-build",
-              "name": "Koraidon Sprinting Build",
-              "kind": "form"
-            },
-            {
-              "id": "koraidon-swimming-build",
-              "name": "Koraidon Swimming Build",
-              "kind": "form"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -10539,114 +9309,6 @@
       "evolutionChain": [
         {
           "id": "miraidon",
-          "name": "Miraidon",
-          "pokedexNumber": 1008,
-          "variants": [
-            {
-              "id": "miraidon-aquatic-mode",
-              "name": "Miraidon Aquatic Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-drive-mode",
-              "name": "Miraidon Drive Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-glide-mode",
-              "name": "Miraidon Glide Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-low-power-mode",
-              "name": "Miraidon Low Power Mode",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "miraidon-low-power-mode",
-          "name": "Miraidon",
-          "pokedexNumber": 1008,
-          "variants": [
-            {
-              "id": "miraidon-aquatic-mode",
-              "name": "Miraidon Aquatic Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-drive-mode",
-              "name": "Miraidon Drive Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-glide-mode",
-              "name": "Miraidon Glide Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-low-power-mode",
-              "name": "Miraidon Low Power Mode",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "miraidon-drive-mode",
-          "name": "Miraidon",
-          "pokedexNumber": 1008,
-          "variants": [
-            {
-              "id": "miraidon-aquatic-mode",
-              "name": "Miraidon Aquatic Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-drive-mode",
-              "name": "Miraidon Drive Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-glide-mode",
-              "name": "Miraidon Glide Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-low-power-mode",
-              "name": "Miraidon Low Power Mode",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "miraidon-aquatic-mode",
-          "name": "Miraidon",
-          "pokedexNumber": 1008,
-          "variants": [
-            {
-              "id": "miraidon-aquatic-mode",
-              "name": "Miraidon Aquatic Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-drive-mode",
-              "name": "Miraidon Drive Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-glide-mode",
-              "name": "Miraidon Glide Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-low-power-mode",
-              "name": "Miraidon Low Power Mode",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "miraidon-glide-mode",
           "name": "Miraidon",
           "pokedexNumber": 1008,
           "variants": [
@@ -10751,114 +9413,6 @@
               "kind": "form"
             }
           ]
-        },
-        {
-          "id": "miraidon-low-power-mode",
-          "name": "Miraidon",
-          "pokedexNumber": 1008,
-          "variants": [
-            {
-              "id": "miraidon-aquatic-mode",
-              "name": "Miraidon Aquatic Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-drive-mode",
-              "name": "Miraidon Drive Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-glide-mode",
-              "name": "Miraidon Glide Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-low-power-mode",
-              "name": "Miraidon Low Power Mode",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "miraidon-drive-mode",
-          "name": "Miraidon",
-          "pokedexNumber": 1008,
-          "variants": [
-            {
-              "id": "miraidon-aquatic-mode",
-              "name": "Miraidon Aquatic Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-drive-mode",
-              "name": "Miraidon Drive Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-glide-mode",
-              "name": "Miraidon Glide Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-low-power-mode",
-              "name": "Miraidon Low Power Mode",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "miraidon-aquatic-mode",
-          "name": "Miraidon",
-          "pokedexNumber": 1008,
-          "variants": [
-            {
-              "id": "miraidon-aquatic-mode",
-              "name": "Miraidon Aquatic Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-drive-mode",
-              "name": "Miraidon Drive Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-glide-mode",
-              "name": "Miraidon Glide Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-low-power-mode",
-              "name": "Miraidon Low Power Mode",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "miraidon-glide-mode",
-          "name": "Miraidon",
-          "pokedexNumber": 1008,
-          "variants": [
-            {
-              "id": "miraidon-aquatic-mode",
-              "name": "Miraidon Aquatic Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-drive-mode",
-              "name": "Miraidon Drive Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-glide-mode",
-              "name": "Miraidon Glide Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-low-power-mode",
-              "name": "Miraidon Low Power Mode",
-              "kind": "form"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -10915,114 +9469,6 @@
       "evolutionChain": [
         {
           "id": "miraidon",
-          "name": "Miraidon",
-          "pokedexNumber": 1008,
-          "variants": [
-            {
-              "id": "miraidon-aquatic-mode",
-              "name": "Miraidon Aquatic Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-drive-mode",
-              "name": "Miraidon Drive Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-glide-mode",
-              "name": "Miraidon Glide Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-low-power-mode",
-              "name": "Miraidon Low Power Mode",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "miraidon-low-power-mode",
-          "name": "Miraidon",
-          "pokedexNumber": 1008,
-          "variants": [
-            {
-              "id": "miraidon-aquatic-mode",
-              "name": "Miraidon Aquatic Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-drive-mode",
-              "name": "Miraidon Drive Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-glide-mode",
-              "name": "Miraidon Glide Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-low-power-mode",
-              "name": "Miraidon Low Power Mode",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "miraidon-drive-mode",
-          "name": "Miraidon",
-          "pokedexNumber": 1008,
-          "variants": [
-            {
-              "id": "miraidon-aquatic-mode",
-              "name": "Miraidon Aquatic Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-drive-mode",
-              "name": "Miraidon Drive Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-glide-mode",
-              "name": "Miraidon Glide Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-low-power-mode",
-              "name": "Miraidon Low Power Mode",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "miraidon-aquatic-mode",
-          "name": "Miraidon",
-          "pokedexNumber": 1008,
-          "variants": [
-            {
-              "id": "miraidon-aquatic-mode",
-              "name": "Miraidon Aquatic Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-drive-mode",
-              "name": "Miraidon Drive Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-glide-mode",
-              "name": "Miraidon Glide Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-low-power-mode",
-              "name": "Miraidon Low Power Mode",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "miraidon-glide-mode",
           "name": "Miraidon",
           "pokedexNumber": 1008,
           "variants": [
@@ -11127,114 +9573,6 @@
               "kind": "form"
             }
           ]
-        },
-        {
-          "id": "miraidon-low-power-mode",
-          "name": "Miraidon",
-          "pokedexNumber": 1008,
-          "variants": [
-            {
-              "id": "miraidon-aquatic-mode",
-              "name": "Miraidon Aquatic Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-drive-mode",
-              "name": "Miraidon Drive Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-glide-mode",
-              "name": "Miraidon Glide Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-low-power-mode",
-              "name": "Miraidon Low Power Mode",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "miraidon-drive-mode",
-          "name": "Miraidon",
-          "pokedexNumber": 1008,
-          "variants": [
-            {
-              "id": "miraidon-aquatic-mode",
-              "name": "Miraidon Aquatic Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-drive-mode",
-              "name": "Miraidon Drive Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-glide-mode",
-              "name": "Miraidon Glide Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-low-power-mode",
-              "name": "Miraidon Low Power Mode",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "miraidon-aquatic-mode",
-          "name": "Miraidon",
-          "pokedexNumber": 1008,
-          "variants": [
-            {
-              "id": "miraidon-aquatic-mode",
-              "name": "Miraidon Aquatic Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-drive-mode",
-              "name": "Miraidon Drive Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-glide-mode",
-              "name": "Miraidon Glide Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-low-power-mode",
-              "name": "Miraidon Low Power Mode",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "miraidon-glide-mode",
-          "name": "Miraidon",
-          "pokedexNumber": 1008,
-          "variants": [
-            {
-              "id": "miraidon-aquatic-mode",
-              "name": "Miraidon Aquatic Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-drive-mode",
-              "name": "Miraidon Drive Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-glide-mode",
-              "name": "Miraidon Glide Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-low-power-mode",
-              "name": "Miraidon Low Power Mode",
-              "kind": "form"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -11291,114 +9629,6 @@
       "evolutionChain": [
         {
           "id": "miraidon",
-          "name": "Miraidon",
-          "pokedexNumber": 1008,
-          "variants": [
-            {
-              "id": "miraidon-aquatic-mode",
-              "name": "Miraidon Aquatic Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-drive-mode",
-              "name": "Miraidon Drive Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-glide-mode",
-              "name": "Miraidon Glide Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-low-power-mode",
-              "name": "Miraidon Low Power Mode",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "miraidon-low-power-mode",
-          "name": "Miraidon",
-          "pokedexNumber": 1008,
-          "variants": [
-            {
-              "id": "miraidon-aquatic-mode",
-              "name": "Miraidon Aquatic Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-drive-mode",
-              "name": "Miraidon Drive Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-glide-mode",
-              "name": "Miraidon Glide Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-low-power-mode",
-              "name": "Miraidon Low Power Mode",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "miraidon-drive-mode",
-          "name": "Miraidon",
-          "pokedexNumber": 1008,
-          "variants": [
-            {
-              "id": "miraidon-aquatic-mode",
-              "name": "Miraidon Aquatic Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-drive-mode",
-              "name": "Miraidon Drive Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-glide-mode",
-              "name": "Miraidon Glide Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-low-power-mode",
-              "name": "Miraidon Low Power Mode",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "miraidon-aquatic-mode",
-          "name": "Miraidon",
-          "pokedexNumber": 1008,
-          "variants": [
-            {
-              "id": "miraidon-aquatic-mode",
-              "name": "Miraidon Aquatic Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-drive-mode",
-              "name": "Miraidon Drive Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-glide-mode",
-              "name": "Miraidon Glide Mode",
-              "kind": "form"
-            },
-            {
-              "id": "miraidon-low-power-mode",
-              "name": "Miraidon Low Power Mode",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "miraidon-glide-mode",
           "name": "Miraidon",
           "pokedexNumber": 1008,
           "variants": [
@@ -11611,9 +9841,45 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "applin",
+          "name": "Applin",
+          "pokedexNumber": 840,
+          "variants": []
+        },
+        {
+          "id": "flapple",
+          "name": "Flapple",
+          "pokedexNumber": 841,
+          "variants": [
+            {
+              "id": "flapple-gmax",
+              "name": "Flapple Gmax",
+              "kind": "gmax"
+            }
+          ]
+        },
+        {
+          "id": "appletun",
+          "name": "Appletun",
+          "pokedexNumber": 842,
+          "variants": [
+            {
+              "id": "appletun-gmax",
+              "name": "Appletun Gmax",
+              "kind": "gmax"
+            }
+          ]
+        },
+        {
           "id": "dipplin",
           "name": "Dipplin",
           "pokedexNumber": 1011,
+          "variants": []
+        },
+        {
+          "id": "hydrapple",
+          "name": "Hydrapple",
+          "pokedexNumber": 1019,
           "variants": []
         }
       ],
@@ -11682,6 +9948,12 @@
           "name": "Poltchageist",
           "pokedexNumber": 1012,
           "variants": []
+        },
+        {
+          "id": "sinistcha",
+          "name": "Sinistcha",
+          "pokedexNumber": 1013,
+          "variants": []
         }
       ],
       "sprites": {
@@ -11744,6 +10016,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "poltchageist",
+          "name": "Poltchageist",
+          "pokedexNumber": 1012,
+          "variants": []
+        },
         {
           "id": "sinistcha",
           "name": "Sinistcha",
@@ -12021,72 +10299,6 @@
               "kind": "form"
             }
           ]
-        },
-        {
-          "id": "ogerpon-wellspring-mask",
-          "name": "Ogerpon",
-          "pokedexNumber": 1017,
-          "variants": [
-            {
-              "id": "ogerpon-cornerstone-mask",
-              "name": "Ogerpon Cornerstone Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-hearthflame-mask",
-              "name": "Ogerpon Hearthflame Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-wellspring-mask",
-              "name": "Ogerpon Wellspring Mask",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "ogerpon-hearthflame-mask",
-          "name": "Ogerpon",
-          "pokedexNumber": 1017,
-          "variants": [
-            {
-              "id": "ogerpon-cornerstone-mask",
-              "name": "Ogerpon Cornerstone Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-hearthflame-mask",
-              "name": "Ogerpon Hearthflame Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-wellspring-mask",
-              "name": "Ogerpon Wellspring Mask",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "ogerpon-cornerstone-mask",
-          "name": "Ogerpon",
-          "pokedexNumber": 1017,
-          "variants": [
-            {
-              "id": "ogerpon-cornerstone-mask",
-              "name": "Ogerpon Cornerstone Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-hearthflame-mask",
-              "name": "Ogerpon Hearthflame Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-wellspring-mask",
-              "name": "Ogerpon Wellspring Mask",
-              "kind": "form"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -12143,72 +10355,6 @@
       "evolutionChain": [
         {
           "id": "ogerpon",
-          "name": "Ogerpon",
-          "pokedexNumber": 1017,
-          "variants": [
-            {
-              "id": "ogerpon-cornerstone-mask",
-              "name": "Ogerpon Cornerstone Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-hearthflame-mask",
-              "name": "Ogerpon Hearthflame Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-wellspring-mask",
-              "name": "Ogerpon Wellspring Mask",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "ogerpon-wellspring-mask",
-          "name": "Ogerpon",
-          "pokedexNumber": 1017,
-          "variants": [
-            {
-              "id": "ogerpon-cornerstone-mask",
-              "name": "Ogerpon Cornerstone Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-hearthflame-mask",
-              "name": "Ogerpon Hearthflame Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-wellspring-mask",
-              "name": "Ogerpon Wellspring Mask",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "ogerpon-hearthflame-mask",
-          "name": "Ogerpon",
-          "pokedexNumber": 1017,
-          "variants": [
-            {
-              "id": "ogerpon-cornerstone-mask",
-              "name": "Ogerpon Cornerstone Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-hearthflame-mask",
-              "name": "Ogerpon Hearthflame Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-wellspring-mask",
-              "name": "Ogerpon Wellspring Mask",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "ogerpon-cornerstone-mask",
           "name": "Ogerpon",
           "pokedexNumber": 1017,
           "variants": [
@@ -12303,72 +10449,6 @@
               "kind": "form"
             }
           ]
-        },
-        {
-          "id": "ogerpon-wellspring-mask",
-          "name": "Ogerpon",
-          "pokedexNumber": 1017,
-          "variants": [
-            {
-              "id": "ogerpon-cornerstone-mask",
-              "name": "Ogerpon Cornerstone Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-hearthflame-mask",
-              "name": "Ogerpon Hearthflame Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-wellspring-mask",
-              "name": "Ogerpon Wellspring Mask",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "ogerpon-hearthflame-mask",
-          "name": "Ogerpon",
-          "pokedexNumber": 1017,
-          "variants": [
-            {
-              "id": "ogerpon-cornerstone-mask",
-              "name": "Ogerpon Cornerstone Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-hearthflame-mask",
-              "name": "Ogerpon Hearthflame Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-wellspring-mask",
-              "name": "Ogerpon Wellspring Mask",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "ogerpon-cornerstone-mask",
-          "name": "Ogerpon",
-          "pokedexNumber": 1017,
-          "variants": [
-            {
-              "id": "ogerpon-cornerstone-mask",
-              "name": "Ogerpon Cornerstone Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-hearthflame-mask",
-              "name": "Ogerpon Hearthflame Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-wellspring-mask",
-              "name": "Ogerpon Wellspring Mask",
-              "kind": "form"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -12425,72 +10505,6 @@
       "evolutionChain": [
         {
           "id": "ogerpon",
-          "name": "Ogerpon",
-          "pokedexNumber": 1017,
-          "variants": [
-            {
-              "id": "ogerpon-cornerstone-mask",
-              "name": "Ogerpon Cornerstone Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-hearthflame-mask",
-              "name": "Ogerpon Hearthflame Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-wellspring-mask",
-              "name": "Ogerpon Wellspring Mask",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "ogerpon-wellspring-mask",
-          "name": "Ogerpon",
-          "pokedexNumber": 1017,
-          "variants": [
-            {
-              "id": "ogerpon-cornerstone-mask",
-              "name": "Ogerpon Cornerstone Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-hearthflame-mask",
-              "name": "Ogerpon Hearthflame Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-wellspring-mask",
-              "name": "Ogerpon Wellspring Mask",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "ogerpon-hearthflame-mask",
-          "name": "Ogerpon",
-          "pokedexNumber": 1017,
-          "variants": [
-            {
-              "id": "ogerpon-cornerstone-mask",
-              "name": "Ogerpon Cornerstone Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-hearthflame-mask",
-              "name": "Ogerpon Hearthflame Mask",
-              "kind": "form"
-            },
-            {
-              "id": "ogerpon-wellspring-mask",
-              "name": "Ogerpon Wellspring Mask",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "ogerpon-cornerstone-mask",
           "name": "Ogerpon",
           "pokedexNumber": 1017,
           "variants": [
@@ -12580,6 +10594,18 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "duraludon",
+          "name": "Duraludon",
+          "pokedexNumber": 884,
+          "variants": [
+            {
+              "id": "duraludon-gmax",
+              "name": "Duraludon Gmax",
+              "kind": "gmax"
+            }
+          ]
+        },
+        {
           "id": "archaludon",
           "name": "Archaludon",
           "pokedexNumber": 1018,
@@ -12653,6 +10679,42 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "applin",
+          "name": "Applin",
+          "pokedexNumber": 840,
+          "variants": []
+        },
+        {
+          "id": "flapple",
+          "name": "Flapple",
+          "pokedexNumber": 841,
+          "variants": [
+            {
+              "id": "flapple-gmax",
+              "name": "Flapple Gmax",
+              "kind": "gmax"
+            }
+          ]
+        },
+        {
+          "id": "appletun",
+          "name": "Appletun",
+          "pokedexNumber": 842,
+          "variants": [
+            {
+              "id": "appletun-gmax",
+              "name": "Appletun Gmax",
+              "kind": "gmax"
+            }
+          ]
+        },
+        {
+          "id": "dipplin",
+          "name": "Dipplin",
+          "pokedexNumber": 1011,
+          "variants": []
+        },
         {
           "id": "hydrapple",
           "name": "Hydrapple",
@@ -12963,40 +11025,6 @@
               "kind": "form"
             }
           ]
-        },
-        {
-          "id": "terapagos-terastal",
-          "name": "Terapagos",
-          "pokedexNumber": 1024,
-          "variants": [
-            {
-              "id": "terapagos-stellar",
-              "name": "Terapagos Stellar",
-              "kind": "form"
-            },
-            {
-              "id": "terapagos-terastal",
-              "name": "Terapagos Terastal",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "terapagos-stellar",
-          "name": "Terapagos",
-          "pokedexNumber": 1024,
-          "variants": [
-            {
-              "id": "terapagos-stellar",
-              "name": "Terapagos Stellar",
-              "kind": "form"
-            },
-            {
-              "id": "terapagos-terastal",
-              "name": "Terapagos Terastal",
-              "kind": "form"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -13066,40 +11094,6 @@
               "kind": "form"
             }
           ]
-        },
-        {
-          "id": "terapagos-terastal",
-          "name": "Terapagos",
-          "pokedexNumber": 1024,
-          "variants": [
-            {
-              "id": "terapagos-stellar",
-              "name": "Terapagos Stellar",
-              "kind": "form"
-            },
-            {
-              "id": "terapagos-terastal",
-              "name": "Terapagos Terastal",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "terapagos-stellar",
-          "name": "Terapagos",
-          "pokedexNumber": 1024,
-          "variants": [
-            {
-              "id": "terapagos-stellar",
-              "name": "Terapagos Stellar",
-              "kind": "form"
-            },
-            {
-              "id": "terapagos-terastal",
-              "name": "Terapagos Terastal",
-              "kind": "form"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -13155,40 +11149,6 @@
       "evolutionChain": [
         {
           "id": "terapagos",
-          "name": "Terapagos",
-          "pokedexNumber": 1024,
-          "variants": [
-            {
-              "id": "terapagos-stellar",
-              "name": "Terapagos Stellar",
-              "kind": "form"
-            },
-            {
-              "id": "terapagos-terastal",
-              "name": "Terapagos Terastal",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "terapagos-terastal",
-          "name": "Terapagos",
-          "pokedexNumber": 1024,
-          "variants": [
-            {
-              "id": "terapagos-stellar",
-              "name": "Terapagos Stellar",
-              "kind": "form"
-            },
-            {
-              "id": "terapagos-terastal",
-              "name": "Terapagos Terastal",
-              "kind": "form"
-            }
-          ]
-        },
-        {
-          "id": "terapagos-stellar",
           "name": "Terapagos",
           "pokedexNumber": 1024,
           "variants": [

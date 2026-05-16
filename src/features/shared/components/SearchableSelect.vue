@@ -6,6 +6,7 @@ import {
   ComboboxOption,
   ComboboxOptions,
 } from '@headlessui/vue'
+import type { CSSProperties } from 'vue'
 import { computed, ref, watch } from 'vue'
 import { useDebounce } from '@vueuse/core'
 
@@ -36,6 +37,7 @@ const props = withDefaults(
     noResultsLabel?: string
     largeListThreshold?: number
     largeListPreview?: number
+    inputStyle?: CSSProperties | undefined
   }>(),
   {
     placeholder: '',
@@ -45,6 +47,7 @@ const props = withDefaults(
     noResultsLabel: 'No results',
     largeListThreshold: 300,
     largeListPreview: 180,
+    inputStyle: undefined,
   },
 )
 
@@ -158,6 +161,7 @@ function onBlur() {
     <div class="relative">
       <ComboboxInput
         class="w-full rounded-md border border-gray-700 bg-st-black p-2 pr-8 text-sm outline-none transition focus:border-sky-400/70"
+        :style="inputStyle"
         :placeholder="placeholder"
         :display-value="() => queryRaw"
         @input="onInput"

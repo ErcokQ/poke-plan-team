@@ -489,6 +489,297 @@ function extractLearnsetMoves(pokemon) {
   return filtered.size > 0 ? [...filtered] : [...anyMethod]
 }
 
+function flattenEvolutionSpeciesNames(chain) {
+  if (!chain?.species?.name) return []
+  const names = [chain.species.name]
+  for (const branch of chain.evolves_to ?? []) {
+    names.push(...flattenEvolutionSpeciesNames(branch))
+  }
+  return names
+}
+
+function findEvolutionPathToSpecies(chain, targetSpeciesName, path = []) {
+  if (!chain?.species?.name) return null
+  const nextPath = [...path, chain.species.name]
+  if (chain.species.name === targetSpeciesName) return nextPath
+  for (const branch of chain.evolves_to ?? []) {
+    const found = findEvolutionPathToSpecies(branch, targetSpeciesName, nextPath)
+    if (found) return found
+  }
+  return null
+}
+
+function resolvePreEvolutionSpeciesNames(species, speciesByName) {
+  const chain = []
+  let current = species
+  const seen = new Set()
+
+  while (current?.evolves_from_species?.name) {
+    const previousName = current.evolves_from_species.name
+    if (!previousName || seen.has(previousName)) break
+    seen.add(previousName)
+    chain.unshift(previousName)
+    current = speciesByName.get(previousName) ?? null
+  }
+
+  return chain
+}
+
+const FAMILY_CHAIN_POKEMON_ID_OVERRIDES = {
+  'rattata-alola': {
+    evolutionChain: ['rattata-alola', 'raticate-alola'],
+    preEvolutionChain: [],
+  },
+  'raticate-alola': {
+    evolutionChain: ['rattata-alola', 'raticate-alola'],
+    preEvolutionChain: ['rattata-alola'],
+  },
+  'raticate-totem-alola': {
+    evolutionChain: ['rattata-alola', 'raticate-alola', 'raticate-totem-alola'],
+    preEvolutionChain: ['rattata-alola', 'raticate-alola'],
+  },
+  'raichu-alola': {
+    evolutionChain: ['pichu', 'pikachu', 'raichu-alola'],
+    preEvolutionChain: ['pichu', 'pikachu'],
+  },
+  'sandshrew-alola': {
+    evolutionChain: ['sandshrew-alola', 'sandslash-alola'],
+    preEvolutionChain: [],
+  },
+  'sandslash-alola': {
+    evolutionChain: ['sandshrew-alola', 'sandslash-alola'],
+    preEvolutionChain: ['sandshrew-alola'],
+  },
+  'vulpix-alola': {
+    evolutionChain: ['vulpix-alola', 'ninetales-alola'],
+    preEvolutionChain: [],
+  },
+  'ninetales-alola': {
+    evolutionChain: ['vulpix-alola', 'ninetales-alola'],
+    preEvolutionChain: ['vulpix-alola'],
+  },
+  'diglett-alola': {
+    evolutionChain: ['diglett-alola', 'dugtrio-alola'],
+    preEvolutionChain: [],
+  },
+  'dugtrio-alola': {
+    evolutionChain: ['diglett-alola', 'dugtrio-alola'],
+    preEvolutionChain: ['diglett-alola'],
+  },
+  'meowth-alola': {
+    evolutionChain: ['meowth-alola', 'persian-alola'],
+    preEvolutionChain: [],
+  },
+  'persian-alola': {
+    evolutionChain: ['meowth-alola', 'persian-alola'],
+    preEvolutionChain: ['meowth-alola'],
+  },
+  'sneasel-hisui': {
+    evolutionChain: ['sneasel-hisui', 'sneasler'],
+    preEvolutionChain: [],
+  },
+  sneasler: {
+    evolutionChain: ['sneasel-hisui', 'sneasler'],
+    preEvolutionChain: ['sneasel-hisui'],
+  },
+  'qwilfish-hisui': {
+    evolutionChain: ['qwilfish-hisui', 'overqwil'],
+    preEvolutionChain: [],
+  },
+  overqwil: {
+    evolutionChain: ['qwilfish-hisui', 'overqwil'],
+    preEvolutionChain: ['qwilfish-hisui'],
+  },
+  'wooper-paldea': {
+    evolutionChain: ['wooper-paldea', 'clodsire'],
+    preEvolutionChain: [],
+  },
+  clodsire: {
+    evolutionChain: ['wooper-paldea', 'clodsire'],
+    preEvolutionChain: ['wooper-paldea'],
+  },
+  'farfetchd-galar': {
+    evolutionChain: ['farfetchd-galar', 'sirfetchd'],
+    preEvolutionChain: [],
+  },
+  sirfetchd: {
+    evolutionChain: ['farfetchd-galar', 'sirfetchd'],
+    preEvolutionChain: ['farfetchd-galar'],
+  },
+  'meowth-galar': {
+    evolutionChain: ['meowth-galar', 'perrserker'],
+    preEvolutionChain: [],
+  },
+  perrserker: {
+    evolutionChain: ['meowth-galar', 'perrserker'],
+    preEvolutionChain: ['meowth-galar'],
+  },
+  'growlithe-hisui': {
+    evolutionChain: ['growlithe-hisui', 'arcanine-hisui'],
+    preEvolutionChain: [],
+  },
+  'arcanine-hisui': {
+    evolutionChain: ['growlithe-hisui', 'arcanine-hisui'],
+    preEvolutionChain: ['growlithe-hisui'],
+  },
+  'geodude-alola': {
+    evolutionChain: ['geodude-alola', 'graveler-alola', 'golem-alola'],
+    preEvolutionChain: [],
+  },
+  'graveler-alola': {
+    evolutionChain: ['geodude-alola', 'graveler-alola', 'golem-alola'],
+    preEvolutionChain: ['geodude-alola'],
+  },
+  'golem-alola': {
+    evolutionChain: ['geodude-alola', 'graveler-alola', 'golem-alola'],
+    preEvolutionChain: ['geodude-alola', 'graveler-alola'],
+  },
+  'ponyta-galar': {
+    evolutionChain: ['ponyta-galar', 'rapidash-galar'],
+    preEvolutionChain: [],
+  },
+  'rapidash-galar': {
+    evolutionChain: ['ponyta-galar', 'rapidash-galar'],
+    preEvolutionChain: ['ponyta-galar'],
+  },
+  'grimer-alola': {
+    evolutionChain: ['grimer-alola', 'muk-alola'],
+    preEvolutionChain: [],
+  },
+  'muk-alola': {
+    evolutionChain: ['grimer-alola', 'muk-alola'],
+    preEvolutionChain: ['grimer-alola'],
+  },
+  'voltorb-hisui': {
+    evolutionChain: ['voltorb-hisui', 'electrode-hisui'],
+    preEvolutionChain: [],
+  },
+  'electrode-hisui': {
+    evolutionChain: ['voltorb-hisui', 'electrode-hisui'],
+    preEvolutionChain: ['voltorb-hisui'],
+  },
+  'exeggutor-alola': {
+    evolutionChain: ['exeggcute', 'exeggutor-alola'],
+    preEvolutionChain: ['exeggcute'],
+  },
+  'marowak-alola': {
+    evolutionChain: ['cubone', 'marowak-alola'],
+    preEvolutionChain: ['cubone'],
+  },
+  'weezing-galar': {
+    evolutionChain: ['koffing', 'weezing-galar'],
+    preEvolutionChain: ['koffing'],
+  },
+  'zigzagoon-galar': {
+    evolutionChain: ['zigzagoon-galar', 'linoone-galar', 'obstagoon'],
+    preEvolutionChain: [],
+  },
+  'linoone-galar': {
+    evolutionChain: ['zigzagoon-galar', 'linoone-galar', 'obstagoon'],
+    preEvolutionChain: ['zigzagoon-galar'],
+  },
+  obstagoon: {
+    evolutionChain: ['zigzagoon-galar', 'linoone-galar', 'obstagoon'],
+    preEvolutionChain: ['zigzagoon-galar', 'linoone-galar'],
+  },
+  'corsola-galar': {
+    evolutionChain: ['corsola-galar', 'cursola'],
+    preEvolutionChain: [],
+  },
+  cursola: {
+    evolutionChain: ['corsola-galar', 'cursola'],
+    preEvolutionChain: ['corsola-galar'],
+  },
+  'yamask-galar': {
+    evolutionChain: ['yamask-galar', 'runerigus'],
+    preEvolutionChain: [],
+  },
+  runerigus: {
+    evolutionChain: ['yamask-galar', 'runerigus'],
+    preEvolutionChain: ['yamask-galar'],
+  },
+  'mr-mime-galar': {
+    evolutionChain: ['mime-jr', 'mr-mime-galar', 'mr-rime'],
+    preEvolutionChain: ['mime-jr'],
+  },
+  'mr-rime': {
+    evolutionChain: ['mime-jr', 'mr-mime-galar', 'mr-rime'],
+    preEvolutionChain: ['mime-jr', 'mr-mime-galar'],
+  },
+  'darumaka-galar': {
+    evolutionChain: ['darumaka-galar', 'darmanitan-galar-standard'],
+    preEvolutionChain: [],
+  },
+  'darmanitan-galar-standard': {
+    evolutionChain: ['darumaka-galar', 'darmanitan-galar-standard'],
+    preEvolutionChain: ['darumaka-galar'],
+  },
+  'darmanitan-galar-zen': {
+    evolutionChain: ['darumaka-galar', 'darmanitan-galar-standard', 'darmanitan-galar-zen'],
+    preEvolutionChain: ['darumaka-galar', 'darmanitan-galar-standard'],
+  },
+  'slowpoke-galar': {
+    evolutionChain: ['slowpoke-galar', 'slowbro-galar', 'slowking-galar'],
+    preEvolutionChain: [],
+  },
+  'slowbro-galar': {
+    evolutionChain: ['slowpoke-galar', 'slowbro-galar', 'slowking-galar'],
+    preEvolutionChain: ['slowpoke-galar'],
+  },
+  'slowking-galar': {
+    evolutionChain: ['slowpoke-galar', 'slowbro-galar', 'slowking-galar'],
+    preEvolutionChain: ['slowpoke-galar'],
+  },
+  'typhlosion-hisui': {
+    evolutionChain: ['cyndaquil', 'quilava', 'typhlosion-hisui'],
+    preEvolutionChain: ['cyndaquil', 'quilava'],
+  },
+  'samurott-hisui': {
+    evolutionChain: ['oshawott', 'dewott', 'samurott-hisui'],
+    preEvolutionChain: ['oshawott', 'dewott'],
+  },
+  'lilligant-hisui': {
+    evolutionChain: ['petilil', 'lilligant-hisui'],
+    preEvolutionChain: ['petilil'],
+  },
+  'zorua-hisui': {
+    evolutionChain: ['zorua-hisui', 'zoroark-hisui'],
+    preEvolutionChain: [],
+  },
+  'zoroark-hisui': {
+    evolutionChain: ['zorua-hisui', 'zoroark-hisui'],
+    preEvolutionChain: ['zorua-hisui'],
+  },
+  'braviary-hisui': {
+    evolutionChain: ['rufflet', 'braviary-hisui'],
+    preEvolutionChain: ['rufflet'],
+  },
+  'sliggoo-hisui': {
+    evolutionChain: ['goomy', 'sliggoo-hisui', 'goodra-hisui'],
+    preEvolutionChain: ['goomy'],
+  },
+  'goodra-hisui': {
+    evolutionChain: ['goomy', 'sliggoo-hisui', 'goodra-hisui'],
+    preEvolutionChain: ['goomy', 'sliggoo-hisui'],
+  },
+  'avalugg-hisui': {
+    evolutionChain: ['bergmite', 'avalugg-hisui'],
+    preEvolutionChain: ['bergmite'],
+  },
+  'decidueye-hisui': {
+    evolutionChain: ['rowlet', 'dartrix', 'decidueye-hisui'],
+    preEvolutionChain: ['rowlet', 'dartrix'],
+  },
+  'basculegion-male': {
+    evolutionChain: ['basculin-white-striped', 'basculegion-male'],
+    preEvolutionChain: ['basculin-white-striped'],
+  },
+  'basculegion-female': {
+    evolutionChain: ['basculin-white-striped', 'basculegion-female'],
+    preEvolutionChain: ['basculin-white-striped'],
+  },
+}
+
 async function fetchJson(pathOrUrl, attempt = 1) {
   const url = pathOrUrl.startsWith('http://') || pathOrUrl.startsWith('https://')
     ? pathOrUrl
@@ -966,9 +1257,20 @@ async function main() {
     16,
     async (pokemon) => fetchJson(pokemon.species.url),
   )
+  console.log('Fetching evolution chains...')
+  const evolutionChainUrls = [...new Set(speciesRaw.map((species) => species.evolution_chain?.url).filter(Boolean))]
+  const evolutionChainsRaw = await mapWithConcurrency(
+    evolutionChainUrls,
+    12,
+    async (url) => fetchJson(url),
+  )
 
   const speciesByName = new Map(speciesRaw.map((species) => [species.name, species]))
   const pokemonByName = new Map(pokemonRaw.map((pokemon) => [pokemon.name, pokemon]))
+  const evolutionChainByUrl = new Map(evolutionChainsRaw.map((chain) => [chain.id ? `${API_BASE_URL}/evolution-chain/${chain.id}/` : '', chain]))
+  for (let index = 0; index < evolutionChainUrls.length; index += 1) {
+    evolutionChainByUrl.set(evolutionChainUrls[index], evolutionChainsRaw[index])
+  }
   const showdownOverlay = await loadShowdownOverlay()
   const championsFormOverrides = await loadChampionsFormOverrides()
   const abilityDescriptionOverrides = await loadAbilityDescriptionOverrides()
@@ -1018,12 +1320,41 @@ async function main() {
   console.log('Building locale snapshots...')
   for (const locale of LOCALES) {
     const formsByPokemonId = {}
+    const evolutionChainByPokemonId = {}
+    const preEvolutionChainByPokemonId = {}
 
     for (const species of speciesRaw) {
       const forms = [...new Set((species.varieties ?? []).map((entry) => entry.pokemon.name).filter(Boolean))]
       const resolved = forms.length > 0 ? forms : [species.name]
+      const chain = species.evolution_chain?.url ? evolutionChainByUrl.get(species.evolution_chain.url) : null
+      const speciesEvolutionChain = chain ? flattenEvolutionSpeciesNames(chain.chain) : [species.name]
+      const speciesPreEvolutionChain =
+        resolvePreEvolutionSpeciesNames(species, speciesByName).length > 0
+          ? resolvePreEvolutionSpeciesNames(species, speciesByName)
+          : chain
+            ? (findEvolutionPathToSpecies(chain.chain, species.name)?.slice(0, -1) ?? [])
+            : []
+      const evolutionChainPokemonIds = speciesEvolutionChain
+        .map((speciesName) => {
+          const targetSpecies = speciesByName.get(speciesName)
+          const defaultVariety = targetSpecies?.varieties?.find((entry) => entry.is_default)?.pokemon?.name
+          return defaultVariety ?? speciesName
+        })
+        .filter(Boolean)
+      const preEvolutionPokemonIds = speciesPreEvolutionChain
+        .map((speciesName) => {
+          const targetSpecies = speciesByName.get(speciesName)
+          const defaultVariety = targetSpecies?.varieties?.find((entry) => entry.is_default)?.pokemon?.name
+          return defaultVariety ?? speciesName
+        })
+        .filter(Boolean)
       for (const pokemonId of resolved) {
         formsByPokemonId[pokemonId] = resolved
+        const chainOverride = FAMILY_CHAIN_POKEMON_ID_OVERRIDES[pokemonId] ?? null
+        evolutionChainByPokemonId[pokemonId] =
+          chainOverride?.evolutionChain ?? (evolutionChainPokemonIds.length > 0 ? evolutionChainPokemonIds : [pokemonId])
+        preEvolutionChainByPokemonId[pokemonId] =
+          chainOverride?.preEvolutionChain ?? preEvolutionPokemonIds
       }
     }
 
@@ -1040,7 +1371,8 @@ async function main() {
         )
         const entry = pokemonEntryFromRaw(pokemon, species, effectiveData)
         entry.name = resolveLocalizedName(species.names, locale, pokemon.name)
-        entry.evolutionChain = formsByPokemonId[pokemon.name] ?? [pokemon.name]
+        entry.evolutionChain = evolutionChainByPokemonId[pokemon.name] ?? [pokemon.name]
+        entry.preEvolutionChain = preEvolutionChainByPokemonId[pokemon.name] ?? []
         return entry
       })
       .filter(Boolean)
@@ -1058,12 +1390,14 @@ async function main() {
           championsFormOverrides,
         )
         const generationId = generationIdFromName(species.generation?.name)
-        const chainMembers = formsByPokemonId[pokemon.name] ?? [pokemon.name]
+        const chainMembers = evolutionChainByPokemonId[pokemon.name] ?? [pokemon.name]
         const evolutionChain = chainMembers
           .map((memberId) => {
             const chainPokemon = pokemonByName.get(memberId)
-            const chainSpecies = speciesByName.get(chainPokemon?.species.name ?? memberId)
-            if (!chainPokemon || !chainSpecies) return null
+            const chainSpecies = chainPokemon
+              ? speciesByName.get(chainPokemon.species.name)
+              : speciesByName.get(memberId)
+            if (!chainSpecies) return null
             return {
               id: memberId,
               name: resolveLocalizedName(chainSpecies.names, locale, memberId),

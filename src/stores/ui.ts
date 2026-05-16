@@ -10,9 +10,12 @@ interface UiPreferences {
   selectedTeamByMode: Record<BattleMode, string>
   selectedSlotByMode: Record<BattleMode, 1 | 2 | 3 | 4 | 5 | 6>
   selectedMoveIndexByMode: Record<BattleMode, 0 | 1 | 2 | 3>
+  strategyObservationSourceByMode: Record<BattleMode, 'moves' | 'items' | 'abilities' | 'tera' | 'partners'>
   dexGenerationByMode: Record<BattleMode, number>
   dexTypeFilterByMode: Record<BattleMode, PokemonTypeKey | ''>
   dexAvailabilityFilterByMode: Record<BattleMode, 'all' | DexAvailabilityFilterKey>
+  dexMoveFilterByMode: Record<BattleMode, string>
+  damageCalcThreatAvailabilityFilterByMode: Record<BattleMode, 'all' | DexAvailabilityFilterKey>
 }
 
 export const useUiStore = defineStore('ui', () => {
@@ -31,6 +34,10 @@ export const useUiStore = defineStore('ui', () => {
       vgc: 0,
       singles: 0,
     },
+    strategyObservationSourceByMode: {
+      vgc: 'moves',
+      singles: 'moves',
+    },
     dexGenerationByMode: {
       vgc: 1,
       singles: 1,
@@ -40,6 +47,14 @@ export const useUiStore = defineStore('ui', () => {
       singles: '',
     },
     dexAvailabilityFilterByMode: {
+      vgc: 'all',
+      singles: 'all',
+    },
+    dexMoveFilterByMode: {
+      vgc: '',
+      singles: '',
+    },
+    damageCalcThreatAvailabilityFilterByMode: {
       vgc: 'all',
       singles: 'all',
     },
@@ -67,9 +82,12 @@ export const useUiStore = defineStore('ui', () => {
       selectedTeamByMode?: Partial<Record<BattleMode, string>>
       selectedSlotByMode?: Partial<Record<BattleMode, number>>
       selectedMoveIndexByMode?: Partial<Record<BattleMode, number>>
+      strategyObservationSourceByMode?: Partial<Record<BattleMode, string>>
       dexGenerationByMode?: Partial<Record<BattleMode, number>>
       dexTypeFilterByMode?: Partial<Record<BattleMode, string>>
       dexAvailabilityFilterByMode?: Partial<Record<BattleMode, string>>
+      dexMoveFilterByMode?: Partial<Record<BattleMode, string>>
+      damageCalcThreatAvailabilityFilterByMode?: Partial<Record<BattleMode, string>>
     }
 
     preferences.value = {
@@ -90,6 +108,10 @@ export const useUiStore = defineStore('ui', () => {
         vgc: toValidMoveIndex(current.selectedMoveIndexByMode?.vgc),
         singles: toValidMoveIndex(current.selectedMoveIndexByMode?.singles),
       },
+      strategyObservationSourceByMode: {
+        vgc: toValidStrategyObservationSource(current.strategyObservationSourceByMode?.vgc),
+        singles: toValidStrategyObservationSource(current.strategyObservationSourceByMode?.singles),
+      },
       dexGenerationByMode: {
         vgc: toValidDexGeneration(current.dexGenerationByMode?.vgc),
         singles: toValidDexGeneration(current.dexGenerationByMode?.singles),
@@ -101,6 +123,14 @@ export const useUiStore = defineStore('ui', () => {
       dexAvailabilityFilterByMode: {
         vgc: toValidDexAvailabilityFilter(current.dexAvailabilityFilterByMode?.vgc),
         singles: toValidDexAvailabilityFilter(current.dexAvailabilityFilterByMode?.singles),
+      },
+      dexMoveFilterByMode: {
+        vgc: toValidDexMoveFilter(current.dexMoveFilterByMode?.vgc),
+        singles: toValidDexMoveFilter(current.dexMoveFilterByMode?.singles),
+      },
+      damageCalcThreatAvailabilityFilterByMode: {
+        vgc: toValidDexAvailabilityFilter(current.damageCalcThreatAvailabilityFilterByMode?.vgc),
+        singles: toValidDexAvailabilityFilter(current.damageCalcThreatAvailabilityFilterByMode?.singles),
       },
     }
 
@@ -152,6 +182,14 @@ export const useUiStore = defineStore('ui', () => {
     return preferences.value.selectedMoveIndexByMode[mode]
   }
 
+  function setStrategyObservationSource(mode: BattleMode, source: 'moves' | 'items' | 'abilities' | 'tera' | 'partners') {
+    preferences.value.strategyObservationSourceByMode[mode] = toValidStrategyObservationSource(source)
+  }
+
+  function getStrategyObservationSource(mode: BattleMode): 'moves' | 'items' | 'abilities' | 'tera' | 'partners' {
+    return toValidStrategyObservationSource(preferences.value.strategyObservationSourceByMode[mode])
+  }
+
   function setDexGeneration(mode: BattleMode, generation: number) {
     preferences.value.dexGenerationByMode[mode] = toValidDexGeneration(generation)
   }
@@ -175,6 +213,22 @@ export const useUiStore = defineStore('ui', () => {
 
   function getDexAvailabilityFilter(mode: BattleMode): 'all' | DexAvailabilityFilterKey {
     return toValidDexAvailabilityFilter(preferences.value.dexAvailabilityFilterByMode[mode])
+  }
+
+  function setDexMoveFilter(mode: BattleMode, filter: string) {
+    preferences.value.dexMoveFilterByMode[mode] = toValidDexMoveFilter(filter)
+  }
+
+  function getDexMoveFilter(mode: BattleMode): string {
+    return toValidDexMoveFilter(preferences.value.dexMoveFilterByMode[mode])
+  }
+
+  function setDamageCalcThreatAvailabilityFilter(mode: BattleMode, filter: 'all' | DexAvailabilityFilterKey) {
+    preferences.value.damageCalcThreatAvailabilityFilterByMode[mode] = toValidDexAvailabilityFilter(filter)
+  }
+
+  function getDamageCalcThreatAvailabilityFilter(mode: BattleMode): 'all' | DexAvailabilityFilterKey {
+    return toValidDexAvailabilityFilter(preferences.value.damageCalcThreatAvailabilityFilterByMode[mode])
   }
 
   function getFavoritePokemonIds(): string[] {
@@ -213,12 +267,18 @@ export const useUiStore = defineStore('ui', () => {
     getSelectedSlot,
     setSelectedMoveIndex,
     getSelectedMoveIndex,
+    setStrategyObservationSource,
+    getStrategyObservationSource,
     setDexGeneration,
     getDexGeneration,
     setDexTypeFilter,
     getDexTypeFilter,
     setDexAvailabilityFilter,
     getDexAvailabilityFilter,
+    setDexMoveFilter,
+    getDexMoveFilter,
+    setDamageCalcThreatAvailabilityFilter,
+    getDamageCalcThreatAvailabilityFilter,
     getFavoritePokemonIds,
     isFavoritePokemon,
     toggleFavoritePokemon,
@@ -263,4 +323,18 @@ function toValidDexAvailabilityFilter(value: unknown): 'all' | DexAvailabilityFi
     value === 'all'
     ? value
     : 'all'
+}
+
+function toValidDexMoveFilter(value: unknown): string {
+  return typeof value === 'string' ? value.slice(0, 80).trimStart() : ''
+}
+
+function toValidStrategyObservationSource(value: unknown): 'moves' | 'items' | 'abilities' | 'tera' | 'partners' {
+  return value === 'items' ||
+    value === 'abilities' ||
+    value === 'tera' ||
+    value === 'partners' ||
+    value === 'moves'
+    ? value
+    : 'moves'
 }

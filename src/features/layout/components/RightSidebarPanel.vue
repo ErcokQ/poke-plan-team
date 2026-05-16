@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 import BuilderCatalogPanel from './BuilderCatalogPanel.vue'
 import RightSidebarBlock from './right-sidebar/RightSidebarBlock.vue'
 import AnalyticsQuickWidgets from './right-sidebar/AnalyticsQuickWidgets.vue'
+import StrategyRadarPanel from './right-sidebar/StrategyRadarPanel.vue'
 
 type RightSidebarPreset = 'builder' | 'analytics' | 'strategy' | 'dex'
 
@@ -40,6 +41,7 @@ const presetTitle = computed(() => {
 
     <div class="mt-3 min-h-0 flex-1 space-y-2 overflow-y-auto pr-1">
       <AnalyticsQuickWidgets v-if="props.preset === 'analytics'" />
+      <StrategyRadarPanel v-else-if="props.preset === 'strategy'" />
 
       <RightSidebarBlock v-else :title="t('common.rightPanelPlaceholderTitle')">
         <p class="text-xs text-gray-400">{{ t('common.rightPanelPlaceholderBody') }}</p>

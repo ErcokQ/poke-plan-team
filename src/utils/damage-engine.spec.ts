@@ -2,6 +2,7 @@
 import type { MoveEntry, PokemonEntry } from '@/models/domain'
 import type { DamageCalcScenario, DamageSideState, DamageSlotSet } from '@/models/damage-calc'
 import { computePairDamage } from '@/utils/damage-engine'
+import { simulateTwoHitSequence } from '@/utils/damage-sequence'
 
 function makeSlot(slot: 1 | 2 | 3 | 4 | 5 | 6, pokemonId: string, moveId: string): DamageSlotSet {
   return {
@@ -235,6 +236,17 @@ const moveById: Record<string, MoveEntry> = {
     pp: 10,
     tags: [],
   },
+  'bullet-punch': {
+    id: 'bullet-punch',
+    name: 'Bullet Punch',
+    type: 'steel',
+    category: 'physical',
+    power: 40,
+    accuracy: 100,
+    pp: 30,
+    priority: 1,
+    tags: [],
+  },
   'bolt-beak': {
     id: 'bolt-beak',
     name: 'Bolt Beak',
@@ -315,6 +327,16 @@ const moveById: Record<string, MoveEntry> = {
     pp: 20,
     tags: [],
   },
+  'triple-axel': {
+    id: 'triple-axel',
+    name: 'Triple Axel',
+    type: 'ice',
+    category: 'physical',
+    power: 20,
+    accuracy: 90,
+    pp: 10,
+    tags: [],
+  },
 }
 
 const itemById = {
@@ -388,6 +410,28 @@ describe('damage-engine', () => {
     const sunny = computePairDamage(sunScenario, resolver, 'A', 1, 1).resultsByMove[0]
 
     expect(sunny.max).toBeGreaterThan(base.max)
+  })
+
+  it('applies type-boosting held items like Soft Sand and Metal Coat', () => {
+    const baseGroundScenario = makeScenario('stomping-tantrum')
+    const boostedGroundScenario = makeScenario('stomping-tantrum')
+    boostedGroundScenario.sideA.slots[0].itemId = 'soft-sand'
+
+    const baseGround = computePairDamage(baseGroundScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const boostedGround = computePairDamage(boostedGroundScenario, resolver, 'A', 1, 1).resultsByMove[0]
+
+    expect(boostedGround.max).toBeGreaterThan(baseGround.max)
+    expect(boostedGround.min).toBeGreaterThan(baseGround.min)
+
+    const baseSteelScenario = makeScenario('heavy-slam')
+    const boostedSteelScenario = makeScenario('heavy-slam')
+    boostedSteelScenario.sideA.slots[0].itemId = 'metal-coat'
+
+    const baseSteel = computePairDamage(baseSteelScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const boostedSteel = computePairDamage(boostedSteelScenario, resolver, 'A', 1, 1).resultsByMove[0]
+
+    expect(boostedSteel.max).toBeGreaterThan(baseSteel.max)
+    expect(boostedSteel.min).toBeGreaterThan(baseSteel.min)
   })
 
   it('applies Facade based on the attacker status, not the defender status', () => {
@@ -510,6 +554,31 @@ describe('damage-engine', () => {
     expect(chipped.max).toBeGreaterThan(base.max)
   })
 
+  it('applies Technician only to moves with effective power 60 or less', () => {
+    const assuranceScenario = makeScenario('assurance')
+    assuranceScenario.sideA.slots[0].abilityId = 'technician'
+    const assuranceBaseScenario = makeScenario('assurance')
+
+    const bulletPunchScenario = makeScenario('bullet-punch')
+    bulletPunchScenario.sideA.slots[0].abilityId = 'technician'
+    const bulletPunchBaseScenario = makeScenario('bullet-punch')
+
+    const knockOffScenario = makeScenario('knock-off')
+    knockOffScenario.sideA.slots[0].abilityId = 'technician'
+    const knockOffBaseScenario = makeScenario('knock-off')
+
+    const assurance = computePairDamage(assuranceScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const assuranceBase = computePairDamage(assuranceBaseScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const bulletPunch = computePairDamage(bulletPunchScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const bulletPunchBase = computePairDamage(bulletPunchBaseScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const knockOff = computePairDamage(knockOffScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const knockOffBase = computePairDamage(knockOffBaseScenario, resolver, 'A', 1, 1).resultsByMove[0]
+
+    expect(assurance.max).toBeGreaterThan(assuranceBase.max)
+    expect(bulletPunch.max).toBeGreaterThan(bulletPunchBase.max)
+    expect(knockOff.max).toBe(knockOffBase.max)
+  })
+
   it('uses move order hints for Bolt Beak', () => {
     const baseScenario = makeScenario('bolt-beak')
     baseScenario.sideA.slots[0].combatContext.moveOrderHint = 'after-target'
@@ -568,5 +637,32 @@ describe('damage-engine', () => {
     const lowFriendship = computePairDamage(lowFriendshipScenario, resolver, 'A', 1, 1).resultsByMove[0]
 
     expect(maxFriendship.max).toBeGreaterThan(lowFriendship.max)
+  })
+
+  it('models Triple Axel as escalating multi-hit damage', () => {
+    const scenario = makeScenario('triple-axel')
+    const result = computePairDamage(scenario, resolver, 'A', 1, 1).resultsByMove[0]
+
+    expect(result.max).toBeGreaterThan(0)
+    expect(result.sequenceRolls?.hitsPerUse).toBe(3)
+    expect(result.sequenceRolls?.fresh).toHaveLength(16)
+    expect(result.sequenceRolls?.chipped).toHaveLength(16)
+  })
+
+  it('drops Multiscale after the first Triple Axel use in the two-use simulation', () => {
+    const scenario = makeScenario('triple-axel')
+    scenario.sideB.slots[0].abilityId = 'multiscale'
+    const result = computePairDamage(scenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const simulation = simulateTwoHitSequence(result, {
+      profile: 'mid',
+      currentHp: 200,
+      maxHp: 200,
+      defenderAbilityId: 'multiscale',
+      defenderStatus: 'healthy',
+      defenderTypes: ['grass'],
+    })
+
+    expect(simulation).not.toBeNull()
+    expect(simulation?.secondHitDamage ?? 0).toBeGreaterThan(simulation?.firstHitDamage ?? 0)
   })
 })

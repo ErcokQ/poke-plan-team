@@ -2,7 +2,7 @@
   "version": "v1",
   "locale": "es",
   "generationId": 3,
-  "generatedAt": "2026-04-09T04:23:54.270Z",
+  "generatedAt": "2026-04-17T18:43:31.043Z",
   "profiles": [
     {
       "id": "treecko",
@@ -61,6 +61,24 @@
           "name": "Treecko",
           "pokedexNumber": 252,
           "variants": []
+        },
+        {
+          "id": "grovyle",
+          "name": "Grovyle",
+          "pokedexNumber": 253,
+          "variants": []
+        },
+        {
+          "id": "sceptile",
+          "name": "Sceptile",
+          "pokedexNumber": 254,
+          "variants": [
+            {
+              "id": "sceptile-mega",
+              "name": "Sceptile Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -123,10 +141,28 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "treecko",
+          "name": "Treecko",
+          "pokedexNumber": 252,
+          "variants": []
+        },
+        {
           "id": "grovyle",
           "name": "Grovyle",
           "pokedexNumber": 253,
           "variants": []
+        },
+        {
+          "id": "sceptile",
+          "name": "Sceptile",
+          "pokedexNumber": 254,
+          "variants": [
+            {
+              "id": "sceptile-mega",
+              "name": "Sceptile Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -189,19 +225,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "sceptile",
-          "name": "Sceptile",
-          "pokedexNumber": 254,
-          "variants": [
-            {
-              "id": "sceptile-mega",
-              "name": "Sceptile Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "treecko",
+          "name": "Treecko",
+          "pokedexNumber": 252,
+          "variants": []
         },
         {
-          "id": "sceptile-mega",
+          "id": "grovyle",
+          "name": "Grovyle",
+          "pokedexNumber": 253,
+          "variants": []
+        },
+        {
+          "id": "sceptile",
           "name": "Sceptile",
           "pokedexNumber": 254,
           "variants": [
@@ -267,19 +303,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "sceptile",
-          "name": "Sceptile",
-          "pokedexNumber": 254,
-          "variants": [
-            {
-              "id": "sceptile-mega",
-              "name": "Sceptile Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "treecko",
+          "name": "Treecko",
+          "pokedexNumber": 252,
+          "variants": []
         },
         {
-          "id": "sceptile-mega",
+          "id": "grovyle",
+          "name": "Grovyle",
+          "pokedexNumber": 253,
+          "variants": []
+        },
+        {
+          "id": "sceptile",
           "name": "Sceptile",
           "pokedexNumber": 254,
           "variants": [
@@ -354,6 +390,24 @@
           "name": "Torchic",
           "pokedexNumber": 255,
           "variants": []
+        },
+        {
+          "id": "combusken",
+          "name": "Combusken",
+          "pokedexNumber": 256,
+          "variants": []
+        },
+        {
+          "id": "blaziken",
+          "name": "Blaziken",
+          "pokedexNumber": 257,
+          "variants": [
+            {
+              "id": "blaziken-mega",
+              "name": "Blaziken Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -416,10 +470,28 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "torchic",
+          "name": "Torchic",
+          "pokedexNumber": 255,
+          "variants": []
+        },
+        {
           "id": "combusken",
           "name": "Combusken",
           "pokedexNumber": 256,
           "variants": []
+        },
+        {
+          "id": "blaziken",
+          "name": "Blaziken",
+          "pokedexNumber": 257,
+          "variants": [
+            {
+              "id": "blaziken-mega",
+              "name": "Blaziken Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -482,19 +554,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "blaziken",
-          "name": "Blaziken",
-          "pokedexNumber": 257,
-          "variants": [
-            {
-              "id": "blaziken-mega",
-              "name": "Blaziken Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "torchic",
+          "name": "Torchic",
+          "pokedexNumber": 255,
+          "variants": []
         },
         {
-          "id": "blaziken-mega",
+          "id": "combusken",
+          "name": "Combusken",
+          "pokedexNumber": 256,
+          "variants": []
+        },
+        {
+          "id": "blaziken",
           "name": "Blaziken",
           "pokedexNumber": 257,
           "variants": [
@@ -559,19 +631,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "blaziken",
-          "name": "Blaziken",
-          "pokedexNumber": 257,
-          "variants": [
-            {
-              "id": "blaziken-mega",
-              "name": "Blaziken Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "torchic",
+          "name": "Torchic",
+          "pokedexNumber": 255,
+          "variants": []
         },
         {
-          "id": "blaziken-mega",
+          "id": "combusken",
+          "name": "Combusken",
+          "pokedexNumber": 256,
+          "variants": []
+        },
+        {
+          "id": "blaziken",
           "name": "Blaziken",
           "pokedexNumber": 257,
           "variants": [
@@ -647,6 +719,24 @@
           "name": "Mudkip",
           "pokedexNumber": 258,
           "variants": []
+        },
+        {
+          "id": "marshtomp",
+          "name": "Marshtomp",
+          "pokedexNumber": 259,
+          "variants": []
+        },
+        {
+          "id": "swampert",
+          "name": "Swampert",
+          "pokedexNumber": 260,
+          "variants": [
+            {
+              "id": "swampert-mega",
+              "name": "Swampert Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -710,10 +800,28 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "mudkip",
+          "name": "Mudkip",
+          "pokedexNumber": 258,
+          "variants": []
+        },
+        {
           "id": "marshtomp",
           "name": "Marshtomp",
           "pokedexNumber": 259,
           "variants": []
+        },
+        {
+          "id": "swampert",
+          "name": "Swampert",
+          "pokedexNumber": 260,
+          "variants": [
+            {
+              "id": "swampert-mega",
+              "name": "Swampert Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -777,19 +885,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "swampert",
-          "name": "Swampert",
-          "pokedexNumber": 260,
-          "variants": [
-            {
-              "id": "swampert-mega",
-              "name": "Swampert Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "mudkip",
+          "name": "Mudkip",
+          "pokedexNumber": 258,
+          "variants": []
         },
         {
-          "id": "swampert-mega",
+          "id": "marshtomp",
+          "name": "Marshtomp",
+          "pokedexNumber": 259,
+          "variants": []
+        },
+        {
+          "id": "swampert",
           "name": "Swampert",
           "pokedexNumber": 260,
           "variants": [
@@ -855,19 +963,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "swampert",
-          "name": "Swampert",
-          "pokedexNumber": 260,
-          "variants": [
-            {
-              "id": "swampert-mega",
-              "name": "Swampert Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "mudkip",
+          "name": "Mudkip",
+          "pokedexNumber": 258,
+          "variants": []
         },
         {
-          "id": "swampert-mega",
+          "id": "marshtomp",
+          "name": "Marshtomp",
+          "pokedexNumber": 259,
+          "variants": []
+        },
+        {
+          "id": "swampert",
           "name": "Swampert",
           "pokedexNumber": 260,
           "variants": [
@@ -949,6 +1057,12 @@
           "name": "Poochyena",
           "pokedexNumber": 261,
           "variants": []
+        },
+        {
+          "id": "mightyena",
+          "name": "Mightyena",
+          "pokedexNumber": 262,
+          "variants": []
         }
       ],
       "sprites": {
@@ -1016,6 +1130,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "poochyena",
+          "name": "Poochyena",
+          "pokedexNumber": 261,
+          "variants": []
+        },
         {
           "id": "mightyena",
           "name": "Mightyena",
@@ -1101,16 +1221,22 @@
           ]
         },
         {
-          "id": "zigzagoon-galar",
-          "name": "Zigzagoon",
-          "pokedexNumber": 263,
+          "id": "linoone",
+          "name": "Linoone",
+          "pokedexNumber": 264,
           "variants": [
             {
-              "id": "zigzagoon-galar",
-              "name": "Zigzagoon Galar",
+              "id": "linoone-galar",
+              "name": "Linoone Galar",
               "kind": "regional"
             }
           ]
+        },
+        {
+          "id": "obstagoon",
+          "name": "Obstagoon",
+          "pokedexNumber": 862,
+          "variants": []
         }
       ],
       "sprites": {
@@ -1180,7 +1306,7 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "zigzagoon",
+          "id": "zigzagoon-galar",
           "name": "Zigzagoon",
           "pokedexNumber": 263,
           "variants": [
@@ -1192,16 +1318,22 @@
           ]
         },
         {
-          "id": "zigzagoon-galar",
-          "name": "Zigzagoon",
-          "pokedexNumber": 263,
+          "id": "linoone-galar",
+          "name": "Linoone",
+          "pokedexNumber": 264,
           "variants": [
             {
-              "id": "zigzagoon-galar",
-              "name": "Zigzagoon Galar",
+              "id": "linoone-galar",
+              "name": "Linoone Galar",
               "kind": "regional"
             }
           ]
+        },
+        {
+          "id": "obstagoon",
+          "name": "Obstagoon",
+          "pokedexNumber": 862,
+          "variants": []
         }
       ],
       "sprites": {
@@ -1270,6 +1402,18 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "zigzagoon",
+          "name": "Zigzagoon",
+          "pokedexNumber": 263,
+          "variants": [
+            {
+              "id": "zigzagoon-galar",
+              "name": "Zigzagoon Galar",
+              "kind": "regional"
+            }
+          ]
+        },
+        {
           "id": "linoone",
           "name": "Linoone",
           "pokedexNumber": 264,
@@ -1282,16 +1426,10 @@
           ]
         },
         {
-          "id": "linoone-galar",
-          "name": "Linoone",
-          "pokedexNumber": 264,
-          "variants": [
-            {
-              "id": "linoone-galar",
-              "name": "Linoone Galar",
-              "kind": "regional"
-            }
-          ]
+          "id": "obstagoon",
+          "name": "Obstagoon",
+          "pokedexNumber": 862,
+          "variants": []
         }
       ],
       "sprites": {
@@ -1361,13 +1499,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "linoone",
-          "name": "Linoone",
-          "pokedexNumber": 264,
+          "id": "zigzagoon-galar",
+          "name": "Zigzagoon",
+          "pokedexNumber": 263,
           "variants": [
             {
-              "id": "linoone-galar",
-              "name": "Linoone Galar",
+              "id": "zigzagoon-galar",
+              "name": "Zigzagoon Galar",
               "kind": "regional"
             }
           ]
@@ -1383,6 +1521,12 @@
               "kind": "regional"
             }
           ]
+        },
+        {
+          "id": "obstagoon",
+          "name": "Obstagoon",
+          "pokedexNumber": 862,
+          "variants": []
         }
       ],
       "sprites": {
@@ -1446,6 +1590,30 @@
           "name": "Wurmple",
           "pokedexNumber": 265,
           "variants": []
+        },
+        {
+          "id": "silcoon",
+          "name": "Silcoon",
+          "pokedexNumber": 266,
+          "variants": []
+        },
+        {
+          "id": "beautifly",
+          "name": "Beautifly",
+          "pokedexNumber": 267,
+          "variants": []
+        },
+        {
+          "id": "cascoon",
+          "name": "Cascoon",
+          "pokedexNumber": 268,
+          "variants": []
+        },
+        {
+          "id": "dustox",
+          "name": "Dustox",
+          "pokedexNumber": 269,
+          "variants": []
         }
       ],
       "sprites": {
@@ -1498,9 +1666,33 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "wurmple",
+          "name": "Wurmple",
+          "pokedexNumber": 265,
+          "variants": []
+        },
+        {
           "id": "silcoon",
           "name": "Silcoon",
           "pokedexNumber": 266,
+          "variants": []
+        },
+        {
+          "id": "beautifly",
+          "name": "Beautifly",
+          "pokedexNumber": 267,
+          "variants": []
+        },
+        {
+          "id": "cascoon",
+          "name": "Cascoon",
+          "pokedexNumber": 268,
+          "variants": []
+        },
+        {
+          "id": "dustox",
+          "name": "Dustox",
+          "pokedexNumber": 269,
           "variants": []
         }
       ],
@@ -1562,9 +1754,33 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "wurmple",
+          "name": "Wurmple",
+          "pokedexNumber": 265,
+          "variants": []
+        },
+        {
+          "id": "silcoon",
+          "name": "Silcoon",
+          "pokedexNumber": 266,
+          "variants": []
+        },
+        {
           "id": "beautifly",
           "name": "Beautifly",
           "pokedexNumber": 267,
+          "variants": []
+        },
+        {
+          "id": "cascoon",
+          "name": "Cascoon",
+          "pokedexNumber": 268,
+          "variants": []
+        },
+        {
+          "id": "dustox",
+          "name": "Dustox",
+          "pokedexNumber": 269,
           "variants": []
         }
       ],
@@ -1618,9 +1834,33 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "wurmple",
+          "name": "Wurmple",
+          "pokedexNumber": 265,
+          "variants": []
+        },
+        {
+          "id": "silcoon",
+          "name": "Silcoon",
+          "pokedexNumber": 266,
+          "variants": []
+        },
+        {
+          "id": "beautifly",
+          "name": "Beautifly",
+          "pokedexNumber": 267,
+          "variants": []
+        },
+        {
           "id": "cascoon",
           "name": "Cascoon",
           "pokedexNumber": 268,
+          "variants": []
+        },
+        {
+          "id": "dustox",
+          "name": "Dustox",
+          "pokedexNumber": 269,
           "variants": []
         }
       ],
@@ -1681,6 +1921,30 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "wurmple",
+          "name": "Wurmple",
+          "pokedexNumber": 265,
+          "variants": []
+        },
+        {
+          "id": "silcoon",
+          "name": "Silcoon",
+          "pokedexNumber": 266,
+          "variants": []
+        },
+        {
+          "id": "beautifly",
+          "name": "Beautifly",
+          "pokedexNumber": 267,
+          "variants": []
+        },
+        {
+          "id": "cascoon",
+          "name": "Cascoon",
+          "pokedexNumber": 268,
+          "variants": []
+        },
         {
           "id": "dustox",
           "name": "Dustox",
@@ -1761,6 +2025,18 @@
           "name": "Lotad",
           "pokedexNumber": 270,
           "variants": []
+        },
+        {
+          "id": "lombre",
+          "name": "Lombre",
+          "pokedexNumber": 271,
+          "variants": []
+        },
+        {
+          "id": "ludicolo",
+          "name": "Ludicolo",
+          "pokedexNumber": 272,
+          "variants": []
         }
       ],
       "sprites": {
@@ -1832,9 +2108,21 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "lotad",
+          "name": "Lotad",
+          "pokedexNumber": 270,
+          "variants": []
+        },
+        {
           "id": "lombre",
           "name": "Lombre",
           "pokedexNumber": 271,
+          "variants": []
+        },
+        {
+          "id": "ludicolo",
+          "name": "Ludicolo",
+          "pokedexNumber": 272,
           "variants": []
         }
       ],
@@ -1906,6 +2194,18 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "lotad",
+          "name": "Lotad",
+          "pokedexNumber": 270,
+          "variants": []
+        },
+        {
+          "id": "lombre",
+          "name": "Lombre",
+          "pokedexNumber": 271,
+          "variants": []
+        },
         {
           "id": "ludicolo",
           "name": "Ludicolo",
@@ -1985,6 +2285,18 @@
           "name": "Seedot",
           "pokedexNumber": 273,
           "variants": []
+        },
+        {
+          "id": "nuzleaf",
+          "name": "Nuzleaf",
+          "pokedexNumber": 274,
+          "variants": []
+        },
+        {
+          "id": "shiftry",
+          "name": "Shiftry",
+          "pokedexNumber": 275,
+          "variants": []
         }
       ],
       "sprites": {
@@ -2056,9 +2368,21 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "seedot",
+          "name": "Seedot",
+          "pokedexNumber": 273,
+          "variants": []
+        },
+        {
           "id": "nuzleaf",
           "name": "Nuzleaf",
           "pokedexNumber": 274,
+          "variants": []
+        },
+        {
+          "id": "shiftry",
+          "name": "Shiftry",
+          "pokedexNumber": 275,
           "variants": []
         }
       ],
@@ -2131,6 +2455,18 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "seedot",
+          "name": "Seedot",
+          "pokedexNumber": 273,
+          "variants": []
+        },
+        {
+          "id": "nuzleaf",
+          "name": "Nuzleaf",
+          "pokedexNumber": 274,
+          "variants": []
+        },
+        {
           "id": "shiftry",
           "name": "Shiftry",
           "pokedexNumber": 275,
@@ -2199,6 +2535,12 @@
           "name": "Taillow",
           "pokedexNumber": 276,
           "variants": []
+        },
+        {
+          "id": "swellow",
+          "name": "Swellow",
+          "pokedexNumber": 277,
+          "variants": []
         }
       ],
       "sprites": {
@@ -2258,6 +2600,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "taillow",
+          "name": "Taillow",
+          "pokedexNumber": 276,
+          "variants": []
+        },
         {
           "id": "swellow",
           "name": "Swellow",
@@ -2338,6 +2686,12 @@
           "name": "Wingull",
           "pokedexNumber": 278,
           "variants": []
+        },
+        {
+          "id": "pelipper",
+          "name": "Pelipper",
+          "pokedexNumber": 279,
+          "variants": []
         }
       ],
       "sprites": {
@@ -2408,6 +2762,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "wingull",
+          "name": "Wingull",
+          "pokedexNumber": 278,
+          "variants": []
+        },
         {
           "id": "pelipper",
           "name": "Pelipper",
@@ -2488,6 +2848,36 @@
           "name": "Ralts",
           "pokedexNumber": 280,
           "variants": []
+        },
+        {
+          "id": "kirlia",
+          "name": "Kirlia",
+          "pokedexNumber": 281,
+          "variants": []
+        },
+        {
+          "id": "gardevoir",
+          "name": "Gardevoir",
+          "pokedexNumber": 282,
+          "variants": [
+            {
+              "id": "gardevoir-mega",
+              "name": "Gardevoir Mega",
+              "kind": "mega"
+            }
+          ]
+        },
+        {
+          "id": "gallade",
+          "name": "Gallade",
+          "pokedexNumber": 475,
+          "variants": [
+            {
+              "id": "gallade-mega",
+              "name": "Gallade Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -2559,10 +2949,40 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "ralts",
+          "name": "Ralts",
+          "pokedexNumber": 280,
+          "variants": []
+        },
+        {
           "id": "kirlia",
           "name": "Kirlia",
           "pokedexNumber": 281,
           "variants": []
+        },
+        {
+          "id": "gardevoir",
+          "name": "Gardevoir",
+          "pokedexNumber": 282,
+          "variants": [
+            {
+              "id": "gardevoir-mega",
+              "name": "Gardevoir Mega",
+              "kind": "mega"
+            }
+          ]
+        },
+        {
+          "id": "gallade",
+          "name": "Gallade",
+          "pokedexNumber": 475,
+          "variants": [
+            {
+              "id": "gallade-mega",
+              "name": "Gallade Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -2634,6 +3054,18 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "ralts",
+          "name": "Ralts",
+          "pokedexNumber": 280,
+          "variants": []
+        },
+        {
+          "id": "kirlia",
+          "name": "Kirlia",
+          "pokedexNumber": 281,
+          "variants": []
+        },
+        {
           "id": "gardevoir",
           "name": "Gardevoir",
           "pokedexNumber": 282,
@@ -2646,13 +3078,13 @@
           ]
         },
         {
-          "id": "gardevoir-mega",
-          "name": "Gardevoir",
-          "pokedexNumber": 282,
+          "id": "gallade",
+          "name": "Gallade",
+          "pokedexNumber": 475,
           "variants": [
             {
-              "id": "gardevoir-mega",
-              "name": "Gardevoir Mega",
+              "id": "gallade-mega",
+              "name": "Gallade Mega",
               "kind": "mega"
             }
           ]
@@ -2713,6 +3145,18 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "ralts",
+          "name": "Ralts",
+          "pokedexNumber": 280,
+          "variants": []
+        },
+        {
+          "id": "kirlia",
+          "name": "Kirlia",
+          "pokedexNumber": 281,
+          "variants": []
+        },
+        {
           "id": "gardevoir",
           "name": "Gardevoir",
           "pokedexNumber": 282,
@@ -2725,13 +3169,13 @@
           ]
         },
         {
-          "id": "gardevoir-mega",
-          "name": "Gardevoir",
-          "pokedexNumber": 282,
+          "id": "gallade",
+          "name": "Gallade",
+          "pokedexNumber": 475,
           "variants": [
             {
-              "id": "gardevoir-mega",
-              "name": "Gardevoir Mega",
+              "id": "gallade-mega",
+              "name": "Gallade Mega",
               "kind": "mega"
             }
           ]
@@ -2802,6 +3246,12 @@
           "name": "Surskit",
           "pokedexNumber": 283,
           "variants": []
+        },
+        {
+          "id": "masquerain",
+          "name": "Masquerain",
+          "pokedexNumber": 284,
+          "variants": []
         }
       ],
       "sprites": {
@@ -2864,6 +3314,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "surskit",
+          "name": "Surskit",
+          "pokedexNumber": 283,
+          "variants": []
+        },
         {
           "id": "masquerain",
           "name": "Masquerain",
@@ -2942,6 +3398,12 @@
           "name": "Shroomish",
           "pokedexNumber": 285,
           "variants": []
+        },
+        {
+          "id": "breloom",
+          "name": "Breloom",
+          "pokedexNumber": 286,
+          "variants": []
         }
       ],
       "sprites": {
@@ -3012,6 +3474,12 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "shroomish",
+          "name": "Shroomish",
+          "pokedexNumber": 285,
+          "variants": []
+        },
+        {
           "id": "breloom",
           "name": "Breloom",
           "pokedexNumber": 286,
@@ -3074,6 +3542,18 @@
           "name": "Slakoth",
           "pokedexNumber": 287,
           "variants": []
+        },
+        {
+          "id": "vigoroth",
+          "name": "Vigoroth",
+          "pokedexNumber": 288,
+          "variants": []
+        },
+        {
+          "id": "slaking",
+          "name": "Slaking",
+          "pokedexNumber": 289,
+          "variants": []
         }
       ],
       "sprites": {
@@ -3128,9 +3608,21 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "slakoth",
+          "name": "Slakoth",
+          "pokedexNumber": 287,
+          "variants": []
+        },
+        {
           "id": "vigoroth",
           "name": "Vigoroth",
           "pokedexNumber": 288,
+          "variants": []
+        },
+        {
+          "id": "slaking",
+          "name": "Slaking",
+          "pokedexNumber": 289,
           "variants": []
         }
       ],
@@ -3185,6 +3677,18 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "slakoth",
+          "name": "Slakoth",
+          "pokedexNumber": 287,
+          "variants": []
+        },
+        {
+          "id": "vigoroth",
+          "name": "Vigoroth",
+          "pokedexNumber": 288,
+          "variants": []
+        },
         {
           "id": "slaking",
           "name": "Slaking",
@@ -3256,6 +3760,18 @@
           "name": "Nincada",
           "pokedexNumber": 290,
           "variants": []
+        },
+        {
+          "id": "ninjask",
+          "name": "Ninjask",
+          "pokedexNumber": 291,
+          "variants": []
+        },
+        {
+          "id": "shedinja",
+          "name": "Shedinja",
+          "pokedexNumber": 292,
+          "variants": []
         }
       ],
       "sprites": {
@@ -3318,9 +3834,21 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "nincada",
+          "name": "Nincada",
+          "pokedexNumber": 290,
+          "variants": []
+        },
+        {
           "id": "ninjask",
           "name": "Ninjask",
           "pokedexNumber": 291,
+          "variants": []
+        },
+        {
+          "id": "shedinja",
+          "name": "Shedinja",
+          "pokedexNumber": 292,
           "variants": []
         }
       ],
@@ -3376,6 +3904,18 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "nincada",
+          "name": "Nincada",
+          "pokedexNumber": 290,
+          "variants": []
+        },
+        {
+          "id": "ninjask",
+          "name": "Ninjask",
+          "pokedexNumber": 291,
+          "variants": []
+        },
         {
           "id": "shedinja",
           "name": "Shedinja",
@@ -3447,6 +3987,18 @@
           "name": "Whismur",
           "pokedexNumber": 293,
           "variants": []
+        },
+        {
+          "id": "loudred",
+          "name": "Loudred",
+          "pokedexNumber": 294,
+          "variants": []
+        },
+        {
+          "id": "exploud",
+          "name": "Exploud",
+          "pokedexNumber": 295,
+          "variants": []
         }
       ],
       "sprites": {
@@ -3509,9 +4061,21 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "whismur",
+          "name": "Whismur",
+          "pokedexNumber": 293,
+          "variants": []
+        },
+        {
           "id": "loudred",
           "name": "Loudred",
           "pokedexNumber": 294,
+          "variants": []
+        },
+        {
+          "id": "exploud",
+          "name": "Exploud",
+          "pokedexNumber": 295,
           "variants": []
         }
       ],
@@ -3574,6 +4138,18 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "whismur",
+          "name": "Whismur",
+          "pokedexNumber": 293,
+          "variants": []
+        },
+        {
+          "id": "loudred",
+          "name": "Loudred",
+          "pokedexNumber": 294,
+          "variants": []
+        },
         {
           "id": "exploud",
           "name": "Exploud",
@@ -3651,6 +4227,12 @@
           "name": "Makuhita",
           "pokedexNumber": 296,
           "variants": []
+        },
+        {
+          "id": "hariyama",
+          "name": "Hariyama",
+          "pokedexNumber": 297,
+          "variants": []
         }
       ],
       "sprites": {
@@ -3718,6 +4300,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "makuhita",
+          "name": "Makuhita",
+          "pokedexNumber": 296,
+          "variants": []
+        },
         {
           "id": "hariyama",
           "name": "Hariyama",
@@ -3792,6 +4380,18 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "marill",
+          "name": "Marill",
+          "pokedexNumber": 183,
+          "variants": []
+        },
+        {
+          "id": "azumarill",
+          "name": "Azumarill",
+          "pokedexNumber": 184,
+          "variants": []
+        },
         {
           "id": "azurill",
           "name": "Azurill",
@@ -3869,6 +4469,12 @@
           "name": "Nosepass",
           "pokedexNumber": 299,
           "variants": []
+        },
+        {
+          "id": "probopass",
+          "name": "Probopass",
+          "pokedexNumber": 476,
+          "variants": []
         }
       ],
       "sprites": {
@@ -3940,6 +4546,12 @@
           "name": "Skitty",
           "pokedexNumber": 300,
           "variants": []
+        },
+        {
+          "id": "delcatty",
+          "name": "Delcatty",
+          "pokedexNumber": 301,
+          "variants": []
         }
       ],
       "sprites": {
@@ -4006,6 +4618,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "skitty",
+          "name": "Skitty",
+          "pokedexNumber": 300,
+          "variants": []
+        },
         {
           "id": "delcatty",
           "name": "Delcatty",
@@ -4091,18 +4709,6 @@
               "kind": "mega"
             }
           ]
-        },
-        {
-          "id": "sableye-mega",
-          "name": "Sableye",
-          "pokedexNumber": 302,
-          "variants": [
-            {
-              "id": "sableye-mega",
-              "name": "Sableye Mega",
-              "kind": "mega"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -4160,18 +4766,6 @@
       "evolutionChain": [
         {
           "id": "sableye",
-          "name": "Sableye",
-          "pokedexNumber": 302,
-          "variants": [
-            {
-              "id": "sableye-mega",
-              "name": "Sableye Mega",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "sableye-mega",
           "name": "Sableye",
           "pokedexNumber": 302,
           "variants": [
@@ -4261,18 +4855,6 @@
               "kind": "mega"
             }
           ]
-        },
-        {
-          "id": "mawile-mega",
-          "name": "Mawile",
-          "pokedexNumber": 303,
-          "variants": [
-            {
-              "id": "mawile-mega",
-              "name": "Mawile Mega",
-              "kind": "mega"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -4330,18 +4912,6 @@
       "evolutionChain": [
         {
           "id": "mawile",
-          "name": "Mawile",
-          "pokedexNumber": 303,
-          "variants": [
-            {
-              "id": "mawile-mega",
-              "name": "Mawile Mega",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "mawile-mega",
           "name": "Mawile",
           "pokedexNumber": 303,
           "variants": [
@@ -4424,6 +4994,24 @@
           "name": "Aron",
           "pokedexNumber": 304,
           "variants": []
+        },
+        {
+          "id": "lairon",
+          "name": "Lairon",
+          "pokedexNumber": 305,
+          "variants": []
+        },
+        {
+          "id": "aggron",
+          "name": "Aggron",
+          "pokedexNumber": 306,
+          "variants": [
+            {
+              "id": "aggron-mega",
+              "name": "Aggron Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -4493,10 +5081,28 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "aron",
+          "name": "Aron",
+          "pokedexNumber": 304,
+          "variants": []
+        },
+        {
           "id": "lairon",
           "name": "Lairon",
           "pokedexNumber": 305,
           "variants": []
+        },
+        {
+          "id": "aggron",
+          "name": "Aggron",
+          "pokedexNumber": 306,
+          "variants": [
+            {
+              "id": "aggron-mega",
+              "name": "Aggron Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -4566,19 +5172,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "aggron",
-          "name": "Aggron",
-          "pokedexNumber": 306,
-          "variants": [
-            {
-              "id": "aggron-mega",
-              "name": "Aggron Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "aron",
+          "name": "Aron",
+          "pokedexNumber": 304,
+          "variants": []
         },
         {
-          "id": "aggron-mega",
+          "id": "lairon",
+          "name": "Lairon",
+          "pokedexNumber": 305,
+          "variants": []
+        },
+        {
+          "id": "aggron",
           "name": "Aggron",
           "pokedexNumber": 306,
           "variants": [
@@ -4642,19 +5248,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "aggron",
-          "name": "Aggron",
-          "pokedexNumber": 306,
-          "variants": [
-            {
-              "id": "aggron-mega",
-              "name": "Aggron Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "aron",
+          "name": "Aron",
+          "pokedexNumber": 304,
+          "variants": []
         },
         {
-          "id": "aggron-mega",
+          "id": "lairon",
+          "name": "Lairon",
+          "pokedexNumber": 305,
+          "variants": []
+        },
+        {
+          "id": "aggron",
           "name": "Aggron",
           "pokedexNumber": 306,
           "variants": [
@@ -4730,6 +5336,18 @@
           "name": "Meditite",
           "pokedexNumber": 307,
           "variants": []
+        },
+        {
+          "id": "medicham",
+          "name": "Medicham",
+          "pokedexNumber": 308,
+          "variants": [
+            {
+              "id": "medicham-mega",
+              "name": "Medicham Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -4792,19 +5410,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "medicham",
-          "name": "Medicham",
-          "pokedexNumber": 308,
-          "variants": [
-            {
-              "id": "medicham-mega",
-              "name": "Medicham Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "meditite",
+          "name": "Meditite",
+          "pokedexNumber": 307,
+          "variants": []
         },
         {
-          "id": "medicham-mega",
+          "id": "medicham",
           "name": "Medicham",
           "pokedexNumber": 308,
           "variants": [
@@ -4869,19 +5481,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "medicham",
-          "name": "Medicham",
-          "pokedexNumber": 308,
-          "variants": [
-            {
-              "id": "medicham-mega",
-              "name": "Medicham Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "meditite",
+          "name": "Meditite",
+          "pokedexNumber": 307,
+          "variants": []
         },
         {
-          "id": "medicham-mega",
+          "id": "medicham",
           "name": "Medicham",
           "pokedexNumber": 308,
           "variants": [
@@ -4963,6 +5569,18 @@
           "name": "Electrike",
           "pokedexNumber": 309,
           "variants": []
+        },
+        {
+          "id": "manectric",
+          "name": "Manectric",
+          "pokedexNumber": 310,
+          "variants": [
+            {
+              "id": "manectric-mega",
+              "name": "Manectric Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -5031,19 +5649,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "manectric",
-          "name": "Manectric",
-          "pokedexNumber": 310,
-          "variants": [
-            {
-              "id": "manectric-mega",
-              "name": "Manectric Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "electrike",
+          "name": "Electrike",
+          "pokedexNumber": 309,
+          "variants": []
         },
         {
-          "id": "manectric-mega",
+          "id": "manectric",
           "name": "Manectric",
           "pokedexNumber": 310,
           "variants": [
@@ -5107,19 +5719,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "manectric",
-          "name": "Manectric",
-          "pokedexNumber": 310,
-          "variants": [
-            {
-              "id": "manectric-mega",
-              "name": "Manectric Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "electrike",
+          "name": "Electrike",
+          "pokedexNumber": 309,
+          "variants": []
         },
         {
-          "id": "manectric-mega",
+          "id": "manectric",
           "name": "Manectric",
           "pokedexNumber": 310,
           "variants": [
@@ -5479,6 +6085,18 @@
           "name": "Roselia",
           "pokedexNumber": 315,
           "variants": []
+        },
+        {
+          "id": "budew",
+          "name": "Budew",
+          "pokedexNumber": 406,
+          "variants": []
+        },
+        {
+          "id": "roserade",
+          "name": "Roserade",
+          "pokedexNumber": 407,
+          "variants": []
         }
       ],
       "sprites": {
@@ -5551,6 +6169,12 @@
           "name": "Gulpin",
           "pokedexNumber": 316,
           "variants": []
+        },
+        {
+          "id": "swalot",
+          "name": "Swalot",
+          "pokedexNumber": 317,
+          "variants": []
         }
       ],
       "sprites": {
@@ -5618,6 +6242,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "gulpin",
+          "name": "Gulpin",
+          "pokedexNumber": 316,
+          "variants": []
+        },
         {
           "id": "swalot",
           "name": "Swalot",
@@ -5689,6 +6319,18 @@
           "name": "Carvanha",
           "pokedexNumber": 318,
           "variants": []
+        },
+        {
+          "id": "sharpedo",
+          "name": "Sharpedo",
+          "pokedexNumber": 319,
+          "variants": [
+            {
+              "id": "sharpedo-mega",
+              "name": "Sharpedo Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -5751,19 +6393,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "sharpedo",
-          "name": "Sharpedo",
-          "pokedexNumber": 319,
-          "variants": [
-            {
-              "id": "sharpedo-mega",
-              "name": "Sharpedo Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "carvanha",
+          "name": "Carvanha",
+          "pokedexNumber": 318,
+          "variants": []
         },
         {
-          "id": "sharpedo-mega",
+          "id": "sharpedo",
           "name": "Sharpedo",
           "pokedexNumber": 319,
           "variants": [
@@ -5828,19 +6464,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "sharpedo",
-          "name": "Sharpedo",
-          "pokedexNumber": 319,
-          "variants": [
-            {
-              "id": "sharpedo-mega",
-              "name": "Sharpedo Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "carvanha",
+          "name": "Carvanha",
+          "pokedexNumber": 318,
+          "variants": []
         },
         {
-          "id": "sharpedo-mega",
+          "id": "sharpedo",
           "name": "Sharpedo",
           "pokedexNumber": 319,
           "variants": [
@@ -5923,6 +6553,12 @@
           "name": "Wailmer",
           "pokedexNumber": 320,
           "variants": []
+        },
+        {
+          "id": "wailord",
+          "name": "Wailord",
+          "pokedexNumber": 321,
+          "variants": []
         }
       ],
       "sprites": {
@@ -5991,6 +6627,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "wailmer",
+          "name": "Wailmer",
+          "pokedexNumber": 320,
+          "variants": []
+        },
         {
           "id": "wailord",
           "name": "Wailord",
@@ -6069,6 +6711,18 @@
           "name": "Numel",
           "pokedexNumber": 322,
           "variants": []
+        },
+        {
+          "id": "camerupt",
+          "name": "Camerupt",
+          "pokedexNumber": 323,
+          "variants": [
+            {
+              "id": "camerupt-mega",
+              "name": "Camerupt Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -6138,19 +6792,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "camerupt",
-          "name": "Camerupt",
-          "pokedexNumber": 323,
-          "variants": [
-            {
-              "id": "camerupt-mega",
-              "name": "Camerupt Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "numel",
+          "name": "Numel",
+          "pokedexNumber": 322,
+          "variants": []
         },
         {
-          "id": "camerupt-mega",
+          "id": "camerupt",
           "name": "Camerupt",
           "pokedexNumber": 323,
           "variants": [
@@ -6215,19 +6863,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "camerupt",
-          "name": "Camerupt",
-          "pokedexNumber": 323,
-          "variants": [
-            {
-              "id": "camerupt-mega",
-              "name": "Camerupt Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "numel",
+          "name": "Numel",
+          "pokedexNumber": 322,
+          "variants": []
         },
         {
-          "id": "camerupt-mega",
+          "id": "camerupt",
           "name": "Camerupt",
           "pokedexNumber": 323,
           "variants": [
@@ -6382,6 +7024,12 @@
           "name": "Spoink",
           "pokedexNumber": 325,
           "variants": []
+        },
+        {
+          "id": "grumpig",
+          "name": "Grumpig",
+          "pokedexNumber": 326,
+          "variants": []
         }
       ],
       "sprites": {
@@ -6449,6 +7097,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "spoink",
+          "name": "Spoink",
+          "pokedexNumber": 325,
+          "variants": []
+        },
         {
           "id": "grumpig",
           "name": "Grumpig",
@@ -6599,6 +7253,18 @@
           "name": "Trapinch",
           "pokedexNumber": 328,
           "variants": []
+        },
+        {
+          "id": "vibrava",
+          "name": "Vibrava",
+          "pokedexNumber": 329,
+          "variants": []
+        },
+        {
+          "id": "flygon",
+          "name": "Flygon",
+          "pokedexNumber": 330,
+          "variants": []
         }
       ],
       "sprites": {
@@ -6656,9 +7322,21 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "trapinch",
+          "name": "Trapinch",
+          "pokedexNumber": 328,
+          "variants": []
+        },
+        {
           "id": "vibrava",
           "name": "Vibrava",
           "pokedexNumber": 329,
+          "variants": []
+        },
+        {
+          "id": "flygon",
+          "name": "Flygon",
+          "pokedexNumber": 330,
           "variants": []
         }
       ],
@@ -6716,6 +7394,18 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "trapinch",
+          "name": "Trapinch",
+          "pokedexNumber": 328,
+          "variants": []
+        },
+        {
+          "id": "vibrava",
+          "name": "Vibrava",
+          "pokedexNumber": 329,
+          "variants": []
+        },
         {
           "id": "flygon",
           "name": "Flygon",
@@ -6787,6 +7477,12 @@
           "name": "Cacnea",
           "pokedexNumber": 331,
           "variants": []
+        },
+        {
+          "id": "cacturne",
+          "name": "Cacturne",
+          "pokedexNumber": 332,
+          "variants": []
         }
       ],
       "sprites": {
@@ -6849,6 +7545,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "cacnea",
+          "name": "Cacnea",
+          "pokedexNumber": 331,
+          "variants": []
+        },
         {
           "id": "cacturne",
           "name": "Cacturne",
@@ -6922,6 +7624,18 @@
           "name": "Swablu",
           "pokedexNumber": 333,
           "variants": []
+        },
+        {
+          "id": "altaria",
+          "name": "Altaria",
+          "pokedexNumber": 334,
+          "variants": [
+            {
+              "id": "altaria-mega",
+              "name": "Altaria Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -6986,19 +7700,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "altaria",
-          "name": "Altaria",
-          "pokedexNumber": 334,
-          "variants": [
-            {
-              "id": "altaria-mega",
-              "name": "Altaria Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "swablu",
+          "name": "Swablu",
+          "pokedexNumber": 333,
+          "variants": []
         },
         {
-          "id": "altaria-mega",
+          "id": "altaria",
           "name": "Altaria",
           "pokedexNumber": 334,
           "variants": [
@@ -7065,19 +7773,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "altaria",
-          "name": "Altaria",
-          "pokedexNumber": 334,
-          "variants": [
-            {
-              "id": "altaria-mega",
-              "name": "Altaria Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "swablu",
+          "name": "Swablu",
+          "pokedexNumber": 333,
+          "variants": []
         },
         {
-          "id": "altaria-mega",
+          "id": "altaria",
           "name": "Altaria",
           "pokedexNumber": 334,
           "variants": [
@@ -7410,6 +8112,12 @@
           "name": "Barboach",
           "pokedexNumber": 339,
           "variants": []
+        },
+        {
+          "id": "whiscash",
+          "name": "Whiscash",
+          "pokedexNumber": 340,
+          "variants": []
         }
       ],
       "sprites": {
@@ -7479,6 +8187,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "barboach",
+          "name": "Barboach",
+          "pokedexNumber": 339,
+          "variants": []
+        },
         {
           "id": "whiscash",
           "name": "Whiscash",
@@ -7558,6 +8272,12 @@
           "name": "Corphish",
           "pokedexNumber": 341,
           "variants": []
+        },
+        {
+          "id": "crawdaunt",
+          "name": "Crawdaunt",
+          "pokedexNumber": 342,
+          "variants": []
         }
       ],
       "sprites": {
@@ -7629,6 +8349,12 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "corphish",
+          "name": "Corphish",
+          "pokedexNumber": 341,
+          "variants": []
+        },
+        {
           "id": "crawdaunt",
           "name": "Crawdaunt",
           "pokedexNumber": 342,
@@ -7692,6 +8418,12 @@
           "name": "Baltoy",
           "pokedexNumber": 343,
           "variants": []
+        },
+        {
+          "id": "claydol",
+          "name": "Claydol",
+          "pokedexNumber": 344,
+          "variants": []
         }
       ],
       "sprites": {
@@ -7746,6 +8478,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "baltoy",
+          "name": "Baltoy",
+          "pokedexNumber": 343,
+          "variants": []
+        },
         {
           "id": "claydol",
           "name": "Claydol",
@@ -7817,6 +8555,12 @@
           "name": "Lileep",
           "pokedexNumber": 345,
           "variants": []
+        },
+        {
+          "id": "cradily",
+          "name": "Cradily",
+          "pokedexNumber": 346,
+          "variants": []
         }
       ],
       "sprites": {
@@ -7878,6 +8622,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "lileep",
+          "name": "Lileep",
+          "pokedexNumber": 345,
+          "variants": []
+        },
         {
           "id": "cradily",
           "name": "Cradily",
@@ -7949,6 +8699,12 @@
           "name": "Anorith",
           "pokedexNumber": 347,
           "variants": []
+        },
+        {
+          "id": "armaldo",
+          "name": "Armaldo",
+          "pokedexNumber": 348,
+          "variants": []
         }
       ],
       "sprites": {
@@ -8010,6 +8766,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "anorith",
+          "name": "Anorith",
+          "pokedexNumber": 347,
+          "variants": []
+        },
         {
           "id": "armaldo",
           "name": "Armaldo",
@@ -8089,6 +8851,12 @@
           "name": "Feebas",
           "pokedexNumber": 349,
           "variants": []
+        },
+        {
+          "id": "milotic",
+          "name": "Milotic",
+          "pokedexNumber": 350,
+          "variants": []
         }
       ],
       "sprites": {
@@ -8159,6 +8927,12 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "feebas",
+          "name": "Feebas",
+          "pokedexNumber": 349,
+          "variants": []
+        },
+        {
           "id": "milotic",
           "name": "Milotic",
           "pokedexNumber": 350,
@@ -8217,72 +8991,6 @@
       "evolutionChain": [
         {
           "id": "castform",
-          "name": "Castform",
-          "pokedexNumber": 351,
-          "variants": [
-            {
-              "id": "castform-rainy",
-              "name": "Castform Rainy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-snowy",
-              "name": "Castform Snowy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-sunny",
-              "name": "Castform Sunny",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "castform-sunny",
-          "name": "Castform",
-          "pokedexNumber": 351,
-          "variants": [
-            {
-              "id": "castform-rainy",
-              "name": "Castform Rainy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-snowy",
-              "name": "Castform Snowy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-sunny",
-              "name": "Castform Sunny",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "castform-rainy",
-          "name": "Castform",
-          "pokedexNumber": 351,
-          "variants": [
-            {
-              "id": "castform-rainy",
-              "name": "Castform Rainy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-snowy",
-              "name": "Castform Snowy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-sunny",
-              "name": "Castform Sunny",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "castform-snowy",
           "name": "Castform",
           "pokedexNumber": 351,
           "variants": [
@@ -8375,72 +9083,6 @@
               "kind": "style"
             }
           ]
-        },
-        {
-          "id": "castform-sunny",
-          "name": "Castform",
-          "pokedexNumber": 351,
-          "variants": [
-            {
-              "id": "castform-rainy",
-              "name": "Castform Rainy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-snowy",
-              "name": "Castform Snowy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-sunny",
-              "name": "Castform Sunny",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "castform-rainy",
-          "name": "Castform",
-          "pokedexNumber": 351,
-          "variants": [
-            {
-              "id": "castform-rainy",
-              "name": "Castform Rainy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-snowy",
-              "name": "Castform Snowy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-sunny",
-              "name": "Castform Sunny",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "castform-snowy",
-          "name": "Castform",
-          "pokedexNumber": 351,
-          "variants": [
-            {
-              "id": "castform-rainy",
-              "name": "Castform Rainy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-snowy",
-              "name": "Castform Snowy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-sunny",
-              "name": "Castform Sunny",
-              "kind": "style"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -8514,72 +9156,6 @@
               "kind": "style"
             }
           ]
-        },
-        {
-          "id": "castform-sunny",
-          "name": "Castform",
-          "pokedexNumber": 351,
-          "variants": [
-            {
-              "id": "castform-rainy",
-              "name": "Castform Rainy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-snowy",
-              "name": "Castform Snowy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-sunny",
-              "name": "Castform Sunny",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "castform-rainy",
-          "name": "Castform",
-          "pokedexNumber": 351,
-          "variants": [
-            {
-              "id": "castform-rainy",
-              "name": "Castform Rainy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-snowy",
-              "name": "Castform Snowy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-sunny",
-              "name": "Castform Sunny",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "castform-snowy",
-          "name": "Castform",
-          "pokedexNumber": 351,
-          "variants": [
-            {
-              "id": "castform-rainy",
-              "name": "Castform Rainy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-snowy",
-              "name": "Castform Snowy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-sunny",
-              "name": "Castform Sunny",
-              "kind": "style"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -8634,72 +9210,6 @@
       "evolutionChain": [
         {
           "id": "castform",
-          "name": "Castform",
-          "pokedexNumber": 351,
-          "variants": [
-            {
-              "id": "castform-rainy",
-              "name": "Castform Rainy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-snowy",
-              "name": "Castform Snowy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-sunny",
-              "name": "Castform Sunny",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "castform-sunny",
-          "name": "Castform",
-          "pokedexNumber": 351,
-          "variants": [
-            {
-              "id": "castform-rainy",
-              "name": "Castform Rainy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-snowy",
-              "name": "Castform Snowy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-sunny",
-              "name": "Castform Sunny",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "castform-rainy",
-          "name": "Castform",
-          "pokedexNumber": 351,
-          "variants": [
-            {
-              "id": "castform-rainy",
-              "name": "Castform Rainy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-snowy",
-              "name": "Castform Snowy",
-              "kind": "style"
-            },
-            {
-              "id": "castform-sunny",
-              "name": "Castform Sunny",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "castform-snowy",
           "name": "Castform",
           "pokedexNumber": 351,
           "variants": [
@@ -8854,6 +9364,18 @@
           "name": "Shuppet",
           "pokedexNumber": 353,
           "variants": []
+        },
+        {
+          "id": "banette",
+          "name": "Banette",
+          "pokedexNumber": 354,
+          "variants": [
+            {
+              "id": "banette-mega",
+              "name": "Banette Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -8922,19 +9444,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "banette",
-          "name": "Banette",
-          "pokedexNumber": 354,
-          "variants": [
-            {
-              "id": "banette-mega",
-              "name": "Banette Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "shuppet",
+          "name": "Shuppet",
+          "pokedexNumber": 353,
+          "variants": []
         },
         {
-          "id": "banette-mega",
+          "id": "banette",
           "name": "Banette",
           "pokedexNumber": 354,
           "variants": [
@@ -8998,19 +9514,13 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "banette",
-          "name": "Banette",
-          "pokedexNumber": 354,
-          "variants": [
-            {
-              "id": "banette-mega",
-              "name": "Banette Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "shuppet",
+          "name": "Shuppet",
+          "pokedexNumber": 353,
+          "variants": []
         },
         {
-          "id": "banette-mega",
+          "id": "banette",
           "name": "Banette",
           "pokedexNumber": 354,
           "variants": [
@@ -9086,6 +9596,18 @@
           "name": "Duskull",
           "pokedexNumber": 355,
           "variants": []
+        },
+        {
+          "id": "dusclops",
+          "name": "Dusclops",
+          "pokedexNumber": 356,
+          "variants": []
+        },
+        {
+          "id": "dusknoir",
+          "name": "Dusknoir",
+          "pokedexNumber": 477,
+          "variants": []
         }
       ],
       "sprites": {
@@ -9148,9 +9670,21 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "duskull",
+          "name": "Duskull",
+          "pokedexNumber": 355,
+          "variants": []
+        },
+        {
           "id": "dusclops",
           "name": "Dusclops",
           "pokedexNumber": 356,
+          "variants": []
+        },
+        {
+          "id": "dusknoir",
+          "name": "Dusknoir",
+          "pokedexNumber": 477,
           "variants": []
         }
       ],
@@ -9292,16 +9826,10 @@
           ]
         },
         {
-          "id": "chimecho-mega",
-          "name": "Chimecho",
-          "pokedexNumber": 358,
-          "variants": [
-            {
-              "id": "chimecho-mega",
-              "name": "Chimecho Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "chingling",
+          "name": "Chingling",
+          "pokedexNumber": 433,
+          "variants": []
         }
       ],
       "sprites": {
@@ -9369,16 +9897,10 @@
           ]
         },
         {
-          "id": "chimecho-mega",
-          "name": "Chimecho",
-          "pokedexNumber": 358,
-          "variants": [
-            {
-              "id": "chimecho-mega",
-              "name": "Chimecho Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "chingling",
+          "name": "Chingling",
+          "pokedexNumber": 433,
+          "variants": []
         }
       ],
       "sprites": {
@@ -9462,40 +9984,6 @@
               "kind": "mega"
             }
           ]
-        },
-        {
-          "id": "absol-mega",
-          "name": "Absol",
-          "pokedexNumber": 359,
-          "variants": [
-            {
-              "id": "absol-mega",
-              "name": "Absol Mega",
-              "kind": "mega"
-            },
-            {
-              "id": "absol-mega-z",
-              "name": "Absol Mega Z",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "absol-mega-z",
-          "name": "Absol",
-          "pokedexNumber": 359,
-          "variants": [
-            {
-              "id": "absol-mega",
-              "name": "Absol Mega",
-              "kind": "mega"
-            },
-            {
-              "id": "absol-mega-z",
-              "name": "Absol Mega Z",
-              "kind": "mega"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -9551,40 +10039,6 @@
       "evolutionChain": [
         {
           "id": "absol",
-          "name": "Absol",
-          "pokedexNumber": 359,
-          "variants": [
-            {
-              "id": "absol-mega",
-              "name": "Absol Mega",
-              "kind": "mega"
-            },
-            {
-              "id": "absol-mega-z",
-              "name": "Absol Mega Z",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "absol-mega",
-          "name": "Absol",
-          "pokedexNumber": 359,
-          "variants": [
-            {
-              "id": "absol-mega",
-              "name": "Absol Mega",
-              "kind": "mega"
-            },
-            {
-              "id": "absol-mega-z",
-              "name": "Absol Mega Z",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "absol-mega-z",
           "name": "Absol",
           "pokedexNumber": 359,
           "variants": [
@@ -9669,40 +10123,6 @@
               "kind": "mega"
             }
           ]
-        },
-        {
-          "id": "absol-mega",
-          "name": "Absol",
-          "pokedexNumber": 359,
-          "variants": [
-            {
-              "id": "absol-mega",
-              "name": "Absol Mega",
-              "kind": "mega"
-            },
-            {
-              "id": "absol-mega-z",
-              "name": "Absol Mega Z",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "absol-mega-z",
-          "name": "Absol",
-          "pokedexNumber": 359,
-          "variants": [
-            {
-              "id": "absol-mega",
-              "name": "Absol Mega",
-              "kind": "mega"
-            },
-            {
-              "id": "absol-mega-z",
-              "name": "Absol Mega Z",
-              "kind": "mega"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -9763,6 +10183,12 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "wobbuffet",
+          "name": "Wobbuffet",
+          "pokedexNumber": 202,
+          "variants": []
+        },
         {
           "id": "wynaut",
           "name": "Wynaut",
@@ -9842,6 +10268,30 @@
           "name": "Snorunt",
           "pokedexNumber": 361,
           "variants": []
+        },
+        {
+          "id": "glalie",
+          "name": "Glalie",
+          "pokedexNumber": 362,
+          "variants": [
+            {
+              "id": "glalie-mega",
+              "name": "Glalie Mega",
+              "kind": "mega"
+            }
+          ]
+        },
+        {
+          "id": "froslass",
+          "name": "Froslass",
+          "pokedexNumber": 478,
+          "variants": [
+            {
+              "id": "froslass-mega",
+              "name": "Froslass Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -9912,6 +10362,12 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "snorunt",
+          "name": "Snorunt",
+          "pokedexNumber": 361,
+          "variants": []
+        },
+        {
           "id": "glalie",
           "name": "Glalie",
           "pokedexNumber": 362,
@@ -9924,13 +10380,13 @@
           ]
         },
         {
-          "id": "glalie-mega",
-          "name": "Glalie",
-          "pokedexNumber": 362,
+          "id": "froslass",
+          "name": "Froslass",
+          "pokedexNumber": 478,
           "variants": [
             {
-              "id": "glalie-mega",
-              "name": "Glalie Mega",
+              "id": "froslass-mega",
+              "name": "Froslass Mega",
               "kind": "mega"
             }
           ]
@@ -9990,6 +10446,12 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "snorunt",
+          "name": "Snorunt",
+          "pokedexNumber": 361,
+          "variants": []
+        },
+        {
           "id": "glalie",
           "name": "Glalie",
           "pokedexNumber": 362,
@@ -10002,13 +10464,13 @@
           ]
         },
         {
-          "id": "glalie-mega",
-          "name": "Glalie",
-          "pokedexNumber": 362,
+          "id": "froslass",
+          "name": "Froslass",
+          "pokedexNumber": 478,
           "variants": [
             {
-              "id": "glalie-mega",
-              "name": "Glalie Mega",
+              "id": "froslass-mega",
+              "name": "Froslass Mega",
               "kind": "mega"
             }
           ]
@@ -10086,6 +10548,18 @@
           "name": "Spheal",
           "pokedexNumber": 363,
           "variants": []
+        },
+        {
+          "id": "sealeo",
+          "name": "Sealeo",
+          "pokedexNumber": 364,
+          "variants": []
+        },
+        {
+          "id": "walrein",
+          "name": "Walrein",
+          "pokedexNumber": 365,
+          "variants": []
         }
       ],
       "sprites": {
@@ -10156,9 +10630,21 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "spheal",
+          "name": "Spheal",
+          "pokedexNumber": 363,
+          "variants": []
+        },
+        {
           "id": "sealeo",
           "name": "Sealeo",
           "pokedexNumber": 364,
+          "variants": []
+        },
+        {
+          "id": "walrein",
+          "name": "Walrein",
+          "pokedexNumber": 365,
           "variants": []
         }
       ],
@@ -10230,6 +10716,18 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "spheal",
+          "name": "Spheal",
+          "pokedexNumber": 363,
+          "variants": []
+        },
+        {
+          "id": "sealeo",
+          "name": "Sealeo",
+          "pokedexNumber": 364,
+          "variants": []
+        },
+        {
           "id": "walrein",
           "name": "Walrein",
           "pokedexNumber": 365,
@@ -10297,6 +10795,18 @@
           "name": "Clamperl",
           "pokedexNumber": 366,
           "variants": []
+        },
+        {
+          "id": "huntail",
+          "name": "Huntail",
+          "pokedexNumber": 367,
+          "variants": []
+        },
+        {
+          "id": "gorebyss",
+          "name": "Gorebyss",
+          "pokedexNumber": 368,
+          "variants": []
         }
       ],
       "sprites": {
@@ -10356,9 +10866,21 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "clamperl",
+          "name": "Clamperl",
+          "pokedexNumber": 366,
+          "variants": []
+        },
+        {
           "id": "huntail",
           "name": "Huntail",
           "pokedexNumber": 367,
+          "variants": []
+        },
+        {
+          "id": "gorebyss",
+          "name": "Gorebyss",
+          "pokedexNumber": 368,
           "variants": []
         }
       ],
@@ -10418,6 +10940,18 @@
       "isLegendary": false,
       "isMythical": false,
       "evolutionChain": [
+        {
+          "id": "clamperl",
+          "name": "Clamperl",
+          "pokedexNumber": 366,
+          "variants": []
+        },
+        {
+          "id": "huntail",
+          "name": "Huntail",
+          "pokedexNumber": 367,
+          "variants": []
+        },
         {
           "id": "gorebyss",
           "name": "Gorebyss",
@@ -10628,6 +11162,24 @@
           "name": "Bagon",
           "pokedexNumber": 371,
           "variants": []
+        },
+        {
+          "id": "shelgon",
+          "name": "Shelgon",
+          "pokedexNumber": 372,
+          "variants": []
+        },
+        {
+          "id": "salamence",
+          "name": "Salamence",
+          "pokedexNumber": 373,
+          "variants": [
+            {
+              "id": "salamence-mega",
+              "name": "Salamence Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -10690,10 +11242,28 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "bagon",
+          "name": "Bagon",
+          "pokedexNumber": 371,
+          "variants": []
+        },
+        {
           "id": "shelgon",
           "name": "Shelgon",
           "pokedexNumber": 372,
           "variants": []
+        },
+        {
+          "id": "salamence",
+          "name": "Salamence",
+          "pokedexNumber": 373,
+          "variants": [
+            {
+              "id": "salamence-mega",
+              "name": "Salamence Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -10757,19 +11327,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "salamence",
-          "name": "Salamence",
-          "pokedexNumber": 373,
-          "variants": [
-            {
-              "id": "salamence-mega",
-              "name": "Salamence Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "bagon",
+          "name": "Bagon",
+          "pokedexNumber": 371,
+          "variants": []
         },
         {
-          "id": "salamence-mega",
+          "id": "shelgon",
+          "name": "Shelgon",
+          "pokedexNumber": 372,
+          "variants": []
+        },
+        {
+          "id": "salamence",
           "name": "Salamence",
           "pokedexNumber": 373,
           "variants": [
@@ -10835,19 +11405,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "salamence",
-          "name": "Salamence",
-          "pokedexNumber": 373,
-          "variants": [
-            {
-              "id": "salamence-mega",
-              "name": "Salamence Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "bagon",
+          "name": "Bagon",
+          "pokedexNumber": 371,
+          "variants": []
         },
         {
-          "id": "salamence-mega",
+          "id": "shelgon",
+          "name": "Shelgon",
+          "pokedexNumber": 372,
+          "variants": []
+        },
+        {
+          "id": "salamence",
           "name": "Salamence",
           "pokedexNumber": 373,
           "variants": [
@@ -10924,6 +11494,24 @@
           "name": "Beldum",
           "pokedexNumber": 374,
           "variants": []
+        },
+        {
+          "id": "metang",
+          "name": "Metang",
+          "pokedexNumber": 375,
+          "variants": []
+        },
+        {
+          "id": "metagross",
+          "name": "Metagross",
+          "pokedexNumber": 376,
+          "variants": [
+            {
+              "id": "metagross-mega",
+              "name": "Metagross Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -10987,10 +11575,28 @@
       "isMythical": false,
       "evolutionChain": [
         {
+          "id": "beldum",
+          "name": "Beldum",
+          "pokedexNumber": 374,
+          "variants": []
+        },
+        {
           "id": "metang",
           "name": "Metang",
           "pokedexNumber": 375,
           "variants": []
+        },
+        {
+          "id": "metagross",
+          "name": "Metagross",
+          "pokedexNumber": 376,
+          "variants": [
+            {
+              "id": "metagross-mega",
+              "name": "Metagross Mega",
+              "kind": "mega"
+            }
+          ]
         }
       ],
       "sprites": {
@@ -11054,19 +11660,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "metagross",
-          "name": "Metagross",
-          "pokedexNumber": 376,
-          "variants": [
-            {
-              "id": "metagross-mega",
-              "name": "Metagross Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "beldum",
+          "name": "Beldum",
+          "pokedexNumber": 374,
+          "variants": []
         },
         {
-          "id": "metagross-mega",
+          "id": "metang",
+          "name": "Metang",
+          "pokedexNumber": 375,
+          "variants": []
+        },
+        {
+          "id": "metagross",
           "name": "Metagross",
           "pokedexNumber": 376,
           "variants": [
@@ -11132,19 +11738,19 @@
       "isMythical": false,
       "evolutionChain": [
         {
-          "id": "metagross",
-          "name": "Metagross",
-          "pokedexNumber": 376,
-          "variants": [
-            {
-              "id": "metagross-mega",
-              "name": "Metagross Mega",
-              "kind": "mega"
-            }
-          ]
+          "id": "beldum",
+          "name": "Beldum",
+          "pokedexNumber": 374,
+          "variants": []
         },
         {
-          "id": "metagross-mega",
+          "id": "metang",
+          "name": "Metang",
+          "pokedexNumber": 375,
+          "variants": []
+        },
+        {
+          "id": "metagross",
           "name": "Metagross",
           "pokedexNumber": 376,
           "variants": [
@@ -11412,18 +12018,6 @@
               "kind": "mega"
             }
           ]
-        },
-        {
-          "id": "latias-mega",
-          "name": "Latias",
-          "pokedexNumber": 380,
-          "variants": [
-            {
-              "id": "latias-mega",
-              "name": "Latias Mega",
-              "kind": "mega"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -11478,18 +12072,6 @@
       "evolutionChain": [
         {
           "id": "latias",
-          "name": "Latias",
-          "pokedexNumber": 380,
-          "variants": [
-            {
-              "id": "latias-mega",
-              "name": "Latias Mega",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "latias-mega",
           "name": "Latias",
           "pokedexNumber": 380,
           "variants": [
@@ -11562,18 +12144,6 @@
               "kind": "mega"
             }
           ]
-        },
-        {
-          "id": "latios-mega",
-          "name": "Latios",
-          "pokedexNumber": 381,
-          "variants": [
-            {
-              "id": "latios-mega",
-              "name": "Latios Mega",
-              "kind": "mega"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -11628,18 +12198,6 @@
       "evolutionChain": [
         {
           "id": "latios",
-          "name": "Latios",
-          "pokedexNumber": 381,
-          "variants": [
-            {
-              "id": "latios-mega",
-              "name": "Latios Mega",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "latios-mega",
           "name": "Latios",
           "pokedexNumber": 381,
           "variants": [
@@ -11711,18 +12269,6 @@
               "kind": "primal"
             }
           ]
-        },
-        {
-          "id": "kyogre-primal",
-          "name": "Kyogre",
-          "pokedexNumber": 382,
-          "variants": [
-            {
-              "id": "kyogre-primal",
-              "name": "Kyogre Primigenio",
-              "kind": "primal"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -11785,18 +12331,6 @@
               "kind": "primal"
             }
           ]
-        },
-        {
-          "id": "kyogre-primal",
-          "name": "Kyogre",
-          "pokedexNumber": 382,
-          "variants": [
-            {
-              "id": "kyogre-primal",
-              "name": "Kyogre Primigenio",
-              "kind": "primal"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -11850,18 +12384,6 @@
       "evolutionChain": [
         {
           "id": "groudon",
-          "name": "Groudon",
-          "pokedexNumber": 383,
-          "variants": [
-            {
-              "id": "groudon-primal",
-              "name": "Groudon Primigenio",
-              "kind": "primal"
-            }
-          ]
-        },
-        {
-          "id": "groudon-primal",
           "name": "Groudon",
           "pokedexNumber": 383,
           "variants": [
@@ -11934,18 +12456,6 @@
               "kind": "primal"
             }
           ]
-        },
-        {
-          "id": "groudon-primal",
-          "name": "Groudon",
-          "pokedexNumber": 383,
-          "variants": [
-            {
-              "id": "groudon-primal",
-              "name": "Groudon Primigenio",
-              "kind": "primal"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -12009,18 +12519,6 @@
               "kind": "mega"
             }
           ]
-        },
-        {
-          "id": "rayquaza-mega",
-          "name": "Rayquaza",
-          "pokedexNumber": 384,
-          "variants": [
-            {
-              "id": "rayquaza-mega",
-              "name": "Rayquaza Mega",
-              "kind": "mega"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -12075,18 +12573,6 @@
       "evolutionChain": [
         {
           "id": "rayquaza",
-          "name": "Rayquaza",
-          "pokedexNumber": 384,
-          "variants": [
-            {
-              "id": "rayquaza-mega",
-              "name": "Rayquaza Mega",
-              "kind": "mega"
-            }
-          ]
-        },
-        {
-          "id": "rayquaza-mega",
           "name": "Rayquaza",
           "pokedexNumber": 384,
           "variants": [
@@ -12225,72 +12711,6 @@
               "kind": "style"
             }
           ]
-        },
-        {
-          "id": "deoxys-attack",
-          "name": "Deoxys",
-          "pokedexNumber": 386,
-          "variants": [
-            {
-              "id": "deoxys-attack",
-              "name": "Deoxys Attack",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-defense",
-              "name": "Deoxys Defense",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-speed",
-              "name": "Deoxys Speed",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "deoxys-defense",
-          "name": "Deoxys",
-          "pokedexNumber": 386,
-          "variants": [
-            {
-              "id": "deoxys-attack",
-              "name": "Deoxys Attack",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-defense",
-              "name": "Deoxys Defense",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-speed",
-              "name": "Deoxys Speed",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "deoxys-speed",
-          "name": "Deoxys",
-          "pokedexNumber": 386,
-          "variants": [
-            {
-              "id": "deoxys-attack",
-              "name": "Deoxys Attack",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-defense",
-              "name": "Deoxys Defense",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-speed",
-              "name": "Deoxys Speed",
-              "kind": "style"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -12344,72 +12764,6 @@
       "evolutionChain": [
         {
           "id": "deoxys-normal",
-          "name": "Deoxys",
-          "pokedexNumber": 386,
-          "variants": [
-            {
-              "id": "deoxys-attack",
-              "name": "Deoxys Attack",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-defense",
-              "name": "Deoxys Defense",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-speed",
-              "name": "Deoxys Speed",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "deoxys-attack",
-          "name": "Deoxys",
-          "pokedexNumber": 386,
-          "variants": [
-            {
-              "id": "deoxys-attack",
-              "name": "Deoxys Attack",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-defense",
-              "name": "Deoxys Defense",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-speed",
-              "name": "Deoxys Speed",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "deoxys-defense",
-          "name": "Deoxys",
-          "pokedexNumber": 386,
-          "variants": [
-            {
-              "id": "deoxys-attack",
-              "name": "Deoxys Attack",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-defense",
-              "name": "Deoxys Defense",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-speed",
-              "name": "Deoxys Speed",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "deoxys-speed",
           "name": "Deoxys",
           "pokedexNumber": 386,
           "variants": [
@@ -12501,72 +12855,6 @@
               "kind": "style"
             }
           ]
-        },
-        {
-          "id": "deoxys-attack",
-          "name": "Deoxys",
-          "pokedexNumber": 386,
-          "variants": [
-            {
-              "id": "deoxys-attack",
-              "name": "Deoxys Attack",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-defense",
-              "name": "Deoxys Defense",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-speed",
-              "name": "Deoxys Speed",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "deoxys-defense",
-          "name": "Deoxys",
-          "pokedexNumber": 386,
-          "variants": [
-            {
-              "id": "deoxys-attack",
-              "name": "Deoxys Attack",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-defense",
-              "name": "Deoxys Defense",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-speed",
-              "name": "Deoxys Speed",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "deoxys-speed",
-          "name": "Deoxys",
-          "pokedexNumber": 386,
-          "variants": [
-            {
-              "id": "deoxys-attack",
-              "name": "Deoxys Attack",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-defense",
-              "name": "Deoxys Defense",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-speed",
-              "name": "Deoxys Speed",
-              "kind": "style"
-            }
-          ]
         }
       ],
       "sprites": {
@@ -12620,72 +12908,6 @@
       "evolutionChain": [
         {
           "id": "deoxys-normal",
-          "name": "Deoxys",
-          "pokedexNumber": 386,
-          "variants": [
-            {
-              "id": "deoxys-attack",
-              "name": "Deoxys Attack",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-defense",
-              "name": "Deoxys Defense",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-speed",
-              "name": "Deoxys Speed",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "deoxys-attack",
-          "name": "Deoxys",
-          "pokedexNumber": 386,
-          "variants": [
-            {
-              "id": "deoxys-attack",
-              "name": "Deoxys Attack",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-defense",
-              "name": "Deoxys Defense",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-speed",
-              "name": "Deoxys Speed",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "deoxys-defense",
-          "name": "Deoxys",
-          "pokedexNumber": 386,
-          "variants": [
-            {
-              "id": "deoxys-attack",
-              "name": "Deoxys Attack",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-defense",
-              "name": "Deoxys Defense",
-              "kind": "style"
-            },
-            {
-              "id": "deoxys-speed",
-              "name": "Deoxys Speed",
-              "kind": "style"
-            }
-          ]
-        },
-        {
-          "id": "deoxys-speed",
           "name": "Deoxys",
           "pokedexNumber": 386,
           "variants": [

@@ -476,7 +476,7 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
       ...current[key],
       activeSlotIds: ensureActiveSlots(mode, slots),
     }
-    setScenario(mode, { ...current, [key]: nextSide }, { touch: false })
+    setScenario(mode, { ...current, [key]: nextSide })
   }
 
   function setTarget(mode: BattleMode, side: DamageSideId, attackerSlot: DamageSlotNumber, defenderSlot: DamageSlotNumber) {
