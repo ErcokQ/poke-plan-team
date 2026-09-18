@@ -6,11 +6,16 @@ const directories = ['public/dex-snapshots', 'public/meta-snapshots']
 let checked = 0
 
 async function checkDirectory(directory) {
-  for (const entry of await readdir(directory, { withFileTypes: true })) {
+  const entries = await readdir(directory, { withFileTypes: true })
+  const names = new Set(entries.map((entry) => entry.name))
+  for (const entry of entries) {
     const path = join(directory, entry.name)
     if (entry.isDirectory()) {
       await checkDirectory(path)
       continue
+    }
+    if (entry.name.endsWith('.json.gz') && !names.has(entry.name.slice(0, -3))) {
+      throw new Error(`Snapshot JSON faltante: ${path}`)
     }
     if (!entry.name.endsWith('.json')) continue
 
