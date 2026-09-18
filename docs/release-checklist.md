@@ -4,6 +4,7 @@
 - ejecutar `npm run dex:sync` si cambiaron datos Dex
 - revisar diff de `public/dex-snapshots/`
 - confirmar que existen pares `*.json` y `*.json.gz`
+- ejecutar `node scripts/check-snapshots.mjs` para Dex y meta
 - confirmar que existen `generation.genN.*` y `profiles.genN.bucketK.*`
 - confirmar `VITE_APP_BASE_PATH=/estanque-de-mudkip/` para produccion
 - correr `npm run type-check`
@@ -39,5 +40,6 @@
 - lint sin cambios pendientes
 - tests unitarios en verde
 - build de produccion exitosa
+- CI de `qa` y `prod` en verde antes de activar el despliegue
 - smoke manual sin dependencias criticas externas
 - snapshots regenerados y versionados junto con el cambio si hubo refresco de catalogo
