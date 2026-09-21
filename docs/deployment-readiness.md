@@ -25,7 +25,7 @@ un paso manual revisable, nunca una dependencia del deploy.
 - Promocionar solo commits revisados desde `dev/release-mc` a `qa` y despues
   a `prod`, comprobar CI remoto y configurar reglas de proteccion de ramas.
 - Preparar el entorno `production` de GitHub con secretos SSH y restriccion a
-  `prod`; verificar permisos del usuario VPS, huella SSH, Nginx/TLS y fallback
+  `prod`; verificar permisos del usuario VPS, huella SSH, Apache/TLS y fallback
   SPA. Si la ruta publica existente es un directorio, migrarla a symlink de
   forma supervisada antes del primer deploy.
 - Hacer smoke real y revisar los logs de la primera publicacion. Una build

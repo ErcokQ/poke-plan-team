@@ -1,140 +1,121 @@
-# Deploy en VPS
+# Deploy automatico en VPS
 
-## Objetivo
+## Objetivo y arquitectura
 
-Publicar la aplicacion en:
+La aplicacion se publica como SPA estatica en:
 
-- dominio: `m3rsync.com`
-- subruta: `/estanque-de-mudkip/`
+- URL: `https://m3rsync.com/estanque-de-mudkip/`
+- Virtualmin/Apache: `/home/<VPS_VIRTUALMIN_USER>/public_html`
+- releases: `/home/<VPS_VIRTUALMIN_USER>/releases/estanque-de-mudkip/<sha>`
+- ruta publica: `public_html/estanque-de-mudkip` como enlace a la release activa
 
-La aplicacion debe compilarse y servirse como SPA estatica bajo esa subruta.
+Este contrato sigue el despliegue existente de `mundial-predictor` en la misma
+VPS. Esta aplicacion no necesita Node, PM2, proxy inverso ni base de datos en el
+servidor: GitHub Actions construye `dist/` y la VPS solo sirve archivos.
 
-## Decision sobre dex:sync
+## Flujo de ramas
 
-### Recomendacion
-Mantener `public/dex-snapshots` versionado en git y tratar `npm run dex:sync` como paso de mantenimiento, no de deploy.
+```text
+dev/release-mc -> qa -> prod -> deploy automatico
+```
 
-### Motivo
-- el build queda reproducible
-- el deploy no depende de `PokeAPI`
-- rollback es simple
-- se evita que un cambio externo en `PokeAPI` altere una publicacion sin revision
+La rama de integracion usa `dev/release-mc` porque ya existe
+`dev/champions-overlay` y Git no permite tener simultaneamente una rama `dev`.
+Promocionar el mismo commit revisado a `qa` y luego a `prod`. El push a `prod`
+es el unico evento que publica en la VPS.
 
-### Cuando correr dex:sync
-- cuando quieras actualizar catalogo Dex
-- antes de una release en la que realmente cambien snapshots
-- no en cada push ni en cada deploy de la VPS
+## CI/CD
 
-## Variables de build
+`.github/workflows/release.yml` ejecuta con Node 22:
 
-Produccion usa:
+1. `npm ci`.
+2. Verificacion de pares de snapshots JSON/GZ.
+3. Lint sin escritura.
+4. Pruebas unitarias.
+5. Build de produccion con type-check.
+6. Almacena exactamente ese `dist/` como artefacto.
+7. En `prod`, sube una release versionada, cambia el enlace publico y ejecuta
+   smoke sobre una ruta SPA y el catalogo local.
+8. Si el smoke falla, restaura la release anterior.
 
-```sh
+Las tareas `dex:sync`, `champions:regulation:sync` y `champions:meta:sync` son
+mantenimiento previo a la release. No se ejecutan durante el deploy, por lo
+que una publicacion no depende de PokeAPI ni de otras fuentes externas.
+
+## Entorno y secretos de GitHub
+
+Crear el environment `production`, restringirlo a `prod` y registrar:
+
+| Nombre | Tipo | Uso |
+| --- | --- | --- |
+| `VPS_HOST` | secret | IP o host SSH de la VPS |
+| `VPS_USER` | secret | Usuario que ejecuta SSH/rsync |
+| `VPS_SSH_KEY` | secret | Clave privada ed25519 sin passphrase para CD |
+| `VPS_KNOWN_HOSTS` | secret | Linea verificada de `known_hosts` para la VPS |
+| `VPS_VIRTUALMIN_USER` | secret | Propietario del virtual server `m3rsync.com` |
+| `VPS_PORT` | secret opcional | Puerto SSH; usa 22 si esta vacio |
+
+La huella no se obtiene con `ssh-keyscan` dentro del workflow. Debe verificarse
+por un canal confiable y guardarse en `VPS_KNOWN_HOSTS`, evitando confiar en
+una respuesta de red no autenticada durante el despliegue.
+
+## Preparacion unica de la VPS
+
+Usar preferentemente el usuario de Virtualmin también como `VPS_USER`. Así el
+deploy conserva el propietario esperado del virtual server. Sustituir el
+marcador por ese usuario:
+
+```bash
+sudo -u VIRTUALMIN_USER mkdir -p \
+  /home/VIRTUALMIN_USER/releases/estanque-de-mudkip
+```
+
+Agregar la clave publica dedicada a `~VIRTUALMIN_USER/.ssh/authorized_keys` y
+confirmar que ese usuario puede crear carpetas y enlaces en las dos rutas
+anteriores. Si `VPS_USER` debe ser distinto, concederle solo esos permisos sin
+cambiar el propietario de todo `public_html`.
+El workflow agrega `.htaccess` con fallback SPA, cache larga para JS/CSS/fuentes
+compilados y cache corta para snapshots. Apache necesita
+`mod_rewrite`, `mod_headers`, `AllowOverride FileInfo` y permitir enlaces
+simbolicos para esa ruta, igual que el virtual server existente.
+
+Si `public_html/estanque-de-mudkip` ya existe como directorio real, el script
+se detiene deliberadamente. Migrarlo una sola vez, conservando respaldo:
+
+```bash
+mv /home/VIRTUALMIN_USER/public_html/estanque-de-mudkip \
+  /home/VIRTUALMIN_USER/public_html/estanque-de-mudkip.pre-cd
+```
+
+No ejecutar esa migracion hasta revisar que la ruta y el contenido actuales
+sean los esperados.
+
+## Build
+
+Produccion usa `.env.production`:
+
+```text
 VITE_APP_BASE_PATH=/estanque-de-mudkip/
 VITE_DEX_SOURCE=snapshot
 ```
 
-El repositorio ya deja ese valor en `.env.production`.
+El workflow publica el artefacto `dist/`; no sincroniza el repositorio completo
+ni instala dependencias en la VPS.
 
-## Build recomendado
+## Verificacion y rollback
 
-```sh
-npm ci
-npm run type-check
-npm run test:unit -- --run
-npm run build
+El deploy prueba automáticamente:
+
+```text
+https://m3rsync.com/estanque-de-mudkip/vgc/dex
+https://m3rsync.com/estanque-de-mudkip/dex-snapshots/es/catalog.json
 ```
 
-El artefacto a publicar es `dist/`.
+Para verificar manualmente, abrir también Builder, Analitica, Estrategia y
+Damage Calc, y refrescar una ruta interna. Para rollback manual, apuntar el
+enlace `public_html/estanque-de-mudkip` a un SHA anterior verificado y repetir
+los smoke. Las releases antiguas no se eliminan automáticamente.
 
-## Estructura requerida en VPS
-
-Ejemplo:
-
-```txt
-/var/www/m3rsync.com/
-  estanque-de-mudkip -> .releases/estanque-de-mudkip/<sha>/
-  .releases/estanque-de-mudkip/<sha>/
-    index.html
-    assets/
-    dex-snapshots/
-    meta-snapshots/
-```
-
-El usuario SSH debe poder crear carpetas y enlaces en `/var/www/m3rsync.com`.
-Si ya existe `estanque-de-mudkip` como directorio real, el script se detiene:
-hay que migrarlo de forma supervisada antes del primer deploy automatizado.
-Conservar la release anterior permite restaurarla si falla el smoke. Planificar
-limpieza periodica de releases antiguas, sin borrar la release activa.
-
-## Nginx
-
-### Objetivo
-- servir la SPA bajo `/estanque-de-mudkip/`
-- reescribir rutas al `index.html`
-- cachear bien assets compilados
-- no cachear demasiado agresivo los snapshots, porque sus nombres son estables
-
-### Ejemplo base
-
-```nginx
-server {
-    server_name m3rsync.com;
-
-    root /var/www/m3rsync.com;
-
-    location /estanque-de-mudkip/assets/ {
-        try_files $uri =404;
-        expires 1y;
-        add_header Cache-Control "public, immutable";
-    }
-
-    location ~ ^/estanque-de-mudkip/(dex-snapshots|meta-snapshots)/ {
-        try_files $uri =404;
-        expires 5m;
-        add_header Cache-Control "public, max-age=300, must-revalidate";
-    }
-
-    location /estanque-de-mudkip/ {
-        try_files $uri $uri/ /estanque-de-mudkip/index.html;
-    }
-}
-```
-
-## Notas de cache
-
-- `assets/` del build Vite salen con hash y pueden cachearse agresivamente
-- `dex-snapshots/` y `meta-snapshots/` no usan nombres con hash, por eso conviene cache corto
-- los pares `*.json.gz` deben publicarse tal cual junto con `*.json`
-
-## Ramas y pipeline
-
-`main` sigue siendo la rama historica. La integracion de esta release se prepara
-en `dev/release-mc` (no puede llamarse `dev` porque existe `dev/champions-overlay`).
-Promocionar el mismo commit validado a `qa` y despues a `prod`. No mezclar
-cambios pendientes de otras ramas sin revisarlos. Configurar proteccion de
-`qa` y `prod` y exigir el check `validate` antes de promocionar.
-
-`.github/workflows/release.yml` valida pushes y PR con Node 22, `npm ci`,
-pares JSON/GZ (`node scripts/check-snapshots.mjs`), lint, pruebas y build
-(que incluye type-check). Solo un push a
-`prod` publica el artefacto `dist/` generado por ese mismo commit. `dex:sync`
-y las sincronizaciones Champions son tareas manuales antes de la promocion,
-no se ejecutan durante CD. La accion de deploy usa el entorno `production` de
-GitHub: restringirlo a `prod` y agregar revisores requeridos si se desea
-aprobacion adicional antes de publicar.
-
-Configurar en ese entorno los secretos `VPS_HOST`, `VPS_USER`, `VPS_SSH_KEY`
-(clave privada para usuario de despliegue con acceso de escritura) y
-`VPS_KNOWN_HOSTS` (entrada de host verificada previamente fuera del pipeline).
-`VPS_PORT` es una variable opcional (por defecto 22). No guardar secretos
-en el repositorio ni aceptar automaticamente la huella SSH. La accion necesita
-que Nginx ya sirva el directorio, TLS funcione y el fallback SPA anterior este
-aplicado; comprobar `nginx -t` y recargarlo durante la preparacion de la VPS.
-
-El CD copia `dist/` a una carpeta versionada, cambia el symlink y prueba
-`/estanque-de-mudkip/vgc/dex` y el catalogo JSON. Ante fallo vuelve al
-symlink anterior (si existe) y marca el job como fallido. Para rollback manual,
-apuntar `estanque-de-mudkip` a una release anterior verificada y repetir el
-smoke; no reusar una carpeta parcial. El pipeline no configura GitHub, VPS,
-Nginx ni DNS por si mismo.
+La primera ejecución debe supervisarse desde GitHub Actions y desde los logs de
+Apache/Virtualmin. La validacion local no demuestra permisos SSH, configuracion
+de Apache, TLS ni disponibilidad publica.

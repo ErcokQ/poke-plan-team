@@ -56,12 +56,27 @@ jobs:
         with:
           name: estanque-de-mudkip-${{ github.sha }}
           path: dist/
+      - name: Validar configuracion de la VPS
+        shell: bash
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
+          VPS_VIRTUALMIN_USER: ${{ secrets.VPS_VIRTUALMIN_USER }}
+        run: |
+          test -n "$VPS_HOST" || { echo 'Falta VPS_HOST'; exit 1; }
+          test -n "$VPS_USER" || { echo 'Falta VPS_USER'; exit 1; }
+          test -n "$VPS_SSH_KEY" || { echo 'Falta VPS_SSH_KEY'; exit 1; }
+          test -n "$VPS_KNOWN_HOSTS" || { echo 'Falta VPS_KNOWN_HOSTS'; exit 1; }
+          test -n "$VPS_VIRTUALMIN_USER" || { echo 'Falta VPS_VIRTUALMIN_USER'; exit 1; }
       - name: Publicar release y verificar URL
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USER: ${{ secrets.VPS_USER }}
           VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
           VPS_KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
-          VPS_PORT: ${{ vars.VPS_PORT }}
+          VPS_VIRTUALMIN_USER: ${{ secrets.VPS_VIRTUALMIN_USER }}
+          VPS_PORT: ${{ secrets.VPS_PORT }}
           RELEASE_SHA: ${{ github.sha }}
         run: bash scripts/deploy-vps.sh
