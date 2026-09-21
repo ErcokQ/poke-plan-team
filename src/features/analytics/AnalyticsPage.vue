@@ -16,11 +16,12 @@ import { TYPE_KEYS } from '@/models/domain'
 import { TYPE_META } from '@/models/type-meta'
 import { effectiveness, effectivenessAgainstDual } from '@/models/type-chart'
 import TeamSlotPicker from '@/features/shared/components/TeamSlotPicker.vue'
+import ChampionsSpeedComparisonModal from '@/features/analytics/components/ChampionsSpeedComparisonModal.vue'
 import { useAnalyticsStore } from '@/stores/analytics'
 import { useDexStore } from '@/stores/dex'
 import { useTeamStore } from '@/stores/team'
 import { useUiStore } from '@/stores/ui'
-import mudkipSprite from '@/assets/pokesprite/pokemon-gen8/regular/mudkip.png'
+import { speedComparisonPokemonName } from '@/utils/speed-comparison'
 
 const route = useRoute()
 const { t, locale } = useI18n()
@@ -28,6 +29,9 @@ const analyticsStore = useAnalyticsStore()
 const teamStore = useTeamStore()
 const dexStore = useDexStore()
 const uiStore = useUiStore()
+const speedComparisonOpen = ref(false)
+type AnalysisSection = 'overview' | 'types' | 'offense' | 'speed' | 'threats'
+const activeSection = ref<AnalysisSection>('overview')
 
 const mode = computed<BattleMode>(() => (route.params.mode === 'singles' ? 'singles' : 'vgc'))
 const team = computed(() => teamStore.getActiveTeam(mode.value))
@@ -135,7 +139,7 @@ const teamDefenseTypeRows = computed<{
         row.weakMembers.push({
           slot: entry.member.slot,
           pokemonId: entry.member.pokemonId,
-          pokemonName: entry.pokemon.name,
+          pokemonName: speedComparisonPokemonName(entry.pokemon),
           factor,
         })
       } else if (factor > 1) {
@@ -143,7 +147,7 @@ const teamDefenseTypeRows = computed<{
         row.weakMembers.push({
           slot: entry.member.slot,
           pokemonId: entry.member.pokemonId,
-          pokemonName: entry.pokemon.name,
+          pokemonName: speedComparisonPokemonName(entry.pokemon),
           factor,
         })
       } else if (factor === 0) {
@@ -152,7 +156,7 @@ const teamDefenseTypeRows = computed<{
         row.resistMembers.push({
           slot: entry.member.slot,
           pokemonId: entry.member.pokemonId,
-          pokemonName: entry.pokemon.name,
+          pokemonName: speedComparisonPokemonName(entry.pokemon),
           factor,
         })
       } else if (factor < 1) {
@@ -160,7 +164,7 @@ const teamDefenseTypeRows = computed<{
         row.resistMembers.push({
           slot: entry.member.slot,
           pokemonId: entry.member.pokemonId,
-          pokemonName: entry.pokemon.name,
+          pokemonName: speedComparisonPokemonName(entry.pokemon),
           factor,
         })
       }
@@ -204,7 +208,7 @@ const teamOffenseCoverageRows = computed<TeamOffenseCoverageRow[]>(() => {
           bucket.hitters.set(key, {
             slot: entry.member.slot,
             pokemonId: entry.member.pokemonId,
-            pokemonName: entry.pokemon.name,
+            pokemonName: speedComparisonPokemonName(entry.pokemon),
             factor: mult,
           })
           seenForMember.add(targetType)
@@ -231,6 +235,41 @@ const teamOffenseCoverageRows = computed<TeamOffenseCoverageRow[]>(() => {
   })
     .filter((row) => row.coverageCount > 0)
     .sort((a, b) => b.coverageCount - a.coverageCount || b.bestMultiplier - a.bestMultiplier)
+})
+
+const analysisSections = computed<Array<{ key: AnalysisSection; label: string }>>(() => [
+  { key: 'overview', label: t('analytics.sectionOverview') },
+  { key: 'types', label: t('analytics.sectionTypes') },
+  { key: 'offense', label: t('analytics.sectionOffense') },
+  { key: 'speed', label: t('analytics.sectionSpeed') },
+  { key: 'threats', label: t('analytics.sectionThreats') },
+])
+
+const priorityFindings = computed<Array<{ text: string; section: AnalysisSection }>>(() => {
+  const members = teamMembersWithPokemon.value.length
+  if (members < 4) return []
+  const findings: Array<{ text: string; section: AnalysisSection }> = []
+  const danger = threatSummary.value.dangerCount
+  if (danger > 0) {
+    findings.push({ text: t('analytics.priorityThreats', { count: danger }), section: 'threats' })
+  }
+  const weakness = teamDefenseTypeRows.value.weaknesses[0]
+  if (weakness && weakness.weakCount >= 2) {
+    findings.push({
+      text: t('analytics.priorityWeakness', { count: weakness.weakCount, type: weakness.label }),
+      section: 'types',
+    })
+  }
+  if (speedMap.value.speedControlCount === 0 && members >= 2) {
+    findings.push({ text: t('analytics.prioritySpeed'), section: 'speed' })
+  }
+  if (teraDependency.value.criticalCount >= 2) {
+    findings.push({
+      text: t('analytics.priorityTera', { count: teraDependency.value.criticalCount }),
+      section: 'offense',
+    })
+  }
+  return findings.slice(0, 3)
 })
 
 function setWeight(key: keyof ScoreWeights, value: number) {
@@ -418,38 +457,6 @@ function typeName(type: string): string {
     : TYPE_META[type as keyof typeof TYPE_META].en
 }
 
-function pokemonIconUrl(pokemonId: string): string {
-  if (!pokemonId) return mudkipSprite
-  return `https://img.pokemondb.net/sprites/home/normal/${pokemonId}.png`
-}
-
-const spriteAliasFallback: Record<string, string> = {
-  'calyrex-shadow': 'calyrex-shadow-rider',
-  'calyrex-ice': 'calyrex-ice-rider',
-}
-
-function spriteIdFromUrl(url: string): string {
-  const marker = '/sprites/home/normal/'
-  const markerIndex = url.lastIndexOf(marker)
-  if (markerIndex === -1) return ''
-  return url.slice(markerIndex + marker.length).replace('.png', '').toLowerCase()
-}
-
-function onPokemonIconError(event: Event) {
-  const target = event.target as HTMLImageElement
-  const failedId = spriteIdFromUrl(target.src)
-  const aliasId = spriteAliasFallback[failedId]
-  if (aliasId && target.dataset.spriteAliasTried !== aliasId) {
-    target.dataset.spriteAliasTried = aliasId
-    target.src = `https://img.pokemondb.net/sprites/home/normal/${aliasId}.png`
-    return
-  }
-
-  if (target.src !== mudkipSprite) {
-    target.src = mudkipSprite
-  }
-}
-
 function factorLabel(factor: number): string {
   if (factor === 0) return 'x0'
   if (factor === 0.25) return 'x0.25'
@@ -546,8 +553,56 @@ function pillarMapButtonClass(key: 'plan' | 'tempo' | 'matchups' | 'resources'):
   <section class="rounded-2xl border border-sky-500/25 bg-off-black/70 p-4">
     <h2 class="mb-4 text-lg font-semibold text-sky-300">{{ t('analytics.title') }}</h2>
 
+    <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-3">
+      <h3 class="text-sm font-semibold text-amber-100">{{ t('analytics.prioritiesTitle') }}</h3>
+      <p v-if="teamMembersWithPokemon.length === 0" class="mt-1 text-xs text-gray-300">
+        {{ t('analytics.prioritiesEmpty') }}
+      </p>
+      <p v-else-if="teamMembersWithPokemon.length < 4" class="mt-1 text-xs text-gray-300">
+        {{ t('analytics.prioritiesProvisional', { count: teamMembersWithPokemon.length }) }}
+      </p>
+      <RouterLink
+        v-if="teamMembersWithPokemon.length < 4"
+        :to="{ name: 'builder', params: { mode } }"
+        class="mt-3 inline-flex rounded-lg border border-sky-400/50 bg-sky-500/15 px-3 py-1.5 text-xs font-semibold text-sky-100 hover:border-sky-300"
+      >
+        {{ t('analytics.goToBuilder') }}
+      </RouterLink>
+      <p v-else-if="priorityFindings.length === 0" class="mt-1 text-xs text-emerald-200">
+        {{ t('analytics.prioritiesClear') }}
+      </p>
+      <div v-else class="mt-2 grid gap-2 sm:grid-cols-3">
+        <button
+          v-for="finding in priorityFindings"
+          :key="`${finding.section}-${finding.text}`"
+          type="button"
+          class="rounded-lg border border-amber-500/30 bg-off-black/60 p-2 text-left text-xs text-gray-100 transition hover:border-amber-400/65 hover:bg-amber-500/10"
+          @click="activeSection = finding.section"
+        >
+          {{ finding.text }} <span class="text-amber-200">→</span>
+        </button>
+      </div>
+    </div>
+
+    <nav v-if="teamMembersWithPokemon.length > 0" class="mt-4 flex flex-wrap gap-2" :aria-label="t('analytics.sectionsLabel')">
+      <button
+        v-for="section in analysisSections"
+        :key="section.key"
+        type="button"
+        class="rounded-lg border px-3 py-1.5 text-xs font-semibold transition"
+        :class="activeSection === section.key
+          ? 'border-sky-400 bg-sky-500/20 text-sky-100'
+          : 'border-gray-700 bg-off-black/70 text-gray-300 hover:border-sky-500/50'"
+        :aria-pressed="activeSection === section.key"
+        @click="activeSection = section.key"
+      >
+        {{ section.label }}
+      </button>
+    </nav>
+
     <TeamSlotPicker
-      class="mb-4"
+      v-if="activeSection === 'overview' && teamMembersWithPokemon.length > 0"
+      class="mb-4 mt-4"
       :mode="mode"
       :members="team.members"
       :selected-slot="selectedSlot"
@@ -556,10 +611,10 @@ function pillarMapButtonClass(key: 'plan' | 'tempo' | 'matchups' | 'resources'):
       @update:selected-slot="selectedSlot = $event"
     />
 
-    <div class="grid gap-4 xl:grid-cols-2">
+    <div v-if="activeSection === 'overview' && teamMembersWithPokemon.length > 0" class="grid gap-4 xl:grid-cols-2">
       <article class="rounded-xl border border-gray-700 bg-st-black/50 p-3">
         <h3 class="text-sm font-semibold text-gray-200">{{ t('analytics.individual') }}</h3>
-        <p class="mt-1 text-sm text-gray-400">{{ memberPokemon?.name || t('analytics.emptySlot') }}</p>
+        <p class="mt-1 text-sm text-gray-400">{{ memberPokemon ? speedComparisonPokemonName(memberPokemon) : t('analytics.emptySlot') }}</p>
 
         <template v-if="memberAnalytics">
           <div class="mt-3 grid gap-2 sm:grid-cols-2">
@@ -785,8 +840,8 @@ function pillarMapButtonClass(key: 'plan' | 'tempo' | 'matchups' | 'resources'):
           </template>
         </div>
 
-        <div class="mt-3 rounded-lg border border-gray-700 p-3">
-          <h4 class="text-xs font-semibold text-gray-300">{{ t('analytics.weights') }}</h4>
+        <details class="mt-3 rounded-lg border border-gray-700 p-3">
+          <summary class="cursor-pointer text-xs font-semibold text-gray-300">{{ t('analytics.weights') }}</summary>
           <div class="mt-2 flex flex-wrap gap-1.5">
             <button
               v-for="preset in weightPresets"
@@ -856,11 +911,11 @@ function pillarMapButtonClass(key: 'plan' | 'tempo' | 'matchups' | 'resources'):
               />
             </label>
           </div>
-        </div>
+        </details>
       </article>
     </div>
 
-    <div class="mt-4 grid gap-4 xl:grid-cols-3">
+    <div v-if="activeSection === 'types' && teamMembersWithPokemon.length > 0" class="mt-4 grid gap-4 xl:grid-cols-3">
       <article class="rounded-xl border border-rose-500/30 bg-rose-500/5 p-3">
         <h3 class="text-sm font-semibold text-rose-200">{{ t('analytics.teamWeaknessWidgetTitle') }}</h3>
         <p class="mt-1 text-[11px] text-gray-400">{{ t('analytics.teamWeaknessWidgetHint') }}</p>
@@ -898,12 +953,6 @@ function pillarMapButtonClass(key: 'plan' | 'tempo' | 'matchups' | 'resources'):
                     :key="`weak-pop-${row.type}-${entry.slot}-${entry.pokemonId}`"
                     class="inline-flex items-center gap-1 rounded border border-rose-500/35 bg-rose-500/10 px-1 py-0.5"
                   >
-                    <img
-                      :src="pokemonIconUrl(entry.pokemonId)"
-                      :alt="entry.pokemonName"
-                      class="h-3.5 w-3.5"
-                      @error="onPokemonIconError"
-                    />
                     <span>S{{ entry.slot }} {{ entry.pokemonName }}</span>
                     <span class="text-rose-200">{{ factorLabel(entry.factor) }}</span>
                   </span>
@@ -963,12 +1012,6 @@ function pillarMapButtonClass(key: 'plan' | 'tempo' | 'matchups' | 'resources'):
                     :key="`res-pop-${row.type}-${entry.slot}-${entry.pokemonId}`"
                     class="inline-flex items-center gap-1 rounded border border-emerald-500/35 bg-emerald-500/10 px-1 py-0.5"
                   >
-                    <img
-                      :src="pokemonIconUrl(entry.pokemonId)"
-                      :alt="entry.pokemonName"
-                      class="h-3.5 w-3.5"
-                      @error="onPokemonIconError"
-                    />
                     <span>S{{ entry.slot }} {{ entry.pokemonName }}</span>
                     <span class="text-emerald-200">{{ factorLabel(entry.factor) }}</span>
                   </span>
@@ -1025,12 +1068,6 @@ function pillarMapButtonClass(key: 'plan' | 'tempo' | 'matchups' | 'resources'):
                     :key="`cover-pop-${row.type}-${entry.slot}-${entry.pokemonId}`"
                     class="inline-flex items-center gap-1 rounded border border-sky-500/35 bg-sky-500/10 px-1 py-0.5"
                   >
-                    <img
-                      :src="pokemonIconUrl(entry.pokemonId)"
-                      :alt="entry.pokemonName"
-                      class="h-3.5 w-3.5"
-                      @error="onPokemonIconError"
-                    />
                     <span>S{{ entry.slot }} {{ entry.pokemonName }}</span>
                     <span class="text-sky-200">{{ factorLabel(entry.factor) }}</span>
                   </span>
@@ -1051,8 +1088,8 @@ function pillarMapButtonClass(key: 'plan' | 'tempo' | 'matchups' | 'resources'):
       </article>
     </div>
 
-    <div class="mt-4 grid gap-4 xl:grid-cols-2">
-      <article class="rounded-xl border border-fuchsia-500/35 bg-fuchsia-500/5 p-3 xl:col-span-2">
+    <div v-if="teamMembersWithPokemon.length > 0 && (activeSection === 'offense' || activeSection === 'speed' || activeSection === 'threats')" class="mt-4 grid gap-4 xl:grid-cols-2">
+      <article v-if="activeSection === 'offense'" class="rounded-xl border border-fuchsia-500/35 bg-fuchsia-500/5 p-3 xl:col-span-2">
         <h3 class="text-sm font-semibold text-fuchsia-200">{{ t('analytics.offensePressureTitle') }}</h3>
         <p class="mt-1 text-xs text-gray-300">{{ t('analytics.offensePressureHint') }}</p>
 
@@ -1178,7 +1215,7 @@ function pillarMapButtonClass(key: 'plan' | 'tempo' | 'matchups' | 'resources'):
         </div>
       </article>
 
-      <article class="rounded-xl border border-amber-500/35 bg-amber-500/5 p-3 xl:col-span-2">
+      <article v-if="activeSection === 'offense'" class="rounded-xl border border-amber-500/35 bg-amber-500/5 p-3 xl:col-span-2">
         <h3 class="text-sm font-semibold text-amber-200">{{ t('analytics.teraDependencyTitle') }}</h3>
         <p class="mt-1 text-xs text-gray-300">{{ t('analytics.teraDependencyHint') }}</p>
 
@@ -1238,9 +1275,21 @@ function pillarMapButtonClass(key: 'plan' | 'tempo' | 'matchups' | 'resources'):
         </div>
       </article>
 
-      <article class="rounded-xl border border-sky-500/35 bg-sky-500/5 p-3 xl:col-span-2">
-        <h3 class="text-sm font-semibold text-sky-200">{{ t('analytics.speedMapTitle') }}</h3>
-        <p class="mt-1 text-xs text-gray-300">{{ t('analytics.speedMapHint', { level: speedMap.level }) }}</p>
+      <article v-if="activeSection === 'speed'" class="rounded-xl border border-sky-500/35 bg-sky-500/5 p-3 xl:col-span-2">
+        <div class="flex flex-wrap items-start justify-between gap-2">
+          <div>
+            <h3 class="text-sm font-semibold text-sky-200">{{ t('analytics.speedMapTitle') }}</h3>
+            <p class="mt-1 text-xs text-gray-300">{{ t('analytics.speedMapHint', { level: speedMap.level }) }}</p>
+          </div>
+          <button
+            v-if="mode === 'vgc'"
+            type="button"
+            class="rounded-lg border border-sky-500/40 bg-sky-500/10 px-3 py-1.5 text-xs font-semibold text-sky-100 hover:border-sky-400/70"
+            @click="speedComparisonOpen = true"
+          >
+            {{ t('analytics.speedCompareOpen') }}
+          </button>
+        </div>
         <p class="mt-1 text-xs text-cyan-200">{{ speedMapProfileText }}</p>
 
         <div class="mt-3 grid gap-2 sm:grid-cols-2">
@@ -1275,7 +1324,7 @@ function pillarMapButtonClass(key: 'plan' | 'tempo' | 'matchups' | 'resources'):
         </div>
       </article>
 
-      <article class="rounded-xl border border-cyan-500/30 bg-cyan-500/5 p-3 xl:col-span-2">
+      <article v-if="activeSection === 'threats'" class="rounded-xl border border-cyan-500/30 bg-cyan-500/5 p-3 xl:col-span-2">
         <h3 class="text-sm font-semibold text-cyan-200">{{ t('analytics.threatResponsesTitle') }}</h3>
         <p class="mt-1 text-xs text-gray-300">{{ t('analytics.threatResponsesHint') }}</p>
 
@@ -1350,4 +1399,9 @@ function pillarMapButtonClass(key: 'plan' | 'tempo' | 'matchups' | 'resources'):
 
     </div>
   </section>
+
+  <ChampionsSpeedComparisonModal
+    :open="speedComparisonOpen"
+    @close="speedComparisonOpen = false"
+  />
 </template>

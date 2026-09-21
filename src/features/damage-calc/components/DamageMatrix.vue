@@ -1,14 +1,23 @@
 ﻿<script setup lang="ts">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import type { DamageMatrixCell, DamageSelectedPair, DamageSideId, DamageSlotNumber } from '@/models/damage-calc'
+import type {
+  DamageMatrixCell,
+  DamageSelectedPair,
+  DamageSideId,
+  DamageSlotNumber,
+} from '@/models/damage-calc'
 import { onPokemonSpriteError } from '@/utils/pokemon-sprite'
 
 interface MatrixEntry {
+  side: DamageSideId
   slot: DamageSlotNumber
   pokemonId: string
   name: string
   sprite: string
+  effectiveSpeed: number
+  turnOrderRank: number
+  isTurnOrderTie: boolean
 }
 
 const props = defineProps<{
@@ -21,12 +30,18 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (event: 'select-pair', payload: { attackerSlot: DamageSlotNumber; defenderSlot: DamageSlotNumber }): void
+  (
+    event: 'select-pair',
+    payload: { attackerSlot: DamageSlotNumber; defenderSlot: DamageSlotNumber },
+  ): void
 }>()
 
 const { t } = useI18n()
 
-function findCell(attackerSlot: DamageSlotNumber, defenderSlot: DamageSlotNumber): DamageMatrixCell | undefined {
+function findCell(
+  attackerSlot: DamageSlotNumber,
+  defenderSlot: DamageSlotNumber,
+): DamageMatrixCell | undefined {
   return cellIndex.value.get(`${attackerSlot}-${defenderSlot}`)
 }
 
@@ -71,8 +86,20 @@ function formatKoText(cell: DamageMatrixCell | undefined): string {
   })
 }
 
+function turnOrderBadgeClass(entry: MatrixEntry): string {
+  if (entry.side === props.attackerSide) {
+    return 'border-cyan-400/55 bg-cyan-500/15 text-cyan-100'
+  }
+  return 'border-rose-400/55 bg-rose-500/15 text-rose-100'
+}
+
 const orderedAttackerEntries = computed(() => props.attackerEntries)
 const orderedDefenderEntries = computed(() => props.defenderEntries)
+const turnOrderEntries = computed(() =>
+  [...props.attackerEntries, ...props.defenderEntries].sort(
+    (a, b) => a.turnOrderRank - b.turnOrderRank || a.side.localeCompare(b.side) || a.slot - b.slot,
+  ),
+)
 const cellIndex = computed(() => {
   const map = new Map<string, DamageMatrixCell>()
   for (const entry of props.cells) {
@@ -84,6 +111,35 @@ const cellIndex = computed(() => {
 
 <template>
   <div class="overflow-x-auto rounded-xl border border-sky-500/25 bg-off-black/60 p-3">
+    <div
+      v-if="turnOrderEntries.length > 0"
+      class="mb-3 rounded-lg border border-cyan-500/20 bg-cyan-500/5 p-2"
+    >
+      <div class="mb-1 flex flex-wrap items-center justify-between gap-2">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-cyan-100">
+          {{ t('damageCalc.matrixTurnOrderTitle') }}
+        </p>
+        <p class="text-[10px] text-gray-400">{{ t('damageCalc.matrixTurnOrderHelp') }}</p>
+      </div>
+      <div class="flex flex-wrap gap-1.5">
+        <span
+          v-for="entry in turnOrderEntries"
+          :key="`turn-order-${entry.side}-${entry.slot}`"
+          class="inline-flex items-center gap-1 rounded border px-2 py-0.5 text-[10px] font-semibold"
+          :class="turnOrderBadgeClass(entry)"
+        >
+          <span>#{{ entry.turnOrderRank }}</span>
+          <span class="text-gray-300">{{ entry.side }}{{ entry.slot }}</span>
+          <span class="max-w-24 truncate">{{ entry.name }}</span>
+          <span class="text-gray-300">{{
+            t('damageCalc.matrixTurnOrderSpeed', { value: entry.effectiveSpeed })
+          }}</span>
+          <span v-if="entry.isTurnOrderTie" class="text-amber-200">
+            {{ t('damageCalc.matrixTurnOrderTie') }}
+          </span>
+        </span>
+      </div>
+    </div>
     <table class="min-w-full border-separate border-spacing-1 text-xs">
       <thead>
         <tr>
@@ -94,6 +150,14 @@ const cellIndex = computed(() => {
             class="px-2 py-1 text-center font-semibold text-sky-200"
           >
             <div class="flex min-w-[120px] items-center justify-center gap-2">
+              <span
+                class="rounded border px-1.5 py-0.5 text-[10px]"
+                :class="turnOrderBadgeClass(defender)"
+                :title="t('damageCalc.matrixTurnOrderHelp')"
+              >
+                #{{ defender.turnOrderRank }} ·
+                {{ t('damageCalc.matrixTurnOrderSpeed', { value: defender.effectiveSpeed }) }}
+              </span>
               <img
                 :src="defender.sprite"
                 :alt="defender.name"
@@ -111,6 +175,14 @@ const cellIndex = computed(() => {
         <tr v-for="attacker in orderedAttackerEntries" :key="`atk-row-${attacker.slot}`">
           <th class="px-2 py-1 text-left font-semibold text-cyan-200">
             <div class="flex min-w-[120px] items-center gap-2">
+              <span
+                class="rounded border px-1.5 py-0.5 text-[10px]"
+                :class="turnOrderBadgeClass(attacker)"
+                :title="t('damageCalc.matrixTurnOrderHelp')"
+              >
+                #{{ attacker.turnOrderRank }} ·
+                {{ t('damageCalc.matrixTurnOrderSpeed', { value: attacker.effectiveSpeed }) }}
+              </span>
               <img
                 :src="attacker.sprite"
                 :alt="attacker.name"
@@ -135,9 +207,16 @@ const cellIndex = computed(() => {
               type="button"
               class="flex w-full cursor-pointer flex-col items-start gap-0.5 rounded px-1 py-0.5 text-left transition hover:bg-white/5"
               :title="t('damageCalc.matrixCellClickable')"
-              @click="emit('select-pair', { attackerSlot: attacker.slot, defenderSlot: defender.slot })"
+              @click="
+                emit('select-pair', { attackerSlot: attacker.slot, defenderSlot: defender.slot })
+              "
             >
-              <template v-if="findCell(attacker.slot, defender.slot) && !isFilteredOut(findCell(attacker.slot, defender.slot))">
+              <template
+                v-if="
+                  findCell(attacker.slot, defender.slot) &&
+                  !isFilteredOut(findCell(attacker.slot, defender.slot))
+                "
+              >
                 <span class="font-semibold">
                   {{
                     t('damageCalc.matrixDamageRange', {

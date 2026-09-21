@@ -2,7 +2,7 @@
   "version": "v1",
   "locale": "es",
   "generationId": 1,
-  "generatedAt": "2026-04-17T18:43:31.043Z",
+  "generatedAt": "2026-06-17T06:49:17.718Z",
   "profiles": [
     {
       "id": "bulbasaur",
@@ -752,8 +752,8 @@
         {
           "id": "tough-claws",
           "name": "Garra Dura",
-          "shortEffect": "This Pokemon's contact moves have their power multiplied by 1.3.",
-          "effect": "This Pokemon's contact moves have their power multiplied by 1.3.",
+          "shortEffect": "Potencia los movimientos de contacto.",
+          "effect": "Los movimientos de contacto del usuario infligen 1.3 veces su dano habitual.",
           "isHidden": false
         }
       ],
@@ -2377,8 +2377,8 @@
         {
           "id": "no-guard",
           "name": "Indefenso",
-          "shortEffect": "Every move used by or against this Pokemon will always hit.",
-          "effect": "Every move used by or against this Pokemon will always hit.",
+          "shortEffect": "Todos los movimientos usados por o contra este Pokemon aciertan.",
+          "effect": "Los movimientos usados por este Pokemon y los movimientos dirigidos contra el siempre aciertan, salvo inmunidades u otras restricciones del movimiento.",
           "isHidden": false
         }
       ],
@@ -6570,10 +6570,10 @@
       ],
       "abilities": [
         {
-          "id": "surge-surfer",
-          "name": "Cola Surf",
-          "shortEffect": "Duplica la Velocidad en Campo Electrico.",
-          "effect": "Mientras haya Campo Electrico, la Velocidad del usuario se duplica.",
+          "id": "electric-surge",
+          "name": "Electrogénesis",
+          "shortEffect": "Activa el Campo Electrico al entrar en combate.",
+          "effect": "Cuando entra en combate, el usuario activa el efecto de Campo Electrico.",
           "isHidden": false
         }
       ],
@@ -6722,7 +6722,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10304.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10304.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10304.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/raichu-mega-x.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/raichu-mega-x.gif"
@@ -6739,10 +6739,10 @@
       ],
       "abilities": [
         {
-          "id": "surge-surfer",
-          "name": "Cola Surf",
-          "shortEffect": "Duplica la Velocidad en Campo Electrico.",
-          "effect": "Mientras haya Campo Electrico, la Velocidad del usuario se duplica.",
+          "id": "no-guard",
+          "name": "Indefenso",
+          "shortEffect": "Todos los movimientos usados por o contra este Pokemon aciertan.",
+          "effect": "Los movimientos usados por este Pokemon y los movimientos dirigidos contra el siempre aciertan, salvo inmunidades u otras restricciones del movimiento.",
           "isHidden": false
         }
       ],
@@ -6891,7 +6891,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10305.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10305.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10305.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/raichu-mega-y.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/raichu-mega-y.gif"
@@ -7999,7 +7999,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10278.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10278.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10278.png",
         "showdown": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10278.gif",
         "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10278.gif"
@@ -8109,8 +8109,8 @@
         {
           "id": "snow-warning",
           "name": "Nevada",
-          "shortEffect": "On switch-in, this Pokemon summons Snow.",
-          "effect": "On switch-in, this Pokemon summons Snow.",
+          "shortEffect": "Invoca nieve al entrar en combate.",
+          "effect": "Al entrar en combate, el usuario hace que empiece a nevar.",
           "isHidden": true
         }
       ],
@@ -8278,8 +8278,8 @@
         {
           "id": "snow-warning",
           "name": "Nevada",
-          "shortEffect": "On switch-in, this Pokemon summons Snow.",
-          "effect": "On switch-in, this Pokemon summons Snow.",
+          "shortEffect": "Invoca nieve al entrar en combate.",
+          "effect": "Al entrar en combate, el usuario hace que empiece a nevar.",
           "isHidden": true
         }
       ],
@@ -8480,7 +8480,8 @@
       "generationId": 1,
       "gameAvailability": [
         "scarlet-violet",
-        "sword-shield"
+        "sword-shield",
+        "pokemon-champions"
       ],
       "eggGroups": [
         "Fairy"
@@ -9833,8 +9834,8 @@
         {
           "id": "tough-claws",
           "name": "Garra Dura",
-          "shortEffect": "This Pokemon's contact moves have their power multiplied by 1.3.",
-          "effect": "This Pokemon's contact moves have their power multiplied by 1.3.",
+          "shortEffect": "Potencia los movimientos de contacto.",
+          "effect": "Los movimientos de contacto del usuario infligen 1.3 veces su dano habitual.",
           "isHidden": false
         },
         {
@@ -10066,7 +10067,8 @@
       "generationId": 1,
       "gameAvailability": [
         "scarlet-violet",
-        "sword-shield"
+        "sword-shield",
+        "pokemon-champions"
       ],
       "eggGroups": [
         "Ground"
@@ -10173,7 +10175,8 @@
       "generationId": 1,
       "gameAvailability": [
         "scarlet-violet",
-        "sword-shield"
+        "sword-shield",
+        "pokemon-champions"
       ],
       "eggGroups": [
         "Ground"
@@ -11557,8 +11560,8 @@
         {
           "id": "no-guard",
           "name": "Indefenso",
-          "shortEffect": "Every move used by or against this Pokemon will always hit.",
-          "effect": "Every move used by or against this Pokemon will always hit.",
+          "shortEffect": "Todos los movimientos usados por o contra este Pokemon aciertan.",
+          "effect": "Los movimientos usados por este Pokemon y los movimientos dirigidos contra el siempre aciertan, salvo inmunidades u otras restricciones del movimiento.",
           "isHidden": false
         },
         {
@@ -11647,8 +11650,8 @@
         {
           "id": "no-guard",
           "name": "Indefenso",
-          "shortEffect": "Every move used by or against this Pokemon will always hit.",
-          "effect": "Every move used by or against this Pokemon will always hit.",
+          "shortEffect": "Todos los movimientos usados por o contra este Pokemon aciertan.",
+          "effect": "Los movimientos usados por este Pokemon y los movimientos dirigidos contra el siempre aciertan, salvo inmunidades u otras restricciones del movimiento.",
           "isHidden": false
         },
         {
@@ -11737,8 +11740,8 @@
         {
           "id": "no-guard",
           "name": "Indefenso",
-          "shortEffect": "Every move used by or against this Pokemon will always hit.",
-          "effect": "Every move used by or against this Pokemon will always hit.",
+          "shortEffect": "Todos los movimientos usados por o contra este Pokemon aciertan.",
+          "effect": "Los movimientos usados por este Pokemon y los movimientos dirigidos contra el siempre aciertan, salvo inmunidades u otras restricciones del movimiento.",
           "isHidden": false
         },
         {
@@ -11827,8 +11830,8 @@
         {
           "id": "no-guard",
           "name": "Indefenso",
-          "shortEffect": "Every move used by or against this Pokemon will always hit.",
-          "effect": "Every move used by or against this Pokemon will always hit.",
+          "shortEffect": "Todos los movimientos usados por o contra este Pokemon aciertan.",
+          "effect": "Los movimientos usados por este Pokemon y los movimientos dirigidos contra el siempre aciertan, salvo inmunidades u otras restricciones del movimiento.",
           "isHidden": false
         },
         {
@@ -12163,8 +12166,8 @@
         {
           "id": "innards-out",
           "name": "Revés",
-          "shortEffect": "If this Pokemon is KOed with a move, that move's user loses an equal amount of HP.",
-          "effect": "If this Pokemon is knocked out with a move, that move's user loses HP equal to the amount of damage inflicted on this Pokemon.",
+          "shortEffect": "Si cae por un ataque, dana al atacante segun los PS que perdio.",
+          "effect": "Si el usuario es debilitado por un movimiento, el atacante pierde tantos PS como PS perdio el usuario por ese golpe.",
           "isHidden": false
         }
       ],
@@ -12220,7 +12223,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10279.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10279.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10279.png",
         "showdown": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10279.gif",
         "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10279.png"
@@ -13393,8 +13396,8 @@
         {
           "id": "regenerator",
           "name": "Regeneración",
-          "shortEffect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
-          "effect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+          "shortEffect": "Recupera 1/3 de los PS maximos al retirarse.",
+          "effect": "Cuando el usuario abandona el combate, recupera 1/3 de sus PS maximos.",
           "isHidden": true
         }
       ],
@@ -13502,8 +13505,8 @@
         {
           "id": "regenerator",
           "name": "Regeneración",
-          "shortEffect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
-          "effect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+          "shortEffect": "Recupera 1/3 de los PS maximos al retirarse.",
+          "effect": "Cuando el usuario abandona el combate, recupera 1/3 de sus PS maximos.",
           "isHidden": true
         }
       ],
@@ -13612,8 +13615,8 @@
         {
           "id": "regenerator",
           "name": "Regeneración",
-          "shortEffect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
-          "effect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+          "shortEffect": "Recupera 1/3 de los PS maximos al retirarse.",
+          "effect": "Cuando el usuario abandona el combate, recupera 1/3 de sus PS maximos.",
           "isHidden": true
         }
       ],
@@ -13818,8 +13821,8 @@
         {
           "id": "regenerator",
           "name": "Regeneración",
-          "shortEffect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
-          "effect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+          "shortEffect": "Recupera 1/3 de los PS maximos al retirarse.",
+          "effect": "Cuando el usuario abandona el combate, recupera 1/3 de sus PS maximos.",
           "isHidden": true
         }
       ],
@@ -14123,7 +14126,8 @@
       "generation": "Generation I",
       "generationId": 1,
       "gameAvailability": [
-        "sword-shield"
+        "sword-shield",
+        "pokemon-champions"
       ],
       "eggGroups": [
         "Flying",
@@ -17050,8 +17054,8 @@
         {
           "id": "iron-fist",
           "name": "Puño Férreo",
-          "shortEffect": "This Pokemon's punch-based attacks have 1.2x power. Sucker Punch is not boosted.",
-          "effect": "This Pokemon's punch-based attacks have their power multiplied by 1.2.",
+          "shortEffect": "Potencia los movimientos de puno.",
+          "effect": "Los movimientos clasificados como golpes de puno del usuario infligen 1.2 veces su dano habitual.",
           "isHidden": false
         },
         {
@@ -17741,8 +17745,8 @@
         {
           "id": "regenerator",
           "name": "Regeneración",
-          "shortEffect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
-          "effect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+          "shortEffect": "Recupera 1/3 de los PS maximos al retirarse.",
+          "effect": "Cuando el usuario abandona el combate, recupera 1/3 de sus PS maximos.",
           "isHidden": true
         }
       ],
@@ -18496,7 +18500,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10280.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10280.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10280.png",
         "showdown": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10280.gif",
         "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10280.gif"
@@ -18553,7 +18557,8 @@
       "generation": "Generation I",
       "generationId": 1,
       "gameAvailability": [
-        "sword-shield"
+        "sword-shield",
+        "pokemon-champions"
       ],
       "eggGroups": [
         "Humanshape"
@@ -19031,8 +19036,8 @@
         {
           "id": "mold-breaker",
           "name": "Rompemoldes",
-          "shortEffect": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
-          "effect": "This Pokemon's moves and their effects ignore certain Abilities of other Pokemon. The Abilities that can be negated are Armor Tail, Aroma Veil, Aura Break, Battle Armor, Big Pecks, Bulletproof, Clear Body, Contrary, Damp, Dazzling, Disguise, Dry Skin, Earth Eater, Filter, Flash Fire, Flower Gift, Flower Veil, Fluffy, Friend Guard, Fur Coat, Good as Gold, Grass Pelt, Guard Dog, Heatproof, Heavy Metal, Hyper Cutter, Ice Face, Ice Scales, Illuminate, Immunity, Inner Focus, Insomnia, Keen Eye, Leaf Guard, Levitate, Light Metal, Lightning Rod, Limber, Magic Bounce, Magma Armor, Marvel Scale, Mind's Eye, Mirror Armor, Motor Drive, Multiscale, Oblivious, Overcoat, Own Tempo, Pastel Veil, Punk Rock, Purifying Salt, Queenly Majesty, Sand Veil, Sap Sipper, Shell Armor, Shield Dust, Simple, Snow Cloak, Solid Rock, Soundproof, Sticky Hold, Storm Drain, Sturdy, Suction Cups, Sweet Veil, Tangled Feet, Telepathy, Tera Shell, Thermal Exchange, Thick Fat, Unaware, Vital Spirit, Volt Absorb, Water Absorb, Water Bubble, Water Veil, Well-Baked Body, White Smoke, Wind Rider, Wonder Guard, and Wonder Skin. This affects every other Pokemon on the field, whether or not it is a target of this Pokemon's move, and whether or not their Ability is beneficial to this Pokemon.",
+          "shortEffect": "Sus movimientos ignoran habilidades defensivas del objetivo.",
+          "effect": "Los movimientos del usuario ignoran habilidades del objetivo que normalmente bloquearian, reducirian o alterarian el efecto del movimiento.",
           "isHidden": false
         },
         {
@@ -19685,8 +19690,8 @@
         {
           "id": "mold-breaker",
           "name": "Rompemoldes",
-          "shortEffect": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
-          "effect": "This Pokemon's moves and their effects ignore certain Abilities of other Pokemon. The Abilities that can be negated are Armor Tail, Aroma Veil, Aura Break, Battle Armor, Big Pecks, Bulletproof, Clear Body, Contrary, Damp, Dazzling, Disguise, Dry Skin, Earth Eater, Filter, Flash Fire, Flower Gift, Flower Veil, Fluffy, Friend Guard, Fur Coat, Good as Gold, Grass Pelt, Guard Dog, Heatproof, Heavy Metal, Hyper Cutter, Ice Face, Ice Scales, Illuminate, Immunity, Inner Focus, Insomnia, Keen Eye, Leaf Guard, Levitate, Light Metal, Lightning Rod, Limber, Magic Bounce, Magma Armor, Marvel Scale, Mind's Eye, Mirror Armor, Motor Drive, Multiscale, Oblivious, Overcoat, Own Tempo, Pastel Veil, Punk Rock, Purifying Salt, Queenly Majesty, Sand Veil, Sap Sipper, Shell Armor, Shield Dust, Simple, Snow Cloak, Solid Rock, Soundproof, Sticky Hold, Storm Drain, Sturdy, Suction Cups, Sweet Veil, Tangled Feet, Telepathy, Tera Shell, Thermal Exchange, Thick Fat, Unaware, Vital Spirit, Volt Absorb, Water Absorb, Water Bubble, Water Veil, Well-Baked Body, White Smoke, Wind Rider, Wonder Guard, and Wonder Skin. This affects every other Pokemon on the field, whether or not it is a target of this Pokemon's move, and whether or not their Ability is beneficial to this Pokemon.",
+          "shortEffect": "Sus movimientos ignoran habilidades defensivas del objetivo.",
+          "effect": "Los movimientos del usuario ignoran habilidades del objetivo que normalmente bloquearian, reducirian o alterarian el efecto del movimiento.",
           "isHidden": false
         }
       ],
@@ -21241,8 +21246,8 @@
         {
           "id": "tough-claws",
           "name": "Garra Dura",
-          "shortEffect": "This Pokemon's contact moves have their power multiplied by 1.3.",
-          "effect": "This Pokemon's contact moves have their power multiplied by 1.3.",
+          "shortEffect": "Potencia los movimientos de contacto.",
+          "effect": "Los movimientos de contacto del usuario infligen 1.3 veces su dano habitual.",
           "isHidden": false
         }
       ],
@@ -22202,7 +22207,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10281.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10281.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10281.png",
         "showdown": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10281.gif",
         "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10281.png"

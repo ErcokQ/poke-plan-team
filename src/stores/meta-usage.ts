@@ -53,21 +53,39 @@ export const useMetaUsageStore = defineStore('meta-usage', () => {
       await ensureFormatLoaded(format)
       statusByMode.value[mode] = 'ready'
     } catch (error) {
-      usageByFormat.value = {
-        ...usageByFormat.value,
-        [format]: usageByFormat.value[format] ?? {},
-      }
-      statusByMode.value[mode] = 'ready'
-      errorByMode.value[mode] = null
+      statusByMode.value[mode] = 'error'
+      errorByMode.value[mode] = error instanceof Error ? error.message : String(error)
       console.warn(`[MetaUsage] Falling back to local-only mode for ${mode}`, error)
     }
+  }
+
+  function pokemonMetaLookupIds(pokemonId: string): string[] {
+    const normalized = pokemonId.trim()
+    if (!normalized) return []
+
+    const ids = [normalized]
+    const baseFromMega = normalized.replace(/-mega(?:-[xy])?$/, '')
+    if (baseFromMega && baseFromMega !== normalized) ids.push(baseFromMega)
+    return ids
   }
 
   function getPokemonMeta(mode: BattleMode, pokemonId: string): PokemonMetaUsage | undefined {
     if (!pokemonId) return undefined
     const format = MODE_META_MAP[mode]
     if (!format) return undefined
-    return usageByFormat.value[format]?.[pokemonId]
+    const usage = usageByFormat.value[format]
+    if (!usage) return undefined
+
+    for (const lookupId of pokemonMetaLookupIds(pokemonId)) {
+      const meta = usage[lookupId]
+      if (meta) return meta
+    }
+    return undefined
+  }
+
+  function getExactPokemonMeta(mode: BattleMode, pokemonId: string): PokemonMetaUsage | undefined {
+    const format = MODE_META_MAP[mode]
+    return format ? usageByFormat.value[format]?.[pokemonId] : undefined
   }
 
   function getModeStatus(mode: BattleMode): MetaLoadStatus {
@@ -79,6 +97,7 @@ export const useMetaUsageStore = defineStore('meta-usage', () => {
     errorByMode,
     ensureModeLoaded,
     getPokemonMeta,
+    getExactPokemonMeta,
     getModeStatus,
   }
 })

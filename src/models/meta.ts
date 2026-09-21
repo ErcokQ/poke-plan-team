@@ -1,6 +1,6 @@
 import type { BattleMode, PokemonTypeKey, StatKey } from './domain'
 
-export type MetaFormatKey = 'gen9ou' | 'gen9vgc2026'
+export type MetaFormatKey = 'gen9ou' | 'gen9vgc2026' | 'champions-vgc-reg-mc'
 export type MetaLoadStatus = 'idle' | 'loading' | 'ready' | 'error'
 
 export interface RankedUsage {
@@ -53,5 +53,5 @@ export interface MetaTemplateDataset {
 
 export const MODE_META_MAP: ModeMetaMap = {
   singles: 'gen9ou',
-  vgc: 'gen9vgc2026',
+  vgc: 'champions-vgc-reg-mc',
 }

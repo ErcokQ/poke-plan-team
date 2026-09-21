@@ -2,7 +2,7 @@
   "version": "v1",
   "locale": "en",
   "generationId": 3,
-  "generatedAt": "2026-04-17T18:43:31.043Z",
+  "generatedAt": "2026-06-17T06:49:17.718Z",
   "profiles": [
     {
       "id": "treecko",
@@ -17,15 +17,15 @@
         {
           "id": "overgrow",
           "name": "Overgrow",
-          "shortEffect": "Strengthens grass moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its grass-type moves inflict 1.5× as much regular damage.",
+          "shortEffect": "Strengthens Grass moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Grass-type moves inflict 1.5× as much regular damage.",
           "isHidden": false
         },
         {
           "id": "unburden",
           "name": "Unburden",
           "shortEffect": "Doubles Speed upon using or losing a held item.",
-          "effect": "When this Pokémon uses or loses its held item, its Speed is doubled. If it gains another item or leaves battle, this bonus is lost. This includes when the Pokémon drops its item because of knock off. This bonus does not count as a stat modifier. There is no notification when this ability takes effect.",
+          "effect": "When this Pokémon uses or loses its held item, its Speed is doubled. If it gains another item or leaves battle, this bonus is lost. This includes when the Pokémon drops its item because of Knock Off. This bonus does not count as a stat modifier. There is no notification when this ability takes effect.",
           "isHidden": true
         }
       ],
@@ -101,15 +101,15 @@
         {
           "id": "overgrow",
           "name": "Overgrow",
-          "shortEffect": "Strengthens grass moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its grass-type moves inflict 1.5× as much regular damage.",
+          "shortEffect": "Strengthens Grass moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Grass-type moves inflict 1.5× as much regular damage.",
           "isHidden": false
         },
         {
           "id": "unburden",
           "name": "Unburden",
           "shortEffect": "Doubles Speed upon using or losing a held item.",
-          "effect": "When this Pokémon uses or loses its held item, its Speed is doubled. If it gains another item or leaves battle, this bonus is lost. This includes when the Pokémon drops its item because of knock off. This bonus does not count as a stat modifier. There is no notification when this ability takes effect.",
+          "effect": "When this Pokémon uses or loses its held item, its Speed is doubled. If it gains another item or leaves battle, this bonus is lost. This includes when the Pokémon drops its item because of Knock Off. This bonus does not count as a stat modifier. There is no notification when this ability takes effect.",
           "isHidden": true
         }
       ],
@@ -185,15 +185,15 @@
         {
           "id": "overgrow",
           "name": "Overgrow",
-          "shortEffect": "Strengthens grass moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its grass-type moves inflict 1.5× as much regular damage.",
+          "shortEffect": "Strengthens Grass moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Grass-type moves inflict 1.5× as much regular damage.",
           "isHidden": false
         },
         {
           "id": "unburden",
           "name": "Unburden",
           "shortEffect": "Doubles Speed upon using or losing a held item.",
-          "effect": "When this Pokémon uses or loses its held item, its Speed is doubled. If it gains another item or leaves battle, this bonus is lost. This includes when the Pokémon drops its item because of knock off. This bonus does not count as a stat modifier. There is no notification when this ability takes effect.",
+          "effect": "When this Pokémon uses or loses its held item, its Speed is doubled. If it gains another item or leaves battle, this bonus is lost. This includes when the Pokémon drops its item because of Knock Off. This bonus does not count as a stat modifier. There is no notification when this ability takes effect.",
           "isHidden": true
         }
       ],
@@ -270,8 +270,8 @@
         {
           "id": "lightning-rod",
           "name": "Lightning Rod",
-          "shortEffect": "Redirects single-target electric moves to this Pokémon where possible. Absorbs Electric moves, raising Special Attack one stage.",
-          "effect": "All other Pokémon's single-target electric-type moves are redirected to this Pokémon if it is an eligible target. Other Pokémon's Electric moves raise this Pokémon's Special Attack one stage, negating any other effect on it, and cannot miss it. If the move's intended target also has this ability, the move is not redirected. When multiple Pokémon with this ability are possible targets for redirection, the move is redirected to the one with the highest Speed stat, or, in the case of a tie, to a random tied Pokémon. follow me takes precedence over this ability. If the Pokémon is a ground-type and thus immune to Electric moves, its immunity prevents the Special Attack boost.",
+          "shortEffect": "Redirects single-target Electric moves to this Pokémon where possible. Absorbs Electric moves, raising Special Attack one stage.",
+          "effect": "All other Pokémon's single-target Electric-type moves are redirected to this Pokémon if it is an eligible target. Other Pokémon's Electric moves raise this Pokémon's Special Attack one stage, negating any other effect on it, and cannot miss it. If the move's intended target also has this ability, the move is not redirected. When multiple Pokémon with this ability are possible targets for redirection, the move is redirected to the one with the highest Speed stat, or, in the case of a tie, to a random tied Pokémon. Follow Me takes precedence over this ability. If the Pokémon is a Ground-type and thus immune to Electric moves, its immunity prevents the Special Attack boost.",
           "isHidden": false
         }
       ],
@@ -347,8 +347,8 @@
         {
           "id": "blaze",
           "name": "Blaze",
-          "shortEffect": "Strengthens fire moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its fire-type moves inflict 1.5× as much regular damage.",
+          "shortEffect": "Strengthens Fire moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Fire-type moves inflict 1.5× as much regular damage.",
           "isHidden": false
         },
         {
@@ -431,8 +431,8 @@
         {
           "id": "blaze",
           "name": "Blaze",
-          "shortEffect": "Strengthens fire moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its fire-type moves inflict 1.5× as much regular damage.",
+          "shortEffect": "Strengthens Fire moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Fire-type moves inflict 1.5× as much regular damage.",
           "isHidden": false
         },
         {
@@ -515,8 +515,8 @@
         {
           "id": "blaze",
           "name": "Blaze",
-          "shortEffect": "Strengthens fire moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its fire-type moves inflict 1.5× as much regular damage.",
+          "shortEffect": "Strengthens Fire moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Fire-type moves inflict 1.5× as much regular damage.",
           "isHidden": false
         },
         {
@@ -675,15 +675,15 @@
         {
           "id": "torrent",
           "name": "Torrent",
-          "shortEffect": "Strengthens water moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its water-type moves inflict 1.5× as much regular damage.",
+          "shortEffect": "Strengthens Water moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Water-type moves inflict 1.5× as much regular damage.",
           "isHidden": false
         },
         {
           "id": "damp",
           "name": "Damp",
-          "shortEffect": "Prevents self destruct, explosion, and aftermath from working while the Pokémon is in battle.",
-          "effect": "While this Pokémon is in battle, self destruct and explosion will fail and aftermath will not take effect.",
+          "shortEffect": "Prevents Self-Destruct, Explosion, and Aftermath from working while the Pokémon is in battle.",
+          "effect": "While this Pokémon is in battle, Self-Destruct and Explosion will fail and Aftermath will not take effect.",
           "isHidden": true
         }
       ],
@@ -760,15 +760,15 @@
         {
           "id": "torrent",
           "name": "Torrent",
-          "shortEffect": "Strengthens water moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its water-type moves inflict 1.5× as much regular damage.",
+          "shortEffect": "Strengthens Water moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Water-type moves inflict 1.5× as much regular damage.",
           "isHidden": false
         },
         {
           "id": "damp",
           "name": "Damp",
-          "shortEffect": "Prevents self destruct, explosion, and aftermath from working while the Pokémon is in battle.",
-          "effect": "While this Pokémon is in battle, self destruct and explosion will fail and aftermath will not take effect.",
+          "shortEffect": "Prevents Self-Destruct, Explosion, and Aftermath from working while the Pokémon is in battle.",
+          "effect": "While this Pokémon is in battle, Self-Destruct and Explosion will fail and Aftermath will not take effect.",
           "isHidden": true
         }
       ],
@@ -845,15 +845,15 @@
         {
           "id": "torrent",
           "name": "Torrent",
-          "shortEffect": "Strengthens water moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its water-type moves inflict 1.5× as much regular damage.",
+          "shortEffect": "Strengthens Water moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Water-type moves inflict 1.5× as much regular damage.",
           "isHidden": false
         },
         {
           "id": "damp",
           "name": "Damp",
-          "shortEffect": "Prevents self destruct, explosion, and aftermath from working while the Pokémon is in battle.",
-          "effect": "While this Pokémon is in battle, self destruct and explosion will fail and aftermath will not take effect.",
+          "shortEffect": "Prevents Self-Destruct, Explosion, and Aftermath from working while the Pokémon is in battle.",
+          "effect": "While this Pokémon is in battle, Self-Destruct and Explosion will fail and Aftermath will not take effect.",
           "isHidden": true
         }
       ],
@@ -1021,8 +1021,8 @@
         {
           "id": "rattled",
           "name": "Rattled",
-          "shortEffect": "Raises Speed one stage upon being hit by a dark, ghost, or bug move.",
-          "effect": "This Pokémon's Speed rises one stage with each hit from a damaging dark-, ghost-, or bug-type move.",
+          "shortEffect": "Raises Speed one stage upon being hit by a Dark, Ghost, or Bug move.",
+          "effect": "This Pokémon's Speed rises one stage with each hit from a damaging Dark-, Ghost-, or Bug-type move.",
           "isHidden": true
         }
       ],
@@ -1086,7 +1086,7 @@
           "id": "intimidate",
           "name": "Intimidate",
           "shortEffect": "Lowers opponents' Attack one stage upon entering battle.",
-          "effect": "When this Pokémon enters battle, the opponent's Attack is lowered by one stage. In a double battle, both opponents are affected. This ability also takes effect when acquired during a battle, but will not take effect again if lost and reobtained without leaving battle. This ability has no effect on an opponent that has a substitute. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
+          "effect": "When this Pokémon enters battle, the opponent's Attack is lowered by one stage. In a double battle, both opponents are affected. This ability also takes effect when acquired during a battle, but will not take effect again if lost and reobtained without leaving battle. This ability has no effect on an opponent that has a Substitute. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
           "isHidden": false
         },
         {
@@ -1100,7 +1100,7 @@
           "id": "moxie",
           "name": "Moxie",
           "shortEffect": "Raises Attack one stage upon KOing a Pokémon.",
-          "effect": "This Pokémon's Attack rises one stage upon knocking out another Pokémon, even a friendly Pokémon. This ability does not take effect when the Pokémon indirectly causes another Pokémon to faint, e.g. through poison or spikes. If this Pokémon knocks out a Pokémon with mummy, the former's ability will change without taking effect.",
+          "effect": "This Pokémon's Attack rises one stage upon knocking out another Pokémon, even a friendly Pokémon. This ability does not take effect when the Pokémon indirectly causes another Pokémon to faint, e.g. through poison or Spikes. If this Pokémon knocks out a Pokémon with Mummy, the former's ability will change without taking effect.",
           "isHidden": true
         }
       ],
@@ -1164,7 +1164,7 @@
           "id": "pickup",
           "name": "Pickup",
           "shortEffect": "Picks up other Pokémon's used and Flung held items. May also pick up an item after battle.",
-          "effect": "At the end of each turn, if another Pokémon consumed or Flung a held item that turn, this Pokémon picks up the item if it is not already holding one. After each battle, this Pokémon has a 10% chance of picking up an item if it is not already holding one. The air balloon and eject button cannot be picked up. The items that may be found vary by game, and, since Pokémon Emerald, by the Pokémon's level. This ability is checked after the battle ends, at which point any temporary ability changes have worn off.",
+          "effect": "At the end of each turn, if another Pokémon consumed or Flung a held item that turn, this Pokémon picks up the item if it is not already holding one. After each battle, this Pokémon has a 10% chance of picking up an item if it is not already holding one. The Air Balloon and Eject Button cannot be picked up. The items that may be found vary by game, and, since Pokémon Emerald, by the Pokémon's level. This ability is checked after the battle ends, at which point any temporary ability changes have worn off.",
           "isHidden": false
         },
         {
@@ -1261,7 +1261,7 @@
           "id": "pickup",
           "name": "Pickup",
           "shortEffect": "Picks up other Pokémon's used and Flung held items. May also pick up an item after battle.",
-          "effect": "At the end of each turn, if another Pokémon consumed or Flung a held item that turn, this Pokémon picks up the item if it is not already holding one. After each battle, this Pokémon has a 10% chance of picking up an item if it is not already holding one. The air balloon and eject button cannot be picked up. The items that may be found vary by game, and, since Pokémon Emerald, by the Pokémon's level. This ability is checked after the battle ends, at which point any temporary ability changes have worn off.",
+          "effect": "At the end of each turn, if another Pokémon consumed or Flung a held item that turn, this Pokémon picks up the item if it is not already holding one. After each battle, this Pokémon has a 10% chance of picking up an item if it is not already holding one. The Air Balloon and Eject Button cannot be picked up. The items that may be found vary by game, and, since Pokémon Emerald, by the Pokémon's level. This ability is checked after the battle ends, at which point any temporary ability changes have worn off.",
           "isHidden": false
         },
         {
@@ -1357,7 +1357,7 @@
           "id": "pickup",
           "name": "Pickup",
           "shortEffect": "Picks up other Pokémon's used and Flung held items. May also pick up an item after battle.",
-          "effect": "At the end of each turn, if another Pokémon consumed or Flung a held item that turn, this Pokémon picks up the item if it is not already holding one. After each battle, this Pokémon has a 10% chance of picking up an item if it is not already holding one. The air balloon and eject button cannot be picked up. The items that may be found vary by game, and, since Pokémon Emerald, by the Pokémon's level. This ability is checked after the battle ends, at which point any temporary ability changes have worn off.",
+          "effect": "At the end of each turn, if another Pokémon consumed or Flung a held item that turn, this Pokémon picks up the item if it is not already holding one. After each battle, this Pokémon has a 10% chance of picking up an item if it is not already holding one. The Air Balloon and Eject Button cannot be picked up. The items that may be found vary by game, and, since Pokémon Emerald, by the Pokémon's level. This ability is checked after the battle ends, at which point any temporary ability changes have worn off.",
           "isHidden": false
         },
         {
@@ -1454,7 +1454,7 @@
           "id": "pickup",
           "name": "Pickup",
           "shortEffect": "Picks up other Pokémon's used and Flung held items. May also pick up an item after battle.",
-          "effect": "At the end of each turn, if another Pokémon consumed or Flung a held item that turn, this Pokémon picks up the item if it is not already holding one. After each battle, this Pokémon has a 10% chance of picking up an item if it is not already holding one. The air balloon and eject button cannot be picked up. The items that may be found vary by game, and, since Pokémon Emerald, by the Pokémon's level. This ability is checked after the battle ends, at which point any temporary ability changes have worn off.",
+          "effect": "At the end of each turn, if another Pokémon consumed or Flung a held item that turn, this Pokémon picks up the item if it is not already holding one. After each battle, this Pokémon has a 10% chance of picking up an item if it is not already holding one. The Air Balloon and Eject Button cannot be picked up. The items that may be found vary by game, and, since Pokémon Emerald, by the Pokémon's level. This ability is checked after the battle ends, at which point any temporary ability changes have worn off.",
           "isHidden": false
         },
         {
@@ -1550,7 +1550,7 @@
           "id": "shield-dust",
           "name": "Shield Dust",
           "shortEffect": "Protects against incoming moves' extra effects.",
-          "effect": "This Pokémon is immune to the extra effects of moves used against it. An extra effect is a move's chance, listed as an \"effect chance\", to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, thunder shock's paralysis is an extra effect, but thunder wave's is not, nor are knock off's item removal and air cutter's increased critical hit rate.",
+          "effect": "This Pokémon is immune to the extra effects of moves used against it. An extra effect is a move's chance, listed as an \"effect chance\", to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, Thunder Shock's paralysis is an extra effect, but Thunder Wave's is not, nor are Knock Off's item removal and Air Cutter's increased critical hit rate.",
           "isHidden": false
         },
         {
@@ -1717,8 +1717,8 @@
         {
           "id": "swarm",
           "name": "Swarm",
-          "shortEffect": "Strengthens bug moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its bug-type moves inflict 1.5× as much regular damage. Overworld: If the lead Pokémon has this ability, the wild encounter rate is increased.",
+          "shortEffect": "Strengthens Bug moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Bug-type moves inflict 1.5× as much regular damage. Overworld: If the lead Pokémon has this ability, the wild encounter rate is increased.",
           "isHidden": false
         },
         {
@@ -1886,14 +1886,14 @@
           "id": "shield-dust",
           "name": "Shield Dust",
           "shortEffect": "Protects against incoming moves' extra effects.",
-          "effect": "This Pokémon is immune to the extra effects of moves used against it. An extra effect is a move's chance, listed as an \"effect chance\", to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, thunder shock's paralysis is an extra effect, but thunder wave's is not, nor are knock off's item removal and air cutter's increased critical hit rate.",
+          "effect": "This Pokémon is immune to the extra effects of moves used against it. An extra effect is a move's chance, listed as an \"effect chance\", to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, Thunder Shock's paralysis is an extra effect, but Thunder Wave's is not, nor are Knock Off's item removal and Air Cutter's increased critical hit rate.",
           "isHidden": false
         },
         {
           "id": "compound-eyes",
           "name": "Compound Eyes",
           "shortEffect": "Increases moves' accuracy to 1.3×.",
-          "effect": "This Pokémon's moves have 1.3× their accuracy. This ability has no effect on the one-hit KO moves (fissure, guillotine, horn drill, and sheer cold). Overworld: If the first Pokémon in the party has this ability, the chance of a wild Pokémon holding a particular item is raised from 50%, 5%, or 1% to 60%, 20%, or 5%, respectively.",
+          "effect": "This Pokémon's moves have 1.3× their accuracy. This ability has no effect on the one-hit KO moves (Fissure, Guillotine, Horn Drill, and Sheer Cold). Overworld: If the first Pokémon in the party has this ability, the chance of a wild Pokémon holding a particular item is raised from 50%, 5%, or 1% to 60%, 20%, or 5%, respectively.",
           "isHidden": true
         }
       ],
@@ -2248,7 +2248,7 @@
           "id": "pickpocket",
           "name": "Pickpocket",
           "shortEffect": "Steals attacking Pokémon's held items on contact.",
-          "effect": "Whenever a move makes contact with this Pokémon, if it does not have a held item, it steals the attacker's held item. This Pokémon cannot steal upon being knocked out. It can steal if the attacker has a substitute, but cannot steal when its own Substitute is hit. If a move hits multiple times, only the last hit triggers this ability. If this Pokémon is wild, it cannot steal from a trained Pokémon.",
+          "effect": "Whenever a move makes contact with this Pokémon, if it does not have a held item, it steals the attacker's held item. This Pokémon cannot steal upon being knocked out. It can steal if the attacker has a Substitute, but cannot steal when its own Substitute is hit. If a move hits multiple times, only the last hit triggers this ability. If this Pokémon is wild, it cannot steal from a trained Pokémon.",
           "isHidden": true
         }
       ],
@@ -2335,7 +2335,7 @@
           "id": "pickpocket",
           "name": "Pickpocket",
           "shortEffect": "Steals attacking Pokémon's held items on contact.",
-          "effect": "Whenever a move makes contact with this Pokémon, if it does not have a held item, it steals the attacker's held item. This Pokémon cannot steal upon being knocked out. It can steal if the attacker has a substitute, but cannot steal when its own Substitute is hit. If a move hits multiple times, only the last hit triggers this ability. If this Pokémon is wild, it cannot steal from a trained Pokémon.",
+          "effect": "Whenever a move makes contact with this Pokémon, if it does not have a held item, it steals the attacker's held item. This Pokémon cannot steal upon being knocked out. It can steal if the attacker has a Substitute, but cannot steal when its own Substitute is hit. If a move hits multiple times, only the last hit triggers this ability. If this Pokémon is wild, it cannot steal from a trained Pokémon.",
           "isHidden": true
         }
       ],
@@ -2422,7 +2422,7 @@
           "id": "pickpocket",
           "name": "Pickpocket",
           "shortEffect": "Steals attacking Pokémon's held items on contact.",
-          "effect": "Whenever a move makes contact with this Pokémon, if it does not have a held item, it steals the attacker's held item. This Pokémon cannot steal upon being knocked out. It can steal if the attacker has a substitute, but cannot steal when its own Substitute is hit. If a move hits multiple times, only the last hit triggers this ability. If this Pokémon is wild, it cannot steal from a trained Pokémon.",
+          "effect": "Whenever a move makes contact with this Pokémon, if it does not have a held item, it steals the attacker's held item. This Pokémon cannot steal upon being knocked out. It can steal if the attacker has a Substitute, but cannot steal when its own Substitute is hit. If a move hits multiple times, only the last hit triggers this ability. If this Pokémon is wild, it cannot steal from a trained Pokémon.",
           "isHidden": true
         }
       ],
@@ -2501,8 +2501,8 @@
         {
           "id": "scrappy",
           "name": "Scrappy",
-          "shortEffect": "Lets the Pokémon's normal and fighting moves hit ghost Pokémon.",
-          "effect": "This Pokémon ignores ghost-type Pokémon's immunity to normal- and fighting-type moves. Ghost Pokémon's other types affect damage as usual.",
+          "shortEffect": "Lets the Pokémon's Normal and Fighting moves hit Ghost Pokémon.",
+          "effect": "This Pokémon ignores Ghost-type Pokémon's immunity to Normal- and Fighting-type moves. Ghost Pokémon's other types affect damage as usual.",
           "isHidden": true
         }
       ],
@@ -2571,8 +2571,8 @@
         {
           "id": "scrappy",
           "name": "Scrappy",
-          "shortEffect": "Lets the Pokémon's normal and fighting moves hit ghost Pokémon.",
-          "effect": "This Pokémon ignores ghost-type Pokémon's immunity to normal- and fighting-type moves. Ghost Pokémon's other types affect damage as usual.",
+          "shortEffect": "Lets the Pokémon's Normal and Fighting moves hit Ghost Pokémon.",
+          "effect": "This Pokémon ignores Ghost-type Pokémon's immunity to Normal- and Fighting-type moves. Ghost Pokémon's other types affect damage as usual.",
           "isHidden": true
         }
       ],
@@ -2635,7 +2635,7 @@
           "id": "keen-eye",
           "name": "Keen Eye",
           "shortEffect": "Prevents accuracy from being lowered.",
-          "effect": "This Pokémon cannot have its accuracy lowered. This ability does not prevent any accuracy losses other than stat modifiers, such as the accuracy cut from fog; nor does it prevent other Pokémon's evasion from making this Pokémon's moves less accurate. This Pokémon can still be passed negative accuracy modifiers through heart swap. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
+          "effect": "This Pokémon cannot have its accuracy lowered. This ability does not prevent any accuracy losses other than stat modifiers, such as the accuracy cut from fog; nor does it prevent other Pokémon's evasion from making this Pokémon's moves less accurate. This Pokémon can still be passed negative accuracy modifiers through Heart Swap. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
           "isHidden": false
         },
         {
@@ -2716,14 +2716,14 @@
           "id": "keen-eye",
           "name": "Keen Eye",
           "shortEffect": "Prevents accuracy from being lowered.",
-          "effect": "This Pokémon cannot have its accuracy lowered. This ability does not prevent any accuracy losses other than stat modifiers, such as the accuracy cut from fog; nor does it prevent other Pokémon's evasion from making this Pokémon's moves less accurate. This Pokémon can still be passed negative accuracy modifiers through heart swap. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
+          "effect": "This Pokémon cannot have its accuracy lowered. This ability does not prevent any accuracy losses other than stat modifiers, such as the accuracy cut from fog; nor does it prevent other Pokémon's evasion from making this Pokémon's moves less accurate. This Pokémon can still be passed negative accuracy modifiers through Heart Swap. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
           "isHidden": false
         },
         {
           "id": "drizzle",
           "name": "Drizzle",
           "shortEffect": "Summons rain that lasts indefinitely upon entering battle.",
-          "effect": "The weather changes to rain when this Pokémon enters battle and does not end unless replaced by another weather condition. If multiple Pokémon with this ability, drought, sand stream, or snow warning are sent out at the same time, the abilities will activate in order of Speed, respecting trick room. Each ability's weather will cancel the previous weather, and only the weather summoned by the slowest of the Pokémon will stay.",
+          "effect": "The weather changes to rain when this Pokémon enters battle and does not end unless replaced by another weather condition. If multiple Pokémon with this ability, Drought, Sand Stream, or Snow Warning are sent out at the same time, the abilities will activate in order of Speed, respecting Trick Room. Each ability's weather will cancel the previous weather, and only the weather summoned by the slowest of the Pokémon will stay.",
           "isHidden": false
         },
         {
@@ -2797,14 +2797,14 @@
           "id": "synchronize",
           "name": "Synchronize",
           "shortEffect": "Copies burns, paralysis, and poison received onto the Pokémon that inflicted them.",
-          "effect": "Whenever this Pokémon is burned, paralyzed, or poisoned, the Pokémon who gave this Pokémon that ailment is also given the ailment. This ability passes back bad poison when this Pokémon is badly poisoned. This ability cannot pass on a status ailment that the Pokémon did not directly receive from another Pokémon, such as the poison from toxic spikes or the burn from a flame orb. Overworld: If the lead Pokémon has this ability, wild Pokémon have a 50% chance of having the lead Pokémon's nature, and a 50% chance of being given a random nature as usual, including the lead Pokémon's nature. This does not work on Pokémon received outside of battle or roaming legendaries.",
+          "effect": "Whenever this Pokémon is burned, paralyzed, or poisoned, the Pokémon who gave this Pokémon that ailment is also given the ailment. This ability passes back bad poison when this Pokémon is badly poisoned. This ability cannot pass on a status ailment that the Pokémon did not directly receive from another Pokémon, such as the poison from Toxic Spikes or the burn from a Flame Orb. Overworld: If the lead Pokémon has this ability, wild Pokémon have a 50% chance of having the lead Pokémon's nature, and a 50% chance of being given a random nature as usual, including the lead Pokémon's nature. This does not work on Pokémon received outside of battle or roaming legendaries.",
           "isHidden": false
         },
         {
           "id": "trace",
           "name": "Trace",
           "shortEffect": "Copies an opponent's ability upon entering battle.",
-          "effect": "When this Pokémon enters battle, it copies a random opponent's ability. This ability cannot copy flower gift, forecast, illusion, imposter, multitype, trace, wonder guard, or zen mode.",
+          "effect": "When this Pokémon enters battle, it copies a random opponent's ability. This ability cannot copy Flower Gift, Forecast, Illusion, Imposter, Multitype, Trace, Wonder Guard, or Zen Mode.",
           "isHidden": false
         },
         {
@@ -2902,14 +2902,14 @@
           "id": "synchronize",
           "name": "Synchronize",
           "shortEffect": "Copies burns, paralysis, and poison received onto the Pokémon that inflicted them.",
-          "effect": "Whenever this Pokémon is burned, paralyzed, or poisoned, the Pokémon who gave this Pokémon that ailment is also given the ailment. This ability passes back bad poison when this Pokémon is badly poisoned. This ability cannot pass on a status ailment that the Pokémon did not directly receive from another Pokémon, such as the poison from toxic spikes or the burn from a flame orb. Overworld: If the lead Pokémon has this ability, wild Pokémon have a 50% chance of having the lead Pokémon's nature, and a 50% chance of being given a random nature as usual, including the lead Pokémon's nature. This does not work on Pokémon received outside of battle or roaming legendaries.",
+          "effect": "Whenever this Pokémon is burned, paralyzed, or poisoned, the Pokémon who gave this Pokémon that ailment is also given the ailment. This ability passes back bad poison when this Pokémon is badly poisoned. This ability cannot pass on a status ailment that the Pokémon did not directly receive from another Pokémon, such as the poison from Toxic Spikes or the burn from a Flame Orb. Overworld: If the lead Pokémon has this ability, wild Pokémon have a 50% chance of having the lead Pokémon's nature, and a 50% chance of being given a random nature as usual, including the lead Pokémon's nature. This does not work on Pokémon received outside of battle or roaming legendaries.",
           "isHidden": false
         },
         {
           "id": "trace",
           "name": "Trace",
           "shortEffect": "Copies an opponent's ability upon entering battle.",
-          "effect": "When this Pokémon enters battle, it copies a random opponent's ability. This ability cannot copy flower gift, forecast, illusion, imposter, multitype, trace, wonder guard, or zen mode.",
+          "effect": "When this Pokémon enters battle, it copies a random opponent's ability. This ability cannot copy Flower Gift, Forecast, Illusion, Imposter, Multitype, Trace, Wonder Guard, or Zen Mode.",
           "isHidden": false
         },
         {
@@ -3007,14 +3007,14 @@
           "id": "synchronize",
           "name": "Synchronize",
           "shortEffect": "Copies burns, paralysis, and poison received onto the Pokémon that inflicted them.",
-          "effect": "Whenever this Pokémon is burned, paralyzed, or poisoned, the Pokémon who gave this Pokémon that ailment is also given the ailment. This ability passes back bad poison when this Pokémon is badly poisoned. This ability cannot pass on a status ailment that the Pokémon did not directly receive from another Pokémon, such as the poison from toxic spikes or the burn from a flame orb. Overworld: If the lead Pokémon has this ability, wild Pokémon have a 50% chance of having the lead Pokémon's nature, and a 50% chance of being given a random nature as usual, including the lead Pokémon's nature. This does not work on Pokémon received outside of battle or roaming legendaries.",
+          "effect": "Whenever this Pokémon is burned, paralyzed, or poisoned, the Pokémon who gave this Pokémon that ailment is also given the ailment. This ability passes back bad poison when this Pokémon is badly poisoned. This ability cannot pass on a status ailment that the Pokémon did not directly receive from another Pokémon, such as the poison from Toxic Spikes or the burn from a Flame Orb. Overworld: If the lead Pokémon has this ability, wild Pokémon have a 50% chance of having the lead Pokémon's nature, and a 50% chance of being given a random nature as usual, including the lead Pokémon's nature. This does not work on Pokémon received outside of battle or roaming legendaries.",
           "isHidden": false
         },
         {
           "id": "trace",
           "name": "Trace",
           "shortEffect": "Copies an opponent's ability upon entering battle.",
-          "effect": "When this Pokémon enters battle, it copies a random opponent's ability. This ability cannot copy flower gift, forecast, illusion, imposter, multitype, trace, wonder guard, or zen mode.",
+          "effect": "When this Pokémon enters battle, it copies a random opponent's ability. This ability cannot copy Flower Gift, Forecast, Illusion, Imposter, Multitype, Trace, Wonder Guard, or Zen Mode.",
           "isHidden": false
         },
         {
@@ -3111,8 +3111,8 @@
         {
           "id": "pixilate",
           "name": "Pixilate",
-          "shortEffect": "Turns the bearer's normal moves into fairy moves and strengthens them to 1.3× their power.",
-          "effect": "Turns the bearer's normal-type moves into fairy moves. Moves changed by this ability have 1.3× their power.",
+          "shortEffect": "Turns the bearer's Normal moves into Fairy moves and strengthens them to 1.3× their power.",
+          "effect": "Turns the bearer's Normal-type moves into Fairy moves. Moves changed by this ability have 1.3× their power.",
           "isHidden": false
         }
       ],
@@ -3276,14 +3276,14 @@
           "id": "intimidate",
           "name": "Intimidate",
           "shortEffect": "Lowers opponents' Attack one stage upon entering battle.",
-          "effect": "When this Pokémon enters battle, the opponent's Attack is lowered by one stage. In a double battle, both opponents are affected. This ability also takes effect when acquired during a battle, but will not take effect again if lost and reobtained without leaving battle. This ability has no effect on an opponent that has a substitute. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
+          "effect": "When this Pokémon enters battle, the opponent's Attack is lowered by one stage. In a double battle, both opponents are affected. This ability also takes effect when acquired during a battle, but will not take effect again if lost and reobtained without leaving battle. This ability has no effect on an opponent that has a Substitute. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
           "isHidden": false
         },
         {
           "id": "unnerve",
           "name": "Unnerve",
           "shortEffect": "Prevents opposing Pokémon from eating held Berries.",
-          "effect": "Opposing Pokémon cannot eat held Berries while this Pokémon is in battle. Affected Pokémon can still use bug bite or pluck to eat a target's Berry.",
+          "effect": "Opposing Pokémon cannot eat held Berries while this Pokémon is in battle. Affected Pokémon can still use Bug Bite or Pluck to eat a target's Berry.",
           "isHidden": true
         }
       ],
@@ -3442,7 +3442,7 @@
           "id": "technician",
           "name": "Technician",
           "shortEffect": "Strengthens moves of 60 base power or less to 1.5× their power.",
-          "effect": "This Pokémon's moves have 1.5× their power if their base power is 60 or less. This includes moves of variable power, such as hidden power and magnitude, when their power is 60 or less. helping hand's power boost is taken into account for any move, as is defense curl's power boost for rollout.",
+          "effect": "This Pokémon's moves have 1.5× their power if their base power is 60 or less. This includes moves of variable power, such as Hidden Power and Magnitude, when their power is 60 or less. Helping Hand's power boost is taken into account for any move, as is Defense Curl's power boost for Rollout.",
           "isHidden": true
         }
       ],
@@ -3507,7 +3507,7 @@
           "id": "truant",
           "name": "Truant",
           "shortEffect": "Skips every second turn.",
-          "effect": "Every second turn on which this Pokémon should attempt to use a move, it will instead do nothing (\"loaf around\"). Loafing around interrupts moves that take multiple turns the same way paralysis, flinching, etc do. Most such moves, for example bide or rollout, are simply cut off upon loafing around. Attacks with a recharge turn, such as hyper beam, do not have to recharge; attacks with a preparation turn, such as fly, do not end up being used. Moves that are forced over multiple turns and keep going through failure, such as outrage, uproar, or any move forced by encore, keep going as usual. If this Pokémon is confused, its confusion is not checked when loafing around; the Pokémon cannot hurt itself, and its confusion does not end or come closer to ending. If this Pokémon attempts to move but fails, e.g. because of paralysis or gravity, it still counts as having moved and will loaf around the next turn. If it does not attempt to move, e.g. because it is asleep or frozen, whatever it would have done will be postponed until its next attempt; that is, it will either loaf around or move as usual, depending on what it last did. This ability cannot be changed with worry seed, but it can be disabled with gastro acid, changed with role play, or traded away with skill swap.",
+          "effect": "Every second turn on which this Pokémon should attempt to use a move, it will instead do nothing (\"loaf around\"). Loafing around interrupts moves that take multiple turns the same way paralysis, flinching, etc do. Most such moves, for example Bide or Rollout, are simply cut off upon loafing around. Attacks with a recharge turn, such as Hyper Beam, do not have to recharge; attacks with a preparation turn, such as Fly, do not end up being used. Moves that are forced over multiple turns and keep going through failure, such as Outrage, Uproar, or any move forced by Encore, keep going as usual. If this Pokémon is confused, its confusion is not checked when loafing around; the Pokémon cannot hurt itself, and its confusion does not end or come closer to ending. If this Pokémon attempts to move but fails, e.g. because of paralysis or Gravity, it still counts as having moved and will loaf around the next turn. If it does not attempt to move, e.g. because it is asleep or frozen, whatever it would have done will be postponed until its next attempt; that is, it will either loaf around or move as usual, depending on what it last did. This ability cannot be changed with Worry Seed, but it can be disabled with Gastro Acid, changed with Role Play, or traded away with Skill Swap.",
           "isHidden": false
         }
       ],
@@ -3577,7 +3577,7 @@
           "id": "vital-spirit",
           "name": "Vital Spirit",
           "shortEffect": "Prevents sleep.",
-          "effect": "This Pokémon cannot be asleep. This causes rest to fail altogether. If a Pokémon is asleep and acquires this ability, it will immediately wake up; this includes when regaining a lost ability upon leaving battle. This ability functions identically to insomnia in battle. Overworld: If the lead Pokémon has this ability, higher-levelled Pokémon have their encounter rate increased.",
+          "effect": "This Pokémon cannot be asleep. This causes Rest to fail altogether. If a Pokémon is asleep and acquires this ability, it will immediately wake up; this includes when regaining a lost ability upon leaving battle. This ability functions identically to Insomnia in battle. Overworld: If the lead Pokémon has this ability, higher-levelled Pokémon have their encounter rate increased.",
           "isHidden": false
         }
       ],
@@ -3647,7 +3647,7 @@
           "id": "truant",
           "name": "Truant",
           "shortEffect": "Skips every second turn.",
-          "effect": "Every second turn on which this Pokémon should attempt to use a move, it will instead do nothing (\"loaf around\"). Loafing around interrupts moves that take multiple turns the same way paralysis, flinching, etc do. Most such moves, for example bide or rollout, are simply cut off upon loafing around. Attacks with a recharge turn, such as hyper beam, do not have to recharge; attacks with a preparation turn, such as fly, do not end up being used. Moves that are forced over multiple turns and keep going through failure, such as outrage, uproar, or any move forced by encore, keep going as usual. If this Pokémon is confused, its confusion is not checked when loafing around; the Pokémon cannot hurt itself, and its confusion does not end or come closer to ending. If this Pokémon attempts to move but fails, e.g. because of paralysis or gravity, it still counts as having moved and will loaf around the next turn. If it does not attempt to move, e.g. because it is asleep or frozen, whatever it would have done will be postponed until its next attempt; that is, it will either loaf around or move as usual, depending on what it last did. This ability cannot be changed with worry seed, but it can be disabled with gastro acid, changed with role play, or traded away with skill swap.",
+          "effect": "Every second turn on which this Pokémon should attempt to use a move, it will instead do nothing (\"loaf around\"). Loafing around interrupts moves that take multiple turns the same way paralysis, flinching, etc do. Most such moves, for example Bide or Rollout, are simply cut off upon loafing around. Attacks with a recharge turn, such as Hyper Beam, do not have to recharge; attacks with a preparation turn, such as Fly, do not end up being used. Moves that are forced over multiple turns and keep going through failure, such as Outrage, Uproar, or any move forced by Encore, keep going as usual. If this Pokémon is confused, its confusion is not checked when loafing around; the Pokémon cannot hurt itself, and its confusion does not end or come closer to ending. If this Pokémon attempts to move but fails, e.g. because of paralysis or Gravity, it still counts as having moved and will loaf around the next turn. If it does not attempt to move, e.g. because it is asleep or frozen, whatever it would have done will be postponed until its next attempt; that is, it will either loaf around or move as usual, depending on what it last did. This ability cannot be changed with Worry Seed, but it can be disabled with Gastro Acid, changed with Role Play, or traded away with Skill Swap.",
           "isHidden": false
         }
       ],
@@ -3718,7 +3718,7 @@
           "id": "compound-eyes",
           "name": "Compound Eyes",
           "shortEffect": "Increases moves' accuracy to 1.3×.",
-          "effect": "This Pokémon's moves have 1.3× their accuracy. This ability has no effect on the one-hit KO moves (fissure, guillotine, horn drill, and sheer cold). Overworld: If the first Pokémon in the party has this ability, the chance of a wild Pokémon holding a particular item is raised from 50%, 5%, or 1% to 60%, 20%, or 5%, respectively.",
+          "effect": "This Pokémon's moves have 1.3× their accuracy. This ability has no effect on the one-hit KO moves (Fissure, Guillotine, Horn Drill, and Sheer Cold). Overworld: If the first Pokémon in the party has this ability, the chance of a wild Pokémon holding a particular item is raised from 50%, 5%, or 1% to 60%, 20%, or 5%, respectively.",
           "isHidden": false
         },
         {
@@ -3802,8 +3802,8 @@
         {
           "id": "infiltrator",
           "name": "Infiltrator",
-          "shortEffect": "Bypasses light screen, reflect, and safeguard.",
-          "effect": "This Pokémon's moves ignore light screen, reflect, and safeguard.",
+          "shortEffect": "Bypasses Light Screen, Reflect, and Safeguard.",
+          "effect": "This Pokémon's moves ignore Light Screen, Reflect, and Safeguard.",
           "isHidden": true
         }
       ],
@@ -3874,7 +3874,7 @@
           "id": "wonder-guard",
           "name": "Wonder Guard",
           "shortEffect": "Protects against damaging moves that are not super effective.",
-          "effect": "This Pokémon is immune to damaging moves that are not super effective against it. Moves that inflict fixed damage, such as night shade or seismic toss, are considered super effective if their types are. Damage not directly dealt by moves, such as damage from weather, a status ailment, or spikes, is not prevented. This ability cannot be copied with role play or traded away with skill swap, but it can be copied with trace, disabled with gastro acid, or changed with worry seed. This Pokémon can still use Role Play itself to lose this ability, but not Skill Swap. If this Pokémon has a substitute, this ability will block moves as usual and any moves not blocked will react to the Substitute as usual.",
+          "effect": "This Pokémon is immune to damaging moves that are not super effective against it. Moves that inflict fixed damage, such as Night Shade or Seismic Toss, are considered super effective if their types are. Damage not directly dealt by moves, such as damage from weather, a status ailment, or Spikes, is not prevented. This ability cannot be copied with Role Play or traded away with Skill Swap, but it can be copied with Trace, disabled with Gastro Acid, or changed with Worry Seed. This Pokémon can still use Role Play itself to lose this ability, but not Skill Swap. If this Pokémon has a Substitute, this ability will block moves as usual and any moves not blocked will react to the Substitute as usual.",
           "isHidden": false
         }
       ],
@@ -3944,14 +3944,14 @@
           "id": "soundproof",
           "name": "Soundproof",
           "shortEffect": "Protects against sound-based moves.",
-          "effect": "This Pokémon is immune to moves flagged as being sound-based. heal bell is unaffected. uproar still prevents this Pokémon from sleeping. This Pokémon can still receive a Perish Song counter through baton pass, and will retain a Perish Song counter if it acquires this ability after Perish Song is used. howl, roar of time, sonic boom, and yawn are not flagged as sound-based.",
+          "effect": "This Pokémon is immune to moves flagged as being sound-based. Heal Bell is unaffected. Uproar still prevents this Pokémon from sleeping. This Pokémon can still receive a Perish Song counter through Baton Pass, and will retain a Perish Song counter if it acquires this ability after Perish Song is used. Howl, Roar of Time, Sonic Boom, and Yawn are not flagged as sound-based.",
           "isHidden": false
         },
         {
           "id": "rattled",
           "name": "Rattled",
-          "shortEffect": "Raises Speed one stage upon being hit by a dark, ghost, or bug move.",
-          "effect": "This Pokémon's Speed rises one stage with each hit from a damaging dark-, ghost-, or bug-type move.",
+          "shortEffect": "Raises Speed one stage upon being hit by a Dark, Ghost, or Bug move.",
+          "effect": "This Pokémon's Speed rises one stage with each hit from a damaging Dark-, Ghost-, or Bug-type move.",
           "isHidden": true
         }
       ],
@@ -4022,14 +4022,14 @@
           "id": "soundproof",
           "name": "Soundproof",
           "shortEffect": "Protects against sound-based moves.",
-          "effect": "This Pokémon is immune to moves flagged as being sound-based. heal bell is unaffected. uproar still prevents this Pokémon from sleeping. This Pokémon can still receive a Perish Song counter through baton pass, and will retain a Perish Song counter if it acquires this ability after Perish Song is used. howl, roar of time, sonic boom, and yawn are not flagged as sound-based.",
+          "effect": "This Pokémon is immune to moves flagged as being sound-based. Heal Bell is unaffected. Uproar still prevents this Pokémon from sleeping. This Pokémon can still receive a Perish Song counter through Baton Pass, and will retain a Perish Song counter if it acquires this ability after Perish Song is used. Howl, Roar of Time, Sonic Boom, and Yawn are not flagged as sound-based.",
           "isHidden": false
         },
         {
           "id": "scrappy",
           "name": "Scrappy",
-          "shortEffect": "Lets the Pokémon's normal and fighting moves hit ghost Pokémon.",
-          "effect": "This Pokémon ignores ghost-type Pokémon's immunity to normal- and fighting-type moves. Ghost Pokémon's other types affect damage as usual.",
+          "shortEffect": "Lets the Pokémon's Normal and Fighting moves hit Ghost Pokémon.",
+          "effect": "This Pokémon ignores Ghost-type Pokémon's immunity to Normal- and Fighting-type moves. Ghost Pokémon's other types affect damage as usual.",
           "isHidden": true
         }
       ],
@@ -4100,14 +4100,14 @@
           "id": "soundproof",
           "name": "Soundproof",
           "shortEffect": "Protects against sound-based moves.",
-          "effect": "This Pokémon is immune to moves flagged as being sound-based. heal bell is unaffected. uproar still prevents this Pokémon from sleeping. This Pokémon can still receive a Perish Song counter through baton pass, and will retain a Perish Song counter if it acquires this ability after Perish Song is used. howl, roar of time, sonic boom, and yawn are not flagged as sound-based.",
+          "effect": "This Pokémon is immune to moves flagged as being sound-based. Heal Bell is unaffected. Uproar still prevents this Pokémon from sleeping. This Pokémon can still receive a Perish Song counter through Baton Pass, and will retain a Perish Song counter if it acquires this ability after Perish Song is used. Howl, Roar of Time, Sonic Boom, and Yawn are not flagged as sound-based.",
           "isHidden": false
         },
         {
           "id": "scrappy",
           "name": "Scrappy",
-          "shortEffect": "Lets the Pokémon's normal and fighting moves hit ghost Pokémon.",
-          "effect": "This Pokémon ignores ghost-type Pokémon's immunity to normal- and fighting-type moves. Ghost Pokémon's other types affect damage as usual.",
+          "shortEffect": "Lets the Pokémon's Normal and Fighting moves hit Ghost Pokémon.",
+          "effect": "This Pokémon ignores Ghost-type Pokémon's immunity to Normal- and Fighting-type moves. Ghost Pokémon's other types affect damage as usual.",
           "isHidden": true
         }
       ],
@@ -4177,8 +4177,8 @@
         {
           "id": "thick-fat",
           "name": "Thick Fat",
-          "shortEffect": "Halves damage from fire and ice moves.",
-          "effect": "This Pokémon takes half as much damage from fire- and ice-type moves.",
+          "shortEffect": "Halves damage from Fire and Ice moves.",
+          "effect": "This Pokémon takes half as much damage from Fire- and Ice-type moves.",
           "isHidden": false
         },
         {
@@ -4192,7 +4192,7 @@
           "id": "sheer-force",
           "name": "Sheer Force",
           "shortEffect": "Strengthens moves with extra effects to 1.3× their power, but prevents their extra effects.",
-          "effect": "This Pokémon's moves with extra effects have 1.3× their power, but lose their extra effects. An effect chance is a move's chance to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, thunder shock's paralysis is an extra effect, but thunder wave's is not, nor are knock off's item removal and air cutter's increased critical hit rate. Moves that lower the user's stats are unaffected.",
+          "effect": "This Pokémon's moves with extra effects have 1.3× their power, but lose their extra effects. An effect chance is a move's chance to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, Thunder Shock's paralysis is an extra effect, but Thunder Wave's is not, nor are Knock Off's item removal and Air Cutter's increased critical hit rate. Moves that lower the user's stats are unaffected.",
           "isHidden": true
         }
       ],
@@ -4255,8 +4255,8 @@
         {
           "id": "thick-fat",
           "name": "Thick Fat",
-          "shortEffect": "Halves damage from fire and ice moves.",
-          "effect": "This Pokémon takes half as much damage from fire- and ice-type moves.",
+          "shortEffect": "Halves damage from Fire and Ice moves.",
+          "effect": "This Pokémon takes half as much damage from Fire- and Ice-type moves.",
           "isHidden": false
         },
         {
@@ -4270,7 +4270,7 @@
           "id": "sheer-force",
           "name": "Sheer Force",
           "shortEffect": "Strengthens moves with extra effects to 1.3× their power, but prevents their extra effects.",
-          "effect": "This Pokémon's moves with extra effects have 1.3× their power, but lose their extra effects. An effect chance is a move's chance to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, thunder shock's paralysis is an extra effect, but thunder wave's is not, nor are knock off's item removal and air cutter's increased critical hit rate. Moves that lower the user's stats are unaffected.",
+          "effect": "This Pokémon's moves with extra effects have 1.3× their power, but lose their extra effects. An effect chance is a move's chance to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, Thunder Shock's paralysis is an extra effect, but Thunder Wave's is not, nor are Knock Off's item removal and Air Cutter's increased critical hit rate. Moves that lower the user's stats are unaffected.",
           "isHidden": true
         }
       ],
@@ -4334,22 +4334,22 @@
         {
           "id": "thick-fat",
           "name": "Thick Fat",
-          "shortEffect": "Halves damage from fire and ice moves.",
-          "effect": "This Pokémon takes half as much damage from fire- and ice-type moves.",
+          "shortEffect": "Halves damage from Fire and Ice moves.",
+          "effect": "This Pokémon takes half as much damage from Fire- and Ice-type moves.",
           "isHidden": false
         },
         {
           "id": "huge-power",
           "name": "Huge Power",
           "shortEffect": "Doubles Attack in battle.",
-          "effect": "This Pokémon's Attack is doubled while in battle. This bonus does not count as a stat modifier. This ability functions identically to pure power.",
+          "effect": "This Pokémon's Attack is doubled while in battle. This bonus does not count as a stat modifier. This ability functions identically to Pure Power.",
           "isHidden": false
         },
         {
           "id": "sap-sipper",
           "name": "Sap Sipper",
-          "shortEffect": "Absorbs grass moves, raising Attack one stage.",
-          "effect": "Whenever a grass-type move hits this Pokémon, its Attack rises one stage, negating any other effect on it.",
+          "shortEffect": "Absorbs Grass moves, raising Attack one stage.",
+          "effect": "Whenever a Grass-type move hits this Pokémon, its Attack rises one stage, negating any other effect on it.",
           "isHidden": true
         }
       ],
@@ -4420,21 +4420,21 @@
           "id": "sturdy",
           "name": "Sturdy",
           "shortEffect": "Prevents being KOed from full HP, leaving 1 HP instead. Protects against the one-hit KO moves regardless of HP.",
-          "effect": "When this Pokémon is at full HP, any hit that would knock it out will instead leave it with 1 HP. Regardless of its current HP, it is also immune to the one-hit KO moves: fissure, guillotine, horn drill, and sheer cold. If this Pokémon is holding a focus sash, this ability takes precedence and the item will not be consumed.",
+          "effect": "When this Pokémon is at full HP, any hit that would knock it out will instead leave it with 1 HP. Regardless of its current HP, it is also immune to the one-hit KO moves: Fissure, Guillotine, Horn Drill, and Sheer Cold. If this Pokémon is holding a Focus Sash, this ability takes precedence and the item will not be consumed.",
           "isHidden": false
         },
         {
           "id": "magnet-pull",
           "name": "Magnet Pull",
-          "shortEffect": "Prevents steel opponents from fleeing or switching out.",
-          "effect": "While this Pokémon is in battle, opposing steel-type Pokémon cannot flee or switch out. Pokémon with run away can still flee. Pokémon can still switch out with the use of a move or item. Overworld: If the lead Pokémon has this ability, Steel-type Pokémon have a higher encounter rate.",
+          "shortEffect": "Prevents Steel opponents from fleeing or switching out.",
+          "effect": "While this Pokémon is in battle, opposing Steel-type Pokémon cannot flee or switch out. Pokémon with Run Away can still flee. Pokémon can still switch out with the use of a move or item. Overworld: If the lead Pokémon has this ability, Steel-type Pokémon have a higher encounter rate.",
           "isHidden": false
         },
         {
           "id": "sand-force",
           "name": "Sand Force",
-          "shortEffect": "Strengthens rock, ground, and steel moves to 1.3× their power during a sandstorm. Protects against sandstorm damage.",
-          "effect": "During a sandstorm, this Pokémon's rock-, ground-, and steel-type moves have 1.3× their base power. This Pokémon does not take sandstorm damage, regardless of type.",
+          "shortEffect": "Strengthens Rock, Ground, and Steel moves to 1.3× their power during a sandstorm. Protects against sandstorm damage.",
+          "effect": "During a sandstorm, this Pokémon's Rock-, Ground-, and Steel-type moves have 1.3× their base power. This Pokémon does not take sandstorm damage, regardless of type.",
           "isHidden": true
         }
       ],
@@ -4504,8 +4504,8 @@
         {
           "id": "normalize",
           "name": "Normalize",
-          "shortEffect": "Makes the Pokémon's moves all act normal-type.",
-          "effect": "This Pokémon's moves all act as if they were normal-type. Moves that inflict typeless damage do so as usual. Moves of variable type, such as hidden power, are affected. They otherwise work as usual, however; weather ball, for example, is always forced to be Normal, but it still has doubled power and looks different during weather. As thunder wave is prevented by immunities, unlike most non-damaging moves, it does not affect ghost-type Pokémon under the effect of this ability.",
+          "shortEffect": "Makes the Pokémon's moves all act Normal-type.",
+          "effect": "This Pokémon's moves all act as if they were Normal-type. Moves that inflict typeless damage do so as usual. Moves of variable type, such as Hidden Power, are affected. They otherwise work as usual, however; Weather Ball, for example, is always forced to be Normal, but it still has doubled power and looks different during weather. As Thunder Wave is prevented by immunities, unlike most non-damaging moves, it does not affect Ghost-type Pokémon under the effect of this ability.",
           "isHidden": false
         },
         {
@@ -4581,8 +4581,8 @@
         {
           "id": "normalize",
           "name": "Normalize",
-          "shortEffect": "Makes the Pokémon's moves all act normal-type.",
-          "effect": "This Pokémon's moves all act as if they were normal-type. Moves that inflict typeless damage do so as usual. Moves of variable type, such as hidden power, are affected. They otherwise work as usual, however; weather ball, for example, is always forced to be Normal, but it still has doubled power and looks different during weather. As thunder wave is prevented by immunities, unlike most non-damaging moves, it does not affect ghost-type Pokémon under the effect of this ability.",
+          "shortEffect": "Makes the Pokémon's moves all act Normal-type.",
+          "effect": "This Pokémon's moves all act as if they were Normal-type. Moves that inflict typeless damage do so as usual. Moves of variable type, such as Hidden Power, are affected. They otherwise work as usual, however; Weather Ball, for example, is always forced to be Normal, but it still has doubled power and looks different during weather. As Thunder Wave is prevented by immunities, unlike most non-damaging moves, it does not affect Ghost-type Pokémon under the effect of this ability.",
           "isHidden": false
         },
         {
@@ -4653,14 +4653,14 @@
           "id": "keen-eye",
           "name": "Keen Eye",
           "shortEffect": "Prevents accuracy from being lowered.",
-          "effect": "This Pokémon cannot have its accuracy lowered. This ability does not prevent any accuracy losses other than stat modifiers, such as the accuracy cut from fog; nor does it prevent other Pokémon's evasion from making this Pokémon's moves less accurate. This Pokémon can still be passed negative accuracy modifiers through heart swap. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
+          "effect": "This Pokémon cannot have its accuracy lowered. This ability does not prevent any accuracy losses other than stat modifiers, such as the accuracy cut from fog; nor does it prevent other Pokémon's evasion from making this Pokémon's moves less accurate. This Pokémon can still be passed negative accuracy modifiers through Heart Swap. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
           "isHidden": false
         },
         {
           "id": "stall",
           "name": "Stall",
           "shortEffect": "Makes the Pokémon move last within its move's priority bracket.",
-          "effect": "This Pokémon moves last within its priority bracket. Multiple Pokémon with this ability move in order of Speed amongst themselves. The full incense and lagging tail take precedence over this ability; that is, Pokémon with these items move after Pokémon with this ability. Pokémon with both this ability and one of these items are delayed as much as if they had only the item. This ability works as usual during trick room: Pokémon with this ability will move in reverse order of Speed after Pokémon without it.",
+          "effect": "This Pokémon moves last within its priority bracket. Multiple Pokémon with this ability move in order of Speed amongst themselves. The Full Incense and Lagging Tail take precedence over this ability; that is, Pokémon with these items move after Pokémon with this ability. Pokémon with both this ability and one of these items are delayed as much as if they had only the item. This ability works as usual during Trick Room: Pokémon with this ability will move in reverse order of Speed after Pokémon without it.",
           "isHidden": false
         },
         {
@@ -4733,7 +4733,7 @@
           "id": "magic-bounce",
           "name": "Magic Bounce",
           "shortEffect": "Reflects most non-damaging moves back at their user.",
-          "effect": "When this Pokémon is targeted by a move flagged as being reflectable, the move is redirected to its user. All reflectable moves are non-damaging, and most non-damaging moves that target other Pokémon are reflectable. A move reflected by this ability or magic coat cannot be reflected back.",
+          "effect": "When this Pokémon is targeted by a move flagged as being reflectable, the move is redirected to its user. All reflectable moves are non-damaging, and most non-damaging moves that target other Pokémon are reflectable. A move reflected by this ability or Magic Coat cannot be reflected back.",
           "isHidden": false
         }
       ],
@@ -4799,21 +4799,21 @@
           "id": "hyper-cutter",
           "name": "Hyper Cutter",
           "shortEffect": "Prevents Attack from being lowered by other Pokémon.",
-          "effect": "This Pokémon's Attack cannot be lowered by other Pokémon. This ability does not prevent any Attack losses other than stat modifiers, such as the Attack cut from a burn. This Pokémon can still be passed negative Attack modifiers through heart swap or power swap.",
+          "effect": "This Pokémon's Attack cannot be lowered by other Pokémon. This ability does not prevent any Attack losses other than stat modifiers, such as the Attack cut from a burn. This Pokémon can still be passed negative Attack modifiers through Heart Swap or Power Swap.",
           "isHidden": false
         },
         {
           "id": "intimidate",
           "name": "Intimidate",
           "shortEffect": "Lowers opponents' Attack one stage upon entering battle.",
-          "effect": "When this Pokémon enters battle, the opponent's Attack is lowered by one stage. In a double battle, both opponents are affected. This ability also takes effect when acquired during a battle, but will not take effect again if lost and reobtained without leaving battle. This ability has no effect on an opponent that has a substitute. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
+          "effect": "When this Pokémon enters battle, the opponent's Attack is lowered by one stage. In a double battle, both opponents are affected. This ability also takes effect when acquired during a battle, but will not take effect again if lost and reobtained without leaving battle. This ability has no effect on an opponent that has a Substitute. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
           "isHidden": false
         },
         {
           "id": "sheer-force",
           "name": "Sheer Force",
           "shortEffect": "Strengthens moves with extra effects to 1.3× their power, but prevents their extra effects.",
-          "effect": "This Pokémon's moves with extra effects have 1.3× their power, but lose their extra effects. An effect chance is a move's chance to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, thunder shock's paralysis is an extra effect, but thunder wave's is not, nor are knock off's item removal and air cutter's increased critical hit rate. Moves that lower the user's stats are unaffected.",
+          "effect": "This Pokémon's moves with extra effects have 1.3× their power, but lose their extra effects. An effect chance is a move's chance to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, Thunder Shock's paralysis is an extra effect, but Thunder Wave's is not, nor are Knock Off's item removal and Air Cutter's increased critical hit rate. Moves that lower the user's stats are unaffected.",
           "isHidden": true
         }
       ],
@@ -4879,7 +4879,7 @@
           "id": "huge-power",
           "name": "Huge Power",
           "shortEffect": "Doubles Attack in battle.",
-          "effect": "This Pokémon's Attack is doubled while in battle. This bonus does not count as a stat modifier. This ability functions identically to pure power.",
+          "effect": "This Pokémon's Attack is doubled while in battle. This bonus does not count as a stat modifier. This ability functions identically to Pure Power.",
           "isHidden": false
         }
       ],
@@ -4945,14 +4945,14 @@
           "id": "sturdy",
           "name": "Sturdy",
           "shortEffect": "Prevents being KOed from full HP, leaving 1 HP instead. Protects against the one-hit KO moves regardless of HP.",
-          "effect": "When this Pokémon is at full HP, any hit that would knock it out will instead leave it with 1 HP. Regardless of its current HP, it is also immune to the one-hit KO moves: fissure, guillotine, horn drill, and sheer cold. If this Pokémon is holding a focus sash, this ability takes precedence and the item will not be consumed.",
+          "effect": "When this Pokémon is at full HP, any hit that would knock it out will instead leave it with 1 HP. Regardless of its current HP, it is also immune to the one-hit KO moves: Fissure, Guillotine, Horn Drill, and Sheer Cold. If this Pokémon is holding a Focus Sash, this ability takes precedence and the item will not be consumed.",
           "isHidden": false
         },
         {
           "id": "rock-head",
           "name": "Rock Head",
           "shortEffect": "Protects against recoil damage.",
-          "effect": "This Pokémon does not receive recoil damage from its recoil moves. struggle's recoil is unaffected. This ability does not prevent crash damage from missing with jump kick or high jump kick.",
+          "effect": "This Pokémon does not receive recoil damage from its recoil moves. Struggle's recoil is unaffected. This ability does not prevent crash damage from missing with Jump Kick or High Jump Kick.",
           "isHidden": false
         },
         {
@@ -5036,14 +5036,14 @@
           "id": "sturdy",
           "name": "Sturdy",
           "shortEffect": "Prevents being KOed from full HP, leaving 1 HP instead. Protects against the one-hit KO moves regardless of HP.",
-          "effect": "When this Pokémon is at full HP, any hit that would knock it out will instead leave it with 1 HP. Regardless of its current HP, it is also immune to the one-hit KO moves: fissure, guillotine, horn drill, and sheer cold. If this Pokémon is holding a focus sash, this ability takes precedence and the item will not be consumed.",
+          "effect": "When this Pokémon is at full HP, any hit that would knock it out will instead leave it with 1 HP. Regardless of its current HP, it is also immune to the one-hit KO moves: Fissure, Guillotine, Horn Drill, and Sheer Cold. If this Pokémon is holding a Focus Sash, this ability takes precedence and the item will not be consumed.",
           "isHidden": false
         },
         {
           "id": "rock-head",
           "name": "Rock Head",
           "shortEffect": "Protects against recoil damage.",
-          "effect": "This Pokémon does not receive recoil damage from its recoil moves. struggle's recoil is unaffected. This ability does not prevent crash damage from missing with jump kick or high jump kick.",
+          "effect": "This Pokémon does not receive recoil damage from its recoil moves. Struggle's recoil is unaffected. This ability does not prevent crash damage from missing with Jump Kick or High Jump Kick.",
           "isHidden": false
         },
         {
@@ -5127,14 +5127,14 @@
           "id": "sturdy",
           "name": "Sturdy",
           "shortEffect": "Prevents being KOed from full HP, leaving 1 HP instead. Protects against the one-hit KO moves regardless of HP.",
-          "effect": "When this Pokémon is at full HP, any hit that would knock it out will instead leave it with 1 HP. Regardless of its current HP, it is also immune to the one-hit KO moves: fissure, guillotine, horn drill, and sheer cold. If this Pokémon is holding a focus sash, this ability takes precedence and the item will not be consumed.",
+          "effect": "When this Pokémon is at full HP, any hit that would knock it out will instead leave it with 1 HP. Regardless of its current HP, it is also immune to the one-hit KO moves: Fissure, Guillotine, Horn Drill, and Sheer Cold. If this Pokémon is holding a Focus Sash, this ability takes precedence and the item will not be consumed.",
           "isHidden": false
         },
         {
           "id": "rock-head",
           "name": "Rock Head",
           "shortEffect": "Protects against recoil damage.",
-          "effect": "This Pokémon does not receive recoil damage from its recoil moves. struggle's recoil is unaffected. This ability does not prevent crash damage from missing with jump kick or high jump kick.",
+          "effect": "This Pokémon does not receive recoil damage from its recoil moves. Struggle's recoil is unaffected. This ability does not prevent crash damage from missing with Jump Kick or High Jump Kick.",
           "isHidden": false
         },
         {
@@ -5217,7 +5217,7 @@
           "id": "filter",
           "name": "Filter",
           "shortEffect": "Decreases damage taken from super-effective moves by 1/4.",
-          "effect": "This Pokémon takes 0.75× as much damage from moves that are super effective against it. This ability functions identically to solid rock.",
+          "effect": "This Pokémon takes 0.75× as much damage from moves that are super effective against it. This ability functions identically to Solid Rock.",
           "isHidden": false
         }
       ],
@@ -5294,7 +5294,7 @@
           "id": "pure-power",
           "name": "Pure Power",
           "shortEffect": "Doubles Attack in battle.",
-          "effect": "This Pokémon's Attack is doubled in battle. This bonus does not count as a stat modifier. This ability functions identically to huge power.",
+          "effect": "This Pokémon's Attack is doubled in battle. This bonus does not count as a stat modifier. This ability functions identically to Huge Power.",
           "isHidden": false
         },
         {
@@ -5372,7 +5372,7 @@
           "id": "pure-power",
           "name": "Pure Power",
           "shortEffect": "Doubles Attack in battle.",
-          "effect": "This Pokémon's Attack is doubled in battle. This bonus does not count as a stat modifier. This ability functions identically to huge power.",
+          "effect": "This Pokémon's Attack is doubled in battle. This bonus does not count as a stat modifier. This ability functions identically to Huge Power.",
           "isHidden": false
         },
         {
@@ -5450,7 +5450,7 @@
           "id": "pure-power",
           "name": "Pure Power",
           "shortEffect": "Doubles Attack in battle.",
-          "effect": "This Pokémon's Attack is doubled in battle. This bonus does not count as a stat modifier. This ability functions identically to huge power.",
+          "effect": "This Pokémon's Attack is doubled in battle. This bonus does not count as a stat modifier. This ability functions identically to Huge Power.",
           "isHidden": false
         }
       ],
@@ -5520,21 +5520,21 @@
           "id": "static",
           "name": "Static",
           "shortEffect": "Has a 30% chance of paralyzing attacking Pokémon on contact.",
-          "effect": "Whenever a move makes contact with this Pokémon, the move's user has a 30% chance of being paralyzed. Pokémon that are immune to electric-type moves can still be paralyzed by this ability. Overworld: If the lead Pokémon has this ability, there is a 50% chance that encounters will be with an electric Pokémon, if applicable.",
+          "effect": "Whenever a move makes contact with this Pokémon, the move's user has a 30% chance of being paralyzed. Pokémon that are immune to Electric-type moves can still be paralyzed by this ability. Overworld: If the lead Pokémon has this ability, there is a 50% chance that encounters will be with an Electric Pokémon, if applicable.",
           "isHidden": false
         },
         {
           "id": "lightning-rod",
           "name": "Lightning Rod",
-          "shortEffect": "Redirects single-target electric moves to this Pokémon where possible. Absorbs Electric moves, raising Special Attack one stage.",
-          "effect": "All other Pokémon's single-target electric-type moves are redirected to this Pokémon if it is an eligible target. Other Pokémon's Electric moves raise this Pokémon's Special Attack one stage, negating any other effect on it, and cannot miss it. If the move's intended target also has this ability, the move is not redirected. When multiple Pokémon with this ability are possible targets for redirection, the move is redirected to the one with the highest Speed stat, or, in the case of a tie, to a random tied Pokémon. follow me takes precedence over this ability. If the Pokémon is a ground-type and thus immune to Electric moves, its immunity prevents the Special Attack boost.",
+          "shortEffect": "Redirects single-target Electric moves to this Pokémon where possible. Absorbs Electric moves, raising Special Attack one stage.",
+          "effect": "All other Pokémon's single-target Electric-type moves are redirected to this Pokémon if it is an eligible target. Other Pokémon's Electric moves raise this Pokémon's Special Attack one stage, negating any other effect on it, and cannot miss it. If the move's intended target also has this ability, the move is not redirected. When multiple Pokémon with this ability are possible targets for redirection, the move is redirected to the one with the highest Speed stat, or, in the case of a tie, to a random tied Pokémon. Follow Me takes precedence over this ability. If the Pokémon is a Ground-type and thus immune to Electric moves, its immunity prevents the Special Attack boost.",
           "isHidden": false
         },
         {
           "id": "minus",
           "name": "Minus",
-          "shortEffect": "Increases Special Attack to 1.5× when a friendly Pokémon has plus or minus.",
-          "effect": "This Pokémon has 1.5× its Special Attack if any friendly Pokémon has plus or minus. This bonus does not count as a stat modifier. If either ability is disabled by gastro acid, both lose their effect.",
+          "shortEffect": "Increases Special Attack to 1.5× when a friendly Pokémon has Plus or Minus.",
+          "effect": "This Pokémon has 1.5× its Special Attack if any friendly Pokémon has Plus or Minus. This bonus does not count as a stat modifier. If either ability is disabled by Gastro Acid, both lose their effect.",
           "isHidden": true
         }
       ],
@@ -5604,21 +5604,21 @@
           "id": "static",
           "name": "Static",
           "shortEffect": "Has a 30% chance of paralyzing attacking Pokémon on contact.",
-          "effect": "Whenever a move makes contact with this Pokémon, the move's user has a 30% chance of being paralyzed. Pokémon that are immune to electric-type moves can still be paralyzed by this ability. Overworld: If the lead Pokémon has this ability, there is a 50% chance that encounters will be with an electric Pokémon, if applicable.",
+          "effect": "Whenever a move makes contact with this Pokémon, the move's user has a 30% chance of being paralyzed. Pokémon that are immune to Electric-type moves can still be paralyzed by this ability. Overworld: If the lead Pokémon has this ability, there is a 50% chance that encounters will be with an Electric Pokémon, if applicable.",
           "isHidden": false
         },
         {
           "id": "lightning-rod",
           "name": "Lightning Rod",
-          "shortEffect": "Redirects single-target electric moves to this Pokémon where possible. Absorbs Electric moves, raising Special Attack one stage.",
-          "effect": "All other Pokémon's single-target electric-type moves are redirected to this Pokémon if it is an eligible target. Other Pokémon's Electric moves raise this Pokémon's Special Attack one stage, negating any other effect on it, and cannot miss it. If the move's intended target also has this ability, the move is not redirected. When multiple Pokémon with this ability are possible targets for redirection, the move is redirected to the one with the highest Speed stat, or, in the case of a tie, to a random tied Pokémon. follow me takes precedence over this ability. If the Pokémon is a ground-type and thus immune to Electric moves, its immunity prevents the Special Attack boost.",
+          "shortEffect": "Redirects single-target Electric moves to this Pokémon where possible. Absorbs Electric moves, raising Special Attack one stage.",
+          "effect": "All other Pokémon's single-target Electric-type moves are redirected to this Pokémon if it is an eligible target. Other Pokémon's Electric moves raise this Pokémon's Special Attack one stage, negating any other effect on it, and cannot miss it. If the move's intended target also has this ability, the move is not redirected. When multiple Pokémon with this ability are possible targets for redirection, the move is redirected to the one with the highest Speed stat, or, in the case of a tie, to a random tied Pokémon. Follow Me takes precedence over this ability. If the Pokémon is a Ground-type and thus immune to Electric moves, its immunity prevents the Special Attack boost.",
           "isHidden": false
         },
         {
           "id": "minus",
           "name": "Minus",
-          "shortEffect": "Increases Special Attack to 1.5× when a friendly Pokémon has plus or minus.",
-          "effect": "This Pokémon has 1.5× its Special Attack if any friendly Pokémon has plus or minus. This bonus does not count as a stat modifier. If either ability is disabled by gastro acid, both lose their effect.",
+          "shortEffect": "Increases Special Attack to 1.5× when a friendly Pokémon has Plus or Minus.",
+          "effect": "This Pokémon has 1.5× its Special Attack if any friendly Pokémon has Plus or Minus. This bonus does not count as a stat modifier. If either ability is disabled by Gastro Acid, both lose their effect.",
           "isHidden": true
         }
       ],
@@ -5688,7 +5688,7 @@
           "id": "intimidate",
           "name": "Intimidate",
           "shortEffect": "Lowers opponents' Attack one stage upon entering battle.",
-          "effect": "When this Pokémon enters battle, the opponent's Attack is lowered by one stage. In a double battle, both opponents are affected. This ability also takes effect when acquired during a battle, but will not take effect again if lost and reobtained without leaving battle. This ability has no effect on an opponent that has a substitute. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
+          "effect": "When this Pokémon enters battle, the opponent's Attack is lowered by one stage. In a double battle, both opponents are affected. This ability also takes effect when acquired during a battle, but will not take effect again if lost and reobtained without leaving battle. This ability has no effect on an opponent that has a Substitute. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
           "isHidden": false
         }
       ],
@@ -5757,15 +5757,15 @@
         {
           "id": "plus",
           "name": "Plus",
-          "shortEffect": "Increases Special Attack to 1.5× when a friendly Pokémon has plus or minus.",
-          "effect": "This Pokémon has 1.5× its Special Attack if any friendly Pokémon has plus or minus. This bonus does not count as a stat modifier. If either ability is disabled by gastro acid, both lose their effect.",
+          "shortEffect": "Increases Special Attack to 1.5× when a friendly Pokémon has Plus or Minus.",
+          "effect": "This Pokémon has 1.5× its Special Attack if any friendly Pokémon has Plus or Minus. This bonus does not count as a stat modifier. If either ability is disabled by Gastro Acid, both lose their effect.",
           "isHidden": false
         },
         {
           "id": "lightning-rod",
           "name": "Lightning Rod",
-          "shortEffect": "Redirects single-target electric moves to this Pokémon where possible. Absorbs Electric moves, raising Special Attack one stage.",
-          "effect": "All other Pokémon's single-target electric-type moves are redirected to this Pokémon if it is an eligible target. Other Pokémon's Electric moves raise this Pokémon's Special Attack one stage, negating any other effect on it, and cannot miss it. If the move's intended target also has this ability, the move is not redirected. When multiple Pokémon with this ability are possible targets for redirection, the move is redirected to the one with the highest Speed stat, or, in the case of a tie, to a random tied Pokémon. follow me takes precedence over this ability. If the Pokémon is a ground-type and thus immune to Electric moves, its immunity prevents the Special Attack boost.",
+          "shortEffect": "Redirects single-target Electric moves to this Pokémon where possible. Absorbs Electric moves, raising Special Attack one stage.",
+          "effect": "All other Pokémon's single-target Electric-type moves are redirected to this Pokémon if it is an eligible target. Other Pokémon's Electric moves raise this Pokémon's Special Attack one stage, negating any other effect on it, and cannot miss it. If the move's intended target also has this ability, the move is not redirected. When multiple Pokémon with this ability are possible targets for redirection, the move is redirected to the one with the highest Speed stat, or, in the case of a tie, to a random tied Pokémon. Follow Me takes precedence over this ability. If the Pokémon is a Ground-type and thus immune to Electric moves, its immunity prevents the Special Attack boost.",
           "isHidden": true
         }
       ],
@@ -5822,15 +5822,15 @@
         {
           "id": "minus",
           "name": "Minus",
-          "shortEffect": "Increases Special Attack to 1.5× when a friendly Pokémon has plus or minus.",
-          "effect": "This Pokémon has 1.5× its Special Attack if any friendly Pokémon has plus or minus. This bonus does not count as a stat modifier. If either ability is disabled by gastro acid, both lose their effect.",
+          "shortEffect": "Increases Special Attack to 1.5× when a friendly Pokémon has Plus or Minus.",
+          "effect": "This Pokémon has 1.5× its Special Attack if any friendly Pokémon has Plus or Minus. This bonus does not count as a stat modifier. If either ability is disabled by Gastro Acid, both lose their effect.",
           "isHidden": false
         },
         {
           "id": "volt-absorb",
           "name": "Volt Absorb",
-          "shortEffect": "Absorbs electric moves, healing for 1/4 max HP.",
-          "effect": "Whenever an electric-type move hits this Pokémon, it heals for 1/4 of its maximum HP, negating any other effect on it. This ability will not take effect if this Pokémon is ground-type and thus immune to Electric moves. Electric moves will ignore this Pokémon's substitute. This effect includes non-damaging moves, i.e. thunder wave.",
+          "shortEffect": "Absorbs Electric moves, healing for 1/4 max HP.",
+          "effect": "Whenever an Electric-type move hits this Pokémon, it heals for 1/4 of its maximum HP, negating any other effect on it. This ability will not take effect if this Pokémon is Ground-type and thus immune to Electric moves. Electric moves will ignore this Pokémon's Substitute. This effect includes non-damaging moves, i.e. Thunder Wave.",
           "isHidden": true
         }
       ],
@@ -5894,8 +5894,8 @@
         {
           "id": "swarm",
           "name": "Swarm",
-          "shortEffect": "Strengthens bug moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its bug-type moves inflict 1.5× as much regular damage. Overworld: If the lead Pokémon has this ability, the wild encounter rate is increased.",
+          "shortEffect": "Strengthens Bug moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Bug-type moves inflict 1.5× as much regular damage. Overworld: If the lead Pokémon has this ability, the wild encounter rate is increased.",
           "isHidden": false
         },
         {
@@ -5960,8 +5960,8 @@
         {
           "id": "oblivious",
           "name": "Oblivious",
-          "shortEffect": "Prevents infatuation and protects against captivate.",
-          "effect": "This Pokémon cannot be infatuated and is immune to captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
+          "shortEffect": "Prevents infatuation and protects against Captivate.",
+          "effect": "This Pokémon cannot be infatuated and is immune to Captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
           "isHidden": false
         },
         {
@@ -6049,7 +6049,7 @@
           "id": "leaf-guard",
           "name": "Leaf Guard",
           "shortEffect": "Protects against major status ailments during strong sunlight.",
-          "effect": "This Pokémon cannot be given a major status ailment during strong sunlight. This ability does not heal prior status ailments. rest will fail altogether with this ability in effect. yawn will immediately fail if used on this Pokémon during strong sunlight, and an already-used Yawn will fail if the weather turns to strong sunlight in the meantime.",
+          "effect": "This Pokémon cannot be given a major status ailment during strong sunlight. This ability does not heal prior status ailments. Rest will fail altogether with this ability in effect. Yawn will immediately fail if used on this Pokémon during strong sunlight, and an already-used Yawn will fail if the weather turns to strong sunlight in the meantime.",
           "isHidden": true
         }
       ],
@@ -6120,14 +6120,14 @@
           "id": "liquid-ooze",
           "name": "Liquid Ooze",
           "shortEffect": "Damages opponents using leeching moves for as much as they would heal.",
-          "effect": "Whenever a Pokémon would heal after hitting this Pokémon with a leeching move like absorb, it instead loses as many HP as it would usually gain. dream eater is unaffected.",
+          "effect": "Whenever a Pokémon would heal after hitting this Pokémon with a leeching move like Absorb, it instead loses as many HP as it would usually gain. Dream Eater is unaffected.",
           "isHidden": false
         },
         {
           "id": "sticky-hold",
           "name": "Sticky Hold",
           "shortEffect": "Prevents a held item from being removed by other Pokémon.",
-          "effect": "This Pokémon's hold item cannot be removed by other Pokémon. Damaging moves that would remove this Pokémon's item can still inflict damage against this Pokémon, e.g. knock off or pluck. This Pokémon can still use moves that involve the loss of its own item, e.g. fling or trick. Overworld: If the lead Pokémon has this ability, the encounter rate while fishing is increased.",
+          "effect": "This Pokémon's hold item cannot be removed by other Pokémon. Damaging moves that would remove this Pokémon's item can still inflict damage against this Pokémon, e.g. Knock Off or Pluck. This Pokémon can still use moves that involve the loss of its own item, e.g. Fling or Trick. Overworld: If the lead Pokémon has this ability, the encounter rate while fishing is increased.",
           "isHidden": false
         },
         {
@@ -6198,14 +6198,14 @@
           "id": "liquid-ooze",
           "name": "Liquid Ooze",
           "shortEffect": "Damages opponents using leeching moves for as much as they would heal.",
-          "effect": "Whenever a Pokémon would heal after hitting this Pokémon with a leeching move like absorb, it instead loses as many HP as it would usually gain. dream eater is unaffected.",
+          "effect": "Whenever a Pokémon would heal after hitting this Pokémon with a leeching move like Absorb, it instead loses as many HP as it would usually gain. Dream Eater is unaffected.",
           "isHidden": false
         },
         {
           "id": "sticky-hold",
           "name": "Sticky Hold",
           "shortEffect": "Prevents a held item from being removed by other Pokémon.",
-          "effect": "This Pokémon's hold item cannot be removed by other Pokémon. Damaging moves that would remove this Pokémon's item can still inflict damage against this Pokémon, e.g. knock off or pluck. This Pokémon can still use moves that involve the loss of its own item, e.g. fling or trick. Overworld: If the lead Pokémon has this ability, the encounter rate while fishing is increased.",
+          "effect": "This Pokémon's hold item cannot be removed by other Pokémon. Damaging moves that would remove this Pokémon's item can still inflict damage against this Pokémon, e.g. Knock Off or Pluck. This Pokémon can still use moves that involve the loss of its own item, e.g. Fling or Trick. Overworld: If the lead Pokémon has this ability, the encounter rate while fishing is increased.",
           "isHidden": false
         },
         {
@@ -6234,7 +6234,8 @@
       "generation": "Generation Iii",
       "generationId": 3,
       "gameAvailability": [
-        "scarlet-violet"
+        "scarlet-violet",
+        "pokemon-champions"
       ],
       "eggGroups": [
         "Indeterminate"
@@ -6277,7 +6278,7 @@
           "id": "rough-skin",
           "name": "Rough Skin",
           "shortEffect": "Damages attacking Pokémon for 1/8 their max HP on contact.",
-          "effect": "Whenever a move makes contact with this Pokémon, the move's user takes 1/8 of its maximum HP in damage. This ability functions identically to iron barbs.",
+          "effect": "Whenever a move makes contact with this Pokémon, the move's user takes 1/8 of its maximum HP in damage. This ability functions identically to Iron Barbs.",
           "isHidden": false
         },
         {
@@ -6355,7 +6356,7 @@
           "id": "rough-skin",
           "name": "Rough Skin",
           "shortEffect": "Damages attacking Pokémon for 1/8 their max HP on contact.",
-          "effect": "Whenever a move makes contact with this Pokémon, the move's user takes 1/8 of its maximum HP in damage. This ability functions identically to iron barbs.",
+          "effect": "Whenever a move makes contact with this Pokémon, the move's user takes 1/8 of its maximum HP in damage. This ability functions identically to Iron Barbs.",
           "isHidden": false
         },
         {
@@ -6509,8 +6510,8 @@
         {
           "id": "oblivious",
           "name": "Oblivious",
-          "shortEffect": "Prevents infatuation and protects against captivate.",
-          "effect": "This Pokémon cannot be infatuated and is immune to captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
+          "shortEffect": "Prevents infatuation and protects against Captivate.",
+          "effect": "This Pokémon cannot be infatuated and is immune to Captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
           "isHidden": false
         },
         {
@@ -6588,8 +6589,8 @@
         {
           "id": "oblivious",
           "name": "Oblivious",
-          "shortEffect": "Prevents infatuation and protects against captivate.",
-          "effect": "This Pokémon cannot be infatuated and is immune to captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
+          "shortEffect": "Prevents infatuation and protects against Captivate.",
+          "effect": "This Pokémon cannot be infatuated and is immune to Captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
           "isHidden": false
         },
         {
@@ -6661,8 +6662,8 @@
         {
           "id": "oblivious",
           "name": "Oblivious",
-          "shortEffect": "Prevents infatuation and protects against captivate.",
-          "effect": "This Pokémon cannot be infatuated and is immune to captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
+          "shortEffect": "Prevents infatuation and protects against Captivate.",
+          "effect": "This Pokémon cannot be infatuated and is immune to Captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
           "isHidden": false
         },
         {
@@ -6747,21 +6748,21 @@
           "id": "magma-armor",
           "name": "Magma Armor",
           "shortEffect": "Prevents freezing.",
-          "effect": "This Pokémon cannot be frozen. If a Pokémon is frozen and acquires this ability, it will immediately thaw out; this includes when regaining a lost ability upon leaving battle. Overworld: If any Pokémon in the party has this ability, each egg in the party has its hatch counter decreased by 2 (rather than 1) each step cycle, making eggs hatch roughly twice as quickly. This effect does not stack if multiple Pokémon have this ability or flame body.",
+          "effect": "This Pokémon cannot be frozen. If a Pokémon is frozen and acquires this ability, it will immediately thaw out; this includes when regaining a lost ability upon leaving battle. Overworld: If any Pokémon in the party has this ability, each egg in the party has its hatch counter decreased by 2 (rather than 1) each step cycle, making eggs hatch roughly twice as quickly. This effect does not stack if multiple Pokémon have this ability or Flame Body.",
           "isHidden": false
         },
         {
           "id": "solid-rock",
           "name": "Solid Rock",
           "shortEffect": "Decreases damage taken from super-effective moves by 1/4.",
-          "effect": "This Pokémon takes 0.75× as much damage from moves that are super effective against it. This ability functions identically to filter.",
+          "effect": "This Pokémon takes 0.75× as much damage from moves that are super effective against it. This ability functions identically to Filter.",
           "isHidden": false
         },
         {
           "id": "anger-point",
           "name": "Anger Point",
           "shortEffect": "Raises Attack to the maximum of six stages upon receiving a critical hit.",
-          "effect": "Whenever this Pokémon receives a critical hit, its Attack rises to the maximum of 6 stages. This ability will still take effect if the critical hit is received by a substitute.",
+          "effect": "Whenever this Pokémon receives a critical hit, its Attack rises to the maximum of 6 stages. This ability will still take effect if the critical hit is received by a Substitute.",
           "isHidden": true
         }
       ],
@@ -6832,7 +6833,7 @@
           "id": "sheer-force",
           "name": "Sheer Force",
           "shortEffect": "Strengthens moves with extra effects to 1.3× their power, but prevents their extra effects.",
-          "effect": "This Pokémon's moves with extra effects have 1.3× their power, but lose their extra effects. An effect chance is a move's chance to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, thunder shock's paralysis is an extra effect, but thunder wave's is not, nor are knock off's item removal and air cutter's increased critical hit rate. Moves that lower the user's stats are unaffected.",
+          "effect": "This Pokémon's moves with extra effects have 1.3× their power, but lose their extra effects. An effect chance is a move's chance to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, Thunder Shock's paralysis is an extra effect, but Thunder Wave's is not, nor are Knock Off's item removal and Air Cutter's increased critical hit rate. Moves that lower the user's stats are unaffected.",
           "isHidden": false
         }
       ],
@@ -6902,21 +6903,21 @@
           "id": "white-smoke",
           "name": "White Smoke",
           "shortEffect": "Prevents stats from being lowered by other Pokémon.",
-          "effect": "This Pokémon cannot have its stats lowered by other Pokémon. This ability does not prevent any stat losses other than stat modifiers, such as the Speed cut from paralysis; nor self-inflicted stat drops, such as the Special Attack drop from overheat; nor opponent-triggered stat boosts, such as the Attack boost from swagger. This Pokémon can still be passed negative stat modifiers through guard swap, heart swap, or power swap. This ability functions identically to clear body in battle. Overworld: If the lead Pokémon has this ability, the wild encounter rate is halved.",
+          "effect": "This Pokémon cannot have its stats lowered by other Pokémon. This ability does not prevent any stat losses other than stat modifiers, such as the Speed cut from paralysis; nor self-inflicted stat drops, such as the Special Attack drop from Overheat; nor opponent-triggered stat boosts, such as the Attack boost from Swagger. This Pokémon can still be passed negative stat modifiers through Guard Swap, Heart Swap, or Power Swap. This ability functions identically to Clear Body in battle. Overworld: If the lead Pokémon has this ability, the wild encounter rate is halved.",
           "isHidden": false
         },
         {
           "id": "drought",
           "name": "Drought",
           "shortEffect": "Summons strong sunlight that lasts indefinitely upon entering battle.",
-          "effect": "The weather changes to strong sunlight when this Pokémon enters battle and does not end unless cancelled by another weather condition. If multiple Pokémon with this ability, drizzle, sand stream, or snow warning are sent out at the same time, the abilities will activate in order of Speed, respecting trick room. Each ability's weather will cancel the previous weather, and only the weather summoned by the slowest of the Pokémon will stay.",
+          "effect": "The weather changes to strong sunlight when this Pokémon enters battle and does not end unless cancelled by another weather condition. If multiple Pokémon with this ability, Drizzle, Sand Stream, or Snow Warning are sent out at the same time, the abilities will activate in order of Speed, respecting Trick Room. Each ability's weather will cancel the previous weather, and only the weather summoned by the slowest of the Pokémon will stay.",
           "isHidden": false
         },
         {
           "id": "shell-armor",
           "name": "Shell Armor",
           "shortEffect": "Protects against critical hits.",
-          "effect": "Moves cannot score critical hits against this Pokémon. This ability functions identically to battle armor.",
+          "effect": "Moves cannot score critical hits against this Pokémon. This ability functions identically to Battle Armor.",
           "isHidden": true
         }
       ],
@@ -6974,8 +6975,8 @@
         {
           "id": "thick-fat",
           "name": "Thick Fat",
-          "shortEffect": "Halves damage from fire and ice moves.",
-          "effect": "This Pokémon takes half as much damage from fire- and ice-type moves.",
+          "shortEffect": "Halves damage from Fire and Ice moves.",
+          "effect": "This Pokémon takes half as much damage from Fire- and Ice-type moves.",
           "isHidden": false
         },
         {
@@ -7052,8 +7053,8 @@
         {
           "id": "thick-fat",
           "name": "Thick Fat",
-          "shortEffect": "Halves damage from fire and ice moves.",
-          "effect": "This Pokémon takes half as much damage from fire- and ice-type moves.",
+          "shortEffect": "Halves damage from Fire and Ice moves.",
+          "effect": "This Pokémon takes half as much damage from Fire- and Ice-type moves.",
           "isHidden": false
         },
         {
@@ -7202,21 +7203,21 @@
           "id": "hyper-cutter",
           "name": "Hyper Cutter",
           "shortEffect": "Prevents Attack from being lowered by other Pokémon.",
-          "effect": "This Pokémon's Attack cannot be lowered by other Pokémon. This ability does not prevent any Attack losses other than stat modifiers, such as the Attack cut from a burn. This Pokémon can still be passed negative Attack modifiers through heart swap or power swap.",
+          "effect": "This Pokémon's Attack cannot be lowered by other Pokémon. This ability does not prevent any Attack losses other than stat modifiers, such as the Attack cut from a burn. This Pokémon can still be passed negative Attack modifiers through Heart Swap or Power Swap.",
           "isHidden": false
         },
         {
           "id": "arena-trap",
           "name": "Arena Trap",
-          "shortEffect": "Prevents opponents from fleeing or switching out. Eluded by flying-types and Pokémon in the air.",
-          "effect": "While this Pokémon is in battle, opposing Pokémon cannot flee or switch out. flying-type Pokémon and Pokémon in the air, e.g. due to levitate or magnet rise, are unaffected. Pokémon with run away can still flee. Pokémon can still switch out with the use of a move or item. Overworld: If the lead Pokémon has this ability, the wild encounter rate is doubled.",
+          "shortEffect": "Prevents opponents from fleeing or switching out. Eluded by Flying-types and Pokémon in the air.",
+          "effect": "While this Pokémon is in battle, opposing Pokémon cannot flee or switch out. Flying-type Pokémon and Pokémon in the air, e.g. due to Levitate or Magnet Rise, are unaffected. Pokémon with Run Away can still flee. Pokémon can still switch out with the use of a move or item. Overworld: If the lead Pokémon has this ability, the wild encounter rate is doubled.",
           "isHidden": false
         },
         {
           "id": "sheer-force",
           "name": "Sheer Force",
           "shortEffect": "Strengthens moves with extra effects to 1.3× their power, but prevents their extra effects.",
-          "effect": "This Pokémon's moves with extra effects have 1.3× their power, but lose their extra effects. An effect chance is a move's chance to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, thunder shock's paralysis is an extra effect, but thunder wave's is not, nor are knock off's item removal and air cutter's increased critical hit rate. Moves that lower the user's stats are unaffected.",
+          "effect": "This Pokémon's moves with extra effects have 1.3× their power, but lose their extra effects. An effect chance is a move's chance to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, Thunder Shock's paralysis is an extra effect, but Thunder Wave's is not, nor are Knock Off's item removal and Air Cutter's increased critical hit rate. Moves that lower the user's stats are unaffected.",
           "isHidden": true
         }
       ],
@@ -7288,8 +7289,8 @@
         {
           "id": "levitate",
           "name": "Levitate",
-          "shortEffect": "Evades ground moves.",
-          "effect": "This Pokémon is immune to ground-type moves, spikes, toxic spikes, and arena trap. This ability is disabled during gravity or ingrain, or while holding an iron ball. This ability is not disabled during roost.",
+          "shortEffect": "Evades Ground moves.",
+          "effect": "This Pokémon is immune to Ground-type moves, Spikes, Toxic Spikes, and Arena Trap. This ability is disabled during Gravity or Ingrain, or while holding an Iron Ball. This ability is not disabled during Roost.",
           "isHidden": false
         }
       ],
@@ -7361,8 +7362,8 @@
         {
           "id": "levitate",
           "name": "Levitate",
-          "shortEffect": "Evades ground moves.",
-          "effect": "This Pokémon is immune to ground-type moves, spikes, toxic spikes, and arena trap. This ability is disabled during gravity or ingrain, or while holding an iron ball. This ability is not disabled during roost.",
+          "shortEffect": "Evades Ground moves.",
+          "effect": "This Pokémon is immune to Ground-type moves, Spikes, Toxic Spikes, and Arena Trap. This ability is disabled during Gravity or Ingrain, or while holding an Iron Ball. This ability is not disabled during Roost.",
           "isHidden": false
         }
       ],
@@ -7440,8 +7441,8 @@
         {
           "id": "water-absorb",
           "name": "Water Absorb",
-          "shortEffect": "Absorbs water moves, healing for 1/4 max HP.",
-          "effect": "Whenever a water-type move hits this Pokémon, it heals for 1/4 of its maximum HP, negating any other effect on it. Water moves will ignore this Pokémon's substitute.",
+          "shortEffect": "Absorbs Water moves, healing for 1/4 max HP.",
+          "effect": "Whenever a Water-type move hits this Pokémon, it heals for 1/4 of its maximum HP, negating any other effect on it. Water moves will ignore this Pokémon's Substitute.",
           "isHidden": true
         }
       ],
@@ -7513,8 +7514,8 @@
         {
           "id": "water-absorb",
           "name": "Water Absorb",
-          "shortEffect": "Absorbs water moves, healing for 1/4 max HP.",
-          "effect": "Whenever a water-type move hits this Pokémon, it heals for 1/4 of its maximum HP, negating any other effect on it. Water moves will ignore this Pokémon's substitute.",
+          "shortEffect": "Absorbs Water moves, healing for 1/4 max HP.",
+          "effect": "Whenever a Water-type move hits this Pokémon, it heals for 1/4 of its maximum HP, negating any other effect on it. Water moves will ignore this Pokémon's Substitute.",
           "isHidden": true
         }
       ],
@@ -7587,7 +7588,7 @@
           "id": "cloud-nine",
           "name": "Cloud Nine",
           "shortEffect": "Negates all effects of weather, but does not prevent the weather itself.",
-          "effect": "While this Pokémon is in battle, weather can still be in play, but will not have any of its effects. This ability functions identically to air lock.",
+          "effect": "While this Pokémon is in battle, weather can still be in play, but will not have any of its effects. This ability functions identically to Air Lock.",
           "isHidden": true
         }
       ],
@@ -7667,7 +7668,7 @@
           "id": "cloud-nine",
           "name": "Cloud Nine",
           "shortEffect": "Negates all effects of weather, but does not prevent the weather itself.",
-          "effect": "While this Pokémon is in battle, weather can still be in play, but will not have any of its effects. This ability functions identically to air lock.",
+          "effect": "While this Pokémon is in battle, weather can still be in play, but will not have any of its effects. This ability functions identically to Air Lock.",
           "isHidden": true
         }
       ],
@@ -7739,8 +7740,8 @@
         {
           "id": "pixilate",
           "name": "Pixilate",
-          "shortEffect": "Turns the bearer's normal moves into fairy moves and strengthens them to 1.3× their power.",
-          "effect": "Turns the bearer's normal-type moves into fairy moves. Moves changed by this ability have 1.3× their power.",
+          "shortEffect": "Turns the bearer's Normal moves into Fairy moves and strengthens them to 1.3× their power.",
+          "effect": "Turns the bearer's Normal-type moves into Fairy moves. Moves changed by this ability have 1.3× their power.",
           "isHidden": false
         }
       ],
@@ -7883,8 +7884,8 @@
         {
           "id": "infiltrator",
           "name": "Infiltrator",
-          "shortEffect": "Bypasses light screen, reflect, and safeguard.",
-          "effect": "This Pokémon's moves ignore light screen, reflect, and safeguard.",
+          "shortEffect": "Bypasses Light Screen, Reflect, and Safeguard.",
+          "effect": "This Pokémon's moves ignore Light Screen, Reflect, and Safeguard.",
           "isHidden": true
         }
       ],
@@ -7943,8 +7944,8 @@
         {
           "id": "levitate",
           "name": "Levitate",
-          "shortEffect": "Evades ground moves.",
-          "effect": "This Pokémon is immune to ground-type moves, spikes, toxic spikes, and arena trap. This ability is disabled during gravity or ingrain, or while holding an iron ball. This ability is not disabled during roost.",
+          "shortEffect": "Evades Ground moves.",
+          "effect": "This Pokémon is immune to Ground-type moves, Spikes, Toxic Spikes, and Arena Trap. This ability is disabled during Gravity or Ingrain, or while holding an Iron Ball. This ability is not disabled during Roost.",
           "isHidden": false
         }
       ],
@@ -8002,8 +8003,8 @@
         {
           "id": "levitate",
           "name": "Levitate",
-          "shortEffect": "Evades ground moves.",
-          "effect": "This Pokémon is immune to ground-type moves, spikes, toxic spikes, and arena trap. This ability is disabled during gravity or ingrain, or while holding an iron ball. This ability is not disabled during roost.",
+          "shortEffect": "Evades Ground moves.",
+          "effect": "This Pokémon is immune to Ground-type moves, Spikes, Toxic Spikes, and Arena Trap. This ability is disabled during Gravity or Ingrain, or while holding an Iron Ball. This ability is not disabled during Roost.",
           "isHidden": false
         }
       ],
@@ -8061,15 +8062,15 @@
         {
           "id": "oblivious",
           "name": "Oblivious",
-          "shortEffect": "Prevents infatuation and protects against captivate.",
-          "effect": "This Pokémon cannot be infatuated and is immune to captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
+          "shortEffect": "Prevents infatuation and protects against Captivate.",
+          "effect": "This Pokémon cannot be infatuated and is immune to Captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
           "isHidden": false
         },
         {
           "id": "anticipation",
           "name": "Anticipation",
-          "shortEffect": "Notifies all trainers upon entering battle if an opponent has a super-effective move, self destruct, explosion, or a one-hit KO move.",
-          "effect": "When this Pokémon enters battle, if one of its opponents has a move that is super effective against it, self destruct, explosion, or a one-hit knockout move, all participating trainers are notified. The move itself is not revealed; only that there is such a move. Moves that inflict typeless damage, such as future sight, and moves of variable type, such as hidden power, count as their listed types. counter, metal burst, mirror coat, and one-hit KO moves to which this Pokémon is immune do not trigger this ability.",
+          "shortEffect": "Notifies all trainers upon entering battle if an opponent has a super-effective move, Self-Destruct, Explosion, or a one-hit KO move.",
+          "effect": "When this Pokémon enters battle, if one of its opponents has a move that is super effective against it, Self-Destruct, Explosion, or a one-hit knockout move, all participating trainers are notified. The move itself is not revealed; only that there is such a move. Moves that inflict typeless damage, such as Future Sight, and moves of variable type, such as Hidden Power, count as their listed types. Counter, Metal Burst, Mirror Coat, and one-hit KO moves to which this Pokémon is immune do not trigger this ability.",
           "isHidden": false
         },
         {
@@ -8141,15 +8142,15 @@
         {
           "id": "oblivious",
           "name": "Oblivious",
-          "shortEffect": "Prevents infatuation and protects against captivate.",
-          "effect": "This Pokémon cannot be infatuated and is immune to captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
+          "shortEffect": "Prevents infatuation and protects against Captivate.",
+          "effect": "This Pokémon cannot be infatuated and is immune to Captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
           "isHidden": false
         },
         {
           "id": "anticipation",
           "name": "Anticipation",
-          "shortEffect": "Notifies all trainers upon entering battle if an opponent has a super-effective move, self destruct, explosion, or a one-hit KO move.",
-          "effect": "When this Pokémon enters battle, if one of its opponents has a move that is super effective against it, self destruct, explosion, or a one-hit knockout move, all participating trainers are notified. The move itself is not revealed; only that there is such a move. Moves that inflict typeless damage, such as future sight, and moves of variable type, such as hidden power, count as their listed types. counter, metal burst, mirror coat, and one-hit KO moves to which this Pokémon is immune do not trigger this ability.",
+          "shortEffect": "Notifies all trainers upon entering battle if an opponent has a super-effective move, Self-Destruct, Explosion, or a one-hit KO move.",
+          "effect": "When this Pokémon enters battle, if one of its opponents has a move that is super effective against it, Self-Destruct, Explosion, or a one-hit knockout move, all participating trainers are notified. The move itself is not revealed; only that there is such a move. Moves that inflict typeless damage, such as Future Sight, and moves of variable type, such as Hidden Power, count as their listed types. Counter, Metal Burst, Mirror Coat, and one-hit KO moves to which this Pokémon is immune do not trigger this ability.",
           "isHidden": false
         },
         {
@@ -8221,14 +8222,14 @@
           "id": "hyper-cutter",
           "name": "Hyper Cutter",
           "shortEffect": "Prevents Attack from being lowered by other Pokémon.",
-          "effect": "This Pokémon's Attack cannot be lowered by other Pokémon. This ability does not prevent any Attack losses other than stat modifiers, such as the Attack cut from a burn. This Pokémon can still be passed negative Attack modifiers through heart swap or power swap.",
+          "effect": "This Pokémon's Attack cannot be lowered by other Pokémon. This ability does not prevent any Attack losses other than stat modifiers, such as the Attack cut from a burn. This Pokémon can still be passed negative Attack modifiers through Heart Swap or Power Swap.",
           "isHidden": false
         },
         {
           "id": "shell-armor",
           "name": "Shell Armor",
           "shortEffect": "Protects against critical hits.",
-          "effect": "Moves cannot score critical hits against this Pokémon. This ability functions identically to battle armor.",
+          "effect": "Moves cannot score critical hits against this Pokémon. This ability functions identically to Battle Armor.",
           "isHidden": false
         },
         {
@@ -8302,14 +8303,14 @@
           "id": "hyper-cutter",
           "name": "Hyper Cutter",
           "shortEffect": "Prevents Attack from being lowered by other Pokémon.",
-          "effect": "This Pokémon's Attack cannot be lowered by other Pokémon. This ability does not prevent any Attack losses other than stat modifiers, such as the Attack cut from a burn. This Pokémon can still be passed negative Attack modifiers through heart swap or power swap.",
+          "effect": "This Pokémon's Attack cannot be lowered by other Pokémon. This ability does not prevent any Attack losses other than stat modifiers, such as the Attack cut from a burn. This Pokémon can still be passed negative Attack modifiers through Heart Swap or Power Swap.",
           "isHidden": false
         },
         {
           "id": "shell-armor",
           "name": "Shell Armor",
           "shortEffect": "Protects against critical hits.",
-          "effect": "Moves cannot score critical hits against this Pokémon. This ability functions identically to battle armor.",
+          "effect": "Moves cannot score critical hits against this Pokémon. This ability functions identically to Battle Armor.",
           "isHidden": false
         },
         {
@@ -8382,8 +8383,8 @@
         {
           "id": "levitate",
           "name": "Levitate",
-          "shortEffect": "Evades ground moves.",
-          "effect": "This Pokémon is immune to ground-type moves, spikes, toxic spikes, and arena trap. This ability is disabled during gravity or ingrain, or while holding an iron ball. This ability is not disabled during roost.",
+          "shortEffect": "Evades Ground moves.",
+          "effect": "This Pokémon is immune to Ground-type moves, Spikes, Toxic Spikes, and Arena Trap. This ability is disabled during Gravity or Ingrain, or while holding an Iron Ball. This ability is not disabled during Roost.",
           "isHidden": false
         }
       ],
@@ -8447,8 +8448,8 @@
         {
           "id": "levitate",
           "name": "Levitate",
-          "shortEffect": "Evades ground moves.",
-          "effect": "This Pokémon is immune to ground-type moves, spikes, toxic spikes, and arena trap. This ability is disabled during gravity or ingrain, or while holding an iron ball. This ability is not disabled during roost.",
+          "shortEffect": "Evades Ground moves.",
+          "effect": "This Pokémon is immune to Ground-type moves, Spikes, Toxic Spikes, and Arena Trap. This ability is disabled during Gravity or Ingrain, or while holding an Iron Ball. This ability is not disabled during Roost.",
           "isHidden": false
         }
       ],
@@ -8513,14 +8514,14 @@
           "id": "suction-cups",
           "name": "Suction Cups",
           "shortEffect": "Prevents being forced out of battle by other Pokémon's moves.",
-          "effect": "This Pokémon cannot be forced out of battle by moves such as whirlwind. dragon tail and circle throw still inflict damage against this Pokémon. Overworld: If the lead Pokémon has this ability, the success rate while fishing is increased.",
+          "effect": "This Pokémon cannot be forced out of battle by moves such as Whirlwind. Dragon Tail and Circle Throw still inflict damage against this Pokémon. Overworld: If the lead Pokémon has this ability, the success rate while fishing is increased.",
           "isHidden": false
         },
         {
           "id": "storm-drain",
           "name": "Storm Drain",
-          "shortEffect": "Redirects single-target water moves to this Pokémon where possible. Absorbs Water moves, raising Special Attack one stage.",
-          "effect": "All other Pokémon's single-target water-type moves are redirected to this Pokémon, if it is an eligible target. Other Pokémon's Water moves raise this Pokémon's Special Attack one stage, negating any other effect on it, and cannot miss it. If the move's intended target also has this ability, the move is not redirected. When multiple Pokémon with this ability are possible targets for redirection, the move is redirected to the one with the highest Speed stat, or, in the case of a tie, to a random tied Pokémon. follow me takes precedence over this ability.",
+          "shortEffect": "Redirects single-target Water moves to this Pokémon where possible. Absorbs Water moves, raising Special Attack one stage.",
+          "effect": "All other Pokémon's single-target Water-type moves are redirected to this Pokémon, if it is an eligible target. Other Pokémon's Water moves raise this Pokémon's Special Attack one stage, negating any other effect on it, and cannot miss it. If the move's intended target also has this ability, the move is not redirected. When multiple Pokémon with this ability are possible targets for redirection, the move is redirected to the one with the highest Speed stat, or, in the case of a tie, to a random tied Pokémon. Follow Me takes precedence over this ability.",
           "isHidden": true
         }
       ],
@@ -8585,14 +8586,14 @@
           "id": "suction-cups",
           "name": "Suction Cups",
           "shortEffect": "Prevents being forced out of battle by other Pokémon's moves.",
-          "effect": "This Pokémon cannot be forced out of battle by moves such as whirlwind. dragon tail and circle throw still inflict damage against this Pokémon. Overworld: If the lead Pokémon has this ability, the success rate while fishing is increased.",
+          "effect": "This Pokémon cannot be forced out of battle by moves such as Whirlwind. Dragon Tail and Circle Throw still inflict damage against this Pokémon. Overworld: If the lead Pokémon has this ability, the success rate while fishing is increased.",
           "isHidden": false
         },
         {
           "id": "storm-drain",
           "name": "Storm Drain",
-          "shortEffect": "Redirects single-target water moves to this Pokémon where possible. Absorbs Water moves, raising Special Attack one stage.",
-          "effect": "All other Pokémon's single-target water-type moves are redirected to this Pokémon, if it is an eligible target. Other Pokémon's Water moves raise this Pokémon's Special Attack one stage, negating any other effect on it, and cannot miss it. If the move's intended target also has this ability, the move is not redirected. When multiple Pokémon with this ability are possible targets for redirection, the move is redirected to the one with the highest Speed stat, or, in the case of a tie, to a random tied Pokémon. follow me takes precedence over this ability.",
+          "shortEffect": "Redirects single-target Water moves to this Pokémon where possible. Absorbs Water moves, raising Special Attack one stage.",
+          "effect": "All other Pokémon's single-target Water-type moves are redirected to this Pokémon, if it is an eligible target. Other Pokémon's Water moves raise this Pokémon's Special Attack one stage, negating any other effect on it, and cannot miss it. If the move's intended target also has this ability, the move is not redirected. When multiple Pokémon with this ability are possible targets for redirection, the move is redirected to the one with the highest Speed stat, or, in the case of a tie, to a random tied Pokémon. Follow Me takes precedence over this ability.",
           "isHidden": true
         }
       ],
@@ -8657,7 +8658,7 @@
           "id": "battle-armor",
           "name": "Battle Armor",
           "shortEffect": "Protects against critical hits.",
-          "effect": "Moves cannot score critical hits against this Pokémon. This ability functions identically to shell armor.",
+          "effect": "Moves cannot score critical hits against this Pokémon. This ability functions identically to Shell Armor.",
           "isHidden": false
         },
         {
@@ -8729,7 +8730,7 @@
           "id": "battle-armor",
           "name": "Battle Armor",
           "shortEffect": "Protects against critical hits.",
-          "effect": "Moves cannot score critical hits against this Pokémon. This ability functions identically to shell armor.",
+          "effect": "Moves cannot score critical hits against this Pokémon. This ability functions identically to Shell Armor.",
           "isHidden": false
         },
         {
@@ -8806,8 +8807,8 @@
         {
           "id": "oblivious",
           "name": "Oblivious",
-          "shortEffect": "Prevents infatuation and protects against captivate.",
-          "effect": "This Pokémon cannot be infatuated and is immune to captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
+          "shortEffect": "Prevents infatuation and protects against Captivate.",
+          "effect": "This Pokémon cannot be infatuated and is immune to Captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
           "isHidden": false
         },
         {
@@ -8959,8 +8960,8 @@
         {
           "id": "forecast",
           "name": "Forecast",
-          "shortEffect": "Changes castform's type and form to match the weather.",
-          "effect": "During rain, strong sunlight, or hail, this Pokémon's type changes to water, fire, or ice, respectively, and its form changes to match. This ability has no effect for any Pokémon other than castform. If the weather ends or becomes anything that does not trigger this ability, or a Pokémon with air lock or cloud nine enters battle, this Pokémon's type and form revert to their default. If this ability is lost or disabled, this Pokémon cannot change its current type and form until it regains its ability.",
+          "shortEffect": "Changes Castform's type and form to match the weather.",
+          "effect": "During rain, strong sunlight, or hail, this Pokémon's type changes to Water, Fire, or Ice, respectively, and its form changes to match. This ability has no effect for any Pokémon other than Castform. If the weather ends or becomes anything that does not trigger this ability, or a Pokémon with Air Lock or Cloud Nine enters battle, this Pokémon's type and form revert to their default. If this ability is lost or disabled, this Pokémon cannot change its current type and form until it regains its ability.",
           "isHidden": false
         }
       ],
@@ -9032,8 +9033,8 @@
         {
           "id": "forecast",
           "name": "Forecast",
-          "shortEffect": "Changes castform's type and form to match the weather.",
-          "effect": "During rain, strong sunlight, or hail, this Pokémon's type changes to water, fire, or ice, respectively, and its form changes to match. This ability has no effect for any Pokémon other than castform. If the weather ends or becomes anything that does not trigger this ability, or a Pokémon with air lock or cloud nine enters battle, this Pokémon's type and form revert to their default. If this ability is lost or disabled, this Pokémon cannot change its current type and form until it regains its ability.",
+          "shortEffect": "Changes Castform's type and form to match the weather.",
+          "effect": "During rain, strong sunlight, or hail, this Pokémon's type changes to Water, Fire, or Ice, respectively, and its form changes to match. This ability has no effect for any Pokémon other than Castform. If the weather ends or becomes anything that does not trigger this ability, or a Pokémon with Air Lock or Cloud Nine enters battle, this Pokémon's type and form revert to their default. If this ability is lost or disabled, this Pokémon cannot change its current type and form until it regains its ability.",
           "isHidden": false
         }
       ],
@@ -9105,8 +9106,8 @@
         {
           "id": "forecast",
           "name": "Forecast",
-          "shortEffect": "Changes castform's type and form to match the weather.",
-          "effect": "During rain, strong sunlight, or hail, this Pokémon's type changes to water, fire, or ice, respectively, and its form changes to match. This ability has no effect for any Pokémon other than castform. If the weather ends or becomes anything that does not trigger this ability, or a Pokémon with air lock or cloud nine enters battle, this Pokémon's type and form revert to their default. If this ability is lost or disabled, this Pokémon cannot change its current type and form until it regains its ability.",
+          "shortEffect": "Changes Castform's type and form to match the weather.",
+          "effect": "During rain, strong sunlight, or hail, this Pokémon's type changes to Water, Fire, or Ice, respectively, and its form changes to match. This ability has no effect for any Pokémon other than Castform. If the weather ends or becomes anything that does not trigger this ability, or a Pokémon with Air Lock or Cloud Nine enters battle, this Pokémon's type and form revert to their default. If this ability is lost or disabled, this Pokémon cannot change its current type and form until it regains its ability.",
           "isHidden": false
         }
       ],
@@ -9178,8 +9179,8 @@
         {
           "id": "forecast",
           "name": "Forecast",
-          "shortEffect": "Changes castform's type and form to match the weather.",
-          "effect": "During rain, strong sunlight, or hail, this Pokémon's type changes to water, fire, or ice, respectively, and its form changes to match. This ability has no effect for any Pokémon other than castform. If the weather ends or becomes anything that does not trigger this ability, or a Pokémon with air lock or cloud nine enters battle, this Pokémon's type and form revert to their default. If this ability is lost or disabled, this Pokémon cannot change its current type and form until it regains its ability.",
+          "shortEffect": "Changes Castform's type and form to match the weather.",
+          "effect": "During rain, strong sunlight, or hail, this Pokémon's type changes to Water, Fire, or Ice, respectively, and its form changes to match. This ability has no effect for any Pokémon other than Castform. If the weather ends or becomes anything that does not trigger this ability, or a Pokémon with Air Lock or Cloud Nine enters battle, this Pokémon's type and form revert to their default. If this ability is lost or disabled, this Pokémon cannot change its current type and form until it regains its ability.",
           "isHidden": false
         }
       ],
@@ -9252,7 +9253,7 @@
           "id": "color-change",
           "name": "Color Change",
           "shortEffect": "Changes type to match when hit by a damaging move.",
-          "effect": "Whenever this Pokémon takes damage from a move, the Pokémon's type changes to match the move. If the Pokémon has two types, both are overridden. The Pokémon must directly take damage; for example, moves blocked by a substitute will not trigger this ability, nor will moves that deal damage indirectly, such as spikes. This ability takes effect on only the last hit of a multiple-hit attack. In Pokémon Colosseum and XD: Gale of Darkness, this ability does not take effect on Shadow-type moves.",
+          "effect": "Whenever this Pokémon takes damage from a move, the Pokémon's type changes to match the move. If the Pokémon has two types, both are overridden. The Pokémon must directly take damage; for example, moves blocked by a Substitute will not trigger this ability, nor will moves that deal damage indirectly, such as Spikes. This ability takes effect on only the last hit of a multiple-hit attack. In Pokémon Colosseum and XD: Gale of Darkness, this ability does not take effect on Shadow-type moves.",
           "isHidden": false
         },
         {
@@ -9315,7 +9316,7 @@
           "id": "insomnia",
           "name": "Insomnia",
           "shortEffect": "Prevents sleep.",
-          "effect": "This Pokémon cannot be asleep. This causes rest to fail altogether. If a Pokémon is asleep and acquires this ability, it will immediately wake up; this includes when regaining a lost ability upon leaving battle. This ability functions identically to vital spirit in battle.",
+          "effect": "This Pokémon cannot be asleep. This causes Rest to fail altogether. If a Pokémon is asleep and acquires this ability, it will immediately wake up; this includes when regaining a lost ability upon leaving battle. This ability functions identically to Vital Spirit in battle.",
           "isHidden": false
         },
         {
@@ -9399,7 +9400,7 @@
           "id": "insomnia",
           "name": "Insomnia",
           "shortEffect": "Prevents sleep.",
-          "effect": "This Pokémon cannot be asleep. This causes rest to fail altogether. If a Pokémon is asleep and acquires this ability, it will immediately wake up; this includes when regaining a lost ability upon leaving battle. This ability functions identically to vital spirit in battle.",
+          "effect": "This Pokémon cannot be asleep. This causes Rest to fail altogether. If a Pokémon is asleep and acquires this ability, it will immediately wake up; this includes when regaining a lost ability upon leaving battle. This ability functions identically to Vital Spirit in battle.",
           "isHidden": false
         },
         {
@@ -9552,8 +9553,8 @@
         {
           "id": "levitate",
           "name": "Levitate",
-          "shortEffect": "Evades ground moves.",
-          "effect": "This Pokémon is immune to ground-type moves, spikes, toxic spikes, and arena trap. This ability is disabled during gravity or ingrain, or while holding an iron ball. This ability is not disabled during roost.",
+          "shortEffect": "Evades Ground moves.",
+          "effect": "This Pokémon is immune to Ground-type moves, Spikes, Toxic Spikes, and Arena Trap. This ability is disabled during Gravity or Ingrain, or while holding an Iron Ball. This ability is not disabled during Roost.",
           "isHidden": false
         },
         {
@@ -9782,8 +9783,8 @@
         {
           "id": "levitate",
           "name": "Levitate",
-          "shortEffect": "Evades ground moves.",
-          "effect": "This Pokémon is immune to ground-type moves, spikes, toxic spikes, and arena trap. This ability is disabled during gravity or ingrain, or while holding an iron ball. This ability is not disabled during roost.",
+          "shortEffect": "Evades Ground moves.",
+          "effect": "This Pokémon is immune to Ground-type moves, Spikes, Toxic Spikes, and Arena Trap. This ability is disabled during Gravity or Ingrain, or while holding an Iron Ball. This ability is not disabled during Roost.",
           "isHidden": false
         }
       ],
@@ -9853,8 +9854,8 @@
         {
           "id": "levitate",
           "name": "Levitate",
-          "shortEffect": "Evades ground moves.",
-          "effect": "This Pokémon is immune to ground-type moves, spikes, toxic spikes, and arena trap. This ability is disabled during gravity or ingrain, or while holding an iron ball. This ability is not disabled during roost.",
+          "shortEffect": "Evades Ground moves.",
+          "effect": "This Pokémon is immune to Ground-type moves, Spikes, Toxic Spikes, and Arena Trap. This ability is disabled during Gravity or Ingrain, or while holding an Iron Ball. This ability is not disabled during Roost.",
           "isHidden": false
         }
       ],
@@ -9904,7 +9905,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10306.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10306.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10306.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/chimecho-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/chimecho-mega.gif"
@@ -9937,8 +9938,8 @@
         {
           "id": "justified",
           "name": "Justified",
-          "shortEffect": "Raises Attack one stage upon taking damage from a dark move.",
-          "effect": "Whenever a dark-type move hits this Pokémon, its Attack rises one stage. The move is not negated in any way.",
+          "shortEffect": "Raises Attack one stage upon taking damage from a Dark move.",
+          "effect": "Whenever a Dark-type move hits this Pokémon, its Attack rises one stage. The move is not negated in any way.",
           "isHidden": true
         }
       ],
@@ -10007,7 +10008,7 @@
           "id": "magic-bounce",
           "name": "Magic Bounce",
           "shortEffect": "Reflects most non-damaging moves back at their user.",
-          "effect": "When this Pokémon is targeted by a move flagged as being reflectable, the move is redirected to its user. All reflectable moves are non-damaging, and most non-damaging moves that target other Pokémon are reflectable. A move reflected by this ability or magic coat cannot be reflected back.",
+          "effect": "When this Pokémon is targeted by a move flagged as being reflectable, the move is redirected to its user. All reflectable moves are non-damaging, and most non-damaging moves that target other Pokémon are reflectable. A move reflected by this ability or Magic Coat cannot be reflected back.",
           "isHidden": false
         }
       ],
@@ -10074,10 +10075,10 @@
       ],
       "abilities": [
         {
-          "id": "magic-bounce",
-          "name": "Magic Bounce",
-          "shortEffect": "Reflects most non-damaging moves back at their user.",
-          "effect": "When this Pokémon is targeted by a move flagged as being reflectable, the move is redirected to its user. All reflectable moves are non-damaging, and most non-damaging moves that target other Pokémon are reflectable. A move reflected by this ability or magic coat cannot be reflected back.",
+          "id": "sharpness",
+          "name": "Sharpness",
+          "shortEffect": "Powers up slicing moves.",
+          "effect": "Increases the power of all 'slicing' moves by 50%.",
           "isHidden": false
         }
       ],
@@ -10099,7 +10100,8 @@
       "generation": "Generation Iii",
       "generationId": 3,
       "gameAvailability": [
-        "sword-shield"
+        "sword-shield",
+        "pokemon-champions"
       ],
       "eggGroups": [
         "Ground"
@@ -10126,7 +10128,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10307.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10307.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10307.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/absol-mega-z.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/absol-mega-z.gif"
@@ -10146,7 +10148,7 @@
           "id": "shadow-tag",
           "name": "Shadow Tag",
           "shortEffect": "Prevents opponents from fleeing or switching out.",
-          "effect": "While this Pokémon is in battle, opposing Pokémon cannot flee or switch out. Other Pokémon with this ability are unaffected. Pokémon with run away can still flee. Pokémon can still switch out with the use of a move or item.",
+          "effect": "While this Pokémon is in battle, opposing Pokémon cannot flee or switch out. Other Pokémon with this ability are unaffected. Pokémon with Run Away can still flee. Pokémon can still switch out with the use of a move or item.",
           "isHidden": false
         },
         {
@@ -10412,8 +10414,8 @@
         {
           "id": "refrigerate",
           "name": "Refrigerate",
-          "shortEffect": "Turns the bearer's normal moves into ice moves and strengthens them to 1.3× their power.",
-          "effect": "Turns the bearer's normal-type moves into ice-type moves. Moves changed by this ability have 1.3× their power.",
+          "shortEffect": "Turns the bearer's Normal moves into Ice moves and strengthens them to 1.3× their power.",
+          "effect": "Turns the bearer's Normal-type moves into Ice-type moves. Moves changed by this ability have 1.3× their power.",
           "isHidden": false
         }
       ],
@@ -10497,8 +10499,8 @@
         {
           "id": "thick-fat",
           "name": "Thick Fat",
-          "shortEffect": "Halves damage from fire and ice moves.",
-          "effect": "This Pokémon takes half as much damage from fire- and ice-type moves.",
+          "shortEffect": "Halves damage from Fire and Ice moves.",
+          "effect": "This Pokémon takes half as much damage from Fire- and Ice-type moves.",
           "isHidden": false
         },
         {
@@ -10511,8 +10513,8 @@
         {
           "id": "oblivious",
           "name": "Oblivious",
-          "shortEffect": "Prevents infatuation and protects against captivate.",
-          "effect": "This Pokémon cannot be infatuated and is immune to captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
+          "shortEffect": "Prevents infatuation and protects against Captivate.",
+          "effect": "This Pokémon cannot be infatuated and is immune to Captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
           "isHidden": true
         }
       ],
@@ -10583,8 +10585,8 @@
         {
           "id": "thick-fat",
           "name": "Thick Fat",
-          "shortEffect": "Halves damage from fire and ice moves.",
-          "effect": "This Pokémon takes half as much damage from fire- and ice-type moves.",
+          "shortEffect": "Halves damage from Fire and Ice moves.",
+          "effect": "This Pokémon takes half as much damage from Fire- and Ice-type moves.",
           "isHidden": false
         },
         {
@@ -10597,8 +10599,8 @@
         {
           "id": "oblivious",
           "name": "Oblivious",
-          "shortEffect": "Prevents infatuation and protects against captivate.",
-          "effect": "This Pokémon cannot be infatuated and is immune to captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
+          "shortEffect": "Prevents infatuation and protects against Captivate.",
+          "effect": "This Pokémon cannot be infatuated and is immune to Captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
           "isHidden": true
         }
       ],
@@ -10669,8 +10671,8 @@
         {
           "id": "thick-fat",
           "name": "Thick Fat",
-          "shortEffect": "Halves damage from fire and ice moves.",
-          "effect": "This Pokémon takes half as much damage from fire- and ice-type moves.",
+          "shortEffect": "Halves damage from Fire and Ice moves.",
+          "effect": "This Pokémon takes half as much damage from Fire- and Ice-type moves.",
           "isHidden": false
         },
         {
@@ -10683,8 +10685,8 @@
         {
           "id": "oblivious",
           "name": "Oblivious",
-          "shortEffect": "Prevents infatuation and protects against captivate.",
-          "effect": "This Pokémon cannot be infatuated and is immune to captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
+          "shortEffect": "Prevents infatuation and protects against Captivate.",
+          "effect": "This Pokémon cannot be infatuated and is immune to Captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
           "isHidden": true
         }
       ],
@@ -10755,14 +10757,14 @@
           "id": "shell-armor",
           "name": "Shell Armor",
           "shortEffect": "Protects against critical hits.",
-          "effect": "Moves cannot score critical hits against this Pokémon. This ability functions identically to battle armor.",
+          "effect": "Moves cannot score critical hits against this Pokémon. This ability functions identically to Battle Armor.",
           "isHidden": false
         },
         {
           "id": "rattled",
           "name": "Rattled",
-          "shortEffect": "Raises Speed one stage upon being hit by a dark, ghost, or bug move.",
-          "effect": "This Pokémon's Speed rises one stage with each hit from a damaging dark-, ghost-, or bug-type move.",
+          "shortEffect": "Raises Speed one stage upon being hit by a Dark, Ghost, or Bug move.",
+          "effect": "This Pokémon's Speed rises one stage with each hit from a damaging Dark-, Ghost-, or Bug-type move.",
           "isHidden": true
         }
       ],
@@ -10988,14 +10990,14 @@
           "id": "rock-head",
           "name": "Rock Head",
           "shortEffect": "Protects against recoil damage.",
-          "effect": "This Pokémon does not receive recoil damage from its recoil moves. struggle's recoil is unaffected. This ability does not prevent crash damage from missing with jump kick or high jump kick.",
+          "effect": "This Pokémon does not receive recoil damage from its recoil moves. Struggle's recoil is unaffected. This ability does not prevent crash damage from missing with Jump Kick or High Jump Kick.",
           "isHidden": false
         },
         {
           "id": "sturdy",
           "name": "Sturdy",
           "shortEffect": "Prevents being KOed from full HP, leaving 1 HP instead. Protects against the one-hit KO moves regardless of HP.",
-          "effect": "When this Pokémon is at full HP, any hit that would knock it out will instead leave it with 1 HP. Regardless of its current HP, it is also immune to the one-hit KO moves: fissure, guillotine, horn drill, and sheer cold. If this Pokémon is holding a focus sash, this ability takes precedence and the item will not be consumed.",
+          "effect": "When this Pokémon is at full HP, any hit that would knock it out will instead leave it with 1 HP. Regardless of its current HP, it is also immune to the one-hit KO moves: Fissure, Guillotine, Horn Drill, and Sheer Cold. If this Pokémon is holding a Focus Sash, this ability takes precedence and the item will not be consumed.",
           "isHidden": true
         }
       ],
@@ -11119,14 +11121,14 @@
           "id": "rock-head",
           "name": "Rock Head",
           "shortEffect": "Protects against recoil damage.",
-          "effect": "This Pokémon does not receive recoil damage from its recoil moves. struggle's recoil is unaffected. This ability does not prevent crash damage from missing with jump kick or high jump kick.",
+          "effect": "This Pokémon does not receive recoil damage from its recoil moves. Struggle's recoil is unaffected. This ability does not prevent crash damage from missing with Jump Kick or High Jump Kick.",
           "isHidden": false
         },
         {
           "id": "sheer-force",
           "name": "Sheer Force",
           "shortEffect": "Strengthens moves with extra effects to 1.3× their power, but prevents their extra effects.",
-          "effect": "This Pokémon's moves with extra effects have 1.3× their power, but lose their extra effects. An effect chance is a move's chance to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, thunder shock's paralysis is an extra effect, but thunder wave's is not, nor are knock off's item removal and air cutter's increased critical hit rate. Moves that lower the user's stats are unaffected.",
+          "effect": "This Pokémon's moves with extra effects have 1.3× their power, but lose their extra effects. An effect chance is a move's chance to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, Thunder Shock's paralysis is an extra effect, but Thunder Wave's is not, nor are Knock Off's item removal and Air Cutter's increased critical hit rate. Moves that lower the user's stats are unaffected.",
           "isHidden": true
         }
       ],
@@ -11203,7 +11205,7 @@
           "id": "rock-head",
           "name": "Rock Head",
           "shortEffect": "Protects against recoil damage.",
-          "effect": "This Pokémon does not receive recoil damage from its recoil moves. struggle's recoil is unaffected. This ability does not prevent crash damage from missing with jump kick or high jump kick.",
+          "effect": "This Pokémon does not receive recoil damage from its recoil moves. Struggle's recoil is unaffected. This ability does not prevent crash damage from missing with Jump Kick or High Jump Kick.",
           "isHidden": false
         },
         {
@@ -11288,14 +11290,14 @@
           "id": "intimidate",
           "name": "Intimidate",
           "shortEffect": "Lowers opponents' Attack one stage upon entering battle.",
-          "effect": "When this Pokémon enters battle, the opponent's Attack is lowered by one stage. In a double battle, both opponents are affected. This ability also takes effect when acquired during a battle, but will not take effect again if lost and reobtained without leaving battle. This ability has no effect on an opponent that has a substitute. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
+          "effect": "When this Pokémon enters battle, the opponent's Attack is lowered by one stage. In a double battle, both opponents are affected. This ability also takes effect when acquired during a battle, but will not take effect again if lost and reobtained without leaving battle. This ability has no effect on an opponent that has a Substitute. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
           "isHidden": false
         },
         {
           "id": "moxie",
           "name": "Moxie",
           "shortEffect": "Raises Attack one stage upon KOing a Pokémon.",
-          "effect": "This Pokémon's Attack rises one stage upon knocking out another Pokémon, even a friendly Pokémon. This ability does not take effect when the Pokémon indirectly causes another Pokémon to faint, e.g. through poison or spikes. If this Pokémon knocks out a Pokémon with mummy, the former's ability will change without taking effect.",
+          "effect": "This Pokémon's Attack rises one stage upon knocking out another Pokémon, even a friendly Pokémon. This ability does not take effect when the Pokémon indirectly causes another Pokémon to faint, e.g. through poison or Spikes. If this Pokémon knocks out a Pokémon with Mummy, the former's ability will change without taking effect.",
           "isHidden": true
         }
       ],
@@ -11318,7 +11320,8 @@
       "generationId": 3,
       "gameAvailability": [
         "scarlet-violet",
-        "sword-shield"
+        "sword-shield",
+        "pokemon-champions"
       ],
       "eggGroups": [
         "Dragon"
@@ -11372,8 +11375,8 @@
         {
           "id": "aerilate",
           "name": "Aerilate",
-          "shortEffect": "Turns the bearer's normal moves into flying moves and strengthens them to 1.3× their power.",
-          "effect": "Turns the bearer's normal-type moves into flying-type moves. Moves changed by this ability have 1.3× their power.",
+          "shortEffect": "Turns the bearer's Normal moves into Flying moves and strengthens them to 1.3× their power.",
+          "effect": "Turns the bearer's Normal-type moves into Flying-type moves. Moves changed by this ability have 1.3× their power.",
           "isHidden": false
         }
       ],
@@ -11396,7 +11399,8 @@
       "generationId": 3,
       "gameAvailability": [
         "scarlet-violet",
-        "sword-shield"
+        "sword-shield",
+        "pokemon-champions"
       ],
       "eggGroups": [
         "Dragon"
@@ -11451,7 +11455,7 @@
           "id": "clear-body",
           "name": "Clear Body",
           "shortEffect": "Prevents stats from being lowered by other Pokémon.",
-          "effect": "This Pokémon cannot have its stats lowered by other Pokémon. This ability does not prevent any stat losses other than stat modifiers, such as the Speed cut from paralysis. This Pokémon can still be passed negative stat modifiers through guard swap, heart swap, or power swap. This ability functions identically to white smoke in battle.",
+          "effect": "This Pokémon cannot have its stats lowered by other Pokémon. This ability does not prevent any stat losses other than stat modifiers, such as the Speed cut from paralysis. This Pokémon can still be passed negative stat modifiers through Guard Swap, Heart Swap, or Power Swap. This ability functions identically to White Smoke in battle.",
           "isHidden": false
         },
         {
@@ -11536,7 +11540,7 @@
           "id": "clear-body",
           "name": "Clear Body",
           "shortEffect": "Prevents stats from being lowered by other Pokémon.",
-          "effect": "This Pokémon cannot have its stats lowered by other Pokémon. This ability does not prevent any stat losses other than stat modifiers, such as the Speed cut from paralysis. This Pokémon can still be passed negative stat modifiers through guard swap, heart swap, or power swap. This ability functions identically to white smoke in battle.",
+          "effect": "This Pokémon cannot have its stats lowered by other Pokémon. This ability does not prevent any stat losses other than stat modifiers, such as the Speed cut from paralysis. This Pokémon can still be passed negative stat modifiers through Guard Swap, Heart Swap, or Power Swap. This ability functions identically to White Smoke in battle.",
           "isHidden": false
         },
         {
@@ -11621,7 +11625,7 @@
           "id": "clear-body",
           "name": "Clear Body",
           "shortEffect": "Prevents stats from being lowered by other Pokémon.",
-          "effect": "This Pokémon cannot have its stats lowered by other Pokémon. This ability does not prevent any stat losses other than stat modifiers, such as the Speed cut from paralysis. This Pokémon can still be passed negative stat modifiers through guard swap, heart swap, or power swap. This ability functions identically to white smoke in battle.",
+          "effect": "This Pokémon cannot have its stats lowered by other Pokémon. This ability does not prevent any stat losses other than stat modifiers, such as the Speed cut from paralysis. This Pokémon can still be passed negative stat modifiers through Guard Swap, Heart Swap, or Power Swap. This ability functions identically to White Smoke in battle.",
           "isHidden": false
         },
         {
@@ -11783,14 +11787,14 @@
           "id": "clear-body",
           "name": "Clear Body",
           "shortEffect": "Prevents stats from being lowered by other Pokémon.",
-          "effect": "This Pokémon cannot have its stats lowered by other Pokémon. This ability does not prevent any stat losses other than stat modifiers, such as the Speed cut from paralysis. This Pokémon can still be passed negative stat modifiers through guard swap, heart swap, or power swap. This ability functions identically to white smoke in battle.",
+          "effect": "This Pokémon cannot have its stats lowered by other Pokémon. This ability does not prevent any stat losses other than stat modifiers, such as the Speed cut from paralysis. This Pokémon can still be passed negative stat modifiers through Guard Swap, Heart Swap, or Power Swap. This ability functions identically to White Smoke in battle.",
           "isHidden": false
         },
         {
           "id": "sturdy",
           "name": "Sturdy",
           "shortEffect": "Prevents being KOed from full HP, leaving 1 HP instead. Protects against the one-hit KO moves regardless of HP.",
-          "effect": "When this Pokémon is at full HP, any hit that would knock it out will instead leave it with 1 HP. Regardless of its current HP, it is also immune to the one-hit KO moves: fissure, guillotine, horn drill, and sheer cold. If this Pokémon is holding a focus sash, this ability takes precedence and the item will not be consumed.",
+          "effect": "When this Pokémon is at full HP, any hit that would knock it out will instead leave it with 1 HP. Regardless of its current HP, it is also immune to the one-hit KO moves: Fissure, Guillotine, Horn Drill, and Sheer Cold. If this Pokémon is holding a Focus Sash, this ability takes precedence and the item will not be consumed.",
           "isHidden": true
         }
       ],
@@ -11848,7 +11852,7 @@
           "id": "clear-body",
           "name": "Clear Body",
           "shortEffect": "Prevents stats from being lowered by other Pokémon.",
-          "effect": "This Pokémon cannot have its stats lowered by other Pokémon. This ability does not prevent any stat losses other than stat modifiers, such as the Speed cut from paralysis. This Pokémon can still be passed negative stat modifiers through guard swap, heart swap, or power swap. This ability functions identically to white smoke in battle.",
+          "effect": "This Pokémon cannot have its stats lowered by other Pokémon. This ability does not prevent any stat losses other than stat modifiers, such as the Speed cut from paralysis. This Pokémon can still be passed negative stat modifiers through Guard Swap, Heart Swap, or Power Swap. This ability functions identically to White Smoke in battle.",
           "isHidden": false
         },
         {
@@ -11913,7 +11917,7 @@
           "id": "clear-body",
           "name": "Clear Body",
           "shortEffect": "Prevents stats from being lowered by other Pokémon.",
-          "effect": "This Pokémon cannot have its stats lowered by other Pokémon. This ability does not prevent any stat losses other than stat modifiers, such as the Speed cut from paralysis. This Pokémon can still be passed negative stat modifiers through guard swap, heart swap, or power swap. This ability functions identically to white smoke in battle.",
+          "effect": "This Pokémon cannot have its stats lowered by other Pokémon. This ability does not prevent any stat losses other than stat modifiers, such as the Speed cut from paralysis. This Pokémon can still be passed negative stat modifiers through Guard Swap, Heart Swap, or Power Swap. This ability functions identically to White Smoke in battle.",
           "isHidden": false
         },
         {
@@ -11978,8 +11982,8 @@
         {
           "id": "levitate",
           "name": "Levitate",
-          "shortEffect": "Evades ground moves.",
-          "effect": "This Pokémon is immune to ground-type moves, spikes, toxic spikes, and arena trap. This ability is disabled during gravity or ingrain, or while holding an iron ball. This ability is not disabled during roost.",
+          "shortEffect": "Evades Ground moves.",
+          "effect": "This Pokémon is immune to Ground-type moves, Spikes, Toxic Spikes, and Arena Trap. This ability is disabled during Gravity or Ingrain, or while holding an Iron Ball. This ability is not disabled during Roost.",
           "isHidden": false
         }
       ],
@@ -12041,8 +12045,8 @@
         {
           "id": "levitate",
           "name": "Levitate",
-          "shortEffect": "Evades ground moves.",
-          "effect": "This Pokémon is immune to ground-type moves, spikes, toxic spikes, and arena trap. This ability is disabled during gravity or ingrain, or while holding an iron ball. This ability is not disabled during roost.",
+          "shortEffect": "Evades Ground moves.",
+          "effect": "This Pokémon is immune to Ground-type moves, Spikes, Toxic Spikes, and Arena Trap. This ability is disabled during Gravity or Ingrain, or while holding an Iron Ball. This ability is not disabled during Roost.",
           "isHidden": false
         }
       ],
@@ -12104,8 +12108,8 @@
         {
           "id": "levitate",
           "name": "Levitate",
-          "shortEffect": "Evades ground moves.",
-          "effect": "This Pokémon is immune to ground-type moves, spikes, toxic spikes, and arena trap. This ability is disabled during gravity or ingrain, or while holding an iron ball. This ability is not disabled during roost.",
+          "shortEffect": "Evades Ground moves.",
+          "effect": "This Pokémon is immune to Ground-type moves, Spikes, Toxic Spikes, and Arena Trap. This ability is disabled during Gravity or Ingrain, or while holding an Iron Ball. This ability is not disabled during Roost.",
           "isHidden": false
         }
       ],
@@ -12167,8 +12171,8 @@
         {
           "id": "levitate",
           "name": "Levitate",
-          "shortEffect": "Evades ground moves.",
-          "effect": "This Pokémon is immune to ground-type moves, spikes, toxic spikes, and arena trap. This ability is disabled during gravity or ingrain, or while holding an iron ball. This ability is not disabled during roost.",
+          "shortEffect": "Evades Ground moves.",
+          "effect": "This Pokémon is immune to Ground-type moves, Spikes, Toxic Spikes, and Arena Trap. This ability is disabled during Gravity or Ingrain, or while holding an Iron Ball. This ability is not disabled during Roost.",
           "isHidden": false
         }
       ],
@@ -12230,7 +12234,7 @@
           "id": "drizzle",
           "name": "Drizzle",
           "shortEffect": "Summons rain that lasts indefinitely upon entering battle.",
-          "effect": "The weather changes to rain when this Pokémon enters battle and does not end unless replaced by another weather condition. If multiple Pokémon with this ability, drought, sand stream, or snow warning are sent out at the same time, the abilities will activate in order of Speed, respecting trick room. Each ability's weather will cancel the previous weather, and only the weather summoned by the slowest of the Pokémon will stay.",
+          "effect": "The weather changes to rain when this Pokémon enters battle and does not end unless replaced by another weather condition. If multiple Pokémon with this ability, Drought, Sand Stream, or Snow Warning are sent out at the same time, the abilities will activate in order of Speed, respecting Trick Room. Each ability's weather will cancel the previous weather, and only the weather summoned by the slowest of the Pokémon will stay.",
           "isHidden": false
         }
       ],
@@ -12292,7 +12296,7 @@
           "id": "primordial-sea",
           "name": "Primordial Sea",
           "shortEffect": "Creates heavy rain, which has all the properties of Rain Dance, cannot be replaced, and causes damaging Fire moves to fail.",
-          "effect": "When this Pokémon enters battle or gains this ability, the weather becomes heavy rain. Heavy rain has all the properties of rain dance and also causes damaging Fire moves to fail. Heavy rain ends when this Pokémon leaves battle or loses this ability, or when this ability is nullified. The weather cannot otherwise be changed except by the effects of delta stream and desolate land. air lock and cloud nine will prevent the effects of heavy rain, including allowing Fire moves to work, but will not allow the weather to be changed.",
+          "effect": "When this Pokémon enters battle or gains this ability, the weather becomes heavy rain. Heavy rain has all the properties of Rain Dance and also causes damaging Fire moves to fail. Heavy rain ends when this Pokémon leaves battle or loses this ability, or when this ability is nullified. The weather cannot otherwise be changed except by the effects of Delta Stream and Desolate Land. Air Lock and Cloud Nine will prevent the effects of heavy rain, including allowing Fire moves to work, but will not allow the weather to be changed.",
           "isHidden": false
         }
       ],
@@ -12354,7 +12358,7 @@
           "id": "drought",
           "name": "Drought",
           "shortEffect": "Summons strong sunlight that lasts indefinitely upon entering battle.",
-          "effect": "The weather changes to strong sunlight when this Pokémon enters battle and does not end unless cancelled by another weather condition. If multiple Pokémon with this ability, drizzle, sand stream, or snow warning are sent out at the same time, the abilities will activate in order of Speed, respecting trick room. Each ability's weather will cancel the previous weather, and only the weather summoned by the slowest of the Pokémon will stay.",
+          "effect": "The weather changes to strong sunlight when this Pokémon enters battle and does not end unless cancelled by another weather condition. If multiple Pokémon with this ability, Drizzle, Sand Stream, or Snow Warning are sent out at the same time, the abilities will activate in order of Speed, respecting Trick Room. Each ability's weather will cancel the previous weather, and only the weather summoned by the slowest of the Pokémon will stay.",
           "isHidden": false
         }
       ],
@@ -12417,7 +12421,7 @@
           "id": "desolate-land",
           "name": "Desolate Land",
           "shortEffect": "Creates extremely harsh sunlight, which has all the properties of Sunny Day, cannot be replaced, and causes damaging Water moves to fail.",
-          "effect": "When this Pokémon enters battle or gains this ability, the weather becomes extremely harsh sunlight. Extremely harsh sunlight has all the properties of sunny day and also causes damaging Water moves to fail. Extremely harsh sunlight ends when this Pokémon leaves battle or loses this ability, or when this ability is nullified. The weather cannot otherwise be changed except by the effects of delta stream and primordial sea. air lock and cloud nine will prevent the effects of extremely harsh sunlight, including allowing Water moves to work, but will not allow the weather to be changed.",
+          "effect": "When this Pokémon enters battle or gains this ability, the weather becomes extremely harsh sunlight. Extremely harsh sunlight has all the properties of Sunny Day and also causes damaging Water moves to fail. Extremely harsh sunlight ends when this Pokémon leaves battle or loses this ability, or when this ability is nullified. The weather cannot otherwise be changed except by the effects of Delta Stream and Primordial Sea. Air Lock and Cloud Nine will prevent the effects of extremely harsh sunlight, including allowing Water moves to work, but will not allow the weather to be changed.",
           "isHidden": false
         }
       ],
@@ -12480,7 +12484,7 @@
           "id": "air-lock",
           "name": "Air Lock",
           "shortEffect": "Negates all effects of weather, but does not prevent the weather itself.",
-          "effect": "While this Pokémon is in battle, weather can still be in play, but will not have any of its effects. This ability functions identically to cloud nine.",
+          "effect": "While this Pokémon is in battle, weather can still be in play, but will not have any of its effects. This ability functions identically to Cloud Nine.",
           "isHidden": false
         }
       ],
@@ -12543,7 +12547,7 @@
           "id": "delta-stream",
           "name": "Delta Stream",
           "shortEffect": "Creates a mysterious air current, which cannot be replaced and causes moves to never be super effective against Flying Pokémon.",
-          "effect": "When this Pokémon enters battle or gains this ability, the weather becomes a mysterious air current. A mysterious air current causes moves to not be super effective against Flying; they do neutral damage instead. anticipation and stealth rock are not affected. The mysterious air current ends when this Pokémon leaves battle or loses this ability, or when this ability is nullified. The weather cannot otherwise be changed except by the effects of desolate land and primordial sea. air lock and cloud nine will prevent the effect of a mysterious air current, but will not allow the weather to be changed.",
+          "effect": "When this Pokémon enters battle or gains this ability, the weather becomes a mysterious air current. A mysterious air current causes moves to not be super effective against Flying; they do neutral damage instead. Anticipation and Stealth Rock are not affected. The mysterious air current ends when this Pokémon leaves battle or loses this ability, or when this ability is nullified. The weather cannot otherwise be changed except by the effects of Desolate Land and Primordial Sea. Air Lock and Cloud Nine will prevent the effect of a mysterious air current, but will not allow the weather to be changed.",
           "isHidden": false
         }
       ],
@@ -12606,7 +12610,7 @@
           "id": "serene-grace",
           "name": "Serene Grace",
           "shortEffect": "Doubles the chance of moves' extra effects occurring.",
-          "effect": "This Pokémon's moves have twice their usual effect chance. An effect chance is a move's chance to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, flamethrower's chance of burning the target is doubled, but protect's chance of success and air cutter's increased critical hit rate are unaffected. secret power is unaffected.",
+          "effect": "This Pokémon's moves have twice their usual effect chance. An effect chance is a move's chance to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, Flamethrower's chance of burning the target is doubled, but Protect's chance of success and Air Cutter's increased critical hit rate are unaffected. Secret Power is unaffected.",
           "isHidden": false
         }
       ],

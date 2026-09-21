@@ -517,6 +517,104 @@
       "effectEs": "Los movimientos de tipo Normal del usuario pasan a ser de tipo Dragon y su potencia aumenta."
     },
     {
+      "id": "no-guard",
+      "nameEs": "Indefenso",
+      "nameEn": "No Guard",
+      "shortEffectEs": "Todos los movimientos usados por o contra este Pokemon aciertan.",
+      "effectEs": "Los movimientos usados por este Pokemon y los movimientos dirigidos contra el siempre aciertan, salvo inmunidades u otras restricciones del movimiento."
+    },
+    {
+      "id": "innards-out",
+      "nameEs": "Reves",
+      "nameEn": "Innards Out",
+      "shortEffectEs": "Si cae por un ataque, dana al atacante segun los PS que perdio.",
+      "effectEs": "Si el usuario es debilitado por un movimiento, el atacante pierde tantos PS como PS perdio el usuario por ese golpe."
+    },
+    {
+      "id": "mega-sol",
+      "nameEs": "Megasolar",
+      "nameEn": "Mega Sol",
+      "shortEffectEs": "Usa sus movimientos como si hubiera sol intenso.",
+      "effectEs": "Aunque no haya sol intenso en el campo, el usuario usa sus movimientos como si ese clima estuviera activo."
+    },
+    {
+      "id": "snow-warning",
+      "nameEs": "Nevada",
+      "nameEn": "Snow Warning",
+      "shortEffectEs": "Invoca nieve al entrar en combate.",
+      "effectEs": "Al entrar en combate, el usuario hace que empiece a nevar."
+    },
+    {
+      "id": "mold-breaker",
+      "nameEs": "Rompemoldes",
+      "nameEn": "Mold Breaker",
+      "shortEffectEs": "Sus movimientos ignoran habilidades defensivas del objetivo.",
+      "effectEs": "Los movimientos del usuario ignoran habilidades del objetivo que normalmente bloquearian, reducirian o alterarian el efecto del movimiento."
+    },
+    {
+      "id": "piercing-drill",
+      "nameEs": "Turbotaladro",
+      "nameEn": "Piercing Drill",
+      "shortEffectEs": "Los movimientos de contacto pueden golpear a objetivos protegidos con 1/4 del dano.",
+      "effectEs": "Cuando el usuario usa movimientos de contacto, puede golpear incluso a objetivos que se estan protegiendo e inflige 1/4 del dano que haria normalmente."
+    },
+    {
+      "id": "eelevate",
+      "nameEs": "Eelevate",
+      "nameEn": "Eelevate",
+      "shortEffectEs": "Da inmunidad a Tierra y sube su estadistica mas alta al debilitar a un objetivo.",
+      "effectEs": "El usuario flota y es inmune a movimientos de tipo Tierra, Puas, Puas Toxicas y Red Viscosa. Cuando debilita a un objetivo con un ataque, su estadistica mas alta sube un nivel."
+    },
+    {
+      "id": "unseen-fist",
+      "nameEs": "Puno Invisible",
+      "nameEn": "Unseen Fist",
+      "shortEffectEs": "Los movimientos de contacto atraviesan protecciones, pero solo hacen 25% del dano.",
+      "effectEs": "Los movimientos de contacto del usuario golpean al objetivo aunque este usando movimientos de proteccion como Proteccion o Deteccion, pero el dano se reduce al 25% de lo que harian normalmente."
+    },
+    {
+      "id": "protean",
+      "nameEs": "Mutatipo",
+      "nameEn": "Protean",
+      "shortEffectEs": "Cambia el tipo del usuario al del movimiento que usa.",
+      "effectEs": "Antes de ejecutar un movimiento, el usuario cambia su tipo al tipo de ese movimiento. Este efecto solo puede activarse una vez mientras permanezca en combate."
+    },
+    {
+      "id": "fire-mane",
+      "nameEs": "Melena Ignea",
+      "nameEn": "Fire Mane",
+      "shortEffectEs": "Potencia 1.5x los movimientos de tipo Fuego.",
+      "effectEs": "Los movimientos de tipo Fuego del usuario infligen 1.5 veces su dano habitual."
+    },
+    {
+      "id": "tough-claws",
+      "nameEs": "Garra Dura",
+      "nameEn": "Tough Claws",
+      "shortEffectEs": "Potencia los movimientos de contacto.",
+      "effectEs": "Los movimientos de contacto del usuario infligen 1.3 veces su dano habitual."
+    },
+    {
+      "id": "regenerator",
+      "nameEs": "Regeneracion",
+      "nameEn": "Regenerator",
+      "shortEffectEs": "Recupera 1/3 de los PS maximos al retirarse.",
+      "effectEs": "Cuando el usuario abandona el combate, recupera 1/3 de sus PS maximos."
+    },
+    {
+      "id": "iron-fist",
+      "nameEs": "Puno Ferreo",
+      "nameEn": "Iron Fist",
+      "shortEffectEs": "Potencia los movimientos de puno.",
+      "effectEs": "Los movimientos clasificados como golpes de puno del usuario infligen 1.2 veces su dano habitual."
+    },
+    {
+      "id": "spicy-spray",
+      "nameEs": "Salpicante",
+      "nameEn": "Spicy Spray",
+      "shortEffectEs": "Quema al atacante cuando el usuario recibe dano de un movimiento.",
+      "effectEs": "Cuando el usuario recibe dano de un movimiento, quema al atacante."
+    },
+    {
       "id": "effect-spore",
       "shortEffectEs": "Quien le golpee con contacto puede dormirse, envenenarse o paralizarse.",
       "effectEs": "Los Pokemon que golpean al usuario con contacto pueden acabar dormidos, envenenados o paralizados."

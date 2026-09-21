@@ -14,7 +14,6 @@ const { t, locale } = useI18n()
 const currentMode = computed<BattleMode>(() => {
   return route.params.mode === 'singles' ? 'singles' : 'vgc'
 })
-const mudkipHeaderGif = 'https://play.pokemonshowdown.com/sprites/ani/mudkip.gif'
 
 watch(
   () => route.params.mode,
@@ -40,12 +39,6 @@ function changeLocale(nextLocale: LocaleCode) {
   uiStore.setLocale(nextLocale)
 }
 
-function onMudkipHeaderError(event: Event) {
-  const target = event.target as HTMLImageElement
-  if (target.src !== mudkipSprite) {
-    target.src = mudkipSprite
-  }
-}
 </script>
 
 <template>
@@ -53,11 +46,10 @@ function onMudkipHeaderError(event: Event) {
     <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
       <div class="flex items-center gap-3">
         <img
-          :src="mudkipHeaderGif"
+          :src="mudkipSprite"
           alt="Mudkip"
           class="h-11 w-11 rounded-full border border-sky-400/60 bg-black/35 object-contain p-1"
           loading="lazy"
-          @error="onMudkipHeaderError"
         />
         <div>
           <h1 class="text-xl font-bold text-sky-300">{{ t('app.title') }}</h1>

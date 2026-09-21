@@ -22,13 +22,14 @@ import type {
   DamageGeneration,
   DamageHazardsState,
   DamageCombatContext,
+  DamageSlotSet,
   DamageMoveOrderHint,
   DamageSideId,
   DamageSlotNumber,
   DamageStatus,
 } from '@/models/damage-calc'
 import type { DexAvailabilityFilterKey } from '@/models/dex'
-import { TYPE_KEYS } from '@/models/domain'
+import { MAX_EV_PER_STAT, MAX_EVS, MAX_IV_PER_STAT, TYPE_KEYS } from '@/models/domain'
 import { TYPE_META } from '@/models/type-meta'
 import { effectivenessAgainstDual } from '@/models/type-chart'
 import { useDamageCalcStore } from '@/stores/damage-calc'
@@ -39,7 +40,9 @@ import { useUiStore } from '@/stores/ui'
 import { getEffectiveLearnsetMoveIds } from '@/utils/move-legality'
 import { moveTypeGradientStyle } from '@/utils/move-type-style'
 import { onPokemonSpriteError, primaryPokemonSpriteUrl } from '@/utils/pokemon-sprite'
+import { calculateEffectiveSpeed } from '@/utils/damage-engine'
 import { calculateBattleStats, getNatureModifier } from '@/utils/stat-calc'
+import { speedComparisonPokemonName } from '@/utils/speed-comparison'
 import DamageFieldControls from './components/DamageFieldControls.vue'
 import DamageMatrix from './components/DamageMatrix.vue'
 import DamagePairDetail from './components/DamagePairDetail.vue'
@@ -142,7 +145,12 @@ const LINE_THREAT_AVAILABILITY_OPTIONS: Array<{
   { key: 'all', short: 'Any', labelEs: 'Cualquier juego', labelEn: 'Any game' },
   { key: 'scarlet-violet', short: 'SV', labelEs: 'Escarlata/Purpura', labelEn: 'Scarlet/Violet' },
   { key: 'sword-shield', short: 'SwSh', labelEs: 'Espada/Escudo', labelEn: 'Sword/Shield' },
-  { key: 'pokemon-champions', short: 'CH', labelEs: 'Pokemon Champions', labelEn: 'Pokemon Champions' },
+  {
+    key: 'pokemon-champions',
+    short: 'CH',
+    labelEs: 'Pokemon Champions',
+    labelEn: 'Pokemon Champions',
+  },
 ]
 
 const LINE_THREAT_SPREAD_MOVE_IDS = new Set([
@@ -187,7 +195,12 @@ const statEditorModal = ref<StatEditorModalState>({
 const statEditorOriginal = ref<StatEditorDraftState | null>(null)
 const statEditorDraft = ref<StatEditorDraftState | null>(null)
 const statEditorPosition = ref<FloatingPosition>({ x: 24, y: 96 })
-const statEditorDrag = ref<{ startX: number; startY: number; originX: number; originY: number } | null>(null)
+const statEditorDrag = ref<{
+  startX: number
+  startY: number
+  originX: number
+  originY: number
+} | null>(null)
 const applyToBuilderMessage = ref('')
 const lineThreatModalOpen = ref(false)
 const lineThreatFocus = ref<DamageLineThreatFocus>('leads')
@@ -233,21 +246,25 @@ const moveOrderOptions = computed<SearchOption[]>(() => [
 const pokemonOptions = computed<SearchOption[]>(() =>
   dexStore.getPokemonByMode(mode.value).map((pokemon) => ({
     value: pokemon.id,
-    label: `#${String(pokemon.pokedexNumber).padStart(4, '0')} ${pokemon.name}`,
+    label: `#${String(pokemon.pokedexNumber).padStart(4, '0')} ${speedComparisonPokemonName(pokemon)}`,
   })),
 )
 
 const itemOptions = computed<SearchOption[]>(() =>
-  dexStore.items.map((item) => ({
-    value: item.id,
-    label: item.name,
-  })),
+  dexStore.items
+    .filter((item) => mode.value !== 'vgc' || item.championsAvailable !== false)
+    .map((item) => ({
+      value: item.id,
+      label: item.name,
+    })),
 )
 
 function swapReservePokemonName(): string {
   const reserveSlot = swapModal.value.reserveSlot
   if (reserveSlot == null) return ''
-  const reserveEntry = sideState(swapModal.value.side).slots.find((entry) => entry.slot === reserveSlot)
+  const reserveEntry = sideState(swapModal.value.side).slots.find(
+    (entry) => entry.slot === reserveSlot,
+  )
   return pokemonNameById(reserveEntry?.pokemonId ?? '')
 }
 
@@ -397,25 +414,9 @@ function signed(value: number): string {
   return String(value)
 }
 
-function effectiveEvContribution(evValue: number): number {
-  return Math.floor(Math.max(0, evValue) / 4)
-}
-
-function evProgressToNextPoint(evValue: number): number {
-  return Math.max(0, 4 - (Math.max(0, evValue) % 4 || 4))
-}
-
 function evStepHint(evValue: number): string {
-  const normalized = Math.max(0, evValue)
-  const remainder = normalized % 4
-  if (remainder === 0) {
-    return t('damageCalc.evStepReady', {
-      value: effectiveEvContribution(normalized),
-    })
-  }
   return t('damageCalc.evStepPending', {
-    value: effectiveEvContribution(normalized),
-    next: 4 - remainder,
+    value: Math.max(0, Math.min(MAX_EV_PER_STAT, Math.floor(evValue))),
   })
 }
 
@@ -423,7 +424,9 @@ async function ensureScenarioDexReferencesLoaded() {
   const slotSets = [...scenario.value.sideA.slots, ...scenario.value.sideB.slots]
 
   const pokemonIds = [...new Set(slotSets.map((slotSet) => slotSet.pokemonId).filter(Boolean))]
-  const missingPokemonIds = pokemonIds.filter((pokemonId) => !dexStore.getPokemon(mode.value, pokemonId))
+  const missingPokemonIds = pokemonIds.filter(
+    (pokemonId) => !dexStore.getPokemon(mode.value, pokemonId),
+  )
   if (missingPokemonIds.length > 0) {
     await Promise.all(
       missingPokemonIds.map((pokemonId) =>
@@ -439,7 +442,8 @@ async function ensureScenarioDexReferencesLoaded() {
 }
 
 function availableDefenderSlots(attackerSide: DamageSideId): DamageSlotNumber[] {
-  const defenderActive = attackerSide === 'A' ? scenario.value.sideB.activeSlotIds : scenario.value.sideA.activeSlotIds
+  const defenderActive =
+    attackerSide === 'A' ? scenario.value.sideB.activeSlotIds : scenario.value.sideA.activeSlotIds
   if (isVgc.value) return defenderActive.slice(0, 2)
   return defenderActive
 }
@@ -489,7 +493,9 @@ function backActiveSlots(side: DamageSideId) {
 function reserveSlots(side: DamageSideId) {
   const state = sideState(side)
   const activeSet = new Set(state.activeSlotIds)
-  const reserves = state.slots.filter((slot) => !activeSet.has(slot.slot) && Boolean(slot.pokemonId))
+  const reserves = state.slots.filter(
+    (slot) => !activeSet.has(slot.slot) && Boolean(slot.pokemonId),
+  )
   if (!isVgc.value) return reserves
   return reserves.slice(0, 2)
 }
@@ -506,7 +512,11 @@ function activeRoleLabel(side: DamageSideId, slot: DamageSlotNumber): string {
   return idx < 2 ? t('damageCalc.roleLead') : t('damageCalc.roleBack')
 }
 
-function swapIntoLead(side: DamageSideId, leadSlot: DamageSlotNumber, candidateSlot: DamageSlotNumber) {
+function swapIntoLead(
+  side: DamageSideId,
+  leadSlot: DamageSlotNumber,
+  candidateSlot: DamageSlotNumber,
+) {
   if (!isVgc.value) return
   const state = sideState(side)
   const active = [...state.activeSlotIds]
@@ -559,7 +569,10 @@ function openStatEditor(side: DamageSideId, slot: DamageSlotNumber) {
   }
   statEditorOriginal.value = structuredClone(snapshot)
   statEditorDraft.value = structuredClone(snapshot)
-  statEditorPosition.value = clampStatEditorPosition(statEditorPosition.value.x, statEditorPosition.value.y)
+  statEditorPosition.value = clampStatEditorPosition(
+    statEditorPosition.value.x,
+    statEditorPosition.value.y,
+  )
 }
 
 function closeStatEditor(options?: { revert?: boolean }) {
@@ -666,14 +679,19 @@ function isSlotTouched(side: DamageSideId, slot: DamageSlotNumber): boolean {
   return Boolean(touchedSlotFlags.value[slotTouchKey(side, slot)])
 }
 
-function patchSlot(side: DamageSideId, slot: DamageSlotNumber, patch: Partial<(typeof scenario.value.sideA.slots)[number]>) {
+function patchSlot(
+  side: DamageSideId,
+  slot: DamageSlotNumber,
+  patch: Partial<(typeof scenario.value.sideA.slots)[number]>,
+) {
   damageCalcStore.updateSlotSet(mode.value, side, slot, patch)
   markSlotTouched(side, slot)
 }
 
 function pokemonNameById(pokemonId: string): string {
   if (!pokemonId) return t('builder.selectPokemon')
-  return dexStore.getPokemon(mode.value, pokemonId)?.name ?? pokemonId
+  const pokemon = dexStore.getPokemon(mode.value, pokemonId)
+  return pokemon ? speedComparisonPokemonName(pokemon) : pokemonId
 }
 
 function typeLabel(type: PokemonTypeKey): string {
@@ -703,10 +721,26 @@ function slotSetPokemon(slotSet: { pokemonId: string } | undefined): PokemonEntr
   return dexStore.getPokemon(mode.value, slotSet.pokemonId)
 }
 
-function slotSetCalculatedSpeed(slotSet: { pokemonId: string; ivs: Record<StatKey, number>; evs: Record<StatKey, number>; level: number; natureId: string } | undefined): number {
+function slotSetCalculatedSpeed(
+  slotSet:
+    | {
+        pokemonId: string
+        ivs: Record<StatKey, number>
+        evs: Record<StatKey, number>
+        level: number
+        natureId: string
+      }
+    | undefined,
+): number {
   const pokemon = slotSetPokemon(slotSet)
   if (!slotSet || !pokemon) return 0
-  return calculateBattleStats(pokemon.baseStats, slotSet.ivs, slotSet.evs, slotSet.level, slotSet.natureId).spe
+  return calculateBattleStats(
+    pokemon.baseStats,
+    slotSet.ivs,
+    slotSet.evs,
+    slotSet.level,
+    slotSet.natureId,
+  ).spe
 }
 
 function uniqueMoveEntries(pokemon: PokemonEntry): MoveEntry[] {
@@ -731,7 +765,11 @@ function lineThreatAvailabilityForPokemon(pokemonId: string): DexAvailabilityFil
 }
 
 const lineThreatTargetLine = computed(() =>
-  isVgc.value ? lineupSlots('A').filter((slotSet) => Boolean(slotSet.pokemonId)).slice(0, 4) : [],
+  isVgc.value
+    ? lineupSlots('A')
+        .filter((slotSet) => Boolean(slotSet.pokemonId))
+        .slice(0, 4)
+    : [],
 )
 
 const lineThreatLeadTargets = computed(() =>
@@ -744,14 +782,11 @@ const lineThreatLineLabel = computed(() =>
 
 const canOpenLineThreats = computed(() => isVgc.value && lineThreatTargetLine.value.length === 4)
 
-const lineThreatLeadSpeedBenchmark = computed(() =>
-  Math.max(0, ...lineThreatLeadTargets.value.map((slotSet) => slotSetCalculatedSpeed(slotSet))),
-)
-
 const lineThreatEntries = computed<DamageLineThreatEntry[]>(() => {
   if (!lineThreatModalOpen.value || !canOpenLineThreats.value) return []
 
-  const selectedAvailability = lineThreatAvailabilityFilter.value === 'all' ? null : lineThreatAvailabilityFilter.value
+  const selectedAvailability =
+    lineThreatAvailabilityFilter.value === 'all' ? null : lineThreatAvailabilityFilter.value
   const targetLine = lineThreatTargetLine.value
   const leads = lineThreatLeadTargets.value
   const entries: DamageLineThreatEntry[] = []
@@ -763,9 +798,13 @@ const lineThreatEntries = computed<DamageLineThreatEntry[]>(() => {
     if (selectedAvailability && !availability.includes(selectedAvailability)) continue
 
     const movePool = uniqueMoveEntries(pokemon)
-    const damagingMoves = movePool.filter((move) => move.category !== 'status' && (move.power ?? 0) > 0)
+    const damagingMoves = movePool.filter(
+      (move) => move.category !== 'status' && (move.power ?? 0) > 0,
+    )
     const stabMoves = damagingMoves.filter((move) => pokemon.types.includes(move.type))
-    const stabTypes = [...new Set((stabMoves.length > 0 ? stabMoves : damagingMoves).map((move) => move.type))]
+    const stabTypes = [
+      ...new Set((stabMoves.length > 0 ? stabMoves : damagingMoves).map((move) => move.type)),
+    ]
     const offensePeak = Math.max(pokemon.baseStats.atk, pokemon.baseStats.spa)
     const supportMoveCount = movePool.filter((move) => move.category === 'status').length
     const hasPriorityDamage = damagingMoves.some((move) => (move.priority ?? 0) > 0)
@@ -786,7 +825,9 @@ const lineThreatEntries = computed<DamageLineThreatEntry[]>(() => {
       if (!target) return 0
       return Math.max(
         0,
-        ...stabTypes.map((attackType) => effectivenessAgainstDual(attackType, target.types[0], target.types[1])),
+        ...stabTypes.map((attackType) =>
+          effectivenessAgainstDual(attackType, target.types[0], target.types[1]),
+        ),
       )
     })
 
@@ -795,11 +836,23 @@ const lineThreatEntries = computed<DamageLineThreatEntry[]>(() => {
     const lineThreatCount = threatFactors.filter((factor) => factor >= 2).length
     const bestLeadPressure = Math.max(0, ...leadFactors)
     const bestLinePressure = Math.max(0, ...threatFactors)
-    const fasterThanLeadsCount = leads.filter((slotSet) => pokemon.baseStats.spe > slotSetCalculatedSpeed(slotSet)).length
+    const fasterThanLeadsCount = leads.filter(
+      (slotSet) => pokemon.baseStats.spe > slotSetCalculatedSpeed(slotSet),
+    ).length
     const supportHeavyLowOffense =
-      supportMoveCount >= 2 && damagingMoves.length <= 2 && offensePeak < 110 && !hasPriorityDamage && !hasSpread
+      supportMoveCount >= 2 &&
+      damagingMoves.length <= 2 &&
+      offensePeak < 110 &&
+      !hasPriorityDamage &&
+      !hasSpread
 
-    if (supportHeavyLowOffense && leadThreatCount === 0 && lineThreatCount <= 1 && fasterThanLeadsCount === 0) continue
+    if (
+      supportHeavyLowOffense &&
+      leadThreatCount === 0 &&
+      lineThreatCount <= 1 &&
+      fasterThanLeadsCount === 0
+    )
+      continue
 
     const reasons: string[] = []
     if (leadThreatCount >= 2) {
@@ -838,8 +891,14 @@ const lineThreatEntries = computed<DamageLineThreatEntry[]>(() => {
       (bestLinePressure >= 4 ? 1.3 : bestLinePressure >= 2 ? 0.9 : 0) +
       spreadScore * 0.8 +
       offenseScore * 0.9
-    const tempoScore = speedScore * 1.8 + priorityScore * 1.4 + spreadScore * 0.9 + usageScore * 0.55
-    const score = leadPressure * 0.42 + linePressure * 0.38 + tempoScore * 0.2 + usageScore * 0.25 - (supportHeavyLowOffense ? 1.25 : 0)
+    const tempoScore =
+      speedScore * 1.8 + priorityScore * 1.4 + spreadScore * 0.9 + usageScore * 0.55
+    const score =
+      leadPressure * 0.42 +
+      linePressure * 0.38 +
+      tempoScore * 0.2 +
+      usageScore * 0.25 -
+      (supportHeavyLowOffense ? 1.25 : 0)
 
     entries.push({
       id: pokemon.id,
@@ -896,28 +955,38 @@ const lineThreatSections = computed<DamageLineThreatSection[]>(() => {
 
   const leadEntries = dedupeLineThreatEntries(
     lineThreatEntries.value
-      .filter((entry) => entry.leadPressure >= 1.35 || entry.reasons.includes(t('damageCalc.lineThreatReasonBothLeads')))
-      .sort((a, b) =>
-        (lineThreatFocus.value === 'leads'
-          ? b.leadPressure * 1.35 + b.tempoScore * 0.45 + b.score * 0.5
-          : b.leadPressure + b.tempoScore * 0.35 + b.score * 0.4) -
-        (lineThreatFocus.value === 'leads'
-          ? a.leadPressure * 1.35 + a.tempoScore * 0.45 + a.score * 0.5
-          : a.leadPressure + a.tempoScore * 0.35 + a.score * 0.4),
+      .filter(
+        (entry) =>
+          entry.leadPressure >= 1.35 ||
+          entry.reasons.includes(t('damageCalc.lineThreatReasonBothLeads')),
+      )
+      .sort(
+        (a, b) =>
+          (lineThreatFocus.value === 'leads'
+            ? b.leadPressure * 1.35 + b.tempoScore * 0.45 + b.score * 0.5
+            : b.leadPressure + b.tempoScore * 0.35 + b.score * 0.4) -
+          (lineThreatFocus.value === 'leads'
+            ? a.leadPressure * 1.35 + a.tempoScore * 0.45 + a.score * 0.5
+            : a.leadPressure + a.tempoScore * 0.35 + a.score * 0.4),
       ),
     (entry) => entry.leadPressure * 1.35 + entry.tempoScore * 0.45 + entry.score * 0.5,
   ).slice(0, 6)
 
   const lineEntries = dedupeLineThreatEntries(
     lineThreatEntries.value
-      .filter((entry) => entry.linePressure >= 1.45 || entry.reasons.includes(t('damageCalc.lineThreatReasonLineThree')))
-      .sort((a, b) =>
-        (lineThreatFocus.value === 'line'
-          ? b.linePressure * 1.35 + b.score * 0.55 + b.tempoScore * 0.2
-          : b.linePressure + b.score * 0.45) -
-        (lineThreatFocus.value === 'line'
-          ? a.linePressure * 1.35 + a.score * 0.55 + a.tempoScore * 0.2
-          : a.linePressure + a.score * 0.45),
+      .filter(
+        (entry) =>
+          entry.linePressure >= 1.45 ||
+          entry.reasons.includes(t('damageCalc.lineThreatReasonLineThree')),
+      )
+      .sort(
+        (a, b) =>
+          (lineThreatFocus.value === 'line'
+            ? b.linePressure * 1.35 + b.score * 0.55 + b.tempoScore * 0.2
+            : b.linePressure + b.score * 0.45) -
+          (lineThreatFocus.value === 'line'
+            ? a.linePressure * 1.35 + a.score * 0.55 + a.tempoScore * 0.2
+            : a.linePressure + a.score * 0.45),
       ),
     (entry) => entry.linePressure * 1.35 + entry.score * 0.55 + entry.tempoScore * 0.2,
   ).slice(0, 6)
@@ -925,12 +994,20 @@ const lineThreatSections = computed<DamageLineThreatSection[]>(() => {
   const tempoEntries = dedupeLineThreatEntries(
     lineThreatEntries.value
       .filter((entry) => entry.tempoScore >= 1.3)
-      .sort((a, b) => b.tempoScore + b.leadPressure * 0.4 + b.score * 0.25 - (a.tempoScore + a.leadPressure * 0.4 + a.score * 0.25)),
+      .sort(
+        (a, b) =>
+          b.tempoScore +
+          b.leadPressure * 0.4 +
+          b.score * 0.25 -
+          (a.tempoScore + a.leadPressure * 0.4 + a.score * 0.25),
+      ),
     (entry) => entry.tempoScore + entry.leadPressure * 0.4 + entry.score * 0.25,
   ).slice(0, 6)
 
   const orderedKeys =
-    lineThreatFocus.value === 'leads' ? (['leads', 'line', 'tempo'] as const) : (['line', 'leads', 'tempo'] as const)
+    lineThreatFocus.value === 'leads'
+      ? (['leads', 'line', 'tempo'] as const)
+      : (['line', 'leads', 'tempo'] as const)
 
   const sectionsByKey: Record<DamageLineThreatSection['key'], DamageLineThreatSection> = {
     leads: {
@@ -1006,7 +1083,11 @@ function movePriorityValueLabel(value: unknown): string {
   return normalized >= 0 ? `+${normalized}` : String(normalized)
 }
 
-function setSlotRole(side: DamageSideId, slot: DamageSlotNumber, role: 'lead' | 'back' | 'reserve' | 'active') {
+function setSlotRole(
+  side: DamageSideId,
+  slot: DamageSlotNumber,
+  role: 'lead' | 'back' | 'reserve' | 'active',
+) {
   const sideState = side === 'A' ? scenario.value.sideA : scenario.value.sideB
   const slotSet = sideState.slots.find((entry) => entry.slot === slot)
   if (role !== 'reserve' && !slotSet?.pokemonId) return
@@ -1089,7 +1170,9 @@ function applyLevelPreset(level: number) {
   }
 }
 
-function applyFieldPreset(preset: 'clear' | 'vgc-standard' | 'singles-standard' | 'sun' | 'rain' | 'sand' | 'snow') {
+function applyFieldPreset(
+  preset: 'clear' | 'vgc-standard' | 'singles-standard' | 'sun' | 'rain' | 'sand' | 'snow',
+) {
   const emptyHazards: DamageHazardsState = {
     stealthRock: false,
     spikesLayers: 0,
@@ -1220,8 +1303,11 @@ function applyDamageCalcToBuilder() {
   const activeTeam = teamStore.getActiveTeam(mode.value)
   for (const slotSet of scenario.value.sideA.slots) {
     const currentMember = activeTeam.members.find((member) => member.slot === slotSet.slot)
-    const pokemon = slotSet.pokemonId ? dexStore.getPokemon(mode.value, slotSet.pokemonId) : undefined
-    const natureId = slotSet.natureId || pokemon?.defaultNature || currentMember?.natureId || 'jolly'
+    const pokemon = slotSet.pokemonId
+      ? dexStore.getPokemon(mode.value, slotSet.pokemonId)
+      : undefined
+    const natureId =
+      slotSet.natureId || pokemon?.defaultNature || currentMember?.natureId || 'jolly'
     const abilityId = slotSet.abilityId || pokemon?.abilities[0] || currentMember?.abilityId || ''
     teamStore.updateMember(mode.value, slotSet.slot, {
       pokemonId: slotSet.pokemonId,
@@ -1357,7 +1443,11 @@ function applyTemplateB(templateId: string) {
   }
 }
 
-function updateSideFieldFlag(side: DamageSideId, key: keyof (typeof scenario.value.field.sideA), value: boolean | number) {
+function updateSideFieldFlag(
+  side: DamageSideId,
+  key: keyof typeof scenario.value.field.sideA,
+  value: boolean | number,
+) {
   damageCalcStore.updateSideField(mode.value, side, {
     [key]: value,
   })
@@ -1374,9 +1464,15 @@ function updateProtectBySlot(side: DamageSideId, slot: DamageSlotNumber, value: 
   markSlotTouched(side, slot)
 }
 
-function updateTarget(side: DamageSideId, attackerSlot: DamageSlotNumber, defenderSlot: DamageSlotNumber) {
+function updateTarget(
+  side: DamageSideId,
+  attackerSlot: DamageSlotNumber,
+  defenderSlot: DamageSlotNumber,
+) {
   const validTargets = availableDefenderSlots(side)
-  const safeTarget = validTargets.includes(defenderSlot) ? defenderSlot : (validTargets[0] ?? defenderSlot)
+  const safeTarget = validTargets.includes(defenderSlot)
+    ? defenderSlot
+    : (validTargets[0] ?? defenderSlot)
   damageCalcStore.setTarget(mode.value, side, attackerSlot, safeTarget)
   if (
     scenario.value.selectedPair.attackerSide === side &&
@@ -1395,10 +1491,13 @@ function syncSelectedPairWithDefaultTarget(attackerSide: DamageSideId) {
   const defaultAttackerSlot = attackerState.activeSlotIds[0]
   if (!defaultAttackerSlot) return
   const defenderChoices = availableDefenderSlots(attackerSide)
-  const preferredDefender = attackerState.targetByAttacker[String(defaultAttackerSlot)] as DamageSlotNumber | undefined
-  const fallbackDefender = preferredDefender && defenderChoices.includes(preferredDefender)
-    ? preferredDefender
-    : defenderChoices[0]
+  const preferredDefender = attackerState.targetByAttacker[String(defaultAttackerSlot)] as
+    | DamageSlotNumber
+    | undefined
+  const fallbackDefender =
+    preferredDefender && defenderChoices.includes(preferredDefender)
+      ? preferredDefender
+      : defenderChoices[0]
   if (!fallbackDefender) return
   damageCalcStore.setSelectedPair(mode.value, attackerSide, defaultAttackerSlot, fallbackDefender)
 }
@@ -1424,14 +1523,20 @@ function updateStage(side: DamageSideId, slot: DamageSlotNumber, key: StageKey, 
   })
 }
 
-function slotCombatContext(slotSet?: { combatContext?: Partial<DamageCombatContext> }): DamageCombatContext {
+function slotCombatContext(slotSet?: {
+  combatContext?: Partial<DamageCombatContext>
+}): DamageCombatContext {
   return {
     ...defaultCombatContext(),
     ...(slotSet?.combatContext ?? {}),
   }
 }
 
-function updateCombatContext(side: DamageSideId, slot: DamageSlotNumber, patch: Partial<DamageCombatContext>) {
+function updateCombatContext(
+  side: DamageSideId,
+  slot: DamageSlotNumber,
+  patch: Partial<DamageCombatContext>,
+) {
   const slotSet = sideState(side).slots.find((entry) => entry.slot === slot)
   if (!slotSet) return
   patchSlot(side, slot, {
@@ -1442,7 +1547,12 @@ function updateCombatContext(side: DamageSideId, slot: DamageSlotNumber, patch: 
   })
 }
 
-function updateCombatFlag(side: DamageSideId, slot: DamageSlotNumber, key: CombatBooleanKey, checked: boolean) {
+function updateCombatFlag(
+  side: DamageSideId,
+  slot: DamageSlotNumber,
+  key: CombatBooleanKey,
+  checked: boolean,
+) {
   updateCombatContext(side, slot, { [key]: checked } as Partial<DamageCombatContext>)
 }
 
@@ -1464,32 +1574,6 @@ function updateMoveOrderHint(side: DamageSideId, slot: DamageSlotNumber, value: 
   updateCombatContext(side, slot, { moveOrderHint: hint })
 }
 
-function updateEv(side: DamageSideId, slot: DamageSlotNumber, key: TeamStatKey, value: string) {
-  const parsed = Number(value)
-  const clamped = Number.isFinite(parsed) ? Math.max(0, Math.min(252, Math.round(parsed))) : 0
-  const slotSet = sideState(side).slots.find((entry) => entry.slot === slot)
-  if (!slotSet) return
-  patchSlot(side, slot, {
-    evs: {
-      ...slotSet.evs,
-      [key]: clamped,
-    } as Record<StatKey, number>,
-  })
-}
-
-function updateIv(side: DamageSideId, slot: DamageSlotNumber, key: TeamStatKey, value: string) {
-  const parsed = Number(value)
-  const clamped = Number.isFinite(parsed) ? Math.max(0, Math.min(31, Math.round(parsed))) : 31
-  const slotSet = sideState(side).slots.find((entry) => entry.slot === slot)
-  if (!slotSet) return
-  patchSlot(side, slot, {
-    ivs: {
-      ...slotSet.ivs,
-      [key]: clamped,
-    } as Record<StatKey, number>,
-  })
-}
-
 function slotEvTotal(side: DamageSideId, slot: DamageSlotNumber): number {
   const slotSet = sideState(side).slots.find((entry) => entry.slot === slot)
   if (!slotSet) return 0
@@ -1497,14 +1581,16 @@ function slotEvTotal(side: DamageSideId, slot: DamageSlotNumber): number {
 }
 
 function slotHasIllegalEvTotal(side: DamageSideId, slot: DamageSlotNumber): boolean {
-  return slotEvTotal(side, slot) > 510
+  return slotEvTotal(side, slot) > MAX_EVS
 }
 
 function statLabel(key: TeamStatKey): string {
   return key.toUpperCase()
 }
 
-function stageTags(slotSet?: { stages: Record<'atk' | 'def' | 'spa' | 'spd' | 'spe', number> }): string[] {
+function stageTags(slotSet?: {
+  stages: Record<'atk' | 'def' | 'spa' | 'spd' | 'spe', number>
+}): string[] {
   if (!slotSet) return [t('damageCalc.stageNeutralTag')]
   const tags = stageKeys
     .map((key) => {
@@ -1560,40 +1646,117 @@ function statusBadgeClass(status: DamageStatus | undefined): string {
 }
 
 interface MatrixSideEntry {
+  side: DamageSideId
   slot: DamageSlotNumber
   pokemonId: string
   name: string
   sprite: string
+  effectiveSpeed: number
+  turnOrderRank: number
+  isTurnOrderTie: boolean
+}
+
+function matrixSlotKey(side: DamageSideId, slot: DamageSlotNumber): string {
+  return `${side}:${slot}`
+}
+
+function matrixVisibleSlots(side: DamageSideId): DamageSlotSet[] {
+  return lineupSlots(side).filter((slotSet) => Boolean(slotSet.pokemonId))
+}
+
+function slotSetEffectiveSpeed(side: DamageSideId, slotSet: DamageSlotSet): number {
+  const pokemon = slotSetPokemon(slotSet)
+  if (!pokemon) return 0
+  const stats = calculateBattleStats(
+    pokemon.baseStats,
+    slotSet.ivs,
+    slotSet.evs,
+    slotSet.level,
+    slotSet.natureId,
+  )
+  return calculateEffectiveSpeed(slotSet, stats.spe, side, scenario.value)
+}
+
+const matrixTurnOrderBySlotKey = computed(() => {
+  const entries = (['A', 'B'] as DamageSideId[]).flatMap((side) =>
+    matrixVisibleSlots(side).map((slotSet) => ({
+      key: matrixSlotKey(side, slotSet.slot),
+      side,
+      slot: slotSet.slot,
+      speed: slotSetEffectiveSpeed(side, slotSet),
+    })),
+  )
+  const speedCounts = new Map<number, number>()
+  for (const entry of entries) {
+    speedCounts.set(entry.speed, (speedCounts.get(entry.speed) ?? 0) + 1)
+  }
+
+  const trickRoom = Boolean(scenario.value.field.advancedFlags.trickRoom)
+  const sorted = [...entries].sort((a, b) => {
+    const speedDiff = trickRoom ? a.speed - b.speed : b.speed - a.speed
+    if (speedDiff !== 0) return speedDiff
+    if (a.side !== b.side) return a.side.localeCompare(b.side)
+    return a.slot - b.slot
+  })
+
+  const ranks = new Map<string, { rank: number; isTie: boolean }>()
+  let previousSpeed: number | null = null
+  let currentRank = 0
+  sorted.forEach((entry, index) => {
+    if (previousSpeed === null || entry.speed !== previousSpeed) {
+      currentRank = index + 1
+      previousSpeed = entry.speed
+    }
+    ranks.set(entry.key, {
+      rank: currentRank,
+      isTie: (speedCounts.get(entry.speed) ?? 0) > 1,
+    })
+  })
+  return ranks
+})
+
+function matrixEntryForSlotSet(side: DamageSideId, slotSet: DamageSlotSet): MatrixSideEntry {
+  const turnOrder = matrixTurnOrderBySlotKey.value.get(matrixSlotKey(side, slotSet.slot))
+  return {
+    side,
+    slot: slotSet.slot,
+    pokemonId: slotSet.pokemonId,
+    name: pokemonNameById(slotSet.pokemonId),
+    sprite: spriteUrl(slotSet.pokemonId),
+    effectiveSpeed: slotSetEffectiveSpeed(side, slotSet),
+    turnOrderRank: turnOrder?.rank ?? 0,
+    isTurnOrderTie: turnOrder?.isTie ?? false,
+  }
 }
 
 const matrixAttackerEntries = computed<MatrixSideEntry[]>(() =>
-  (isVgc.value ? leadSlots(matrixAttackerSide.value) : lineupSlots(matrixAttackerSide.value)).map((slotSet) => ({
-    slot: slotSet.slot,
-    pokemonId: slotSet.pokemonId,
-    name: pokemonNameById(slotSet.pokemonId),
-    sprite: spriteUrl(slotSet.pokemonId),
-  })),
+  matrixVisibleSlots(matrixAttackerSide.value).map((slotSet) =>
+    matrixEntryForSlotSet(matrixAttackerSide.value, slotSet),
+  ),
 )
 
 const matrixDefenderEntries = computed<MatrixSideEntry[]>(() =>
-  (isVgc.value ? leadSlots(matrixAttackerSide.value === 'A' ? 'B' : 'A') : lineupSlots(matrixAttackerSide.value === 'A' ? 'B' : 'A')).map((slotSet) => ({
-    slot: slotSet.slot,
-    pokemonId: slotSet.pokemonId,
-    name: pokemonNameById(slotSet.pokemonId),
-    sprite: spriteUrl(slotSet.pokemonId),
-  })),
+  matrixVisibleSlots(matrixAttackerSide.value === 'A' ? 'B' : 'A').map((slotSet) =>
+    matrixEntryForSlotSet(matrixAttackerSide.value === 'A' ? 'B' : 'A', slotSet),
+  ),
 )
 
 const matrixAtoBLabel = computed(() => `${sideName('A')} -> ${sideName('B')}`)
 const matrixBtoALabel = computed(() => `${sideName('B')} -> ${sideName('A')}`)
 const protectLabelsA = computed<Record<string, string>>(() =>
-  Object.fromEntries(lineupSlots('A').map((slotSet) => [String(slotSet.slot), pokemonNameById(slotSet.pokemonId)])),
+  Object.fromEntries(
+    lineupSlots('A').map((slotSet) => [String(slotSet.slot), pokemonNameById(slotSet.pokemonId)]),
+  ),
 )
 const protectLabelsB = computed<Record<string, string>>(() =>
-  Object.fromEntries(lineupSlots('B').map((slotSet) => [String(slotSet.slot), pokemonNameById(slotSet.pokemonId)])),
+  Object.fromEntries(
+    lineupSlots('B').map((slotSet) => [String(slotSet.slot), pokemonNameById(slotSet.pokemonId)]),
+  ),
 )
 const selectedLevelPreset = computed<50 | 100 | null>(() => {
-  const levels = [...scenario.value.sideA.slots, ...scenario.value.sideB.slots].map((entry) => entry.level)
+  const levels = [...scenario.value.sideA.slots, ...scenario.value.sideB.slots].map(
+    (entry) => entry.level,
+  )
   if (levels.length === 0) return null
   const uniqueLevels = [...new Set(levels)]
   if (uniqueLevels.length !== 1) return null
@@ -1607,7 +1770,9 @@ const selectedPairAttackerSlotSet = computed(() => {
   return state.slots.find((entry) => entry.slot === pair.attackerSlot)
 })
 
-const selectedPairAttackerSide = computed<DamageSideId>(() => scenario.value.selectedPair.attackerSide)
+const selectedPairAttackerSide = computed<DamageSideId>(
+  () => scenario.value.selectedPair.attackerSide,
+)
 const selectedPairDefenderSide = computed<DamageSideId>(() =>
   scenario.value.selectedPair.attackerSide === 'A' ? 'B' : 'A',
 )
@@ -1636,7 +1801,13 @@ const selectedPairDefenderStats = computed(() => {
   const slotSet = selectedPairDefenderSlotSet.value
   const pokemon = selectedPairDefenderPokemon.value
   if (!slotSet || !pokemon) return undefined
-  return calculateBattleStats(pokemon.baseStats, slotSet.ivs, slotSet.evs, slotSet.level, slotSet.natureId)
+  return calculateBattleStats(
+    pokemon.baseStats,
+    slotSet.ivs,
+    slotSet.evs,
+    slotSet.level,
+    slotSet.natureId,
+  )
 })
 
 const selectedPairDefenderMaxHp = computed(() => selectedPairDefenderStats.value?.hp ?? 0)
@@ -1665,16 +1836,19 @@ const selectedPairMoveOptions = computed<SearchOption[]>(() =>
   moveOptionsForPokemon(selectedPairAttackerSlotSet.value?.pokemonId ?? ''),
 )
 
-const selectedPairMoves = computed<[string, string, string, string]>(() =>
-  selectedPairAttackerSlotSet.value?.moves ?? ['', '', '', ''],
+const selectedPairMoves = computed<[string, string, string, string]>(
+  () => selectedPairAttackerSlotSet.value?.moves ?? ['', '', '', ''],
 )
 const canSyncSelectedPairMovesToBuilder = computed(
-  () => selectedPairAttackerSide.value === 'A' && Boolean(selectedPairAttackerSlotSet.value?.pokemonId),
+  () =>
+    selectedPairAttackerSide.value === 'A' && Boolean(selectedPairAttackerSlotSet.value?.pokemonId),
 )
 
 const statEditorSlotSet = computed(() => {
   if (!statEditorModal.value.open || !statEditorModal.value.slot) return undefined
-  return sideState(statEditorModal.value.side).slots.find((entry) => entry.slot === statEditorModal.value.slot)
+  return sideState(statEditorModal.value.side).slots.find(
+    (entry) => entry.slot === statEditorModal.value.slot,
+  )
 })
 
 const statEditorModalStyle = computed(() => ({
@@ -1694,8 +1868,8 @@ const statEditorPokemon = computed(() => {
   return dexStore.getPokemon(mode.value, pokemonId)
 })
 
-const statEditorNatureId = computed(() =>
-  statEditorSlotSet.value?.natureId || statEditorPokemon.value?.defaultNature || 'hardy',
+const statEditorNatureId = computed(
+  () => statEditorSlotSet.value?.natureId || statEditorPokemon.value?.defaultNature || 'hardy',
 )
 
 const statEditorItemName = computed(() => {
@@ -1825,9 +1999,11 @@ const statEditorBaselineStats = computed(() => {
 const statEditorEvTotal = computed(() => {
   const draft = statEditorDraft.value
   if (!draft) return 0
-  return draft.evs.hp + draft.evs.atk + draft.evs.def + draft.evs.spa + draft.evs.spd + draft.evs.spe
+  return (
+    draft.evs.hp + draft.evs.atk + draft.evs.def + draft.evs.spa + draft.evs.spd + draft.evs.spe
+  )
 })
-const statEditorHasIllegalEvs = computed(() => statEditorEvTotal.value > 510)
+const statEditorHasIllegalEvs = computed(() => statEditorEvTotal.value > MAX_EVS)
 
 function updateMoveFromPairDetail(moveIndex: number, moveId: string) {
   const pair = scenario.value.selectedPair
@@ -1836,7 +2012,8 @@ function updateMoveFromPairDetail(moveIndex: number, moveId: string) {
 
 function syncSelectedPairMovesToBuilder() {
   const attackerSlotSet = selectedPairAttackerSlotSet.value
-  if (!attackerSlotSet || selectedPairAttackerSide.value !== 'A' || !attackerSlotSet.pokemonId) return
+  if (!attackerSlotSet || selectedPairAttackerSide.value !== 'A' || !attackerSlotSet.pokemonId)
+    return
 
   teamStore.updateMember(mode.value, attackerSlotSet.slot, {
     moves: [...attackerSlotSet.moves] as [string, string, string, string],
@@ -1853,7 +2030,10 @@ function updateStatEditorEv(key: TeamStatKey, value: string) {
   if (!statEditorModal.value.open || !statEditorModal.value.slot) return
   if (!statEditorDraft.value) return
   const numeric = Number(value)
-  const clamped = Math.max(0, Math.min(252, Math.floor(Number.isFinite(numeric) ? numeric : 0)))
+  const clamped = Math.max(
+    0,
+    Math.min(statEditorEvMaxForStat(key), Math.floor(Number.isFinite(numeric) ? numeric : 0)),
+  )
   statEditorDraft.value = {
     ...statEditorDraft.value,
     evs: {
@@ -1866,11 +2046,24 @@ function updateStatEditorEv(key: TeamStatKey, value: string) {
   })
 }
 
+function statEditorEvMaxForStat(key: TeamStatKey): number {
+  const draft = statEditorDraft.value
+  if (!draft) return MAX_EV_PER_STAT
+  const otherTotal = statKeys.reduce(
+    (sum, stat) => (stat === key ? sum : sum + (draft.evs[stat] ?? 0)),
+    0,
+  )
+  return Math.max(0, Math.min(MAX_EV_PER_STAT, MAX_EVS - otherTotal))
+}
+
 function updateStatEditorIv(key: TeamStatKey, value: string) {
   if (!statEditorModal.value.open || !statEditorModal.value.slot) return
   if (!statEditorDraft.value) return
   const numeric = Number(value)
-  const clamped = Math.max(0, Math.min(31, Math.floor(Number.isFinite(numeric) ? numeric : 0)))
+  const clamped = Math.max(
+    0,
+    Math.min(MAX_IV_PER_STAT, Math.floor(Number.isFinite(numeric) ? numeric : 0)),
+  )
   statEditorDraft.value = {
     ...statEditorDraft.value,
     ivs: {
@@ -1934,7 +2127,9 @@ function toggleQuickTera(side: DamageSideId, slot: DamageSlotNumber, enabled: bo
   if (!slotSet) return
   let teraType = slotSet.teraType
   if (enabled && !teraType) {
-    const pokemon = slotSet.pokemonId ? dexStore.getPokemon(mode.value, slotSet.pokemonId) : undefined
+    const pokemon = slotSet.pokemonId
+      ? dexStore.getPokemon(mode.value, slotSet.pokemonId)
+      : undefined
     teraType = pokemon?.types[0]
   }
   patchSlot(side, slot, {
@@ -2002,7 +2197,11 @@ watch(
       attackerSlot,
       defenderSlot,
     )
-    logDamageCalcPerf('pair-sync', startedAt, `${currentMode}:${attackerSide}:${attackerSlot}->${defenderSlot}`)
+    logDamageCalcPerf(
+      'pair-sync',
+      startedAt,
+      `${currentMode}:${attackerSide}:${attackerSlot}->${defenderSlot}`,
+    )
   },
   { immediate: true },
 )
@@ -2011,8 +2210,12 @@ watch(
   () => [
     mode.value,
     locale.value,
-    ...scenario.value.sideA.slots.map((slotSet) => `${slotSet.pokemonId}|${slotSet.moves.join(',')}`),
-    ...scenario.value.sideB.slots.map((slotSet) => `${slotSet.pokemonId}|${slotSet.moves.join(',')}`),
+    ...scenario.value.sideA.slots.map(
+      (slotSet) => `${slotSet.pokemonId}|${slotSet.moves.join(',')}`,
+    ),
+    ...scenario.value.sideB.slots.map(
+      (slotSet) => `${slotSet.pokemonId}|${slotSet.moves.join(',')}`,
+    ),
   ],
   () => {
     void ensureScenarioDexReferencesLoaded()
@@ -2026,23 +2229,17 @@ watch(
   },
 )
 
-watch(
-  mode,
-  () => {
-    for (const timer of touchTimers.values()) {
-      clearTimeout(timer)
-    }
-    touchTimers.clear()
-    touchedSlotFlags.value = {}
-  },
-)
+watch(mode, () => {
+  for (const timer of touchTimers.values()) {
+    clearTimeout(timer)
+  }
+  touchTimers.clear()
+  touchedSlotFlags.value = {}
+})
 
-watch(
-  [mode, lineThreatAvailabilityFilter],
-  ([currentMode, filter]) => {
-    uiStore.setDamageCalcThreatAvailabilityFilter(currentMode, filter)
-  },
-)
+watch([mode, lineThreatAvailabilityFilter], ([currentMode, filter]) => {
+  uiStore.setDamageCalcThreatAvailabilityFilter(currentMode, filter)
+})
 
 watch(matrixAttackerSide, (side) => {
   syncSelectedPairWithDefaultTarget(side)
@@ -2162,20 +2359,27 @@ watch(selectedTemplateB, (templateId) => {
                 {{ t('damageCalc.metaTemplatesLoading') }}
               </p>
               <p v-else-if="templateLoadStatus === 'error'" class="mt-1 text-[10px] text-rose-200">
-                {{ t('damageCalc.metaTemplatesError', { message: templateLoadError || 'unknown' }) }}
+                {{
+                  t('damageCalc.metaTemplatesError', { message: templateLoadError || 'unknown' })
+                }}
               </p>
-              <p v-else-if="templateLoadStatus === 'ready'" class="mt-1 text-[10px] text-emerald-200">
+              <p
+                v-else-if="templateLoadStatus === 'ready'"
+                class="mt-1 text-[10px] text-emerald-200"
+              >
                 {{ t('damageCalc.metaTemplatesReady') }}
               </p>
             </div>
           </div>
-        <p v-if="applyToBuilderMessage" class="text-right text-xs text-emerald-200">
-          {{ applyToBuilderMessage }}
-        </p>
-      </div>
+          <p v-if="applyToBuilderMessage" class="text-right text-xs text-emerald-200">
+            {{ applyToBuilderMessage }}
+          </p>
+        </div>
       </div>
 
-      <div class="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-gray-700/70 pt-3">
+      <div
+        class="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-gray-700/70 pt-3"
+      >
         <div class="inline-flex rounded-lg border border-gray-700 bg-off-black/70 p-1 text-xs">
           <button
             v-for="step in stepOptions"
@@ -2189,7 +2393,10 @@ watch(selectedTemplateB, (templateId) => {
           </button>
         </div>
 
-        <div v-if="activeStep !== 'results'" class="inline-flex rounded-lg border border-gray-700 bg-off-black/70 p-1 text-xs">
+        <div
+          v-if="activeStep !== 'results'"
+          class="inline-flex rounded-lg border border-gray-700 bg-off-black/70 p-1 text-xs"
+        >
           <button
             type="button"
             class="rounded px-2.5 py-1"
@@ -2201,7 +2408,9 @@ watch(selectedTemplateB, (templateId) => {
           <button
             type="button"
             class="rounded px-2.5 py-1"
-            :class="editorMode === 'advanced' ? 'bg-fuchsia-500/20 text-fuchsia-100' : 'text-gray-300'"
+            :class="
+              editorMode === 'advanced' ? 'bg-fuchsia-500/20 text-fuchsia-100' : 'text-gray-300'
+            "
             @click="editorMode = 'advanced'"
           >
             {{ t('damageCalc.advancedMode') }}
@@ -2341,7 +2550,9 @@ watch(selectedTemplateB, (templateId) => {
             @update-side-hazards="
               damageCalcStore.updateSideField(mode, $event.side, {
                 hazards: {
-                  ...($event.side === 'A' ? scenario.field.sideA.hazards : scenario.field.sideB.hazards),
+                  ...($event.side === 'A'
+                    ? scenario.field.sideA.hazards
+                    : scenario.field.sideB.hazards),
                   ...$event.patch,
                 },
               })
@@ -2365,23 +2576,36 @@ watch(selectedTemplateB, (templateId) => {
                 {{ pokemonNameById(slotSet.pokemonId) }} · {{ activeRoleLabel('A', slotSet.slot) }}
               </span>
             </div>
-            <div v-if="isVgc && leadSlots('A').length > 0" class="mt-2 rounded border border-sky-500/30 bg-sky-500/5 p-2">
-              <p class="mb-1 text-[11px] font-semibold text-sky-100">{{ t('damageCalc.quickTeraLeads') }}</p>
+            <div
+              v-if="isVgc && leadSlots('A').length > 0"
+              class="mt-2 rounded border border-sky-500/30 bg-sky-500/5 p-2"
+            >
+              <p class="mb-1 text-[11px] font-semibold text-sky-100">
+                {{ t('damageCalc.quickTeraLeads') }}
+              </p>
               <div class="grid gap-2">
                 <div
                   v-for="lead in leadSlots('A')"
                   :key="`results-a-tera-${lead.slot}`"
                   class="flex flex-wrap items-center justify-between gap-2"
                 >
-                  <span class="text-[11px] text-gray-200">{{ pokemonNameById(lead.pokemonId) }}</span>
+                  <span class="text-[11px] text-gray-200">{{
+                    pokemonNameById(lead.pokemonId)
+                  }}</span>
                   <div class="flex items-center gap-2">
                     <select
                       class="rounded border border-gray-700 bg-off-black/80 px-2 py-1 text-[11px] text-gray-100"
                       :value="lead.teraType ?? ''"
-                      @change="setQuickTeraType('A', lead.slot, ($event.target as HTMLSelectElement).value)"
+                      @change="
+                        setQuickTeraType('A', lead.slot, ($event.target as HTMLSelectElement).value)
+                      "
                     >
                       <option value="">{{ t('damageCalc.tera') }}</option>
-                      <option v-for="option in teraOptions" :key="`quick-tera-a-${lead.slot}-${option.value}`" :value="option.value">
+                      <option
+                        v-for="option in teraOptions"
+                        :key="`quick-tera-a-${lead.slot}-${option.value}`"
+                        :value="option.value"
+                      >
                         {{ option.label }}
                       </option>
                     </select>
@@ -2390,7 +2614,13 @@ watch(selectedTemplateB, (templateId) => {
                         class="accent-sky-400"
                         type="checkbox"
                         :checked="lead.isTeraActive"
-                        @change="toggleQuickTera('A', lead.slot, ($event.target as HTMLInputElement).checked)"
+                        @change="
+                          toggleQuickTera(
+                            'A',
+                            lead.slot,
+                            ($event.target as HTMLInputElement).checked,
+                          )
+                        "
                       />
                       {{ t('damageCalc.tera') }}
                     </label>
@@ -2433,23 +2663,36 @@ watch(selectedTemplateB, (templateId) => {
                 {{ pokemonNameById(slotSet.pokemonId) }} · {{ activeRoleLabel('B', slotSet.slot) }}
               </span>
             </div>
-            <div v-if="isVgc && leadSlots('B').length > 0" class="mt-2 rounded border border-rose-500/30 bg-rose-500/5 p-2">
-              <p class="mb-1 text-[11px] font-semibold text-rose-100">{{ t('damageCalc.quickTeraLeads') }}</p>
+            <div
+              v-if="isVgc && leadSlots('B').length > 0"
+              class="mt-2 rounded border border-rose-500/30 bg-rose-500/5 p-2"
+            >
+              <p class="mb-1 text-[11px] font-semibold text-rose-100">
+                {{ t('damageCalc.quickTeraLeads') }}
+              </p>
               <div class="grid gap-2">
                 <div
                   v-for="lead in leadSlots('B')"
                   :key="`results-b-tera-${lead.slot}`"
                   class="flex flex-wrap items-center justify-between gap-2"
                 >
-                  <span class="text-[11px] text-gray-200">{{ pokemonNameById(lead.pokemonId) }}</span>
+                  <span class="text-[11px] text-gray-200">{{
+                    pokemonNameById(lead.pokemonId)
+                  }}</span>
                   <div class="flex items-center gap-2">
                     <select
                       class="rounded border border-gray-700 bg-off-black/80 px-2 py-1 text-[11px] text-gray-100"
                       :value="lead.teraType ?? ''"
-                      @change="setQuickTeraType('B', lead.slot, ($event.target as HTMLSelectElement).value)"
+                      @change="
+                        setQuickTeraType('B', lead.slot, ($event.target as HTMLSelectElement).value)
+                      "
                     >
                       <option value="">{{ t('damageCalc.tera') }}</option>
-                      <option v-for="option in teraOptions" :key="`quick-tera-b-${lead.slot}-${option.value}`" :value="option.value">
+                      <option
+                        v-for="option in teraOptions"
+                        :key="`quick-tera-b-${lead.slot}-${option.value}`"
+                        :value="option.value"
+                      >
                         {{ option.label }}
                       </option>
                     </select>
@@ -2458,7 +2701,13 @@ watch(selectedTemplateB, (templateId) => {
                         class="accent-sky-400"
                         type="checkbox"
                         :checked="lead.isTeraActive"
-                        @change="toggleQuickTera('B', lead.slot, ($event.target as HTMLInputElement).checked)"
+                        @change="
+                          toggleQuickTera(
+                            'B',
+                            lead.slot,
+                            ($event.target as HTMLInputElement).checked,
+                          )
+                        "
                       />
                       {{ t('damageCalc.tera') }}
                     </label>
@@ -2523,15 +2772,24 @@ watch(selectedTemplateB, (templateId) => {
         />
 
         <article class="mt-3 rounded-xl border border-sky-500/25 bg-off-black/70 p-3">
-          <h4 class="text-xs font-semibold uppercase tracking-wide text-sky-200">{{ t('damageCalc.statsQuickEdit') }}</h4>
+          <h4 class="text-xs font-semibold uppercase tracking-wide text-sky-200">
+            {{ t('damageCalc.statsQuickEdit') }}
+          </h4>
           <div class="mt-2 grid gap-2">
             <div class="rounded border border-sky-500/45 bg-sky-500/10 p-2">
               <button
                 type="button"
                 class="w-full text-left text-xs text-sky-100 hover:text-sky-50"
-                @click="openStatEditor(selectedPairAttackerSide, scenario.selectedPair.attackerSlot)"
+                @click="
+                  openStatEditor(selectedPairAttackerSide, scenario.selectedPair.attackerSlot)
+                "
               >
-                {{ t('damageCalc.editIvEvFor', { side: sideName(selectedPairAttackerSide), pokemon: selectedPairAttackerName }) }}
+                {{
+                  t('damageCalc.editIvEvFor', {
+                    side: sideName(selectedPairAttackerSide),
+                    pokemon: selectedPairAttackerName,
+                  })
+                }}
               </button>
               <div class="mt-1 flex flex-wrap gap-1">
                 <span
@@ -2555,9 +2813,16 @@ watch(selectedTemplateB, (templateId) => {
               <button
                 type="button"
                 class="w-full text-left text-xs text-rose-100 hover:text-rose-50"
-                @click="openStatEditor(selectedPairDefenderSide, scenario.selectedPair.defenderSlot)"
+                @click="
+                  openStatEditor(selectedPairDefenderSide, scenario.selectedPair.defenderSlot)
+                "
               >
-                {{ t('damageCalc.editIvEvFor', { side: sideName(selectedPairDefenderSide), pokemon: selectedPairDefenderName }) }}
+                {{
+                  t('damageCalc.editIvEvFor', {
+                    side: sideName(selectedPairDefenderSide),
+                    pokemon: selectedPairDefenderName,
+                  })
+                }}
               </button>
               <div class="mt-1 flex flex-wrap gap-1">
                 <span
@@ -2587,11 +2852,18 @@ watch(selectedTemplateB, (templateId) => {
         <div class="mb-2 flex items-center justify-between">
           <h2 class="text-sm font-semibold text-sky-200">{{ sideName('A') }}</h2>
           <span class="text-xs text-gray-400">
-            {{ t('damageCalc.activeCount', { count: scenario.sideA.activeSlotIds.length, max: maxActiveSlots }) }}
+            {{
+              t('damageCalc.activeCount', {
+                count: scenario.sideA.activeSlotIds.length,
+                max: maxActiveSlots,
+              })
+            }}
           </span>
         </div>
 
-        <h3 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-300">{{ t('damageCalc.combatLineTitle') }}</h3>
+        <h3 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-300">
+          {{ t('damageCalc.combatLineTitle') }}
+        </h3>
         <div class="mb-3 overflow-x-auto pb-1">
           <div class="flex min-w-max gap-2">
             <div
@@ -2611,7 +2883,9 @@ watch(selectedTemplateB, (templateId) => {
                 />
                 <div class="min-w-0">
                   <div class="flex items-center gap-1.5">
-                    <p class="truncate text-xs font-semibold text-gray-100">{{ pokemonNameById(slotSet.pokemonId) }}</p>
+                    <p class="truncate text-xs font-semibold text-gray-100">
+                      {{ pokemonNameById(slotSet.pokemonId) }}
+                    </p>
                     <span
                       v-if="hasAlteredStatus(slotSet.status)"
                       :title="t(`damageCalc.status.${slotSet.status}`)"
@@ -2631,7 +2905,9 @@ watch(selectedTemplateB, (templateId) => {
         </div>
 
         <div v-if="isVgc && reserveSlots('A').length > 0" class="mb-3">
-          <h4 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-300">{{ t('damageCalc.reserveLineTitle') }}</h4>
+          <h4 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-300">
+            {{ t('damageCalc.reserveLineTitle') }}
+          </h4>
           <div class="flex flex-wrap gap-2">
             <button
               v-for="reserve in reserveSlots('A')"
@@ -2686,7 +2962,9 @@ watch(selectedTemplateB, (templateId) => {
                 />
                 <div>
                   <div class="flex items-center gap-1.5">
-                    <p class="text-xs font-semibold text-gray-100">{{ pokemonNameById(slotSet.pokemonId) }}</p>
+                    <p class="text-xs font-semibold text-gray-100">
+                      {{ pokemonNameById(slotSet.pokemonId) }}
+                    </p>
                     <span
                       v-if="hasAlteredStatus(slotSet.status)"
                       :title="t(`damageCalc.status.${slotSet.status}`)"
@@ -2699,12 +2977,25 @@ watch(selectedTemplateB, (templateId) => {
                 </div>
               </div>
               <div class="flex items-center gap-2">
-                <label v-if="!isVgc" class="inline-flex items-center gap-1 text-[11px] text-gray-300">
+                <label
+                  v-if="!isVgc"
+                  class="inline-flex items-center gap-1 text-[11px] text-gray-300"
+                >
                   <input
                     class="accent-sky-400"
                     type="checkbox"
                     :checked="scenario.sideA.activeSlotIds.includes(slotSet.slot)"
-                    @change="setSlotRole('A', slotSet.slot, ($event.target as HTMLInputElement).checked ? (isVgc ? 'back' : 'active') : 'reserve')"
+                    @change="
+                      setSlotRole(
+                        'A',
+                        slotSet.slot,
+                        ($event.target as HTMLInputElement).checked
+                          ? isVgc
+                            ? 'back'
+                            : 'active'
+                          : 'reserve',
+                      )
+                    "
                   />
                   {{ t('damageCalc.active') }}
                 </label>
@@ -2741,9 +3032,13 @@ watch(selectedTemplateB, (templateId) => {
                   :model-value="String(scenario.sideA.targetByAttacker[String(slotSet.slot)] ?? 1)"
                   :options="targetOptions('A')"
                   :clearable="false"
-                  @update:model-value="updateTarget('A', slotSet.slot, Number($event) as DamageSlotNumber)"
+                  @update:model-value="
+                    updateTarget('A', slotSet.slot, Number($event) as DamageSlotNumber)
+                  "
                 />
-                <span class="mt-1 block text-[10px] text-gray-500">{{ t('damageCalc.defaultTargetHelp') }}</span>
+                <span class="mt-1 block text-[10px] text-gray-500">{{
+                  t('damageCalc.defaultTargetHelp')
+                }}</span>
               </label>
 
               <label class="text-xs">
@@ -2784,7 +3079,11 @@ watch(selectedTemplateB, (templateId) => {
                       :model-value="slotSet.teraType ?? ''"
                       :options="teraOptions"
                       :placeholder="t('damageCalc.tera')"
-                      @update:model-value="patchSlot('A', slotSet.slot, { teraType: ($event || undefined) as PokemonTypeKey | undefined })"
+                      @update:model-value="
+                        patchSlot('A', slotSet.slot, {
+                          teraType: ($event || undefined) as PokemonTypeKey | undefined,
+                        })
+                      "
                     />
                   </div>
                   <label class="inline-flex items-center gap-1 text-[11px] text-gray-300">
@@ -2792,7 +3091,11 @@ watch(selectedTemplateB, (templateId) => {
                       class="accent-sky-400"
                       type="checkbox"
                       :checked="slotSet.isTeraActive"
-                      @change="patchSlot('A', slotSet.slot, { isTeraActive: ($event.target as HTMLInputElement).checked })"
+                      @change="
+                        patchSlot('A', slotSet.slot, {
+                          isTeraActive: ($event.target as HTMLInputElement).checked,
+                        })
+                      "
                     />
                     {{ t('damageCalc.tera') }}
                   </label>
@@ -2806,7 +3109,9 @@ watch(selectedTemplateB, (templateId) => {
                 :key="`A-slot-${slotSet.slot}-move-${moveIndex}`"
                 class="text-xs"
               >
-                <span class="mb-1 block text-gray-300">{{ t('damageCalc.moveLabel', { index: moveIndex + 1 }) }}</span>
+                <span class="mb-1 block text-gray-300">{{
+                  t('damageCalc.moveLabel', { index: moveIndex + 1 })
+                }}</span>
                 <SearchableSelect
                   :model-value="moveId"
                   :options="moveOptionsForPokemon(slotSet.pokemonId)"
@@ -2814,7 +3119,10 @@ watch(selectedTemplateB, (templateId) => {
                   @update:model-value="updateMove('A', slotSet.slot, moveIndex, $event)"
                 >
                   <template #option="{ option }">
-                    <div class="-mx-2 -my-1.5 rounded-md px-2 py-1.5" :style="moveOptionSurfaceStyle(option.meta?.type)">
+                    <div
+                      class="-mx-2 -my-1.5 rounded-md px-2 py-1.5"
+                      :style="moveOptionSurfaceStyle(option.meta?.type)"
+                    >
                       <div class="flex items-start justify-between gap-2">
                         <div class="min-w-0 flex-1">
                           <p class="truncate font-semibold text-gray-100">{{ option.label }}</p>
@@ -2828,10 +3136,16 @@ watch(selectedTemplateB, (templateId) => {
                               v-if="moveTypeIcon(option.meta?.type)"
                               class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1 py-0.5"
                             >
-                              <img :src="moveTypeIcon(option.meta?.type) || ''" :alt="moveTypeLabel(option.meta?.type)" class="h-3 w-3" />
+                              <img
+                                :src="moveTypeIcon(option.meta?.type) || ''"
+                                :alt="moveTypeLabel(option.meta?.type)"
+                                class="h-3 w-3"
+                              />
                               {{ moveTypeLabel(option.meta?.type) }}
                             </span>
-                            <span class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1 py-0.5">
+                            <span
+                              class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1 py-0.5"
+                            >
                               <img
                                 v-if="moveCategoryIcon(option.meta?.category)"
                                 :src="moveCategoryIcon(option.meta?.category) || ''"
@@ -2842,14 +3156,26 @@ watch(selectedTemplateB, (templateId) => {
                             </span>
                           </div>
                           <div class="font-mono text-[10px] text-gray-400">
-                            <span>{{ t('builder.movePowerShort') }} {{ moveValueLabel(option.meta?.power) }}</span>
+                            <span
+                              >{{ t('builder.movePowerShort') }}
+                              {{ moveValueLabel(option.meta?.power) }}</span
+                            >
                             <span class="px-1">|</span>
-                            <span>{{ t('builder.moveAccuracyShort') }} {{ moveAccuracyValueLabel(option.meta?.accuracy) }}</span>
+                            <span
+                              >{{ t('builder.moveAccuracyShort') }}
+                              {{ moveAccuracyValueLabel(option.meta?.accuracy) }}</span
+                            >
                             <span class="px-1">|</span>
-                            <span>{{ t('builder.movePpShort') }} {{ moveValueLabel(option.meta?.pp) }}</span>
+                            <span
+                              >{{ t('builder.movePpShort') }}
+                              {{ moveValueLabel(option.meta?.pp) }}</span
+                            >
                             <template v-if="(option.meta?.priority ?? 0) !== 0">
                               <span class="px-1">|</span>
-                              <span>{{ t('builder.movePriorityShort') }} {{ movePriorityValueLabel(option.meta?.priority) }}</span>
+                              <span
+                                >{{ t('builder.movePriorityShort') }}
+                                {{ movePriorityValueLabel(option.meta?.priority) }}</span
+                              >
                             </template>
                           </div>
                         </div>
@@ -2869,7 +3195,11 @@ watch(selectedTemplateB, (templateId) => {
                   min="1"
                   max="100"
                   :value="slotSet.currentHpPercent"
-                  @change="patchSlot('A', slotSet.slot, { currentHpPercent: inputNumber(($event.target as HTMLInputElement).value) })"
+                  @change="
+                    patchSlot('A', slotSet.slot, {
+                      currentHpPercent: inputNumber(($event.target as HTMLInputElement).value),
+                    })
+                  "
                 />
               </label>
               <label class="text-xs">
@@ -2878,16 +3208,27 @@ watch(selectedTemplateB, (templateId) => {
                   :model-value="slotSet.status"
                   :options="statusOptions"
                   :clearable="false"
-                  @update:model-value="patchSlot('A', slotSet.slot, { status: $event as DamageStatus })"
+                  @update:model-value="
+                    patchSlot('A', slotSet.slot, { status: $event as DamageStatus })
+                  "
                 />
               </label>
             </div>
 
-            <div v-if="editorMode === 'advanced'" class="mt-2 rounded border border-gray-700 bg-st-black/50 p-2">
-              <p class="mb-2 text-xs font-semibold text-gray-200">{{ t('damageCalc.statsStages') }}</p>
+            <div
+              v-if="editorMode === 'advanced'"
+              class="mt-2 rounded border border-gray-700 bg-st-black/50 p-2"
+            >
+              <p class="mb-2 text-xs font-semibold text-gray-200">
+                {{ t('damageCalc.statsStages') }}
+              </p>
               <p class="mb-2 text-[11px] text-gray-400">{{ t('damageCalc.statsStagesHelp') }}</p>
               <div class="mt-2 grid gap-2 md:grid-cols-5">
-                <label v-for="key in stageKeys" :key="`A-stage-${slotSet.slot}-${key}`" class="text-xs">
+                <label
+                  v-for="key in stageKeys"
+                  :key="`A-stage-${slotSet.slot}-${key}`"
+                  class="text-xs"
+                >
                   <span class="mb-1 block text-gray-300">{{ stageLabel(key) }}</span>
                   <input
                     class="w-full rounded border border-gray-700 bg-off-black/70 px-2 py-1 text-xs text-gray-100"
@@ -2895,50 +3236,93 @@ watch(selectedTemplateB, (templateId) => {
                     min="-6"
                     max="6"
                     :value="slotSet.stages[key]"
-                    @change="updateStage('A', slotSet.slot, key, ($event.target as HTMLInputElement).value)"
+                    @change="
+                      updateStage('A', slotSet.slot, key, ($event.target as HTMLInputElement).value)
+                    "
                   />
                 </label>
               </div>
             </div>
 
-            <div v-if="editorMode === 'advanced'" class="mt-2 rounded border border-gray-700 bg-st-black/50 p-2">
-              <p class="mb-2 text-xs font-semibold text-gray-200">{{ t('damageCalc.combat.title') }}</p>
+            <div
+              v-if="editorMode === 'advanced'"
+              class="mt-2 rounded border border-gray-700 bg-st-black/50 p-2"
+            >
+              <p class="mb-2 text-xs font-semibold text-gray-200">
+                {{ t('damageCalc.combat.title') }}
+              </p>
               <p class="mb-2 text-[11px] text-gray-400">{{ t('damageCalc.combat.help') }}</p>
 
               <div class="grid gap-2 md:grid-cols-2 xl:grid-cols-4">
-                <label class="inline-flex items-center gap-2 rounded border border-gray-700 bg-off-black/50 px-2 py-1.5 text-[11px] text-gray-200">
+                <label
+                  class="inline-flex items-center gap-2 rounded border border-gray-700 bg-off-black/50 px-2 py-1.5 text-[11px] text-gray-200"
+                >
                   <input
                     class="accent-sky-400"
                     type="checkbox"
                     :checked="slotSet.combatContext.wasHitThisTurn"
-                    @change="updateCombatFlag('A', slotSet.slot, 'wasHitThisTurn', ($event.target as HTMLInputElement).checked)"
+                    @change="
+                      updateCombatFlag(
+                        'A',
+                        slotSet.slot,
+                        'wasHitThisTurn',
+                        ($event.target as HTMLInputElement).checked,
+                      )
+                    "
                   />
                   {{ t('damageCalc.combat.wasHitThisTurn') }}
                 </label>
-                <label class="inline-flex items-center gap-2 rounded border border-gray-700 bg-off-black/50 px-2 py-1.5 text-[11px] text-gray-200">
+                <label
+                  class="inline-flex items-center gap-2 rounded border border-gray-700 bg-off-black/50 px-2 py-1.5 text-[11px] text-gray-200"
+                >
                   <input
                     class="accent-sky-400"
                     type="checkbox"
                     :checked="slotSet.combatContext.tookDamageThisTurn"
-                    @change="updateCombatFlag('A', slotSet.slot, 'tookDamageThisTurn', ($event.target as HTMLInputElement).checked)"
+                    @change="
+                      updateCombatFlag(
+                        'A',
+                        slotSet.slot,
+                        'tookDamageThisTurn',
+                        ($event.target as HTMLInputElement).checked,
+                      )
+                    "
                   />
                   {{ t('damageCalc.combat.tookDamageThisTurn') }}
                 </label>
-                <label class="inline-flex items-center gap-2 rounded border border-gray-700 bg-off-black/50 px-2 py-1.5 text-[11px] text-gray-200">
+                <label
+                  class="inline-flex items-center gap-2 rounded border border-gray-700 bg-off-black/50 px-2 py-1.5 text-[11px] text-gray-200"
+                >
                   <input
                     class="accent-sky-400"
                     type="checkbox"
                     :checked="slotSet.combatContext.statsLoweredThisTurn"
-                    @change="updateCombatFlag('A', slotSet.slot, 'statsLoweredThisTurn', ($event.target as HTMLInputElement).checked)"
+                    @change="
+                      updateCombatFlag(
+                        'A',
+                        slotSet.slot,
+                        'statsLoweredThisTurn',
+                        ($event.target as HTMLInputElement).checked,
+                      )
+                    "
                   />
                   {{ t('damageCalc.combat.statsLoweredThisTurn') }}
                 </label>
-                <label class="inline-flex items-center gap-2 rounded border border-gray-700 bg-off-black/50 px-2 py-1.5 text-[11px] text-gray-200">
+                <label
+                  class="inline-flex items-center gap-2 rounded border border-gray-700 bg-off-black/50 px-2 py-1.5 text-[11px] text-gray-200"
+                >
                   <input
                     class="accent-sky-400"
                     type="checkbox"
                     :checked="slotSet.combatContext.previousMoveFailed"
-                    @change="updateCombatFlag('A', slotSet.slot, 'previousMoveFailed', ($event.target as HTMLInputElement).checked)"
+                    @change="
+                      updateCombatFlag(
+                        'A',
+                        slotSet.slot,
+                        'previousMoveFailed',
+                        ($event.target as HTMLInputElement).checked,
+                      )
+                    "
                   />
                   {{ t('damageCalc.combat.previousMoveFailed') }}
                 </label>
@@ -2946,7 +3330,9 @@ watch(selectedTemplateB, (templateId) => {
 
               <div class="mt-2 grid gap-2 md:grid-cols-2 xl:grid-cols-3">
                 <label class="text-xs">
-                  <span class="mb-1 block text-gray-300">{{ t('damageCalc.combat.moveOrderHint') }}</span>
+                  <span class="mb-1 block text-gray-300">{{
+                    t('damageCalc.combat.moveOrderHint')
+                  }}</span>
                   <SearchableSelect
                     :model-value="slotSet.combatContext.moveOrderHint"
                     :options="moveOrderOptions"
@@ -2955,58 +3341,108 @@ watch(selectedTemplateB, (templateId) => {
                   />
                 </label>
                 <label class="text-xs">
-                  <span class="mb-1 block text-gray-300">{{ t('damageCalc.combat.consecutiveMoveUses') }}</span>
+                  <span class="mb-1 block text-gray-300">{{
+                    t('damageCalc.combat.consecutiveMoveUses')
+                  }}</span>
                   <input
                     class="w-full rounded border border-gray-700 bg-off-black/70 px-2 py-1 text-xs text-gray-100"
                     type="number"
                     min="0"
                     max="5"
                     :value="slotSet.combatContext.consecutiveMoveUses"
-                    @change="updateCombatNumber('A', slotSet.slot, 'consecutiveMoveUses', ($event.target as HTMLInputElement).value, 5)"
+                    @change="
+                      updateCombatNumber(
+                        'A',
+                        slotSet.slot,
+                        'consecutiveMoveUses',
+                        ($event.target as HTMLInputElement).value,
+                        5,
+                      )
+                    "
                   />
                 </label>
                 <label class="text-xs">
-                  <span class="mb-1 block text-gray-300">{{ t('damageCalc.combat.timesHitThisBattle') }}</span>
+                  <span class="mb-1 block text-gray-300">{{
+                    t('damageCalc.combat.timesHitThisBattle')
+                  }}</span>
                   <input
                     class="w-full rounded border border-gray-700 bg-off-black/70 px-2 py-1 text-xs text-gray-100"
                     type="number"
                     min="0"
                     max="6"
                     :value="slotSet.combatContext.timesHitThisBattle"
-                    @change="updateCombatNumber('A', slotSet.slot, 'timesHitThisBattle', ($event.target as HTMLInputElement).value, 6)"
+                    @change="
+                      updateCombatNumber(
+                        'A',
+                        slotSet.slot,
+                        'timesHitThisBattle',
+                        ($event.target as HTMLInputElement).value,
+                        6,
+                      )
+                    "
                   />
                 </label>
                 <label class="text-xs">
-                  <span class="mb-1 block text-gray-300">{{ t('damageCalc.combat.alliesFaintedCount') }}</span>
+                  <span class="mb-1 block text-gray-300">{{
+                    t('damageCalc.combat.alliesFaintedCount')
+                  }}</span>
                   <input
                     class="w-full rounded border border-gray-700 bg-off-black/70 px-2 py-1 text-xs text-gray-100"
                     type="number"
                     min="0"
                     max="5"
                     :value="slotSet.combatContext.alliesFaintedCount"
-                    @change="updateCombatNumber('A', slotSet.slot, 'alliesFaintedCount', ($event.target as HTMLInputElement).value, 5)"
+                    @change="
+                      updateCombatNumber(
+                        'A',
+                        slotSet.slot,
+                        'alliesFaintedCount',
+                        ($event.target as HTMLInputElement).value,
+                        5,
+                      )
+                    "
                   />
                 </label>
                 <label class="text-xs">
-                  <span class="mb-1 block text-gray-300">{{ t('damageCalc.combat.stockpileCount') }}</span>
+                  <span class="mb-1 block text-gray-300">{{
+                    t('damageCalc.combat.stockpileCount')
+                  }}</span>
                   <input
                     class="w-full rounded border border-gray-700 bg-off-black/70 px-2 py-1 text-xs text-gray-100"
                     type="number"
                     min="0"
                     max="3"
                     :value="slotSet.combatContext.stockpileCount"
-                    @change="updateCombatNumber('A', slotSet.slot, 'stockpileCount', ($event.target as HTMLInputElement).value, 3)"
+                    @change="
+                      updateCombatNumber(
+                        'A',
+                        slotSet.slot,
+                        'stockpileCount',
+                        ($event.target as HTMLInputElement).value,
+                        3,
+                      )
+                    "
                   />
                 </label>
                 <label class="text-xs">
-                  <span class="mb-1 block text-gray-300">{{ t('damageCalc.combat.friendship') }}</span>
+                  <span class="mb-1 block text-gray-300">{{
+                    t('damageCalc.combat.friendship')
+                  }}</span>
                   <input
                     class="w-full rounded border border-gray-700 bg-off-black/70 px-2 py-1 text-xs text-gray-100"
                     type="number"
                     min="0"
                     max="255"
                     :value="slotSet.combatContext.friendship"
-                    @change="updateCombatNumber('A', slotSet.slot, 'friendship', ($event.target as HTMLInputElement).value, 255)"
+                    @change="
+                      updateCombatNumber(
+                        'A',
+                        slotSet.slot,
+                        'friendship',
+                        ($event.target as HTMLInputElement).value,
+                        255,
+                      )
+                    "
                   />
                 </label>
               </div>
@@ -3019,11 +3455,18 @@ watch(selectedTemplateB, (templateId) => {
         <div class="mb-2 flex flex-wrap items-center justify-between gap-2">
           <h2 class="text-sm font-semibold text-rose-200">{{ sideName('B') }}</h2>
           <span class="text-xs text-gray-400">
-            {{ t('damageCalc.activeCount', { count: scenario.sideB.activeSlotIds.length, max: maxActiveSlots }) }}
+            {{
+              t('damageCalc.activeCount', {
+                count: scenario.sideB.activeSlotIds.length,
+                max: maxActiveSlots,
+              })
+            }}
           </span>
         </div>
 
-        <h3 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-300">{{ t('damageCalc.combatLineTitle') }}</h3>
+        <h3 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-300">
+          {{ t('damageCalc.combatLineTitle') }}
+        </h3>
         <div class="mb-3 overflow-x-auto pb-1">
           <div class="flex min-w-max gap-2">
             <div
@@ -3043,7 +3486,9 @@ watch(selectedTemplateB, (templateId) => {
                 />
                 <div class="min-w-0">
                   <div class="flex items-center gap-1.5">
-                    <p class="truncate text-xs font-semibold text-gray-100">{{ pokemonNameById(slotSet.pokemonId) }}</p>
+                    <p class="truncate text-xs font-semibold text-gray-100">
+                      {{ pokemonNameById(slotSet.pokemonId) }}
+                    </p>
                     <span
                       v-if="hasAlteredStatus(slotSet.status)"
                       :title="t(`damageCalc.status.${slotSet.status}`)"
@@ -3063,7 +3508,9 @@ watch(selectedTemplateB, (templateId) => {
         </div>
 
         <div v-if="isVgc && reserveSlots('B').length > 0" class="mb-3">
-          <h4 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-300">{{ t('damageCalc.reserveLineTitle') }}</h4>
+          <h4 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-300">
+            {{ t('damageCalc.reserveLineTitle') }}
+          </h4>
           <div class="flex flex-wrap gap-2">
             <button
               v-for="reserve in reserveSlots('B')"
@@ -3118,7 +3565,9 @@ watch(selectedTemplateB, (templateId) => {
                 />
                 <div>
                   <div class="flex items-center gap-1.5">
-                    <p class="text-xs font-semibold text-gray-100">{{ pokemonNameById(slotSet.pokemonId) }}</p>
+                    <p class="text-xs font-semibold text-gray-100">
+                      {{ pokemonNameById(slotSet.pokemonId) }}
+                    </p>
                     <span
                       v-if="hasAlteredStatus(slotSet.status)"
                       :title="t(`damageCalc.status.${slotSet.status}`)"
@@ -3131,12 +3580,25 @@ watch(selectedTemplateB, (templateId) => {
                 </div>
               </div>
               <div class="flex items-center gap-2">
-                <label v-if="!isVgc" class="inline-flex items-center gap-1 text-[11px] text-gray-300">
+                <label
+                  v-if="!isVgc"
+                  class="inline-flex items-center gap-1 text-[11px] text-gray-300"
+                >
                   <input
                     class="accent-sky-400"
                     type="checkbox"
                     :checked="scenario.sideB.activeSlotIds.includes(slotSet.slot)"
-                    @change="setSlotRole('B', slotSet.slot, ($event.target as HTMLInputElement).checked ? (isVgc ? 'back' : 'active') : 'reserve')"
+                    @change="
+                      setSlotRole(
+                        'B',
+                        slotSet.slot,
+                        ($event.target as HTMLInputElement).checked
+                          ? isVgc
+                            ? 'back'
+                            : 'active'
+                          : 'reserve',
+                      )
+                    "
                   />
                   {{ t('damageCalc.active') }}
                 </label>
@@ -3173,9 +3635,13 @@ watch(selectedTemplateB, (templateId) => {
                   :model-value="String(scenario.sideB.targetByAttacker[String(slotSet.slot)] ?? 1)"
                   :options="targetOptions('B')"
                   :clearable="false"
-                  @update:model-value="updateTarget('B', slotSet.slot, Number($event) as DamageSlotNumber)"
+                  @update:model-value="
+                    updateTarget('B', slotSet.slot, Number($event) as DamageSlotNumber)
+                  "
                 />
-                <span class="mt-1 block text-[10px] text-gray-500">{{ t('damageCalc.defaultTargetHelp') }}</span>
+                <span class="mt-1 block text-[10px] text-gray-500">{{
+                  t('damageCalc.defaultTargetHelp')
+                }}</span>
               </label>
 
               <label class="text-xs">
@@ -3216,7 +3682,11 @@ watch(selectedTemplateB, (templateId) => {
                       :model-value="slotSet.teraType ?? ''"
                       :options="teraOptions"
                       :placeholder="t('damageCalc.tera')"
-                      @update:model-value="patchSlot('B', slotSet.slot, { teraType: ($event || undefined) as PokemonTypeKey | undefined })"
+                      @update:model-value="
+                        patchSlot('B', slotSet.slot, {
+                          teraType: ($event || undefined) as PokemonTypeKey | undefined,
+                        })
+                      "
                     />
                   </div>
                   <label class="inline-flex items-center gap-1 text-[11px] text-gray-300">
@@ -3224,7 +3694,11 @@ watch(selectedTemplateB, (templateId) => {
                       class="accent-sky-400"
                       type="checkbox"
                       :checked="slotSet.isTeraActive"
-                      @change="patchSlot('B', slotSet.slot, { isTeraActive: ($event.target as HTMLInputElement).checked })"
+                      @change="
+                        patchSlot('B', slotSet.slot, {
+                          isTeraActive: ($event.target as HTMLInputElement).checked,
+                        })
+                      "
                     />
                     {{ t('damageCalc.tera') }}
                   </label>
@@ -3238,7 +3712,9 @@ watch(selectedTemplateB, (templateId) => {
                 :key="`B-slot-${slotSet.slot}-move-${moveIndex}`"
                 class="text-xs"
               >
-                <span class="mb-1 block text-gray-300">{{ t('damageCalc.moveLabel', { index: moveIndex + 1 }) }}</span>
+                <span class="mb-1 block text-gray-300">{{
+                  t('damageCalc.moveLabel', { index: moveIndex + 1 })
+                }}</span>
                 <SearchableSelect
                   :model-value="moveId"
                   :options="moveOptionsForPokemon(slotSet.pokemonId)"
@@ -3246,7 +3722,10 @@ watch(selectedTemplateB, (templateId) => {
                   @update:model-value="updateMove('B', slotSet.slot, moveIndex, $event)"
                 >
                   <template #option="{ option }">
-                    <div class="-mx-2 -my-1.5 rounded-md px-2 py-1.5" :style="moveOptionSurfaceStyle(option.meta?.type)">
+                    <div
+                      class="-mx-2 -my-1.5 rounded-md px-2 py-1.5"
+                      :style="moveOptionSurfaceStyle(option.meta?.type)"
+                    >
                       <div class="flex items-start justify-between gap-2">
                         <div class="min-w-0 flex-1">
                           <p class="truncate font-semibold text-gray-100">{{ option.label }}</p>
@@ -3260,10 +3739,16 @@ watch(selectedTemplateB, (templateId) => {
                               v-if="moveTypeIcon(option.meta?.type)"
                               class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1 py-0.5"
                             >
-                              <img :src="moveTypeIcon(option.meta?.type) || ''" :alt="moveTypeLabel(option.meta?.type)" class="h-3 w-3" />
+                              <img
+                                :src="moveTypeIcon(option.meta?.type) || ''"
+                                :alt="moveTypeLabel(option.meta?.type)"
+                                class="h-3 w-3"
+                              />
                               {{ moveTypeLabel(option.meta?.type) }}
                             </span>
-                            <span class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1 py-0.5">
+                            <span
+                              class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1 py-0.5"
+                            >
                               <img
                                 v-if="moveCategoryIcon(option.meta?.category)"
                                 :src="moveCategoryIcon(option.meta?.category) || ''"
@@ -3274,14 +3759,26 @@ watch(selectedTemplateB, (templateId) => {
                             </span>
                           </div>
                           <div class="font-mono text-[10px] text-gray-400">
-                            <span>{{ t('builder.movePowerShort') }} {{ moveValueLabel(option.meta?.power) }}</span>
+                            <span
+                              >{{ t('builder.movePowerShort') }}
+                              {{ moveValueLabel(option.meta?.power) }}</span
+                            >
                             <span class="px-1">|</span>
-                            <span>{{ t('builder.moveAccuracyShort') }} {{ moveAccuracyValueLabel(option.meta?.accuracy) }}</span>
+                            <span
+                              >{{ t('builder.moveAccuracyShort') }}
+                              {{ moveAccuracyValueLabel(option.meta?.accuracy) }}</span
+                            >
                             <span class="px-1">|</span>
-                            <span>{{ t('builder.movePpShort') }} {{ moveValueLabel(option.meta?.pp) }}</span>
+                            <span
+                              >{{ t('builder.movePpShort') }}
+                              {{ moveValueLabel(option.meta?.pp) }}</span
+                            >
                             <template v-if="(option.meta?.priority ?? 0) !== 0">
                               <span class="px-1">|</span>
-                              <span>{{ t('builder.movePriorityShort') }} {{ movePriorityValueLabel(option.meta?.priority) }}</span>
+                              <span
+                                >{{ t('builder.movePriorityShort') }}
+                                {{ movePriorityValueLabel(option.meta?.priority) }}</span
+                              >
                             </template>
                           </div>
                         </div>
@@ -3301,7 +3798,11 @@ watch(selectedTemplateB, (templateId) => {
                   min="1"
                   max="100"
                   :value="slotSet.currentHpPercent"
-                  @change="patchSlot('B', slotSet.slot, { currentHpPercent: inputNumber(($event.target as HTMLInputElement).value) })"
+                  @change="
+                    patchSlot('B', slotSet.slot, {
+                      currentHpPercent: inputNumber(($event.target as HTMLInputElement).value),
+                    })
+                  "
                 />
               </label>
               <label class="text-xs">
@@ -3310,16 +3811,27 @@ watch(selectedTemplateB, (templateId) => {
                   :model-value="slotSet.status"
                   :options="statusOptions"
                   :clearable="false"
-                  @update:model-value="patchSlot('B', slotSet.slot, { status: $event as DamageStatus })"
+                  @update:model-value="
+                    patchSlot('B', slotSet.slot, { status: $event as DamageStatus })
+                  "
                 />
               </label>
             </div>
 
-            <div v-if="editorMode === 'advanced'" class="mt-2 rounded border border-gray-700 bg-st-black/50 p-2">
-              <p class="mb-2 text-xs font-semibold text-gray-200">{{ t('damageCalc.statsStages') }}</p>
+            <div
+              v-if="editorMode === 'advanced'"
+              class="mt-2 rounded border border-gray-700 bg-st-black/50 p-2"
+            >
+              <p class="mb-2 text-xs font-semibold text-gray-200">
+                {{ t('damageCalc.statsStages') }}
+              </p>
               <p class="mb-2 text-[11px] text-gray-400">{{ t('damageCalc.statsStagesHelp') }}</p>
               <div class="mt-2 grid gap-2 md:grid-cols-5">
-                <label v-for="key in stageKeys" :key="`B-stage-${slotSet.slot}-${key}`" class="text-xs">
+                <label
+                  v-for="key in stageKeys"
+                  :key="`B-stage-${slotSet.slot}-${key}`"
+                  class="text-xs"
+                >
                   <span class="mb-1 block text-gray-300">{{ stageLabel(key) }}</span>
                   <input
                     class="w-full rounded border border-gray-700 bg-off-black/70 px-2 py-1 text-xs text-gray-100"
@@ -3327,50 +3839,93 @@ watch(selectedTemplateB, (templateId) => {
                     min="-6"
                     max="6"
                     :value="slotSet.stages[key]"
-                    @change="updateStage('B', slotSet.slot, key, ($event.target as HTMLInputElement).value)"
+                    @change="
+                      updateStage('B', slotSet.slot, key, ($event.target as HTMLInputElement).value)
+                    "
                   />
                 </label>
               </div>
             </div>
 
-            <div v-if="editorMode === 'advanced'" class="mt-2 rounded border border-gray-700 bg-st-black/50 p-2">
-              <p class="mb-2 text-xs font-semibold text-gray-200">{{ t('damageCalc.combat.title') }}</p>
+            <div
+              v-if="editorMode === 'advanced'"
+              class="mt-2 rounded border border-gray-700 bg-st-black/50 p-2"
+            >
+              <p class="mb-2 text-xs font-semibold text-gray-200">
+                {{ t('damageCalc.combat.title') }}
+              </p>
               <p class="mb-2 text-[11px] text-gray-400">{{ t('damageCalc.combat.help') }}</p>
 
               <div class="grid gap-2 md:grid-cols-2 xl:grid-cols-4">
-                <label class="inline-flex items-center gap-2 rounded border border-gray-700 bg-off-black/50 px-2 py-1.5 text-[11px] text-gray-200">
+                <label
+                  class="inline-flex items-center gap-2 rounded border border-gray-700 bg-off-black/50 px-2 py-1.5 text-[11px] text-gray-200"
+                >
                   <input
                     class="accent-sky-400"
                     type="checkbox"
                     :checked="slotSet.combatContext.wasHitThisTurn"
-                    @change="updateCombatFlag('B', slotSet.slot, 'wasHitThisTurn', ($event.target as HTMLInputElement).checked)"
+                    @change="
+                      updateCombatFlag(
+                        'B',
+                        slotSet.slot,
+                        'wasHitThisTurn',
+                        ($event.target as HTMLInputElement).checked,
+                      )
+                    "
                   />
                   {{ t('damageCalc.combat.wasHitThisTurn') }}
                 </label>
-                <label class="inline-flex items-center gap-2 rounded border border-gray-700 bg-off-black/50 px-2 py-1.5 text-[11px] text-gray-200">
+                <label
+                  class="inline-flex items-center gap-2 rounded border border-gray-700 bg-off-black/50 px-2 py-1.5 text-[11px] text-gray-200"
+                >
                   <input
                     class="accent-sky-400"
                     type="checkbox"
                     :checked="slotSet.combatContext.tookDamageThisTurn"
-                    @change="updateCombatFlag('B', slotSet.slot, 'tookDamageThisTurn', ($event.target as HTMLInputElement).checked)"
+                    @change="
+                      updateCombatFlag(
+                        'B',
+                        slotSet.slot,
+                        'tookDamageThisTurn',
+                        ($event.target as HTMLInputElement).checked,
+                      )
+                    "
                   />
                   {{ t('damageCalc.combat.tookDamageThisTurn') }}
                 </label>
-                <label class="inline-flex items-center gap-2 rounded border border-gray-700 bg-off-black/50 px-2 py-1.5 text-[11px] text-gray-200">
+                <label
+                  class="inline-flex items-center gap-2 rounded border border-gray-700 bg-off-black/50 px-2 py-1.5 text-[11px] text-gray-200"
+                >
                   <input
                     class="accent-sky-400"
                     type="checkbox"
                     :checked="slotSet.combatContext.statsLoweredThisTurn"
-                    @change="updateCombatFlag('B', slotSet.slot, 'statsLoweredThisTurn', ($event.target as HTMLInputElement).checked)"
+                    @change="
+                      updateCombatFlag(
+                        'B',
+                        slotSet.slot,
+                        'statsLoweredThisTurn',
+                        ($event.target as HTMLInputElement).checked,
+                      )
+                    "
                   />
                   {{ t('damageCalc.combat.statsLoweredThisTurn') }}
                 </label>
-                <label class="inline-flex items-center gap-2 rounded border border-gray-700 bg-off-black/50 px-2 py-1.5 text-[11px] text-gray-200">
+                <label
+                  class="inline-flex items-center gap-2 rounded border border-gray-700 bg-off-black/50 px-2 py-1.5 text-[11px] text-gray-200"
+                >
                   <input
                     class="accent-sky-400"
                     type="checkbox"
                     :checked="slotSet.combatContext.previousMoveFailed"
-                    @change="updateCombatFlag('B', slotSet.slot, 'previousMoveFailed', ($event.target as HTMLInputElement).checked)"
+                    @change="
+                      updateCombatFlag(
+                        'B',
+                        slotSet.slot,
+                        'previousMoveFailed',
+                        ($event.target as HTMLInputElement).checked,
+                      )
+                    "
                   />
                   {{ t('damageCalc.combat.previousMoveFailed') }}
                 </label>
@@ -3378,7 +3933,9 @@ watch(selectedTemplateB, (templateId) => {
 
               <div class="mt-2 grid gap-2 md:grid-cols-2 xl:grid-cols-3">
                 <label class="text-xs">
-                  <span class="mb-1 block text-gray-300">{{ t('damageCalc.combat.moveOrderHint') }}</span>
+                  <span class="mb-1 block text-gray-300">{{
+                    t('damageCalc.combat.moveOrderHint')
+                  }}</span>
                   <SearchableSelect
                     :model-value="slotSet.combatContext.moveOrderHint"
                     :options="moveOrderOptions"
@@ -3387,58 +3944,108 @@ watch(selectedTemplateB, (templateId) => {
                   />
                 </label>
                 <label class="text-xs">
-                  <span class="mb-1 block text-gray-300">{{ t('damageCalc.combat.consecutiveMoveUses') }}</span>
+                  <span class="mb-1 block text-gray-300">{{
+                    t('damageCalc.combat.consecutiveMoveUses')
+                  }}</span>
                   <input
                     class="w-full rounded border border-gray-700 bg-off-black/70 px-2 py-1 text-xs text-gray-100"
                     type="number"
                     min="0"
                     max="5"
                     :value="slotSet.combatContext.consecutiveMoveUses"
-                    @change="updateCombatNumber('B', slotSet.slot, 'consecutiveMoveUses', ($event.target as HTMLInputElement).value, 5)"
+                    @change="
+                      updateCombatNumber(
+                        'B',
+                        slotSet.slot,
+                        'consecutiveMoveUses',
+                        ($event.target as HTMLInputElement).value,
+                        5,
+                      )
+                    "
                   />
                 </label>
                 <label class="text-xs">
-                  <span class="mb-1 block text-gray-300">{{ t('damageCalc.combat.timesHitThisBattle') }}</span>
+                  <span class="mb-1 block text-gray-300">{{
+                    t('damageCalc.combat.timesHitThisBattle')
+                  }}</span>
                   <input
                     class="w-full rounded border border-gray-700 bg-off-black/70 px-2 py-1 text-xs text-gray-100"
                     type="number"
                     min="0"
                     max="6"
                     :value="slotSet.combatContext.timesHitThisBattle"
-                    @change="updateCombatNumber('B', slotSet.slot, 'timesHitThisBattle', ($event.target as HTMLInputElement).value, 6)"
+                    @change="
+                      updateCombatNumber(
+                        'B',
+                        slotSet.slot,
+                        'timesHitThisBattle',
+                        ($event.target as HTMLInputElement).value,
+                        6,
+                      )
+                    "
                   />
                 </label>
                 <label class="text-xs">
-                  <span class="mb-1 block text-gray-300">{{ t('damageCalc.combat.alliesFaintedCount') }}</span>
+                  <span class="mb-1 block text-gray-300">{{
+                    t('damageCalc.combat.alliesFaintedCount')
+                  }}</span>
                   <input
                     class="w-full rounded border border-gray-700 bg-off-black/70 px-2 py-1 text-xs text-gray-100"
                     type="number"
                     min="0"
                     max="5"
                     :value="slotSet.combatContext.alliesFaintedCount"
-                    @change="updateCombatNumber('B', slotSet.slot, 'alliesFaintedCount', ($event.target as HTMLInputElement).value, 5)"
+                    @change="
+                      updateCombatNumber(
+                        'B',
+                        slotSet.slot,
+                        'alliesFaintedCount',
+                        ($event.target as HTMLInputElement).value,
+                        5,
+                      )
+                    "
                   />
                 </label>
                 <label class="text-xs">
-                  <span class="mb-1 block text-gray-300">{{ t('damageCalc.combat.stockpileCount') }}</span>
+                  <span class="mb-1 block text-gray-300">{{
+                    t('damageCalc.combat.stockpileCount')
+                  }}</span>
                   <input
                     class="w-full rounded border border-gray-700 bg-off-black/70 px-2 py-1 text-xs text-gray-100"
                     type="number"
                     min="0"
                     max="3"
                     :value="slotSet.combatContext.stockpileCount"
-                    @change="updateCombatNumber('B', slotSet.slot, 'stockpileCount', ($event.target as HTMLInputElement).value, 3)"
+                    @change="
+                      updateCombatNumber(
+                        'B',
+                        slotSet.slot,
+                        'stockpileCount',
+                        ($event.target as HTMLInputElement).value,
+                        3,
+                      )
+                    "
                   />
                 </label>
                 <label class="text-xs">
-                  <span class="mb-1 block text-gray-300">{{ t('damageCalc.combat.friendship') }}</span>
+                  <span class="mb-1 block text-gray-300">{{
+                    t('damageCalc.combat.friendship')
+                  }}</span>
                   <input
                     class="w-full rounded border border-gray-700 bg-off-black/70 px-2 py-1 text-xs text-gray-100"
                     type="number"
                     min="0"
                     max="255"
                     :value="slotSet.combatContext.friendship"
-                    @change="updateCombatNumber('B', slotSet.slot, 'friendship', ($event.target as HTMLInputElement).value, 255)"
+                    @change="
+                      updateCombatNumber(
+                        'B',
+                        slotSet.slot,
+                        'friendship',
+                        ($event.target as HTMLInputElement).value,
+                        255,
+                      )
+                    "
                   />
                 </label>
               </div>
@@ -3453,16 +4060,28 @@ watch(selectedTemplateB, (templateId) => {
       class="fixed inset-0 z-40 flex items-center justify-center bg-black/65 p-4"
       @click.self="lineThreatModalOpen = false"
     >
-      <article class="flex max-h-[calc(100vh-32px)] w-full max-w-5xl flex-col overflow-hidden rounded-xl border border-violet-500/35 bg-off-black/95 shadow-2xl shadow-black/50">
+      <article
+        class="flex max-h-[calc(100vh-32px)] w-full max-w-5xl flex-col overflow-hidden rounded-xl border border-violet-500/35 bg-off-black/95 shadow-2xl shadow-black/50"
+      >
         <header class="border-b border-violet-500/20 px-4 py-3">
           <div class="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
             <div class="min-w-0">
-              <h3 class="text-sm font-semibold text-violet-100">{{ t('damageCalc.lineThreatsTitle') }}</h3>
+              <h3 class="text-sm font-semibold text-violet-100">
+                {{ t('damageCalc.lineThreatsTitle') }}
+              </h3>
               <p class="mt-1 text-xs text-gray-300">
-                {{ t('damageCalc.lineThreatsSubtitle', { line: lineThreatLineLabel || t('common.none') }) }}
+                {{
+                  t('damageCalc.lineThreatsSubtitle', {
+                    line: lineThreatLineLabel || t('common.none'),
+                  })
+                }}
               </p>
               <p class="mt-1 text-[11px] text-gray-400">
-                {{ t('damageCalc.lineThreatsFilterHint', { game: lineThreatAvailabilityLabel(lineThreatAvailabilityFilter) }) }}
+                {{
+                  t('damageCalc.lineThreatsFilterHint', {
+                    game: lineThreatAvailabilityLabel(lineThreatAvailabilityFilter),
+                  })
+                }}
               </p>
             </div>
 
@@ -3487,7 +4106,9 @@ watch(selectedTemplateB, (templateId) => {
                 <button
                   type="button"
                   class="rounded px-2 py-1"
-                  :class="lineThreatFocus === 'leads' ? 'bg-cyan-500/20 text-cyan-100' : 'text-gray-300'"
+                  :class="
+                    lineThreatFocus === 'leads' ? 'bg-cyan-500/20 text-cyan-100' : 'text-gray-300'
+                  "
                   @click="lineThreatFocus = 'leads'"
                 >
                   {{ t('damageCalc.lineThreatsFocusLeads') }}
@@ -3495,7 +4116,9 @@ watch(selectedTemplateB, (templateId) => {
                 <button
                   type="button"
                   class="rounded px-2 py-1"
-                  :class="lineThreatFocus === 'line' ? 'bg-cyan-500/20 text-cyan-100' : 'text-gray-300'"
+                  :class="
+                    lineThreatFocus === 'line' ? 'bg-cyan-500/20 text-cyan-100' : 'text-gray-300'
+                  "
                   @click="lineThreatFocus = 'line'"
                 >
                   {{ t('damageCalc.lineThreatsFocusLine') }}
@@ -3538,13 +4161,19 @@ watch(selectedTemplateB, (templateId) => {
                     <div class="min-w-0 flex-1">
                       <div class="flex flex-wrap items-center gap-1.5">
                         <p class="truncate text-sm font-semibold text-gray-100">{{ entry.name }}</p>
-                        <span class="rounded border border-gray-700 bg-st-black/60 px-1.5 py-0.5 text-[10px] text-gray-300">
+                        <span
+                          class="rounded border border-gray-700 bg-st-black/60 px-1.5 py-0.5 text-[10px] text-gray-300"
+                        >
                           #{{ String(entry.pokedexNumber).padStart(4, '0') }}
                         </span>
-                        <span class="rounded border border-cyan-500/35 bg-cyan-500/10 px-1.5 py-0.5 text-[10px] text-cyan-100">
+                        <span
+                          class="rounded border border-cyan-500/35 bg-cyan-500/10 px-1.5 py-0.5 text-[10px] text-cyan-100"
+                        >
                           {{ lineThreatBiasLabel(entry.offenseBias) }}
                         </span>
-                        <span class="rounded border border-gray-700 bg-st-black/60 px-1.5 py-0.5 text-[10px] text-gray-300">
+                        <span
+                          class="rounded border border-gray-700 bg-st-black/60 px-1.5 py-0.5 text-[10px] text-gray-300"
+                        >
                           {{ t('damageCalc.lineThreatsSpeedShort', { value: entry.baseSpeed }) }}
                         </span>
                       </div>
@@ -3555,13 +4184,21 @@ watch(selectedTemplateB, (templateId) => {
                           :key="`line-threat-type-${entry.id}-${type}`"
                           class="inline-flex items-center gap-1 rounded border border-gray-700 bg-st-black/60 px-1.5 py-0.5 text-[10px] text-gray-200"
                         >
-                          <img :src="TYPE_META[type].icon" :alt="typeLabel(type)" class="h-3 w-3 object-contain" />
+                          <img
+                            :src="TYPE_META[type].icon"
+                            :alt="typeLabel(type)"
+                            class="h-3 w-3 object-contain"
+                          />
                           {{ typeLabel(type) }}
                         </span>
                       </div>
 
                       <p class="mt-1 text-[11px] text-gray-400">
-                        {{ t('damageCalc.lineThreatsAbilityLabel', { ability: entry.abilityName || t('common.none') }) }}
+                        {{
+                          t('damageCalc.lineThreatsAbilityLabel', {
+                            ability: entry.abilityName || t('common.none'),
+                          })
+                        }}
                       </p>
                       <p v-if="entry.reasons.length > 0" class="mt-1 text-[11px] text-violet-100">
                         {{ entry.reasons.join(' · ') }}
@@ -3571,7 +4208,10 @@ watch(selectedTemplateB, (templateId) => {
                 </article>
               </div>
 
-              <p v-else class="rounded-lg border border-dashed border-gray-700 bg-off-black/40 px-3 py-4 text-center text-xs text-gray-400">
+              <p
+                v-else
+                class="rounded-lg border border-dashed border-gray-700 bg-off-black/40 px-3 py-4 text-center text-xs text-gray-400"
+              >
                 {{ t('damageCalc.lineThreatsEmpty') }}
               </p>
             </section>
@@ -3664,11 +4304,20 @@ watch(selectedTemplateB, (templateId) => {
           @mousedown.stop.prevent="startStatEditorDrag"
         >
           <div>
-            <h3 class="text-sm font-semibold text-sky-100">{{ t('damageCalc.statsModalTitle') }}</h3>
+            <h3 class="text-sm font-semibold text-sky-100">
+              {{ t('damageCalc.statsModalTitle') }}
+            </h3>
             <p class="mt-1 text-xs text-gray-300">
-              {{ t('damageCalc.editIvEvFor', { side: sideName(statEditorModal.side), pokemon: statEditorPokemonName }) }}
+              {{
+                t('damageCalc.editIvEvFor', {
+                  side: sideName(statEditorModal.side),
+                  pokemon: statEditorPokemonName,
+                })
+              }}
             </p>
-            <p class="mt-1 text-[11px] text-gray-400">{{ t('damageCalc.evsTotalLabel', { value: statEditorEvTotal }) }}</p>
+            <p class="mt-1 text-[11px] text-gray-400">
+              {{ t('damageCalc.evsTotalLabel', { value: statEditorEvTotal }) }}
+            </p>
             <p v-if="statEditorHasIllegalEvs" class="mt-1 text-[11px] text-amber-300">
               {{ t('damageCalc.evsWarningLong') }}
             </p>
@@ -3708,7 +4357,7 @@ watch(selectedTemplateB, (templateId) => {
                   class="w-full accent-sky-400"
                   type="range"
                   min="0"
-                  max="252"
+                  :max="statEditorEvMaxForStat(key)"
                   step="1"
                   :value="statEditorDraft?.evs[key] ?? statEditorSlotSet.evs[key]"
                   @input="updateStatEditorEv(key, ($event.target as HTMLInputElement).value)"
@@ -3746,7 +4395,9 @@ watch(selectedTemplateB, (templateId) => {
           </div>
 
           <div class="rounded-lg border border-gray-700 bg-st-black/50 p-3">
-            <p class="mb-2 text-xs font-semibold text-gray-200">{{ t('damageCalc.statsStages') }}</p>
+            <p class="mb-2 text-xs font-semibold text-gray-200">
+              {{ t('damageCalc.statsStages') }}
+            </p>
             <div class="space-y-2">
               <label
                 v-for="key in stageKeys"
@@ -3788,10 +4439,17 @@ watch(selectedTemplateB, (templateId) => {
               </div>
             </div>
 
-            <div v-if="statEditorSlotSet.itemId" class="mt-3 rounded-md border border-sky-500/20 bg-sky-500/5 px-2 py-2">
+            <div
+              v-if="statEditorSlotSet.itemId"
+              class="mt-3 rounded-md border border-sky-500/20 bg-sky-500/5 px-2 py-2"
+            >
               <div class="flex items-center justify-between gap-2">
-                <p class="text-[11px] font-semibold text-sky-100">{{ t('damageCalc.itemImpactTitle') }}</p>
-                <p class="text-[11px] text-gray-300">{{ statEditorItemName || prettifySlug(statEditorSlotSet.itemId) }}</p>
+                <p class="text-[11px] font-semibold text-sky-100">
+                  {{ t('damageCalc.itemImpactTitle') }}
+                </p>
+                <p class="text-[11px] text-gray-300">
+                  {{ statEditorItemName || prettifySlug(statEditorSlotSet.itemId) }}
+                </p>
               </div>
               <div v-if="statEditorItemImpacts.length > 0" class="mt-2 space-y-1.5">
                 <div
@@ -3818,22 +4476,36 @@ watch(selectedTemplateB, (templateId) => {
                 <div class="flex items-center justify-between gap-2">
                   <span class="inline-flex items-center gap-1 uppercase text-gray-200">
                     <span>{{ stat }}</span>
-                    <span class="text-[10px] font-semibold" :class="natureIndicatorClass(statEditorNatureId, stat)">
+                    <span
+                      class="text-[10px] font-semibold"
+                      :class="natureIndicatorClass(statEditorNatureId, stat)"
+                    >
                       {{ natureIndicator(statEditorNatureId, stat) }}
                     </span>
                   </span>
-                  <span class="font-semibold text-gray-100">{{ statEditorCalculatedStats[stat] }}</span>
+                  <span class="font-semibold text-gray-100">{{
+                    statEditorCalculatedStats[stat]
+                  }}</span>
                 </div>
                 <div class="mt-1 flex items-center justify-between gap-2 text-[11px] text-gray-400">
                   <span>{{ t('builder.baseStats') }} {{ statEditorPokemon.baseStats[stat] }}</span>
-                  <span :class="statDeltaClass(statEditorCalculatedStats[stat] - statEditorBaselineStats[stat])">
+                  <span
+                    :class="
+                      statDeltaClass(
+                        statEditorCalculatedStats[stat] - statEditorBaselineStats[stat],
+                      )
+                    "
+                  >
                     {{ signed(statEditorCalculatedStats[stat] - statEditorBaselineStats[stat]) }}
                   </span>
                 </div>
               </div>
             </div>
 
-            <div v-else class="mt-3 rounded-md border border-gray-700 bg-off-black/45 px-2 py-2 text-xs text-gray-500">
+            <div
+              v-else
+              class="mt-3 rounded-md border border-gray-700 bg-off-black/45 px-2 py-2 text-xs text-gray-500"
+            >
               {{ t('builder.slotEmptyHint') }}
             </div>
           </div>

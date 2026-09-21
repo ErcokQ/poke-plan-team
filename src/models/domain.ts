@@ -26,6 +26,7 @@ export interface PokemonEntry {
   suggestedItems: string[]
   suggestedMoves: string[]
   learnsetMoves?: string[]
+  championsLearnsetMoves?: string[]
   defaultNature: string
   baseStats: StatBlock
   heightMeters?: number
@@ -49,6 +50,7 @@ export interface MoveEntry {
 
 export interface ItemEntry {
   id: string
+  championsAvailable?: boolean
   name: string
   tags: string[]
   description?: string
@@ -175,7 +177,7 @@ export interface CompactImportPayload {
   team: Pick<Team, 'name' | 'mode' | 'members' | 'notes'>
 }
 
-export type MobileTab = 'team' | 'editor' | 'insights'
+export type MobileTab = 'team' | 'editor' | 'insights' | 'tools'
 
 export const STATS: StatKey[] = ['hp', 'atk', 'def', 'spa', 'spd', 'spe']
 
@@ -188,8 +190,8 @@ export const DEFAULT_WEIGHTS: ScoreWeights = {
   speedControl: 25,
 }
 
-export const MAX_EVS = 510
-export const MAX_EV_PER_STAT = 252
+export const MAX_EVS = 66
+export const MAX_EV_PER_STAT = 32
 export const MAX_IV_PER_STAT = 31
 
 export type PokemonTypeKey =

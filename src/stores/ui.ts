@@ -4,6 +4,8 @@ import { useStorage } from '@vueuse/core'
 import type { BattleMode, LocaleCode, MobileTab, PokemonTypeKey } from '@/models/domain'
 import type { DexAvailabilityFilterKey } from '@/models/dex'
 
+export type BuilderCatalogSource = 'pokemon' | 'moves' | 'items' | 'threats' | 'seen-threats' | 'meta'
+
 interface UiPreferences {
   locale: LocaleCode
   mobileTab: MobileTab
@@ -62,7 +64,7 @@ export const useUiStore = defineStore('ui', () => {
 
   const preferences = useStorage<UiPreferences>('pokeplan.v1.preferences', defaults)
   const favoritePokemonIds = useStorage<string[]>('pokeplan.v1.favorites', [])
-  const builderCatalogSource = useStorage<'pokemon' | 'moves' | 'items' | 'threats'>(
+  const builderCatalogSource = useStorage<BuilderCatalogSource>(
     'pokeplan.v1.builderCatalogSource',
     'moves',
   )
@@ -93,7 +95,7 @@ export const useUiStore = defineStore('ui', () => {
     preferences.value = {
       locale: current.locale === 'en' ? 'en' : 'es',
       mobileTab:
-        current.mobileTab === 'team' || current.mobileTab === 'editor' || current.mobileTab === 'insights'
+        current.mobileTab === 'team' || current.mobileTab === 'editor' || current.mobileTab === 'insights' || current.mobileTab === 'tools'
           ? current.mobileTab
           : 'editor',
       selectedTeamByMode: {
@@ -248,7 +250,7 @@ export const useUiStore = defineStore('ui', () => {
     favoritePokemonIds.value = [...favoritePokemonIds.value, pokemonId]
   }
 
-  function setBuilderCatalogSource(source: 'pokemon' | 'moves' | 'items' | 'threats') {
+  function setBuilderCatalogSource(source: BuilderCatalogSource) {
     builderCatalogSource.value = source
   }
 

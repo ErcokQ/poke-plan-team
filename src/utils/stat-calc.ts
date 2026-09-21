@@ -1,4 +1,4 @@
-import { STATS, type StatBlock, type StatKey } from '@/models/domain'
+import { MAX_EV_PER_STAT, STATS, type StatBlock, type StatKey } from '@/models/domain'
 
 type NatureModifier = {
   up: StatKey | null
@@ -68,8 +68,8 @@ export function calculateBattleStats(
   for (const stat of STATS) {
     const base = clamp(baseStats[stat], 1, 255)
     const iv = clamp(ivs[stat], 0, 31)
-    const ev = clamp(evs[stat], 0, 252)
-    const scaled = Math.floor(((2 * base + iv + Math.floor(ev / 4)) * safeLevel) / 100)
+    const statPoints = clamp(evs[stat], 0, MAX_EV_PER_STAT)
+    const scaled = Math.floor(((2 * base + iv + statPoints * 2) * safeLevel) / 100)
 
     if (stat === 'hp') {
       // Shedinja always has 1 HP regardless of IV/EV.

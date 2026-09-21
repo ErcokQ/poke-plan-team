@@ -3,12 +3,14 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import vm from 'node:vm'
 import { gzipSync } from 'node:zlib'
+import { syncChampionsRegulation } from './champions-regulation-sync.mjs'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const repoRoot = path.resolve(__dirname, '..')
 const outputRoot = path.join(repoRoot, 'public', 'dex-snapshots')
 const abilityDescriptionOverridesPath = path.join(repoRoot, 'data', 'abilities', 'description-overrides.source.json')
+const moveDescriptionOverridesPath = path.join(repoRoot, 'data', 'moves', 'description-overrides.source.json')
 const championsSourcePath = path.join(repoRoot, 'data', 'champions', 'availability.source.json')
 const championsFormOverridesPath = path.join(repoRoot, 'data', 'champions', 'form-overrides.source.json')
 
@@ -77,6 +79,48 @@ const ITEM_DESCRIPTION_FALLBACKS = {
     es: 'Potencia movimientos de punio y evita efectos de contacto en esos movimientos.',
     en: 'Boosts punching moves and removes contact side effects for those moves.',
   },
+}
+const TYPE_LABELS_ES = {
+  normal: 'Normal',
+  fire: 'Fuego',
+  water: 'Agua',
+  electric: 'Electrico',
+  grass: 'Planta',
+  ice: 'Hielo',
+  fighting: 'Lucha',
+  poison: 'Veneno',
+  ground: 'Tierra',
+  flying: 'Volador',
+  psychic: 'Psiquico',
+  bug: 'Bicho',
+  rock: 'Roca',
+  ghost: 'Fantasma',
+  dragon: 'Dragon',
+  dark: 'Siniestro',
+  steel: 'Acero',
+  fairy: 'Hada',
+}
+const TERRAIN_LABELS_ES = {
+  'electric terrain': 'Campo Electrico',
+  'grassy terrain': 'Campo de Hierba',
+  'misty terrain': 'Campo de Niebla',
+  'psychic terrain': 'Campo Psiquico',
+}
+const STAT_LABELS_ES = {
+  attack: { label: 'Ataque', article: 'el' },
+  defense: { label: 'Defensa', article: 'la' },
+  accuracy: { label: 'precision', article: 'la' },
+  speed: { label: 'Velocidad', article: 'la' },
+  'special attack': { label: 'Ataque Especial', article: 'el' },
+  'special defense': { label: 'Defensa Especial', article: 'la' },
+}
+const STAGE_LABELS_ES = {
+  one: 'un nivel',
+  two: 'dos niveles',
+  three: 'tres niveles',
+  four: 'cuatro niveles',
+  five: 'cinco niveles',
+  six: 'seis niveles',
 }
 
 function normalizeChampionsAvailabilityEntry(entry) {
@@ -160,6 +204,32 @@ function normalizeAbilityDescriptionOverride(entry) {
   }
 }
 
+function normalizeMoveDescriptionOverride(entry) {
+  const id = String(entry?.id ?? '')
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+  if (!id) return null
+
+  const nameEn = String(entry?.nameEn ?? entry?.name ?? titleFromSlug(id)).trim() || titleFromSlug(id)
+  const nameEs = String(entry?.nameEs ?? entry?.name ?? nameEn).trim() || nameEn
+  const shortEffectEn = normalizeText(entry?.shortEffectEn ?? entry?.shortEffect ?? entry?.effectEn ?? entry?.effect ?? '')
+  const shortEffectEs = normalizeText(entry?.shortEffectEs ?? entry?.shortEffect ?? entry?.effectEs ?? entry?.effect ?? shortEffectEn)
+  const effectEn = normalizeText(entry?.effectEn ?? entry?.effect ?? entry?.shortEffectEn ?? entry?.shortEffect ?? shortEffectEn)
+  const effectEs = normalizeText(entry?.effectEs ?? entry?.effect ?? entry?.shortEffectEs ?? entry?.shortEffect ?? shortEffectEs)
+
+  return {
+    id,
+    nameEs,
+    nameEn,
+    shortEffectEs,
+    shortEffectEn,
+    effectEs,
+    effectEn,
+  }
+}
+
 async function loadChampionsAvailabilityOverlay(generatedAt) {
   const raw = JSON.parse(await readFile(championsSourcePath, 'utf8'))
   const entries = Array.isArray(raw?.entries)
@@ -192,6 +262,15 @@ async function loadAbilityDescriptionOverrides() {
 
   return {
     abilitiesById: Object.fromEntries(abilities.map((entry) => [entry.id, entry])),
+  }
+}
+
+async function loadMoveDescriptionOverrides() {
+  const raw = JSON.parse(await readFile(moveDescriptionOverridesPath, 'utf8'))
+  const moves = Array.isArray(raw?.moves) ? raw.moves.map((entry) => normalizeMoveDescriptionOverride(entry)).filter(Boolean) : []
+
+  return {
+    movesById: Object.fromEntries(moves.map((entry) => [entry.id, entry])),
   }
 }
 
@@ -335,6 +414,201 @@ function resolveEffectText(entries, locale, variant, effectChance) {
   const withChance =
     effectChance == null ? raw : raw.replace(/\$effect_chance|\{effect_chance\}/g, String(effectChance))
   return normalizeText(withChance)
+}
+
+function translateTypeLabelToSpanish(value) {
+  const normalized = String(value ?? '').trim().toLowerCase()
+  return TYPE_LABELS_ES[normalized] ?? value
+}
+
+function translateTerrainLabelToSpanish(value) {
+  const normalized = String(value ?? '').trim().toLowerCase()
+  return TERRAIN_LABELS_ES[normalized] ?? value
+}
+
+function translateStageLabelToSpanish(value) {
+  const normalized = String(value ?? '').trim().toLowerCase()
+  return STAGE_LABELS_ES[normalized] ?? value
+}
+
+function translateStatSequenceToSpanish(value) {
+  const parts = String(value ?? '')
+    .split(/\s*,\s*|\s+and\s+/i)
+    .map((entry) => entry.trim())
+    .filter(Boolean)
+  const translated = parts.map((part) => {
+    const normalized = part.toLowerCase()
+    const stat = STAT_LABELS_ES[normalized]
+    if (!stat) return part
+    return `${stat.article} ${stat.label}`
+  })
+
+  if (translated.length <= 1) return translated[0] ?? value
+  if (translated.length === 2) return `${translated[0]} y ${translated[1]}`
+  return `${translated.slice(0, -1).join(', ')} y ${translated.at(-1)}`
+}
+
+function translateMoveSentenceToSpanish(sentence) {
+  const trimmed = normalizeText(sentence)
+  if (!trimmed) return ''
+  const statusVerbLabelsEs = {
+    burn: 'quemar',
+    freeze: 'congelar',
+    paralyze: 'paralizar',
+    poison: 'envenenar',
+    confuse: 'confundir',
+    flinch: 'hacer retroceder',
+  }
+
+  const exactTranslations = {
+    'Inflicts regular damage.': 'Inflige dano normal.',
+    'Has an increased chance for a critical hit.': 'Tiene una probabilidad aumentada de golpe critico.',
+    'Hits through Protect and Detect.': 'Golpea a traves de Proteccion y Deteccion.',
+    'Traps the target.': 'Atrapa al objetivo.',
+    'Heals the user by half its max HP.': 'Recupera la mitad de los PS maximos del usuario.',
+    'Restores 1/16 of the user’s max HP each turn.': 'Restaura 1/16 de los PS maximos del usuario cada turno.',
+    "Restores 1/16 of the user's max HP each turn.": 'Restaura 1/16 de los PS maximos del usuario cada turno.',
+    'Has double power if the user has no held item.': 'Duplica su potencia si el usuario no lleva objeto equipado.',
+    'Guarantees a critical hit with the user’s next move.': 'Garantiza un golpe critico con el siguiente movimiento del usuario.',
+    "Guarantees a critical hit with the user's next move.": 'Garantiza un golpe critico con el siguiente movimiento del usuario.',
+    'Uses a move which depends upon the terrain.': 'Usa un movimiento distinto segun el terreno activo.',
+    'Takes the target’s item.': 'Toma el objeto del objetivo.',
+    "Takes the target's item.": 'Toma el objeto del objetivo.',
+    'Cleanses the user of a burn, paralysis, or poison.': 'Cura al usuario de quemadura, paralisis o envenenamiento.',
+    'Only works on the first turn the user is in battle and may cause the target to flinch.':
+      'Solo funciona en el primer turno en combate del usuario y puede hacer retroceder al objetivo.',
+  }
+  if (exactTranslations[trimmed]) return exactTranslations[trimmed]
+
+  let match = trimmed.match(/^Raises the user[’']s (.+?) by (one|two|three|four|five|six) stages?\.$/i)
+  if (match) {
+    return `Aumenta ${translateStatSequenceToSpanish(match[1])} del usuario en ${translateStageLabelToSpanish(match[2])}.`
+  }
+
+  match = trimmed.match(/^Lowers the target[’']s (.+?) by (one|two|three|four|five|six) stages?\.$/i)
+  if (match) {
+    return `Reduce ${translateStatSequenceToSpanish(match[1])} del objetivo en ${translateStageLabelToSpanish(match[2])}.`
+  }
+
+  match = trimmed.match(/^Lowers the user[’']s (.+?) by (one|two|three|four|five|six) stages? after inflicting damage\.$/i)
+  if (match) {
+    return `Tras infligir dano, reduce ${translateStatSequenceToSpanish(match[1])} del usuario en ${translateStageLabelToSpanish(match[2])}.`
+  }
+
+  match = trimmed.match(
+    /^Has a (\d+)% chance to lower the target[’']s (.+?) by (one|two|three|four|five|six) stages?\.$/i,
+  )
+  if (match) {
+    return `Tiene un ${match[1]}% de probabilidad de reducir ${translateStatSequenceToSpanish(match[2])} del objetivo en ${translateStageLabelToSpanish(match[3])}.`
+  }
+
+  match = trimmed.match(
+    /^Has a (\d+)% chance to raise the user[’']s (.+?) by (one|two|three|four|five|six) stages?\.$/i,
+  )
+  if (match) {
+    return `Tiene un ${match[1]}% de probabilidad de aumentar ${translateStatSequenceToSpanish(match[2])} del usuario en ${translateStageLabelToSpanish(match[3])}.`
+  }
+
+  match = trimmed.match(/^Has a chance to lower the target[’']s (.+?) by (one|two|three|four|five|six) stages?\.$/i)
+  if (match) {
+    return `Puede reducir ${translateStatSequenceToSpanish(match[1])} del objetivo en ${translateStageLabelToSpanish(match[2])}.`
+  }
+
+  match = trimmed.match(/^Has a (\d+)% chance to ([a-z-]+) the target\.$/i)
+  if (match) {
+    return `Tiene un ${match[1]}% de probabilidad de ${statusVerbLabelsEs[match[2].toLowerCase()] ?? match[2]} al objetivo.`
+  }
+
+  match = trimmed.match(/^Drains half the damage inflicted to heal the user\.$/i)
+  if (match) {
+    return 'Restaura al usuario la mitad del dano causado.'
+  }
+
+  match = trimmed.match(/^Prevents the target from fleeing and inflicts damage for 2-5 turns\.$/i)
+  if (match) {
+    return 'Impide que el objetivo huya y le causa dano durante 2 a 5 turnos.'
+  }
+
+  match = trimmed.match(/^Raises one of a friendly Pokémon[’']s stats at random by two stages\.$/i)
+  if (match) {
+    return 'Aumenta al azar una estadistica de un Pokemon aliado en dos niveles.'
+  }
+
+  match = trimmed.match(/^Changes the target[’']s ability to ([A-Za-z -]+)\.$/i)
+  if (match) {
+    return `Cambia la habilidad del objetivo a ${match[1]}.`
+  }
+
+  match = trimmed.match(/^Heals the user by the target[’']s current Attack stat and lowers the target[’']s Attack by one stage\.$/i)
+  if (match) {
+    return 'Cura al usuario segun el Ataque actual del objetivo y reduce el Ataque del objetivo en un nivel.'
+  }
+
+  match = trimmed.match(/^Power increases against targets with more HP remaining, up to a maximum of 121 power\.$/i)
+  if (match) {
+    return 'Su potencia aumenta cuanto mas PS le queden al objetivo, hasta un maximo de 121.'
+  }
+
+  match = trimmed.match(/^Forced to use this move for several turns\.$/i)
+  if (match) {
+    return 'Obliga al usuario a repetir este movimiento durante varios turnos.'
+  }
+
+  match = trimmed.match(/^Pokémon cannot fall asleep in that time\.$/i)
+  if (match) {
+    return 'Durante ese tiempo, ningun Pokemon puede dormirse.'
+  }
+
+  match = trimmed.match(/^Changes the target[’']s type to ([A-Za-z-]+)\.$/i)
+  if (match) {
+    return `Cambia el tipo del objetivo a ${translateTypeLabelToSpanish(match[1])}.`
+  }
+
+  match = trimmed.match(/^Turns the entire field into (.+?) for 5 turns\.$/i)
+  if (match) {
+    return `Activa ${translateTerrainLabelToSpanish(match[1])} durante 5 turnos.`
+  }
+
+  match = trimmed.match(/^Prevents any priority moves from hitting friendly Pokémon this turn\.$/i)
+  if (match) {
+    return 'Evita que los movimientos con prioridad golpeen a los aliados del usuario durante este turno.'
+  }
+
+  return trimmed
+}
+
+function translateEnglishMoveTextToSpanish(value) {
+  const normalized = normalizeText(value)
+  if (!normalized) return ''
+  return normalized
+    .split(/(?<=\.)\s+/)
+    .map((sentence) => translateMoveSentenceToSpanish(sentence))
+    .join(' ')
+}
+
+function localizedMoveOverride(override, locale) {
+  if (!override) return null
+  return {
+    id: override.id,
+    name: locale === 'es' ? override.nameEs : override.nameEn,
+    shortEffect: locale === 'es' ? override.shortEffectEs : override.shortEffectEn,
+    effect: locale === 'es' ? override.effectEs : override.effectEn,
+  }
+}
+
+function resolveMoveText(move, descriptionOverride, locale, variant) {
+  const fromApi =
+    locale === 'es'
+      ? resolveLocalizedEffectText(move.effect_entries, locale, variant, move.effect_chance)
+      : resolveEffectText(move.effect_entries, locale, variant, move.effect_chance)
+  if (fromApi) return fromApi
+
+  const localizedOverride = localizedMoveOverride(descriptionOverride, locale)
+  const fromOverride = variant === 'short' ? localizedOverride?.shortEffect ?? '' : localizedOverride?.effect ?? ''
+  if (fromOverride) return fromOverride
+
+  const fallback = resolveEffectText(move.effect_entries, 'en', variant, move.effect_chance)
+  return locale === 'es' ? translateEnglishMoveTextToSpanish(fallback) : fallback
 }
 
 function resolveLocalizedEffectText(entries, locale, variant, effectChance) {
@@ -831,10 +1105,10 @@ async function loadAllNamedResources(resource) {
   return page.results ?? []
 }
 
-function moveEntryFromRaw(move, locale) {
+function moveEntryFromRaw(move, descriptionOverride, locale) {
   if (!isPokemonType(move.type.name)) return null
-  const shortEffect = resolveEffectText(move.effect_entries, locale, 'short', move.effect_chance)
-  const longEffect = resolveEffectText(move.effect_entries, locale, 'long', move.effect_chance)
+  const shortEffect = resolveMoveText(move, descriptionOverride, locale, 'short')
+  const longEffect = resolveMoveText(move, descriptionOverride, locale, 'long')
   return {
     id: move.name,
     name: resolveLocalizedName(move.names, locale, move.name),
@@ -1274,6 +1548,7 @@ async function main() {
   const showdownOverlay = await loadShowdownOverlay()
   const championsFormOverrides = await loadChampionsFormOverrides()
   const abilityDescriptionOverrides = await loadAbilityDescriptionOverrides()
+  const moveDescriptionOverrides = await loadMoveDescriptionOverrides()
   const usedAbilityIds = new Set()
   const usedMoveIds = new Set()
   const usedRequiredItemIds = new Set()
@@ -1490,7 +1765,7 @@ async function main() {
       generatedAt,
       pokemon: pokemonEntries,
       moves: moveRaw
-        .map((move) => moveEntryFromRaw(move, locale))
+        .map((move) => moveEntryFromRaw(move, moveDescriptionOverrides.movesById[move.name] ?? null, locale))
         .filter(Boolean)
         .sort((a, b) => a.name.localeCompare(b.name, locale)),
       items: itemRaw
@@ -1592,6 +1867,7 @@ async function main() {
   await mkdir(championsDir, { recursive: true })
   await writeSnapshotFile(path.join(championsDir, 'availability.json'), championsAvailabilityOverlay)
 
+  await syncChampionsRegulation()
   console.log('Dex snapshots generated successfully.')
 }
 

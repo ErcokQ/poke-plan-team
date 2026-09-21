@@ -32,7 +32,7 @@ const presetTitle = computed(() => {
 
   <section
     v-else
-    class="hidden h-full min-h-0 rounded-2xl border border-sky-500/25 bg-off-black/70 p-3 lg:flex lg:flex-col"
+    class="flex h-full min-h-0 flex-col rounded-2xl border border-sky-500/25 bg-off-black/70 p-3"
   >
     <div class="shrink-0">
       <h2 class="text-sm font-semibold text-sky-300">{{ t('common.rightPanelTitle') }}</h2>

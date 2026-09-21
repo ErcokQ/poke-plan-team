@@ -11,6 +11,7 @@ import { useTeamStore } from '@/stores/team'
 import { useUiStore } from '@/stores/ui'
 import { getEffectiveLearnsetMoveIds } from '@/utils/move-legality'
 import { onPokemonSpriteError, primaryPokemonSpriteUrl } from '@/utils/pokemon-sprite'
+import { speedComparisonPokemonName } from '@/utils/speed-comparison'
 import { typeBadgeStyle } from '@/utils/type-badge-style'
 import RightSidebarBlock from './RightSidebarBlock.vue'
 
@@ -75,7 +76,7 @@ const sidebarPokemonMap = computed(() =>
         pokemon.id,
         {
           pokemonId: pokemon.id,
-          name: pokemon.name,
+          name: speedComparisonPokemonName(pokemon),
           pokedexNumber: pokemon.pokedexNumber,
           abilityLine: abilityLineFor(pokemon.id),
           baseSpeed: pokemon.baseStats.spe ?? null,

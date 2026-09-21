@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "moves": [
+    {
+      "id": "psychic-terrain",
+      "shortEffectEs": "Activa el Campo Psiquico durante 5 turnos.",
+      "effectEs": "Activa el Campo Psiquico durante 5 turnos. Los Pokemon en el suelo quedan protegidos frente a movimientos con prioridad rivales y sus movimientos de tipo Psiquico se potencian mientras dure el campo."
+    },
+    {
+      "id": "electric-terrain",
+      "shortEffectEs": "Activa el Campo Electrico durante 5 turnos.",
+      "effectEs": "Activa el Campo Electrico durante 5 turnos. Los Pokemon en el suelo no pueden dormirse y sus movimientos de tipo Electrico se potencian mientras dure el campo."
+    },
+    {
+      "id": "grassy-terrain",
+      "shortEffectEs": "Activa el Campo de Hierba durante 5 turnos.",
+      "effectEs": "Activa el Campo de Hierba durante 5 turnos. Los Pokemon en el suelo recuperan PS cada turno y los movimientos de tipo Tierra como Terremoto, Magnitud y Bulldoze se debilitan mientras dure el campo."
+    },
+    {
+      "id": "misty-terrain",
+      "shortEffectEs": "Activa el Campo de Niebla durante 5 turnos.",
+      "effectEs": "Activa el Campo de Niebla durante 5 turnos. Los Pokemon en el suelo quedan protegidos frente a problemas de estado y el dano de movimientos de tipo Dragon contra ellos se reduce mientras dure el campo."
+    },
+    {
+      "id": "tailwind",
+      "shortEffectEs": "Duplica la Velocidad del lado del usuario durante 4 turnos.",
+      "effectEs": "Genera Viento Afin en el lado del usuario durante 4 turnos y duplica la Velocidad de sus Pokemon mientras dure el efecto."
+    },
+    {
+      "id": "trick-room",
+      "shortEffectEs": "Invierte el orden de turno segun la Velocidad durante 5 turnos.",
+      "effectEs": "Durante 5 turnos, los Pokemon mas lentos actuan antes que los mas rapidos dentro de su prioridad habitual."
+    },
+    {
+      "id": "helping-hand",
+      "shortEffectEs": "Potencia el siguiente movimiento de un aliado este turno.",
+      "effectEs": "El movimiento seleccionado por un aliado este turno inflige mas dano."
+    },
+    {
+      "id": "follow-me",
+      "shortEffectEs": "Redirige hacia el usuario la mayoria de movimientos de objetivo unico este turno.",
+      "effectEs": "La mayoria de movimientos de objetivo unico usados por los rivales pasan a apuntar al usuario durante este turno."
+    },
+    {
+      "id": "rage-powder",
+      "shortEffectEs": "Redirige hacia el usuario la mayoria de movimientos de objetivo unico este turno.",
+      "effectEs": "La mayoria de movimientos de objetivo unico usados por los rivales pasan a apuntar al usuario durante este turno. Falla contra rivales de tipo Planta, con Buzo, Vuelo o efectos similares."
+    },
+    {
+      "id": "fake-out",
+      "shortEffectEs": "Solo funciona en el primer turno en combate del usuario y puede hacer retroceder.",
+      "effectEs": "Solo puede usarse en el primer turno en combate del usuario. Inflige dano y puede hacer retroceder al objetivo."
+    },
+    {
+      "id": "icy-wind",
+      "shortEffectEs": "Tiene un 100% de probabilidad de bajar la Velocidad del objetivo un nivel.",
+      "effectEs": "Inflige dano y tiene un 100% de probabilidad de bajar la Velocidad del objetivo un nivel."
+    },
+    {
+      "id": "quick-guard",
+      "shortEffectEs": "Protege al lado del usuario de movimientos con prioridad durante este turno.",
+      "effectEs": "Durante este turno, los movimientos con prioridad rivales no pueden impactar a los aliados del usuario."
+    },
+    {
+      "id": "wide-guard",
+      "shortEffectEs": "Protege al lado del usuario de movimientos que golpean a varios objetivos durante este turno.",
+      "effectEs": "Durante este turno, los movimientos rivales que golpean a varios objetivos no pueden impactar a los aliados del usuario."
+    },
+    {
+      "id": "protect",
+      "shortEffectEs": "Bloquea casi todos los movimientos dirigidos al usuario este turno.",
+      "effectEs": "Bloquea casi todos los movimientos dirigidos al usuario durante este turno."
+    },
+    {
+      "id": "reflect",
+      "shortEffectEs": "Reduce el dano fisico recibido por tu lado durante 5 turnos.",
+      "effectEs": "Durante 5 turnos, el dano de los movimientos fisicos que recibe el lado del usuario se reduce."
+    },
+    {
+      "id": "light-screen",
+      "shortEffectEs": "Reduce el dano especial recibido por tu lado durante 5 turnos.",
+      "effectEs": "Durante 5 turnos, el dano de los movimientos especiales que recibe el lado del usuario se reduce."
+    },
+    {
+      "id": "aurora-veil",
+      "shortEffectEs": "Reduce el dano fisico y especial recibido por tu lado durante 5 turnos si nieva.",
+      "effectEs": "Durante 5 turnos, el dano de los movimientos fisicos y especiales que recibe el lado del usuario se reduce. Solo puede usarse si nieva."
+    },
+    {
+      "id": "ice-spinner",
+      "shortEffectEs": "Inflige dano y elimina el terreno activo.",
+      "effectEs": "Inflige dano y elimina el terreno activo del campo."
+    },
+    {
+      "id": "flip-turn",
+      "shortEffectEs": "Inflige dano y despues cambia al usuario por otro Pokemon de tu equipo.",
+      "effectEs": "Inflige dano y despues hace que el usuario salga del combate para ser reemplazado por otro Pokemon del equipo."
+    },
+    {
+      "id": "scald",
+      "shortEffectEs": "Tiene un 30% de probabilidad de quemar al objetivo.",
+      "effectEs": "Inflige dano y tiene un 30% de probabilidad de quemar al objetivo. Ademas, descongela al usuario y al objetivo si estaban congelados."
+    }
+  ]
+}

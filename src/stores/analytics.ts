@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
 import {
   DEFAULT_WEIGHTS,
+  MAX_EV_PER_STAT,
   TYPE_KEYS,
   type BattleMode,
   type MoveEntry,
@@ -15,15 +16,12 @@ import {
 import type { ThreatResponseRow, ThreatResponseSummary } from '@/models/threats'
 import { effectiveness, effectivenessAgainstDual } from '@/models/type-chart'
 import { calculateBattleStats } from '@/utils/stat-calc'
+import { speedComparisonPokemonName } from '@/utils/speed-comparison'
 import { useDexStore } from './dex'
 import { useMetaUsageStore } from './meta-usage'
 import { useTeamStore } from './team'
 import { useUiStore } from './ui'
-import {
-  calculateMemberAnalytics,
-  normalizeWeights,
-  type MemberAnalytics,
-} from '@/utils/analytics'
+import { calculateMemberAnalytics, normalizeWeights, type MemberAnalytics } from '@/utils/analytics'
 import { evaluateThreatSummary } from '@/utils/threat-response'
 
 export type ScoreMetricKey = keyof ScoreWeights
@@ -368,10 +366,20 @@ const CHOICE_LOCK_ITEM_IDS = new Set(['choice-band', 'choice-specs', 'choice-sca
 const SCREEN_MOVE_IDS = new Set(['reflect', 'light-screen', 'aurora-veil'])
 const FAKE_OUT_MOVE_IDS = new Set(['fake-out'])
 const WIDE_GUARD_MOVE_IDS = new Set(['wide-guard'])
-const TERRAIN_MOVE_IDS = new Set(['electric-terrain', 'grassy-terrain', 'misty-terrain', 'psychic-terrain'])
+const TERRAIN_MOVE_IDS = new Set([
+  'electric-terrain',
+  'grassy-terrain',
+  'misty-terrain',
+  'psychic-terrain',
+])
 const WEATHER_MOVE_IDS = new Set(['rain-dance', 'sunny-day', 'sandstorm', 'snowscape', 'hail'])
 const WEATHER_ABILITY_IDS = new Set(['drizzle', 'drought', 'sand-stream', 'snow-warning'])
-const TERRAIN_ABILITY_IDS = new Set(['electric-surge', 'grassy-surge', 'misty-surge', 'psychic-surge'])
+const TERRAIN_ABILITY_IDS = new Set([
+  'electric-surge',
+  'grassy-surge',
+  'misty-surge',
+  'psychic-surge',
+])
 const INTIMIDATE_ABILITY_IDS = new Set(['intimidate'])
 
 const RECOIL_OR_HP_COST_MOVE_IDS = new Set([
@@ -503,12 +511,10 @@ function hasDamagingMoveOfType(
   teraType: PokemonTypeKey,
   dexStore: ReturnType<typeof useDexStore>,
 ): boolean {
-  return member.moves
-    .filter(Boolean)
-    .some((moveId) => {
-      const move = dexStore.getMove(moveId)
-      return Boolean(move && move.category !== 'status' && move.type === teraType)
-    })
+  return member.moves.filter(Boolean).some((moveId) => {
+    const move = dexStore.getMove(moveId)
+    return Boolean(move && move.category !== 'status' && move.type === teraType)
+  })
 }
 
 function teraLevelPriority(level: TeraDependencyLevel): number {
@@ -545,7 +551,7 @@ function offensiveSpeedBenchmark(mode: BattleMode): number {
   return calculateBattleStats(
     { hp: 80, atk: 80, def: 80, spa: 80, spd: 80, spe: 100 },
     { hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31 },
-    { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 252 },
+    { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: MAX_EV_PER_STAT },
     level,
     'hardy',
   ).spe
@@ -610,9 +616,9 @@ function estimatedEffectivePower(
     'electro-ball': 85,
     'gyro-ball': 90,
     'water-spout': 95,
-    'eruption': 95,
-    'flail': 90,
-    'reversal': 90,
+    eruption: 95,
+    flail: 90,
+    reversal: 90,
     'stored-power': 85,
     'power-trip': 85,
   }
@@ -636,7 +642,9 @@ function detectTeamEnable(mode: BattleMode, members: TeamMember[]): TeamEnableSn
   const hasScreens = moveIds.some((moveId) => SCREEN_MOVE_IDS.has(moveId))
   const hasTerrainWeather =
     moveIds.some((moveId) => TERRAIN_MOVE_IDS.has(moveId) || WEATHER_MOVE_IDS.has(moveId)) ||
-    abilityIds.some((abilityId) => TERRAIN_ABILITY_IDS.has(abilityId) || WEATHER_ABILITY_IDS.has(abilityId))
+    abilityIds.some(
+      (abilityId) => TERRAIN_ABILITY_IDS.has(abilityId) || WEATHER_ABILITY_IDS.has(abilityId),
+    )
   const hasSpeedControl =
     hasTailwind || hasTrickRoom || moveIds.some((moveId) => SPEED_CONTROL_MOVES.has(moveId))
   const hasFakeOut = moveIds.some((moveId) => FAKE_OUT_MOVE_IDS.has(moveId))
@@ -872,11 +880,7 @@ function calculateTeamDefenseSnapshot(
   for (const attackType of TYPE_KEYS) {
     const profile = profiles[attackType]
     const weakCount = profile.weak2 + profile.weak4
-    const risk =
-      1.0 * profile.weak2 +
-      2.4 * profile.weak4 -
-      0.6 * profile.res -
-      1.2 * profile.imm
+    const risk = 1.0 * profile.weak2 + 2.4 * profile.weak4 - 0.6 * profile.res - 1.2 * profile.imm
     riskTotal += Math.max(0, risk)
     if (weakCount >= 3) sharedWeaknesses.push(attackType)
     if (profile.weak4 >= 1 && weakCount >= 2) severeSharedWeaknesses.push(attackType)
@@ -916,12 +920,15 @@ function inferRoleSignalsForSet(
   if (damagingCount >= 3 || setupCount > 0) roles.add('sweeper')
   if (moveIds.some((moveId) => PIVOT_MOVE_IDS.has(moveId))) roles.add('pivot')
   if (supportCount >= 2 || (supportCount >= 1 && damagingCount <= 2)) roles.add('support')
-  if (wallCount >= 2 || (wallCount >= 1 && damagingCount <= 2 && setupCount === 0)) roles.add('wall')
+  if (wallCount >= 2 || (wallCount >= 1 && damagingCount <= 2 && setupCount === 0))
+    roles.add('wall')
   if (speedControlCount > 0) roles.add('speed-control')
 
   if (roles.size === 0) {
-    if (pokemon && Math.max(pokemon.baseStats.atk, pokemon.baseStats.spa) >= 115) roles.add('sweeper')
-    else if (pokemon && pokemon.baseStats.hp + pokemon.baseStats.def + pokemon.baseStats.spd >= 270) roles.add('wall')
+    if (pokemon && Math.max(pokemon.baseStats.atk, pokemon.baseStats.spa) >= 115)
+      roles.add('sweeper')
+    else if (pokemon && pokemon.baseStats.hp + pokemon.baseStats.def + pokemon.baseStats.spd >= 270)
+      roles.add('wall')
     else roles.add('support')
   }
 
@@ -940,7 +947,10 @@ export const useAnalyticsStore = defineStore('analytics', () => {
   const offensivePressureCache = new Map<BattleMode, ModeCacheEntry<OffensivePressureSummary>>()
   const teraDependencyCache = new Map<BattleMode, ModeCacheEntry<TeamTeraDependencySummary>>()
   const speedMapCache = new Map<BattleMode, ModeCacheEntry<TeamSpeedMap>>()
-  const threatEvaluationCache = new Map<BattleMode, ModeCacheEntry<ReturnType<typeof evaluateThreatSummary>>>()
+  const threatEvaluationCache = new Map<
+    BattleMode,
+    ModeCacheEntry<ReturnType<typeof evaluateThreatSummary>>
+  >()
 
   function teamSnapshotKey(mode: BattleMode, extras: string[] = []): { team: Team; key: string } {
     const team = teamStore.getActiveTeam(mode)
@@ -1008,9 +1018,15 @@ export const useAnalyticsStore = defineStore('analytics', () => {
       Math.min(
         4,
         moveIds.filter((moveId) =>
-          ['icy-wind', 'electroweb', 'thunder-wave', 'bulldoze', 'string-shot', 'quash', 'scary-face'].includes(
-            moveId,
-          ),
+          [
+            'icy-wind',
+            'electroweb',
+            'thunder-wave',
+            'bulldoze',
+            'string-shot',
+            'quash',
+            'scary-face',
+          ].includes(moveId),
         ).length,
       )
     const turnBuySignals =
@@ -1025,11 +1041,16 @@ export const useAnalyticsStore = defineStore('analytics', () => {
       (teamEnable.hasWideGuard ? 1 : 0) +
       Math.min(
         2,
-        moveIds.filter((moveId) => ['u-turn', 'volt-switch', 'flip-turn'].includes(moveId)).length * 0.5,
+        moveIds.filter((moveId) => ['u-turn', 'volt-switch', 'flip-turn'].includes(moveId)).length *
+          0.5,
       )
-    let tempoScore = clampScore(Math.min(100, 10 * speedSignals + 6 * turnBuySignals + 4 * mitigationSignals))
-    if (speedSignals > 0 && offensivePressure.closerCount > 0) tempoScore = clampScore(tempoScore + 10)
-    if (mode === 'vgc' && speedSignals > 0 && protectCount < 2) tempoScore = clampScore(tempoScore - 10)
+    let tempoScore = clampScore(
+      Math.min(100, 10 * speedSignals + 6 * turnBuySignals + 4 * mitigationSignals),
+    )
+    if (speedSignals > 0 && offensivePressure.closerCount > 0)
+      tempoScore = clampScore(tempoScore + 10)
+    if (mode === 'vgc' && speedSignals > 0 && protectCount < 2)
+      tempoScore = clampScore(tempoScore - 10)
 
     const topWincons = offensivePressure.winconMembers
       .slice(0, 2)
@@ -1039,34 +1060,32 @@ export const useAnalyticsStore = defineStore('analytics', () => {
       .map((entry) => clampNumber(entry.closerScore / 8, 0, 1))
     const avgTopWincon = average(topWincons)
     const avgTopCloser = average(topClosers)
-    const breakerPresence =
-      offensivePressure.members.some(
-        (entry) =>
-          !entry.isWincon &&
-          !entry.isCloser &&
-          entry.damagingMoves >= 2 &&
-          entry.highPowerMoves >= 2 &&
-          !entry.hasSetup,
-      )
-        ? 1
-        : 0
+    const breakerPresence = offensivePressure.members.some(
+      (entry) =>
+        !entry.isWincon &&
+        !entry.isCloser &&
+        entry.damagingMoves >= 2 &&
+        entry.highPowerMoves >= 2 &&
+        !entry.hasSetup,
+    )
+      ? 1
+      : 0
     const enableCoverage = clampNumber(
       (teamEnable.hardEnableCount * 1.2 + teamEnable.softEnableCount * 0.6) / 4,
       0,
       1,
     )
     const keySlots = new Set(
-      [...offensivePressure.winconMembers, ...offensivePressure.closerMembers].map((entry) => entry.slot),
+      [...offensivePressure.winconMembers, ...offensivePressure.closerMembers].map(
+        (entry) => entry.slot,
+      ),
     )
     const keyCriticalCount = teraDependency.members.filter(
       (entry) => entry.level === 'critical' && keySlots.has(entry.slot),
     ).length
     const teraContention = keyCriticalCount >= 2 ? 1 : keyCriticalCount === 1 ? 0.4 : 0
     const planScore = clampScore(
-      (0.38 * avgTopWincon +
-        0.28 * avgTopCloser +
-        0.18 * breakerPresence +
-        0.16 * enableCoverage) *
+      (0.38 * avgTopWincon + 0.28 * avgTopCloser + 0.18 * breakerPresence + 0.16 * enableCoverage) *
         100 -
         20 * teraContention,
     )
@@ -1076,7 +1095,10 @@ export const useAnalyticsStore = defineStore('analytics', () => {
     const unassignedRatio = teraDependency.unassignedCount / totalMembers
     const supportDependency = keySlots.size > 0 && !teamEnable.hasHardEnable ? 1 : 0
     const resourcesRisk = clampNumber(
-      criticalRatio * 55 + unassignedRatio * 25 + (keyCriticalCount >= 2 ? 20 : 0) + supportDependency * 15,
+      criticalRatio * 55 +
+        unassignedRatio * 25 +
+        (keyCriticalCount >= 2 ? 20 : 0) +
+        supportDependency * 15,
       0,
       100,
     )
@@ -1101,9 +1123,7 @@ export const useAnalyticsStore = defineStore('analytics', () => {
     } else if (defenseTeraSnapshot.sharedWeaknesses.length > 0) {
       const types = defenseTeraSnapshot.sharedWeaknesses.join(', ')
       keyAlerts.push(
-        locale === 'es'
-          ? `Debilidad compartida: ${types}.`
-          : `Shared weakness: ${types}.`,
+        locale === 'es' ? `Debilidad compartida: ${types}.` : `Shared weakness: ${types}.`,
       )
     }
     if (tempoScore < 45) {
@@ -1228,11 +1248,15 @@ export const useAnalyticsStore = defineStore('analytics', () => {
       getOffensivePressureSummary(mode).members.map((entry) => [entry.slot, entry]),
     )
     const slotPressure = offensivePressureBySlot.get(slot)
-    const teraBySlot = new Map(getTeamTeraDependency(mode).members.map((entry) => [entry.slot, entry]))
+    const teraBySlot = new Map(
+      getTeamTeraDependency(mode).members.map((entry) => [entry.slot, entry]),
+    )
     const slotTera = teraBySlot.get(slot)
 
     const expectedRoles = new Set(member.roleTags.length > 0 ? member.roleTags : pokemon.roleTags)
-    const actualRoles = inferRoleSignalsForSet(member, pokemon, (moveId) => dexStore.getMove(moveId))
+    const actualRoles = inferRoleSignalsForSet(member, pokemon, (moveId) =>
+      dexStore.getMove(moveId),
+    )
     const overlap = expectedRoles.size
       ? [...expectedRoles].filter((role) => actualRoles.has(role)).length / expectedRoles.size
       : 0
@@ -1243,7 +1267,10 @@ export const useAnalyticsStore = defineStore('analytics', () => {
       .filter((entry): entry is MoveEntry => Boolean(entry))
     const damagingCount = moveEntries.filter((entry) => entry.category !== 'status').length
     if (expectedRoles.has('sweeper') && damagingCount <= 1) roleFit = clampScore(roleFit - 20)
-    if (expectedRoles.has('wall') && !member.moves.some((moveId) => RECOVERY_MOVE_IDS.has(moveId))) {
+    if (
+      expectedRoles.has('wall') &&
+      !member.moves.some((moveId) => RECOVERY_MOVE_IDS.has(moveId))
+    ) {
       roleFit = clampScore(roleFit - 10)
     }
 
@@ -1252,13 +1279,19 @@ export const useAnalyticsStore = defineStore('analytics', () => {
     const actions: string[] = []
 
     if (slotPressure?.hasPriorityDamage) {
-      strengths.push(locale === 'es' ? 'Tiene prioridad para rematar.' : 'Has priority to secure KOs.')
+      strengths.push(
+        locale === 'es' ? 'Tiene prioridad para rematar.' : 'Has priority to secure KOs.',
+      )
     }
     if (slotPressure && slotPressure.stabCount >= 2) {
-      strengths.push(locale === 'es' ? 'Buen STAB spam para presionar.' : 'Strong STAB spam pressure.')
+      strengths.push(
+        locale === 'es' ? 'Buen STAB spam para presionar.' : 'Strong STAB spam pressure.',
+      )
     }
     if (member.moves.includes('protect') && mode === 'vgc') {
-      strengths.push(locale === 'es' ? 'Protect presente para comprar turnos.' : 'Protect helps buy turns.')
+      strengths.push(
+        locale === 'es' ? 'Protect presente para comprar turnos.' : 'Protect helps buy turns.',
+      )
     }
 
     if (mode === 'vgc' && !member.moves.includes('protect')) {
@@ -1272,11 +1305,17 @@ export const useAnalyticsStore = defineStore('analytics', () => {
       )
     }
     if (damagingCount <= 1) {
-      risks.push(locale === 'es' ? 'Solo 1 move de daño fiable.' : 'Only one reliable damaging move.')
+      risks.push(
+        locale === 'es' ? 'Solo 1 move de daño fiable.' : 'Only one reliable damaging move.',
+      )
     }
 
     if (risks.some((risk) => risk.includes('Protect'))) {
-      actions.push(locale === 'es' ? 'Agrega Protect para subir consistencia.' : 'Add Protect to improve consistency.')
+      actions.push(
+        locale === 'es'
+          ? 'Agrega Protect para subir consistencia.'
+          : 'Add Protect to improve consistency.',
+      )
     }
     if (slotTera?.level === 'critical' && slotTera.reason !== 'offense-spike') {
       actions.push(
@@ -1306,7 +1345,7 @@ export const useAnalyticsStore = defineStore('analytics', () => {
       risks: risks.slice(0, 3),
       actions: actions.slice(0, 2),
       recommendations: actions.slice(0, 2),
-      score: clampScore((offenseSingle * 0.35 + teraDefense * 0.35 + roleFit * 0.3)),
+      score: clampScore(offenseSingle * 0.35 + teraDefense * 0.35 + roleFit * 0.3),
     }
   }
 
@@ -1343,7 +1382,10 @@ export const useAnalyticsStore = defineStore('analytics', () => {
   }
 
   function getThreatEvaluation(mode: BattleMode): ReturnType<typeof evaluateThreatSummary> {
-    const { team, key } = teamSnapshotKey(mode, [uiStore.locale, metaUsageStore.getModeStatus(mode)])
+    const { team, key } = teamSnapshotKey(mode, [
+      uiStore.locale,
+      metaUsageStore.getModeStatus(mode),
+    ])
     const cached = threatEvaluationCache.get(mode)
     if (cached && cached.key === key) return cached.value
 
@@ -1442,14 +1484,17 @@ export const useAnalyticsStore = defineStore('analytics', () => {
       const atkCount = damagingMoves.length
       const hiCount = effectivePowers.filter((power) => power >= 85).length
       const hasSetup =
-        moves.some((moveId) => MAJOR_SETUP_MOVE_IDS.has(moveId) || MINOR_SETUP_MOVE_IDS.has(moveId)) ||
-        hasBodyPressSetup
-      const hasImmediateBoost = Boolean(member.itemId && IMMEDIATE_BOOST_ITEM_IDS.has(member.itemId))
-      const supportRole =
-        member.roleTags.includes('support') || member.roleTags.includes('wall')
+        moves.some(
+          (moveId) => MAJOR_SETUP_MOVE_IDS.has(moveId) || MINOR_SETUP_MOVE_IDS.has(moveId),
+        ) || hasBodyPressSetup
+      const hasImmediateBoost = Boolean(
+        member.itemId && IMMEDIATE_BOOST_ITEM_IDS.has(member.itemId),
+      )
+      const supportRole = member.roleTags.includes('support') || member.roleTags.includes('wall')
       const offensiveRole =
         member.roleTags.includes('sweeper') || member.roleTags.includes('speed-control')
-      const supportPure = !offensiveRole && supportRole && atkCount <= 1 && !hasSetup && !hasImmediateBoost
+      const supportPure =
+        !offensiveRole && supportRole && atkCount <= 1 && !hasSetup && !hasImmediateBoost
       const isBreaker = mode === 'singles' && atkCount >= 2 && hiCount >= 2 && !hasSetup
       const isCoreOffense =
         Boolean(
@@ -1460,8 +1505,7 @@ export const useAnalyticsStore = defineStore('analytics', () => {
         ) || isBreaker
       const roleMultiplier = supportPure ? 0.6 : isCoreOffense ? 1.2 : 1
 
-      let defensiveNeed =
-        0.25 * base.weakCount + 0.9 * base.severeCount + 1.6 * base.quadCount
+      let defensiveNeed = 0.25 * base.weakCount + 0.9 * base.severeCount + 1.6 * base.quadCount
       if (mode === 'vgc') {
         if (teamEnable.hasHardEnable) defensiveNeed *= 0.88
         else if (teamEnable.hasSoftEnable) defensiveNeed *= 0.94
@@ -1471,7 +1515,7 @@ export const useAnalyticsStore = defineStore('analytics', () => {
         members.push({
           slot: member.slot,
           pokemonId: member.pokemonId,
-          pokemonName: pokemon.name,
+          pokemonName: speedComparisonPokemonName(pokemon),
           teraType: undefined,
           level: 'unassigned',
           reason: 'missing-tera',
@@ -1537,12 +1581,10 @@ export const useAnalyticsStore = defineStore('analytics', () => {
       const gainMinusRisk = gain - risk
 
       const criticalDefense =
-        (defensiveNeed >= 2.6 && gainMinusRisk >= 1.6) ||
-        (quadDelta >= 1 && defensiveNeed >= 1.8)
+        (defensiveNeed >= 2.6 && gainMinusRisk >= 1.6) || (quadDelta >= 1 && defensiveNeed >= 1.8)
       const criticalOffense = score >= 6.0 && offGain >= 1.2 && isCoreOffense
       const isCritical = criticalDefense || criticalOffense
-      const isImproves =
-        !isCritical && (score >= 2.0 || gainMinusRisk >= 1.0 || offGain >= 0.8)
+      const isImproves = !isCritical && (score >= 2.0 || gainMinusRisk >= 1.0 || offGain >= 0.8)
 
       const level: TeraDependencyLevel = isCritical
         ? 'critical'
@@ -1568,7 +1610,7 @@ export const useAnalyticsStore = defineStore('analytics', () => {
       members.push({
         slot: member.slot,
         pokemonId: member.pokemonId,
-        pokemonName: pokemon.name,
+        pokemonName: speedComparisonPokemonName(pokemon),
         teraType,
         level,
         reason,
@@ -1684,7 +1726,8 @@ export const useAnalyticsStore = defineStore('analytics', () => {
       const damagingMoves = moveEntries.filter((entry) => entry.category !== 'status')
 
       const hasBodyPress = moves.includes('body-press')
-      const hasBodyPressSetup = hasBodyPress && moves.some((moveId) => BODY_PRESS_SETUP_HELPER_IDS.has(moveId))
+      const hasBodyPressSetup =
+        hasBodyPress && moves.some((moveId) => BODY_PRESS_SETUP_HELPER_IDS.has(moveId))
       const setupTier: OffensivePressureMember['setupTier'] = moves.some((moveId) =>
         MAJOR_SETUP_MOVE_IDS.has(moveId),
       )
@@ -1700,7 +1743,8 @@ export const useAnalyticsStore = defineStore('analytics', () => {
       )
       const atkCount = damagingMoves.length
       const hiCount = effectivePowers.filter((power) => power >= 85).length
-      const spreadCount = mode === 'vgc' ? damagingMoves.filter((move) => SPREAD_MOVE_IDS.has(move.id)).length : 0
+      const spreadCount =
+        mode === 'vgc' ? damagingMoves.filter((move) => SPREAD_MOVE_IDS.has(move.id)).length : 0
       const damagingTypeCount = new Set(damagingMoves.map((move) => move.type)).size
       const stabCount = damagingMoves.filter(
         (move) => countSharedTypes(move.type, baseTypes, member.teraType) > 0,
@@ -1712,10 +1756,14 @@ export const useAnalyticsStore = defineStore('analytics', () => {
       const hasPivot = moves.some(
         (moveId) => PIVOT_MOVE_IDS.has(moveId) || dexStore.getMove(moveId)?.tags.includes('pivot'),
       )
-      const hasRedirection = mode === 'vgc' && moves.some((moveId) => REDIRECTION_MOVE_IDS.has(moveId))
+      const hasRedirection =
+        mode === 'vgc' && moves.some((moveId) => REDIRECTION_MOVE_IDS.has(moveId))
       const hasProtect = mode === 'vgc' && moves.some((moveId) => PROTECT_MOVE_IDS.has(moveId))
-      const hasRecovery = mode === 'singles' && moves.some((moveId) => RECOVERY_MOVE_IDS.has(moveId))
-      const hasImmediateBoost = Boolean(member.itemId && IMMEDIATE_BOOST_ITEM_IDS.has(member.itemId))
+      const hasRecovery =
+        mode === 'singles' && moves.some((moveId) => RECOVERY_MOVE_IDS.has(moveId))
+      const hasImmediateBoost = Boolean(
+        member.itemId && IMMEDIATE_BOOST_ITEM_IDS.has(member.itemId),
+      )
       const isChoiceLockItem = Boolean(member.itemId && CHOICE_LOCK_ITEM_IDS.has(member.itemId))
 
       const utilityStatusCount = nonDamagingMoves.filter(
@@ -1745,8 +1793,10 @@ export const useAnalyticsStore = defineStore('analytics', () => {
       const speedDelta = speedValue - speedBenchmark
       const isTRCleaner =
         teamEnable.hasTrickRoom && mode === 'vgc' && speedValue <= speedBenchmark - 35
-      const verySlowNoTR = mode === 'vgc' && speedValue <= speedBenchmark - 35 && !teamEnable.hasTrickRoom
-      const hasNearTailwindWindow = mode === 'vgc' && teamEnable.hasTailwind && speedDelta >= -15 && speedDelta < 10
+      const verySlowNoTR =
+        mode === 'vgc' && speedValue <= speedBenchmark - 35 && !teamEnable.hasTrickRoom
+      const hasNearTailwindWindow =
+        mode === 'vgc' && teamEnable.hasTailwind && speedDelta >= -15 && speedDelta < 10
       const bulkDecent = pokemon.baseStats.hp + pokemon.baseStats.def + pokemon.baseStats.spd >= 255
       const offensePeak = Math.max(pokemon.baseStats.atk, pokemon.baseStats.spa)
       const supportPure =
@@ -1891,7 +1941,10 @@ export const useAnalyticsStore = defineStore('analytics', () => {
         planBonus += 0.4
         contributions.push({ key: 'planEnable', value: 0.4 })
       }
-      if (teamEnable.hasTerrainWeather && (hasPriorityDamage || hasImmediateBoost || stabCount >= 2)) {
+      if (
+        teamEnable.hasTerrainWeather &&
+        (hasPriorityDamage || hasImmediateBoost || stabCount >= 2)
+      ) {
         planBonus += 0.4
         contributions.push({ key: 'planTerrainWeather', value: 0.4 })
       }
@@ -1955,7 +2008,13 @@ export const useAnalyticsStore = defineStore('analytics', () => {
         frictionPenalty += 0.2
         contributions.push({ key: 'frictionSelfDropRisk', value: -0.2 })
       }
-      if (!isChoiceLockItem && oneButtonBadCoverage && atkCount >= 2 && !hasSetup && !hasImmediateBoost) {
+      if (
+        !isChoiceLockItem &&
+        oneButtonBadCoverage &&
+        atkCount >= 2 &&
+        !hasSetup &&
+        !hasImmediateBoost
+      ) {
         frictionPenalty += 0.3
         contributions.push({ key: 'frictionOneButton', value: -0.3 })
       }
@@ -1972,7 +2031,7 @@ export const useAnalyticsStore = defineStore('analytics', () => {
       rawMembers.push({
         slot: member.slot,
         pokemonId: member.pokemonId,
-        pokemonName: pokemon.name,
+        pokemonName: speedComparisonPokemonName(pokemon),
         isWinconCandidate: false,
         isCloserCandidate: false,
         setupTier,
@@ -2041,9 +2100,7 @@ export const useAnalyticsStore = defineStore('analytics', () => {
         entry.winconCandidate = winconRule && entry.winconScore >= dynamicWinconThreshold
       } else {
         const winconRule =
-          entry.hasSetup &&
-          entry.threatScore >= 5.5 &&
-          (entry._hasRecovery || entry._bulkDecent)
+          entry.hasSetup && entry.threatScore >= 5.5 && (entry._hasRecovery || entry._bulkDecent)
         entry.winconCandidate = winconRule && entry.winconScore >= dynamicWinconThreshold
       }
 
@@ -2101,7 +2158,12 @@ export const useAnalyticsStore = defineStore('analytics', () => {
             entry._hiCount >= 1 &&
             entry.closerScore >= dynamicCloserThreshold + 0.8
         }
-        if (entry.closerCandidate && entry._isBreaker && !entry.hasPriorityDamage && entry.speedDelta < 15) {
+        if (
+          entry.closerCandidate &&
+          entry._isBreaker &&
+          !entry.hasPriorityDamage &&
+          entry.speedDelta < 15
+        ) {
           entry.closerCandidate = false
         }
       }
@@ -2144,7 +2206,10 @@ export const useAnalyticsStore = defineStore('analytics', () => {
             !entry.hasPriorityDamage &&
             entry._spreadCount === 0
           ) &&
-          (entry.hasPriorityDamage || entry.speedDelta >= 10 || entry.isTRCleaner || entry._hasNearTailwindWindow) &&
+          (entry.hasPriorityDamage ||
+            entry.speedDelta >= 10 ||
+            entry.isTRCleaner ||
+            entry._hasNearTailwindWindow) &&
           (entry._hiCount >= 1 ||
             entry.hasSetup ||
             entry.hasImmediateBoost ||
@@ -2247,7 +2312,7 @@ export const useAnalyticsStore = defineStore('analytics', () => {
   }
 
   function getTeamSpeedMap(mode: BattleMode): TeamSpeedMap {
-    const { team, key } = teamSnapshotKey(mode, [uiStore.locale])
+    const { team, key } = teamSnapshotKey(mode, [uiStore.locale, dexStore.lastHydratedAt ?? ''])
     const cached = speedMapCache.get(mode)
     if (cached && cached.key === key) return cached.value
 
@@ -2288,7 +2353,7 @@ export const useAnalyticsStore = defineStore('analytics', () => {
       const mapMember: TeamSpeedMapMember = {
         slot: member.slot,
         pokemonId: member.pokemonId,
-        pokemonName: pokemon.name,
+        pokemonName: speedComparisonPokemonName(pokemon),
         baseSpeed: pokemon.baseStats.spe,
         finalSpeed: finalStats.spe,
         effectiveSpeed: Math.floor(finalStats.spe * scarfMultiplier),

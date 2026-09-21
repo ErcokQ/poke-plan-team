@@ -506,7 +506,8 @@ const targetSlotMember = computed(() => {
 const targetSlotPokemonName = computed(() => {
   const pokemonId = targetSlotMember.value?.pokemonId
   if (!pokemonId) return t('common.none')
-  return dexStore.getPokemon(mode.value, pokemonId)?.name ?? titleFromSlug(pokemonId)
+  const name = dexStore.getPokemon(mode.value, pokemonId)?.name ?? titleFromSlug(pokemonId)
+  return displayPokemonName(pokemonId, name)
 })
 const selectedPokemonIsFavorite = computed(() => {
   const pokemonId = selectedProfile.value?.id
@@ -669,7 +670,8 @@ function formSuffixFromPokemonId(pokemonId: string): string {
 
 function displayPokemonName(pokemonId: string, baseName: string): string {
   const suffix = formSuffixFromPokemonId(pokemonId)
-  return suffix ? `${baseName} (${suffix})` : baseName
+  if (!suffix || baseName.toLowerCase().endsWith(suffix.toLowerCase())) return baseName
+  return `${baseName} (${suffix})`
 }
 
 function normalizeSearchText(value: string): string {

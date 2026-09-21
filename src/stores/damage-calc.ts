@@ -1,6 +1,14 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import type { BattleMode, MoveEntry, StatKey, TeamMember } from '@/models/domain'
+import {
+  MAX_EV_PER_STAT,
+  MAX_EVS,
+  MAX_IV_PER_STAT,
+  type BattleMode,
+  type MoveEntry,
+  type StatKey,
+  type TeamMember,
+} from '@/models/domain'
 import type {
   DamageCombatContext,
   DamageCalcScenario,
@@ -19,6 +27,7 @@ import { computeMatrixDamage, computePairDamage } from '@/utils/damage-engine'
 import { useBufferedStorage } from '@/utils/buffered-storage'
 import { getEffectiveLearnsetMoveIds } from '@/utils/move-legality'
 import { canonicalizePokemonId } from '@/utils/showdown'
+import { legacyEvToStatPoints, normalizeStatPoints } from '@/utils/team'
 import type { MetaTeamTemplate } from '@/models/meta'
 
 function emptyEvs(): Record<StatKey, number> {
@@ -79,7 +88,10 @@ function createSlot(slot: DamageSlotNumber, level: number): DamageSlotSet {
 
 function createScenario(mode: BattleMode): DamageCalcScenario {
   const level = mode === 'vgc' ? 50 : 100
-  const active = mode === 'vgc' ? ([1, 2, 3, 4] as DamageSlotNumber[]) : ([1, 2, 3, 4, 5, 6] as DamageSlotNumber[])
+  const active =
+    mode === 'vgc'
+      ? ([1, 2, 3, 4] as DamageSlotNumber[])
+      : ([1, 2, 3, 4, 5, 6] as DamageSlotNumber[])
   return {
     mode,
     generation: 'gen9',
@@ -141,12 +153,7 @@ function createScenario(mode: BattleMode): DamageCalcScenario {
 }
 
 function normalizeMoves(moves: string[]): [string, string, string, string] {
-  return [
-    moves[0] ?? '',
-    moves[1] ?? '',
-    moves[2] ?? '',
-    moves[3] ?? '',
-  ]
+  return [moves[0] ?? '', moves[1] ?? '', moves[2] ?? '', moves[3] ?? '']
 }
 
 function normalizeMemberMoves(value: unknown): [string, string, string, string] {
@@ -155,30 +162,63 @@ function normalizeMemberMoves(value: unknown): [string, string, string, string] 
 }
 
 function normalizeMemberEvs(value: unknown): Record<StatKey, number> {
-  const source = typeof value === 'object' && value !== null ? (value as Partial<Record<StatKey, unknown>>) : {}
-  return {
-    hp: clampInt(Number(source.hp ?? 0), 0, 252),
-    atk: clampInt(Number(source.atk ?? 0), 0, 252),
-    def: clampInt(Number(source.def ?? 0), 0, 252),
-    spa: clampInt(Number(source.spa ?? 0), 0, 252),
-    spd: clampInt(Number(source.spd ?? 0), 0, 252),
-    spe: clampInt(Number(source.spe ?? 0), 0, 252),
+  const source =
+    typeof value === 'object' && value !== null ? (value as Partial<Record<StatKey, unknown>>) : {}
+  const usesLegacyEvScale = (['hp', 'atk', 'def', 'spa', 'spd', 'spe'] as StatKey[]).some(
+    (stat) => Number(source[stat] ?? 0) > MAX_EV_PER_STAT,
+  )
+  const next = {
+    hp: usesLegacyEvScale
+      ? legacyEvToStatPoints(Number(source.hp ?? 0))
+      : normalizeStatPoints(Number(source.hp ?? 0)),
+    atk: usesLegacyEvScale
+      ? legacyEvToStatPoints(Number(source.atk ?? 0))
+      : normalizeStatPoints(Number(source.atk ?? 0)),
+    def: usesLegacyEvScale
+      ? legacyEvToStatPoints(Number(source.def ?? 0))
+      : normalizeStatPoints(Number(source.def ?? 0)),
+    spa: usesLegacyEvScale
+      ? legacyEvToStatPoints(Number(source.spa ?? 0))
+      : normalizeStatPoints(Number(source.spa ?? 0)),
+    spd: usesLegacyEvScale
+      ? legacyEvToStatPoints(Number(source.spd ?? 0))
+      : normalizeStatPoints(Number(source.spd ?? 0)),
+    spe: usesLegacyEvScale
+      ? legacyEvToStatPoints(Number(source.spe ?? 0))
+      : normalizeStatPoints(Number(source.spe ?? 0)),
   }
+  let overflow =
+    (['hp', 'atk', 'def', 'spa', 'spd', 'spe'] as StatKey[]).reduce(
+      (sum, stat) => sum + next[stat],
+      0,
+    ) - MAX_EVS
+  for (const stat of ['hp', 'atk', 'def', 'spa', 'spd', 'spe'] as StatKey[]) {
+    if (overflow <= 0) break
+    const delta = Math.min(next[stat], overflow)
+    next[stat] -= delta
+    overflow -= delta
+  }
+  return next
 }
 
 function normalizeMemberIvs(value: unknown): Record<StatKey, number> {
-  const source = typeof value === 'object' && value !== null ? (value as Partial<Record<StatKey, unknown>>) : {}
+  const source =
+    typeof value === 'object' && value !== null ? (value as Partial<Record<StatKey, unknown>>) : {}
   return {
-    hp: clampInt(Number(source.hp ?? 31), 0, 31),
-    atk: clampInt(Number(source.atk ?? 31), 0, 31),
-    def: clampInt(Number(source.def ?? 31), 0, 31),
-    spa: clampInt(Number(source.spa ?? 31), 0, 31),
-    spd: clampInt(Number(source.spd ?? 31), 0, 31),
-    spe: clampInt(Number(source.spe ?? 31), 0, 31),
+    hp: clampInt(Number(source.hp ?? 31), 0, MAX_IV_PER_STAT),
+    atk: clampInt(Number(source.atk ?? 31), 0, MAX_IV_PER_STAT),
+    def: clampInt(Number(source.def ?? 31), 0, MAX_IV_PER_STAT),
+    spa: clampInt(Number(source.spa ?? 31), 0, MAX_IV_PER_STAT),
+    spd: clampInt(Number(source.spd ?? 31), 0, MAX_IV_PER_STAT),
+    spe: clampInt(Number(source.spe ?? 31), 0, MAX_IV_PER_STAT),
   }
 }
 
-function findTeamMemberBySlot(members: TeamMember[], slot: DamageSlotNumber, fallbackIndex?: number): TeamMember | undefined {
+function findTeamMemberBySlot(
+  members: TeamMember[],
+  slot: DamageSlotNumber,
+  fallbackIndex?: number,
+): TeamMember | undefined {
   const bySlot = members.find((entry) => Number(entry.slot) === slot)
   if (bySlot) return bySlot
   if (fallbackIndex === undefined) return undefined
@@ -188,26 +228,20 @@ function findTeamMemberBySlot(members: TeamMember[], slot: DamageSlotNumber, fal
 function normalizeSlotSet(input: DamageSlotSet): DamageSlotSet {
   const canonicalPokemonId = canonicalizePokemonId(input.pokemonId ?? '')
   const combatContext = input.combatContext ?? defaultCombatContext()
+  const normalizedEvs = normalizeMemberEvs(input.evs)
   return {
     ...input,
     pokemonId: canonicalPokemonId,
     level: clampInt(input.level, 1, 100),
     currentHpPercent: clampInt(input.currentHpPercent, 1, 100),
-    evs: {
-      hp: clampInt(input.evs.hp, 0, 252),
-      atk: clampInt(input.evs.atk, 0, 252),
-      def: clampInt(input.evs.def, 0, 252),
-      spa: clampInt(input.evs.spa, 0, 252),
-      spd: clampInt(input.evs.spd, 0, 252),
-      spe: clampInt(input.evs.spe, 0, 252),
-    },
+    evs: normalizedEvs,
     ivs: {
-      hp: clampInt(input.ivs.hp, 0, 31),
-      atk: clampInt(input.ivs.atk, 0, 31),
-      def: clampInt(input.ivs.def, 0, 31),
-      spa: clampInt(input.ivs.spa, 0, 31),
-      spd: clampInt(input.ivs.spd, 0, 31),
-      spe: clampInt(input.ivs.spe, 0, 31),
+      hp: clampInt(input.ivs.hp, 0, MAX_IV_PER_STAT),
+      atk: clampInt(input.ivs.atk, 0, MAX_IV_PER_STAT),
+      def: clampInt(input.ivs.def, 0, MAX_IV_PER_STAT),
+      spa: clampInt(input.ivs.spa, 0, MAX_IV_PER_STAT),
+      spd: clampInt(input.ivs.spd, 0, MAX_IV_PER_STAT),
+      spe: clampInt(input.ivs.spe, 0, MAX_IV_PER_STAT),
     },
     moves: normalizeMoves(input.moves),
     stages: {
@@ -225,7 +259,8 @@ function normalizeSlotSet(input: DamageSlotSet): DamageSlotSet {
       statsLoweredThisTurn: Boolean(combatContext.statsLoweredThisTurn),
       previousMoveFailed: Boolean(combatContext.previousMoveFailed),
       moveOrderHint:
-        combatContext.moveOrderHint === 'before-target' || combatContext.moveOrderHint === 'after-target'
+        combatContext.moveOrderHint === 'before-target' ||
+        combatContext.moveOrderHint === 'after-target'
           ? combatContext.moveOrderHint
           : 'auto',
       consecutiveMoveUses: clampInt(combatContext.consecutiveMoveUses ?? 0, 0, 5),
@@ -243,7 +278,10 @@ function ensureActiveSlots(mode: BattleMode, slotIds: DamageSlotNumber[]): Damag
   return clean.slice(0, max)
 }
 
-function guessNatureAndEvsByMoves(moves: MoveEntry[]): { natureId: string; evs: Record<StatKey, number> } {
+function guessNatureAndEvsByMoves(moves: MoveEntry[]): {
+  natureId: string
+  evs: Record<StatKey, number>
+} {
   const damaging = moves.filter((move) => move.category !== 'status')
   const physical = damaging.filter((move) => move.category === 'physical').length
   const special = damaging.filter((move) => move.category === 'special').length
@@ -251,18 +289,18 @@ function guessNatureAndEvsByMoves(moves: MoveEntry[]): { natureId: string; evs: 
   if (special > physical) {
     return {
       natureId: 'timid',
-      evs: { hp: 4, atk: 0, def: 0, spa: 252, spd: 0, spe: 252 },
+      evs: { hp: 2, atk: 0, def: 0, spa: MAX_EV_PER_STAT, spd: 0, spe: MAX_EV_PER_STAT },
     }
   }
   if (physical > special) {
     return {
       natureId: 'jolly',
-      evs: { hp: 4, atk: 252, def: 0, spa: 0, spd: 0, spe: 252 },
+      evs: { hp: 2, atk: MAX_EV_PER_STAT, def: 0, spa: 0, spd: 0, spe: MAX_EV_PER_STAT },
     }
   }
   return {
     natureId: 'jolly',
-    evs: { hp: 4, atk: 252, def: 0, spa: 0, spd: 0, spe: 252 },
+    evs: { hp: 2, atk: MAX_EV_PER_STAT, def: 0, spa: 0, spd: 0, spe: MAX_EV_PER_STAT },
   }
 }
 
@@ -276,8 +314,13 @@ function normalizeScenario(mode: BattleMode, scenario: DamageCalcScenario): Dama
     sideA: {
       ...defaultScenario.sideA,
       ...scenario.sideA,
-      slots: (scenario.sideA?.slots ?? defaultScenario.sideA.slots).map((slot) => normalizeSlotSet(slot)),
-      activeSlotIds: ensureActiveSlots(mode, scenario.sideA?.activeSlotIds ?? defaultScenario.sideA.activeSlotIds),
+      slots: (scenario.sideA?.slots ?? defaultScenario.sideA.slots).map((slot) =>
+        normalizeSlotSet(slot),
+      ),
+      activeSlotIds: ensureActiveSlots(
+        mode,
+        scenario.sideA?.activeSlotIds ?? defaultScenario.sideA.activeSlotIds,
+      ),
       targetByAttacker: {
         ...defaultScenario.sideA.targetByAttacker,
         ...(scenario.sideA?.targetByAttacker ?? {}),
@@ -286,8 +329,13 @@ function normalizeScenario(mode: BattleMode, scenario: DamageCalcScenario): Dama
     sideB: {
       ...defaultScenario.sideB,
       ...scenario.sideB,
-      slots: (scenario.sideB?.slots ?? defaultScenario.sideB.slots).map((slot) => normalizeSlotSet(slot)),
-      activeSlotIds: ensureActiveSlots(mode, scenario.sideB?.activeSlotIds ?? defaultScenario.sideB.activeSlotIds),
+      slots: (scenario.sideB?.slots ?? defaultScenario.sideB.slots).map((slot) =>
+        normalizeSlotSet(slot),
+      ),
+      activeSlotIds: ensureActiveSlots(
+        mode,
+        scenario.sideB?.activeSlotIds ?? defaultScenario.sideB.activeSlotIds,
+      ),
       targetByAttacker: {
         ...defaultScenario.sideB.targetByAttacker,
         ...(scenario.sideB?.targetByAttacker ?? {}),
@@ -419,29 +467,33 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
         const rawPokemonId = typeof member.pokemonId === 'string' ? member.pokemonId : ''
         const pokemonId = canonicalizePokemonId(rawPokemonId)
         const pokemon = pokemonId ? dexStore.getPokemon(mode, pokemonId) : undefined
-        const abilityId = (typeof member.abilityId === 'string' ? member.abilityId : '') || pokemon?.abilities[0] || ''
-        const natureId = (typeof member.natureId === 'string' ? member.natureId : '') || pokemon?.defaultNature || 'jolly'
+        const abilityId =
+          (typeof member.abilityId === 'string' ? member.abilityId : '') ||
+          pokemon?.abilities[0] ||
+          ''
+        const natureId =
+          (typeof member.natureId === 'string' ? member.natureId : '') ||
+          pokemon?.defaultNature ||
+          'jolly'
         const itemId = typeof member.itemId === 'string' ? member.itemId : ''
         const teraType = typeof member.teraType === 'string' ? member.teraType : undefined
-        return normalizeSlotSet(
-          {
-            ...slot,
-            pokemonId,
-            abilityId,
-            itemId,
-            natureId,
-            teraType,
-            moves: normalizeMemberMoves(member.moves),
-            evs: normalizeMemberEvs(member.evs),
-            ivs: normalizeMemberIvs(member.ivs),
-            level: defaultLevel,
-            currentHpPercent: 100,
-            status: 'healthy',
-            stages: { atk: 0, def: 0, spa: 0, spd: 0, spe: 0 },
-            combatContext: defaultCombatContext(),
-            isTeraActive: false,
-          },
-        )
+        return normalizeSlotSet({
+          ...slot,
+          pokemonId,
+          abilityId,
+          itemId,
+          natureId,
+          teraType,
+          moves: normalizeMemberMoves(member.moves),
+          evs: normalizeMemberEvs(member.evs),
+          ivs: normalizeMemberIvs(member.ivs),
+          level: defaultLevel,
+          currentHpPercent: 100,
+          status: 'healthy',
+          stages: { atk: 0, def: 0, spa: 0, spd: 0, spe: 0 },
+          combatContext: defaultCombatContext(),
+          isTeraActive: false,
+        })
       }),
     }
 
@@ -479,7 +531,12 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
     setScenario(mode, { ...current, [key]: nextSide })
   }
 
-  function setTarget(mode: BattleMode, side: DamageSideId, attackerSlot: DamageSlotNumber, defenderSlot: DamageSlotNumber) {
+  function setTarget(
+    mode: BattleMode,
+    side: DamageSideId,
+    attackerSlot: DamageSlotNumber,
+    defenderSlot: DamageSlotNumber,
+  ) {
     const current = getScenario(mode)
     const key = side === 'A' ? 'sideA' : 'sideB'
     const nextSide = {
@@ -492,7 +549,12 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
     setScenario(mode, { ...current, [key]: nextSide })
   }
 
-  function updateSlotSet(mode: BattleMode, side: DamageSideId, slot: DamageSlotNumber, patch: Partial<DamageSlotSet>) {
+  function updateSlotSet(
+    mode: BattleMode,
+    side: DamageSideId,
+    slot: DamageSlotNumber,
+    patch: Partial<DamageSlotSet>,
+  ) {
     const current = getScenario(mode)
     const key = side === 'A' ? 'sideA' : 'sideB'
     const nextSlots = current[key].slots.map((entry) => {
@@ -526,7 +588,11 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
     })
   }
 
-  function updateSideField(mode: BattleMode, side: DamageSideId, patch: Partial<DamageCalcScenario['field']['sideA']>) {
+  function updateSideField(
+    mode: BattleMode,
+    side: DamageSideId,
+    patch: Partial<DamageCalcScenario['field']['sideA']>,
+  ) {
     const current = getScenario(mode)
     const key = side === 'A' ? 'sideA' : 'sideB'
     setScenario(mode, {
@@ -548,14 +614,18 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
     defenderSlot: DamageSlotNumber,
   ) {
     const current = getScenario(mode)
-    setScenario(mode, {
-      ...current,
-      selectedPair: {
-        attackerSide,
-        attackerSlot,
-        defenderSlot,
+    setScenario(
+      mode,
+      {
+        ...current,
+        selectedPair: {
+          attackerSide,
+          attackerSlot,
+          defenderSlot,
+        },
       },
-    }, { touch: false })
+      { touch: false },
+    )
   }
 
   function applyMetaTemplate(mode: BattleMode, side: DamageSideId, templateId: string) {
@@ -569,25 +639,23 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
     const slots = current[key].slots.map((slot) => {
       const member = slotMap.get(slot.slot)
       if (!member) return slot
-      return normalizeSlotSet(
-        {
-          ...slot,
-          pokemonId: member.pokemonId,
-          abilityId: member.abilityId,
-          itemId: member.itemId,
-          natureId: member.natureId,
-          teraType: member.teraType,
-          moves: normalizeMoves(member.moves),
-          evs: { ...member.evs },
-          ivs: { ...member.ivs },
-          level: member.level || defaultLevel,
-          isTeraActive: false,
-          currentHpPercent: 100,
-          status: 'healthy',
-          stages: { atk: 0, def: 0, spa: 0, spd: 0, spe: 0 },
-          combatContext: defaultCombatContext(),
-        },
-      )
+      return normalizeSlotSet({
+        ...slot,
+        pokemonId: member.pokemonId,
+        abilityId: member.abilityId,
+        itemId: member.itemId,
+        natureId: member.natureId,
+        teraType: member.teraType,
+        moves: normalizeMoves(member.moves),
+        evs: { ...member.evs },
+        ivs: { ...member.ivs },
+        level: member.level || defaultLevel,
+        isTeraActive: false,
+        currentHpPercent: 100,
+        status: 'healthy',
+        stages: { atk: 0, def: 0, spa: 0, spd: 0, spe: 0 },
+        combatContext: defaultCombatContext(),
+      })
     })
     const active = ensureActiveSlots(
       mode,
@@ -604,7 +672,12 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
     })
   }
 
-  async function applyBenchmark(mode: BattleMode, side: DamageSideId, slot: DamageSlotNumber, benchmarkId?: string) {
+  async function applyBenchmark(
+    mode: BattleMode,
+    side: DamageSideId,
+    slot: DamageSlotNumber,
+    benchmarkId?: string,
+  ) {
     const current = getScenario(mode)
     const key = side === 'A' ? 'sideA' : 'sideB'
     const currentSlot = current[key].slots.find((entry) => entry.slot === slot)
@@ -634,10 +707,7 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
     const moveCandidates = meta?.moves.map((entry) => entry.id) ?? []
     const itemCandidates = meta?.items.map((entry) => entry.id) ?? []
     const learnset = new Set(
-      getEffectiveLearnsetMoveIds(
-        pokemon,
-        (pokemonId) => dexStore.getPokemon(mode, pokemonId),
-      ),
+      getEffectiveLearnsetMoveIds(pokemon, (pokemonId) => dexStore.getPokemon(mode, pokemonId)),
     )
 
     const chosenMoves: string[] = []
@@ -654,9 +724,14 @@ export const useDamageCalcStore = defineStore('damage-calc', () => {
     }
     while (chosenMoves.length < 4) chosenMoves.push('')
 
-    const selectedMoveEntries = chosenMoves.map((moveId) => dexStore.getMove(moveId)).filter(Boolean) as MoveEntry[]
+    const selectedMoveEntries = chosenMoves
+      .map((moveId) => dexStore.getMove(moveId))
+      .filter(Boolean) as MoveEntry[]
     const guessed = guessNatureAndEvsByMoves(selectedMoveEntries)
-    const itemId = itemCandidates.find((item) => Boolean(dexStore.getItem(item))) || pokemon.suggestedItems[0] || ''
+    const itemId =
+      itemCandidates.find((item) => Boolean(dexStore.getItem(item))) ||
+      pokemon.suggestedItems[0] ||
+      ''
     const level = mode === 'vgc' ? 50 : 100
 
     updateSlotSet(mode, side, slot, {

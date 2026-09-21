@@ -11,7 +11,7 @@ function makeSlot(slot: 1 | 2 | 3 | 4 | 5 | 6, pokemonId: string, moveId: string
     abilityId: 'pressure',
     itemId: '',
     natureId: 'jolly',
-    evs: { hp: 0, atk: 252, def: 0, spa: 0, spd: 0, spe: 252 },
+    evs: { hp: 0, atk: 32, def: 0, spa: 0, spd: 0, spe: 32 },
     ivs: { hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31 },
     teraType: undefined,
     isTeraActive: false,
@@ -46,7 +46,7 @@ function makeSide(slot: DamageSlotSet): DamageSideState {
 function makeScenario(moveId: string): DamageCalcScenario {
   const attacker = makeSlot(1, 'attacker-mon', moveId)
   const defender = makeSlot(1, 'defender-mon', moveId)
-  defender.evs = { hp: 252, atk: 0, def: 252, spa: 0, spd: 0, spe: 0 }
+  defender.evs = { hp: 32, atk: 0, def: 32, spa: 0, spd: 0, spe: 0 }
 
   return {
     mode: 'vgc',
@@ -418,7 +418,8 @@ describe('damage-engine', () => {
     boostedGroundScenario.sideA.slots[0].itemId = 'soft-sand'
 
     const baseGround = computePairDamage(baseGroundScenario, resolver, 'A', 1, 1).resultsByMove[0]
-    const boostedGround = computePairDamage(boostedGroundScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const boostedGround = computePairDamage(boostedGroundScenario, resolver, 'A', 1, 1)
+      .resultsByMove[0]
 
     expect(boostedGround.max).toBeGreaterThan(baseGround.max)
     expect(boostedGround.min).toBeGreaterThan(baseGround.min)
@@ -428,7 +429,8 @@ describe('damage-engine', () => {
     boostedSteelScenario.sideA.slots[0].itemId = 'metal-coat'
 
     const baseSteel = computePairDamage(baseSteelScenario, resolver, 'A', 1, 1).resultsByMove[0]
-    const boostedSteel = computePairDamage(boostedSteelScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const boostedSteel = computePairDamage(boostedSteelScenario, resolver, 'A', 1, 1)
+      .resultsByMove[0]
 
     expect(boostedSteel.max).toBeGreaterThan(baseSteel.max)
     expect(boostedSteel.min).toBeGreaterThan(baseSteel.min)
@@ -443,8 +445,10 @@ describe('damage-engine', () => {
     defenderBurnedScenario.sideB.slots[0].status = 'burn'
 
     const base = computePairDamage(baseScenario, resolver, 'A', 1, 1).resultsByMove[0]
-    const attackerBurned = computePairDamage(attackerBurnedScenario, resolver, 'A', 1, 1).resultsByMove[0]
-    const defenderBurned = computePairDamage(defenderBurnedScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const attackerBurned = computePairDamage(attackerBurnedScenario, resolver, 'A', 1, 1)
+      .resultsByMove[0]
+    const defenderBurned = computePairDamage(defenderBurnedScenario, resolver, 'A', 1, 1)
+      .resultsByMove[0]
 
     expect(Math.abs(attackerBurned.max - base.max)).toBeLessThanOrEqual(1)
     expect(defenderBurned.max).toBe(base.max)
@@ -504,7 +508,8 @@ describe('damage-engine', () => {
 
     const fling = computePairDamage(flingScenario, resolver, 'A', 1, 1).resultsByMove[0]
     const knockOff = computePairDamage(knockOffScenario, resolver, 'A', 1, 1).resultsByMove[0]
-    const knockOffBase = computePairDamage(makeScenario('knock-off'), resolver, 'A', 1, 1).resultsByMove[0]
+    const knockOffBase = computePairDamage(makeScenario('knock-off'), resolver, 'A', 1, 1)
+      .resultsByMove[0]
 
     expect(fling.max).toBeGreaterThan(0)
     expect(knockOff.max).toBeGreaterThan(knockOffBase.max)
@@ -527,7 +532,8 @@ describe('damage-engine', () => {
     boostedTargetScenario.sideB.slots[0].stages.atk = 4
 
     const base = computePairDamage(baseScenario, resolver, 'A', 1, 1).resultsByMove[0]
-    const boostedTarget = computePairDamage(boostedTargetScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const boostedTarget = computePairDamage(boostedTargetScenario, resolver, 'A', 1, 1)
+      .resultsByMove[0]
 
     expect(boostedTarget.max).toBeGreaterThan(base.max)
   })
@@ -538,7 +544,8 @@ describe('damage-engine', () => {
     boostedDefenseScenario.sideB.slots[0].stages.def = 4
 
     const base = computePairDamage(baseScenario, resolver, 'A', 1, 1).resultsByMove[0]
-    const boostedDefense = computePairDamage(boostedDefenseScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const boostedDefense = computePairDamage(boostedDefenseScenario, resolver, 'A', 1, 1)
+      .resultsByMove[0]
 
     expect(boostedDefense.max).toBeLessThan(base.max)
   })
@@ -568,11 +575,14 @@ describe('damage-engine', () => {
     const knockOffBaseScenario = makeScenario('knock-off')
 
     const assurance = computePairDamage(assuranceScenario, resolver, 'A', 1, 1).resultsByMove[0]
-    const assuranceBase = computePairDamage(assuranceBaseScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const assuranceBase = computePairDamage(assuranceBaseScenario, resolver, 'A', 1, 1)
+      .resultsByMove[0]
     const bulletPunch = computePairDamage(bulletPunchScenario, resolver, 'A', 1, 1).resultsByMove[0]
-    const bulletPunchBase = computePairDamage(bulletPunchBaseScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const bulletPunchBase = computePairDamage(bulletPunchBaseScenario, resolver, 'A', 1, 1)
+      .resultsByMove[0]
     const knockOff = computePairDamage(knockOffScenario, resolver, 'A', 1, 1).resultsByMove[0]
-    const knockOffBase = computePairDamage(knockOffBaseScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const knockOffBase = computePairDamage(knockOffBaseScenario, resolver, 'A', 1, 1)
+      .resultsByMove[0]
 
     expect(assurance.max).toBeGreaterThan(assuranceBase.max)
     expect(bulletPunch.max).toBeGreaterThan(bulletPunchBase.max)
@@ -609,16 +619,20 @@ describe('damage-engine', () => {
     lastRespectScenario.sideA.slots[0].combatContext.alliesFaintedCount = 3
 
     const rage = computePairDamage(rageScenario, resolver, 'A', 1, 1).resultsByMove[0]
-    const lastRespects = computePairDamage(lastRespectScenario, resolver, 'A', 1, 1).resultsByMove[0]
-    const rageBase = computePairDamage(makeScenario('rage-fist'), resolver, 'A', 1, 1).resultsByMove[0]
-    const lastRespectsBase = computePairDamage(makeScenario('last-respects'), resolver, 'A', 1, 1).resultsByMove[0]
+    const lastRespects = computePairDamage(lastRespectScenario, resolver, 'A', 1, 1)
+      .resultsByMove[0]
+    const rageBase = computePairDamage(makeScenario('rage-fist'), resolver, 'A', 1, 1)
+      .resultsByMove[0]
+    const lastRespectsBase = computePairDamage(makeScenario('last-respects'), resolver, 'A', 1, 1)
+      .resultsByMove[0]
 
     expect(rage.max).toBeGreaterThan(rageBase.max)
     expect(lastRespects.max).toBeGreaterThan(lastRespectsBase.max)
   })
 
   it('uses weight data for Heavy Slam', () => {
-    const result = computePairDamage(makeScenario('heavy-slam'), resolver, 'A', 1, 1).resultsByMove[0]
+    const result = computePairDamage(makeScenario('heavy-slam'), resolver, 'A', 1, 1)
+      .resultsByMove[0]
     const lighterAttackerScenario = makeScenario('heavy-slam')
     pokemonById['attacker-mon'].weightKg = 50
     const lighter = computePairDamage(lighterAttackerScenario, resolver, 'A', 1, 1).resultsByMove[0]
@@ -633,8 +647,10 @@ describe('damage-engine', () => {
     maxFriendshipScenario.sideA.slots[0].combatContext.friendship = 255
     lowFriendshipScenario.sideA.slots[0].combatContext.friendship = 0
 
-    const maxFriendship = computePairDamage(maxFriendshipScenario, resolver, 'A', 1, 1).resultsByMove[0]
-    const lowFriendship = computePairDamage(lowFriendshipScenario, resolver, 'A', 1, 1).resultsByMove[0]
+    const maxFriendship = computePairDamage(maxFriendshipScenario, resolver, 'A', 1, 1)
+      .resultsByMove[0]
+    const lowFriendship = computePairDamage(lowFriendshipScenario, resolver, 'A', 1, 1)
+      .resultsByMove[0]
 
     expect(maxFriendship.max).toBeGreaterThan(lowFriendship.max)
   })
@@ -664,5 +680,62 @@ describe('damage-engine', () => {
 
     expect(simulation).not.toBeNull()
     expect(simulation?.secondHitDamage ?? 0).toBeGreaterThan(simulation?.firstHitDamage ?? 0)
+  })
+})
+
+describe('Regulation M-C damage mechanics', () => {
+  function damage(ability: string, defendingAbility: string, move: MoveEntry, field?: Partial<DamageCalcScenario['field']>) {
+    const scenario = makeScenario(move.id)
+    scenario.sideA.slots[0]!.abilityId = ability
+    scenario.sideB.slots[0]!.abilityId = defendingAbility
+    Object.assign(scenario.field, field)
+    const result = computePairDamage(scenario, { ...resolver, getMove: () => move }, 'A', 1, 1).resultsByMove[0]!
+    return result.max
+  }
+  const slash: MoveEntry = { id: 'slash', name: 'Slash', type: 'normal', category: 'physical', power: 80, tags: ['contact', 'slicing'] }
+  it('Sharpness boosts slicing moves, while Tough Claws requires contact', () => {
+    const base = damage('', '', slash)
+    expect(damage('sharpness', '', slash)).toBeGreaterThan(base * 1.45)
+    expect(damage('tough-claws', '', slash)).toBeGreaterThan(base * 1.25)
+    const beam = { ...slash, tags: [] }
+    expect(damage('sharpness', '', beam)).toBe(damage('', '', beam))
+    expect(damage('tough-claws', '', beam)).toBe(damage('', '', beam))
+  })
+  it('Aura Guard halves contact damage, including special contact, but leaves noncontact attacks unchanged', () => {
+    expect(damage('', 'aura-guard', slash)).toBe(Math.floor(damage('', '', slash) / 2))
+    const specialContact = { ...slash, category: 'special' as const }
+    expect(damage('', 'aura-guard', specialContact)).toBe(Math.floor(damage('', '', specialContact) / 2))
+    const noncontact = { ...slash, tags: [] }
+    expect(damage('', 'aura-guard', noncontact)).toBe(damage('', '', noncontact))
+    expect(damage('mold-breaker', 'aura-guard', slash)).toBe(damage('', '', slash))
+  })
+  it('Aerilate changes Normal attacks to Flying before effectiveness and adds its power bonus', () => {
+    const flying = { ...slash, type: 'flying' as const, power: 96 }
+    expect(damage('aerilate', '', slash)).toBe(damage('', '', flying))
+    expect(damage('aerilate', '', flying)).toBe(damage('', '', flying))
+  })
+  it('Levitate blocks Ground damage and respects Gravity and Mold Breaker', () => {
+    const ground = { ...slash, id: 'earth-power', type: 'ground' as const, tags: [] }
+    expect(damage('', 'levitate', ground)).toBe(0)
+    expect(damage('mold-breaker', 'levitate', ground)).toBe(damage('', '', ground))
+    expect(damage('', 'levitate', ground, { globalFlags: { gravity: true, magicRoom: false, wonderRoom: false } })).toBe(damage('', '', ground))
+  })
+  it('Punk Rock boosts sound attacks and halves incoming sound damage', () => {
+    const sound = { ...slash, id: 'boomburst', category: 'special' as const, tags: ['sound'] }
+    expect(damage('punk-rock', '', sound)).toBeGreaterThan(damage('', '', sound) * 1.25)
+    expect(damage('', 'punk-rock', sound)).toBe(Math.floor(damage('', '', sound) / 2))
+  })
+  it('Psychic Terrain blocks opposing priority against grounded targets', () => {
+    const priority = { ...slash, id: 'first-impression', priority: 2 }
+    expect(damage('', '', priority, { terrain: 'psychic' })).toBe(0)
+    expect(damage('', 'levitate', priority, { terrain: 'psychic' })).toBeGreaterThan(0)
+    expect(damage('', '', slash, { terrain: 'psychic' })).toBeGreaterThan(0)
+  })
+  it('Grassy Terrain weakens Earthquake only against grounded targets', () => {
+    const quake = { ...slash, id: 'earthquake', type: 'ground' as const, tags: [] }
+    expect(damage('', '', quake, { terrain: 'grassy' })).toBe(Math.floor(damage('', '', quake) / 2))
+    const grass = { ...slash, type: 'grass' as const }
+    expect(damage('levitate', '', grass, { terrain: 'grassy' })).toBe(damage('levitate', '', grass))
+    expect(damage('', '', grass, { terrain: 'grassy' })).toBeGreaterThan(damage('', '', grass))
   })
 })

@@ -2,7 +2,7 @@
   "version": "v1",
   "locale": "es",
   "generationId": 7,
-  "generatedAt": "2026-04-17T18:43:31.043Z",
+  "generatedAt": "2026-06-17T06:49:17.718Z",
   "profiles": [
     {
       "id": "rowlet",
@@ -1645,8 +1645,8 @@
         {
           "id": "iron-fist",
           "name": "Puño Férreo",
-          "shortEffect": "This Pokemon's punch-based attacks have 1.2x power. Sucker Punch is not boosted.",
-          "effect": "This Pokemon's punch-based attacks have their power multiplied by 1.2.",
+          "shortEffect": "Potencia los movimientos de puno.",
+          "effect": "Los movimientos clasificados como golpes de puno del usuario infligen 1.2 veces su dano habitual.",
           "isHidden": false
         },
         {
@@ -1730,8 +1730,8 @@
         {
           "id": "iron-fist",
           "name": "Puño Férreo",
-          "shortEffect": "This Pokemon's punch-based attacks have 1.2x power. Sucker Punch is not boosted.",
-          "effect": "This Pokemon's punch-based attacks have their power multiplied by 1.2.",
+          "shortEffect": "Potencia los movimientos de puno.",
+          "effect": "Los movimientos clasificados como golpes de puno del usuario infligen 1.2 veces su dano habitual.",
           "isHidden": false
         },
         {
@@ -1808,8 +1808,8 @@
         {
           "id": "iron-fist",
           "name": "Puño Férreo",
-          "shortEffect": "This Pokemon's punch-based attacks have 1.2x power. Sucker Punch is not boosted.",
-          "effect": "This Pokemon's punch-based attacks have their power multiplied by 1.2.",
+          "shortEffect": "Potencia los movimientos de puno.",
+          "effect": "Los movimientos clasificados como golpes de puno del usuario infligen 1.2 veces su dano habitual.",
           "isHidden": false
         }
       ],
@@ -1859,7 +1859,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10315.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10315.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10315.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/crabominable-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/crabominable-mega.gif"
@@ -2598,7 +2598,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10151.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10151.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10151.png",
         "showdown": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10151.gif",
         "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10151.png"
@@ -2727,8 +2727,8 @@
         {
           "id": "no-guard",
           "name": "Indefenso",
-          "shortEffect": "Every move used by or against this Pokemon will always hit.",
-          "effect": "Every move used by or against this Pokemon will always hit.",
+          "shortEffect": "Todos los movimientos usados por o contra este Pokemon aciertan.",
+          "effect": "Los movimientos usados por este Pokemon y los movimientos dirigidos contra el siempre aciertan, salvo inmunidades u otras restricciones del movimiento.",
           "isHidden": true
         }
       ],
@@ -2809,8 +2809,8 @@
         {
           "id": "tough-claws",
           "name": "Garra Dura",
-          "shortEffect": "This Pokemon's contact moves have their power multiplied by 1.3.",
-          "effect": "This Pokemon's contact moves have their power multiplied by 1.3.",
+          "shortEffect": "Potencia los movimientos de contacto.",
+          "effect": "Los movimientos de contacto del usuario infligen 1.3 veces su dano habitual.",
           "isHidden": false
         }
       ],
@@ -3034,8 +3034,8 @@
         {
           "id": "regenerator",
           "name": "Regeneración",
-          "shortEffect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
-          "effect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+          "shortEffect": "Recupera 1/3 de los PS maximos al retirarse.",
+          "effect": "Cuando el usuario abandona el combate, recupera 1/3 de sus PS maximos.",
           "isHidden": true
         }
       ],
@@ -3114,8 +3114,8 @@
         {
           "id": "regenerator",
           "name": "Regeneración",
-          "shortEffect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
-          "effect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+          "shortEffect": "Recupera 1/3 de los PS maximos al retirarse.",
+          "effect": "Cuando el usuario abandona el combate, recupera 1/3 de sus PS maximos.",
           "isHidden": true
         }
       ],
@@ -3795,7 +3795,7 @@
         "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10128.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10128.png",
         "showdown": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10128.gif",
-        "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10128.gif"
+        "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10128.png"
       }
     },
     {
@@ -4193,7 +4193,7 @@
         "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10129.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10129.png",
         "showdown": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10129.gif",
-        "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10129.gif"
+        "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10129.png"
       }
     },
     {
@@ -4931,7 +4931,8 @@
       "generation": "Generation Vii",
       "generationId": 7,
       "gameAvailability": [
-        "sword-shield"
+        "sword-shield",
+        "pokemon-champions"
       ],
       "eggGroups": [
         "Bug",
@@ -4978,10 +4979,10 @@
       ],
       "abilities": [
         {
-          "id": "emergency-exit",
-          "name": "Retirada",
-          "shortEffect": "Se retira del combate cuando sus PS bajan a la mitad o menos.",
-          "effect": "Si sus PS se reducen a la mitad o menos, el usuario abandona el combate para evitar males mayores.",
+          "id": "tough-claws",
+          "name": "Garra Dura",
+          "shortEffect": "Potencia los movimientos de contacto.",
+          "effect": "Los movimientos de contacto del usuario infligen 1.3 veces su dano habitual.",
           "isHidden": false
         }
       ],
@@ -5003,7 +5004,8 @@
       "generation": "Generation Vii",
       "generationId": 7,
       "gameAvailability": [
-        "sword-shield"
+        "sword-shield",
+        "pokemon-champions"
       ],
       "eggGroups": [
         "Bug",
@@ -5032,7 +5034,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10316.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10316.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10316.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/golisopod-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/golisopod-mega.gif"
@@ -5197,8 +5199,8 @@
         {
           "id": "innards-out",
           "name": "Revés",
-          "shortEffect": "If this Pokemon is KOed with a move, that move's user loses an equal amount of HP.",
-          "effect": "If this Pokemon is knocked out with a move, that move's user loses HP equal to the amount of damage inflicted on this Pokemon.",
+          "shortEffect": "Si cae por un ataque, dana al atacante segun los PS que perdio.",
+          "effect": "Si el usuario es debilitado por un movimiento, el atacante pierde tantos PS como PS perdio el usuario por ese golpe.",
           "isHidden": false
         },
         {
@@ -7402,7 +7404,7 @@
         "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10154.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10154.png",
         "showdown": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10154.gif",
-        "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10154.gif"
+        "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10154.png"
       }
     },
     {
@@ -7922,7 +7924,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10302.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10302.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10302.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/drampa-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/drampa-mega.gif"
@@ -9810,7 +9812,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10317.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10317.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10317.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/magearna-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/magearna-mega.gif"
@@ -9883,7 +9885,7 @@
         }
       ],
       "sprites": {
-        "home": "https://play.pokemonshowdown.com/sprites/ani/magearna-original-mega.gif",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10318.png",
         "officialArtwork": null,
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/magearna-original-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/magearna-original-mega.gif"
@@ -10303,7 +10305,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10319.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10319.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10319.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/zeraora-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/zeraora-mega.gif"
@@ -10378,8 +10380,8 @@
         {
           "id": "iron-fist",
           "name": "Puño Férreo",
-          "shortEffect": "This Pokemon's punch-based attacks have 1.2x power. Sucker Punch is not boosted.",
-          "effect": "This Pokemon's punch-based attacks have their power multiplied by 1.2.",
+          "shortEffect": "Potencia los movimientos de puno.",
+          "effect": "Los movimientos clasificados como golpes de puno del usuario infligen 1.2 veces su dano habitual.",
           "isHidden": false
         }
       ],
@@ -10440,8 +10442,8 @@
         {
           "id": "iron-fist",
           "name": "Puño Férreo",
-          "shortEffect": "This Pokemon's punch-based attacks have 1.2x power. Sucker Punch is not boosted.",
-          "effect": "This Pokemon's punch-based attacks have their power multiplied by 1.2.",
+          "shortEffect": "Potencia los movimientos de puno.",
+          "effect": "Los movimientos clasificados como golpes de puno del usuario infligen 1.2 veces su dano habitual.",
           "isHidden": false
         }
       ],

@@ -80,6 +80,16 @@ export function normalizeStatValue(value: number, min: number, max: number): num
   return Math.min(max, Math.max(min, Math.floor(value)))
 }
 
+export function legacyEvToStatPoints(value: number): number {
+  const ev = normalizeStatValue(value, 0, 252)
+  if (ev <= 0) return 0
+  return Math.min(MAX_EV_PER_STAT, Math.floor((ev + 4) / 8))
+}
+
+export function normalizeStatPoints(value: number): number {
+  return normalizeStatValue(value, 0, MAX_EV_PER_STAT)
+}
+
 export function normalizeEvs(member: TeamMember): TeamMember {
   const next: TeamMember = {
     slot: member.slot,
@@ -95,8 +105,12 @@ export function normalizeEvs(member: TeamMember): TeamMember {
   }
   let total = 0
 
+  const usesLegacyEvScale = STATS.some((stat) => (next.evs[stat] ?? 0) > MAX_EV_PER_STAT)
+
   for (const stat of STATS) {
-    const clamped = normalizeStatValue(next.evs[stat], 0, MAX_EV_PER_STAT)
+    const clamped = usesLegacyEvScale
+      ? legacyEvToStatPoints(next.evs[stat])
+      : normalizeStatPoints(next.evs[stat])
     next.evs[stat] = clamped
     total += clamped
   }
@@ -128,7 +142,10 @@ export function memberIsComplete(member: TeamMember): boolean {
   )
 }
 
-export function getMemberDisplayType(member: TeamMember, defaultTypes: PokemonTypeKey[]): PokemonTypeKey[] {
+export function getMemberDisplayType(
+  member: TeamMember,
+  defaultTypes: PokemonTypeKey[],
+): PokemonTypeKey[] {
   if (member.teraType) return [member.teraType]
   return defaultTypes
 }

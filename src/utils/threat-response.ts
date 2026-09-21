@@ -16,8 +16,9 @@ import type {
   ThreatResponseSummary,
 } from '@/models/threats'
 import { calculateBattleStats } from '@/utils/stat-calc'
+import { calculateFavorableSpeedBenchmark } from '@/utils/speed-comparison'
 import { effectivenessAgainstDual } from '@/models/type-chart'
-import vgcThreatsRaw from '@/data/meta-threats.vgc.json'
+import championsMetaSource from '../../data/champions/meta-usage.source.json'
 import singlesThreatsRaw from '@/data/meta-threats.singles.json'
 
 const MIN_PRESSURE_POWER = 70
@@ -33,7 +34,20 @@ const SPEED_CONTROL_MOVES = new Set([
 ])
 
 const THREATS_BY_MODE: Record<BattleMode, ThreatProfile[]> = {
-  vgc: vgcThreatsRaw as ThreatProfile[],
+  vgc: Object.entries(championsMetaSource.pokemon)
+    .sort(([, a], [, b]) => a.rank - b.rank)
+    .slice(0, 12)
+    .map(([pokemonId, entry]) => ({
+      id: pokemonId,
+      name: entry.name,
+      kind: 'pokemon' as const,
+      pokemonId,
+      defensiveTypes: [],
+      threatMoveTypes: [],
+      expectedSpeed: 0,
+      utilityCountersAny: [],
+      priority: entry.rank,
+    })),
   singles: singlesThreatsRaw as ThreatProfile[],
 }
 
@@ -161,6 +175,12 @@ export function evaluateThreatAgainstTeam(
   const { mode, team, threat, dexResolver, moveResolver, getThreatUsage } = params
   const threatDexEntry = threat.pokemonId ? dexResolver(threat.pokemonId) : undefined
   const [threatDefTypeA, threatDefTypeB] = normalizeThreatTypes(threat, threatDexEntry)
+  const threatMoveTypes = threat.threatMoveTypes.length > 0
+    ? threat.threatMoveTypes
+    : threatDexEntry?.types ?? []
+  const expectedSpeed = threat.expectedSpeed > 0
+    ? threat.expectedSpeed
+    : threatDexEntry ? calculateFavorableSpeedBenchmark(threatDexEntry) : Number.POSITIVE_INFINITY
   const usage = threat.pokemonId ? getThreatUsage?.(threat.pokemonId) ?? 0 : 0
 
   const checks: MemberThreatCheck[] = []
@@ -173,10 +193,10 @@ export function evaluateThreatAgainstTeam(
     const memberRoles = member.roleTags.length > 0 ? member.roleTags : dexEntry.roleTags
     const [memberTypeA, memberTypeB] = memberDefendingTypes(member, dexEntry)
 
-    const severeWeakness = hasSevereWeakness(threat.threatMoveTypes, memberTypeA, memberTypeB)
-    const defensiveAnswer = hasStrongResist(threat.threatMoveTypes, memberTypeA, memberTypeB) && !severeWeakness
+    const severeWeakness = hasSevereWeakness(threatMoveTypes, memberTypeA, memberTypeB)
+    const defensiveAnswer = hasStrongResist(threatMoveTypes, memberTypeA, memberTypeB) && !severeWeakness
     const speedAnswer =
-      memberFinalSpeed(mode, member, dexEntry) >= threat.expectedSpeed ||
+      memberFinalSpeed(mode, member, dexEntry) >= expectedSpeed ||
       hasSpeedControlTools(member, memberRoles)
     const pressureAnswer = hasPressureAnswer(member, threatDefTypeA, threatDefTypeB, moveResolver)
     const utilityAnswer = member.moves.some((moveId) => threat.utilityCountersAny.includes(moveId))

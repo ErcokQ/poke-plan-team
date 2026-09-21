@@ -1,0 +1,3815 @@
+{
+  "version": 1,
+  "id": "regulation-m-c",
+  "reviewedAt": "2026-09-09",
+  "startsAt": "2026-09-09T02:00:00Z",
+  "endsAt": "2026-12-02T01:59:00Z",
+  "sources": {
+    "official": "https://champions-news.pokemon-home.com/en/page/816.html",
+    "roster": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+    "learnsets": "https://github.com/smogon/pokemon-showdown/blob/master/data/mods/champions/learnsets.ts",
+    "moves": "https://github.com/smogon/pokemon-showdown/blob/master/data/mods/champions/moves.ts",
+    "abilities": "https://www.serebii.net/pokemonchampions/megaabilities.shtml",
+    "items": "https://www.serebii.net/pokemonchampions/items.shtml",
+    "moveBalance": "https://www.serebii.net/pokemonchampions/updatedattacks.shtml"
+  },
+  "rules": {
+    "level": 50,
+    "maxMegaEvolutions": 1,
+    "duplicateItems": false,
+    "totalSeconds": 1200,
+    "playerSeconds": 420,
+    "turnSeconds": 45,
+    "previewSeconds": 90
+  },
+  "newPokemonIds": [
+    "wigglytuff",
+    "persian",
+    "persian-alola",
+    "farfetchd",
+    "mr-mime",
+    "swalot",
+    "salamence",
+    "gogoat",
+    "golisopod",
+    "rillaboom",
+    "cinderace",
+    "inteleon",
+    "thievul",
+    "toxtricity-amped",
+    "toxtricity-low-key",
+    "grapploct",
+    "perrserker",
+    "sirfetchd",
+    "pincurchin",
+    "indeedee-male",
+    "indeedee-female",
+    "pawmot",
+    "arboliva",
+    "squawkabilly-green-plumage",
+    "squawkabilly-blue-plumage",
+    "squawkabilly-yellow-plumage",
+    "squawkabilly-white-plumage",
+    "mabosstiff",
+    "baxcalibur"
+  ],
+  "newMegaIds": [
+    "absol-mega-z",
+    "salamence-mega",
+    "garchomp-mega-z",
+    "lucario-mega-z",
+    "golisopod-mega",
+    "baxcalibur-mega"
+  ],
+  "availableItemIds": [
+    "abomasite",
+    "absolite",
+    "absolite-z",
+    "aerodactylite",
+    "aggronite",
+    "air-balloon",
+    "alakazite",
+    "altarianite",
+    "ampharosite",
+    "aspear-berry",
+    "audinite",
+    "babiri-berry",
+    "banettite",
+    "barbaracite",
+    "baxcalibrite",
+    "beedrillite",
+    "big-root",
+    "binding-band",
+    "black-belt",
+    "black-glasses",
+    "blastoisinite",
+    "blazikenite",
+    "bright-powder",
+    "cameruptite",
+    "chandelurite",
+    "charcoal",
+    "charizardite-x",
+    "charizardite-y",
+    "charti-berry",
+    "cheri-berry",
+    "chesnaughtite",
+    "chesto-berry",
+    "chilan-berry",
+    "chimechite",
+    "choice-scarf",
+    "chople-berry",
+    "clefablite",
+    "coba-berry",
+    "colbur-berry",
+    "crabominite",
+    "damp-rock",
+    "delphoxite",
+    "dragalgite",
+    "dragon-fang",
+    "dragoninite",
+    "drampanite",
+    "eelektrossite",
+    "eject-button",
+    "electric-seed",
+    "emboarite",
+    "excadrite",
+    "expert-belt",
+    "fairy-feather",
+    "falinksite",
+    "feraligite",
+    "floettite",
+    "focus-band",
+    "focus-sash",
+    "froslassite",
+    "galladite",
+    "garchompite",
+    "garchompite-z",
+    "gardevoirite",
+    "gengarite",
+    "glalitite",
+    "glimmoranite",
+    "golisopite",
+    "golurkite",
+    "grassy-seed",
+    "greninjite",
+    "gyaradosite",
+    "haban-berry",
+    "hard-stone",
+    "hawluchanite",
+    "heat-rock",
+    "heracronite",
+    "houndoominite",
+    "icy-rock",
+    "iron-ball",
+    "kangaskhanite",
+    "kasib-berry",
+    "kebia-berry",
+    "kings-rock",
+    "leftovers",
+    "leppa-berry",
+    "life-orb",
+    "light-ball",
+    "light-clay",
+    "lopunnite",
+    "lucarionite",
+    "lucarionite-z",
+    "lum-berry",
+    "magnet",
+    "malamarite",
+    "manectite",
+    "mawilite",
+    "medichamite",
+    "meganiumite",
+    "mental-herb",
+    "metagrossite",
+    "metal-coat",
+    "metronome",
+    "miracle-seed",
+    "misty-seed",
+    "muscle-band",
+    "mystic-water",
+    "never-melt-ice",
+    "normal-gem",
+    "occa-berry",
+    "oran-berry",
+    "passho-berry",
+    "payapa-berry",
+    "pecha-berry",
+    "persim-berry",
+    "pidgeotite",
+    "pinsirite",
+    "poison-barb",
+    "psychic-seed",
+    "pyroarite",
+    "quick-claw",
+    "raichunite-x",
+    "raichunite-y",
+    "rawst-berry",
+    "red-card",
+    "rindo-berry",
+    "rocky-helmet",
+    "roseli-berry",
+    "sablenite",
+    "salamencite",
+    "sceptilite",
+    "scizorite",
+    "scolipite",
+    "scope-lens",
+    "scovillainite",
+    "scraftinite",
+    "sharp-beak",
+    "sharpedonite",
+    "shed-shell",
+    "shell-bell",
+    "shuca-berry",
+    "silk-scarf",
+    "silver-powder",
+    "sitrus-berry",
+    "skarmorite",
+    "slowbronite",
+    "smooth-rock",
+    "soft-sand",
+    "spell-tag",
+    "staraptite",
+    "starminite",
+    "steelixite",
+    "swampertite",
+    "tanga-berry",
+    "terrain-extender",
+    "twisted-spoon",
+    "tyranitarite",
+    "venusaurite",
+    "victreebelite",
+    "wacan-berry",
+    "white-herb",
+    "wide-lens",
+    "wise-glasses",
+    "yache-berry",
+    "zoom-lens"
+  ],
+  "learnsets": {
+    "wigglytuff": [
+      "alluring-voice",
+      "amnesia",
+      "baton-pass",
+      "blizzard",
+      "body-press",
+      "body-slam",
+      "bounce",
+      "brick-break",
+      "calm-mind",
+      "charm",
+      "chilling-water",
+      "copycat",
+      "covet",
+      "dark-pulse",
+      "dazzling-gleam",
+      "dig",
+      "disable",
+      "double-edge",
+      "drain-punch",
+      "draining-kiss",
+      "encore",
+      "endeavor",
+      "endure",
+      "energy-ball",
+      "expanding-force",
+      "facade",
+      "fake-tears",
+      "fire-blast",
+      "fire-punch",
+      "flamethrower",
+      "fling",
+      "focus-blast",
+      "focus-punch",
+      "giga-impact",
+      "grass-knot",
+      "gravity",
+      "gyro-ball",
+      "heal-pulse",
+      "helping-hand",
+      "hyper-beam",
+      "hyper-voice",
+      "ice-beam",
+      "ice-punch",
+      "ice-spinner",
+      "icy-wind",
+      "knock-off",
+      "last-resort",
+      "light-screen",
+      "magic-room",
+      "mega-kick",
+      "misty-explosion",
+      "misty-terrain",
+      "moonblast",
+      "nasty-plot",
+      "pain-split",
+      "perish-song",
+      "play-rough",
+      "protect",
+      "psych-up",
+      "psychic",
+      "psychic-noise",
+      "psyshock",
+      "rain-dance",
+      "reflect",
+      "rest",
+      "round",
+      "safeguard",
+      "sandstorm",
+      "screech",
+      "self-destruct",
+      "shadow-ball",
+      "sing",
+      "skill-swap",
+      "sleep-talk",
+      "snore",
+      "solar-beam",
+      "spit-up",
+      "stealth-rock",
+      "steel-roller",
+      "stockpile",
+      "stored-power",
+      "substitute",
+      "sunny-day",
+      "swallow",
+      "sweet-kiss",
+      "taunt",
+      "thief",
+      "thunder",
+      "thunder-punch",
+      "thunder-wave",
+      "thunderbolt",
+      "trailblaze",
+      "tri-attack",
+      "uproar",
+      "water-pulse",
+      "wild-charge",
+      "wish",
+      "zen-headbutt"
+    ],
+    "persian": [
+      "aerial-ace",
+      "agility",
+      "amnesia",
+      "assurance",
+      "bite",
+      "body-slam",
+      "charm",
+      "chilling-water",
+      "covet",
+      "dark-pulse",
+      "dig",
+      "double-edge",
+      "double-team",
+      "endeavor",
+      "endure",
+      "facade",
+      "fake-out",
+      "fake-tears",
+      "feint",
+      "flail",
+      "foul-play",
+      "giga-impact",
+      "gunk-shot",
+      "helping-hand",
+      "hyper-beam",
+      "hyper-voice",
+      "hypnosis",
+      "icy-wind",
+      "iron-tail",
+      "knock-off",
+      "lash-out",
+      "last-resort",
+      "nasty-plot",
+      "pain-split",
+      "payback",
+      "play-rough",
+      "power-gem",
+      "protect",
+      "psych-up",
+      "rain-dance",
+      "rest",
+      "roar",
+      "round",
+      "screech",
+      "seed-bomb",
+      "shadow-ball",
+      "shadow-claw",
+      "skitter-smack",
+      "slash",
+      "sleep-talk",
+      "snarl",
+      "snore",
+      "spite",
+      "substitute",
+      "sunny-day",
+      "switcheroo",
+      "taunt",
+      "thief",
+      "throat-chop",
+      "thunder",
+      "thunder-wave",
+      "thunderbolt",
+      "trailblaze",
+      "u-turn",
+      "uproar",
+      "water-pulse"
+    ],
+    "persian-alola": [
+      "aerial-ace",
+      "agility",
+      "amnesia",
+      "assurance",
+      "beat-up",
+      "bite",
+      "body-slam",
+      "burning-jealousy",
+      "charm",
+      "chilling-water",
+      "confuse-ray",
+      "covet",
+      "curse",
+      "dark-pulse",
+      "dig",
+      "double-edge",
+      "double-team",
+      "endeavor",
+      "endure",
+      "facade",
+      "fake-out",
+      "fake-tears",
+      "feint",
+      "flail",
+      "flatter",
+      "foul-play",
+      "giga-impact",
+      "gunk-shot",
+      "helping-hand",
+      "hyper-beam",
+      "hyper-voice",
+      "hypnosis",
+      "icy-wind",
+      "iron-tail",
+      "knock-off",
+      "lash-out",
+      "nasty-plot",
+      "night-slash",
+      "parting-shot",
+      "payback",
+      "play-rough",
+      "power-gem",
+      "protect",
+      "psych-up",
+      "quash",
+      "rain-dance",
+      "rest",
+      "roar",
+      "round",
+      "screech",
+      "seed-bomb",
+      "shadow-ball",
+      "shadow-claw",
+      "skitter-smack",
+      "slash",
+      "sleep-talk",
+      "smack-down",
+      "snarl",
+      "snore",
+      "spite",
+      "substitute",
+      "sunny-day",
+      "switcheroo",
+      "taunt",
+      "thief",
+      "throat-chop",
+      "thunder",
+      "thunder-wave",
+      "thunderbolt",
+      "trailblaze",
+      "u-turn",
+      "uproar",
+      "water-pulse"
+    ],
+    "farfetchd": [
+      "acrobatics",
+      "aerial-ace",
+      "agility",
+      "air-cutter",
+      "air-slash",
+      "attract",
+      "baton-pass",
+      "body-slam",
+      "brave-bird",
+      "brutal-swing",
+      "close-combat",
+      "covet",
+      "curse",
+      "dual-wingbeat",
+      "endure",
+      "facade",
+      "feather-dance",
+      "feint",
+      "final-gambit",
+      "first-impression",
+      "flail",
+      "fly",
+      "focus-energy",
+      "heat-wave",
+      "helping-hand",
+      "iron-tail",
+      "knock-off",
+      "leaf-blade",
+      "night-slash",
+      "poison-jab",
+      "protect",
+      "quick-attack",
+      "rest",
+      "roost",
+      "round",
+      "simple-beam",
+      "sky-attack",
+      "slash",
+      "sleep-talk",
+      "snore",
+      "solar-blade",
+      "steel-wing",
+      "substitute",
+      "sunny-day",
+      "swords-dance",
+      "thief",
+      "throat-chop",
+      "trailblaze",
+      "u-turn",
+      "uproar"
+    ],
+    "mr-mime": [
+      "ally-switch",
+      "attract",
+      "baton-pass",
+      "body-slam",
+      "brick-break",
+      "calm-mind",
+      "charge-beam",
+      "charm",
+      "confuse-ray",
+      "copycat",
+      "dazzling-gleam",
+      "drain-punch",
+      "encore",
+      "endure",
+      "energy-ball",
+      "expanding-force",
+      "facade",
+      "fake-out",
+      "fire-punch",
+      "fling",
+      "focus-blast",
+      "foul-play",
+      "future-sight",
+      "giga-impact",
+      "grass-knot",
+      "guard-swap",
+      "helping-hand",
+      "hyper-beam",
+      "hypnosis",
+      "ice-punch",
+      "icy-wind",
+      "iron-defense",
+      "light-screen",
+      "magic-room",
+      "mega-kick",
+      "misty-terrain",
+      "mystical-fire",
+      "nasty-plot",
+      "payback",
+      "power-split",
+      "power-swap",
+      "protect",
+      "psychic",
+      "psychic-terrain",
+      "psyshock",
+      "quick-guard",
+      "rain-dance",
+      "recycle",
+      "reflect",
+      "rest",
+      "role-play",
+      "round",
+      "safeguard",
+      "shadow-ball",
+      "skill-swap",
+      "sleep-talk",
+      "snore",
+      "solar-beam",
+      "stored-power",
+      "substitute",
+      "sucker-punch",
+      "sunny-day",
+      "taunt",
+      "teeter-dance",
+      "thief",
+      "thunder",
+      "thunder-punch",
+      "thunder-wave",
+      "thunderbolt",
+      "tickle",
+      "torment",
+      "trick",
+      "trick-room",
+      "uproar",
+      "wide-guard",
+      "wonder-room",
+      "zen-headbutt"
+    ],
+    "swalot": [
+      "acid-armor",
+      "acid-spray",
+      "amnesia",
+      "belch",
+      "body-press",
+      "body-slam",
+      "brick-break",
+      "bulldoze",
+      "bullet-seed",
+      "clear-smog",
+      "corrosive-gas",
+      "curse",
+      "destiny-bond",
+      "double-edge",
+      "earthquake",
+      "encore",
+      "endure",
+      "facade",
+      "fire-punch",
+      "fling",
+      "gastro-acid",
+      "giga-drain",
+      "giga-impact",
+      "gunk-shot",
+      "helping-hand",
+      "hyper-beam",
+      "ice-beam",
+      "ice-punch",
+      "knock-off",
+      "mud-shot",
+      "mud-slap",
+      "pain-split",
+      "poison-jab",
+      "protect",
+      "rain-dance",
+      "rest",
+      "round",
+      "seed-bomb",
+      "self-destruct",
+      "shadow-ball",
+      "skitter-smack",
+      "sleep-talk",
+      "sludge-bomb",
+      "sludge-wave",
+      "snore",
+      "solar-beam",
+      "spit-up",
+      "stockpile",
+      "stuff-cheeks",
+      "substitute",
+      "sunny-day",
+      "swallow",
+      "swords-dance",
+      "thief",
+      "thunder-punch",
+      "thunder-wave",
+      "toxic",
+      "toxic-spikes",
+      "venoshock",
+      "water-pulse",
+      "yawn",
+      "zen-headbutt"
+    ],
+    "salamence": [
+      "aerial-ace",
+      "air-slash",
+      "bite",
+      "body-slam",
+      "breaking-swipe",
+      "brick-break",
+      "brutal-swing",
+      "bulldoze",
+      "crunch",
+      "double-edge",
+      "draco-meteor",
+      "dragon-cheer",
+      "dragon-claw",
+      "dragon-dance",
+      "dragon-pulse",
+      "dragon-rush",
+      "dragon-tail",
+      "dual-wingbeat",
+      "earthquake",
+      "endure",
+      "facade",
+      "fire-blast",
+      "fire-fang",
+      "fire-spin",
+      "flamethrower",
+      "fly",
+      "focus-energy",
+      "giga-impact",
+      "heat-wave",
+      "helping-hand",
+      "hurricane",
+      "hydro-pump",
+      "hyper-beam",
+      "hyper-voice",
+      "iron-defense",
+      "iron-head",
+      "iron-tail",
+      "mud-slap",
+      "outrage",
+      "protect",
+      "psychic-fangs",
+      "rain-dance",
+      "rest",
+      "roar",
+      "rock-slide",
+      "rock-tomb",
+      "roost",
+      "round",
+      "scary-face",
+      "shadow-claw",
+      "slash",
+      "sleep-talk",
+      "snore",
+      "steel-wing",
+      "stone-edge",
+      "substitute",
+      "sunny-day",
+      "tailwind",
+      "temper-flare",
+      "thrash",
+      "thunder-fang",
+      "zen-headbutt"
+    ],
+    "gogoat": [
+      "aerial-ace",
+      "body-slam",
+      "brick-break",
+      "bulk-up",
+      "bulldoze",
+      "bullet-seed",
+      "dig",
+      "double-edge",
+      "earthquake",
+      "endeavor",
+      "endure",
+      "energy-ball",
+      "facade",
+      "giga-drain",
+      "giga-impact",
+      "grass-knot",
+      "grassy-glide",
+      "grassy-terrain",
+      "growth",
+      "helping-hand",
+      "high-horsepower",
+      "horn-leech",
+      "hyper-beam",
+      "iron-tail",
+      "leaf-blade",
+      "leaf-storm",
+      "leech-seed",
+      "megahorn",
+      "milk-drink",
+      "mud-shot",
+      "mud-slap",
+      "payback",
+      "play-rough",
+      "protect",
+      "rain-dance",
+      "rest",
+      "roar",
+      "rock-slide",
+      "round",
+      "seed-bomb",
+      "sleep-talk",
+      "snore",
+      "solar-beam",
+      "stomping-tantrum",
+      "substitute",
+      "sunny-day",
+      "superpower",
+      "surf",
+      "synthesis",
+      "throat-chop",
+      "trailblaze",
+      "wild-charge",
+      "worry-seed",
+      "zen-headbutt"
+    ],
+    "golisopod": [
+      "agility",
+      "aqua-jet",
+      "assurance",
+      "attract",
+      "blizzard",
+      "brick-break",
+      "bug-bite",
+      "bug-buzz",
+      "bulk-up",
+      "chilling-water",
+      "close-combat",
+      "dark-pulse",
+      "dive",
+      "double-hit",
+      "drill-run",
+      "endure",
+      "facade",
+      "first-impression",
+      "fling",
+      "focus-blast",
+      "giga-impact",
+      "gunk-shot",
+      "hyper-beam",
+      "ice-beam",
+      "icy-wind",
+      "iron-defense",
+      "iron-head",
+      "leech-life",
+      "liquidation",
+      "mud-shot",
+      "muddy-water",
+      "night-slash",
+      "payback",
+      "pin-missile",
+      "poison-jab",
+      "pounce",
+      "protect",
+      "rain-dance",
+      "razor-shell",
+      "rest",
+      "rock-slide",
+      "rock-tomb",
+      "round",
+      "scald",
+      "screech",
+      "shadow-claw",
+      "skitter-smack",
+      "slash",
+      "sleep-talk",
+      "sludge-bomb",
+      "sludge-wave",
+      "snarl",
+      "snore",
+      "spikes",
+      "spite",
+      "struggle-bug",
+      "substitute",
+      "sucker-punch",
+      "surf",
+      "swords-dance",
+      "taunt",
+      "throat-chop",
+      "u-turn",
+      "venoshock",
+      "waterfall",
+      "wide-guard",
+      "x-scissor"
+    ],
+    "rillaboom": [
+      "acrobatics",
+      "assurance",
+      "body-press",
+      "body-slam",
+      "boomburst",
+      "brick-break",
+      "brutal-swing",
+      "bulk-up",
+      "bulldoze",
+      "bullet-seed",
+      "double-edge",
+      "double-hit",
+      "drain-punch",
+      "drum-beating",
+      "earth-power",
+      "earthquake",
+      "endeavor",
+      "endure",
+      "energy-ball",
+      "facade",
+      "fake-out",
+      "fling",
+      "focus-blast",
+      "focus-energy",
+      "focus-punch",
+      "frenzy-plant",
+      "giga-drain",
+      "giga-impact",
+      "grass-knot",
+      "grassy-glide",
+      "grassy-terrain",
+      "growth",
+      "hammer-arm",
+      "high-horsepower",
+      "hyper-beam",
+      "hyper-voice",
+      "knock-off",
+      "leaf-storm",
+      "leech-seed",
+      "low-kick",
+      "low-sweep",
+      "mega-kick",
+      "mud-shot",
+      "noble-roar",
+      "protect",
+      "rest",
+      "round",
+      "scary-face",
+      "screech",
+      "seed-bomb",
+      "sleep-talk",
+      "snarl",
+      "snore",
+      "solar-beam",
+      "solar-blade",
+      "stomping-tantrum",
+      "substitute",
+      "sunny-day",
+      "superpower",
+      "swords-dance",
+      "taunt",
+      "thief",
+      "trailblaze",
+      "u-turn",
+      "uproar",
+      "wood-hammer",
+      "worry-seed"
+    ],
+    "cinderace": [
+      "acrobatics",
+      "agility",
+      "assurance",
+      "baton-pass",
+      "blast-burn",
+      "blaze-kick",
+      "bounce",
+      "bulk-up",
+      "burning-jealousy",
+      "coaching",
+      "counter",
+      "court-change",
+      "double-edge",
+      "electro-ball",
+      "endure",
+      "facade",
+      "feint",
+      "fire-blast",
+      "fire-fang",
+      "fire-punch",
+      "fire-spin",
+      "flame-charge",
+      "flamethrower",
+      "flare-blitz",
+      "fling",
+      "focus-blast",
+      "focus-energy",
+      "giga-impact",
+      "gunk-shot",
+      "heat-wave",
+      "helping-hand",
+      "high-jump-kick",
+      "hyper-beam",
+      "iron-head",
+      "low-kick",
+      "low-sweep",
+      "mega-kick",
+      "mud-shot",
+      "mud-slap",
+      "overheat",
+      "protect",
+      "pyro-ball",
+      "quick-attack",
+      "rest",
+      "reversal",
+      "round",
+      "scorching-sands",
+      "shadow-ball",
+      "sleep-talk",
+      "smack-down",
+      "snarl",
+      "snore",
+      "substitute",
+      "sucker-punch",
+      "sunny-day",
+      "super-fang",
+      "swords-dance",
+      "taunt",
+      "temper-flare",
+      "trailblaze",
+      "u-turn",
+      "weather-ball",
+      "will-o-wisp",
+      "zen-headbutt"
+    ],
+    "inteleon": [
+      "acrobatics",
+      "agility",
+      "air-cutter",
+      "air-slash",
+      "aqua-jet",
+      "aqua-ring",
+      "baton-pass",
+      "bind",
+      "blizzard",
+      "bounce",
+      "breaking-swipe",
+      "chilling-water",
+      "dark-pulse",
+      "dive",
+      "double-team",
+      "endure",
+      "facade",
+      "fell-stinger",
+      "fling",
+      "flip-turn",
+      "focus-energy",
+      "giga-impact",
+      "haze",
+      "hydro-cannon",
+      "hydro-pump",
+      "hyper-beam",
+      "ice-beam",
+      "ice-shard",
+      "icicle-spear",
+      "icy-wind",
+      "light-screen",
+      "liquidation",
+      "mud-shot",
+      "muddy-water",
+      "protect",
+      "psych-up",
+      "rain-dance",
+      "reflect",
+      "rest",
+      "round",
+      "scald",
+      "scale-shot",
+      "shadow-ball",
+      "skitter-smack",
+      "sleep-talk",
+      "smack-down",
+      "snipe-shot",
+      "snore",
+      "snowscape",
+      "soak",
+      "substitute",
+      "sucker-punch",
+      "surf",
+      "swords-dance",
+      "taunt",
+      "tearful-look",
+      "u-turn",
+      "vacuum-wave",
+      "water-pulse",
+      "waterfall",
+      "weather-ball",
+      "whirlpool"
+    ],
+    "thievul": [
+      "acrobatics",
+      "agility",
+      "assurance",
+      "attract",
+      "baton-pass",
+      "beat-up",
+      "burning-jealousy",
+      "crunch",
+      "dark-pulse",
+      "dig",
+      "double-team",
+      "endure",
+      "facade",
+      "fake-tears",
+      "fire-fang",
+      "first-impression",
+      "foul-play",
+      "giga-impact",
+      "grass-knot",
+      "howl",
+      "hyper-beam",
+      "ice-fang",
+      "knock-off",
+      "lash-out",
+      "mud-shot",
+      "nasty-plot",
+      "night-slash",
+      "parting-shot",
+      "play-rough",
+      "protect",
+      "psychic",
+      "quick-attack",
+      "quick-guard",
+      "rest",
+      "roar",
+      "round",
+      "screech",
+      "shadow-ball",
+      "shadow-claw",
+      "sleep-talk",
+      "snarl",
+      "snore",
+      "substitute",
+      "sucker-punch",
+      "tail-slap",
+      "taunt",
+      "thief",
+      "thunder-fang",
+      "torment",
+      "trailblaze",
+      "u-turn"
+    ],
+    "toxtricity-amped": [
+      "acid-spray",
+      "belch",
+      "boomburst",
+      "brick-break",
+      "charge",
+      "charge-beam",
+      "charm",
+      "discharge",
+      "drain-punch",
+      "eerie-impulse",
+      "electric-terrain",
+      "electro-ball",
+      "electroweb",
+      "encore",
+      "endeavor",
+      "endure",
+      "facade",
+      "fire-punch",
+      "flail",
+      "fling",
+      "giga-impact",
+      "gunk-shot",
+      "helping-hand",
+      "hex",
+      "hyper-beam",
+      "hyper-voice",
+      "mega-kick",
+      "metal-sound",
+      "noble-roar",
+      "nuzzle",
+      "overdrive",
+      "payback",
+      "poison-jab",
+      "protect",
+      "psychic-noise",
+      "rain-dance",
+      "rest",
+      "rising-voltage",
+      "round",
+      "scary-face",
+      "screech",
+      "shift-gear",
+      "sleep-talk",
+      "sludge-bomb",
+      "sludge-wave",
+      "snarl",
+      "snore",
+      "stored-power",
+      "substitute",
+      "sunny-day",
+      "swagger",
+      "taunt",
+      "tearful-look",
+      "thief",
+      "throat-chop",
+      "thunder",
+      "thunder-fang",
+      "thunder-punch",
+      "thunder-wave",
+      "thunderbolt",
+      "toxic",
+      "toxic-spikes",
+      "trailblaze",
+      "uproar",
+      "venoshock",
+      "volt-switch",
+      "wild-charge",
+      "zap-cannon"
+    ],
+    "toxtricity-low-key": [
+      "acid-spray",
+      "belch",
+      "boomburst",
+      "brick-break",
+      "charge",
+      "charge-beam",
+      "charm",
+      "discharge",
+      "drain-punch",
+      "eerie-impulse",
+      "electric-terrain",
+      "electro-ball",
+      "electroweb",
+      "encore",
+      "endeavor",
+      "endure",
+      "facade",
+      "fire-punch",
+      "flail",
+      "fling",
+      "giga-impact",
+      "gunk-shot",
+      "helping-hand",
+      "hex",
+      "hyper-beam",
+      "hyper-voice",
+      "magnetic-flux",
+      "mega-kick",
+      "metal-sound",
+      "noble-roar",
+      "nuzzle",
+      "overdrive",
+      "parabolic-charge",
+      "payback",
+      "poison-jab",
+      "protect",
+      "psychic-noise",
+      "rain-dance",
+      "rest",
+      "rising-voltage",
+      "round",
+      "scary-face",
+      "screech",
+      "sleep-talk",
+      "sludge-bomb",
+      "sludge-wave",
+      "snarl",
+      "snore",
+      "stored-power",
+      "substitute",
+      "sunny-day",
+      "swagger",
+      "taunt",
+      "tearful-look",
+      "thief",
+      "throat-chop",
+      "thunder",
+      "thunder-fang",
+      "thunder-punch",
+      "thunder-wave",
+      "thunderbolt",
+      "toxic",
+      "toxic-spikes",
+      "trailblaze",
+      "uproar",
+      "venoshock",
+      "volt-switch",
+      "wild-charge"
+    ],
+    "grapploct": [
+      "attract",
+      "bind",
+      "body-slam",
+      "brick-break",
+      "brutal-swing",
+      "bulk-up",
+      "chilling-water",
+      "circle-throw",
+      "close-combat",
+      "coaching",
+      "detect",
+      "dig",
+      "dive",
+      "drain-punch",
+      "endure",
+      "facade",
+      "feint",
+      "focus-blast",
+      "giga-impact",
+      "hydro-pump",
+      "hyper-beam",
+      "ice-punch",
+      "liquidation",
+      "mach-punch",
+      "mud-shot",
+      "muddy-water",
+      "octolock",
+      "pain-split",
+      "payback",
+      "protect",
+      "rest",
+      "reversal",
+      "round",
+      "scary-face",
+      "seismic-toss",
+      "skitter-smack",
+      "sleep-talk",
+      "snore",
+      "soak",
+      "stomping-tantrum",
+      "storm-throw",
+      "substitute",
+      "sucker-punch",
+      "superpower",
+      "surf",
+      "taunt",
+      "topsy-turvy",
+      "waterfall",
+      "whirlpool"
+    ],
+    "perrserker": [
+      "aerial-ace",
+      "amnesia",
+      "assurance",
+      "baton-pass",
+      "bite",
+      "body-slam",
+      "brick-break",
+      "bulk-up",
+      "charm",
+      "chilling-water",
+      "close-combat",
+      "covet",
+      "crunch",
+      "curse",
+      "dark-pulse",
+      "dig",
+      "double-edge",
+      "endeavor",
+      "endure",
+      "facade",
+      "fake-out",
+      "fake-tears",
+      "flail",
+      "flash-cannon",
+      "fling",
+      "foul-play",
+      "giga-impact",
+      "gunk-shot",
+      "gyro-ball",
+      "heavy-slam",
+      "helping-hand",
+      "hyper-beam",
+      "hyper-voice",
+      "iron-defense",
+      "iron-head",
+      "iron-tail",
+      "knock-off",
+      "lash-out",
+      "metal-burst",
+      "metal-sound",
+      "nasty-plot",
+      "night-slash",
+      "payback",
+      "play-rough",
+      "protect",
+      "rain-dance",
+      "rest",
+      "round",
+      "screech",
+      "seed-bomb",
+      "shadow-ball",
+      "shadow-claw",
+      "slash",
+      "sleep-talk",
+      "snore",
+      "spikes",
+      "spite",
+      "stealth-rock",
+      "steel-beam",
+      "substitute",
+      "sunny-day",
+      "swagger",
+      "swords-dance",
+      "taunt",
+      "thief",
+      "thrash",
+      "throat-chop",
+      "thunder",
+      "thunder-wave",
+      "thunderbolt",
+      "trailblaze",
+      "u-turn",
+      "uproar",
+      "x-scissor"
+    ],
+    "sirfetchd": [
+      "aerial-ace",
+      "assurance",
+      "attract",
+      "body-slam",
+      "brave-bird",
+      "brick-break",
+      "brutal-swing",
+      "close-combat",
+      "coaching",
+      "counter",
+      "covet",
+      "curse",
+      "defog",
+      "detect",
+      "double-edge",
+      "dual-wingbeat",
+      "endure",
+      "facade",
+      "feather-dance",
+      "feint",
+      "final-gambit",
+      "first-impression",
+      "flail",
+      "focus-energy",
+      "grassy-glide",
+      "helping-hand",
+      "iron-defense",
+      "knock-off",
+      "leaf-blade",
+      "night-slash",
+      "poison-jab",
+      "protect",
+      "quick-attack",
+      "quick-guard",
+      "rest",
+      "round",
+      "simple-beam",
+      "sky-attack",
+      "slash",
+      "sleep-talk",
+      "snore",
+      "solar-blade",
+      "steel-wing",
+      "substitute",
+      "sunny-day",
+      "superpower",
+      "swords-dance",
+      "throat-chop"
+    ],
+    "pincurchin": [
+      "acupressure",
+      "assurance",
+      "body-slam",
+      "charge",
+      "charge-beam",
+      "chilling-water",
+      "curse",
+      "discharge",
+      "electric-terrain",
+      "electro-ball",
+      "electroweb",
+      "endure",
+      "facade",
+      "giga-impact",
+      "hex",
+      "hydro-pump",
+      "hyper-beam",
+      "liquidation",
+      "memento",
+      "muddy-water",
+      "pain-split",
+      "payback",
+      "pin-missile",
+      "poison-jab",
+      "protect",
+      "rain-dance",
+      "recover",
+      "rest",
+      "reversal",
+      "rising-voltage",
+      "round",
+      "scald",
+      "self-destruct",
+      "sleep-talk",
+      "snore",
+      "spikes",
+      "substitute",
+      "sucker-punch",
+      "supercell-slam",
+      "surf",
+      "throat-chop",
+      "thunder",
+      "thunder-wave",
+      "thunderbolt",
+      "toxic-spikes",
+      "venoshock",
+      "wild-charge",
+      "zing-zap"
+    ],
+    "indeedee-male": [
+      "after-you",
+      "body-slam",
+      "calm-mind",
+      "dazzling-gleam",
+      "drain-punch",
+      "draining-kiss",
+      "encore",
+      "endure",
+      "energy-ball",
+      "expanding-force",
+      "extrasensory",
+      "facade",
+      "fake-out",
+      "future-sight",
+      "gravity",
+      "healing-wish",
+      "helping-hand",
+      "hyper-voice",
+      "imprison",
+      "last-resort",
+      "magic-room",
+      "mystical-fire",
+      "play-rough",
+      "power-split",
+      "power-swap",
+      "protect",
+      "psych-up",
+      "psychic",
+      "psychic-noise",
+      "psychic-terrain",
+      "psyshock",
+      "rest",
+      "round",
+      "shadow-ball",
+      "skill-swap",
+      "sleep-talk",
+      "snore",
+      "stored-power",
+      "substitute",
+      "terrain-pulse",
+      "tri-attack",
+      "trick",
+      "trick-room",
+      "wish",
+      "wonder-room",
+      "zen-headbutt"
+    ],
+    "indeedee-female": [
+      "alluring-voice",
+      "baton-pass",
+      "body-slam",
+      "calm-mind",
+      "charm",
+      "dazzling-gleam",
+      "drain-punch",
+      "draining-kiss",
+      "endure",
+      "energy-ball",
+      "facade",
+      "fake-out",
+      "follow-me",
+      "future-sight",
+      "guard-split",
+      "guard-swap",
+      "heal-pulse",
+      "healing-wish",
+      "helping-hand",
+      "hyper-voice",
+      "imprison",
+      "light-screen",
+      "mystical-fire",
+      "play-rough",
+      "protect",
+      "psych-up",
+      "psychic",
+      "psychic-terrain",
+      "psyshock",
+      "reflect",
+      "rest",
+      "round",
+      "safeguard",
+      "shadow-ball",
+      "sing",
+      "skill-swap",
+      "sleep-talk",
+      "snore",
+      "stored-power",
+      "substitute",
+      "terrain-pulse",
+      "trick",
+      "trick-room",
+      "wish",
+      "zen-headbutt"
+    ],
+    "pawmot": [
+      "agility",
+      "baton-pass",
+      "bite",
+      "body-press",
+      "brick-break",
+      "bulk-up",
+      "charge",
+      "charge-beam",
+      "charm",
+      "close-combat",
+      "coaching",
+      "crunch",
+      "dig",
+      "discharge",
+      "double-edge",
+      "double-shock",
+      "eerie-impulse",
+      "electric-terrain",
+      "electro-ball",
+      "electroweb",
+      "encore",
+      "endure",
+      "entrainment",
+      "facade",
+      "fake-out",
+      "fire-punch",
+      "fling",
+      "focus-blast",
+      "focus-punch",
+      "giga-impact",
+      "grass-knot",
+      "helping-hand",
+      "hyper-beam",
+      "ice-punch",
+      "knock-off",
+      "low-kick",
+      "low-sweep",
+      "mach-punch",
+      "nuzzle",
+      "play-rough",
+      "protect",
+      "quick-attack",
+      "rain-dance",
+      "rest",
+      "revival-blessing",
+      "rock-tomb",
+      "seed-bomb",
+      "sleep-talk",
+      "substitute",
+      "sunny-day",
+      "super-fang",
+      "supercell-slam",
+      "sweet-kiss",
+      "thief",
+      "throat-chop",
+      "thunder",
+      "thunder-fang",
+      "thunder-punch",
+      "thunder-wave",
+      "thunderbolt",
+      "upper-hand",
+      "volt-switch",
+      "wild-charge",
+      "wish"
+    ],
+    "arboliva": [
+      "alluring-voice",
+      "bullet-seed",
+      "charm",
+      "dazzling-gleam",
+      "earth-power",
+      "encore",
+      "endure",
+      "energy-ball",
+      "facade",
+      "flail",
+      "fling",
+      "giga-drain",
+      "giga-impact",
+      "grass-knot",
+      "grassy-terrain",
+      "growth",
+      "helping-hand",
+      "hyper-beam",
+      "hyper-voice",
+      "leaf-storm",
+      "leech-seed",
+      "light-screen",
+      "memento",
+      "mirror-coat",
+      "petal-blizzard",
+      "petal-dance",
+      "pollen-puff",
+      "protect",
+      "psych-up",
+      "reflect",
+      "rest",
+      "safeguard",
+      "seed-bomb",
+      "sleep-talk",
+      "solar-beam",
+      "solar-blade",
+      "strength-sap",
+      "substitute",
+      "sunny-day",
+      "sweet-scent",
+      "synthesis",
+      "terrain-pulse",
+      "trailblaze",
+      "weather-ball"
+    ],
+    "squawkabilly-green-plumage": [
+      "aerial-ace",
+      "air-cutter",
+      "air-slash",
+      "brave-bird",
+      "copycat",
+      "double-edge",
+      "dual-wingbeat",
+      "endeavor",
+      "endure",
+      "facade",
+      "fake-tears",
+      "feather-dance",
+      "final-gambit",
+      "flatter",
+      "fly",
+      "foul-play",
+      "giga-impact",
+      "heat-wave",
+      "helping-hand",
+      "hurricane",
+      "hyper-beam",
+      "hyper-voice",
+      "lash-out",
+      "lunge",
+      "parting-shot",
+      "pounce",
+      "protect",
+      "quick-attack",
+      "rest",
+      "reversal",
+      "roost",
+      "scary-face",
+      "seed-bomb",
+      "sleep-talk",
+      "substitute",
+      "sunny-day",
+      "swagger",
+      "tailwind",
+      "taunt",
+      "thief",
+      "torment",
+      "u-turn",
+      "uproar"
+    ],
+    "squawkabilly-blue-plumage": [
+      "aerial-ace",
+      "air-cutter",
+      "air-slash",
+      "brave-bird",
+      "copycat",
+      "double-edge",
+      "dual-wingbeat",
+      "endeavor",
+      "endure",
+      "facade",
+      "fake-tears",
+      "feather-dance",
+      "final-gambit",
+      "flatter",
+      "fly",
+      "foul-play",
+      "giga-impact",
+      "heat-wave",
+      "helping-hand",
+      "hurricane",
+      "hyper-beam",
+      "hyper-voice",
+      "lash-out",
+      "lunge",
+      "parting-shot",
+      "pounce",
+      "protect",
+      "quick-attack",
+      "rest",
+      "reversal",
+      "roost",
+      "scary-face",
+      "seed-bomb",
+      "sleep-talk",
+      "substitute",
+      "sunny-day",
+      "swagger",
+      "tailwind",
+      "taunt",
+      "thief",
+      "torment",
+      "u-turn",
+      "uproar"
+    ],
+    "squawkabilly-yellow-plumage": [
+      "aerial-ace",
+      "air-cutter",
+      "air-slash",
+      "brave-bird",
+      "copycat",
+      "double-edge",
+      "dual-wingbeat",
+      "endeavor",
+      "endure",
+      "facade",
+      "fake-tears",
+      "feather-dance",
+      "final-gambit",
+      "flatter",
+      "fly",
+      "foul-play",
+      "giga-impact",
+      "heat-wave",
+      "helping-hand",
+      "hurricane",
+      "hyper-beam",
+      "hyper-voice",
+      "lash-out",
+      "lunge",
+      "parting-shot",
+      "pounce",
+      "protect",
+      "quick-attack",
+      "rest",
+      "reversal",
+      "roost",
+      "scary-face",
+      "seed-bomb",
+      "sleep-talk",
+      "substitute",
+      "sunny-day",
+      "swagger",
+      "tailwind",
+      "taunt",
+      "thief",
+      "torment",
+      "u-turn",
+      "uproar"
+    ],
+    "squawkabilly-white-plumage": [
+      "aerial-ace",
+      "air-cutter",
+      "air-slash",
+      "brave-bird",
+      "copycat",
+      "double-edge",
+      "dual-wingbeat",
+      "endeavor",
+      "endure",
+      "facade",
+      "fake-tears",
+      "feather-dance",
+      "final-gambit",
+      "flatter",
+      "fly",
+      "foul-play",
+      "giga-impact",
+      "heat-wave",
+      "helping-hand",
+      "hurricane",
+      "hyper-beam",
+      "hyper-voice",
+      "lash-out",
+      "lunge",
+      "parting-shot",
+      "pounce",
+      "protect",
+      "quick-attack",
+      "rest",
+      "reversal",
+      "roost",
+      "scary-face",
+      "seed-bomb",
+      "sleep-talk",
+      "substitute",
+      "sunny-day",
+      "swagger",
+      "tailwind",
+      "taunt",
+      "thief",
+      "torment",
+      "u-turn",
+      "uproar"
+    ],
+    "mabosstiff": [
+      "bite",
+      "body-slam",
+      "comeuppance",
+      "crunch",
+      "curse",
+      "dark-pulse",
+      "destiny-bond",
+      "dig",
+      "double-edge",
+      "endeavor",
+      "endure",
+      "facade",
+      "fake-tears",
+      "fire-fang",
+      "focus-energy",
+      "giga-impact",
+      "helping-hand",
+      "hyper-beam",
+      "hyper-voice",
+      "ice-fang",
+      "jaw-lock",
+      "lash-out",
+      "outrage",
+      "pain-split",
+      "payback",
+      "play-rough",
+      "protect",
+      "psychic-fangs",
+      "rain-dance",
+      "rest",
+      "reversal",
+      "roar",
+      "scary-face",
+      "sleep-talk",
+      "snarl",
+      "spite",
+      "substitute",
+      "sunny-day",
+      "swagger",
+      "taunt",
+      "thief",
+      "thunder-fang",
+      "trailblaze",
+      "wild-charge"
+    ],
+    "baxcalibur": [
+      "aerial-ace",
+      "aqua-tail",
+      "avalanche",
+      "bite",
+      "blizzard",
+      "body-press",
+      "body-slam",
+      "breaking-swipe",
+      "brick-break",
+      "bulldoze",
+      "crunch",
+      "dig",
+      "double-edge",
+      "draco-meteor",
+      "dragon-cheer",
+      "dragon-claw",
+      "dragon-dance",
+      "dragon-pulse",
+      "dragon-rush",
+      "dragon-tail",
+      "earthquake",
+      "endure",
+      "facade",
+      "focus-energy",
+      "freeze-dry",
+      "frost-breath",
+      "giga-impact",
+      "glaive-rush",
+      "helping-hand",
+      "high-horsepower",
+      "hyper-beam",
+      "ice-beam",
+      "ice-fang",
+      "ice-shard",
+      "icicle-crash",
+      "icicle-spear",
+      "icy-wind",
+      "iron-head",
+      "outrage",
+      "protect",
+      "rain-dance",
+      "rest",
+      "scale-shot",
+      "scary-face",
+      "sleep-talk",
+      "snowscape",
+      "stomping-tantrum",
+      "substitute",
+      "swords-dance",
+      "thunder-fang",
+      "zen-headbutt"
+    ],
+    "absol-mega-z": [
+      "aerial-ace",
+      "air-slash",
+      "assurance",
+      "attract",
+      "baton-pass",
+      "bite",
+      "blizzard",
+      "body-slam",
+      "bounce",
+      "brutal-swing",
+      "calm-mind",
+      "close-combat",
+      "confuse-ray",
+      "curse",
+      "dark-pulse",
+      "detect",
+      "double-edge",
+      "double-team",
+      "endure",
+      "facade",
+      "feint",
+      "fire-blast",
+      "flamethrower",
+      "focus-energy",
+      "foul-play",
+      "future-sight",
+      "giga-impact",
+      "hex",
+      "hyper-beam",
+      "ice-beam",
+      "icy-wind",
+      "iron-tail",
+      "knock-off",
+      "mean-look",
+      "megahorn",
+      "night-slash",
+      "payback",
+      "perish-song",
+      "phantom-force",
+      "play-rough",
+      "protect",
+      "psycho-cut",
+      "quick-attack",
+      "rain-dance",
+      "rest",
+      "rock-slide",
+      "rock-tomb",
+      "round",
+      "sandstorm",
+      "shadow-ball",
+      "shadow-claw",
+      "shadow-sneak",
+      "slash",
+      "sleep-talk",
+      "snarl",
+      "snore",
+      "stone-edge",
+      "substitute",
+      "sucker-punch",
+      "sunny-day",
+      "superpower",
+      "swords-dance",
+      "taunt",
+      "thief",
+      "throat-chop",
+      "thunder",
+      "thunder-wave",
+      "thunderbolt",
+      "trailblaze",
+      "will-o-wisp",
+      "x-scissor",
+      "zen-headbutt"
+    ],
+    "salamence-mega": [
+      "aerial-ace",
+      "air-slash",
+      "bite",
+      "body-slam",
+      "breaking-swipe",
+      "brick-break",
+      "brutal-swing",
+      "bulldoze",
+      "crunch",
+      "double-edge",
+      "draco-meteor",
+      "dragon-cheer",
+      "dragon-claw",
+      "dragon-dance",
+      "dragon-pulse",
+      "dragon-rush",
+      "dragon-tail",
+      "dual-wingbeat",
+      "earthquake",
+      "endure",
+      "facade",
+      "fire-blast",
+      "fire-fang",
+      "fire-spin",
+      "flamethrower",
+      "fly",
+      "focus-energy",
+      "giga-impact",
+      "heat-wave",
+      "helping-hand",
+      "hurricane",
+      "hydro-pump",
+      "hyper-beam",
+      "hyper-voice",
+      "iron-defense",
+      "iron-head",
+      "iron-tail",
+      "mud-slap",
+      "outrage",
+      "protect",
+      "psychic-fangs",
+      "rain-dance",
+      "rest",
+      "roar",
+      "rock-slide",
+      "rock-tomb",
+      "roost",
+      "round",
+      "scary-face",
+      "shadow-claw",
+      "slash",
+      "sleep-talk",
+      "snore",
+      "steel-wing",
+      "stone-edge",
+      "substitute",
+      "sunny-day",
+      "tailwind",
+      "temper-flare",
+      "thrash",
+      "thunder-fang",
+      "zen-headbutt"
+    ],
+    "garchomp-mega-z": [
+      "aerial-ace",
+      "bite",
+      "body-slam",
+      "breaking-swipe",
+      "brick-break",
+      "brutal-swing",
+      "bulldoze",
+      "crunch",
+      "dig",
+      "double-edge",
+      "draco-meteor",
+      "dragon-cheer",
+      "dragon-claw",
+      "dragon-pulse",
+      "dragon-rush",
+      "dragon-tail",
+      "earth-power",
+      "earthquake",
+      "endure",
+      "facade",
+      "fire-blast",
+      "fire-fang",
+      "flamethrower",
+      "fling",
+      "giga-impact",
+      "helping-hand",
+      "hyper-beam",
+      "iron-head",
+      "iron-tail",
+      "liquidation",
+      "mud-shot",
+      "outrage",
+      "poison-jab",
+      "power-gem",
+      "protect",
+      "rain-dance",
+      "rest",
+      "rock-slide",
+      "rock-tomb",
+      "round",
+      "sand-tomb",
+      "sandstorm",
+      "scale-shot",
+      "scary-face",
+      "scorching-sands",
+      "shadow-claw",
+      "slash",
+      "sleep-talk",
+      "snore",
+      "spikes",
+      "stealth-rock",
+      "stomping-tantrum",
+      "stone-edge",
+      "substitute",
+      "sunny-day",
+      "surf",
+      "swords-dance",
+      "thrash",
+      "thunder-fang"
+    ],
+    "lucario-mega-z": [
+      "aerial-ace",
+      "agility",
+      "aura-sphere",
+      "bite",
+      "blaze-kick",
+      "body-slam",
+      "bone-rush",
+      "brick-break",
+      "bulk-up",
+      "bulldoze",
+      "bullet-punch",
+      "calm-mind",
+      "circle-throw",
+      "close-combat",
+      "coaching",
+      "copycat",
+      "counter",
+      "cross-chop",
+      "crunch",
+      "dark-pulse",
+      "detect",
+      "dig",
+      "dragon-pulse",
+      "drain-punch",
+      "earthquake",
+      "endure",
+      "extreme-speed",
+      "facade",
+      "feint",
+      "final-gambit",
+      "flash-cannon",
+      "fling",
+      "focus-blast",
+      "focus-energy",
+      "focus-punch",
+      "giga-impact",
+      "heal-pulse",
+      "helping-hand",
+      "high-jump-kick",
+      "howl",
+      "hyper-beam",
+      "ice-punch",
+      "iron-defense",
+      "iron-tail",
+      "life-dew",
+      "low-kick",
+      "low-sweep",
+      "mega-kick",
+      "metal-sound",
+      "meteor-mash",
+      "nasty-plot",
+      "payback",
+      "poison-jab",
+      "protect",
+      "psych-up",
+      "psychic",
+      "quick-attack",
+      "quick-guard",
+      "rain-dance",
+      "rest",
+      "reversal",
+      "roar",
+      "rock-slide",
+      "rock-tomb",
+      "round",
+      "scary-face",
+      "screech",
+      "shadow-ball",
+      "shadow-claw",
+      "sleep-talk",
+      "snore",
+      "steel-beam",
+      "stone-edge",
+      "substitute",
+      "sunny-day",
+      "swords-dance",
+      "terrain-pulse",
+      "thunder-punch",
+      "trailblaze",
+      "upper-hand",
+      "vacuum-wave",
+      "water-pulse",
+      "zen-headbutt"
+    ],
+    "golisopod-mega": [
+      "agility",
+      "aqua-jet",
+      "assurance",
+      "attract",
+      "blizzard",
+      "brick-break",
+      "bug-bite",
+      "bug-buzz",
+      "bulk-up",
+      "chilling-water",
+      "close-combat",
+      "dark-pulse",
+      "dive",
+      "double-hit",
+      "drill-run",
+      "endure",
+      "facade",
+      "first-impression",
+      "fling",
+      "focus-blast",
+      "giga-impact",
+      "gunk-shot",
+      "hyper-beam",
+      "ice-beam",
+      "icy-wind",
+      "iron-defense",
+      "iron-head",
+      "leech-life",
+      "liquidation",
+      "mud-shot",
+      "muddy-water",
+      "night-slash",
+      "payback",
+      "pin-missile",
+      "poison-jab",
+      "pounce",
+      "protect",
+      "rain-dance",
+      "razor-shell",
+      "rest",
+      "rock-slide",
+      "rock-tomb",
+      "round",
+      "scald",
+      "screech",
+      "shadow-claw",
+      "skitter-smack",
+      "slash",
+      "sleep-talk",
+      "sludge-bomb",
+      "sludge-wave",
+      "snarl",
+      "snore",
+      "spikes",
+      "spite",
+      "struggle-bug",
+      "substitute",
+      "sucker-punch",
+      "surf",
+      "swords-dance",
+      "taunt",
+      "throat-chop",
+      "u-turn",
+      "venoshock",
+      "waterfall",
+      "wide-guard",
+      "x-scissor"
+    ],
+    "baxcalibur-mega": [
+      "aerial-ace",
+      "aqua-tail",
+      "avalanche",
+      "bite",
+      "blizzard",
+      "body-press",
+      "body-slam",
+      "breaking-swipe",
+      "brick-break",
+      "bulldoze",
+      "crunch",
+      "dig",
+      "double-edge",
+      "draco-meteor",
+      "dragon-cheer",
+      "dragon-claw",
+      "dragon-dance",
+      "dragon-pulse",
+      "dragon-rush",
+      "dragon-tail",
+      "earthquake",
+      "endure",
+      "facade",
+      "focus-energy",
+      "freeze-dry",
+      "frost-breath",
+      "giga-impact",
+      "glaive-rush",
+      "helping-hand",
+      "high-horsepower",
+      "hyper-beam",
+      "ice-beam",
+      "ice-fang",
+      "ice-shard",
+      "icicle-crash",
+      "icicle-spear",
+      "icy-wind",
+      "iron-head",
+      "outrage",
+      "protect",
+      "rain-dance",
+      "rest",
+      "scale-shot",
+      "scary-face",
+      "sleep-talk",
+      "snowscape",
+      "stomping-tantrum",
+      "substitute",
+      "swords-dance",
+      "thunder-fang",
+      "zen-headbutt"
+    ],
+    "absol": [
+      "aerial-ace",
+      "air-slash",
+      "assurance",
+      "attract",
+      "baton-pass",
+      "bite",
+      "blizzard",
+      "body-slam",
+      "bounce",
+      "brutal-swing",
+      "calm-mind",
+      "close-combat",
+      "confuse-ray",
+      "curse",
+      "dark-pulse",
+      "detect",
+      "double-edge",
+      "double-team",
+      "endure",
+      "facade",
+      "feint",
+      "fire-blast",
+      "flamethrower",
+      "focus-energy",
+      "foul-play",
+      "future-sight",
+      "giga-impact",
+      "hex",
+      "hyper-beam",
+      "ice-beam",
+      "icy-wind",
+      "iron-tail",
+      "knock-off",
+      "mean-look",
+      "megahorn",
+      "night-slash",
+      "payback",
+      "perish-song",
+      "phantom-force",
+      "play-rough",
+      "protect",
+      "psycho-cut",
+      "quick-attack",
+      "rain-dance",
+      "rest",
+      "rock-slide",
+      "rock-tomb",
+      "round",
+      "sandstorm",
+      "shadow-ball",
+      "shadow-claw",
+      "shadow-sneak",
+      "slash",
+      "sleep-talk",
+      "snarl",
+      "snore",
+      "stone-edge",
+      "substitute",
+      "sucker-punch",
+      "sunny-day",
+      "superpower",
+      "swords-dance",
+      "taunt",
+      "thief",
+      "throat-chop",
+      "thunder",
+      "thunder-wave",
+      "thunderbolt",
+      "trailblaze",
+      "will-o-wisp",
+      "x-scissor",
+      "zen-headbutt"
+    ],
+    "lucario": [
+      "aerial-ace",
+      "agility",
+      "aura-sphere",
+      "bite",
+      "blaze-kick",
+      "body-slam",
+      "bone-rush",
+      "brick-break",
+      "bulk-up",
+      "bulldoze",
+      "bullet-punch",
+      "calm-mind",
+      "circle-throw",
+      "close-combat",
+      "coaching",
+      "copycat",
+      "counter",
+      "cross-chop",
+      "crunch",
+      "dark-pulse",
+      "detect",
+      "dig",
+      "dragon-pulse",
+      "drain-punch",
+      "earthquake",
+      "endure",
+      "extreme-speed",
+      "facade",
+      "feint",
+      "final-gambit",
+      "flash-cannon",
+      "fling",
+      "focus-blast",
+      "focus-energy",
+      "focus-punch",
+      "giga-impact",
+      "heal-pulse",
+      "helping-hand",
+      "high-jump-kick",
+      "howl",
+      "hyper-beam",
+      "ice-punch",
+      "iron-defense",
+      "iron-tail",
+      "life-dew",
+      "low-kick",
+      "low-sweep",
+      "mega-kick",
+      "metal-sound",
+      "meteor-mash",
+      "nasty-plot",
+      "payback",
+      "poison-jab",
+      "protect",
+      "psych-up",
+      "psychic",
+      "quick-attack",
+      "quick-guard",
+      "rain-dance",
+      "rest",
+      "reversal",
+      "roar",
+      "rock-slide",
+      "rock-tomb",
+      "round",
+      "scary-face",
+      "screech",
+      "shadow-ball",
+      "shadow-claw",
+      "sleep-talk",
+      "snore",
+      "steel-beam",
+      "stone-edge",
+      "substitute",
+      "sunny-day",
+      "swords-dance",
+      "terrain-pulse",
+      "thunder-punch",
+      "trailblaze",
+      "upper-hand",
+      "vacuum-wave",
+      "water-pulse",
+      "zen-headbutt"
+    ],
+    "garchomp": [
+      "aerial-ace",
+      "bite",
+      "body-slam",
+      "breaking-swipe",
+      "brick-break",
+      "brutal-swing",
+      "bulldoze",
+      "crunch",
+      "dig",
+      "double-edge",
+      "draco-meteor",
+      "dragon-cheer",
+      "dragon-claw",
+      "dragon-pulse",
+      "dragon-rush",
+      "dragon-tail",
+      "earth-power",
+      "earthquake",
+      "endure",
+      "facade",
+      "fire-blast",
+      "fire-fang",
+      "flamethrower",
+      "fling",
+      "giga-impact",
+      "helping-hand",
+      "hyper-beam",
+      "iron-head",
+      "iron-tail",
+      "liquidation",
+      "mud-shot",
+      "outrage",
+      "poison-jab",
+      "power-gem",
+      "protect",
+      "rain-dance",
+      "rest",
+      "rock-slide",
+      "rock-tomb",
+      "round",
+      "sand-tomb",
+      "sandstorm",
+      "scale-shot",
+      "scary-face",
+      "scorching-sands",
+      "shadow-claw",
+      "slash",
+      "sleep-talk",
+      "snore",
+      "spikes",
+      "stealth-rock",
+      "stomping-tantrum",
+      "stone-edge",
+      "substitute",
+      "sunny-day",
+      "surf",
+      "swords-dance",
+      "thrash",
+      "thunder-fang"
+    ],
+    "politoed": [
+      "amnesia",
+      "attract",
+      "belly-drum",
+      "blizzard",
+      "body-slam",
+      "bounce",
+      "brick-break",
+      "bulldoze",
+      "chilling-water",
+      "dig",
+      "dive",
+      "double-edge",
+      "earth-power",
+      "earthquake",
+      "encore",
+      "endeavor",
+      "endure",
+      "facade",
+      "fling",
+      "focus-blast",
+      "focus-punch",
+      "giga-impact",
+      "haze",
+      "helping-hand",
+      "hydro-pump",
+      "hyper-beam",
+      "hyper-voice",
+      "hypnosis",
+      "ice-beam",
+      "ice-punch",
+      "icy-wind",
+      "liquidation",
+      "low-kick",
+      "low-sweep",
+      "mud-shot",
+      "mud-slap",
+      "muddy-water",
+      "perish-song",
+      "protect",
+      "psych-up",
+      "psychic",
+      "rain-dance",
+      "rest",
+      "round",
+      "screech",
+      "sleep-talk",
+      "snore",
+      "substitute",
+      "surf",
+      "swagger",
+      "thief",
+      "uproar",
+      "water-pulse",
+      "waterfall",
+      "weather-ball",
+      "whirlpool"
+    ],
+    "archaludon": [
+      "aura-sphere",
+      "body-slam",
+      "breaking-swipe",
+      "brick-break",
+      "dark-pulse",
+      "double-edge",
+      "draco-meteor",
+      "dragon-cheer",
+      "dragon-claw",
+      "dragon-pulse",
+      "dragon-tail",
+      "earthquake",
+      "electro-shot",
+      "endure",
+      "facade",
+      "flash-cannon",
+      "focus-energy",
+      "foul-play",
+      "giga-impact",
+      "gyro-ball",
+      "hard-press",
+      "heavy-slam",
+      "hyper-beam",
+      "iron-defense",
+      "iron-head",
+      "light-screen",
+      "metal-sound",
+      "meteor-beam",
+      "night-slash",
+      "outrage",
+      "protect",
+      "reflect",
+      "rest",
+      "roar",
+      "rock-slide",
+      "rock-tomb",
+      "scary-face",
+      "slash",
+      "sleep-talk",
+      "smack-down",
+      "snarl",
+      "solar-beam",
+      "stealth-rock",
+      "steel-beam",
+      "stone-edge",
+      "substitute",
+      "swords-dance",
+      "thunder",
+      "thunder-wave",
+      "thunderbolt"
+    ]
+  },
+  "moveOverrides": {
+    "slash": {
+      "power": 80,
+      "accuracy": 100,
+      "pp": 20,
+      "priority": 0
+    },
+    "bone-rush": {
+      "power": 30,
+      "accuracy": 90,
+      "pp": 12,
+      "priority": 0
+    },
+    "first-impression": {
+      "power": 100,
+      "accuracy": 100,
+      "pp": 12,
+      "priority": 2
+    },
+    "snipe-shot": {
+      "power": 85,
+      "accuracy": 100,
+      "pp": 16,
+      "priority": 0
+    },
+    "meteor-assault": {
+      "power": 170,
+      "accuracy": 100,
+      "pp": 8,
+      "priority": 0
+    },
+    "wish": {
+      "power": 0,
+      "accuracy": null,
+      "pp": 8,
+      "priority": 0
+    },
+    "strength-sap": {
+      "power": 0,
+      "accuracy": 100,
+      "pp": 8,
+      "priority": 0
+    },
+    "double-shock": {
+      "power": 120,
+      "accuracy": null,
+      "pp": 8,
+      "priority": 0
+    },
+    "revival-blessing": {
+      "power": 0,
+      "accuracy": null,
+      "pp": 1,
+      "priority": 0
+    }
+  },
+  "moveFlags": {
+    "accelerock": [
+      "contact"
+    ],
+    "acid-spray": [
+      "bullet"
+    ],
+    "acrobatics": [
+      "contact"
+    ],
+    "aerial-ace": [
+      "contact",
+      "slicing"
+    ],
+    "air-cutter": [
+      "slicing"
+    ],
+    "air-slash": [
+      "slicing"
+    ],
+    "alluring-voice": [
+      "sound"
+    ],
+    "anchor-shot": [
+      "contact"
+    ],
+    "aqua-cutter": [
+      "slicing"
+    ],
+    "aqua-jet": [
+      "contact"
+    ],
+    "aqua-step": [
+      "contact"
+    ],
+    "aqua-tail": [
+      "contact"
+    ],
+    "arm-thrust": [
+      "contact"
+    ],
+    "assurance": [
+      "contact"
+    ],
+    "astonish": [
+      "contact"
+    ],
+    "aura-sphere": [
+      "bullet",
+      "pulse"
+    ],
+    "avalanche": [
+      "contact"
+    ],
+    "axe-kick": [
+      "contact"
+    ],
+    "barrage": [
+      "bullet"
+    ],
+    "beak-blast": [
+      "bullet"
+    ],
+    "bide": [
+      "contact"
+    ],
+    "bind": [
+      "contact"
+    ],
+    "bite": [
+      "contact",
+      "bite"
+    ],
+    "bitter-blade": [
+      "contact",
+      "slicing"
+    ],
+    "blaze-kick": [
+      "contact"
+    ],
+    "body-press": [
+      "contact"
+    ],
+    "body-slam": [
+      "contact"
+    ],
+    "bolt-beak": [
+      "contact"
+    ],
+    "bolt-strike": [
+      "contact"
+    ],
+    "boomburst": [
+      "sound"
+    ],
+    "bounce": [
+      "contact"
+    ],
+    "branch-poke": [
+      "contact"
+    ],
+    "brave-bird": [
+      "contact"
+    ],
+    "breaking-swipe": [
+      "contact"
+    ],
+    "brick-break": [
+      "contact"
+    ],
+    "brutal-swing": [
+      "contact"
+    ],
+    "bug-bite": [
+      "contact"
+    ],
+    "bug-buzz": [
+      "sound"
+    ],
+    "bullet-punch": [
+      "contact",
+      "punch"
+    ],
+    "bullet-seed": [
+      "bullet"
+    ],
+    "ceaseless-edge": [
+      "contact",
+      "slicing"
+    ],
+    "chatter": [
+      "sound"
+    ],
+    "chip-away": [
+      "contact"
+    ],
+    "circle-throw": [
+      "contact"
+    ],
+    "clamp": [
+      "contact"
+    ],
+    "clanging-scales": [
+      "sound"
+    ],
+    "clangorous-soul": [
+      "sound"
+    ],
+    "close-combat": [
+      "contact"
+    ],
+    "collision-course": [
+      "contact"
+    ],
+    "comet-punch": [
+      "contact",
+      "punch"
+    ],
+    "comeuppance": [
+      "contact"
+    ],
+    "confide": [
+      "sound"
+    ],
+    "constrict": [
+      "contact"
+    ],
+    "counter": [
+      "contact"
+    ],
+    "covet": [
+      "contact"
+    ],
+    "crabhammer": [
+      "contact"
+    ],
+    "cross-chop": [
+      "contact"
+    ],
+    "cross-poison": [
+      "contact",
+      "slicing"
+    ],
+    "crunch": [
+      "contact",
+      "bite"
+    ],
+    "crush-claw": [
+      "contact"
+    ],
+    "crush-grip": [
+      "contact"
+    ],
+    "cut": [
+      "contact",
+      "slicing"
+    ],
+    "dark-pulse": [
+      "pulse"
+    ],
+    "darkest-lariat": [
+      "contact"
+    ],
+    "dig": [
+      "contact"
+    ],
+    "dire-claw": [
+      "contact"
+    ],
+    "disarming-voice": [
+      "sound"
+    ],
+    "dive": [
+      "contact"
+    ],
+    "dizzy-punch": [
+      "contact",
+      "punch"
+    ],
+    "double-hit": [
+      "contact"
+    ],
+    "double-iron-bash": [
+      "contact",
+      "punch"
+    ],
+    "double-kick": [
+      "contact"
+    ],
+    "double-shock": [
+      "contact"
+    ],
+    "double-slap": [
+      "contact"
+    ],
+    "double-edge": [
+      "contact"
+    ],
+    "dragon-ascent": [
+      "contact"
+    ],
+    "dragon-claw": [
+      "contact"
+    ],
+    "dragon-hammer": [
+      "contact"
+    ],
+    "dragon-pulse": [
+      "pulse"
+    ],
+    "dragon-rush": [
+      "contact"
+    ],
+    "dragon-tail": [
+      "contact"
+    ],
+    "drain-punch": [
+      "contact",
+      "punch"
+    ],
+    "draining-kiss": [
+      "contact"
+    ],
+    "drill-peck": [
+      "contact"
+    ],
+    "drill-run": [
+      "contact"
+    ],
+    "dual-chop": [
+      "contact"
+    ],
+    "dual-wingbeat": [
+      "contact"
+    ],
+    "dynamic-punch": [
+      "contact",
+      "punch"
+    ],
+    "echoed-voice": [
+      "sound"
+    ],
+    "eerie-spell": [
+      "sound"
+    ],
+    "egg-bomb": [
+      "bullet"
+    ],
+    "electro-ball": [
+      "bullet"
+    ],
+    "electro-drift": [
+      "contact"
+    ],
+    "endeavor": [
+      "contact"
+    ],
+    "energy-ball": [
+      "bullet"
+    ],
+    "extreme-speed": [
+      "contact"
+    ],
+    "facade": [
+      "contact"
+    ],
+    "fake-out": [
+      "contact"
+    ],
+    "false-surrender": [
+      "contact"
+    ],
+    "false-swipe": [
+      "contact"
+    ],
+    "feint-attack": [
+      "contact"
+    ],
+    "fell-stinger": [
+      "contact"
+    ],
+    "fire-fang": [
+      "contact",
+      "bite"
+    ],
+    "fire-lash": [
+      "contact"
+    ],
+    "fire-punch": [
+      "contact",
+      "punch"
+    ],
+    "first-impression": [
+      "contact"
+    ],
+    "fishious-rend": [
+      "contact",
+      "bite"
+    ],
+    "flail": [
+      "contact"
+    ],
+    "flame-charge": [
+      "contact"
+    ],
+    "flame-wheel": [
+      "contact"
+    ],
+    "flare-blitz": [
+      "contact"
+    ],
+    "flip-turn": [
+      "contact"
+    ],
+    "floaty-fall": [
+      "contact"
+    ],
+    "fly": [
+      "contact"
+    ],
+    "flying-press": [
+      "contact"
+    ],
+    "focus-blast": [
+      "bullet"
+    ],
+    "focus-punch": [
+      "contact",
+      "punch"
+    ],
+    "force-palm": [
+      "contact"
+    ],
+    "foul-play": [
+      "contact"
+    ],
+    "frustration": [
+      "contact"
+    ],
+    "fury-attack": [
+      "contact"
+    ],
+    "fury-cutter": [
+      "contact",
+      "slicing"
+    ],
+    "fury-swipes": [
+      "contact"
+    ],
+    "gear-grind": [
+      "contact"
+    ],
+    "giga-impact": [
+      "contact"
+    ],
+    "glaive-rush": [
+      "contact"
+    ],
+    "grass-knot": [
+      "contact"
+    ],
+    "grass-whistle": [
+      "sound"
+    ],
+    "grassy-glide": [
+      "contact"
+    ],
+    "growl": [
+      "sound"
+    ],
+    "guillotine": [
+      "contact"
+    ],
+    "gyro-ball": [
+      "contact",
+      "bullet"
+    ],
+    "hammer-arm": [
+      "contact",
+      "punch"
+    ],
+    "hard-press": [
+      "contact"
+    ],
+    "head-charge": [
+      "contact"
+    ],
+    "head-smash": [
+      "contact"
+    ],
+    "headbutt": [
+      "contact"
+    ],
+    "headlong-rush": [
+      "contact",
+      "punch"
+    ],
+    "heal-bell": [
+      "sound"
+    ],
+    "heal-pulse": [
+      "pulse"
+    ],
+    "heart-stamp": [
+      "contact"
+    ],
+    "heat-crash": [
+      "contact"
+    ],
+    "heavy-slam": [
+      "contact"
+    ],
+    "high-horsepower": [
+      "contact"
+    ],
+    "high-jump-kick": [
+      "contact"
+    ],
+    "horn-attack": [
+      "contact"
+    ],
+    "horn-drill": [
+      "contact"
+    ],
+    "horn-leech": [
+      "contact"
+    ],
+    "howl": [
+      "sound"
+    ],
+    "hyper-drill": [
+      "contact"
+    ],
+    "hyper-fang": [
+      "contact",
+      "bite"
+    ],
+    "hyper-voice": [
+      "sound"
+    ],
+    "ice-ball": [
+      "contact",
+      "bullet"
+    ],
+    "ice-fang": [
+      "contact",
+      "bite"
+    ],
+    "ice-hammer": [
+      "contact",
+      "punch"
+    ],
+    "ice-punch": [
+      "contact",
+      "punch"
+    ],
+    "ice-spinner": [
+      "contact"
+    ],
+    "infestation": [
+      "contact"
+    ],
+    "iron-head": [
+      "contact"
+    ],
+    "iron-tail": [
+      "contact"
+    ],
+    "jaw-lock": [
+      "contact",
+      "bite"
+    ],
+    "jet-punch": [
+      "contact",
+      "punch"
+    ],
+    "jump-kick": [
+      "contact"
+    ],
+    "karate-chop": [
+      "contact"
+    ],
+    "knock-off": [
+      "contact"
+    ],
+    "kowtow-cleave": [
+      "contact",
+      "slicing"
+    ],
+    "lash-out": [
+      "contact"
+    ],
+    "last-resort": [
+      "contact"
+    ],
+    "leaf-blade": [
+      "contact",
+      "slicing"
+    ],
+    "leech-life": [
+      "contact"
+    ],
+    "lick": [
+      "contact"
+    ],
+    "liquidation": [
+      "contact"
+    ],
+    "low-kick": [
+      "contact"
+    ],
+    "low-sweep": [
+      "contact"
+    ],
+    "lunge": [
+      "contact"
+    ],
+    "mach-punch": [
+      "contact",
+      "punch"
+    ],
+    "magnet-bomb": [
+      "bullet"
+    ],
+    "mega-kick": [
+      "contact"
+    ],
+    "mega-punch": [
+      "contact",
+      "punch"
+    ],
+    "megahorn": [
+      "contact"
+    ],
+    "metal-claw": [
+      "contact"
+    ],
+    "metal-sound": [
+      "sound"
+    ],
+    "meteor-mash": [
+      "contact",
+      "punch"
+    ],
+    "mighty-cleave": [
+      "contact",
+      "slicing"
+    ],
+    "mist-ball": [
+      "bullet"
+    ],
+    "mortal-spin": [
+      "contact"
+    ],
+    "mud-bomb": [
+      "bullet"
+    ],
+    "multi-attack": [
+      "contact"
+    ],
+    "needle-arm": [
+      "contact"
+    ],
+    "night-slash": [
+      "contact",
+      "slicing"
+    ],
+    "noble-roar": [
+      "sound"
+    ],
+    "nuzzle": [
+      "contact"
+    ],
+    "octazooka": [
+      "bullet"
+    ],
+    "origin-pulse": [
+      "pulse"
+    ],
+    "outrage": [
+      "contact"
+    ],
+    "overdrive": [
+      "sound"
+    ],
+    "parting-shot": [
+      "sound"
+    ],
+    "payback": [
+      "contact"
+    ],
+    "peck": [
+      "contact"
+    ],
+    "perish-song": [
+      "sound"
+    ],
+    "petal-dance": [
+      "contact"
+    ],
+    "phantom-force": [
+      "contact"
+    ],
+    "plasma-fists": [
+      "contact",
+      "punch"
+    ],
+    "play-rough": [
+      "contact"
+    ],
+    "pluck": [
+      "contact"
+    ],
+    "poison-fang": [
+      "contact",
+      "bite"
+    ],
+    "poison-jab": [
+      "contact"
+    ],
+    "poison-tail": [
+      "contact"
+    ],
+    "pollen-puff": [
+      "bullet"
+    ],
+    "population-bomb": [
+      "contact",
+      "slicing"
+    ],
+    "pounce": [
+      "contact"
+    ],
+    "pound": [
+      "contact"
+    ],
+    "power-trip": [
+      "contact"
+    ],
+    "power-whip": [
+      "contact"
+    ],
+    "power-up-punch": [
+      "contact",
+      "punch"
+    ],
+    "psyblade": [
+      "contact",
+      "slicing"
+    ],
+    "psychic-fangs": [
+      "contact",
+      "bite"
+    ],
+    "psychic-noise": [
+      "sound"
+    ],
+    "psycho-cut": [
+      "slicing"
+    ],
+    "psyshield-bash": [
+      "contact"
+    ],
+    "punishment": [
+      "contact"
+    ],
+    "pursuit": [
+      "contact"
+    ],
+    "pyro-ball": [
+      "bullet"
+    ],
+    "quick-attack": [
+      "contact"
+    ],
+    "rage": [
+      "contact"
+    ],
+    "rage-fist": [
+      "contact",
+      "punch"
+    ],
+    "raging-bull": [
+      "contact"
+    ],
+    "rapid-spin": [
+      "contact"
+    ],
+    "razor-leaf": [
+      "slicing"
+    ],
+    "razor-shell": [
+      "contact",
+      "slicing"
+    ],
+    "relic-song": [
+      "sound"
+    ],
+    "retaliate": [
+      "contact"
+    ],
+    "return": [
+      "contact"
+    ],
+    "revenge": [
+      "contact"
+    ],
+    "reversal": [
+      "contact"
+    ],
+    "roar": [
+      "sound"
+    ],
+    "rock-blast": [
+      "bullet"
+    ],
+    "rock-climb": [
+      "contact"
+    ],
+    "rock-smash": [
+      "contact"
+    ],
+    "rock-wrecker": [
+      "bullet"
+    ],
+    "rolling-kick": [
+      "contact"
+    ],
+    "rollout": [
+      "contact"
+    ],
+    "round": [
+      "sound"
+    ],
+    "sacred-sword": [
+      "contact",
+      "slicing"
+    ],
+    "scratch": [
+      "contact"
+    ],
+    "screech": [
+      "sound"
+    ],
+    "searing-shot": [
+      "bullet"
+    ],
+    "secret-sword": [
+      "slicing"
+    ],
+    "seed-bomb": [
+      "bullet"
+    ],
+    "seismic-toss": [
+      "contact"
+    ],
+    "shadow-ball": [
+      "bullet"
+    ],
+    "shadow-claw": [
+      "contact"
+    ],
+    "shadow-force": [
+      "contact"
+    ],
+    "shadow-punch": [
+      "contact",
+      "punch"
+    ],
+    "shadow-sneak": [
+      "contact"
+    ],
+    "sing": [
+      "sound"
+    ],
+    "sizzly-slide": [
+      "contact"
+    ],
+    "skitter-smack": [
+      "contact"
+    ],
+    "skull-bash": [
+      "contact"
+    ],
+    "sky-drop": [
+      "contact"
+    ],
+    "sky-uppercut": [
+      "contact",
+      "punch"
+    ],
+    "slam": [
+      "contact"
+    ],
+    "slash": [
+      "contact",
+      "slicing"
+    ],
+    "sludge-bomb": [
+      "bullet"
+    ],
+    "smart-strike": [
+      "contact"
+    ],
+    "smelling-salts": [
+      "contact"
+    ],
+    "snap-trap": [
+      "contact"
+    ],
+    "snarl": [
+      "sound"
+    ],
+    "snore": [
+      "sound"
+    ],
+    "solar-blade": [
+      "contact",
+      "slicing"
+    ],
+    "spark": [
+      "contact"
+    ],
+    "sparkling-aria": [
+      "sound"
+    ],
+    "spectral-thief": [
+      "contact"
+    ],
+    "spin-out": [
+      "contact"
+    ],
+    "spirit-break": [
+      "contact"
+    ],
+    "steamroller": [
+      "contact"
+    ],
+    "steel-roller": [
+      "contact"
+    ],
+    "steel-wing": [
+      "contact"
+    ],
+    "stomp": [
+      "contact"
+    ],
+    "stomping-tantrum": [
+      "contact"
+    ],
+    "stone-axe": [
+      "contact",
+      "slicing"
+    ],
+    "storm-throw": [
+      "contact"
+    ],
+    "strength": [
+      "contact"
+    ],
+    "submission": [
+      "contact"
+    ],
+    "sucker-punch": [
+      "contact"
+    ],
+    "sunsteel-strike": [
+      "contact"
+    ],
+    "super-fang": [
+      "contact"
+    ],
+    "supercell-slam": [
+      "contact"
+    ],
+    "superpower": [
+      "contact"
+    ],
+    "supersonic": [
+      "sound"
+    ],
+    "surging-strikes": [
+      "contact",
+      "punch"
+    ],
+    "syrup-bomb": [
+      "bullet"
+    ],
+    "tachyon-cutter": [
+      "slicing"
+    ],
+    "tackle": [
+      "contact"
+    ],
+    "tail-slap": [
+      "contact"
+    ],
+    "take-down": [
+      "contact"
+    ],
+    "temper-flare": [
+      "contact"
+    ],
+    "terrain-pulse": [
+      "pulse"
+    ],
+    "thief": [
+      "contact"
+    ],
+    "thrash": [
+      "contact"
+    ],
+    "throat-chop": [
+      "contact"
+    ],
+    "thunder-fang": [
+      "contact",
+      "bite"
+    ],
+    "thunder-punch": [
+      "contact",
+      "punch"
+    ],
+    "thunderous-kick": [
+      "contact"
+    ],
+    "torch-song": [
+      "sound"
+    ],
+    "trailblaze": [
+      "contact"
+    ],
+    "triple-axel": [
+      "contact"
+    ],
+    "triple-dive": [
+      "contact"
+    ],
+    "triple-kick": [
+      "contact"
+    ],
+    "trop-kick": [
+      "contact"
+    ],
+    "trump-card": [
+      "contact"
+    ],
+    "u-turn": [
+      "contact"
+    ],
+    "upper-hand": [
+      "contact"
+    ],
+    "uproar": [
+      "sound"
+    ],
+    "v-create": [
+      "contact"
+    ],
+    "vine-whip": [
+      "contact"
+    ],
+    "vital-throw": [
+      "contact"
+    ],
+    "volt-tackle": [
+      "contact"
+    ],
+    "wake-up-slap": [
+      "contact"
+    ],
+    "water-pulse": [
+      "pulse"
+    ],
+    "waterfall": [
+      "contact"
+    ],
+    "wave-crash": [
+      "contact"
+    ],
+    "weather-ball": [
+      "bullet"
+    ],
+    "wicked-blow": [
+      "contact",
+      "punch"
+    ],
+    "wild-charge": [
+      "contact"
+    ],
+    "wing-attack": [
+      "contact"
+    ],
+    "wood-hammer": [
+      "contact"
+    ],
+    "wrap": [
+      "contact"
+    ],
+    "wring-out": [
+      "contact"
+    ],
+    "x-scissor": [
+      "contact",
+      "slicing"
+    ],
+    "zap-cannon": [
+      "bullet"
+    ],
+    "zen-headbutt": [
+      "contact"
+    ],
+    "zing-zap": [
+      "contact"
+    ],
+    "zippy-zap": [
+      "contact"
+    ]
+  }
+}

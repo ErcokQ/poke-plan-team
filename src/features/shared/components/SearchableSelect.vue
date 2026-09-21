@@ -9,6 +9,7 @@ import {
 import type { CSSProperties } from 'vue'
 import { computed, ref, watch } from 'vue'
 import { useDebounce } from '@vueuse/core'
+import { useI18n } from 'vue-i18n'
 
 interface SearchOptionMeta {
   effect?: string
@@ -45,8 +46,8 @@ const props = withDefaults(
     clearable: true,
     maxVisible: 0,
     noResultsLabel: 'No results',
-    largeListThreshold: 300,
-    largeListPreview: 180,
+    largeListThreshold: 32,
+    largeListPreview: 24,
     inputStyle: undefined,
   },
 )
@@ -54,6 +55,7 @@ const props = withDefaults(
 const emit = defineEmits<{
   (event: 'update:modelValue', value: string): void
 }>()
+const { t } = useI18n()
 
 const queryRaw = ref('')
 const isFiltering = ref(false)
@@ -87,28 +89,30 @@ function normalize(value: string): string {
     .toLowerCase()
 }
 
-const filteredOptions = computed(() => {
+const matchingOptions = computed(() => {
   const needle = normalize(queryDebounced.value)
-  const boundedSlice = (
-    options: Array<{ option: SearchOption; labelNorm: string; valueNorm: string }>,
-  ) => {
-    if (props.maxVisible > 0) return options.slice(0, props.maxVisible)
-    if (options.length > props.largeListThreshold) {
-      return options.slice(0, props.largeListPreview)
-    }
-    return options
-  }
-
-  if (!isFiltering.value || !needle) {
-    return boundedSlice(preparedOptions.value).map((entry) => entry.option)
-  }
-
-  const filtered = preparedOptions.value.filter(
+  if (!isFiltering.value || !needle) return preparedOptions.value
+  return preparedOptions.value.filter(
     (entry) => entry.labelNorm.includes(needle) || entry.valueNorm.includes(needle),
   )
-
-  return boundedSlice(filtered).map((entry) => entry.option)
 })
+
+const filteredOptions = computed(() => {
+  const matches = matchingOptions.value
+  const limit = props.maxVisible > 0
+    ? props.maxVisible
+    : matches.length > props.largeListThreshold ? props.largeListPreview : matches.length
+  const visible = matches.slice(0, limit)
+  if (!isFiltering.value && props.modelValue && !visible.some((entry) => entry.option.value === props.modelValue)) {
+    const selected = matches.find((entry) => entry.option.value === props.modelValue)
+    if (selected && limit > 0) {
+      return [selected.option, ...visible.slice(0, limit - 1).map((entry) => entry.option)]
+    }
+  }
+  return visible.map((entry) => entry.option)
+})
+
+const hiddenResultCount = computed(() => matchingOptions.value.length - filteredOptions.value.length)
 
 const selectedValue = computed<SearchOption | null>(() => {
   return props.options.find((option) => option.value === props.modelValue) ?? null
@@ -201,6 +205,9 @@ function onBlur() {
         </ComboboxOption>
         <li v-if="filteredOptions.length === 0" class="px-2 py-1.5 text-xs text-gray-500">
           {{ noResultsLabel }}
+        </li>
+        <li v-else-if="hiddenResultCount > 0" class="px-2 py-1.5 text-xs text-gray-400">
+          {{ t('common.refineSearch', { shown: filteredOptions.length, total: matchingOptions.length }) }}
         </li>
       </ComboboxOptions>
     </div>

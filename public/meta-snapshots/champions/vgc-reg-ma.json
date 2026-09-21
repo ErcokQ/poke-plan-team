@@ -1,0 +1,3419 @@
+{
+  "version": 1,
+  "format": "champions-vgc-reg-ma",
+  "label": "Pokemon Champions Regulation Set M-B S3 Ranked Battle Data",
+  "generatedAt": "2026-06-17T22:04:20.268Z",
+  "source": {
+    "name": "Pikalytics Champions",
+    "url": "https://www.pikalytics.com/",
+    "note": "Extracted from public Champions Regulation M-B pages for local, cacheable recommendations."
+  },
+  "pokemon": {
+    "garchomp": {
+      "name": "Garchomp",
+      "rank": 1,
+      "usage": {
+        "weighted": 0.5,
+        "raw": 0.5
+      },
+      "items": {
+        "life-orb": 0.442,
+        "sitrus-berry": 0.163,
+        "roseli-berry": 0.15,
+        "choice-scarf": 0.141,
+        "expert-belt": 0.037,
+        "soft-sand": 0.029,
+        "focus-sash": 0.01,
+        "garchompite": 0.01,
+        "white-herb": 0.007,
+        "lum-berry": 0.005
+      },
+      "moves": {
+        "dragon-claw": 0.916,
+        "earthquake": 0.876,
+        "rock-slide": 0.803,
+        "protect": 0.666,
+        "stomping-tantrum": 0.363,
+        "poison-jab": 0.225,
+        "rock-tomb": 0.037,
+        "dragon-tail": 0.03,
+        "breaking-swipe": 0.017,
+        "scale-shot": 0.013
+      },
+      "abilities": {
+        "rough-skin": 0.998,
+        "sand-veil": 0.002
+      },
+      "teammates": {}
+    },
+    "basculegion-male": {
+      "name": "Basculegion",
+      "rank": 2,
+      "usage": {
+        "weighted": 0.495,
+        "raw": 0.495
+      },
+      "items": {
+        "choice-scarf": 0.319,
+        "mystic-water": 0.271,
+        "focus-sash": 0.271,
+        "life-orb": 0.073,
+        "sitrus-berry": 0.041,
+        "kasib-berry": 0.015,
+        "colbur-berry": 0.01
+      },
+      "moves": {
+        "last-respects": 1,
+        "aqua-jet": 0.966,
+        "wave-crash": 0.7,
+        "protect": 0.666,
+        "liquidation": 0.297,
+        "flip-turn": 0.286,
+        "psychic-fangs": 0.069,
+        "icy-wind": 0.008,
+        "soak": 0.003,
+        "waterfall": 0.002
+      },
+      "abilities": {
+        "adaptability": 0.917,
+        "swift-swim": 0.083
+      },
+      "teammates": {}
+    },
+    "whimsicott": {
+      "name": "Whimsicott",
+      "rank": 3,
+      "usage": {
+        "weighted": 0.49,
+        "raw": 0.49
+      },
+      "items": {
+        "focus-sash": 0.752,
+        "fairy-feather": 0.093,
+        "mental-herb": 0.058,
+        "kebia-berry": 0.046,
+        "coba-berry": 0.037,
+        "sitrus-berry": 0.004,
+        "occa-berry": 0.002,
+        "babiri-berry": 0.002,
+        "bright-powder": 0.002,
+        "leftovers": 0.002
+      },
+      "moves": {
+        "tailwind": 0.961,
+        "moonblast": 0.894,
+        "encore": 0.752,
+        "protect": 0.53,
+        "charm": 0.259,
+        "sunny-day": 0.211,
+        "fake-tears": 0.145,
+        "helping-hand": 0.041,
+        "dazzling-gleam": 0.041,
+        "tickle": 0.039
+      },
+      "abilities": {
+        "prankster": 1
+      },
+      "teammates": {}
+    },
+    "kingambit": {
+      "name": "Kingambit",
+      "rank": 4,
+      "usage": {
+        "weighted": 0.485,
+        "raw": 0.485
+      },
+      "items": {
+        "chople-berry": 0.366,
+        "black-glasses": 0.335,
+        "occa-berry": 0.097,
+        "focus-sash": 0.095,
+        "life-orb": 0.09,
+        "muscle-band": 0.011,
+        "shuca-berry": 0.002,
+        "bright-powder": 0.002,
+        "black-belt": 0.002
+      },
+      "moves": {
+        "sucker-punch": 1,
+        "kowtow-cleave": 0.982,
+        "iron-head": 0.753,
+        "protect": 0.645,
+        "low-kick": 0.465,
+        "swords-dance": 0.145,
+        "brick-break": 0.007,
+        "quick-guard": 0.002
+      },
+      "abilities": {
+        "defiant": 0.938,
+        "supreme-overlord": 0.062
+      },
+      "teammates": {}
+    },
+    "sinistcha": {
+      "name": "Sinistcha",
+      "rank": 5,
+      "usage": {
+        "weighted": 0.48,
+        "raw": 0.48
+      },
+      "items": {
+        "kasib-berry": 0.377,
+        "sitrus-berry": 0.323,
+        "colbur-berry": 0.166,
+        "leftovers": 0.077,
+        "occa-berry": 0.023,
+        "bright-powder": 0.011,
+        "focus-sash": 0.011,
+        "shell-bell": 0.007,
+        "coba-berry": 0.005
+      },
+      "moves": {
+        "rage-powder": 0.995,
+        "matcha-gotcha": 0.991,
+        "trick-room": 0.673,
+        "life-dew": 0.586,
+        "protect": 0.52,
+        "shadow-ball": 0.082,
+        "imprison": 0.061,
+        "strength-sap": 0.061,
+        "pain-split": 0.018,
+        "leaf-storm": 0.007
+      },
+      "abilities": {
+        "hospitality": 0.995,
+        "heatproof": 0.005
+      },
+      "teammates": {}
+    },
+    "incineroar": {
+      "name": "Incineroar",
+      "rank": 6,
+      "usage": {
+        "weighted": 0.475,
+        "raw": 0.475
+      },
+      "items": {
+        "sitrus-berry": 0.505,
+        "passho-berry": 0.205,
+        "chople-berry": 0.108,
+        "charcoal": 0.053,
+        "white-herb": 0.037,
+        "shuca-berry": 0.034,
+        "leftovers": 0.024,
+        "expert-belt": 0.021,
+        "iron-ball": 0.011,
+        "lum-berry": 0.003
+      },
+      "moves": {
+        "fake-out": 1,
+        "parting-shot": 0.963,
+        "flare-blitz": 0.921,
+        "throat-chop": 0.537,
+        "darkest-lariat": 0.366,
+        "will-o-wisp": 0.055,
+        "helping-hand": 0.039,
+        "protect": 0.034,
+        "close-combat": 0.024,
+        "roar": 0.024
+      },
+      "abilities": {
+        "intimidate": 1
+      },
+      "teammates": {}
+    },
+    "charizard-mega-y": {
+      "name": "Charizard",
+      "rank": 7,
+      "usage": {
+        "weighted": 0.47,
+        "raw": 0.47
+      },
+      "items": {
+        "charizardite-y": 0.958,
+        "charizardite-x": 0.039,
+        "choice-scarf": 0.003
+      },
+      "moves": {
+        "protect": 0.994,
+        "heat-wave": 0.961,
+        "solar-beam": 0.904,
+        "weather-ball": 0.853,
+        "air-slash": 0.051,
+        "ancient-power": 0.048,
+        "dragon-dance": 0.036,
+        "scorching-sands": 0.03,
+        "breaking-swipe": 0.027,
+        "temper-flare": 0.027
+      },
+      "abilities": {
+        "blaze": 0.784,
+        "solar-power": 0.216
+      },
+      "teammates": {}
+    },
+    "staraptor-mega": {
+      "name": "Staraptor",
+      "rank": 8,
+      "usage": {
+        "weighted": 0.465,
+        "raw": 0.465
+      },
+      "items": {
+        "staraptorite": 0.975,
+        "choice-scarf": 0.025
+      },
+      "moves": {
+        "close-combat": 0.981,
+        "protect": 0.943,
+        "brave-bird": 0.834,
+        "roost": 0.637,
+        "dual-wingbeat": 0.188,
+        "tailwind": 0.105,
+        "blaze-kick": 0.092,
+        "u-turn": 0.054,
+        "quick-attack": 0.045,
+        "substitute": 0.041
+      },
+      "abilities": {
+        "intimidate": 0.949,
+        "reckless": 0.051
+      },
+      "teammates": {}
+    },
+    "floette-mega": {
+      "name": "Floette-Eternal",
+      "rank": 9,
+      "usage": {
+        "weighted": 0.46,
+        "raw": 0.46
+      },
+      "items": {
+        "floettite": 0.974,
+        "life-orb": 0.026
+      },
+      "moves": {
+        "protect": 1,
+        "dazzling-gleam": 0.958,
+        "moonblast": 0.841,
+        "light-of-ruin": 0.685,
+        "calm-mind": 0.325,
+        "draining-kiss": 0.14,
+        "psychic": 0.023,
+        "wish": 0.016,
+        "helping-hand": 0.006,
+        "substitute": 0.003
+      },
+      "abilities": {
+        "flower-veil": 0.964,
+        "symbiosis": 0.036
+      },
+      "teammates": {}
+    },
+    "sylveon": {
+      "name": "Sylveon",
+      "rank": 10,
+      "usage": {
+        "weighted": 0.455,
+        "raw": 0.455
+      },
+      "items": {
+        "fairy-feather": 0.951,
+        "life-orb": 0.042,
+        "leftovers": 0.004,
+        "choice-scarf": 0.004
+      },
+      "moves": {
+        "hyper-voice": 1,
+        "quick-attack": 0.841,
+        "detect": 0.67,
+        "hyper-beam": 0.667,
+        "protect": 0.277,
+        "moonblast": 0.163,
+        "calm-mind": 0.095,
+        "yawn": 0.072,
+        "mystical-fire": 0.049,
+        "round": 0.042
+      },
+      "abilities": {
+        "pixilate": 1
+      },
+      "teammates": {}
+    },
+    "sneasler": {
+      "name": "Sneasler",
+      "rank": 11,
+      "usage": {
+        "weighted": 0.45,
+        "raw": 0.45
+      },
+      "items": {
+        "white-herb": 0.707,
+        "focus-sash": 0.259,
+        "sitrus-berry": 0.015,
+        "life-orb": 0.012,
+        "lum-berry": 0.004,
+        "king-s-rock": 0.004
+      },
+      "moves": {
+        "close-combat": 0.996,
+        "fake-out": 0.985,
+        "dire-claw": 0.977,
+        "protect": 0.436,
+        "coaching": 0.278,
+        "feint": 0.093,
+        "rock-slide": 0.077,
+        "rain-dance": 0.039,
+        "rock-tomb": 0.035,
+        "quick-guard": 0.019
+      },
+      "abilities": {
+        "unburden": 0.931,
+        "poison-touch": 0.069
+      },
+      "teammates": {}
+    },
+    "farigiraf": {
+      "name": "Farigiraf",
+      "rank": 12,
+      "usage": {
+        "weighted": 0.445,
+        "raw": 0.445
+      },
+      "items": {
+        "sitrus-berry": 0.757,
+        "colbur-berry": 0.13,
+        "focus-sash": 0.042,
+        "life-orb": 0.029,
+        "twisted-spoon": 0.021,
+        "mental-herb": 0.013,
+        "leftovers": 0.008
+      },
+      "moves": {
+        "trick-room": 0.987,
+        "psychic": 0.603,
+        "helping-hand": 0.418,
+        "thunderbolt": 0.385,
+        "protect": 0.364,
+        "twin-beam": 0.331,
+        "hyper-voice": 0.276,
+        "roar": 0.142,
+        "imprison": 0.084,
+        "ally-switch": 0.079
+      },
+      "abilities": {
+        "armor-tail": 0.996,
+        "cud-chew": 0.004
+      },
+      "teammates": {}
+    },
+    "pelipper": {
+      "name": "Pelipper",
+      "rank": 13,
+      "usage": {
+        "weighted": 0.44,
+        "raw": 0.44
+      },
+      "items": {
+        "focus-sash": 0.449,
+        "sitrus-berry": 0.366,
+        "damp-rock": 0.062,
+        "expert-belt": 0.04,
+        "life-orb": 0.04,
+        "choice-scarf": 0.04,
+        "bright-powder": 0.004
+      },
+      "moves": {
+        "hurricane": 0.996,
+        "tailwind": 0.89,
+        "weather-ball": 0.789,
+        "protect": 0.471,
+        "wide-guard": 0.401,
+        "ice-beam": 0.132,
+        "rain-dance": 0.115,
+        "muddy-water": 0.101,
+        "helping-hand": 0.048,
+        "u-turn": 0.035
+      },
+      "abilities": {
+        "drizzle": 1
+      },
+      "teammates": {}
+    },
+    "raichu": {
+      "name": "Raichu",
+      "rank": 14,
+      "usage": {
+        "weighted": 0.435,
+        "raw": 0.435
+      },
+      "items": {
+        "raichunite-y": 0.824,
+        "raichunite-x": 0.116,
+        "focus-sash": 0.045,
+        "shuca-berry": 0.01,
+        "wide-lens": 0.005
+      },
+      "moves": {
+        "protect": 0.854,
+        "zap-cannon": 0.819,
+        "focus-blast": 0.809,
+        "fake-out": 0.618,
+        "volt-switch": 0.211,
+        "encore": 0.101,
+        "rising-voltage": 0.06,
+        "volt-tackle": 0.055,
+        "nasty-plot": 0.055,
+        "play-rough": 0.055
+      },
+      "abilities": {
+        "lightning-rod": 0.995,
+        "static": 0.005
+      },
+      "teammates": {}
+    },
+    "archaludon": {
+      "name": "Archaludon",
+      "rank": 15,
+      "usage": {
+        "weighted": 0.43,
+        "raw": 0.43
+      },
+      "items": {
+        "leftovers": 0.891,
+        "scope-lens": 0.041,
+        "choice-scarf": 0.031,
+        "sitrus-berry": 0.016,
+        "chople-berry": 0.01,
+        "expert-belt": 0.005,
+        "life-orb": 0.005
+      },
+      "moves": {
+        "protect": 0.969,
+        "flash-cannon": 0.953,
+        "electro-shot": 0.902,
+        "dragon-pulse": 0.736,
+        "draco-meteor": 0.187,
+        "aura-sphere": 0.15,
+        "focus-energy": 0.041,
+        "snarl": 0.036,
+        "thunderbolt": 0.016,
+        "steel-beam": 0.01
+      },
+      "abilities": {
+        "stamina": 0.922,
+        "sturdy": 0.073,
+        "stalwart": 0.005
+      },
+      "teammates": {}
+    },
+    "maushold-family-of-four": {
+      "name": "Maushold",
+      "rank": 16,
+      "usage": {
+        "weighted": 0.425,
+        "raw": 0.425
+      },
+      "items": {
+        "chople-berry": 0.318,
+        "focus-sash": 0.307,
+        "wide-lens": 0.25,
+        "sitrus-berry": 0.125
+      },
+      "moves": {
+        "follow-me": 0.964,
+        "protect": 0.911,
+        "super-fang": 0.391,
+        "encore": 0.318,
+        "feint": 0.297,
+        "population-bomb": 0.26,
+        "taunt": 0.255,
+        "beat-up": 0.193,
+        "helping-hand": 0.146,
+        "charm": 0.089
+      },
+      "abilities": {
+        "friend-guard": 0.776,
+        "technician": 0.224
+      },
+      "teammates": {}
+    },
+    "metagross-mega": {
+      "name": "Metagross",
+      "rank": 17,
+      "usage": {
+        "weighted": 0.42,
+        "raw": 0.42
+      },
+      "items": {
+        "metagrossite": 0.929,
+        "expert-belt": 0.026,
+        "life-orb": 0.026,
+        "sitrus-berry": 0.013,
+        "colbur-berry": 0.006
+      },
+      "moves": {
+        "protect": 0.897,
+        "psychic-fangs": 0.846,
+        "stomping-tantrum": 0.494,
+        "iron-head": 0.462,
+        "meteor-mash": 0.397,
+        "bullet-punch": 0.295,
+        "ice-punch": 0.173,
+        "hard-press": 0.115,
+        "thunder-punch": 0.096,
+        "rock-slide": 0.077
+      },
+      "abilities": {
+        "clear-body": 0.994,
+        "light-metal": 0.006
+      },
+      "teammates": {}
+    },
+    "swampert-mega": {
+      "name": "Swampert",
+      "rank": 18,
+      "usage": {
+        "weighted": 0.415,
+        "raw": 0.415
+      },
+      "items": {
+        "swampertite": 1
+      },
+      "moves": {
+        "protect": 0.932,
+        "wave-crash": 0.789,
+        "earthquake": 0.673,
+        "high-horsepower": 0.395,
+        "ice-punch": 0.395,
+        "rock-slide": 0.204,
+        "liquidation": 0.15,
+        "knock-off": 0.143,
+        "poison-jab": 0.109,
+        "flip-turn": 0.088
+      },
+      "abilities": {
+        "torrent": 0.503,
+        "damp": 0.497
+      },
+      "teammates": {}
+    },
+    "grimmsnarl": {
+      "name": "Grimmsnarl",
+      "rank": 19,
+      "usage": {
+        "weighted": 0.41,
+        "raw": 0.41
+      },
+      "items": {
+        "light-clay": 0.801,
+        "roseli-berry": 0.144,
+        "sitrus-berry": 0.034,
+        "iron-ball": 0.014,
+        "leftovers": 0.007
+      },
+      "moves": {
+        "light-screen": 0.801,
+        "reflect": 0.781,
+        "spirit-break": 0.774,
+        "parting-shot": 0.747,
+        "fake-out": 0.212,
+        "scary-face": 0.199,
+        "fake-tears": 0.171,
+        "foul-play": 0.103,
+        "sucker-punch": 0.075,
+        "taunt": 0.048
+      },
+      "abilities": {
+        "prankster": 1
+      },
+      "teammates": {}
+    },
+    "aerodactyl-mega": {
+      "name": "Aerodactyl",
+      "rank": 20,
+      "usage": {
+        "weighted": 0.405,
+        "raw": 0.405
+      },
+      "items": {
+        "aerodactylite": 0.701,
+        "focus-sash": 0.285,
+        "shuca-berry": 0.007,
+        "wide-lens": 0.007
+      },
+      "moves": {
+        "rock-slide": 1,
+        "tailwind": 0.993,
+        "dual-wingbeat": 0.951,
+        "protect": 0.451,
+        "wide-guard": 0.313,
+        "ice-fang": 0.292
+      },
+      "abilities": {
+        "unnerve": 0.993,
+        "rock-head": 0.007
+      },
+      "teammates": {}
+    },
+    "torkoal": {
+      "name": "Torkoal",
+      "rank": 21,
+      "usage": {
+        "weighted": 0.4,
+        "raw": 0.4
+      },
+      "items": {
+        "charcoal": 0.827,
+        "life-orb": 0.087,
+        "leftovers": 0.079,
+        "heat-rock": 0.008
+      },
+      "moves": {
+        "eruption": 0.913,
+        "protect": 0.906,
+        "weather-ball": 0.693,
+        "heat-wave": 0.622,
+        "earth-power": 0.346,
+        "solar-beam": 0.157,
+        "lava-plume": 0.087,
+        "yawn": 0.079,
+        "burning-jealousy": 0.079,
+        "helping-hand": 0.055
+      },
+      "abilities": {
+        "drought": 1
+      },
+      "teammates": {}
+    },
+    "gholdengo": {
+      "name": "Gholdengo",
+      "rank": 22,
+      "usage": {
+        "weighted": 0.395,
+        "raw": 0.395
+      },
+      "items": {
+        "life-orb": 0.468,
+        "choice-scarf": 0.153,
+        "white-herb": 0.137,
+        "metal-coat": 0.121,
+        "leftovers": 0.105,
+        "occa-berry": 0.008,
+        "iron-ball": 0.008
+      },
+      "moves": {
+        "shadow-ball": 1,
+        "make-it-rain": 1,
+        "protect": 0.839,
+        "nasty-plot": 0.669,
+        "power-gem": 0.169,
+        "thunderbolt": 0.113,
+        "psychic": 0.105,
+        "trick": 0.04,
+        "steel-beam": 0.032,
+        "psyshock": 0.024
+      },
+      "abilities": {
+        "good-as-gold": 1
+      },
+      "teammates": {}
+    },
+    "talonflame": {
+      "name": "Talonflame",
+      "rank": 23,
+      "usage": {
+        "weighted": 0.39,
+        "raw": 0.39
+      },
+      "items": {
+        "life-orb": 0.435,
+        "sharp-beak": 0.287,
+        "focus-sash": 0.096
+      },
+      "moves": {
+        "tailwind": 1,
+        "flare-blitz": 0.817,
+        "brave-bird": 0.678,
+        "protect": 0.496,
+        "quick-guard": 0.409,
+        "acrobatics": 0.183,
+        "dual-wingbeat": 0.139,
+        "feather-dance": 0.113,
+        "rain-dance": 0.104,
+        "taunt": 0.052
+      },
+      "abilities": {
+        "gale-wings": 1
+      },
+      "teammates": {}
+    },
+    "blastoise-mega": {
+      "name": "Blastoise",
+      "rank": 24,
+      "usage": {
+        "weighted": 0.385,
+        "raw": 0.385
+      },
+      "items": {
+        "blastoisinite": 1
+      },
+      "moves": {
+        "dark-pulse": 0.948,
+        "water-spout": 0.825,
+        "aura-sphere": 0.649,
+        "fake-out": 0.608,
+        "shell-smash": 0.557,
+        "protect": 0.196,
+        "water-pulse": 0.175,
+        "dragon-pulse": 0.041
+      },
+      "abilities": {
+        "rain-dish": 0.629,
+        "torrent": 0.371
+      },
+      "teammates": {}
+    },
+    "ninetales-alola": {
+      "name": "Ninetales-Alola",
+      "rank": 25,
+      "usage": {
+        "weighted": 0.38,
+        "raw": 0.38
+      },
+      "items": {
+        "light-clay": 0.585,
+        "never-melt-ice": 0.213,
+        "focus-sash": 0.106,
+        "sitrus-berry": 0.064,
+        "choice-scarf": 0.021,
+        "life-orb": 0.011
+      },
+      "moves": {
+        "protect": 0.872,
+        "blizzard": 0.83,
+        "aurora-veil": 0.787,
+        "freeze-dry": 0.628,
+        "encore": 0.415,
+        "moonblast": 0.351,
+        "icy-wind": 0.117
+      },
+      "abilities": {
+        "snow-warning": 1
+      },
+      "teammates": {}
+    },
+    "annihilape": {
+      "name": "Annihilape",
+      "rank": 26,
+      "usage": {
+        "weighted": 0.375,
+        "raw": 0.375
+      },
+      "items": {
+        "leftovers": 0.574,
+        "sitrus-berry": 0.277,
+        "focus-sash": 0.096,
+        "choice-scarf": 0.032,
+        "kasib-berry": 0.011,
+        "life-orb": 0.011
+      },
+      "moves": {
+        "rage-fist": 0.968,
+        "protect": 0.947,
+        "drain-punch": 0.851,
+        "bulk-up": 0.638,
+        "rock-slide": 0.213,
+        "close-combat": 0.149,
+        "coaching": 0.117,
+        "taunt": 0.032,
+        "u-turn": 0.032,
+        "shadow-claw": 0.021
+      },
+      "abilities": {
+        "defiant": 1
+      },
+      "teammates": {}
+    },
+    "tyranitar": {
+      "name": "Tyranitar",
+      "rank": 27,
+      "usage": {
+        "weighted": 0.37,
+        "raw": 0.37
+      },
+      "items": {
+        "tyranitarite": 0.459,
+        "choice-scarf": 0.257,
+        "sitrus-berry": 0.189,
+        "life-orb": 0.068,
+        "focus-sash": 0.027
+      },
+      "moves": {
+        "rock-slide": 1,
+        "knock-off": 0.932,
+        "low-kick": 0.757,
+        "protect": 0.716,
+        "ice-punch": 0.405,
+        "dragon-dance": 0.122,
+        "heavy-slam": 0.041,
+        "crunch": 0.027
+      },
+      "abilities": {
+        "sand-stream": 1
+      },
+      "teammates": {}
+    },
+    "pyroar": {
+      "name": "Pyroar",
+      "rank": 28,
+      "usage": {
+        "weighted": 0.365,
+        "raw": 0.365
+      },
+      "items": {
+        "pyroarite": 1
+      },
+      "moves": {
+        "protect": 1,
+        "heat-wave": 1,
+        "overheat": 0.703,
+        "hyper-voice": 0.27,
+        "scorching-sands": 0.27,
+        "flare-blitz": 0.216,
+        "flamethrower": 0.176,
+        "solar-beam": 0.162,
+        "round": 0.135,
+        "substitute": 0.014
+      },
+      "abilities": {
+        "unnerve": 0.73,
+        "moxie": 0.257,
+        "rivalry": 0.014
+      },
+      "teammates": {}
+    },
+    "tsareena": {
+      "name": "Tsareena",
+      "rank": 29,
+      "usage": {
+        "weighted": 0.36,
+        "raw": 0.36
+      },
+      "items": {
+        "wide-lens": 0.446,
+        "focus-sash": 0.176,
+        "choice-scarf": 0.135,
+        "coba-berry": 0.122,
+        "occa-berry": 0.068,
+        "sitrus-berry": 0.054
+      },
+      "moves": {
+        "triple-axel": 0.986,
+        "low-kick": 0.797,
+        "protect": 0.595,
+        "power-whip": 0.568,
+        "trop-kick": 0.432,
+        "taunt": 0.243,
+        "helping-hand": 0.149,
+        "knock-off": 0.122,
+        "zen-headbutt": 0.054,
+        "high-jump-kick": 0.041
+      },
+      "abilities": {
+        "queenly-majesty": 1
+      },
+      "teammates": {}
+    },
+    "gardevoir": {
+      "name": "Gardevoir",
+      "rank": 30,
+      "usage": {
+        "weighted": 0.355,
+        "raw": 0.355
+      },
+      "items": {
+        "gardevoirite": 0.958,
+        "choice-scarf": 0.042
+      },
+      "moves": {
+        "protect": 0.958,
+        "hyper-voice": 0.958,
+        "psyshock": 0.583,
+        "trick-room": 0.347,
+        "psychic": 0.347,
+        "vacuum-wave": 0.278,
+        "calm-mind": 0.181,
+        "thunderbolt": 0.181,
+        "aura-sphere": 0.083,
+        "moonblast": 0.042
+      },
+      "abilities": {
+        "trace": 0.847,
+        "telepathy": 0.153
+      },
+      "teammates": {}
+    },
+    "mawile": {
+      "name": "Mawile",
+      "rank": 31,
+      "usage": {
+        "weighted": 0.35,
+        "raw": 0.35
+      },
+      "items": {
+        "mawilite": 1
+      },
+      "moves": {
+        "sucker-punch": 0.968,
+        "play-rough": 0.952,
+        "protect": 0.919,
+        "iron-head": 0.694,
+        "swords-dance": 0.274,
+        "rock-slide": 0.145,
+        "giga-impact": 0.032,
+        "stone-edge": 0.016
+      },
+      "abilities": {
+        "intimidate": 0.516,
+        "hyper-cutter": 0.484
+      },
+      "teammates": {}
+    },
+    "glimmora": {
+      "name": "Glimmora",
+      "rank": 32,
+      "usage": {
+        "weighted": 0.345,
+        "raw": 0.345
+      },
+      "items": {
+        "focus-sash": 0.857,
+        "sitrus-berry": 0.125,
+        "glimmoranite": 0.018
+      },
+      "moves": {
+        "sludge-bomb": 1,
+        "power-gem": 1,
+        "earth-power": 0.982,
+        "spiky-shield": 0.821,
+        "energy-ball": 0.179,
+        "toxic": 0.018
+      },
+      "abilities": {
+        "toxic-debris": 1
+      },
+      "teammates": {}
+    },
+    "kangaskhan": {
+      "name": "Kangaskhan",
+      "rank": 33,
+      "usage": {
+        "weighted": 0.34,
+        "raw": 0.34
+      },
+      "items": {
+        "kangaskhanite": 0.574,
+        "silk-scarf": 0.333,
+        "sitrus-berry": 0.037,
+        "metronome": 0.037,
+        "leftovers": 0.019
+      },
+      "moves": {
+        "fake-out": 1,
+        "double-edge": 0.574,
+        "ice-punch": 0.5,
+        "last-resort": 0.426,
+        "low-kick": 0.333,
+        "hammer-arm": 0.167,
+        "drain-punch": 0.074,
+        "sucker-punch": 0.056,
+        "protect": 0.019
+      },
+      "abilities": {
+        "scrappy": 1
+      },
+      "teammates": {}
+    },
+    "froslass": {
+      "name": "Froslass",
+      "rank": 34,
+      "usage": {
+        "weighted": 0.335,
+        "raw": 0.335
+      },
+      "items": {
+        "froslassite": 1
+      },
+      "moves": {
+        "protect": 1,
+        "blizzard": 1,
+        "shadow-ball": 0.906,
+        "aurora-veil": 0.66,
+        "thunderbolt": 0.245,
+        "rain-dance": 0.094,
+        "taunt": 0.038,
+        "weather-ball": 0.038,
+        "ice-shard": 0.019
+      },
+      "abilities": {
+        "cursed-body": 0.868,
+        "snow-cloak": 0.132
+      },
+      "teammates": {}
+    },
+    "vivillon": {
+      "name": "Vivillon",
+      "rank": 36,
+      "usage": {
+        "weighted": 0.325,
+        "raw": 0.325
+      },
+      "items": {
+        "choice-scarf": 0.804,
+        "focus-sash": 0.196
+      },
+      "moves": {
+        "hurricane": 0.98,
+        "sleep-powder": 0.98,
+        "rage-powder": 0.961,
+        "rain-dance": 0.588,
+        "tailwind": 0.157,
+        "pollen-puff": 0.157,
+        "protect": 0.098,
+        "giga-drain": 0.039,
+        "u-turn": 0.039
+      },
+      "abilities": {
+        "compound-eyes": 0.98,
+        "friend-guard": 0.02
+      },
+      "teammates": {}
+    },
+    "delphox": {
+      "name": "Delphox",
+      "rank": 37,
+      "usage": {
+        "weighted": 0.32,
+        "raw": 0.32
+      },
+      "items": {
+        "delphoxite": 1
+      },
+      "moves": {
+        "protect": 1,
+        "heat-wave": 1,
+        "nasty-plot": 0.795,
+        "psychic": 0.705,
+        "psyshock": 0.295,
+        "encore": 0.159,
+        "substitute": 0.045
+      },
+      "abilities": {
+        "blaze": 0.955,
+        "magician": 0.045
+      },
+      "teammates": {}
+    },
+    "milotic": {
+      "name": "Milotic",
+      "rank": 38,
+      "usage": {
+        "weighted": 0.315,
+        "raw": 0.315
+      },
+      "items": {
+        "leftovers": 0.919,
+        "sitrus-berry": 0.054,
+        "choice-scarf": 0.027
+      },
+      "moves": {
+        "muddy-water": 0.622,
+        "protect": 0.568,
+        "coil": 0.486,
+        "scald": 0.486,
+        "hypnosis": 0.459,
+        "recover": 0.405,
+        "icy-wind": 0.378,
+        "life-dew": 0.378,
+        "ice-beam": 0.108,
+        "haze": 0.054
+      },
+      "abilities": {
+        "competitive": 1
+      },
+      "teammates": {}
+    },
+    "sableye": {
+      "name": "Sableye",
+      "rank": 39,
+      "usage": {
+        "weighted": 0.31,
+        "raw": 0.31
+      },
+      "items": {
+        "roseli-berry": 0.788,
+        "light-clay": 0.182,
+        "wide-lens": 0.03
+      },
+      "moves": {
+        "rain-dance": 0.97,
+        "light-screen": 0.758,
+        "encore": 0.697,
+        "reflect": 0.424,
+        "fake-out": 0.394,
+        "will-o-wisp": 0.212,
+        "disable": 0.182,
+        "taunt": 0.152,
+        "quash": 0.121,
+        "protect": 0.03
+      },
+      "abilities": {
+        "prankster": 1
+      },
+      "teammates": {}
+    },
+    "dragonite": {
+      "name": "Dragonite",
+      "rank": 40,
+      "usage": {
+        "weighted": 0.305,
+        "raw": 0.305
+      },
+      "items": {
+        "dragoninite": 0.71,
+        "dragon-fang": 0.194,
+        "lum-berry": 0.032,
+        "silk-scarf": 0.032,
+        "roseli-berry": 0.032
+      },
+      "moves": {
+        "protect": 0.774,
+        "extreme-speed": 0.452,
+        "dragon-pulse": 0.452,
+        "tailwind": 0.387,
+        "hurricane": 0.355,
+        "draco-meteor": 0.258,
+        "dragon-claw": 0.226,
+        "heat-wave": 0.194,
+        "thunderbolt": 0.194,
+        "flamethrower": 0.161
+      },
+      "abilities": {
+        "multiscale": 0.677,
+        "inner-focus": 0.323
+      },
+      "teammates": {}
+    },
+    "scizor": {
+      "name": "Scizor",
+      "rank": 41,
+      "usage": {
+        "weighted": 0.3,
+        "raw": 0.3
+      },
+      "items": {
+        "metal-coat": 0.484,
+        "life-orb": 0.323,
+        "scizorite": 0.161,
+        "lum-berry": 0.032
+      },
+      "moves": {
+        "bullet-punch": 1,
+        "protect": 0.935,
+        "bug-bite": 0.903,
+        "swords-dance": 0.806,
+        "brick-break": 0.065,
+        "knock-off": 0.065,
+        "tailwind": 0.065,
+        "close-combat": 0.065,
+        "quick-guard": 0.065,
+        "dual-wingbeat": 0.032
+      },
+      "abilities": {
+        "technician": 1
+      },
+      "teammates": {}
+    },
+    "scrafty": {
+      "name": "Scrafty",
+      "rank": 42,
+      "usage": {
+        "weighted": 0.295,
+        "raw": 0.295
+      },
+      "items": {
+        "scraftinite": 0.9,
+        "leftovers": 0.067,
+        "lum-berry": 0.033
+      },
+      "moves": {
+        "fake-out": 0.967,
+        "knock-off": 0.967,
+        "close-combat": 0.533,
+        "drain-punch": 0.467,
+        "ice-punch": 0.267,
+        "brick-break": 0.233,
+        "stone-edge": 0.133,
+        "rain-dance": 0.1,
+        "protect": 0.067,
+        "coaching": 0.067
+      },
+      "abilities": {
+        "intimidate": 0.867,
+        "shed-skin": 0.1,
+        "moxie": 0.033
+      },
+      "teammates": {}
+    },
+    "corviknight": {
+      "name": "Corviknight",
+      "rank": 43,
+      "usage": {
+        "weighted": 0.29,
+        "raw": 0.29
+      },
+      "items": {
+        "leftovers": 0.933,
+        "sitrus-berry": 0.033,
+        "sharp-beak": 0.033
+      },
+      "moves": {
+        "brave-bird": 0.933,
+        "bulk-up": 0.767,
+        "tailwind": 0.667,
+        "body-press": 0.633,
+        "roost": 0.367,
+        "iron-head": 0.333,
+        "protect": 0.133,
+        "iron-defense": 0.067,
+        "fly": 0.033,
+        "rain-dance": 0.033
+      },
+      "abilities": {
+        "mirror-armor": 1
+      },
+      "teammates": {}
+    },
+    "scovillain": {
+      "name": "Scovillain",
+      "rank": 44,
+      "usage": {
+        "weighted": 0.285,
+        "raw": 0.285
+      },
+      "items": {
+        "scovillainite": 1
+      },
+      "moves": {
+        "rage-powder": 1,
+        "protect": 0.967,
+        "leech-seed": 0.8,
+        "overheat": 0.767,
+        "giga-drain": 0.167,
+        "flamethrower": 0.167,
+        "flare-blitz": 0.067,
+        "fire-blast": 0.033,
+        "leaf-storm": 0.033
+      },
+      "abilities": {
+        "moody": 0.667,
+        "chlorophyll": 0.3,
+        "insomnia": 0.033
+      },
+      "teammates": {}
+    },
+    "excadrill": {
+      "name": "Excadrill",
+      "rank": 45,
+      "usage": {
+        "weighted": 0.28,
+        "raw": 0.28
+      },
+      "items": {
+        "focus-sash": 0.857,
+        "excadrite": 0.143
+      },
+      "moves": {
+        "protect": 1,
+        "iron-head": 1,
+        "high-horsepower": 0.964,
+        "rock-slide": 0.821,
+        "rock-tomb": 0.143,
+        "swords-dance": 0.036,
+        "earthquake": 0.036
+      },
+      "abilities": {
+        "sand-rush": 0.857,
+        "mold-breaker": 0.143
+      },
+      "teammates": {}
+    },
+    "hydreigon": {
+      "name": "Hydreigon",
+      "rank": 46,
+      "usage": {
+        "weighted": 0.275,
+        "raw": 0.275
+      },
+      "items": {
+        "choice-scarf": 0.571,
+        "life-orb": 0.357,
+        "sitrus-berry": 0.036,
+        "chople-berry": 0.036
+      },
+      "moves": {
+        "dark-pulse": 1,
+        "draco-meteor": 0.75,
+        "snarl": 0.571,
+        "earth-power": 0.393,
+        "protect": 0.357,
+        "tailwind": 0.357,
+        "flamethrower": 0.321,
+        "heat-wave": 0.214,
+        "rain-dance": 0.036
+      },
+      "abilities": {
+        "levitate": 1
+      },
+      "teammates": {}
+    },
+    "kommo-o": {
+      "name": "Kommo-O",
+      "rank": 47,
+      "usage": {
+        "weighted": 0.27,
+        "raw": 0.27
+      },
+      "items": {
+        "leftovers": 0.852,
+        "dragon-fang": 0.074,
+        "wise-glasses": 0.037,
+        "life-orb": 0.037
+      },
+      "moves": {
+        "clanging-scales": 1,
+        "protect": 0.926,
+        "aura-sphere": 0.926,
+        "clangorous-soul": 0.852,
+        "vacuum-wave": 0.148,
+        "helping-hand": 0.074,
+        "focus-blast": 0.074
+      },
+      "abilities": {
+        "soundproof": 0.889,
+        "overcoat": 0.111
+      },
+      "teammates": {}
+    },
+    "politoed": {
+      "name": "Politoed",
+      "rank": 48,
+      "usage": {
+        "weighted": 0.265,
+        "raw": 0.265
+      },
+      "items": {
+        "sitrus-berry": 0.5,
+        "leftovers": 0.227,
+        "damp-rock": 0.227,
+        "wacan-berry": 0.045
+      },
+      "moves": {
+        "weather-ball": 0.955,
+        "protect": 0.864,
+        "icy-wind": 0.5,
+        "rain-dance": 0.409,
+        "ice-beam": 0.409,
+        "perish-song": 0.273,
+        "helping-hand": 0.227,
+        "muddy-water": 0.136,
+        "encore": 0.091,
+        "hypnosis": 0.091
+      },
+      "abilities": {
+        "drizzle": 1
+      },
+      "teammates": {}
+    },
+    "gengar": {
+      "name": "Gengar",
+      "rank": 49,
+      "usage": {
+        "weighted": 0.26,
+        "raw": 0.26
+      },
+      "items": {
+        "gengarite": 0.905,
+        "focus-sash": 0.095
+      },
+      "moves": {
+        "protect": 0.905,
+        "sludge-bomb": 0.81,
+        "perish-song": 0.81,
+        "disable": 0.714,
+        "shadow-ball": 0.571,
+        "trick-room": 0.095,
+        "psychic": 0.095
+      },
+      "abilities": {
+        "cursed-body": 1
+      },
+      "teammates": {}
+    },
+    "arcanine-hisui": {
+      "name": "Arcanine-Hisui",
+      "rank": 50,
+      "usage": {
+        "weighted": 0.255,
+        "raw": 0.255
+      },
+      "items": {
+        "focus-sash": 0.842,
+        "choice-scarf": 0.105,
+        "sitrus-berry": 0.053
+      },
+      "moves": {
+        "extreme-speed": 1,
+        "flare-blitz": 1,
+        "head-smash": 0.947,
+        "protect": 0.895,
+        "rock-slide": 0.158
+      },
+      "abilities": {
+        "rock-head": 0.947,
+        "intimidate": 0.053
+      },
+      "teammates": {}
+    },
+    "venusaur": {
+      "name": "Venusaur",
+      "rank": 51,
+      "usage": {
+        "weighted": 0.25,
+        "raw": 0.25
+      },
+      "items": {
+        "venusaurite": 0.611,
+        "occa-berry": 0.167,
+        "focus-sash": 0.167,
+        "wide-lens": 0.056
+      },
+      "moves": {
+        "protect": 0.944,
+        "sludge-bomb": 0.889,
+        "earth-power": 0.778,
+        "giga-drain": 0.667,
+        "sleep-powder": 0.389,
+        "energy-ball": 0.167,
+        "acid-spray": 0.111,
+        "leaf-storm": 0.056
+      },
+      "abilities": {
+        "chlorophyll": 1
+      },
+      "teammates": {}
+    },
+    "aggron": {
+      "name": "Aggron",
+      "rank": 52,
+      "usage": {
+        "weighted": 0.245,
+        "raw": 0.245
+      },
+      "items": {
+        "aggronite": 1
+      },
+      "moves": {
+        "protect": 1,
+        "iron-defense": 1,
+        "heavy-slam": 1,
+        "body-press": 1
+      },
+      "abilities": {
+        "sturdy": 1
+      },
+      "teammates": {}
+    },
+    "zoroark-hisui": {
+      "name": "Zoroark-Hisui",
+      "rank": 53,
+      "usage": {
+        "weighted": 0.24,
+        "raw": 0.24
+      },
+      "items": {
+        "life-orb": 0.889,
+        "choice-scarf": 0.111
+      },
+      "moves": {
+        "icy-wind": 0.944,
+        "shadow-ball": 0.944,
+        "hyper-voice": 0.944,
+        "protect": 0.889,
+        "will-o-wisp": 0.056,
+        "memento": 0.056,
+        "taunt": 0.056,
+        "trick": 0.056,
+        "hyper-beam": 0.056
+      },
+      "abilities": {
+        "illusion": 1
+      },
+      "teammates": {}
+    },
+    "torterra": {
+      "name": "Torterra",
+      "rank": 54,
+      "usage": {
+        "weighted": 0.235,
+        "raw": 0.235
+      },
+      "items": {
+        "life-orb": 0.882,
+        "lum-berry": 0.118
+      },
+      "moves": {
+        "stone-edge": 0.882,
+        "wood-hammer": 0.882,
+        "wide-guard": 0.882,
+        "headlong-rush": 0.882,
+        "amnesia": 0.118,
+        "protect": 0.118,
+        "iron-defense": 0.118,
+        "leech-seed": 0.118
+      },
+      "abilities": {
+        "overgrow": 0.882,
+        "shell-armor": 0.118
+      },
+      "teammates": {}
+    },
+    "samurott-hisui": {
+      "name": "Samurott-Hisui",
+      "rank": 55,
+      "usage": {
+        "weighted": 0.23,
+        "raw": 0.23
+      },
+      "items": {
+        "focus-sash": 0.588,
+        "choice-scarf": 0.294,
+        "black-glasses": 0.118
+      },
+      "moves": {
+        "sacred-sword": 1,
+        "night-slash": 0.765,
+        "aqua-cutter": 0.765,
+        "protect": 0.471,
+        "flip-turn": 0.353,
+        "ceaseless-edge": 0.235,
+        "detect": 0.176,
+        "sucker-punch": 0.118,
+        "encore": 0.059,
+        "razor-shell": 0.059
+      },
+      "abilities": {
+        "sharpness": 1
+      },
+      "teammates": {}
+    },
+    "hatterene": {
+      "name": "Hatterene",
+      "rank": 56,
+      "usage": {
+        "weighted": 0.225,
+        "raw": 0.225
+      },
+      "items": {
+        "life-orb": 0.588,
+        "fairy-feather": 0.235,
+        "focus-sash": 0.176
+      },
+      "moves": {
+        "trick-room": 1,
+        "dazzling-gleam": 1,
+        "protect": 0.824,
+        "psychic": 0.765,
+        "psychic-terrain": 0.176,
+        "expanding-force": 0.176,
+        "psyshock": 0.059
+      },
+      "abilities": {
+        "magic-bounce": 1
+      },
+      "teammates": {}
+    },
+    "blaziken": {
+      "name": "Blaziken",
+      "rank": 57,
+      "usage": {
+        "weighted": 0.22,
+        "raw": 0.22
+      },
+      "items": {
+        "blazikenite": 0.875,
+        "muscle-band": 0.063,
+        "life-orb": 0.063
+      },
+      "moves": {
+        "close-combat": 1,
+        "protect": 0.875,
+        "rock-slide": 0.813,
+        "flare-blitz": 0.813,
+        "swords-dance": 0.125,
+        "blaze-kick": 0.125,
+        "detect": 0.063,
+        "brave-bird": 0.063,
+        "thunder-punch": 0.063,
+        "temper-flare": 0.063
+      },
+      "abilities": {
+        "speed-boost": 0.938,
+        "blaze": 0.063
+      },
+      "teammates": {}
+    },
+    "dragalge": {
+      "name": "Dragalge",
+      "rank": 58,
+      "usage": {
+        "weighted": 0.215,
+        "raw": 0.215
+      },
+      "items": {
+        "dragalgite": 1
+      },
+      "moves": {
+        "protect": 1,
+        "sludge-bomb": 1,
+        "draco-meteor": 0.938,
+        "flip-turn": 0.375,
+        "dragon-pulse": 0.188,
+        "focus-blast": 0.188,
+        "muddy-water": 0.125,
+        "sludge-wave": 0.125,
+        "haze": 0.063
+      },
+      "abilities": {
+        "adaptability": 0.875,
+        "poison-point": 0.125
+      },
+      "teammates": {}
+    },
+    "meowscarada": {
+      "name": "Meowscarada",
+      "rank": 59,
+      "usage": {
+        "weighted": 0.21,
+        "raw": 0.21
+      },
+      "items": {
+        "life-orb": 0.688,
+        "choice-scarf": 0.188,
+        "focus-sash": 0.125
+      },
+      "moves": {
+        "flower-trick": 1,
+        "triple-axel": 0.875,
+        "sucker-punch": 0.813,
+        "play-rough": 0.688,
+        "knock-off": 0.25,
+        "u-turn": 0.188,
+        "protect": 0.063,
+        "taunt": 0.063,
+        "foul-play": 0.063
+      },
+      "abilities": {
+        "protean": 0.875,
+        "overgrow": 0.125
+      },
+      "teammates": {}
+    },
+    "gyarados": {
+      "name": "Gyarados",
+      "rank": 60,
+      "usage": {
+        "weighted": 0.205,
+        "raw": 0.205
+      },
+      "items": {
+        "gyaradosite": 0.933,
+        "sitrus-berry": 0.067
+      },
+      "moves": {
+        "waterfall": 1,
+        "dragon-dance": 0.933,
+        "protect": 0.867,
+        "crunch": 0.8,
+        "lash-out": 0.133,
+        "taunt": 0.067,
+        "ice-fang": 0.067,
+        "thunder-wave": 0.067,
+        "earthquake": 0.067
+      },
+      "abilities": {
+        "intimidate": 1
+      },
+      "teammates": {}
+    },
+    "camerupt": {
+      "name": "Camerupt",
+      "rank": 61,
+      "usage": {
+        "weighted": 0.2,
+        "raw": 0.2
+      },
+      "items": {
+        "cameruptite": 1
+      },
+      "moves": {
+        "ancient-power": 1,
+        "earth-power": 1,
+        "protect": 0.867,
+        "eruption": 0.667,
+        "heat-wave": 0.467
+      },
+      "abilities": {
+        "solid-rock": 1
+      },
+      "teammates": {}
+    },
+    "toxicroak": {
+      "name": "Toxicroak",
+      "rank": 62,
+      "usage": {
+        "weighted": 0.195,
+        "raw": 0.195
+      },
+      "items": {
+        "expert-belt": 0.533,
+        "focus-sash": 0.467
+      },
+      "moves": {
+        "fake-out": 1,
+        "close-combat": 1,
+        "sucker-punch": 1,
+        "poison-jab": 1
+      },
+      "abilities": {
+        "poison-touch": 1
+      },
+      "teammates": {}
+    },
+    "gallade": {
+      "name": "Gallade",
+      "rank": 63,
+      "usage": {
+        "weighted": 0.19,
+        "raw": 0.19
+      },
+      "items": {
+        "choice-scarf": 0.714,
+        "focus-sash": 0.143,
+        "roseli-berry": 0.071,
+        "galladite": 0.071
+      },
+      "moves": {
+        "psycho-cut": 1,
+        "sacred-sword": 1,
+        "leaf-blade": 0.857,
+        "ice-punch": 0.5,
+        "protect": 0.214,
+        "triple-axel": 0.214,
+        "taunt": 0.071,
+        "close-combat": 0.071,
+        "wide-guard": 0.071
+      },
+      "abilities": {
+        "sharpness": 1
+      },
+      "teammates": {}
+    },
+    "aegislash-shield": {
+      "name": "Aegislash",
+      "rank": 64,
+      "usage": {
+        "weighted": 0.185,
+        "raw": 0.185
+      },
+      "items": {
+        "life-orb": 0.357,
+        "spell-tag": 0.286,
+        "focus-sash": 0.214,
+        "occa-berry": 0.071,
+        "muscle-band": 0.071
+      },
+      "moves": {
+        "poltergeist": 0.929,
+        "shadow-sneak": 0.857,
+        "sacred-sword": 0.571,
+        "iron-head": 0.5,
+        "king-s-shield": 0.5,
+        "wide-guard": 0.429,
+        "shadow-ball": 0.071,
+        "close-combat": 0.071,
+        "flash-cannon": 0.071
+      },
+      "abilities": {
+        "stance-change": 1
+      },
+      "teammates": {}
+    },
+    "armarouge": {
+      "name": "Armarouge",
+      "rank": 65,
+      "usage": {
+        "weighted": 0.18,
+        "raw": 0.18
+      },
+      "items": {
+        "sitrus-berry": 0.571,
+        "shuca-berry": 0.214,
+        "iron-ball": 0.214
+      },
+      "moves": {
+        "heat-wave": 0.786,
+        "trick-room": 0.786,
+        "psychic": 0.786,
+        "protect": 0.571,
+        "wide-guard": 0.429,
+        "aura-sphere": 0.214,
+        "burn-up": 0.214,
+        "expanding-force": 0.214
+      },
+      "abilities": {
+        "flash-fire": 1
+      },
+      "teammates": {}
+    },
+    "medicham": {
+      "name": "Medicham",
+      "rank": 66,
+      "usage": {
+        "weighted": 0.175,
+        "raw": 0.175
+      },
+      "items": {
+        "medichamite": 0.917,
+        "iron-ball": 0.083
+      },
+      "moves": {
+        "rock-slide": 1,
+        "fake-out": 1,
+        "close-combat": 1,
+        "poison-jab": 0.917,
+        "thunder-punch": 0.083
+      },
+      "abilities": {
+        "pure-power": 1
+      },
+      "teammates": {}
+    },
+    "eelektross": {
+      "name": "Eelektross",
+      "rank": 67,
+      "usage": {
+        "weighted": 0.17,
+        "raw": 0.17
+      },
+      "items": {
+        "eelektrossite": 1
+      },
+      "moves": {
+        "protect": 0.583,
+        "thunderbolt": 0.5,
+        "dragon-pulse": 0.417,
+        "flamethrower": 0.333,
+        "rock-slide": 0.25,
+        "giga-drain": 0.25,
+        "crunch": 0.25,
+        "drain-punch": 0.25,
+        "discharge": 0.25,
+        "supercell-slam": 0.25
+      },
+      "abilities": {
+        "levitate": 1
+      },
+      "teammates": {}
+    },
+    "vileplume": {
+      "name": "Vileplume",
+      "rank": 68,
+      "usage": {
+        "weighted": 0.165,
+        "raw": 0.165
+      },
+      "items": {
+        "wide-lens": 1
+      },
+      "moves": {
+        "sludge-bomb": 1,
+        "leaf-storm": 1,
+        "after-you": 1,
+        "sleep-powder": 1
+      },
+      "abilities": {
+        "chlorophyll": 1
+      },
+      "teammates": {}
+    },
+    "mamoswine": {
+      "name": "Mamoswine",
+      "rank": 69,
+      "usage": {
+        "weighted": 0.16,
+        "raw": 0.16
+      },
+      "items": {
+        "focus-sash": 0.909,
+        "choice-scarf": 0.091
+      },
+      "moves": {
+        "ice-shard": 1,
+        "icicle-crash": 1,
+        "high-horsepower": 1,
+        "protect": 0.909,
+        "iron-head": 0.091
+      },
+      "abilities": {
+        "oblivious": 0.909,
+        "thick-fat": 0.091
+      },
+      "teammates": {}
+    },
+    "heliolisk": {
+      "name": "Heliolisk",
+      "rank": 70,
+      "usage": {
+        "weighted": 0.155,
+        "raw": 0.155
+      },
+      "items": {
+        "focus-sash": 1
+      },
+      "moves": {
+        "protect": 1,
+        "dragon-pulse": 1,
+        "ally-switch": 1,
+        "thunderbolt": 1
+      },
+      "abilities": {
+        "dry-skin": 1
+      },
+      "teammates": {}
+    },
+    "wyrdeer": {
+      "name": "Wyrdeer",
+      "rank": 71,
+      "usage": {
+        "weighted": 0.15,
+        "raw": 0.15
+      },
+      "items": {
+        "colbur-berry": 1
+      },
+      "moves": {
+        "gravity": 1,
+        "trick-room": 1,
+        "psyshield-bash": 1,
+        "hypnosis": 1
+      },
+      "abilities": {
+        "intimidate": 1
+      },
+      "teammates": {}
+    },
+    "slowking-galar": {
+      "name": "Slowking-Galar",
+      "rank": 73,
+      "usage": {
+        "weighted": 0.14,
+        "raw": 0.14
+      },
+      "items": {
+        "colbur-berry": 0.667,
+        "mental-herb": 0.222,
+        "leftovers": 0.111
+      },
+      "moves": {
+        "trick-room": 0.889,
+        "rain-dance": 0.778,
+        "acid-spray": 0.778,
+        "psychic": 0.778,
+        "heal-pulse": 0.222,
+        "protect": 0.111,
+        "sludge-bomb": 0.111,
+        "icy-wind": 0.111,
+        "swagger": 0.111,
+        "safeguard": 0.111
+      },
+      "abilities": {
+        "regenerator": 1
+      },
+      "teammates": {}
+    },
+    "primarina": {
+      "name": "Primarina",
+      "rank": 74,
+      "usage": {
+        "weighted": 0.135,
+        "raw": 0.135
+      },
+      "items": {
+        "mystic-water": 0.556,
+        "quick-claw": 0.111,
+        "leftovers": 0.111,
+        "life-orb": 0.111,
+        "choice-scarf": 0.111
+      },
+      "moves": {
+        "moonblast": 1,
+        "protect": 0.889,
+        "hyper-voice": 0.889,
+        "calm-mind": 0.333,
+        "dazzling-gleam": 0.333,
+        "hydro-pump": 0.222,
+        "substitute": 0.111,
+        "aqua-jet": 0.111,
+        "ice-beam": 0.111
+      },
+      "abilities": {
+        "liquid-voice": 0.889,
+        "torrent": 0.111
+      },
+      "teammates": {}
+    },
+    "crabominable": {
+      "name": "Crabominable",
+      "rank": 75,
+      "usage": {
+        "weighted": 0.13,
+        "raw": 0.13
+      },
+      "items": {
+        "crabominite": 1
+      },
+      "moves": {
+        "mach-punch": 1,
+        "ice-hammer": 1,
+        "protect": 0.778,
+        "drain-punch": 0.778,
+        "close-combat": 0.222,
+        "wide-guard": 0.222
+      },
+      "abilities": {
+        "hyper-cutter": 1
+      },
+      "teammates": {}
+    },
+    "arcanine": {
+      "name": "Arcanine",
+      "rank": 76,
+      "usage": {
+        "weighted": 0.125,
+        "raw": 0.125
+      },
+      "items": {
+        "charcoal": 1
+      },
+      "moves": {
+        "protect": 1,
+        "heat-wave": 1,
+        "will-o-wisp": 1,
+        "snarl": 1
+      },
+      "abilities": {
+        "intimidate": 1
+      },
+      "teammates": {}
+    },
+    "typhlosion-hisui": {
+      "name": "Typhlosion-Hisui",
+      "rank": 77,
+      "usage": {
+        "weighted": 0.12,
+        "raw": 0.12
+      },
+      "items": {
+        "choice-scarf": 0.875,
+        "charcoal": 0.125
+      },
+      "moves": {
+        "shadow-ball": 1,
+        "eruption": 1,
+        "overheat": 0.75,
+        "heat-wave": 0.625,
+        "focus-blast": 0.25,
+        "protect": 0.125,
+        "sunny-day": 0.125,
+        "burn-up": 0.125
+      },
+      "abilities": {
+        "frisk": 0.5,
+        "blaze": 0.5
+      },
+      "teammates": {}
+    },
+    "heracross": {
+      "name": "Heracross",
+      "rank": 78,
+      "usage": {
+        "weighted": 0.115,
+        "raw": 0.115
+      },
+      "items": {
+        "heracronite": 1
+      },
+      "moves": {
+        "detect": 1,
+        "rock-blast": 1,
+        "close-combat": 1,
+        "pin-missile": 1
+      },
+      "abilities": {
+        "guts": 1
+      },
+      "teammates": {}
+    },
+    "vanilluxe": {
+      "name": "Vanilluxe",
+      "rank": 79,
+      "usage": {
+        "weighted": 0.11,
+        "raw": 0.11
+      },
+      "items": {
+        "choice-scarf": 0.75,
+        "occa-berry": 0.125,
+        "silk-scarf": 0.125
+      },
+      "moves": {
+        "freeze-dry": 0.875,
+        "blizzard": 0.875,
+        "icy-wind": 0.75,
+        "rain-dance": 0.625,
+        "protect": 0.25,
+        "explosion": 0.125,
+        "taunt": 0.125,
+        "sheer-cold": 0.125,
+        "icicle-spear": 0.125,
+        "ice-shard": 0.125
+      },
+      "abilities": {
+        "snow-warning": 1
+      },
+      "teammates": {}
+    },
+    "raichu-alola": {
+      "name": "Raichu-Alola",
+      "rank": 80,
+      "usage": {
+        "weighted": 0.105,
+        "raw": 0.105
+      },
+      "items": {
+        "focus-sash": 1
+      },
+      "moves": {
+        "volt-switch": 1,
+        "nuzzle": 1,
+        "thunder": 1,
+        "psychic": 1
+      },
+      "abilities": {
+        "surge-surfer": 1
+      },
+      "teammates": {}
+    },
+    "krookodile": {
+      "name": "Krookodile",
+      "rank": 81,
+      "usage": {
+        "weighted": 0.1,
+        "raw": 0.1
+      },
+      "items": {
+        "choice-scarf": 1
+      },
+      "moves": {
+        "rock-slide": 1,
+        "knock-off": 1,
+        "close-combat": 1,
+        "high-horsepower": 1
+      },
+      "abilities": {
+        "intimidate": 1
+      },
+      "teammates": {}
+    },
+    "houndstone": {
+      "name": "Houndstone",
+      "rank": 82,
+      "usage": {
+        "weighted": 0.095,
+        "raw": 0.095
+      },
+      "items": {
+        "life-orb": 1
+      },
+      "moves": {
+        "shadow-sneak": 1,
+        "ally-switch": 1,
+        "last-respects": 1,
+        "psychic-fangs": 0.857,
+        "protect": 0.143
+      },
+      "abilities": {
+        "sand-rush": 1
+      },
+      "teammates": {}
+    },
+    "typhlosion": {
+      "name": "Typhlosion",
+      "rank": 83,
+      "usage": {
+        "weighted": 0.09,
+        "raw": 0.09
+      },
+      "items": {
+        "choice-scarf": 0.833,
+        "charcoal": 0.167
+      },
+      "moves": {
+        "heat-wave": 1,
+        "eruption": 1,
+        "shadow-ball": 0.833,
+        "focus-blast": 0.833,
+        "protect": 0.167,
+        "scorching-sands": 0.167
+      },
+      "abilities": {
+        "blaze": 0.833,
+        "flash-fire": 0.167
+      },
+      "teammates": {}
+    },
+    "ceruledge": {
+      "name": "Ceruledge",
+      "rank": 84,
+      "usage": {
+        "weighted": 0.085,
+        "raw": 0.085
+      },
+      "items": {
+        "colbur-berry": 0.333,
+        "leftovers": 0.333,
+        "life-orb": 0.333
+      },
+      "moves": {
+        "protect": 1,
+        "shadow-sneak": 1,
+        "bitter-blade": 1,
+        "bulk-up": 0.5,
+        "swords-dance": 0.333,
+        "psych-up": 0.167
+      },
+      "abilities": {
+        "flash-fire": 1
+      },
+      "teammates": {}
+    },
+    "altaria": {
+      "name": "Altaria",
+      "rank": 85,
+      "usage": {
+        "weighted": 0.08,
+        "raw": 0.08
+      },
+      "items": {
+        "altarianite": 1
+      },
+      "moves": {
+        "will-o-wisp": 1,
+        "hyper-voice": 1,
+        "roost": 1,
+        "tailwind": 1
+      },
+      "abilities": {
+        "cloud-nine": 1
+      },
+      "teammates": {}
+    },
+    "toxapex": {
+      "name": "Toxapex",
+      "rank": 86,
+      "usage": {
+        "weighted": 0.075,
+        "raw": 0.075
+      },
+      "items": {
+        "leftovers": 0.6,
+        "mental-herb": 0.4
+      },
+      "moves": {
+        "baneful-bunker": 1,
+        "toxic": 1,
+        "infestation": 0.6,
+        "haze": 0.4,
+        "wide-guard": 0.4,
+        "ice-beam": 0.4,
+        "stockpile": 0.2
+      },
+      "abilities": {
+        "regenerator": 1
+      },
+      "teammates": {}
+    },
+    "reuniclus": {
+      "name": "Reuniclus",
+      "rank": 87,
+      "usage": {
+        "weighted": 0.07,
+        "raw": 0.07
+      },
+      "items": {
+        "life-orb": 1
+      },
+      "moves": {
+        "focus-blast": 1,
+        "energy-ball": 1,
+        "trick-room": 1,
+        "psychic": 1
+      },
+      "abilities": {
+        "magic-guard": 0.75,
+        "regenerator": 0.25
+      },
+      "teammates": {}
+    },
+    "chandelure": {
+      "name": "Chandelure",
+      "rank": 88,
+      "usage": {
+        "weighted": 0.065,
+        "raw": 0.065
+      },
+      "items": {
+        "focus-sash": 0.5,
+        "bright-powder": 0.25,
+        "chandelurite": 0.25
+      },
+      "moves": {
+        "protect": 1,
+        "shadow-ball": 1,
+        "heat-wave": 1,
+        "trick-room": 1
+      },
+      "abilities": {
+        "flash-fire": 0.5,
+        "flame-body": 0.5
+      },
+      "teammates": {}
+    },
+    "volcarona": {
+      "name": "Volcarona",
+      "rank": 89,
+      "usage": {
+        "weighted": 0.06,
+        "raw": 0.06
+      },
+      "items": {
+        "sitrus-berry": 0.75,
+        "charcoal": 0.25
+      },
+      "moves": {
+        "heat-wave": 1,
+        "rage-powder": 1,
+        "tailwind": 0.75,
+        "struggle-bug": 0.75,
+        "whirlwind": 0.25,
+        "bug-buzz": 0.25
+      },
+      "abilities": {
+        "flame-body": 1
+      },
+      "teammates": {}
+    },
+    "kleavor": {
+      "name": "Kleavor",
+      "rank": 91,
+      "usage": {
+        "weighted": 0.05,
+        "raw": 0.05
+      },
+      "items": {
+        "focus-sash": 0.75,
+        "white-herb": 0.25
+      },
+      "moves": {
+        "protect": 1,
+        "stone-axe": 1,
+        "x-scissor": 0.75,
+        "feint": 0.5,
+        "close-combat": 0.5,
+        "tailwind": 0.25
+      },
+      "abilities": {
+        "sharpness": 1
+      },
+      "teammates": {}
+    },
+    "overqwil": {
+      "name": "Overqwil",
+      "rank": 92,
+      "usage": {
+        "weighted": 0.045,
+        "raw": 0.045
+      },
+      "items": {
+        "life-orb": 0.5,
+        "focus-sash": 0.5
+      },
+      "moves": {
+        "protect": 0.75,
+        "poison-jab": 0.75,
+        "fell-stinger": 0.5,
+        "throat-chop": 0.5,
+        "crunch": 0.25,
+        "taunt": 0.25,
+        "aqua-jet": 0.25,
+        "lash-out": 0.25,
+        "barb-barrage": 0.25,
+        "toxic": 0.25
+      },
+      "abilities": {
+        "swift-swim": 1
+      },
+      "teammates": {}
+    },
+    "ninetales": {
+      "name": "Ninetales",
+      "rank": 93,
+      "usage": {
+        "weighted": 0.04,
+        "raw": 0.04
+      },
+      "items": {
+        "charcoal": 0.667,
+        "shuca-berry": 0.333
+      },
+      "moves": {
+        "protect": 1,
+        "encore": 0.667,
+        "heat-wave": 0.667,
+        "flamethrower": 0.667,
+        "will-o-wisp": 0.333,
+        "helping-hand": 0.333,
+        "overheat": 0.333
+      },
+      "abilities": {
+        "drought": 1
+      },
+      "teammates": {}
+    },
+    "meganium": {
+      "name": "Meganium",
+      "rank": 94,
+      "usage": {
+        "weighted": 0.035,
+        "raw": 0.035
+      },
+      "items": {
+        "meganiumite": 1
+      },
+      "moves": {
+        "protect": 1,
+        "weather-ball": 1,
+        "dazzling-gleam": 1,
+        "solar-beam": 1
+      },
+      "abilities": {
+        "leaf-guard": 0.667,
+        "overgrow": 0.333
+      },
+      "teammates": {}
+    },
+    "azumarill": {
+      "name": "Azumarill",
+      "rank": 95,
+      "usage": {
+        "weighted": 0.03,
+        "raw": 0.03
+      },
+      "items": {
+        "mystic-water": 0.667,
+        "sitrus-berry": 0.333
+      },
+      "moves": {
+        "protect": 1,
+        "aqua-jet": 1,
+        "play-rough": 1,
+        "liquidation": 0.667,
+        "belly-drum": 0.333
+      },
+      "abilities": {
+        "huge-power": 1
+      },
+      "teammates": {}
+    },
+    "umbreon": {
+      "name": "Umbreon",
+      "rank": 96,
+      "usage": {
+        "weighted": 0.025,
+        "raw": 0.025
+      },
+      "items": {
+        "leftovers": 1
+      },
+      "moves": {
+        "foul-play": 1,
+        "detect": 0.667,
+        "toxic": 0.667,
+        "helping-hand": 0.333,
+        "wish": 0.333,
+        "yawn": 0.333,
+        "fake-tears": 0.333,
+        "tickle": 0.333
+      },
+      "abilities": {
+        "inner-focus": 1
+      },
+      "teammates": {}
+    },
+    "lopunny": {
+      "name": "Lopunny",
+      "rank": 97,
+      "usage": {
+        "weighted": 0.02,
+        "raw": 0.02
+      },
+      "items": {
+        "lopunnite": 1
+      },
+      "moves": {
+        "fake-out": 1,
+        "close-combat": 1,
+        "triple-axel": 1,
+        "iron-tail": 0.667,
+        "mega-kick": 0.333
+      },
+      "abilities": {
+        "limber": 1
+      },
+      "teammates": {}
+    },
+    "lucario": {
+      "name": "Lucario",
+      "rank": 98,
+      "usage": {
+        "weighted": 0.015,
+        "raw": 0.015
+      },
+      "items": {
+        "lucarionite": 1
+      },
+      "moves": {
+        "aura-sphere": 1,
+        "flash-cannon": 1,
+        "protect": 0.667,
+        "psychic": 0.667,
+        "detect": 0.333,
+        "vacuum-wave": 0.333
+      },
+      "abilities": {
+        "steadfast": 0.667,
+        "inner-focus": 0.333
+      },
+      "teammates": {}
+    },
+    "malamar": {
+      "name": "Malamar",
+      "rank": 99,
+      "usage": {
+        "weighted": 0.01,
+        "raw": 0.01
+      },
+      "items": {
+        "malamarite": 1
+      },
+      "moves": {
+        "superpower": 1,
+        "knock-off": 1,
+        "psycho-cut": 0.667,
+        "topsy-turvy": 0.667,
+        "protect": 0.333,
+        "poison-jab": 0.333
+      },
+      "abilities": {
+        "contrary": 1
+      },
+      "teammates": {}
+    },
+    "tyrantrum": {
+      "name": "Tyrantrum",
+      "rank": 100,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "choice-scarf": 1
+      },
+      "moves": {
+        "rock-slide": 1,
+        "crunch": 1,
+        "dragon-tail": 1,
+        "psychic-fangs": 1
+      },
+      "abilities": {
+        "strong-jaw": 1
+      },
+      "teammates": {}
+    },
+    "klefki": {
+      "name": "Klefki",
+      "rank": 101,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "light-clay": 0.667,
+        "mental-herb": 0.333
+      },
+      "moves": {
+        "light-screen": 1,
+        "reflect": 1,
+        "rain-dance": 0.667,
+        "foul-play": 0.667,
+        "dazzling-gleam": 0.333,
+        "thunder-wave": 0.333
+      },
+      "abilities": {
+        "prankster": 1
+      },
+      "teammates": {}
+    },
+    "araquanid": {
+      "name": "Araquanid",
+      "rank": 102,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "sitrus-berry": 1
+      },
+      "moves": {
+        "icy-wind": 1,
+        "wide-guard": 1,
+        "lunge": 1,
+        "liquidation": 1
+      },
+      "abilities": {
+        "water-bubble": 1
+      },
+      "teammates": {}
+    },
+    "slowbro-galar": {
+      "name": "Slowbro-Galar",
+      "rank": 104,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "quick-claw": 1
+      },
+      "moves": {
+        "protect": 1,
+        "ice-beam": 1,
+        "shell-side-arm": 1,
+        "psychic": 1
+      },
+      "abilities": {
+        "quick-draw": 1
+      },
+      "teammates": {}
+    },
+    "skarmory": {
+      "name": "Skarmory",
+      "rank": 105,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "skarmorite": 1
+      },
+      "moves": {
+        "iron-head": 1,
+        "swords-dance": 0.5,
+        "rock-slide": 0.5,
+        "protect": 0.5,
+        "brave-bird": 0.5,
+        "drill-run": 0.5,
+        "drill-peck": 0.5
+      },
+      "abilities": {
+        "weak-armor": 0.5,
+        "sturdy": 0.5
+      },
+      "teammates": {}
+    },
+    "weavile": {
+      "name": "Weavile",
+      "rank": 106,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "king-s-rock": 1
+      },
+      "moves": {
+        "fake-out": 1,
+        "feint": 1,
+        "fling": 1,
+        "triple-axel": 1
+      },
+      "abilities": {
+        "pickpocket": 1
+      },
+      "teammates": {}
+    },
+    "conkeldurr": {
+      "name": "Conkeldurr",
+      "rank": 107,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "life-orb": 1
+      },
+      "moves": {
+        "rock-slide": 1,
+        "protect": 1,
+        "drain-punch": 1,
+        "ice-punch": 1
+      },
+      "abilities": {
+        "sheer-force": 1
+      },
+      "teammates": {}
+    },
+    "scolipede": {
+      "name": "Scolipede",
+      "rank": 108,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "scolipedite": 1
+      },
+      "moves": {
+        "leech-life": 1,
+        "protect": 1,
+        "poison-jab": 1,
+        "earthquake": 1
+      },
+      "abilities": {
+        "speed-boost": 1
+      },
+      "teammates": {}
+    },
+    "golurk": {
+      "name": "Golurk",
+      "rank": 109,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "golurkite": 1
+      },
+      "moves": {
+        "protect": 1,
+        "ice-punch": 1,
+        "poltergeist": 1,
+        "headlong-rush": 1
+      },
+      "abilities": {
+        "klutz": 1
+      },
+      "teammates": {}
+    },
+    "oranguru": {
+      "name": "Oranguru",
+      "rank": 111,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "colbur-berry": 0.5,
+        "mental-herb": 0.5
+      },
+      "moves": {
+        "trick-room": 1,
+        "instruct": 1,
+        "protect": 0.5,
+        "encore": 0.5,
+        "imprison": 0.5,
+        "foul-play": 0.5
+      },
+      "abilities": {
+        "telepathy": 0.5,
+        "inner-focus": 0.5
+      },
+      "teammates": {}
+    },
+    "dragapult": {
+      "name": "Dragapult",
+      "rank": 112,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "focus-sash": 1
+      },
+      "moves": {
+        "light-screen": 1,
+        "reflect": 1,
+        "draco-meteor": 1,
+        "psychic-fangs": 1
+      },
+      "abilities": {
+        "cursed-body": 1
+      },
+      "teammates": {}
+    },
+    "pikachu": {
+      "name": "Pikachu",
+      "rank": 113,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "light-ball": 1
+      },
+      "moves": {
+        "protect": 1,
+        "fake-out": 1,
+        "thunderbolt": 1,
+        "quick-attack": 1
+      },
+      "abilities": {
+        "lightning-rod": 1
+      },
+      "teammates": {}
+    },
+    "slowbro": {
+      "name": "Slowbro",
+      "rank": 114,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "slowbronite": 1
+      },
+      "moves": {
+        "iron-defense": 1,
+        "calm-mind": 1,
+        "stored-power": 1,
+        "body-press": 1
+      },
+      "abilities": {
+        "oblivious": 1
+      },
+      "teammates": {}
+    },
+    "starmie": {
+      "name": "Starmie",
+      "rank": 115,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "choice-scarf": 1
+      },
+      "moves": {
+        "icy-wind": 1,
+        "scald": 1,
+        "thunderbolt": 1,
+        "psychic": 1
+      },
+      "abilities": {
+        "natural-cure": 1
+      },
+      "teammates": {}
+    },
+    "pinsir": {
+      "name": "Pinsir",
+      "rank": 116,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "pinsirite": 1
+      },
+      "moves": {
+        "protect": 1,
+        "body-slam": 1,
+        "feint": 1,
+        "storm-throw": 1
+      },
+      "abilities": {
+        "hyper-cutter": 1
+      },
+      "teammates": {}
+    },
+    "ditto": {
+      "name": "Ditto",
+      "rank": 118,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "choice-scarf": 1
+      },
+      "moves": {
+        "transform": 1
+      },
+      "abilities": {
+        "imposter": 1
+      },
+      "teammates": {}
+    },
+    "feraligatr": {
+      "name": "Feraligatr",
+      "rank": 119,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "life-orb": 1
+      },
+      "moves": {
+        "rock-slide": 1,
+        "protect": 1,
+        "liquidation": 1,
+        "ice-punch": 1
+      },
+      "abilities": {
+        "sheer-force": 1
+      },
+      "teammates": {}
+    },
+    "ampharos": {
+      "name": "Ampharos",
+      "rank": 120,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "ampharosite": 1
+      },
+      "moves": {
+        "protect": 1,
+        "dragon-pulse": 1,
+        "cotton-guard": 1,
+        "thunderbolt": 1
+      },
+      "abilities": {
+        "static": 1
+      },
+      "teammates": {}
+    },
+    "houndoom": {
+      "name": "Houndoom",
+      "rank": 121,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "focus-sash": 1
+      },
+      "moves": {
+        "protect": 1,
+        "heat-wave": 1,
+        "sucker-punch": 1,
+        "snarl": 1
+      },
+      "abilities": {
+        "flash-fire": 1
+      },
+      "teammates": {}
+    },
+    "sceptile": {
+      "name": "Sceptile",
+      "rank": 122,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "sceptilite": 1
+      },
+      "moves": {
+        "detect": 1,
+        "dragon-pulse": 1,
+        "energy-ball": 1,
+        "earth-power": 1
+      },
+      "abilities": {
+        "unburden": 1
+      },
+      "teammates": {}
+    },
+    "glalie": {
+      "name": "Glalie",
+      "rank": 123,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "glalitite": 1
+      },
+      "moves": {
+        "explosion": 1,
+        "protect": 1,
+        "body-slam": 1,
+        "earthquake": 1
+      },
+      "abilities": {
+        "inner-focus": 1
+      },
+      "teammates": {}
+    },
+    "rampardos": {
+      "name": "Rampardos",
+      "rank": 124,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "life-orb": 1
+      },
+      "moves": {
+        "rock-slide": 1,
+        "protect": 1,
+        "iron-head": 1,
+        "thunder-punch": 1
+      },
+      "abilities": {
+        "sheer-force": 1
+      },
+      "teammates": {}
+    },
+    "glaceon": {
+      "name": "Glaceon",
+      "rank": 125,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "never-melt-ice": 1
+      },
+      "moves": {
+        "detect": 1,
+        "ice-shard": 1,
+        "freeze-dry": 1,
+        "blizzard": 1
+      },
+      "abilities": {
+        "snow-cloak": 1
+      },
+      "teammates": {}
+    },
+    "serperior": {
+      "name": "Serperior",
+      "rank": 129,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "coba-berry": 1
+      },
+      "moves": {
+        "glare": 1,
+        "protect": 1,
+        "taunt": 1,
+        "leaf-storm": 1
+      },
+      "abilities": {
+        "contrary": 1
+      },
+      "teammates": {}
+    },
+    "audino": {
+      "name": "Audino",
+      "rank": 130,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "mental-herb": 1
+      },
+      "moves": {
+        "healing-wish": 1,
+        "trick-room": 1,
+        "simple-beam": 1,
+        "life-dew": 1
+      },
+      "abilities": {
+        "healer": 1
+      },
+      "teammates": {}
+    },
+    "zoroark": {
+      "name": "Zoroark",
+      "rank": 131,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "choice-scarf": 1
+      },
+      "moves": {
+        "sludge-bomb": 1,
+        "trick": 1,
+        "u-turn": 1,
+        "night-daze": 1
+      },
+      "abilities": {
+        "illusion": 1
+      },
+      "teammates": {}
+    },
+    "emolga": {
+      "name": "Emolga",
+      "rank": 132,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "focus-sash": 1
+      },
+      "moves": {
+        "encore": 1,
+        "taunt": 1,
+        "helping-hand": 1,
+        "nuzzle": 1
+      },
+      "abilities": {
+        "static": 1
+      },
+      "teammates": {}
+    },
+    "chesnaught": {
+      "name": "Chesnaught",
+      "rank": 133,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "chesnaughtite": 1
+      },
+      "moves": {
+        "iron-defense": 1,
+        "spiky-shield": 1,
+        "leech-seed": 1,
+        "body-press": 1
+      },
+      "abilities": {
+        "bulletproof": 1
+      },
+      "teammates": {}
+    },
+    "greninja": {
+      "name": "Greninja",
+      "rank": 134,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "greninjite": 1
+      },
+      "moves": {
+        "protect": 1,
+        "extrasensory": 1,
+        "grass-knot": 1,
+        "ice-beam": 1
+      },
+      "abilities": {
+        "protean": 1
+      },
+      "teammates": {}
+    },
+    "barbaracle": {
+      "name": "Barbaracle",
+      "rank": 135,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "barbaraclite": 1
+      },
+      "moves": {
+        "rock-slide": 1,
+        "protect": 1,
+        "close-combat": 1,
+        "shell-smash": 1
+      },
+      "abilities": {
+        "tough-claws": 1
+      },
+      "teammates": {}
+    },
+    "mudsdale": {
+      "name": "Mudsdale",
+      "rank": 136,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "soft-sand": 1
+      },
+      "moves": {
+        "rock-slide": 1,
+        "protect": 1,
+        "close-combat": 1,
+        "earthquake": 1
+      },
+      "abilities": {
+        "inner-focus": 1
+      },
+      "teammates": {}
+    },
+    "drampa": {
+      "name": "Drampa",
+      "rank": 138,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "roseli-berry": 1
+      },
+      "moves": {
+        "protect": 1,
+        "dragon-pulse": 1,
+        "earth-power": 1,
+        "thunderbolt": 1
+      },
+      "abilities": {
+        "cloud-nine": 1
+      },
+      "teammates": {}
+    },
+    "runerigus": {
+      "name": "Runerigus",
+      "rank": 139,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "mental-herb": 1
+      },
+      "moves": {
+        "iron-defense": 1,
+        "trick-room": 1,
+        "phantom-force": 1,
+        "body-press": 1
+      },
+      "abilities": {
+        "wandering-spirit": 1
+      },
+      "teammates": {}
+    },
+    "falinks": {
+      "name": "Falinks",
+      "rank": 140,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "falinksite": 1
+      },
+      "moves": {
+        "rock-slide": 1,
+        "protect": 1,
+        "close-combat": 1,
+        "no-retreat": 1
+      },
+      "abilities": {
+        "defiant": 1
+      },
+      "teammates": {}
+    },
+    "bellibolt": {
+      "name": "Bellibolt",
+      "rank": 141,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "magnet": 1
+      },
+      "moves": {
+        "protect": 1,
+        "discharge": 1,
+        "parabolic-charge": 1,
+        "thunderbolt": 1
+      },
+      "abilities": {
+        "electromorphosis": 1
+      },
+      "teammates": {}
+    },
+    "tinkaton": {
+      "name": "Tinkaton",
+      "rank": 142,
+      "usage": {
+        "weighted": 0.005,
+        "raw": 0.005
+      },
+      "items": {
+        "shuca-berry": 1
+      },
+      "moves": {
+        "protect": 1,
+        "encore": 1,
+        "fake-out": 1,
+        "gigaton-hammer": 1
+      },
+      "abilities": {
+        "mold-breaker": 1
+      },
+      "teammates": {}
+    }
+  }
+}

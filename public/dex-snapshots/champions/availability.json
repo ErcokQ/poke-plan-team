@@ -1,14 +1,13 @@
 {
   "version": "v1",
-  "generatedAt": "2026-04-17T18:43:31.043Z",
   "game": {
     "id": "pokemon-champions",
     "name": "Pokemon Champions"
   },
   "metadata": {
     "maintainers": [],
-    "lastReviewedAt": "2026-04-08",
-    "notes": "Lista canonica del proyecto para disponibilidad confirmada en Pokemon Champions."
+    "lastReviewedAt": "2026-09-09",
+    "notes": "Disponibilidad acumulada de Champions hasta el reglamento M-C (2026-09-09 a 2026-12-02)."
   },
   "entries": [
     {
@@ -2590,6 +2589,737 @@
       "sourceLabel": "",
       "sourceUrl": "",
       "notes": "Confirmado para la lista canonica del proyecto."
+    },
+    {
+      "pokemonId": "raichu",
+      "formId": "raichu-mega-x",
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "raichu",
+      "formId": "raichu-mega-y",
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "vileplume",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "qwilfish",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "sceptile",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "sceptile",
+      "formId": "sceptile-mega",
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "blaziken",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "blaziken",
+      "formId": "blaziken-mega",
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "swampert",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "swampert",
+      "formId": "swampert-mega",
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "mawile",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "mawile",
+      "formId": "mawile-mega",
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "metagross",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "metagross",
+      "formId": "metagross-mega",
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "staraptor",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "staraptor",
+      "formId": "staraptor-mega",
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "musharna",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "scolipede",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "scolipede",
+      "formId": "scolipede-mega",
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "scrafty",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "scrafty",
+      "formId": "scrafty-mega",
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "eelektross",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "eelektross",
+      "formId": "eelektross-mega",
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "pyroar-male",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "pyroar-male",
+      "formId": "pyroar-mega",
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "malamar",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "malamar",
+      "formId": "malamar-mega",
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "barbaracle",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "barbaracle",
+      "formId": "barbaracle-mega",
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "dragalge",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "dragalge",
+      "formId": "dragalge-mega",
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "grimmsnarl",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "falinks",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "falinks",
+      "formId": "falinks-mega",
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "overqwil",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "houndstone",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "annihilape",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "gholdengo",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-b",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-B",
+      "sourceUrl": "",
+      "notes": "Confirmado para Regulation M-B."
+    },
+    {
+      "pokemonId": "wigglytuff",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "persian",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "persian-alola",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "farfetchd",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "mr-mime",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "swalot",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "salamence",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "gogoat",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "golisopod",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "rillaboom",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "cinderace",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "inteleon",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "thievul",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "toxtricity-amped",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "toxtricity-low-key",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "grapploct",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "perrserker",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "sirfetchd",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "pincurchin",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "indeedee-male",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "indeedee-female",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "pawmot",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "arboliva",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "squawkabilly-green-plumage",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "squawkabilly-blue-plumage",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "squawkabilly-yellow-plumage",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "squawkabilly-white-plumage",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "mabosstiff",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "baxcalibur",
+      "formId": null,
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://web-view.app.pokemonchampions.jp/battle/pages/events/rs178713870219xeaaio/en/pokemon.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "absol",
+      "formId": "absol-mega-z",
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://champions-news.pokemon-home.com/en/page/816.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "salamence",
+      "formId": "salamence-mega",
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://champions-news.pokemon-home.com/en/page/816.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "garchomp",
+      "formId": "garchomp-mega-z",
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://champions-news.pokemon-home.com/en/page/816.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "lucario",
+      "formId": "lucario-mega-z",
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://champions-news.pokemon-home.com/en/page/816.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "golisopod",
+      "formId": "golisopod-mega",
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://champions-news.pokemon-home.com/en/page/816.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
+    },
+    {
+      "pokemonId": "baxcalibur",
+      "formId": "baxcalibur-mega",
+      "availability": "available",
+      "introducedIn": "regulation-m-c",
+      "sourceType": "official",
+      "sourceLabel": "Pokemon Champions Regulation M-C",
+      "sourceUrl": "https://champions-news.pokemon-home.com/en/page/816.html",
+      "notes": "Disponible desde el 9 de septiembre de 2026. Las variantes cosmeticas comparten elegibilidad."
     }
-  ]
+  ],
+  "generatedAt": "2026-09-09T00:00:00.000Z"
 }

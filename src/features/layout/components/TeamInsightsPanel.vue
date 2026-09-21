@@ -503,7 +503,7 @@ function pressureBandClass(band: 'none' | 'low' | 'medium' | 'high' | 'na'): str
         </ul>
       </InsightsBlock>
 
-      <InsightsBlock v-if="hasSection('notes')" :title="t('builder.notes')" tone="gray">
+      <InsightsBlock v-if="hasSection('notes')" :title="t('common.notes')" tone="gray">
         <textarea
           :value="team?.notes ?? ''"
           class="h-24 w-full resize-y rounded-lg border border-sky-500/30 bg-black/80 p-2 text-xs text-gray-100 outline-none transition focus:border-sky-400"

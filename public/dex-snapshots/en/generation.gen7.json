@@ -2,7 +2,7 @@
   "version": "v1",
   "locale": "en",
   "generationId": 7,
-  "generatedAt": "2026-04-17T18:43:31.043Z",
+  "generatedAt": "2026-06-17T06:49:17.718Z",
   "profiles": [
     {
       "id": "rowlet",
@@ -18,8 +18,8 @@
         {
           "id": "overgrow",
           "name": "Overgrow",
-          "shortEffect": "Strengthens grass moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its grass-type moves inflict 1.5× as much regular damage.",
+          "shortEffect": "Strengthens Grass moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Grass-type moves inflict 1.5× as much regular damage.",
           "isHidden": false
         },
         {
@@ -102,8 +102,8 @@
         {
           "id": "overgrow",
           "name": "Overgrow",
-          "shortEffect": "Strengthens grass moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its grass-type moves inflict 1.5× as much regular damage.",
+          "shortEffect": "Strengthens Grass moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Grass-type moves inflict 1.5× as much regular damage.",
           "isHidden": false
         },
         {
@@ -186,8 +186,8 @@
         {
           "id": "overgrow",
           "name": "Overgrow",
-          "shortEffect": "Strengthens grass moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its grass-type moves inflict 1.5× as much regular damage.",
+          "shortEffect": "Strengthens Grass moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Grass-type moves inflict 1.5× as much regular damage.",
           "isHidden": false
         },
         {
@@ -270,15 +270,15 @@
         {
           "id": "overgrow",
           "name": "Overgrow",
-          "shortEffect": "Strengthens grass moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its grass-type moves inflict 1.5× as much regular damage.",
+          "shortEffect": "Strengthens Grass moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Grass-type moves inflict 1.5× as much regular damage.",
           "isHidden": false
         },
         {
           "id": "scrappy",
           "name": "Scrappy",
-          "shortEffect": "Lets the Pokémon's normal and fighting moves hit ghost Pokémon.",
-          "effect": "This Pokémon ignores ghost-type Pokémon's immunity to normal- and fighting-type moves. Ghost Pokémon's other types affect damage as usual.",
+          "shortEffect": "Lets the Pokémon's Normal and Fighting moves hit Ghost Pokémon.",
+          "effect": "This Pokémon ignores Ghost-type Pokémon's immunity to Normal- and Fighting-type moves. Ghost Pokémon's other types affect damage as usual.",
           "isHidden": true
         }
       ],
@@ -353,15 +353,15 @@
         {
           "id": "blaze",
           "name": "Blaze",
-          "shortEffect": "Strengthens fire moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its fire-type moves inflict 1.5× as much regular damage.",
+          "shortEffect": "Strengthens Fire moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Fire-type moves inflict 1.5× as much regular damage.",
           "isHidden": false
         },
         {
           "id": "intimidate",
           "name": "Intimidate",
           "shortEffect": "Lowers opponents' Attack one stage upon entering battle.",
-          "effect": "When this Pokémon enters battle, the opponent's Attack is lowered by one stage. In a double battle, both opponents are affected. This ability also takes effect when acquired during a battle, but will not take effect again if lost and reobtained without leaving battle. This ability has no effect on an opponent that has a substitute. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
+          "effect": "When this Pokémon enters battle, the opponent's Attack is lowered by one stage. In a double battle, both opponents are affected. This ability also takes effect when acquired during a battle, but will not take effect again if lost and reobtained without leaving battle. This ability has no effect on an opponent that has a Substitute. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
           "isHidden": true
         }
       ],
@@ -430,15 +430,15 @@
         {
           "id": "blaze",
           "name": "Blaze",
-          "shortEffect": "Strengthens fire moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its fire-type moves inflict 1.5× as much regular damage.",
+          "shortEffect": "Strengthens Fire moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Fire-type moves inflict 1.5× as much regular damage.",
           "isHidden": false
         },
         {
           "id": "intimidate",
           "name": "Intimidate",
           "shortEffect": "Lowers opponents' Attack one stage upon entering battle.",
-          "effect": "When this Pokémon enters battle, the opponent's Attack is lowered by one stage. In a double battle, both opponents are affected. This ability also takes effect when acquired during a battle, but will not take effect again if lost and reobtained without leaving battle. This ability has no effect on an opponent that has a substitute. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
+          "effect": "When this Pokémon enters battle, the opponent's Attack is lowered by one stage. In a double battle, both opponents are affected. This ability also takes effect when acquired during a battle, but will not take effect again if lost and reobtained without leaving battle. This ability has no effect on an opponent that has a Substitute. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
           "isHidden": true
         }
       ],
@@ -508,15 +508,15 @@
         {
           "id": "blaze",
           "name": "Blaze",
-          "shortEffect": "Strengthens fire moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its fire-type moves inflict 1.5× as much regular damage.",
+          "shortEffect": "Strengthens Fire moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Fire-type moves inflict 1.5× as much regular damage.",
           "isHidden": false
         },
         {
           "id": "intimidate",
           "name": "Intimidate",
           "shortEffect": "Lowers opponents' Attack one stage upon entering battle.",
-          "effect": "When this Pokémon enters battle, the opponent's Attack is lowered by one stage. In a double battle, both opponents are affected. This ability also takes effect when acquired during a battle, but will not take effect again if lost and reobtained without leaving battle. This ability has no effect on an opponent that has a substitute. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
+          "effect": "When this Pokémon enters battle, the opponent's Attack is lowered by one stage. In a double battle, both opponents are affected. This ability also takes effect when acquired during a battle, but will not take effect again if lost and reobtained without leaving battle. This ability has no effect on an opponent that has a Substitute. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
           "isHidden": true
         }
       ],
@@ -585,8 +585,8 @@
         {
           "id": "torrent",
           "name": "Torrent",
-          "shortEffect": "Strengthens water moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its water-type moves inflict 1.5× as much regular damage.",
+          "shortEffect": "Strengthens Water moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Water-type moves inflict 1.5× as much regular damage.",
           "isHidden": false
         },
         {
@@ -663,8 +663,8 @@
         {
           "id": "torrent",
           "name": "Torrent",
-          "shortEffect": "Strengthens water moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its water-type moves inflict 1.5× as much regular damage.",
+          "shortEffect": "Strengthens Water moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Water-type moves inflict 1.5× as much regular damage.",
           "isHidden": false
         },
         {
@@ -742,8 +742,8 @@
         {
           "id": "torrent",
           "name": "Torrent",
-          "shortEffect": "Strengthens water moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its water-type moves inflict 1.5× as much regular damage.",
+          "shortEffect": "Strengthens Water moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Water-type moves inflict 1.5× as much regular damage.",
           "isHidden": false
         },
         {
@@ -822,21 +822,21 @@
           "id": "keen-eye",
           "name": "Keen Eye",
           "shortEffect": "Prevents accuracy from being lowered.",
-          "effect": "This Pokémon cannot have its accuracy lowered. This ability does not prevent any accuracy losses other than stat modifiers, such as the accuracy cut from fog; nor does it prevent other Pokémon's evasion from making this Pokémon's moves less accurate. This Pokémon can still be passed negative accuracy modifiers through heart swap. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
+          "effect": "This Pokémon cannot have its accuracy lowered. This ability does not prevent any accuracy losses other than stat modifiers, such as the accuracy cut from fog; nor does it prevent other Pokémon's evasion from making this Pokémon's moves less accurate. This Pokémon can still be passed negative accuracy modifiers through Heart Swap. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
           "isHidden": false
         },
         {
           "id": "skill-link",
           "name": "Skill Link",
-          "shortEffect": "Extends two-to-five-hit moves and triple kick to their full length every time.",
-          "effect": "This Pokémon always hits five times with two-to-five-hit moves, such as icicle spear. It also bypasses the accuracy checks on triple kick's second and third hits.",
+          "shortEffect": "Extends two-to-five-hit moves and Triple Kick to their full length every time.",
+          "effect": "This Pokémon always hits five times with two-to-five-hit moves, such as Icicle Spear. It also bypasses the accuracy checks on Triple Kick's second and third hits.",
           "isHidden": false
         },
         {
           "id": "pickup",
           "name": "Pickup",
           "shortEffect": "Picks up other Pokémon's used and Flung held items. May also pick up an item after battle.",
-          "effect": "At the end of each turn, if another Pokémon consumed or Flung a held item that turn, this Pokémon picks up the item if it is not already holding one. After each battle, this Pokémon has a 10% chance of picking up an item if it is not already holding one. The air balloon and eject button cannot be picked up. The items that may be found vary by game, and, since Pokémon Emerald, by the Pokémon's level. This ability is checked after the battle ends, at which point any temporary ability changes have worn off.",
+          "effect": "At the end of each turn, if another Pokémon consumed or Flung a held item that turn, this Pokémon picks up the item if it is not already holding one. After each battle, this Pokémon has a 10% chance of picking up an item if it is not already holding one. The Air Balloon and Eject Button cannot be picked up. The items that may be found vary by game, and, since Pokémon Emerald, by the Pokémon's level. This ability is checked after the battle ends, at which point any temporary ability changes have worn off.",
           "isHidden": true
         }
       ],
@@ -907,21 +907,21 @@
           "id": "keen-eye",
           "name": "Keen Eye",
           "shortEffect": "Prevents accuracy from being lowered.",
-          "effect": "This Pokémon cannot have its accuracy lowered. This ability does not prevent any accuracy losses other than stat modifiers, such as the accuracy cut from fog; nor does it prevent other Pokémon's evasion from making this Pokémon's moves less accurate. This Pokémon can still be passed negative accuracy modifiers through heart swap. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
+          "effect": "This Pokémon cannot have its accuracy lowered. This ability does not prevent any accuracy losses other than stat modifiers, such as the accuracy cut from fog; nor does it prevent other Pokémon's evasion from making this Pokémon's moves less accurate. This Pokémon can still be passed negative accuracy modifiers through Heart Swap. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
           "isHidden": false
         },
         {
           "id": "skill-link",
           "name": "Skill Link",
-          "shortEffect": "Extends two-to-five-hit moves and triple kick to their full length every time.",
-          "effect": "This Pokémon always hits five times with two-to-five-hit moves, such as icicle spear. It also bypasses the accuracy checks on triple kick's second and third hits.",
+          "shortEffect": "Extends two-to-five-hit moves and Triple Kick to their full length every time.",
+          "effect": "This Pokémon always hits five times with two-to-five-hit moves, such as Icicle Spear. It also bypasses the accuracy checks on Triple Kick's second and third hits.",
           "isHidden": false
         },
         {
           "id": "pickup",
           "name": "Pickup",
           "shortEffect": "Picks up other Pokémon's used and Flung held items. May also pick up an item after battle.",
-          "effect": "At the end of each turn, if another Pokémon consumed or Flung a held item that turn, this Pokémon picks up the item if it is not already holding one. After each battle, this Pokémon has a 10% chance of picking up an item if it is not already holding one. The air balloon and eject button cannot be picked up. The items that may be found vary by game, and, since Pokémon Emerald, by the Pokémon's level. This ability is checked after the battle ends, at which point any temporary ability changes have worn off.",
+          "effect": "At the end of each turn, if another Pokémon consumed or Flung a held item that turn, this Pokémon picks up the item if it is not already holding one. After each battle, this Pokémon has a 10% chance of picking up an item if it is not already holding one. The Air Balloon and Eject Button cannot be picked up. The items that may be found vary by game, and, since Pokémon Emerald, by the Pokémon's level. This ability is checked after the battle ends, at which point any temporary ability changes have worn off.",
           "isHidden": true
         }
       ],
@@ -992,21 +992,21 @@
           "id": "keen-eye",
           "name": "Keen Eye",
           "shortEffect": "Prevents accuracy from being lowered.",
-          "effect": "This Pokémon cannot have its accuracy lowered. This ability does not prevent any accuracy losses other than stat modifiers, such as the accuracy cut from fog; nor does it prevent other Pokémon's evasion from making this Pokémon's moves less accurate. This Pokémon can still be passed negative accuracy modifiers through heart swap. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
+          "effect": "This Pokémon cannot have its accuracy lowered. This ability does not prevent any accuracy losses other than stat modifiers, such as the accuracy cut from fog; nor does it prevent other Pokémon's evasion from making this Pokémon's moves less accurate. This Pokémon can still be passed negative accuracy modifiers through Heart Swap. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
           "isHidden": false
         },
         {
           "id": "skill-link",
           "name": "Skill Link",
-          "shortEffect": "Extends two-to-five-hit moves and triple kick to their full length every time.",
-          "effect": "This Pokémon always hits five times with two-to-five-hit moves, such as icicle spear. It also bypasses the accuracy checks on triple kick's second and third hits.",
+          "shortEffect": "Extends two-to-five-hit moves and Triple Kick to their full length every time.",
+          "effect": "This Pokémon always hits five times with two-to-five-hit moves, such as Icicle Spear. It also bypasses the accuracy checks on Triple Kick's second and third hits.",
           "isHidden": false
         },
         {
           "id": "sheer-force",
           "name": "Sheer Force",
           "shortEffect": "Strengthens moves with extra effects to 1.3× their power, but prevents their extra effects.",
-          "effect": "This Pokémon's moves with extra effects have 1.3× their power, but lose their extra effects. An effect chance is a move's chance to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, thunder shock's paralysis is an extra effect, but thunder wave's is not, nor are knock off's item removal and air cutter's increased critical hit rate. Moves that lower the user's stats are unaffected.",
+          "effect": "This Pokémon's moves with extra effects have 1.3× their power, but lose their extra effects. An effect chance is a move's chance to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, Thunder Shock's paralysis is an extra effect, but Thunder Wave's is not, nor are Knock Off's item removal and Air Cutter's increased critical hit rate. Moves that lower the user's stats are unaffected.",
           "isHidden": true
         }
       ],
@@ -1327,8 +1327,8 @@
         {
           "id": "swarm",
           "name": "Swarm",
-          "shortEffect": "Strengthens bug moves to inflict 1.5× damage at 1/3 max HP or less.",
-          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its bug-type moves inflict 1.5× as much regular damage. Overworld: If the lead Pokémon has this ability, the wild encounter rate is increased.",
+          "shortEffect": "Strengthens Bug moves to inflict 1.5× damage at 1/3 max HP or less.",
+          "effect": "When this Pokémon has 1/3 or less of its HP remaining, its Bug-type moves inflict 1.5× as much regular damage. Overworld: If the lead Pokémon has this ability, the wild encounter rate is increased.",
           "isHidden": false
         }
       ],
@@ -1483,8 +1483,8 @@
         {
           "id": "levitate",
           "name": "Levitate",
-          "shortEffect": "Evades ground moves.",
-          "effect": "This Pokémon is immune to ground-type moves, spikes, toxic spikes, and arena trap. This ability is disabled during gravity or ingrain, or while holding an iron ball. This ability is not disabled during roost.",
+          "shortEffect": "Evades Ground moves.",
+          "effect": "This Pokémon is immune to Ground-type moves, Spikes, Toxic Spikes, and Arena Trap. This ability is disabled during Gravity or Ingrain, or while holding an Iron Ball. This ability is not disabled during Roost.",
           "isHidden": false
         }
       ],
@@ -1561,8 +1561,8 @@
         {
           "id": "levitate",
           "name": "Levitate",
-          "shortEffect": "Evades ground moves.",
-          "effect": "This Pokémon is immune to ground-type moves, spikes, toxic spikes, and arena trap. This ability is disabled during gravity or ingrain, or while holding an iron ball. This ability is not disabled during roost.",
+          "shortEffect": "Evades Ground moves.",
+          "effect": "This Pokémon is immune to Ground-type moves, Spikes, Toxic Spikes, and Arena Trap. This ability is disabled during Gravity or Ingrain, or while holding an Iron Ball. This ability is not disabled during Roost.",
           "isHidden": false
         }
       ],
@@ -1639,21 +1639,21 @@
           "id": "hyper-cutter",
           "name": "Hyper Cutter",
           "shortEffect": "Prevents Attack from being lowered by other Pokémon.",
-          "effect": "This Pokémon's Attack cannot be lowered by other Pokémon. This ability does not prevent any Attack losses other than stat modifiers, such as the Attack cut from a burn. This Pokémon can still be passed negative Attack modifiers through heart swap or power swap.",
+          "effect": "This Pokémon's Attack cannot be lowered by other Pokémon. This ability does not prevent any Attack losses other than stat modifiers, such as the Attack cut from a burn. This Pokémon can still be passed negative Attack modifiers through Heart Swap or Power Swap.",
           "isHidden": false
         },
         {
           "id": "iron-fist",
           "name": "Iron Fist",
           "shortEffect": "Strengthens punch-based moves to 1.2× their power.",
-          "effect": "Moves flagged as being punch-based have 1.2× their base power for this Pokémon. sucker punch is not flagged as punch-based; its original, Japanese name only means \"surprise attack\".",
+          "effect": "Moves flagged as being punch-based have 1.2× their base power for this Pokémon. Sucker Punch is not flagged as punch-based; its original, Japanese name only means \"surprise attack\".",
           "isHidden": false
         },
         {
           "id": "anger-point",
           "name": "Anger Point",
           "shortEffect": "Raises Attack to the maximum of six stages upon receiving a critical hit.",
-          "effect": "Whenever this Pokémon receives a critical hit, its Attack rises to the maximum of 6 stages. This ability will still take effect if the critical hit is received by a substitute.",
+          "effect": "Whenever this Pokémon receives a critical hit, its Attack rises to the maximum of 6 stages. This ability will still take effect if the critical hit is received by a Substitute.",
           "isHidden": true
         }
       ],
@@ -1724,21 +1724,21 @@
           "id": "hyper-cutter",
           "name": "Hyper Cutter",
           "shortEffect": "Prevents Attack from being lowered by other Pokémon.",
-          "effect": "This Pokémon's Attack cannot be lowered by other Pokémon. This ability does not prevent any Attack losses other than stat modifiers, such as the Attack cut from a burn. This Pokémon can still be passed negative Attack modifiers through heart swap or power swap.",
+          "effect": "This Pokémon's Attack cannot be lowered by other Pokémon. This ability does not prevent any Attack losses other than stat modifiers, such as the Attack cut from a burn. This Pokémon can still be passed negative Attack modifiers through Heart Swap or Power Swap.",
           "isHidden": false
         },
         {
           "id": "iron-fist",
           "name": "Iron Fist",
           "shortEffect": "Strengthens punch-based moves to 1.2× their power.",
-          "effect": "Moves flagged as being punch-based have 1.2× their base power for this Pokémon. sucker punch is not flagged as punch-based; its original, Japanese name only means \"surprise attack\".",
+          "effect": "Moves flagged as being punch-based have 1.2× their base power for this Pokémon. Sucker Punch is not flagged as punch-based; its original, Japanese name only means \"surprise attack\".",
           "isHidden": false
         },
         {
           "id": "anger-point",
           "name": "Anger Point",
           "shortEffect": "Raises Attack to the maximum of six stages upon receiving a critical hit.",
-          "effect": "Whenever this Pokémon receives a critical hit, its Attack rises to the maximum of 6 stages. This ability will still take effect if the critical hit is received by a substitute.",
+          "effect": "Whenever this Pokémon receives a critical hit, its Attack rises to the maximum of 6 stages. This ability will still take effect if the critical hit is received by a Substitute.",
           "isHidden": true
         }
       ],
@@ -1809,7 +1809,7 @@
           "id": "iron-fist",
           "name": "Iron Fist",
           "shortEffect": "Strengthens punch-based moves to 1.2× their power.",
-          "effect": "Moves flagged as being punch-based have 1.2× their base power for this Pokémon. sucker punch is not flagged as punch-based; its original, Japanese name only means \"surprise attack\".",
+          "effect": "Moves flagged as being punch-based have 1.2× their base power for this Pokémon. Sucker Punch is not flagged as punch-based; its original, Japanese name only means \"surprise attack\".",
           "isHidden": false
         }
       ],
@@ -1859,7 +1859,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10315.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10315.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10315.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/crabominable-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/crabominable-mega.gif"
@@ -2179,15 +2179,15 @@
         {
           "id": "honey-gather",
           "name": "Honey Gather",
-          "shortEffect": "The Pokémon may pick up honey after battle.",
-          "effect": "This Pokémon has a chance of picking up honey after each battle. This chance starts at 5% and rises another 5% after every tenth level: 5% from level 1–10, 10% from 11–20, and so on, up to 50% from 91–100. This ability is checked after the battle ends, at which point any temporary ability changes have worn off.",
+          "shortEffect": "The Pokémon may pick up Honey after battle.",
+          "effect": "This Pokémon has a chance of picking up Honey after each battle. This chance starts at 5% and rises another 5% after every tenth level: 5% from level 1–10, 10% from 11–20, and so on, up to 50% from 91–100. This ability is checked after the battle ends, at which point any temporary ability changes have worn off.",
           "isHidden": false
         },
         {
           "id": "shield-dust",
           "name": "Shield Dust",
           "shortEffect": "Protects against incoming moves' extra effects.",
-          "effect": "This Pokémon is immune to the extra effects of moves used against it. An extra effect is a move's chance, listed as an \"effect chance\", to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, thunder shock's paralysis is an extra effect, but thunder wave's is not, nor are knock off's item removal and air cutter's increased critical hit rate.",
+          "effect": "This Pokémon is immune to the extra effects of moves used against it. An extra effect is a move's chance, listed as an \"effect chance\", to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, Thunder Shock's paralysis is an extra effect, but Thunder Wave's is not, nor are Knock Off's item removal and Air Cutter's increased critical hit rate.",
           "isHidden": false
         },
         {
@@ -2266,15 +2266,15 @@
         {
           "id": "honey-gather",
           "name": "Honey Gather",
-          "shortEffect": "The Pokémon may pick up honey after battle.",
-          "effect": "This Pokémon has a chance of picking up honey after each battle. This chance starts at 5% and rises another 5% after every tenth level: 5% from level 1–10, 10% from 11–20, and so on, up to 50% from 91–100. This ability is checked after the battle ends, at which point any temporary ability changes have worn off.",
+          "shortEffect": "The Pokémon may pick up Honey after battle.",
+          "effect": "This Pokémon has a chance of picking up Honey after each battle. This chance starts at 5% and rises another 5% after every tenth level: 5% from level 1–10, 10% from 11–20, and so on, up to 50% from 91–100. This ability is checked after the battle ends, at which point any temporary ability changes have worn off.",
           "isHidden": false
         },
         {
           "id": "shield-dust",
           "name": "Shield Dust",
           "shortEffect": "Protects against incoming moves' extra effects.",
-          "effect": "This Pokémon is immune to the extra effects of moves used against it. An extra effect is a move's chance, listed as an \"effect chance\", to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, thunder shock's paralysis is an extra effect, but thunder wave's is not, nor are knock off's item removal and air cutter's increased critical hit rate.",
+          "effect": "This Pokémon is immune to the extra effects of moves used against it. An extra effect is a move's chance, listed as an \"effect chance\", to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, Thunder Shock's paralysis is an extra effect, but Thunder Wave's is not, nor are Knock Off's item removal and Air Cutter's increased critical hit rate.",
           "isHidden": false
         },
         {
@@ -2353,15 +2353,15 @@
         {
           "id": "honey-gather",
           "name": "Honey Gather",
-          "shortEffect": "The Pokémon may pick up honey after battle.",
-          "effect": "This Pokémon has a chance of picking up honey after each battle. This chance starts at 5% and rises another 5% after every tenth level: 5% from level 1–10, 10% from 11–20, and so on, up to 50% from 91–100. This ability is checked after the battle ends, at which point any temporary ability changes have worn off.",
+          "shortEffect": "The Pokémon may pick up Honey after battle.",
+          "effect": "This Pokémon has a chance of picking up Honey after each battle. This chance starts at 5% and rises another 5% after every tenth level: 5% from level 1–10, 10% from 11–20, and so on, up to 50% from 91–100. This ability is checked after the battle ends, at which point any temporary ability changes have worn off.",
           "isHidden": false
         },
         {
           "id": "shield-dust",
           "name": "Shield Dust",
           "shortEffect": "Protects against incoming moves' extra effects.",
-          "effect": "This Pokémon is immune to the extra effects of moves used against it. An extra effect is a move's chance, listed as an \"effect chance\", to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, thunder shock's paralysis is an extra effect, but thunder wave's is not, nor are knock off's item removal and air cutter's increased critical hit rate.",
+          "effect": "This Pokémon is immune to the extra effects of moves used against it. An extra effect is a move's chance, listed as an \"effect chance\", to inflict a status ailment, cause a stat change, or make the target flinch in addition to the move's main effect. For example, Thunder Shock's paralysis is an extra effect, but Thunder Wave's is not, nor are Knock Off's item removal and Air Cutter's increased critical hit rate.",
           "isHidden": false
         },
         {
@@ -2440,14 +2440,14 @@
           "id": "keen-eye",
           "name": "Keen Eye",
           "shortEffect": "Prevents accuracy from being lowered.",
-          "effect": "This Pokémon cannot have its accuracy lowered. This ability does not prevent any accuracy losses other than stat modifiers, such as the accuracy cut from fog; nor does it prevent other Pokémon's evasion from making this Pokémon's moves less accurate. This Pokémon can still be passed negative accuracy modifiers through heart swap. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
+          "effect": "This Pokémon cannot have its accuracy lowered. This ability does not prevent any accuracy losses other than stat modifiers, such as the accuracy cut from fog; nor does it prevent other Pokémon's evasion from making this Pokémon's moves less accurate. This Pokémon can still be passed negative accuracy modifiers through Heart Swap. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
           "isHidden": false
         },
         {
           "id": "vital-spirit",
           "name": "Vital Spirit",
           "shortEffect": "Prevents sleep.",
-          "effect": "This Pokémon cannot be asleep. This causes rest to fail altogether. If a Pokémon is asleep and acquires this ability, it will immediately wake up; this includes when regaining a lost ability upon leaving battle. This ability functions identically to insomnia in battle. Overworld: If the lead Pokémon has this ability, higher-levelled Pokémon have their encounter rate increased.",
+          "effect": "This Pokémon cannot be asleep. This causes Rest to fail altogether. If a Pokémon is asleep and acquires this ability, it will immediately wake up; this includes when regaining a lost ability upon leaving battle. This ability functions identically to Insomnia in battle. Overworld: If the lead Pokémon has this ability, higher-levelled Pokémon have their encounter rate increased.",
           "isHidden": false
         },
         {
@@ -2598,7 +2598,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10151.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10151.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10151.png",
         "showdown": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10151.gif",
         "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10151.png"
@@ -2618,7 +2618,7 @@
           "id": "keen-eye",
           "name": "Keen Eye",
           "shortEffect": "Prevents accuracy from being lowered.",
-          "effect": "This Pokémon cannot have its accuracy lowered. This ability does not prevent any accuracy losses other than stat modifiers, such as the accuracy cut from fog; nor does it prevent other Pokémon's evasion from making this Pokémon's moves less accurate. This Pokémon can still be passed negative accuracy modifiers through heart swap. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
+          "effect": "This Pokémon cannot have its accuracy lowered. This ability does not prevent any accuracy losses other than stat modifiers, such as the accuracy cut from fog; nor does it prevent other Pokémon's evasion from making this Pokémon's moves less accurate. This Pokémon can still be passed negative accuracy modifiers through Heart Swap. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
           "isHidden": false
         },
         {
@@ -2714,21 +2714,21 @@
           "id": "keen-eye",
           "name": "Keen Eye",
           "shortEffect": "Prevents accuracy from being lowered.",
-          "effect": "This Pokémon cannot have its accuracy lowered. This ability does not prevent any accuracy losses other than stat modifiers, such as the accuracy cut from fog; nor does it prevent other Pokémon's evasion from making this Pokémon's moves less accurate. This Pokémon can still be passed negative accuracy modifiers through heart swap. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
+          "effect": "This Pokémon cannot have its accuracy lowered. This ability does not prevent any accuracy losses other than stat modifiers, such as the accuracy cut from fog; nor does it prevent other Pokémon's evasion from making this Pokémon's moves less accurate. This Pokémon can still be passed negative accuracy modifiers through Heart Swap. Overworld: If the first Pokémon in the party has this ability, any random encounter with a Pokémon five or more levels lower than it has a 50% chance of being skipped.",
           "isHidden": false
         },
         {
           "id": "vital-spirit",
           "name": "Vital Spirit",
           "shortEffect": "Prevents sleep.",
-          "effect": "This Pokémon cannot be asleep. This causes rest to fail altogether. If a Pokémon is asleep and acquires this ability, it will immediately wake up; this includes when regaining a lost ability upon leaving battle. This ability functions identically to insomnia in battle. Overworld: If the lead Pokémon has this ability, higher-levelled Pokémon have their encounter rate increased.",
+          "effect": "This Pokémon cannot be asleep. This causes Rest to fail altogether. If a Pokémon is asleep and acquires this ability, it will immediately wake up; this includes when regaining a lost ability upon leaving battle. This ability functions identically to Insomnia in battle. Overworld: If the lead Pokémon has this ability, higher-levelled Pokémon have their encounter rate increased.",
           "isHidden": false
         },
         {
           "id": "no-guard",
           "name": "No Guard",
           "shortEffect": "Ensures all moves used by and against the Pokémon hit.",
-          "effect": "Moves used by or against this Pokémon never miss. One-hit KO moves are unaffected. Moves affected by this ability can hit Pokémon during the preparation turn of moves like dig or fly. Overworld: If the lead Pokémon has this ability, the wild encounter rate is doubled.",
+          "effect": "Moves used by or against this Pokémon never miss. One-hit KO moves are unaffected. Moves affected by this ability can hit Pokémon during the preparation turn of moves like Dig or Fly. Overworld: If the lead Pokémon has this ability, the wild encounter rate is doubled.",
           "isHidden": true
         }
       ],
@@ -2892,7 +2892,7 @@
           "id": "schooling",
           "name": "Schooling",
           "shortEffect": "Wishiwashi becomes Schooling Form when its HP is 25% or higher.",
-          "effect": "If this Pokémon is a wishiwashi and level 20 or above, then when it enters battle and at the start of each turn, it becomes Schooling Form if its HP is 25% or higher and Solo Form otherwise. This ability cannot be replaced, copied, or nullified.",
+          "effect": "If this Pokémon is a Wishiwashi and level 20 or above, then when it enters battle and at the start of each turn, it becomes Schooling Form if its HP is 25% or higher and Solo Form otherwise. This ability cannot be replaced, copied, or nullified.",
           "isHidden": false
         }
       ],
@@ -2956,7 +2956,7 @@
           "id": "schooling",
           "name": "Schooling",
           "shortEffect": "Wishiwashi becomes Schooling Form when its HP is 25% or higher.",
-          "effect": "If this Pokémon is a wishiwashi and level 20 or above, then when it enters battle and at the start of each turn, it becomes Schooling Form if its HP is 25% or higher and Solo Form otherwise. This ability cannot be replaced, copied, or nullified.",
+          "effect": "If this Pokémon is a Wishiwashi and level 20 or above, then when it enters battle and at the start of each turn, it becomes Schooling Form if its HP is 25% or higher and Solo Form otherwise. This ability cannot be replaced, copied, or nullified.",
           "isHidden": false
         }
       ],
@@ -3345,8 +3345,8 @@
         {
           "id": "water-absorb",
           "name": "Water Absorb",
-          "shortEffect": "Absorbs water moves, healing for 1/4 max HP.",
-          "effect": "Whenever a water-type move hits this Pokémon, it heals for 1/4 of its maximum HP, negating any other effect on it. Water moves will ignore this Pokémon's substitute.",
+          "shortEffect": "Absorbs Water moves, healing for 1/4 max HP.",
+          "effect": "Whenever a Water-type move hits this Pokémon, it heals for 1/4 of its maximum HP, negating any other effect on it. Water moves will ignore this Pokémon's Substitute.",
           "isHidden": true
         }
       ],
@@ -3425,8 +3425,8 @@
         {
           "id": "water-absorb",
           "name": "Water Absorb",
-          "shortEffect": "Absorbs water moves, healing for 1/4 max HP.",
-          "effect": "Whenever a water-type move hits this Pokémon, it heals for 1/4 of its maximum HP, negating any other effect on it. Water moves will ignore this Pokémon's substitute.",
+          "shortEffect": "Absorbs Water moves, healing for 1/4 max HP.",
+          "effect": "Whenever a Water-type move hits this Pokémon, it heals for 1/4 of its maximum HP, negating any other effect on it. Water moves will ignore this Pokémon's Substitute.",
           "isHidden": true
         }
       ],
@@ -3505,8 +3505,8 @@
         {
           "id": "water-absorb",
           "name": "Water Absorb",
-          "shortEffect": "Absorbs water moves, healing for 1/4 max HP.",
-          "effect": "Whenever a water-type move hits this Pokémon, it heals for 1/4 of its maximum HP, negating any other effect on it. Water moves will ignore this Pokémon's substitute.",
+          "shortEffect": "Absorbs Water moves, healing for 1/4 max HP.",
+          "effect": "Whenever a Water-type move hits this Pokémon, it heals for 1/4 of its maximum HP, negating any other effect on it. Water moves will ignore this Pokémon's Substitute.",
           "isHidden": true
         }
       ],
@@ -3578,7 +3578,7 @@
           "id": "leaf-guard",
           "name": "Leaf Guard",
           "shortEffect": "Protects against major status ailments during strong sunlight.",
-          "effect": "This Pokémon cannot be given a major status ailment during strong sunlight. This ability does not heal prior status ailments. rest will fail altogether with this ability in effect. yawn will immediately fail if used on this Pokémon during strong sunlight, and an already-used Yawn will fail if the weather turns to strong sunlight in the meantime.",
+          "effect": "This Pokémon cannot be given a major status ailment during strong sunlight. This ability does not heal prior status ailments. Rest will fail altogether with this ability in effect. Yawn will immediately fail if used on this Pokémon during strong sunlight, and an already-used Yawn will fail if the weather turns to strong sunlight in the meantime.",
           "isHidden": false
         },
         {
@@ -3656,7 +3656,7 @@
           "id": "leaf-guard",
           "name": "Leaf Guard",
           "shortEffect": "Protects against major status ailments during strong sunlight.",
-          "effect": "This Pokémon cannot be given a major status ailment during strong sunlight. This ability does not heal prior status ailments. rest will fail altogether with this ability in effect. yawn will immediately fail if used on this Pokémon during strong sunlight, and an already-used Yawn will fail if the weather turns to strong sunlight in the meantime.",
+          "effect": "This Pokémon cannot be given a major status ailment during strong sunlight. This ability does not heal prior status ailments. Rest will fail altogether with this ability in effect. Yawn will immediately fail if used on this Pokémon during strong sunlight, and an already-used Yawn will fail if the weather turns to strong sunlight in the meantime.",
           "isHidden": false
         },
         {
@@ -3734,7 +3734,7 @@
           "id": "leaf-guard",
           "name": "Leaf Guard",
           "shortEffect": "Protects against major status ailments during strong sunlight.",
-          "effect": "This Pokémon cannot be given a major status ailment during strong sunlight. This ability does not heal prior status ailments. rest will fail altogether with this ability in effect. yawn will immediately fail if used on this Pokémon during strong sunlight, and an already-used Yawn will fail if the weather turns to strong sunlight in the meantime.",
+          "effect": "This Pokémon cannot be given a major status ailment during strong sunlight. This ability does not heal prior status ailments. Rest will fail altogether with this ability in effect. Yawn will immediately fail if used on this Pokémon during strong sunlight, and an already-used Yawn will fail if the weather turns to strong sunlight in the meantime.",
           "isHidden": false
         },
         {
@@ -3795,7 +3795,7 @@
         "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10128.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10128.png",
         "showdown": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10128.gif",
-        "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10128.gif"
+        "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10128.png"
       }
     },
     {
@@ -3977,8 +3977,8 @@
         {
           "id": "oblivious",
           "name": "Oblivious",
-          "shortEffect": "Prevents infatuation and protects against captivate.",
-          "effect": "This Pokémon cannot be infatuated and is immune to captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
+          "shortEffect": "Prevents infatuation and protects against Captivate.",
+          "effect": "This Pokémon cannot be infatuated and is immune to Captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
           "isHidden": true
         }
       ],
@@ -4057,8 +4057,8 @@
         {
           "id": "oblivious",
           "name": "Oblivious",
-          "shortEffect": "Prevents infatuation and protects against captivate.",
-          "effect": "This Pokémon cannot be infatuated and is immune to captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
+          "shortEffect": "Prevents infatuation and protects against Captivate.",
+          "effect": "This Pokémon cannot be infatuated and is immune to Captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
           "isHidden": true
         }
       ],
@@ -4137,8 +4137,8 @@
         {
           "id": "oblivious",
           "name": "Oblivious",
-          "shortEffect": "Prevents infatuation and protects against captivate.",
-          "effect": "This Pokémon cannot be infatuated and is immune to captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
+          "shortEffect": "Prevents infatuation and protects against Captivate.",
+          "effect": "This Pokémon cannot be infatuated and is immune to Captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
           "isHidden": true
         }
       ],
@@ -4193,7 +4193,7 @@
         "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10129.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10129.png",
         "showdown": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10129.gif",
-        "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10129.gif"
+        "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10129.png"
       }
     },
     {
@@ -4218,7 +4218,7 @@
           "id": "klutz",
           "name": "Klutz",
           "shortEffect": "Prevents the Pokémon from using its held item in battle.",
-          "effect": "In battle, this Pokémon cannot use its held item, nor will the item have any passive effect on the battle, positive or negative. This Pokémon also cannot use fling. The Speed cut from the iron ball and the effort items (the macho brace, power weight, power bracer, power belt, power lens, power band, and power anklet) is unaffected. Items that do not directly affect the battle, such as the exp share, the amulet coin, or the soothe bell, work as usual. All held items work as usual out of battle. Other moves that use the held item, such as natural gift and switcheroo, work as usual.",
+          "effect": "In battle, this Pokémon cannot use its held item, nor will the item have any passive effect on the battle, positive or negative. This Pokémon also cannot use Fling. The Speed cut from the Iron Ball and the effort items (the Macho Brace, Power Weight, Power Bracer, Power Belt, Power Lens, Power Band, and Power Anklet) is unaffected. Items that do not directly affect the battle, such as the Exp. Share, the Amulet Coin, or the Soothe Bell, work as usual. All held items work as usual out of battle. Other moves that use the held item, such as Natural Gift and Switcheroo, work as usual.",
           "isHidden": false
         },
         {
@@ -4297,14 +4297,14 @@
           "id": "klutz",
           "name": "Klutz",
           "shortEffect": "Prevents the Pokémon from using its held item in battle.",
-          "effect": "In battle, this Pokémon cannot use its held item, nor will the item have any passive effect on the battle, positive or negative. This Pokémon also cannot use fling. The Speed cut from the iron ball and the effort items (the macho brace, power weight, power bracer, power belt, power lens, power band, and power anklet) is unaffected. Items that do not directly affect the battle, such as the exp share, the amulet coin, or the soothe bell, work as usual. All held items work as usual out of battle. Other moves that use the held item, such as natural gift and switcheroo, work as usual.",
+          "effect": "In battle, this Pokémon cannot use its held item, nor will the item have any passive effect on the battle, positive or negative. This Pokémon also cannot use Fling. The Speed cut from the Iron Ball and the effort items (the Macho Brace, Power Weight, Power Bracer, Power Belt, Power Lens, Power Band, and Power Anklet) is unaffected. Items that do not directly affect the battle, such as the Exp. Share, the Amulet Coin, or the Soothe Bell, work as usual. All held items work as usual out of battle. Other moves that use the held item, such as Natural Gift and Switcheroo, work as usual.",
           "isHidden": false
         },
         {
           "id": "unnerve",
           "name": "Unnerve",
           "shortEffect": "Prevents opposing Pokémon from eating held Berries.",
-          "effect": "Opposing Pokémon cannot eat held Berries while this Pokémon is in battle. Affected Pokémon can still use bug bite or pluck to eat a target's Berry.",
+          "effect": "Opposing Pokémon cannot eat held Berries while this Pokémon is in battle. Affected Pokémon can still use Bug Bite or Pluck to eat a target's Berry.",
           "isHidden": true
         }
       ],
@@ -4368,14 +4368,14 @@
           "id": "leaf-guard",
           "name": "Leaf Guard",
           "shortEffect": "Protects against major status ailments during strong sunlight.",
-          "effect": "This Pokémon cannot be given a major status ailment during strong sunlight. This ability does not heal prior status ailments. rest will fail altogether with this ability in effect. yawn will immediately fail if used on this Pokémon during strong sunlight, and an already-used Yawn will fail if the weather turns to strong sunlight in the meantime.",
+          "effect": "This Pokémon cannot be given a major status ailment during strong sunlight. This ability does not heal prior status ailments. Rest will fail altogether with this ability in effect. Yawn will immediately fail if used on this Pokémon during strong sunlight, and an already-used Yawn will fail if the weather turns to strong sunlight in the meantime.",
           "isHidden": false
         },
         {
           "id": "oblivious",
           "name": "Oblivious",
-          "shortEffect": "Prevents infatuation and protects against captivate.",
-          "effect": "This Pokémon cannot be infatuated and is immune to captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
+          "shortEffect": "Prevents infatuation and protects against Captivate.",
+          "effect": "This Pokémon cannot be infatuated and is immune to Captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
           "isHidden": false
         },
         {
@@ -4453,14 +4453,14 @@
           "id": "leaf-guard",
           "name": "Leaf Guard",
           "shortEffect": "Protects against major status ailments during strong sunlight.",
-          "effect": "This Pokémon cannot be given a major status ailment during strong sunlight. This ability does not heal prior status ailments. rest will fail altogether with this ability in effect. yawn will immediately fail if used on this Pokémon during strong sunlight, and an already-used Yawn will fail if the weather turns to strong sunlight in the meantime.",
+          "effect": "This Pokémon cannot be given a major status ailment during strong sunlight. This ability does not heal prior status ailments. Rest will fail altogether with this ability in effect. Yawn will immediately fail if used on this Pokémon during strong sunlight, and an already-used Yawn will fail if the weather turns to strong sunlight in the meantime.",
           "isHidden": false
         },
         {
           "id": "oblivious",
           "name": "Oblivious",
-          "shortEffect": "Prevents infatuation and protects against captivate.",
-          "effect": "This Pokémon cannot be infatuated and is immune to captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
+          "shortEffect": "Prevents infatuation and protects against Captivate.",
+          "effect": "This Pokémon cannot be infatuated and is immune to Captivate. If a Pokémon is infatuated and acquires this ability, its infatuation is cleared.",
           "isHidden": false
         },
         {
@@ -4538,7 +4538,7 @@
           "id": "leaf-guard",
           "name": "Leaf Guard",
           "shortEffect": "Protects against major status ailments during strong sunlight.",
-          "effect": "This Pokémon cannot be given a major status ailment during strong sunlight. This ability does not heal prior status ailments. rest will fail altogether with this ability in effect. yawn will immediately fail if used on this Pokémon during strong sunlight, and an already-used Yawn will fail if the weather turns to strong sunlight in the meantime.",
+          "effect": "This Pokémon cannot be given a major status ailment during strong sunlight. This ability does not heal prior status ailments. Rest will fail altogether with this ability in effect. Yawn will immediately fail if used on this Pokémon during strong sunlight, and an already-used Yawn will fail if the weather turns to strong sunlight in the meantime.",
           "isHidden": false
         },
         {
@@ -4622,8 +4622,8 @@
         {
           "id": "flower-veil",
           "name": "Flower Veil",
-          "shortEffect": "Protects friendly grass Pokémon from having their stats lowered by other Pokémon.",
-          "effect": "Protects friendly grass Pokémon from having their stats lowered by other Pokémon.",
+          "shortEffect": "Protects friendly Grass Pokémon from having their stats lowered by other Pokémon.",
+          "effect": "Protects friendly Grass Pokémon from having their stats lowered by other Pokémon.",
           "isHidden": false
         },
         {
@@ -4931,7 +4931,8 @@
       "generation": "Generation Vii",
       "generationId": 7,
       "gameAvailability": [
-        "sword-shield"
+        "sword-shield",
+        "pokemon-champions"
       ],
       "eggGroups": [
         "Bug",
@@ -4978,10 +4979,10 @@
       ],
       "abilities": [
         {
-          "id": "emergency-exit",
-          "name": "Emergency Exit",
-          "shortEffect": "This Pokémon automatically switches out when its HP drops below half.",
-          "effect": "After this Pokémon is hit by a move, if that move caused this Pokémon's HP to drop below half, it switches out.",
+          "id": "tough-claws",
+          "name": "Tough Claws",
+          "shortEffect": "Strengthens moves that make contact to 1.33× their power.",
+          "effect": "Strengthens moves that make contact to 1.33× their power.",
           "isHidden": false
         }
       ],
@@ -5003,7 +5004,8 @@
       "generation": "Generation Vii",
       "generationId": 7,
       "gameAvailability": [
-        "sword-shield"
+        "sword-shield",
+        "pokemon-champions"
       ],
       "eggGroups": [
         "Bug",
@@ -5032,7 +5034,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10316.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10316.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10316.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/golisopod-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/golisopod-mega.gif"
@@ -5205,7 +5207,7 @@
           "id": "unaware",
           "name": "Unaware",
           "shortEffect": "Ignores other Pokémon's stat modifiers for damage and accuracy calculation.",
-          "effect": "This Pokémon ignores other Pokémon's stat modifiers for the purposes of damage and accuracy calculation. Effectively, this affects modifiers of every stat except Speed. The power of punishment and stored power is calculated as usual. When this Pokémon hurts itself in confusion, its stat modifiers affect damage as usual.",
+          "effect": "This Pokémon ignores other Pokémon's stat modifiers for the purposes of damage and accuracy calculation. Effectively, this affects modifiers of every stat except Speed. The power of Punishment and Stored Power is calculated as usual. When this Pokémon hurts itself in confusion, its stat modifiers affect damage as usual.",
           "isHidden": true
         }
       ],
@@ -5263,7 +5265,7 @@
           "id": "battle-armor",
           "name": "Battle Armor",
           "shortEffect": "Protects against critical hits.",
-          "effect": "Moves cannot score critical hits against this Pokémon. This ability functions identically to shell armor.",
+          "effect": "Moves cannot score critical hits against this Pokémon. This ability functions identically to Shell Armor.",
           "isHidden": false
         }
       ],
@@ -5392,7 +5394,7 @@
           "id": "shields-down",
           "name": "Shields Down",
           "shortEffect": "Transforms this Minior between Core Form and Meteor Form. Prevents major status ailments and drowsiness while in Meteor Form.",
-          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from yawn, and cannot use rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
+          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from Yawn, and cannot use Rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
           "isHidden": false
         }
       ],
@@ -5517,7 +5519,7 @@
           "id": "shields-down",
           "name": "Shields Down",
           "shortEffect": "Transforms this Minior between Core Form and Meteor Form. Prevents major status ailments and drowsiness while in Meteor Form.",
-          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from yawn, and cannot use rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
+          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from Yawn, and cannot use Rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
           "isHidden": false
         }
       ],
@@ -5642,7 +5644,7 @@
           "id": "shields-down",
           "name": "Shields Down",
           "shortEffect": "Transforms this Minior between Core Form and Meteor Form. Prevents major status ailments and drowsiness while in Meteor Form.",
-          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from yawn, and cannot use rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
+          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from Yawn, and cannot use Rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
           "isHidden": false
         }
       ],
@@ -5767,7 +5769,7 @@
           "id": "shields-down",
           "name": "Shields Down",
           "shortEffect": "Transforms this Minior between Core Form and Meteor Form. Prevents major status ailments and drowsiness while in Meteor Form.",
-          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from yawn, and cannot use rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
+          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from Yawn, and cannot use Rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
           "isHidden": false
         }
       ],
@@ -5892,7 +5894,7 @@
           "id": "shields-down",
           "name": "Shields Down",
           "shortEffect": "Transforms this Minior between Core Form and Meteor Form. Prevents major status ailments and drowsiness while in Meteor Form.",
-          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from yawn, and cannot use rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
+          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from Yawn, and cannot use Rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
           "isHidden": false
         }
       ],
@@ -6017,7 +6019,7 @@
           "id": "shields-down",
           "name": "Shields Down",
           "shortEffect": "Transforms this Minior between Core Form and Meteor Form. Prevents major status ailments and drowsiness while in Meteor Form.",
-          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from yawn, and cannot use rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
+          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from Yawn, and cannot use Rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
           "isHidden": false
         }
       ],
@@ -6142,7 +6144,7 @@
           "id": "shields-down",
           "name": "Shields Down",
           "shortEffect": "Transforms this Minior between Core Form and Meteor Form. Prevents major status ailments and drowsiness while in Meteor Form.",
-          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from yawn, and cannot use rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
+          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from Yawn, and cannot use Rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
           "isHidden": false
         }
       ],
@@ -6267,7 +6269,7 @@
           "id": "shields-down",
           "name": "Shields Down",
           "shortEffect": "Transforms this Minior between Core Form and Meteor Form. Prevents major status ailments and drowsiness while in Meteor Form.",
-          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from yawn, and cannot use rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
+          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from Yawn, and cannot use Rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
           "isHidden": false
         }
       ],
@@ -6392,7 +6394,7 @@
           "id": "shields-down",
           "name": "Shields Down",
           "shortEffect": "Transforms this Minior between Core Form and Meteor Form. Prevents major status ailments and drowsiness while in Meteor Form.",
-          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from yawn, and cannot use rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
+          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from Yawn, and cannot use Rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
           "isHidden": false
         }
       ],
@@ -6517,7 +6519,7 @@
           "id": "shields-down",
           "name": "Shields Down",
           "shortEffect": "Transforms this Minior between Core Form and Meteor Form. Prevents major status ailments and drowsiness while in Meteor Form.",
-          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from yawn, and cannot use rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
+          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from Yawn, and cannot use Rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
           "isHidden": false
         }
       ],
@@ -6642,7 +6644,7 @@
           "id": "shields-down",
           "name": "Shields Down",
           "shortEffect": "Transforms this Minior between Core Form and Meteor Form. Prevents major status ailments and drowsiness while in Meteor Form.",
-          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from yawn, and cannot use rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
+          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from Yawn, and cannot use Rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
           "isHidden": false
         }
       ],
@@ -6767,7 +6769,7 @@
           "id": "shields-down",
           "name": "Shields Down",
           "shortEffect": "Transforms this Minior between Core Form and Meteor Form. Prevents major status ailments and drowsiness while in Meteor Form.",
-          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from yawn, and cannot use rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
+          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from Yawn, and cannot use Rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
           "isHidden": false
         }
       ],
@@ -6892,7 +6894,7 @@
           "id": "shields-down",
           "name": "Shields Down",
           "shortEffect": "Transforms this Minior between Core Form and Meteor Form. Prevents major status ailments and drowsiness while in Meteor Form.",
-          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from yawn, and cannot use rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
+          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from Yawn, and cannot use Rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
           "isHidden": false
         }
       ],
@@ -7017,7 +7019,7 @@
           "id": "shields-down",
           "name": "Shields Down",
           "shortEffect": "Transforms this Minior between Core Form and Meteor Form. Prevents major status ailments and drowsiness while in Meteor Form.",
-          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from yawn, and cannot use rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
+          "effect": "When this Pokémon enters battle and at the end of each turn, if its HP is 50% or above, it changes into Meteor Form; otherwise, it changes into Core Form. In Meteor Form, it cannot be given a major status ailment (though existing ones are not cured), cannot become drowsy from Yawn, and cannot use Rest (which will simply fail). This ability cannot be copied, replaced, or nullified. This ability only takes effect for Minior.",
           "isHidden": false
         }
       ],
@@ -7141,7 +7143,7 @@
           "id": "comatose",
           "name": "Comatose",
           "shortEffect": "This Pokémon always acts as though it were Asleep.",
-          "effect": "This Pokémon always acts as though it were Asleep. It cannot be given another status ailment; it's unaffected by yawn; it can use sleep talk; and so on.",
+          "effect": "This Pokémon always acts as though it were Asleep. It cannot be given another status ailment; it's unaffected by Yawn; it can use Sleep Talk; and so on.",
           "isHidden": false
         }
       ],
@@ -7200,7 +7202,7 @@
           "id": "shell-armor",
           "name": "Shell Armor",
           "shortEffect": "Protects against critical hits.",
-          "effect": "Moves cannot score critical hits against this Pokémon. This ability functions identically to battle armor.",
+          "effect": "Moves cannot score critical hits against this Pokémon. This ability functions identically to Battle Armor.",
           "isHidden": false
         }
       ],
@@ -7260,21 +7262,21 @@
           "id": "iron-barbs",
           "name": "Iron Barbs",
           "shortEffect": "Damages attacking Pokémon for 1/8 their max HP on contact.",
-          "effect": "Whenever a move makes contact with this Pokémon, the move's user takes 1/8 of its maximum HP in damage. This ability functions identically to rough skin.",
+          "effect": "Whenever a move makes contact with this Pokémon, the move's user takes 1/8 of its maximum HP in damage. This ability functions identically to Rough Skin.",
           "isHidden": false
         },
         {
           "id": "lightning-rod",
           "name": "Lightning Rod",
-          "shortEffect": "Redirects single-target electric moves to this Pokémon where possible. Absorbs Electric moves, raising Special Attack one stage.",
-          "effect": "All other Pokémon's single-target electric-type moves are redirected to this Pokémon if it is an eligible target. Other Pokémon's Electric moves raise this Pokémon's Special Attack one stage, negating any other effect on it, and cannot miss it. If the move's intended target also has this ability, the move is not redirected. When multiple Pokémon with this ability are possible targets for redirection, the move is redirected to the one with the highest Speed stat, or, in the case of a tie, to a random tied Pokémon. follow me takes precedence over this ability. If the Pokémon is a ground-type and thus immune to Electric moves, its immunity prevents the Special Attack boost.",
+          "shortEffect": "Redirects single-target Electric moves to this Pokémon where possible. Absorbs Electric moves, raising Special Attack one stage.",
+          "effect": "All other Pokémon's single-target Electric-type moves are redirected to this Pokémon if it is an eligible target. Other Pokémon's Electric moves raise this Pokémon's Special Attack one stage, negating any other effect on it, and cannot miss it. If the move's intended target also has this ability, the move is not redirected. When multiple Pokémon with this ability are possible targets for redirection, the move is redirected to the one with the highest Speed stat, or, in the case of a tie, to a random tied Pokémon. Follow Me takes precedence over this ability. If the Pokémon is a Ground-type and thus immune to Electric moves, its immunity prevents the Special Attack boost.",
           "isHidden": false
         },
         {
           "id": "sturdy",
           "name": "Sturdy",
           "shortEffect": "Prevents being KOed from full HP, leaving 1 HP instead. Protects against the one-hit KO moves regardless of HP.",
-          "effect": "When this Pokémon is at full HP, any hit that would knock it out will instead leave it with 1 HP. Regardless of its current HP, it is also immune to the one-hit KO moves: fissure, guillotine, horn drill, and sheer cold. If this Pokémon is holding a focus sash, this ability takes precedence and the item will not be consumed.",
+          "effect": "When this Pokémon is at full HP, any hit that would knock it out will instead leave it with 1 HP. Regardless of its current HP, it is also immune to the one-hit KO moves: Fissure, Guillotine, Horn Drill, and Sheer Cold. If this Pokémon is holding a Focus Sash, this ability takes precedence and the item will not be consumed.",
           "isHidden": true
         }
       ],
@@ -7340,21 +7342,21 @@
           "id": "iron-barbs",
           "name": "Iron Barbs",
           "shortEffect": "Damages attacking Pokémon for 1/8 their max HP on contact.",
-          "effect": "Whenever a move makes contact with this Pokémon, the move's user takes 1/8 of its maximum HP in damage. This ability functions identically to rough skin.",
+          "effect": "Whenever a move makes contact with this Pokémon, the move's user takes 1/8 of its maximum HP in damage. This ability functions identically to Rough Skin.",
           "isHidden": false
         },
         {
           "id": "lightning-rod",
           "name": "Lightning Rod",
-          "shortEffect": "Redirects single-target electric moves to this Pokémon where possible. Absorbs Electric moves, raising Special Attack one stage.",
-          "effect": "All other Pokémon's single-target electric-type moves are redirected to this Pokémon if it is an eligible target. Other Pokémon's Electric moves raise this Pokémon's Special Attack one stage, negating any other effect on it, and cannot miss it. If the move's intended target also has this ability, the move is not redirected. When multiple Pokémon with this ability are possible targets for redirection, the move is redirected to the one with the highest Speed stat, or, in the case of a tie, to a random tied Pokémon. follow me takes precedence over this ability. If the Pokémon is a ground-type and thus immune to Electric moves, its immunity prevents the Special Attack boost.",
+          "shortEffect": "Redirects single-target Electric moves to this Pokémon where possible. Absorbs Electric moves, raising Special Attack one stage.",
+          "effect": "All other Pokémon's single-target Electric-type moves are redirected to this Pokémon if it is an eligible target. Other Pokémon's Electric moves raise this Pokémon's Special Attack one stage, negating any other effect on it, and cannot miss it. If the move's intended target also has this ability, the move is not redirected. When multiple Pokémon with this ability are possible targets for redirection, the move is redirected to the one with the highest Speed stat, or, in the case of a tie, to a random tied Pokémon. Follow Me takes precedence over this ability. If the Pokémon is a Ground-type and thus immune to Electric moves, its immunity prevents the Special Attack boost.",
           "isHidden": false
         },
         {
           "id": "sturdy",
           "name": "Sturdy",
           "shortEffect": "Prevents being KOed from full HP, leaving 1 HP instead. Protects against the one-hit KO moves regardless of HP.",
-          "effect": "When this Pokémon is at full HP, any hit that would knock it out will instead leave it with 1 HP. Regardless of its current HP, it is also immune to the one-hit KO moves: fissure, guillotine, horn drill, and sheer cold. If this Pokémon is holding a focus sash, this ability takes precedence and the item will not be consumed.",
+          "effect": "When this Pokémon is at full HP, any hit that would knock it out will instead leave it with 1 HP. Regardless of its current HP, it is also immune to the one-hit KO moves: Fissure, Guillotine, Horn Drill, and Sheer Cold. If this Pokémon is holding a Focus Sash, this ability takes precedence and the item will not be consumed.",
           "isHidden": true
         }
       ],
@@ -7402,7 +7404,7 @@
         "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10154.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10154.png",
         "showdown": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10154.gif",
-        "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10154.gif"
+        "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10154.png"
       }
     },
     {
@@ -7803,15 +7805,15 @@
         {
           "id": "sap-sipper",
           "name": "Sap Sipper",
-          "shortEffect": "Absorbs grass moves, raising Attack one stage.",
-          "effect": "Whenever a grass-type move hits this Pokémon, its Attack rises one stage, negating any other effect on it.",
+          "shortEffect": "Absorbs Grass moves, raising Attack one stage.",
+          "effect": "Whenever a Grass-type move hits this Pokémon, its Attack rises one stage, negating any other effect on it.",
           "isHidden": false
         },
         {
           "id": "cloud-nine",
           "name": "Cloud Nine",
           "shortEffect": "Negates all effects of weather, but does not prevent the weather itself.",
-          "effect": "While this Pokémon is in battle, weather can still be in play, but will not have any of its effects. This ability functions identically to air lock.",
+          "effect": "While this Pokémon is in battle, weather can still be in play, but will not have any of its effects. This ability functions identically to Air Lock.",
           "isHidden": true
         }
       ],
@@ -7922,7 +7924,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10302.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10302.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10302.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/drampa-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/drampa-mega.gif"
@@ -8008,7 +8010,7 @@
           "id": "soundproof",
           "name": "Soundproof",
           "shortEffect": "Protects against sound-based moves.",
-          "effect": "This Pokémon is immune to moves flagged as being sound-based. heal bell is unaffected. uproar still prevents this Pokémon from sleeping. This Pokémon can still receive a Perish Song counter through baton pass, and will retain a Perish Song counter if it acquires this ability after Perish Song is used. howl, roar of time, sonic boom, and yawn are not flagged as sound-based.",
+          "effect": "This Pokémon is immune to moves flagged as being sound-based. Heal Bell is unaffected. Uproar still prevents this Pokémon from sleeping. This Pokémon can still receive a Perish Song counter through Baton Pass, and will retain a Perish Song counter if it acquires this ability after Perish Song is used. Howl, Roar of Time, Sonic Boom, and Yawn are not flagged as sound-based.",
           "isHidden": false
         },
         {
@@ -8100,7 +8102,7 @@
           "id": "soundproof",
           "name": "Soundproof",
           "shortEffect": "Protects against sound-based moves.",
-          "effect": "This Pokémon is immune to moves flagged as being sound-based. heal bell is unaffected. uproar still prevents this Pokémon from sleeping. This Pokémon can still receive a Perish Song counter through baton pass, and will retain a Perish Song counter if it acquires this ability after Perish Song is used. howl, roar of time, sonic boom, and yawn are not flagged as sound-based.",
+          "effect": "This Pokémon is immune to moves flagged as being sound-based. Heal Bell is unaffected. Uproar still prevents this Pokémon from sleeping. This Pokémon can still receive a Perish Song counter through Baton Pass, and will retain a Perish Song counter if it acquires this ability after Perish Song is used. Howl, Roar of Time, Sonic Boom, and Yawn are not flagged as sound-based.",
           "isHidden": false
         },
         {
@@ -8192,7 +8194,7 @@
           "id": "soundproof",
           "name": "Soundproof",
           "shortEffect": "Protects against sound-based moves.",
-          "effect": "This Pokémon is immune to moves flagged as being sound-based. heal bell is unaffected. uproar still prevents this Pokémon from sleeping. This Pokémon can still receive a Perish Song counter through baton pass, and will retain a Perish Song counter if it acquires this ability after Perish Song is used. howl, roar of time, sonic boom, and yawn are not flagged as sound-based.",
+          "effect": "This Pokémon is immune to moves flagged as being sound-based. Heal Bell is unaffected. Uproar still prevents this Pokémon from sleeping. This Pokémon can still receive a Perish Song counter through Baton Pass, and will retain a Perish Song counter if it acquires this ability after Perish Song is used. Howl, Roar of Time, Sonic Boom, and Yawn are not flagged as sound-based.",
           "isHidden": false
         },
         {
@@ -8284,7 +8286,7 @@
           "id": "soundproof",
           "name": "Soundproof",
           "shortEffect": "Protects against sound-based moves.",
-          "effect": "This Pokémon is immune to moves flagged as being sound-based. heal bell is unaffected. uproar still prevents this Pokémon from sleeping. This Pokémon can still receive a Perish Song counter through baton pass, and will retain a Perish Song counter if it acquires this ability after Perish Song is used. howl, roar of time, sonic boom, and yawn are not flagged as sound-based.",
+          "effect": "This Pokémon is immune to moves flagged as being sound-based. Heal Bell is unaffected. Uproar still prevents this Pokémon from sleeping. This Pokémon can still receive a Perish Song counter through Baton Pass, and will retain a Perish Song counter if it acquires this ability after Perish Song is used. Howl, Roar of Time, Sonic Boom, and Yawn are not flagged as sound-based.",
           "isHidden": false
         },
         {
@@ -8369,7 +8371,7 @@
           "id": "electric-surge",
           "name": "Electric Surge",
           "shortEffect": "When this Pokémon enters battle, it changes the terrain to Electric Terrain.",
-          "effect": "When this Pokémon enters battle, it changes the terrain to electric terrain.",
+          "effect": "When this Pokémon enters battle, it changes the terrain to Electric Terrain.",
           "isHidden": false
         },
         {
@@ -8433,7 +8435,7 @@
           "id": "psychic-surge",
           "name": "Psychic Surge",
           "shortEffect": "When this Pokémon enters battle, it changes the terrain to Psychic Terrain.",
-          "effect": "When this Pokémon enters battle, it changes the terrain to psychic terrain.",
+          "effect": "When this Pokémon enters battle, it changes the terrain to Psychic Terrain.",
           "isHidden": false
         },
         {
@@ -8497,7 +8499,7 @@
           "id": "grassy-surge",
           "name": "Grassy Surge",
           "shortEffect": "When this Pokémon enters battle, it changes the terrain to Grassy Terrain.",
-          "effect": "When this Pokémon enters battle, it changes the terrain to grassy terrain.",
+          "effect": "When this Pokémon enters battle, it changes the terrain to Grassy Terrain.",
           "isHidden": false
         },
         {
@@ -8561,7 +8563,7 @@
           "id": "misty-surge",
           "name": "Misty Surge",
           "shortEffect": "When this Pokémon enters battle, it changes the terrain to Misty Terrain.",
-          "effect": "When this Pokémon enters battle, it changes the terrain to misty terrain.",
+          "effect": "When this Pokémon enters battle, it changes the terrain to Misty Terrain.",
           "isHidden": false
         },
         {
@@ -8624,7 +8626,7 @@
           "id": "unaware",
           "name": "Unaware",
           "shortEffect": "Ignores other Pokémon's stat modifiers for damage and accuracy calculation.",
-          "effect": "This Pokémon ignores other Pokémon's stat modifiers for the purposes of damage and accuracy calculation. Effectively, this affects modifiers of every stat except Speed. The power of punishment and stored power is calculated as usual. When this Pokémon hurts itself in confusion, its stat modifiers affect damage as usual.",
+          "effect": "This Pokémon ignores other Pokémon's stat modifiers for the purposes of damage and accuracy calculation. Effectively, this affects modifiers of every stat except Speed. The power of Punishment and Stored Power is calculated as usual. When this Pokémon hurts itself in confusion, its stat modifiers affect damage as usual.",
           "isHidden": false
         }
       ],
@@ -8698,7 +8700,7 @@
           "id": "sturdy",
           "name": "Sturdy",
           "shortEffect": "Prevents being KOed from full HP, leaving 1 HP instead. Protects against the one-hit KO moves regardless of HP.",
-          "effect": "When this Pokémon is at full HP, any hit that would knock it out will instead leave it with 1 HP. Regardless of its current HP, it is also immune to the one-hit KO moves: fissure, guillotine, horn drill, and sheer cold. If this Pokémon is holding a focus sash, this ability takes precedence and the item will not be consumed.",
+          "effect": "When this Pokémon is at full HP, any hit that would knock it out will instead leave it with 1 HP. Regardless of its current HP, it is also immune to the one-hit KO moves: Fissure, Guillotine, Horn Drill, and Sheer Cold. If this Pokémon is holding a Focus Sash, this ability takes precedence and the item will not be consumed.",
           "isHidden": false
         }
       ],
@@ -8773,7 +8775,7 @@
           "id": "full-metal-body",
           "name": "Full Metal Body",
           "shortEffect": "Other Pokémon cannot lower this Pokémon's stats.",
-          "effect": "This Pokémon's stats cannot be lowered by other Pokémon's moves or abilities. This effect only applies to normal stat modifications and not more exotic effects such as topsy turvy or power swap. This Ability is not bypassed by mold breaker, teravolt, or turboblaze.",
+          "effect": "This Pokémon's stats cannot be lowered by other Pokémon's moves or abilities. This effect only applies to normal stat modifications and not more exotic effects such as Topsy-Turvy or Power Swap. This Ability is not bypassed by Mold Breaker, Teravolt, or Turboblaze.",
           "isHidden": false
         }
       ],
@@ -9320,7 +9322,7 @@
           "id": "prism-armor",
           "name": "Prism Armor",
           "shortEffect": "Reduces super-effective damage to 0.75×.",
-          "effect": "Super-effective damage this Pokémon takes is reduced to 0.75×. This Ability is not bypassed by mold breaker, teravolt, or turboblaze.",
+          "effect": "Super-effective damage this Pokémon takes is reduced to 0.75×. This Ability is not bypassed by Mold Breaker, Teravolt, or Turboblaze.",
           "isHidden": false
         }
       ],
@@ -9393,7 +9395,7 @@
           "id": "prism-armor",
           "name": "Prism Armor",
           "shortEffect": "Reduces super-effective damage to 0.75×.",
-          "effect": "Super-effective damage this Pokémon takes is reduced to 0.75×. This Ability is not bypassed by mold breaker, teravolt, or turboblaze.",
+          "effect": "Super-effective damage this Pokémon takes is reduced to 0.75×. This Ability is not bypassed by Mold Breaker, Teravolt, or Turboblaze.",
           "isHidden": false
         }
       ],
@@ -9466,7 +9468,7 @@
           "id": "prism-armor",
           "name": "Prism Armor",
           "shortEffect": "Reduces super-effective damage to 0.75×.",
-          "effect": "Super-effective damage this Pokémon takes is reduced to 0.75×. This Ability is not bypassed by mold breaker, teravolt, or turboblaze.",
+          "effect": "Super-effective damage this Pokémon takes is reduced to 0.75×. This Ability is not bypassed by Mold Breaker, Teravolt, or Turboblaze.",
           "isHidden": false
         }
       ],
@@ -9810,7 +9812,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10317.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10317.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10317.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/magearna-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/magearna-mega.gif"
@@ -9883,7 +9885,7 @@
         }
       ],
       "sprites": {
-        "home": "https://play.pokemonshowdown.com/sprites/ani/magearna-original-mega.gif",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10318.png",
         "officialArtwork": null,
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/magearna-original-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/magearna-original-mega.gif"
@@ -9904,7 +9906,7 @@
           "id": "technician",
           "name": "Technician",
           "shortEffect": "Strengthens moves of 60 base power or less to 1.5× their power.",
-          "effect": "This Pokémon's moves have 1.5× their power if their base power is 60 or less. This includes moves of variable power, such as hidden power and magnitude, when their power is 60 or less. helping hand's power boost is taken into account for any move, as is defense curl's power boost for rollout.",
+          "effect": "This Pokémon's moves have 1.5× their power if their base power is 60 or less. This includes moves of variable power, such as Hidden Power and Magnitude, when their power is 60 or less. Helping Hand's power boost is taken into account for any move, as is Defense Curl's power boost for Rollout.",
           "isHidden": false
         }
       ],
@@ -10198,8 +10200,8 @@
         {
           "id": "volt-absorb",
           "name": "Volt Absorb",
-          "shortEffect": "Absorbs electric moves, healing for 1/4 max HP.",
-          "effect": "Whenever an electric-type move hits this Pokémon, it heals for 1/4 of its maximum HP, negating any other effect on it. This ability will not take effect if this Pokémon is ground-type and thus immune to Electric moves. Electric moves will ignore this Pokémon's substitute. This effect includes non-damaging moves, i.e. thunder wave.",
+          "shortEffect": "Absorbs Electric moves, healing for 1/4 max HP.",
+          "effect": "Whenever an Electric-type move hits this Pokémon, it heals for 1/4 of its maximum HP, negating any other effect on it. This ability will not take effect if this Pokémon is Ground-type and thus immune to Electric moves. Electric moves will ignore this Pokémon's Substitute. This effect includes non-damaging moves, i.e. Thunder Wave.",
           "isHidden": false
         }
       ],
@@ -10260,8 +10262,8 @@
         {
           "id": "volt-absorb",
           "name": "Volt Absorb",
-          "shortEffect": "Absorbs electric moves, healing for 1/4 max HP.",
-          "effect": "Whenever an electric-type move hits this Pokémon, it heals for 1/4 of its maximum HP, negating any other effect on it. This ability will not take effect if this Pokémon is ground-type and thus immune to Electric moves. Electric moves will ignore this Pokémon's substitute. This effect includes non-damaging moves, i.e. thunder wave.",
+          "shortEffect": "Absorbs Electric moves, healing for 1/4 max HP.",
+          "effect": "Whenever an Electric-type move hits this Pokémon, it heals for 1/4 of its maximum HP, negating any other effect on it. This ability will not take effect if this Pokémon is Ground-type and thus immune to Electric moves. Electric moves will ignore this Pokémon's Substitute. This effect includes non-damaging moves, i.e. Thunder Wave.",
           "isHidden": false
         }
       ],
@@ -10303,7 +10305,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10319.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10319.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10319.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/zeraora-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/zeraora-mega.gif"
@@ -10322,8 +10324,8 @@
         {
           "id": "magnet-pull",
           "name": "Magnet Pull",
-          "shortEffect": "Prevents steel opponents from fleeing or switching out.",
-          "effect": "While this Pokémon is in battle, opposing steel-type Pokémon cannot flee or switch out. Pokémon with run away can still flee. Pokémon can still switch out with the use of a move or item. Overworld: If the lead Pokémon has this ability, Steel-type Pokémon have a higher encounter rate.",
+          "shortEffect": "Prevents Steel opponents from fleeing or switching out.",
+          "effect": "While this Pokémon is in battle, opposing Steel-type Pokémon cannot flee or switch out. Pokémon with Run Away can still flee. Pokémon can still switch out with the use of a move or item. Overworld: If the lead Pokémon has this ability, Steel-type Pokémon have a higher encounter rate.",
           "isHidden": false
         }
       ],
@@ -10379,7 +10381,7 @@
           "id": "iron-fist",
           "name": "Iron Fist",
           "shortEffect": "Strengthens punch-based moves to 1.2× their power.",
-          "effect": "Moves flagged as being punch-based have 1.2× their base power for this Pokémon. sucker punch is not flagged as punch-based; its original, Japanese name only means \"surprise attack\".",
+          "effect": "Moves flagged as being punch-based have 1.2× their base power for this Pokémon. Sucker Punch is not flagged as punch-based; its original, Japanese name only means \"surprise attack\".",
           "isHidden": false
         }
       ],
@@ -10441,7 +10443,7 @@
           "id": "iron-fist",
           "name": "Iron Fist",
           "shortEffect": "Strengthens punch-based moves to 1.2× their power.",
-          "effect": "Moves flagged as being punch-based have 1.2× their base power for this Pokémon. sucker punch is not flagged as punch-based; its original, Japanese name only means \"surprise attack\".",
+          "effect": "Moves flagged as being punch-based have 1.2× their base power for this Pokémon. Sucker Punch is not flagged as punch-based; its original, Japanese name only means \"surprise attack\".",
           "isHidden": false
         }
       ],

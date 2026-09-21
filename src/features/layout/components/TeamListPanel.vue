@@ -149,7 +149,7 @@ function doImportShowdown() {
     </details>
 
     <details class="mt-2 rounded-lg border border-gray-700 p-2">
-      <summary class="cursor-pointer text-xs">{{ t('strategy.showdownImport') }}</summary>
+      <summary class="cursor-pointer text-xs">{{ t('common.importShowdown') }}</summary>
       <textarea
         v-model="importShowdownText"
         class="mt-2 h-24 w-full rounded-md border border-gray-700 bg-st-black p-2 text-xs"

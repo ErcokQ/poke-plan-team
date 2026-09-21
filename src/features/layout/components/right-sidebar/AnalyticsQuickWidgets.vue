@@ -187,38 +187,6 @@ function selectWeaknessType(type: PokemonTypeKey) {
   selectedWeaknessType.value = selectedWeaknessType.value === type ? null : type
 }
 
-function pokemonIconUrl(pokemonId: string): string {
-  if (!pokemonId) return 'https://img.pokemondb.net/sprites/home/normal/mudkip.png'
-  return `https://img.pokemondb.net/sprites/home/normal/${pokemonId}.png`
-}
-
-const spriteAliasFallback: Record<string, string> = {
-  'calyrex-shadow': 'calyrex-shadow-rider',
-  'calyrex-ice': 'calyrex-ice-rider',
-}
-
-function spriteIdFromUrl(url: string): string {
-  const marker = '/sprites/home/normal/'
-  const markerIndex = url.lastIndexOf(marker)
-  if (markerIndex === -1) return ''
-  return url.slice(markerIndex + marker.length).replace('.png', '').toLowerCase()
-}
-
-function onPokemonIconError(event: Event) {
-  const target = event.target as HTMLImageElement
-  const failedId = spriteIdFromUrl(target.src)
-  const aliasId = spriteAliasFallback[failedId]
-  if (aliasId && target.dataset.spriteAliasTried !== aliasId) {
-    target.dataset.spriteAliasTried = aliasId
-    target.src = `https://img.pokemondb.net/sprites/home/normal/${aliasId}.png`
-    return
-  }
-
-  if (target.src !== 'https://img.pokemondb.net/sprites/home/normal/mudkip.png') {
-    target.src = 'https://img.pokemondb.net/sprites/home/normal/mudkip.png'
-  }
-}
-
 function factorLabel(factor: number): string {
   if (factor === 0) return 'x0'
   if (factor === 0.25) return 'x0.25'
@@ -278,12 +246,6 @@ function factorLabel(factor: number): string {
               :key="`weak-slot-${selectedWeaknessRow.type}-${entry.slot}-${entry.pokemonId}`"
               class="inline-flex items-center gap-1 rounded border border-sky-400/40 bg-off-black/70 px-1.5 py-0.5 text-[10px]"
             >
-              <img
-                :src="pokemonIconUrl(entry.pokemonId)"
-                :alt="entry.pokemonName"
-                class="h-3.5 w-3.5"
-                @error="onPokemonIconError"
-              />
               <span>S{{ entry.slot }} {{ entry.pokemonName }}</span>
               <span class="text-sky-200">{{ factorLabel(entry.factor) }}</span>
             </span>

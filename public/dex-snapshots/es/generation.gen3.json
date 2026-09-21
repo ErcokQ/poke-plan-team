@@ -2,7 +2,7 @@
   "version": "v1",
   "locale": "es",
   "generationId": 3,
-  "generatedAt": "2026-04-17T18:43:31.043Z",
+  "generatedAt": "2026-06-17T06:49:17.718Z",
   "profiles": [
     {
       "id": "treecko",
@@ -6234,7 +6234,8 @@
       "generation": "Generation Iii",
       "generationId": 3,
       "gameAvailability": [
-        "scarlet-violet"
+        "scarlet-violet",
+        "pokemon-champions"
       ],
       "eggGroups": [
         "Indeterminate"
@@ -9258,8 +9259,8 @@
         {
           "id": "protean",
           "name": "Mutatipo",
-          "shortEffect": "This Pokemon's type changes to the type of the move it is using. Once per switch-in.",
-          "effect": "This Pokemon's type changes to match the type of the move it is about to use. This effect comes after all effects that change a move's type. This effect can only happen once per switch-in, and only if this Pokemon is not Terastallized.",
+          "shortEffect": "Cambia el tipo del usuario al del movimiento que usa.",
+          "effect": "Antes de ejecutar un movimiento, el usuario cambia su tipo al tipo de ese movimiento. Este efecto solo puede activarse una vez mientras permanezca en combate.",
           "isHidden": true
         }
       ],
@@ -9904,7 +9905,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10306.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10306.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10306.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/chimecho-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/chimecho-mega.gif"
@@ -10074,10 +10075,10 @@
       ],
       "abilities": [
         {
-          "id": "magic-bounce",
-          "name": "Espejo Mágico",
-          "shortEffect": "Refleja movimientos de estado y otros efectos dirigidos al usuario.",
-          "effect": "Devuelve al rival la mayoria de movimientos de estado y efectos indirectos dirigidos al usuario.",
+          "id": "sharpness",
+          "name": "Cortante",
+          "shortEffect": "Potencia los movimientos cortantes.",
+          "effect": "Los movimientos cortantes del usuario infligen 1.5 veces su dano habitual.",
           "isHidden": false
         }
       ],
@@ -10099,7 +10100,8 @@
       "generation": "Generation Iii",
       "generationId": 3,
       "gameAvailability": [
-        "sword-shield"
+        "sword-shield",
+        "pokemon-champions"
       ],
       "eggGroups": [
         "Ground"
@@ -10126,7 +10128,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10307.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10307.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10307.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/absol-mega-z.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/absol-mega-z.gif"
@@ -11318,7 +11320,8 @@
       "generationId": 3,
       "gameAvailability": [
         "scarlet-violet",
-        "sword-shield"
+        "sword-shield",
+        "pokemon-champions"
       ],
       "eggGroups": [
         "Dragon"
@@ -11396,7 +11399,8 @@
       "generationId": 3,
       "gameAvailability": [
         "scarlet-violet",
-        "sword-shield"
+        "sword-shield",
+        "pokemon-champions"
       ],
       "eggGroups": [
         "Dragon"
@@ -11705,8 +11709,8 @@
         {
           "id": "tough-claws",
           "name": "Garra Dura",
-          "shortEffect": "This Pokemon's contact moves have their power multiplied by 1.3.",
-          "effect": "This Pokemon's contact moves have their power multiplied by 1.3.",
+          "shortEffect": "Potencia los movimientos de contacto.",
+          "effect": "Los movimientos de contacto del usuario infligen 1.3 veces su dano habitual.",
           "isHidden": false
         }
       ],

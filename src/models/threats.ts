@@ -9,7 +9,7 @@ export interface ThreatProfile {
   name: string
   kind: ThreatKind
   pokemonId?: string
-  defensiveTypes: [PokemonTypeKey, PokemonTypeKey?]
+  defensiveTypes: PokemonTypeKey[]
   threatMoveTypes: PokemonTypeKey[]
   expectedSpeed: number
   utilityCountersAny: string[]

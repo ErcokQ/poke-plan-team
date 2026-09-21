@@ -9,8 +9,9 @@ import type {
 } from '@/models/meta'
 import { MODE_META_MAP } from '@/models/meta'
 import type { PokemonTypeKey, StatKey } from '@/models/domain'
-import { TYPE_KEYS } from '@/models/domain'
+import { MAX_EV_PER_STAT, TYPE_KEYS } from '@/models/domain'
 import { normalizeMetaId } from '@/services/meta-usage-service'
+import { legacyEvToStatPoints, normalizeStatPoints } from '@/utils/team'
 
 import vgcRaw from '@/data/meta-templates.vgc.json'
 import singlesRaw from '@/data/meta-templates.singles.json'
@@ -96,12 +97,21 @@ function normalizeStatBlock(
   defaultValue: number,
 ): Record<StatKey, number> {
   const base = defaultValue === 0 ? emptyEvs() : perfectIvs()
-  const max = defaultValue === 0 ? 252 : 31
+  const max = defaultValue === 0 ? MAX_EV_PER_STAT : 31
   if (!source) return base
   const next = { ...base }
+  const usesLegacyEvScale =
+    defaultValue === 0 && STAT_KEYS.some((key) => Number(source[key] ?? 0) > MAX_EV_PER_STAT)
   for (const key of STAT_KEYS) {
     const value = source[key]
-    if (Number.isFinite(value)) next[key] = Math.max(0, Math.min(max, Math.floor(value as number)))
+    if (!Number.isFinite(value)) continue
+    if (defaultValue === 0) {
+      next[key] = usesLegacyEvScale
+        ? legacyEvToStatPoints(value as number)
+        : normalizeStatPoints(value as number)
+      continue
+    }
+    next[key] = Math.max(0, Math.min(max, Math.floor(value as number)))
   }
   return next
 }
@@ -134,16 +144,19 @@ function parseSpread(
 
   const parsed = chunks.map((value) => Number(value))
   if (parsed.some((value) => !Number.isFinite(value))) return null
+  const usesLegacyEvScale = parsed.some((value) => value > MAX_EV_PER_STAT)
+  const normalizeSpreadValue = (value: number) =>
+    usesLegacyEvScale ? legacyEvToStatPoints(value) : normalizeStatPoints(value)
 
   return {
     natureId: normalizeNature(natureRaw),
     evs: {
-      hp: Math.max(0, Math.floor(parsed[0] ?? 0)),
-      atk: Math.max(0, Math.floor(parsed[1] ?? 0)),
-      def: Math.max(0, Math.floor(parsed[2] ?? 0)),
-      spa: Math.max(0, Math.floor(parsed[3] ?? 0)),
-      spd: Math.max(0, Math.floor(parsed[4] ?? 0)),
-      spe: Math.max(0, Math.floor(parsed[5] ?? 0)),
+      hp: normalizeSpreadValue(parsed[0] ?? 0),
+      atk: normalizeSpreadValue(parsed[1] ?? 0),
+      def: normalizeSpreadValue(parsed[2] ?? 0),
+      spa: normalizeSpreadValue(parsed[3] ?? 0),
+      spd: normalizeSpreadValue(parsed[4] ?? 0),
+      spe: normalizeSpreadValue(parsed[5] ?? 0),
     },
   }
 }
@@ -214,7 +227,9 @@ export class MetaTemplateService {
       ],
       evs,
       ivs,
-      level: Number.isFinite(raw.level) ? Math.max(1, Math.min(100, Math.floor(raw.level!))) : this.defaultLevel(mode),
+      level: Number.isFinite(raw.level)
+        ? Math.max(1, Math.min(100, Math.floor(raw.level!)))
+        : this.defaultLevel(mode),
     }
   }
 
@@ -256,13 +271,18 @@ export class MetaTemplateService {
     const moves = topKeys(pokemonEntry.moves, 4)
     while (moves.length < 4) moves.push('')
 
-    const bestSpreadRaw = Object.entries(pokemonEntry.spreads ?? {})
-      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0]?.[0]
+    const bestSpreadRaw = Object.entries(pokemonEntry.spreads ?? {}).sort(
+      (a, b) => b[1] - a[1] || a[0].localeCompare(b[0]),
+    )[0]?.[0]
     const parsedSpread = parseSpread(bestSpreadRaw)
 
     const ivs = perfectIvs()
-    const physicalCount = moves.filter((id) => ['close-combat', 'earthquake', 'knock-off', 'iron-head', 'flare-blitz'].includes(id)).length
-    const specialCount = moves.filter((id) => ['moonblast', 'shadow-ball', 'draco-meteor', 'make-it-rain', 'heat-wave'].includes(id)).length
+    const physicalCount = moves.filter((id) =>
+      ['close-combat', 'earthquake', 'knock-off', 'iron-head', 'flare-blitz'].includes(id),
+    ).length
+    const specialCount = moves.filter((id) =>
+      ['moonblast', 'shadow-ball', 'draco-meteor', 'make-it-rain', 'heat-wave'].includes(id),
+    ).length
     if (specialCount > physicalCount) ivs.atk = 0
 
     return {
@@ -314,11 +334,13 @@ export class MetaTemplateService {
         if (candidateIds.length >= 6) break
       }
 
-      const members: MetaTemplateMember[] = candidateIds.slice(0, 6).map((pokemonId, memberIndex) => ({
-        slot: (memberIndex + 1) as MetaTemplateMember['slot'],
-        pokemonId,
-        ...this.setFromUsage(mode, usageById.get(pokemonId) ?? {}),
-      }))
+      const members: MetaTemplateMember[] = candidateIds
+        .slice(0, 6)
+        .map((pokemonId, memberIndex) => ({
+          slot: (memberIndex + 1) as MetaTemplateMember['slot'],
+          pokemonId,
+          ...this.setFromUsage(mode, usageById.get(pokemonId) ?? {}),
+        }))
 
       const seedName = nameById.get(seedId) ?? seedId
       teams.push({
@@ -331,7 +353,10 @@ export class MetaTemplateService {
     return teams
   }
 
-  private async fetchRemoteTeamsByFormat(mode: BattleMode, format: MetaFormatKey): Promise<MetaTeamTemplate[]> {
+  private async fetchRemoteTeamsByFormat(
+    mode: BattleMode,
+    format: MetaFormatKey,
+  ): Promise<MetaTeamTemplate[]> {
     const response = await fetch(`https://data.pkmn.cc/teams/${format}.json`)
     if (!response.ok) return []
     const payload = (await response.json()) as RawTeamTemplateEntry[]
@@ -339,7 +364,10 @@ export class MetaTemplateService {
     return parsed.slice(0, 80)
   }
 
-  private async fetchUsageTeamsByFormat(mode: BattleMode, format: MetaFormatKey): Promise<MetaTeamTemplate[]> {
+  private async fetchUsageTeamsByFormat(
+    mode: BattleMode,
+    format: MetaFormatKey,
+  ): Promise<MetaTeamTemplate[]> {
     const response = await fetch(`https://data.pkmn.cc/stats/${format}.json`)
     if (!response.ok) return []
     const payload = (await response.json()) as RawUsagePayload

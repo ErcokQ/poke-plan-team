@@ -56,11 +56,6 @@ const appLoaderTitle = computed(() => t('app.bootTitle'))
 const appLoaderBody = computed(() =>
   dexSource === 'api' ? t('app.bootBodyApi') : t('app.bootBodySnapshot'),
 )
-const appLoaderMudkipSprite = computed(() =>
-  dexSource === 'api'
-    ? 'https://play.pokemonshowdown.com/sprites/ani/mudkip.gif'
-    : 'https://play.pokemonshowdown.com/sprites/ani-shiny/mudkip.gif',
-)
 const appLoaderStatus = computed(() => {
   if (bootPhase.value === 'catalog') return t('app.bootStatusCatalog')
   if (bootPhase.value === 'dex') return t('app.bootStatusDex')
@@ -185,6 +180,10 @@ watch(
   },
 )
 
+watch([() => route.name, mode], () => {
+  uiStore.setMobileTab('editor')
+})
+
 watch([mode, () => locale.value], () => {
   ensureDexHydration()
 })
@@ -213,7 +212,7 @@ watch(
     class="relative mx-auto flex min-h-screen w-[90vw] max-w-[90vw] flex-col gap-4 p-4 md:p-6"
     :aria-busy="showInitialAppLoader"
   >
-    <div :class="showInitialAppLoader ? 'pointer-events-none select-none opacity-35 blur-[2px]' : ''">
+    <div :class="showInitialAppLoader ? 'pointer-events-none select-none opacity-35' : ''">
       <div ref="topBarRef">
         <TopBar />
       </div>
@@ -225,9 +224,9 @@ watch(
         <router-view :key="`${mode}-${String(route.name ?? '')}`" />
       </section>
 
-      <section v-else class="grid gap-4 overflow-visible lg:grid-cols-[280px_minmax(0,1fr)_360px] lg:items-start">
+      <section v-else class="grid gap-4 overflow-visible 2xl:grid-cols-[280px_minmax(0,1fr)_360px] 2xl:items-start">
         <div
-          class="hidden lg:flex lg:flex-col lg:gap-4 lg:sticky lg:self-start"
+          class="hidden 2xl:flex 2xl:flex-col 2xl:gap-4 2xl:sticky 2xl:self-start"
           :style="desktopLeftStyle"
         >
           <TeamListPanel />
@@ -235,8 +234,8 @@ watch(
         </div>
 
         <div class="space-y-4">
-          <div class="rounded-xl border border-sky-500/25 bg-off-black/70 p-2 lg:hidden">
-            <div class="grid grid-cols-3 gap-2">
+          <div class="rounded-xl border border-sky-500/25 bg-off-black/70 p-2 2xl:hidden">
+            <div class="grid grid-cols-2 gap-2 sm:grid-cols-4">
               <button
                 class="rounded-md border px-2 py-1 text-sm"
                 :class="uiStore.mobileTab === 'team' ? 'border-sky-500 bg-sky-500/15' : 'border-gray-700'"
@@ -258,29 +257,40 @@ watch(
               >
                 {{ t('common.insights') }}
               </button>
+              <button
+                class="rounded-md border px-2 py-1 text-sm"
+                :class="uiStore.mobileTab === 'tools' ? 'border-sky-500 bg-sky-500/15' : 'border-gray-700'"
+                @click="setTab('tools')"
+              >
+                {{ t('common.tools') }}
+              </button>
             </div>
           </div>
 
-          <div v-if="uiStore.mobileTab === 'team'" class="lg:hidden">
+          <div v-if="uiStore.mobileTab === 'team'" class="2xl:hidden">
             <TeamListPanel />
           </div>
 
-          <div :class="uiStore.mobileTab === 'editor' ? 'block' : 'hidden lg:block'" class="min-w-0">
+          <div :class="uiStore.mobileTab === 'editor' ? 'block' : 'hidden 2xl:block'" class="min-w-0">
             <router-view :key="`${mode}-${String(route.name ?? '')}`" />
           </div>
 
-          <div v-if="uiStore.mobileTab === 'insights'" class="lg:hidden">
+          <div v-if="uiStore.mobileTab === 'insights'" class="2xl:hidden">
             <TeamInsightsPanel :preset="insightsPreset" />
+          </div>
+
+          <div v-if="uiStore.mobileTab === 'tools'" class="2xl:hidden">
+            <RightSidebarPanel :preset="rightSidebarPreset" />
           </div>
         </div>
 
         <div
           ref="rightColumnRef"
-          class="hidden lg:block lg:min-h-0"
+          class="hidden 2xl:block 2xl:min-h-0"
           :style="desktopRightPlaceholderStyle"
         >
           <div
-            class="lg:fixed lg:z-20 lg:min-h-0 lg:flex lg:flex-col lg:overflow-hidden"
+            class="2xl:fixed 2xl:z-20 2xl:min-h-0 2xl:flex 2xl:flex-col 2xl:overflow-hidden"
             :style="desktopRightStyle"
           >
             <RightSidebarPanel :preset="rightSidebarPreset" />
@@ -301,7 +311,7 @@ watch(
         v-if="showInitialAppLoader"
         class="fixed inset-0 z-50 flex items-center justify-center bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.22),transparent_32%),linear-gradient(180deg,rgba(2,6,23,0.96),rgba(2,6,23,0.98))] px-4"
       >
-        <article class="relative w-full max-w-md overflow-hidden rounded-3xl border border-sky-400/25 bg-off-black/85 p-6 text-center shadow-2xl backdrop-blur">
+        <article class="relative w-full max-w-md overflow-hidden rounded-3xl border border-sky-400/25 bg-off-black/95 p-6 text-center shadow-2xl">
           <div class="pointer-events-none absolute inset-x-8 top-0 h-24 bg-[radial-gradient(circle,rgba(103,232,249,0.16),transparent_68%)] blur-2xl" />
           <div class="relative mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full border border-sky-400/30 bg-sky-500/10">
             <span class="absolute inset-0 rounded-full border border-cyan-300/25 animate-ping" />
@@ -310,7 +320,7 @@ watch(
             <span class="absolute left-2 bottom-3 h-2 w-2 rounded-full bg-cyan-100/75 shadow-[0_0_14px_rgba(186,230,253,0.45)] animate-bounce" style="animation-delay: 480ms; animation-duration: 1.7s;" />
             <span class="absolute right-3 bottom-1 h-1.5 w-1.5 rounded-full bg-sky-200/70 shadow-[0_0_12px_rgba(125,211,252,0.45)] animate-bounce" style="animation-delay: 760ms; animation-duration: 2.1s;" />
             <img
-              :src="appLoaderMudkipSprite"
+              :src="mudkipSprite"
               alt="Mudkip"
               class="relative z-10 h-[4.5rem] w-[4.5rem] object-contain drop-shadow-[0_0_20px_rgba(56,189,248,0.4)]"
               @error="onBootLoaderSpriteError"

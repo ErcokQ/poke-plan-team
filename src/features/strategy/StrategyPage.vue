@@ -12,6 +12,7 @@ import { useTeamStore } from '@/stores/team'
 import { useUiStore } from '@/stores/ui'
 import { moveTypeGradientStyle } from '@/utils/move-type-style'
 import { onPokemonSpriteError, primaryPokemonSpriteUrl } from '@/utils/pokemon-sprite'
+import { speedComparisonPokemonName } from '@/utils/speed-comparison'
 import { typeBadgeStyle } from '@/utils/type-badge-style'
 
 interface TagFilterOption {
@@ -108,7 +109,7 @@ const threatEntries = computed<ThreatRadarEntry[]>(() =>
     const pokemon = dexStore.getPokemon(mode.value, entry.pokemonId)
     return {
       pokemonId: entry.pokemonId,
-      name: pokemon?.name ?? entry.pokemonId,
+      name: pokemon ? speedComparisonPokemonName(pokemon) : entry.pokemonId,
       timesSeen: entry.timesSeen,
       lastSeenAt: entry.lastSeenAt,
       tags: entry.tags,
@@ -141,7 +142,7 @@ const currentTeamEntries = computed<StrategyTeamSnapshotEntry[]>(() =>
       return {
         slot: member.slot,
         pokemonId: member.pokemonId,
-        name: pokemon?.name ?? member.pokemonId,
+        name: pokemon ? speedComparisonPokemonName(pokemon) : member.pokemonId,
         baseSpeed: pokemon?.baseStats.spe ?? null,
         types: pokemon?.types ?? [],
         moves: member.moves
@@ -252,7 +253,8 @@ function formatRelativeDate(value: string): string {
 }
 
 function threatName(pokemonId: string): string {
-  return pokemonById.value.get(pokemonId)?.name ?? pokemonId
+  const pokemon = pokemonById.value.get(pokemonId)
+  return pokemon ? speedComparisonPokemonName(pokemon) : pokemonId
 }
 
 function moveName(moveId: string): string {
@@ -492,8 +494,8 @@ async function applyThreatToDamageCalc(action: DamageTargetAction) {
   damageCalcStore.setSelectedPair(mode.value, 'A', firstActiveAttacker, targetSlot)
   quickActionMessage.value =
     action === 'open'
-      ? t('strategy.openDamageCalcReady', { name: pokemon.name })
-      : t('strategy.loadQuickRivalReady', { name: pokemon.name })
+      ? t('strategy.openDamageCalcReady', { name: speedComparisonPokemonName(pokemon) })
+      : t('strategy.loadQuickRivalReady', { name: speedComparisonPokemonName(pokemon) })
 
   if (action === 'open') {
     await router.push({ name: 'damage-calc', params: { mode: mode.value } })
@@ -806,7 +808,7 @@ async function applyThreatToDamageCalc(action: DamageTargetAction) {
               <div class="flex items-start gap-4">
                 <img
                   :src="spriteUrlFor(selectedThreatPokemon.id)"
-                  :alt="selectedThreatPokemon.name"
+                  :alt="speedComparisonPokemonName(selectedThreatPokemon)"
                   class="h-20 w-20 rounded-xl bg-black/30 object-contain"
                   :data-sprite-id="selectedThreatPokemon.id"
                   data-sprite-fallback-index="0"
@@ -819,7 +821,7 @@ async function applyThreatToDamageCalc(action: DamageTargetAction) {
                     {{ t('strategy.threatProfileTitle') }}
                   </p>
                   <h2 class="mt-1 text-2xl font-semibold text-white">
-                    {{ selectedThreatPokemon.name }}
+                    {{ speedComparisonPokemonName(selectedThreatPokemon) }}
                   </h2>
                   <p class="mt-2 text-sm text-gray-300">
                     {{ abilityLineFor(selectedThreatPokemon.id, selectedThreat.commonAbilities) }} · {{ t('strategy.sidebarSpeedShort', { value: baseSpeed(selectedThreatPokemon.id) ?? '-' }) }}

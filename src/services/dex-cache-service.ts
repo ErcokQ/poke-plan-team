@@ -1,7 +1,7 @@
 import { clear, createStore, del, get, set } from 'idb-keyval'
 import type { LocaleCode } from '@/models/domain'
 
-export const DEX_CACHE_VERSION = 'v20'
+export const DEX_CACHE_VERSION = 'v21-mc'
 
 export interface DexCacheEnvelope<T> {
   version: typeof DEX_CACHE_VERSION

@@ -1,4 +1,4 @@
-import { computed, ref } from 'vue'
+import { computed, ref, shallowRef } from 'vue'
 import { defineStore } from 'pinia'
 import type {
   ArchetypeEntry,
@@ -188,33 +188,41 @@ function mockFormsMap(pokemonEntries: PokemonEntry[]): Record<string, string[]> 
 }
 
 export const useDexStore = defineStore('dex', () => {
-  const pokemonCatalog = ref<Record<BattleMode, PokemonEntry[]>>(cloneValue(mockPokemonCatalog))
-  const movesCatalog = ref<MoveEntry[]>(cloneValue(mockMovesCatalog))
-  const itemsCatalog = ref<ItemEntry[]>(cloneValue(mockItemsCatalog))
-  const abilitiesCatalog = ref<DexAbilityEntry[]>([])
+  const pokemonCatalog = shallowRef<Record<BattleMode, PokemonEntry[]>>(
+    cloneValue(mockPokemonCatalog),
+  )
+  const movesCatalog = shallowRef<MoveEntry[]>(cloneValue(mockMovesCatalog))
+  const itemsCatalog = shallowRef<ItemEntry[]>(cloneValue(mockItemsCatalog))
+  const abilitiesCatalog = shallowRef<DexAbilityEntry[]>([])
   const source = ref<RuntimeDexSource>('mock')
   const hydrationStatus = ref<HydrationStatus>('idle')
   const pendingHydration = ref<Promise<void> | null>(null)
   const lastHydratedAt = ref<string | null>(null)
   const hydratedLocale = ref<LocaleCode | null>(null)
-  const formsByLocaleAndPokemon = ref<Record<string, string[]>>({})
-  const profileSummariesByLocale = ref<Record<LocaleCode, Record<string, DexPokemonProfileSummary>>>({
+  const formsByLocaleAndPokemon = shallowRef<Record<string, string[]>>({})
+  const profileSummariesByLocale = shallowRef<
+    Record<LocaleCode, Record<string, DexPokemonProfileSummary>>
+  >({
     es: {},
     en: {},
   })
-  const profileDetailsByLocale = ref<Record<LocaleCode, Record<string, DexPokemonProfileDetails>>>({
+  const profileDetailsByLocale = shallowRef<
+    Record<LocaleCode, Record<string, DexPokemonProfileDetails>>
+  >({
     es: {},
     en: {},
   })
-  const loadedGenerationsByLocale = ref<Record<LocaleCode, Set<number>>>({
+  const loadedGenerationsByLocale = shallowRef<Record<LocaleCode, Set<number>>>({
     es: new Set<number>(),
     en: new Set<number>(),
   })
-  const detailBucketByPokemonIdByLocale = ref<Record<LocaleCode, Record<string, number>>>({
+  const detailBucketByPokemonIdByLocale = shallowRef<
+    Record<LocaleCode, Record<string, number>>
+  >({
     es: {},
     en: {},
   })
-  const championsAvailabilityIds = ref<Set<string>>(new Set())
+  const championsAvailabilityIds = shallowRef<Set<string>>(new Set())
   const pendingGenerationSnapshots = new Map<string, Promise<void>>()
   const pendingProfileBuckets = new Map<string, Promise<void>>()
   const pendingForms = new Map<string, Promise<PokemonEntry[]>>()
@@ -342,13 +350,13 @@ export const useDexStore = defineStore('dex', () => {
       .sort((a, b) => a.pokedexNumber - b.pokedexNumber || a.name.localeCompare(b.name))
 
     pokemonCatalog.value = {
-      vgc: cloneValue(pokemon),
-      singles: cloneValue(pokemon),
+      vgc: pokemon,
+      singles: pokemon,
     }
-    movesCatalog.value = cloneValue(snapshot.moves)
-    itemsCatalog.value = cloneValue(snapshot.items)
-    abilitiesCatalog.value = cloneValue(snapshot.abilities)
-    formsByLocaleAndPokemon.value = cloneValue(snapshot.formsByPokemonId)
+    movesCatalog.value = snapshot.moves
+    itemsCatalog.value = snapshot.items
+    abilitiesCatalog.value = snapshot.abilities
+    formsByLocaleAndPokemon.value = snapshot.formsByPokemonId
     profileSummariesByLocale.value = {
       ...profileSummariesByLocale.value,
       [snapshot.locale]: profileSummariesByLocale.value[snapshot.locale] ?? {},
@@ -460,20 +468,6 @@ export const useDexStore = defineStore('dex', () => {
     const canonicalId = canonicalizePokemonId(id)
     const summary = profileSummariesByLocale.value[locale]?.[canonicalId || id]
     return summary ? withAvailabilityOverlay(summary) : undefined
-  }
-
-  function resolveBasePokemonId(pokemonId: string): string | null {
-    const pokemon = getPokemon('vgc', pokemonId) ?? getPokemon('singles', pokemonId)
-    if (!pokemon) return null
-
-    const candidates = pokemonCatalog.value.vgc.filter((entry) => entry.pokedexNumber === pokemon.pokedexNumber)
-    const exactBase = candidates.find((entry) => entry.id === pokemon.id)
-    if (exactBase && !exactBase.id.includes('-')) return exactBase.id
-
-    const plainBase = candidates.find((entry) => !entry.id.includes('-'))
-    if (plainBase) return plainBase.id
-
-    return candidates[0]?.id ?? pokemon.id
   }
 
   function getGameAvailabilityForPokemon(

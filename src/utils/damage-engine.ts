@@ -177,7 +177,10 @@ function stabMultiplier(
   return stab
 }
 
-function weatherMultiplier(weather: DamageCalcScenario['field']['weather'], moveType: MoveEntry['type']): number {
+function weatherMultiplier(
+  weather: DamageCalcScenario['field']['weather'],
+  moveType: MoveEntry['type'],
+): number {
   if (weather === 'heavy-rain' && moveType === 'fire') return 0
   if (weather === 'harsh-sunshine' && moveType === 'water') return 0
 
@@ -204,7 +207,11 @@ function terrainMultiplier(
   return 1
 }
 
-function friendlyModifier(itemId: string, move: MoveEntry, resolvedMoveType: MoveEntry['type']): number {
+function friendlyModifier(
+  itemId: string,
+  move: MoveEntry,
+  resolvedMoveType: MoveEntry['type'],
+): number {
   const item = itemId.trim().toLowerCase()
   if (item === 'life-orb') return 1.3
   if (item === 'muscle-band' && isPhysicalMove(move)) return 1.1
@@ -214,7 +221,11 @@ function friendlyModifier(itemId: string, move: MoveEntry, resolvedMoveType: Mov
   return 1
 }
 
-function applyAttackItemMultiplier(itemId: string, move: MoveEntry, profile: DamageStatProfile): number {
+function applyAttackItemMultiplier(
+  itemId: string,
+  move: MoveEntry,
+  profile: DamageStatProfile,
+): number {
   const item = itemId.trim().toLowerCase()
   if (profile.offenseOwner !== 'attacker') return 1
   if (item === 'choice-band' && profile.offenseStat === 'atk') return 1.5
@@ -235,16 +246,40 @@ function abilityDamageMultiplierOnAttack(abilityId: string, move: MoveEntry): nu
   return 1
 }
 
-function abilityPowerMultiplier(abilityId: string, power: number): number {
+function abilityPowerMultiplier(abilityId: string, power: number, move: MoveEntry): number {
   if (power <= 0) return 1
   if (abilityIs(abilityId, 'technician') && power <= 60) return 1.5
+  if (abilityIs(abilityId, 'sharpness') && move.tags.includes('slicing')) return 1.5
+  if (abilityIs(abilityId, 'tough-claws') && move.tags.includes('contact')) return 1.3
+  if (abilityIs(abilityId, 'aerilate') && move.type === 'normal') return 1.2
+  if (abilityIs(abilityId, 'punk-rock') && move.tags.includes('sound')) return 1.3
+  if (abilityIs(abilityId, 'iron-fist') && move.tags.includes('punch')) return 1.2
+  if (abilityIs(abilityId, 'strong-jaw') && move.tags.includes('bite')) return 1.5
+  if (abilityIs(abilityId, 'steelworker') && move.type === 'steel') return 1.5
   return 1
 }
 
-function abilityAttackStatMultiplier(abilityId: string, profile: DamageStatProfile, status: DamageSlotSet['status']): number {
+function isGrounded(pokemon: PokemonEntry, slot: DamageSlotSet, scenario: DamageCalcScenario): boolean {
+  if (scenario.field.globalFlags.gravity) return true
+  if (!scenario.field.globalFlags.magicRoom && slot.itemId === 'iron-ball') return true
+  const types = slot.isTeraActive && slot.teraType ? [slot.teraType] : pokemon.types
+  return !types.includes('flying') && !abilityIs(slot.abilityId, 'levitate') &&
+    (scenario.field.globalFlags.magicRoom || slot.itemId !== 'air-balloon')
+}
+
+function abilityAttackStatMultiplier(
+  abilityId: string,
+  profile: DamageStatProfile,
+  status: DamageSlotSet['status'],
+): number {
   if (profile.offenseOwner !== 'attacker') return 1
-  if ((abilityIs(abilityId, 'huge-power') || abilityIs(abilityId, 'pure-power')) && profile.offenseStat === 'atk') return 2
-  if (abilityIs(abilityId, 'guts') && profile.offenseStat === 'atk' && status !== 'healthy') return 1.5
+  if (
+    (abilityIs(abilityId, 'huge-power') || abilityIs(abilityId, 'pure-power')) &&
+    profile.offenseStat === 'atk'
+  )
+    return 2
+  if (abilityIs(abilityId, 'guts') && profile.offenseStat === 'atk' && status !== 'healthy')
+    return 1.5
   return 1
 }
 
@@ -256,19 +291,32 @@ function defenderAbilityModifier(
 ): number {
   let modifier = 1
 
-  if (abilityIs(abilityId, 'thick-fat') && (move.type === 'fire' || move.type === 'ice')) modifier *= 0.5
+  if (abilityIs(abilityId, 'aura-guard') && move.tags.includes('contact')) modifier *= 0.5
+  if (abilityIs(abilityId, 'punk-rock') && move.tags.includes('sound')) modifier *= 0.5
+  if (abilityIs(abilityId, 'fur-coat') && isPhysicalMove(move)) modifier *= 0.5
+  if (abilityIs(abilityId, 'thick-fat') && (move.type === 'fire' || move.type === 'ice'))
+    modifier *= 0.5
   if (
-    (abilityIs(abilityId, 'filter') || abilityIs(abilityId, 'solid-rock') || abilityIs(abilityId, 'prism-armor')) &&
+    (abilityIs(abilityId, 'filter') ||
+      abilityIs(abilityId, 'solid-rock') ||
+      abilityIs(abilityId, 'prism-armor')) &&
     typeEffectiveness > 1
   ) {
     modifier *= 0.75
   }
-  if ((abilityIs(abilityId, 'multiscale') || abilityIs(abilityId, 'shadow-shield')) && defenderAtFullHp) modifier *= 0.5
+  if (
+    (abilityIs(abilityId, 'multiscale') || abilityIs(abilityId, 'shadow-shield')) &&
+    defenderAtFullHp
+  )
+    modifier *= 0.5
 
   return modifier
 }
 
-function finalDefenderTypes(baseTypes: string[], defender: DamageSlotSet): [MoveEntry['type'], MoveEntry['type'] | undefined] {
+function finalDefenderTypes(
+  baseTypes: string[],
+  defender: DamageSlotSet,
+): [MoveEntry['type'], MoveEntry['type'] | undefined] {
   if (defender.isTeraActive && defender.teraType) return [defender.teraType, undefined]
   return [baseTypes[0] as MoveEntry['type'], baseTypes[1] as MoveEntry['type'] | undefined]
 }
@@ -407,7 +455,12 @@ function moveEffectivePower(options: {
       break
     case 'solar-beam':
     case 'solar-blade':
-      if (weather === 'rain' || weather === 'heavy-rain' || weather === 'sand' || weather === 'snow') {
+      if (
+        weather === 'rain' ||
+        weather === 'heavy-rain' ||
+        weather === 'sand' ||
+        weather === 'snow'
+      ) {
         power = Math.floor(power * 0.5)
       }
       break
@@ -444,8 +497,13 @@ function moveEffectivePower(options: {
       break
     }
     case 'electro-ball': {
-      const attackerSpeed = effectiveSpeed(attacker, attackerStats.spe, attackerSide, scenario)
-      const defenderSpeed = effectiveSpeed(
+      const attackerSpeed = calculateEffectiveSpeed(
+        attacker,
+        attackerStats.spe,
+        attackerSide,
+        scenario,
+      )
+      const defenderSpeed = calculateEffectiveSpeed(
         defender,
         defenderStats.spe,
         attackerSide === 'A' ? 'B' : 'A',
@@ -460,14 +518,22 @@ function moveEffectivePower(options: {
       break
     }
     case 'gyro-ball': {
-      const attackerSpeed = effectiveSpeed(attacker, attackerStats.spe, attackerSide, scenario)
-      const defenderSpeed = effectiveSpeed(
+      const attackerSpeed = calculateEffectiveSpeed(
+        attacker,
+        attackerStats.spe,
+        attackerSide,
+        scenario,
+      )
+      const defenderSpeed = calculateEffectiveSpeed(
         defender,
         defenderStats.spe,
         attackerSide === 'A' ? 'B' : 'A',
         scenario,
       )
-      power = Math.max(1, Math.min(150, Math.floor((25 * defenderSpeed) / Math.max(1, attackerSpeed))))
+      power = Math.max(
+        1,
+        Math.min(150, Math.floor((25 * defenderSpeed) / Math.max(1, attackerSpeed))),
+      )
       break
     }
     case 'knock-off':
@@ -528,7 +594,11 @@ function koTextFromRolls(rolls: number[], currentHp: number): string {
   return 'fivePlusHits'
 }
 
-function statusActionMultiplier(scenario: DamageCalcScenario, attacker: DamageSlotSet, move: MoveEntry): number {
+function statusActionMultiplier(
+  scenario: DamageCalcScenario,
+  attacker: DamageSlotSet,
+  move: MoveEntry,
+): number {
   const useExpected = Boolean(scenario.field.advancedFlags.expectedDamageMode)
   if (!useExpected) return 1
 
@@ -545,7 +615,10 @@ function statusActionMultiplier(scenario: DamageCalcScenario, attacker: DamageSl
   return 1
 }
 
-function residualFractionByStatus(status: DamageSlotSet['status'], generation: DamageCalcScenario['generation']): number {
+function residualFractionByStatus(
+  status: DamageSlotSet['status'],
+  generation: DamageCalcScenario['generation'],
+): number {
   if (status === 'burn') {
     return generation === 'gen7' || generation === 'gen8' || generation === 'gen9' ? 1 / 16 : 1 / 8
   }
@@ -652,10 +725,16 @@ function resolveDamageStatProfile(
 }
 
 function statStageSum(stages: DamageSlotSet['stages']): number {
-  return (stages.atk ?? 0) + (stages.def ?? 0) + (stages.spa ?? 0) + (stages.spd ?? 0) + (stages.spe ?? 0)
+  return (
+    (stages.atk ?? 0) +
+    (stages.def ?? 0) +
+    (stages.spa ?? 0) +
+    (stages.spd ?? 0) +
+    (stages.spe ?? 0)
+  )
 }
 
-function effectiveSpeed(
+export function calculateEffectiveSpeed(
   slot: DamageSlotSet,
   baseSpeed: number,
   side: DamageSideId,
@@ -665,11 +744,17 @@ function effectiveSpeed(
 
   if (slot.itemId === 'choice-scarf') speed = Math.floor(speed * 1.5)
   if (slot.status === 'paralyze') speed = Math.floor(speed * 0.5)
-  if (abilityIs(slot.abilityId, 'quick-feet') && slot.status !== 'healthy') speed = Math.floor(speed * 1.5)
+  if (abilityIs(slot.abilityId, 'quick-feet') && slot.status !== 'healthy')
+    speed = Math.floor(speed * 1.5)
 
   const weather = scenario.field.weather
-  if (abilityIs(slot.abilityId, 'chlorophyll') && (weather === 'sun' || weather === 'harsh-sunshine')) speed *= 2
-  if (abilityIs(slot.abilityId, 'swift-swim') && (weather === 'rain' || weather === 'heavy-rain')) speed *= 2
+  if (
+    abilityIs(slot.abilityId, 'chlorophyll') &&
+    (weather === 'sun' || weather === 'harsh-sunshine')
+  )
+    speed *= 2
+  if (abilityIs(slot.abilityId, 'swift-swim') && (weather === 'rain' || weather === 'heavy-rain'))
+    speed *= 2
   if (abilityIs(slot.abilityId, 'sand-rush') && weather === 'sand') speed *= 2
   if (abilityIs(slot.abilityId, 'slush-rush') && weather === 'snow') speed *= 2
   if (abilityIs(slot.abilityId, 'surge-surfer') && scenario.field.terrain === 'electric') speed *= 2
@@ -702,8 +787,8 @@ function resolveMoveOrderHint(
   if ((move.priority ?? 0) > 0) return 'before-target'
   if ((move.priority ?? 0) < 0) return 'after-target'
 
-  const attackerSpeed = effectiveSpeed(attacker, attackerStats.spe, attackerSide, scenario)
-  const defenderSpeed = effectiveSpeed(
+  const attackerSpeed = calculateEffectiveSpeed(attacker, attackerStats.spe, attackerSide, scenario)
+  const defenderSpeed = calculateEffectiveSpeed(
     defender,
     defenderStats.spe,
     attackerSide === 'A' ? 'B' : 'A',
@@ -814,8 +899,18 @@ function computeMoveDamage(
   const defenderTypes = finalDefenderTypes(defenderBaseTypes, defender)
   const attackerCurrentHp = calcCurrentHp(attackerStats.hp, attacker.currentHpPercent)
   const defenderCurrentHp = calcCurrentHp(defenderStats.hp, defender.currentHpPercent)
-  const resolvedMoveType = effectiveMoveType(move, scenario.field.weather, scenario.field.terrain)
-  const typeMult = moveTypeEffectiveness(resolvedMoveType, defenderTypes)
+  const resolvedMoveType = abilityIs(attacker.abilityId, 'aerilate') && move.type === 'normal'
+    ? 'flying'
+    : effectiveMoveType(move, scenario.field.weather, scenario.field.terrain)
+  const ignoresAbility = ['mold-breaker', 'teravolt', 'turboblaze'].includes(attacker.abilityId)
+  const levitateImmune = resolvedMoveType === 'ground' && abilityIs(defender.abilityId, 'levitate') &&
+    !ignoresAbility && !scenario.field.globalFlags.gravity && move.id !== 'thousand-arrows' &&
+    (scenario.field.globalFlags.magicRoom || defender.itemId !== 'iron-ball')
+  const priority = move.id === 'grassy-glide' && scenario.field.terrain === 'grassy' &&
+    isGrounded(attackerDex, attacker, scenario) ? 1 : (move.priority ?? 0)
+  const psychicTerrainBlocks = scenario.field.terrain === 'psychic' && priority > 0 &&
+    isGrounded(defenderDex, defender, scenario)
+  const typeMult = levitateImmune || psychicTerrainBlocks ? 0 : moveTypeEffectiveness(resolvedMoveType, defenderTypes)
   if (typeMult === 0) {
     return {
       min: 0,
@@ -831,9 +926,13 @@ function computeMoveDamage(
 
   const magicRoomActive = scenario.field.globalFlags.magicRoom
   const offenseOwnerStats = statProfile.offenseOwner === 'attacker' ? attackerStats : defenderStats
-  const offenseOwnerStages = statProfile.offenseOwner === 'attacker' ? attacker.stages : defender.stages
+  const offenseOwnerStages =
+    statProfile.offenseOwner === 'attacker' ? attacker.stages : defender.stages
   const attackStage = offenseOwnerStages[statProfile.offenseStage] ?? 0
-  const defenseStage = statProfile.defenseClass === 'physical' ? defender.stages.def ?? 0 : defender.stages.spd ?? 0
+  const defenseStage =
+    statProfile.defenseClass === 'physical'
+      ? (defender.stages.def ?? 0)
+      : (defender.stages.spd ?? 0)
 
   let atkValue = offenseOwnerStats[statProfile.offenseStat]
   let defValue = statProfile.defenseClass === 'physical' ? defenderStats.def : defenderStats.spd
@@ -843,15 +942,31 @@ function computeMoveDamage(
 
   atkValue = Math.floor(atkValue * stageMultiplier(attackStage))
   defValue = Math.floor(defValue * stageMultiplier(defenseStage))
-  atkValue = Math.floor(atkValue * abilityAttackStatMultiplier(attacker.abilityId, statProfile, attacker.status))
-  atkValue = Math.floor(atkValue * (magicRoomActive ? 1 : applyAttackItemMultiplier(attacker.itemId, move, statProfile)))
-  if (isSpecialMove(move) && scenario.field.weather === 'sand' && isRockType(defenderTypes.filter(Boolean) as string[])) {
+  atkValue = Math.floor(
+    atkValue * abilityAttackStatMultiplier(attacker.abilityId, statProfile, attacker.status),
+  )
+  atkValue = Math.floor(
+    atkValue *
+      (magicRoomActive ? 1 : applyAttackItemMultiplier(attacker.itemId, move, statProfile)),
+  )
+  if (
+    isSpecialMove(move) &&
+    scenario.field.weather === 'sand' &&
+    isRockType(defenderTypes.filter(Boolean) as string[])
+  ) {
     defValue = Math.floor(defValue * 1.5)
   }
-  if (isPhysicalMove(move) && scenario.field.weather === 'snow' && rules.generation === 'gen9' && isIceType(defenderTypes.filter(Boolean) as string[])) {
+  if (
+    isPhysicalMove(move) &&
+    scenario.field.weather === 'snow' &&
+    rules.generation === 'gen9' &&
+    isIceType(defenderTypes.filter(Boolean) as string[])
+  ) {
     defValue = Math.floor(defValue * 1.5)
   }
-  defValue = Math.floor(defValue * (magicRoomActive ? 1 : applyDefenseItemMultiplier(defender.itemId, move)))
+  defValue = Math.floor(
+    defValue * (magicRoomActive ? 1 : applyDefenseItemMultiplier(defender.itemId, move)),
+  )
 
   const level = clamp(attacker.level, 1, 100)
   const power = moveEffectivePower({
@@ -872,14 +987,27 @@ function computeMoveDamage(
     scenario,
     resolver,
   })
-  const adjustedPower = Math.max(1, Math.floor(power * abilityPowerMultiplier(attacker.abilityId, power)))
-  const raw = Math.floor(
-    Math.floor(((Math.floor((2 * level) / 5) + 2) * adjustedPower * Math.max(1, atkValue)) / Math.max(1, defValue)) / 50,
-  ) + 2
+  const adjustedPower = Math.max(
+    1,
+    Math.floor(power * abilityPowerMultiplier(attacker.abilityId, power, move)),
+  )
+  const raw =
+    Math.floor(
+      Math.floor(
+        ((Math.floor((2 * level) / 5) + 2) * adjustedPower * Math.max(1, atkValue)) /
+          Math.max(1, defValue),
+      ) / 50,
+    ) + 2
 
   let modifier = 1
   modifier *= weatherMultiplier(scenario.field.weather, resolvedMoveType)
-  modifier *= terrainMultiplier(scenario.field.terrain, resolvedMoveType, rules.terrainOffenseMultiplier)
+  if (isGrounded(attackerDex, attacker, scenario) && scenario.field.terrain !== 'misty') {
+    modifier *= terrainMultiplier(scenario.field.terrain, resolvedMoveType, rules.terrainOffenseMultiplier)
+  }
+  if (isGrounded(defenderDex, defender, scenario)) {
+    if (scenario.field.terrain === 'misty' && resolvedMoveType === 'dragon') modifier *= 0.5
+    if (scenario.field.terrain === 'grassy' && ['earthquake', 'bulldoze', 'magnitude'].includes(move.id)) modifier *= 0.5
+  }
   modifier *= typeMult
   modifier *= stabMultiplier({ ...move, type: resolvedMoveType }, attackerBaseTypes, attacker)
   modifier *= friendlyModifier(attacker.itemId, move, resolvedMoveType)
@@ -898,7 +1026,11 @@ function computeMoveDamage(
     if (isSpecialMove(move) && defenderField.lightScreen) modifier *= screenMult
   }
 
-  if (attacker.status === 'burn' && isPhysicalMove(move) && !abilityIs(attacker.abilityId, 'guts')) {
+  if (
+    attacker.status === 'burn' &&
+    isPhysicalMove(move) &&
+    !abilityIs(attacker.abilityId, 'guts')
+  ) {
     modifier *= rules.burnPhysicalMultiplier
   }
   modifier *= statusActionMultiplier(scenario, attacker, move)
@@ -920,12 +1052,15 @@ function computeMoveDamage(
 
   const defenderAtFullHp = defender.currentHpPercent >= 100
   const baseModifier = modifier
-  modifier *= defenderAbilityModifier(defender.abilityId, move, typeMult, defenderAtFullHp)
+  const defendingAbility = ignoresAbility ? '' : defender.abilityId
+  const typedMove = { ...move, type: resolvedMoveType }
+  modifier *= defenderAbilityModifier(defendingAbility, typedMove, typeMult, defenderAtFullHp)
 
   const residualFraction = residualFractionByStatus(defender.status, rules.generation)
   const residualDamage =
     residualFraction > 0 ? Math.max(1, Math.floor(defenderStats.hp * residualFraction)) : 0
-  const defenderHpAfterResidual = residualDamage > 0 ? Math.max(1, defenderCurrentHp - residualDamage) : defenderCurrentHp
+  const defenderHpAfterResidual =
+    residualDamage > 0 ? Math.max(1, defenderCurrentHp - residualDamage) : defenderCurrentHp
 
   const multiHitPowers = escalatingHitPowers(move.id, adjustedPower)
   const sequenceRolls =
@@ -935,11 +1070,19 @@ function computeMoveDamage(
             const total = multiHitPowers.reduce((sum, hitPower, hitIndex) => {
               const hitRaw =
                 Math.floor(
-                  Math.floor(((Math.floor((2 * level) / 5) + 2) * hitPower * Math.max(1, atkValue)) / Math.max(1, defValue)) / 50,
+                  Math.floor(
+                    ((Math.floor((2 * level) / 5) + 2) * hitPower * Math.max(1, atkValue)) /
+                      Math.max(1, defValue),
+                  ) / 50,
                 ) + 2
               const hitModifier =
                 baseModifier *
-                defenderAbilityModifier(defender.abilityId, move, typeMult, hitIndex === 0 && defenderAtFullHp)
+                defenderAbilityModifier(
+                  defendingAbility,
+                  typedMove,
+                  typeMult,
+                  hitIndex === 0 && defenderAtFullHp,
+                )
               return sum + Math.max(1, Math.floor(hitRaw * hitModifier * random))
             }, 0)
             return Math.max(1, total)
@@ -948,9 +1091,13 @@ function computeMoveDamage(
             const total = multiHitPowers.reduce((sum, hitPower) => {
               const hitRaw =
                 Math.floor(
-                  Math.floor(((Math.floor((2 * level) / 5) + 2) * hitPower * Math.max(1, atkValue)) / Math.max(1, defValue)) / 50,
+                  Math.floor(
+                    ((Math.floor((2 * level) / 5) + 2) * hitPower * Math.max(1, atkValue)) /
+                      Math.max(1, defValue),
+                  ) / 50,
                 ) + 2
-              const hitModifier = baseModifier * defenderAbilityModifier(defender.abilityId, move, typeMult, false)
+              const hitModifier =
+                baseModifier * defenderAbilityModifier(defendingAbility, typedMove, typeMult, false)
               return sum + Math.max(1, Math.floor(hitRaw * hitModifier * random))
             }, 0)
             return Math.max(1, total)
@@ -960,11 +1107,13 @@ function computeMoveDamage(
       : undefined
 
   const rolls = sequenceRolls
-    ? (defenderAtFullHp ? sequenceRolls.fresh : sequenceRolls.chipped)
+    ? defenderAtFullHp
+      ? sequenceRolls.fresh
+      : sequenceRolls.chipped
     : rules.randomRolls.map((random) => {
-    const value = Math.floor(raw * modifier * random)
-    return Math.max(1, value)
-  })
+        const value = Math.floor(raw * modifier * random)
+        return Math.max(1, value)
+      })
 
   const min = Math.min(...rolls)
   const max = Math.max(...rolls)
@@ -1017,14 +1166,23 @@ export function computePairDamage(
     if (!moveId) continue
     const move = resolver.getMove(moveId)
     if (!move) continue
-    const result = computeMoveDamage(scenario, resolver, attackerSide, attackerSlot, defenderSlot, move)
+    const result = computeMoveDamage(
+      scenario,
+      resolver,
+      attackerSide,
+      attackerSlot,
+      defenderSlot,
+      move,
+    )
     if (!result) continue
     resultsByMove.push(result)
   }
 
   const best =
     resultsByMove.length > 0
-      ? [...resultsByMove].sort((a, b) => b.maxPercent - a.maxPercent || b.minPercent - a.minPercent)[0]
+      ? [...resultsByMove].sort(
+          (a, b) => b.maxPercent - a.maxPercent || b.minPercent - a.minPercent,
+        )[0]
       : null
 
   return {

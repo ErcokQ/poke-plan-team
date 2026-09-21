@@ -22,7 +22,9 @@ export const useTeamStore = defineStore('team', () => {
   const uiStore = useUiStore()
 
   function normalizeMemberIdentity(member: TeamMember): TeamMember {
-    const canonicalPokemonId = member.pokemonId ? canonicalizePokemonId(member.pokemonId) || member.pokemonId : ''
+    const canonicalPokemonId = member.pokemonId
+      ? canonicalizePokemonId(member.pokemonId) || member.pokemonId
+      : ''
     if (canonicalPokemonId !== member.pokemonId) {
       member.pokemonId = canonicalPokemonId
     }
@@ -32,7 +34,7 @@ export const useTeamStore = defineStore('team', () => {
   function normalizeStoredTeams() {
     for (const team of teams.value) {
       for (const member of team.members) {
-        normalizeMemberIdentity(member)
+        Object.assign(member, normalizeEvs(normalizeMemberIdentity(member)))
       }
     }
   }
@@ -43,7 +45,6 @@ export const useTeamStore = defineStore('team', () => {
 
     if (!hasVgc) teams.value.push(createEmptyTeam('vgc', 'VGC Core'))
     if (!hasSingles) teams.value.push(createEmptyTeam('singles', 'Singles Core'))
-
     ;(['vgc', 'singles'] as BattleMode[]).forEach((mode) => {
       const selected = uiStore.getSelectedTeam(mode)
       if (!selected || !teams.value.find((team) => team.id === selected && team.mode === mode)) {
@@ -159,7 +160,9 @@ export const useTeamStore = defineStore('team', () => {
     const parsed = parseTeamImportPayload(raw, mode)
     const imported = parsed.team
     imported.mode = mode
-    imported.members.forEach(normalizeMemberIdentity)
+    imported.members.forEach((member) =>
+      Object.assign(member, normalizeEvs(normalizeMemberIdentity(member))),
+    )
     imported.id = crypto.randomUUID()
     imported.createdAt = new Date().toISOString()
     imported.updatedAt = new Date().toISOString()
@@ -169,7 +172,10 @@ export const useTeamStore = defineStore('team', () => {
   }
 
   function importFromShowdown(raw: string, mode: BattleMode) {
-    const template = createEmptyTeam(mode, mode === 'vgc' ? 'Imported VGC Team' : 'Imported Singles Team')
+    const template = createEmptyTeam(
+      mode,
+      mode === 'vgc' ? 'Imported VGC Team' : 'Imported Singles Team',
+    )
     const parsed = importTeamFromShowdown(raw, mode, template)
     parsed.members = parsed.members.map((member) => normalizeEvs(normalizeMemberIdentity(member)))
     parsed.id = crypto.randomUUID()

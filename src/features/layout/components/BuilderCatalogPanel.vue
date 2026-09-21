@@ -13,12 +13,15 @@ import type {
 } from '@/models/domain'
 import type { DexAvailabilityFilterKey } from '@/models/dex'
 import type { DamageSlotNumber } from '@/models/damage-calc'
+import type { PokemonMetaUsage } from '@/models/meta'
 import { TEAM_ROLES, TYPE_KEYS } from '@/models/domain'
 import { useDexStore } from '@/stores/dex'
 import { useDamageCalcStore } from '@/stores/damage-calc'
 import { useMetaUsageStore } from '@/stores/meta-usage'
+import { useStrategyStore } from '@/stores/strategy'
 import { useTeamStore } from '@/stores/team'
 import { useUiStore } from '@/stores/ui'
+import type { BuilderCatalogSource } from '@/stores/ui'
 import { TYPE_META } from '@/models/type-meta'
 import { effectivenessAgainstDual } from '@/models/type-chart'
 import { moveTypeGradientStyle } from '@/utils/move-type-style'
@@ -27,9 +30,9 @@ import {
   isItemLockedForPokemon,
   resolveInitialItemIdForPokemon,
 } from '@/utils/form-item-rules'
-import { getEffectiveLearnsetMoveIds } from '@/utils/move-legality'
-import itemPanelIcon from '@/assets/pokesprite/icons/battle-item/x-attack.png'
+import { getEffectiveLearnsetMoveIds, getPreferredLegalMoves } from '@/utils/move-legality'
 import { onPokemonSpriteError, primaryPokemonSpriteUrl } from '@/utils/pokemon-sprite'
+import { calculateFavorableSpeedBenchmark, speedComparisonPokemonName } from '@/utils/speed-comparison'
 
 interface PanelMoveEntry {
   id: string
@@ -53,7 +56,6 @@ interface PanelItemEntry {
   nameNorm: string
   effectNorm: string
   effect: string
-  icon: string | null
 }
 
 interface PanelPokemonEntry {
@@ -89,8 +91,32 @@ interface ThreatEntry {
   usage: number
   offenseBias: 'physical' | 'special' | 'mixed'
   stabPressure: number
+  counterPressure: number
+  pressureScore: number
+  counterPressureScore: number
+  usageScore: number
+  speedScore: number
+  damageChannelScore: number
   reasons: string[]
   score: number
+}
+
+interface ChampionsMetaEntry extends PanelPokemonEntry {
+  abilityName: string
+  abilityNorm: string
+  baseSpeed: number
+  usage: number
+  offenseBias: 'physical' | 'special' | 'mixed'
+  rank: number
+}
+
+interface SeenThreatEntry {
+  id: string
+  name: string
+  nameNorm: string
+  timesSeen: number
+  maxSpeed: number
+  baseSpeed: number
 }
 
 interface TeamComplementContext {
@@ -105,6 +131,7 @@ const uiStore = useUiStore()
 const dexStore = useDexStore()
 const damageCalcStore = useDamageCalcStore()
 const metaUsageStore = useMetaUsageStore()
+const strategyStore = useStrategyStore()
 const teamStore = useTeamStore()
 
 const searchRaw = ref('')
@@ -114,12 +141,16 @@ const PREVIEW_LIMIT_BY_SOURCE = {
   items: 120,
   moves: 120,
   threats: 24,
+  'seen-threats': 24,
+  meta: 50,
 } as const
 const SEARCH_LIMIT_BY_SOURCE = {
   pokemon: 140,
   items: 260,
   moves: 260,
   threats: 80,
+  'seen-threats': 80,
+  meta: 120,
 } as const
 const THREAT_AVAILABILITY_OPTIONS: Array<{
   key: 'all' | DexAvailabilityFilterKey
@@ -194,22 +225,53 @@ watch(source, (nextSource, previousSource) => {
 })
 
 const previewRoleCache = new Map<string, TeamRole[]>()
+const isChampionsMetaMode = computed(() => mode.value === 'vgc')
 
 const teamMembersWithoutCurrentSlot = computed(() =>
   activeTeam.value.members.filter((member) => member.slot !== activeMember.value.slot && member.pokemonId),
 )
 const duplicateBlockedPokemonIds = computed(() => new Set(teamMembersWithoutCurrentSlot.value.map((member) => member.pokemonId)))
 const pokemonCatalog = computed(() => dexStore.getPokemonByMode(mode.value))
+const recommendationPokemonCatalog = computed(() => {
+  if (!isChampionsMetaMode.value) return pokemonCatalog.value
+  const currentPokemonId = activeMember.value?.pokemonId
+  return pokemonCatalog.value.filter((pokemon) => {
+    if (pokemon.id === currentPokemonId) return true
+    return availabilityForPokemon(pokemon.id).includes('pokemon-champions')
+  })
+})
 
 const pokemonById = computed(() => new Map(pokemonCatalog.value.map((pokemon) => [pokemon.id, pokemon])))
+const seenThreatEntries = computed<SeenThreatEntry[]>(() =>
+  strategyStore.ensureDraft(mode.value).threatNotes.flatMap((note) => {
+    const pokemon = dexStore.getPokemon(mode.value, note.pokemonId)
+    if (!pokemon) return []
+    const name = speedComparisonPokemonName(pokemon)
+    return [{
+      id: pokemon.id,
+      name,
+      nameNorm: normalizeText(name),
+      timesSeen: note.timesSeen,
+      maxSpeed: calculateFavorableSpeedBenchmark(pokemon),
+      baseSpeed: pokemon.baseStats.spe,
+    }]
+  }).sort((a, b) => b.timesSeen - a.timesSeen || a.name.localeCompare(b.name, localeCode())),
+)
+const filteredSeenThreats = computed(() => {
+  const needle = normalizeText(searchDebounced.value)
+  const entries = needle
+    ? seenThreatEntries.value.filter((entry) => entry.nameNorm.includes(needle) || entry.id.includes(needle))
+    : seenThreatEntries.value
+  return applyRenderWindow(entries, Boolean(needle), 'seen-threats')
+})
 const moveById = computed(() => new Map(dexStore.moves.map((move) => [move.id, move])))
 watch([mode, metaStatus, () => pokemonCatalog.value.length], () => {
   previewRoleCache.clear()
 })
 const usageByPokemonId = computed(() => {
   const map = new Map<string, number>()
-  for (const pokemon of pokemonCatalog.value) {
-    const usage = metaUsageStore.getPokemonMeta(mode.value, pokemon.id)?.usage ?? 0
+  for (const pokemon of recommendationPokemonCatalog.value) {
+    const usage = metaUsageStore.getExactPokemonMeta(mode.value, pokemon.id)?.usage ?? 0
     if (usage > 0) map.set(pokemon.id, usage)
   }
   return map
@@ -231,11 +293,13 @@ const damageCalcTargetPokemonName = computed(() => {
 })
 const teammateSynergyByCandidate = computed(() => {
   const map = new Map<string, number>()
+  const allowedCandidates = new Set(recommendationPokemonCatalog.value.map((pokemon) => pokemon.id))
   const relatedMembers = teamMembersWithoutCurrentSlot.value.filter((member) => member.pokemonId)
   for (const member of relatedMembers) {
     const teammateUsage = metaUsageStore.getPokemonMeta(mode.value, member.pokemonId)
     if (!teammateUsage) continue
     for (const entry of teammateUsage.teammates) {
+      if (isChampionsMetaMode.value && !allowedCandidates.has(entry.id)) continue
       map.set(entry.id, (map.get(entry.id) ?? 0) + entry.weight)
     }
   }
@@ -246,6 +310,8 @@ const contextualHint = computed(() => {
   if (source.value === 'items' && !activePokemon.value) return t('builder.catalogItemsNeedPokemon')
   if (source.value === 'moves' && !activePokemon.value) return t('builder.catalogMovesNeedPokemon')
   if (source.value === 'threats' && !activePokemon.value) return t('builder.catalogThreatsNeedPokemon')
+  if (source.value === 'meta') return t('builder.catalogMetaHint')
+  if (source.value === 'seen-threats') return t('builder.catalogSeenThreatsHint')
   if (source.value === 'pokemon' && !activePokemon.value) return t('builder.catalogPokemonHintEmpty')
   if (source.value === 'pokemon' && activePokemon.value) return t('builder.catalogPokemonHintFilled')
   if (source.value === 'threats' && activePokemon.value) return t('builder.catalogThreatsHint')
@@ -334,6 +400,7 @@ watch(
 
 const itemEntries = computed<PanelItemEntry[]>(() => {
   return dexStore.items
+    .filter((item) => mode.value !== 'vgc' || item.championsAvailable !== false)
     .map((item) => ({
       id: item.id,
       name: item.name,
@@ -341,7 +408,6 @@ const itemEntries = computed<PanelItemEntry[]>(() => {
       nameNorm: normalizeText(item.name),
       effectNorm: normalizeText(item.description || item.effect || ''),
       effect: item.description || item.effect || '',
-      icon: item.icon ?? null,
     }))
     .sort((a, b) => a.name.localeCompare(b.name, localeCode()))
 })
@@ -351,7 +417,7 @@ const rankedItemEntries = computed<PanelItemEntry[]>(() => {
   if (!activePokemonEntry) return itemEntries.value
 
   const fallbackRanking = rankingFromOrderedIds(activePokemonEntry.suggestedItems ?? [])
-  const rankedByMeta = rankingFromWeightedIds(metaUsageStore.getPokemonMeta(mode.value, activePokemonEntry.id)?.items ?? [])
+  const rankedByMeta = rankingFromWeightedIds(effectivePokemonMeta(activePokemonEntry)?.items ?? [])
 
   return [...itemEntries.value].sort((a, b) => {
     const rankCompare = compareRankedIds(a.id, b.id, rankedByMeta, fallbackRanking)
@@ -373,7 +439,7 @@ const rankedMoveEntries = computed<PanelMoveEntry[]>(() => {
   if (!activePokemon.value) return []
 
   const fallbackRanking = rankingFromOrderedIds(activePokemon.value.suggestedMoves ?? [])
-  const rankedByMeta = rankingFromWeightedIds(metaUsageStore.getPokemonMeta(mode.value, activePokemon.value.id)?.moves ?? [])
+  const rankedByMeta = rankingFromWeightedIds(effectivePokemonMeta(activePokemon.value)?.moves ?? [])
 
   return [...moveEntries.value].sort((a, b) => {
     const rankCompare = compareRankedIds(a.id, b.id, rankedByMeta, fallbackRanking)
@@ -425,16 +491,29 @@ const scoredThreatEntries = computed<ThreatEntry[]>(() => {
   const defender = activePokemon.value
   if (!defender) return []
 
+  const rawThreats = recommendationPokemonCatalog.value
+    .filter((pokemon) => pokemon.id !== defender.id && !isTechnicalThreatForm(pokemon.id))
+    .map((pokemon) => {
+      const stabPressure = Math.max(
+        ...pokemon.types.map((type) => effectivenessAgainstDual(type, defender.types[0], defender.types[1])),
+      )
+      const counterPressure = Math.max(
+        ...defender.types.map((type) => effectivenessAgainstDual(type, pokemon.types[0], pokemon.types[1])),
+      )
+      const usage = usageValue(pokemon.id)
+      return {
+        pokemon,
+        stabPressure,
+        counterPressure,
+        usage,
+      }
+    })
+    .filter((entry) => entry.stabPressure > 1 || entry.usage > 0)
+  const maxUsage = Math.max(0, ...rawThreats.map((entry) => entry.usage))
+  const defenderSpeed = Math.max(1, defender.baseStats.spe)
   const entries: ThreatEntry[] = []
 
-  for (const pokemon of pokemonCatalog.value) {
-    if (pokemon.id === defender.id || isTechnicalThreatForm(pokemon.id)) continue
-
-    const stabPressure = Math.max(
-      ...pokemon.types.map((type) => effectivenessAgainstDual(type, defender.types[0], defender.types[1])),
-    )
-    const usage = usageValue(pokemon.id)
-    if (stabPressure <= 1 && usage <= 0) continue
+  for (const { pokemon, stabPressure, counterPressure, usage } of rawThreats) {
 
     const offenseBias =
       pokemon.baseStats.atk - pokemon.baseStats.spa >= 20
@@ -450,18 +529,37 @@ const scoredThreatEntries = computed<ThreatEntry[]>(() => {
     } else if (stabPressure > 1) {
       reasons.push(t('builder.threatReasonSuper'))
     }
-    if (pokemon.baseStats.spe >= 100) {
+    if (pokemon.baseStats.spe > defender.baseStats.spe) {
       reasons.push(t('builder.threatReasonFast'))
     }
-    if (usage >= 8) {
+    if (isHighMetaUsage(usage)) {
       reasons.push(t('builder.threatReasonMeta'))
     }
 
-    const pressureScore = stabPressure >= 4 ? 1 : stabPressure > 1 ? 0.72 : 0
-    const usageScore = Math.min(1, usage / 20)
-    const speedScore = Math.min(1, pokemon.baseStats.spe / 150)
+    const pressureScore = threatEffectivenessScore(stabPressure)
+    const counterPressureScore = threatEffectivenessScore(counterPressure)
+    const usageScore =
+      isChampionsMetaMode.value && maxUsage > 0 ? Math.min(1, usage / maxUsage) : normalizedUsageScore(usage)
+    const speedScore =
+      pokemon.baseStats.spe > defenderSpeed
+        ? Math.min(1, 0.55 + (pokemon.baseStats.spe - defenderSpeed) / 80)
+        : Math.min(0.45, (pokemon.baseStats.spe / defenderSpeed) * 0.35)
     const offenseScore = Math.min(1, Math.max(pokemon.baseStats.atk, pokemon.baseStats.spa) / 170)
-    const score = pressureScore * 0.5 + usageScore * 0.22 + speedScore * 0.18 + offenseScore * 0.1
+    const damageChannelScore = offensiveChannelScore(pokemon, defender, offenseBias)
+    const championsMetaFloor = isChampionsMetaMode.value && isHighMetaUsage(usage) ? 0.08 : 0
+    const counterPenalty = isChampionsMetaMode.value ? counterPressureScore * 0.18 : 0
+    const score = isChampionsMetaMode.value
+      ? Math.max(
+          0,
+          usageScore * 0.38 +
+            pressureScore * 0.22 +
+            speedScore * 0.17 +
+            damageChannelScore * 0.13 +
+            offenseScore * 0.1 +
+            championsMetaFloor -
+            counterPenalty,
+        )
+      : pressureScore * 0.5 + usageScore * 0.22 + speedScore * 0.18 + offenseScore * 0.1
     const displayName = displayPokemonName(pokemon.id, pokemon.name)
 
     entries.push({
@@ -478,19 +576,39 @@ const scoredThreatEntries = computed<ThreatEntry[]>(() => {
       usage,
       offenseBias,
       stabPressure,
+      counterPressure,
+      pressureScore,
+      counterPressureScore,
+      usageScore,
+      speedScore,
+      damageChannelScore,
       reasons,
       score,
     })
   }
 
-  return entries.sort(
-    (a, b) =>
-      b.stabPressure - a.stabPressure ||
+  return entries.sort((a, b) => {
+    if (isChampionsMetaMode.value) {
+      return (
+        b.score - a.score ||
+        b.usage - a.usage ||
+        a.counterPressureScore - b.counterPressureScore ||
+        b.speedScore - a.speedScore ||
+        b.pressureScore - a.pressureScore ||
+        b.damageChannelScore - a.damageChannelScore ||
+        b.baseSpeed - a.baseSpeed ||
+        a.name.localeCompare(b.name, localeCode())
+      )
+    }
+
+    return (
       b.score - a.score ||
+      b.stabPressure - a.stabPressure ||
       b.usage - a.usage ||
       b.baseSpeed - a.baseSpeed ||
-      a.name.localeCompare(b.name, localeCode()),
-  )
+      a.name.localeCompare(b.name, localeCode())
+    )
+  })
 })
 
 const rankedThreatEntries = computed<ThreatEntry[]>(() => {
@@ -537,6 +655,59 @@ const filteredThreats = computed(() => {
   return applyRenderWindow(filtered, true, 'threats')
 })
 
+const championsMetaEntries = computed<ChampionsMetaEntry[]>(() => {
+  if (!isChampionsMetaMode.value) return []
+
+  return recommendationPokemonCatalog.value
+    .map((pokemon) => {
+      const usage = usageValue(pokemon.id)
+      if (usage <= 0) return null
+      const displayName = displayPokemonName(pokemon.id, pokemon.name)
+      const offenseBias =
+        pokemon.baseStats.atk - pokemon.baseStats.spa >= 20
+          ? 'physical'
+          : pokemon.baseStats.spa - pokemon.baseStats.atk >= 20
+            ? 'special'
+            : 'mixed'
+      const abilityName = dexStore.getAbilityMeta(pokemon.abilities[0] ?? '').name
+
+      return {
+        id: pokemon.id,
+        name: displayName,
+        idNorm: normalizeText(pokemon.id),
+        nameNorm: normalizeText(displayName),
+        pokedexNorm: String(pokemon.pokedexNumber),
+        pokedexNumber: pokemon.pokedexNumber,
+        types: pokemon.types,
+        abilityName,
+        abilityNorm: normalizeText(abilityName),
+        baseSpeed: pokemon.baseStats.spe,
+        usage,
+        offenseBias,
+        rank: 0,
+      } satisfies ChampionsMetaEntry
+    })
+    .filter((entry): entry is ChampionsMetaEntry => entry !== null)
+    .sort((a, b) => b.usage - a.usage || b.baseSpeed - a.baseSpeed || a.name.localeCompare(b.name, localeCode()))
+    .map((entry, index) => ({
+      ...entry,
+      rank: index + 1,
+    }))
+})
+
+const filteredChampionsMeta = computed(() => {
+  const needle = normalizeText(searchDebounced.value)
+  if (!needle) return applyRenderWindow(championsMetaEntries.value, false, 'meta')
+  const filtered = championsMetaEntries.value.filter(
+    (entry) =>
+      entry.nameNorm.includes(needle) ||
+      entry.idNorm.includes(needle) ||
+      entry.pokedexNorm.includes(needle) ||
+      entry.abilityNorm.includes(needle),
+  )
+  return applyRenderWindow(filtered, true, 'meta')
+})
+
 const rankedPokemonEntries = computed<RankedPokemonEntry[]>(() => {
   const optimizeForPreview = !normalizeText(searchDebounced.value)
   if (activePokemon.value) {
@@ -571,7 +742,11 @@ const panelTitle = computed(() =>
       ? t('builder.catalogPanelPokemon')
       : source.value === 'threats'
         ? t('builder.catalogPanelThreats')
-        : t('builder.catalogPanelMoves'),
+        : source.value === 'seen-threats'
+          ? t('builder.catalogPanelSeenThreats')
+        : source.value === 'meta'
+          ? t('builder.catalogPanelMeta')
+          : t('builder.catalogPanelMoves'),
 )
 
 const searchPlaceholder = computed(() =>
@@ -581,7 +756,11 @@ const searchPlaceholder = computed(() =>
       ? t('builder.catalogSearchPokemon')
       : source.value === 'threats'
         ? t('builder.catalogSearchThreats')
-        : t('builder.catalogSearchMoves'),
+        : source.value === 'seen-threats'
+          ? t('builder.catalogSearchSeenThreats')
+        : source.value === 'meta'
+          ? t('builder.catalogSearchMeta')
+          : t('builder.catalogSearchMoves'),
 )
 
 function prettifySlug(raw: string): string {
@@ -603,7 +782,7 @@ function normalizeText(value: string): string {
 function applyRenderWindow<T>(
   entries: T[],
   isSearchActive: boolean,
-  sourceKind: 'pokemon' | 'items' | 'moves' | 'threats',
+  sourceKind: BuilderCatalogSource,
 ): T[] {
   const limit = isSearchActive ? SEARCH_LIMIT_BY_SOURCE[sourceKind] : PREVIEW_LIMIT_BY_SOURCE[sourceKind]
   return entries.slice(0, limit)
@@ -643,6 +822,12 @@ function threatOffenseBiasLabel(bias: ThreatEntry['offenseBias']): string {
   return t('builder.threatBiasMixed')
 }
 
+function usagePercentLabel(usage: number): string {
+  if (!Number.isFinite(usage) || usage <= 0) return '0%'
+  const normalized = usage <= 1 ? usage * 100 : usage
+  return `${normalized.toFixed(2)}%`
+}
+
 function spriteUrl(pokemonId: string): string {
   return primaryPokemonSpriteUrl(pokemonId)
 }
@@ -670,18 +855,6 @@ function formSuffixFromPokemonId(pokemonId: string): string {
 function displayPokemonName(pokemonId: string, baseName: string): string {
   const suffix = formSuffixFromPokemonId(pokemonId)
   return suffix ? `${baseName} (${suffix})` : baseName
-}
-
-function itemIconUrl(item: PanelItemEntry): string {
-  if (item.icon) return item.icon
-  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${item.id}.png`
-}
-
-function onItemIconError(event: Event) {
-  const target = event.target as HTMLImageElement
-  if (target.src !== itemPanelIcon) {
-    target.src = itemPanelIcon
-  }
 }
 
 function applyPokemonSelection(pokemonId: string) {
@@ -805,6 +978,21 @@ function rankingFromOrderedIds(ids: string[]): Map<string, number> {
     map.set(id, Math.max(0, total - index))
   })
   return map
+}
+
+function effectivePokemonMeta(pokemon: PokemonEntry): PokemonMetaUsage | undefined {
+  const candidates = new Set<string>([pokemon.id])
+  for (const form of dexStore.getPokemonForms(localeCode(), pokemon.id)) {
+    candidates.add(form.id)
+  }
+
+  let best: PokemonMetaUsage | undefined
+  for (const pokemonId of candidates) {
+    const meta = metaUsageStore.getPokemonMeta(mode.value, pokemonId)
+    if (!meta) continue
+    if (!best || meta.usage > best.usage) best = meta
+  }
+  return best
 }
 
 function compareRankedIds(
@@ -953,26 +1141,15 @@ function resolveRoleTagsForSet(
 }
 
 function preferredMovesForPokemon(pokemon: PokemonEntry): [string, string, string, string] {
-  const effectiveLearnset = getEffectiveLearnsetMoveIds(
+  return getPreferredLegalMoves(
     pokemon,
     (pokemonId) => dexStore.getPokemon(mode.value, pokemonId),
+    (effectivePokemonMeta(pokemon)?.moves ?? []).map((entry) => entry.id),
   )
-  const allowed = new Set<string>([
-    ...effectiveLearnset,
-    ...(pokemon.suggestedMoves ?? []),
-  ])
-
-  const metaMoves = (metaUsageStore.getPokemonMeta(mode.value, pokemon.id)?.moves ?? [])
-    .map((entry) => entry.id)
-    .filter((moveId) => (allowed.size > 0 ? allowed.has(moveId) : true))
-
-  const fallbackPool = [...pokemon.suggestedMoves, ...effectiveLearnset]
-  const unique = [...new Set([...metaMoves, ...fallbackPool])].filter(Boolean)
-  return [unique[0] ?? '', unique[1] ?? '', unique[2] ?? '', unique[3] ?? '']
 }
 
 function previewMovesForRoleRanking(pokemon: PokemonEntry): string[] {
-  const metaTop = (metaUsageStore.getPokemonMeta(mode.value, pokemon.id)?.moves ?? [])
+  const metaTop = (effectivePokemonMeta(pokemon)?.moves ?? [])
     .slice(0, 4)
     .map((entry) => entry.id)
     .filter(Boolean)
@@ -1081,6 +1258,44 @@ function usageValue(pokemonId: string): number {
   return usageByPokemonId.value.get(pokemonId) ?? 0
 }
 
+function normalizedUsageScore(usage: number): number {
+  if (!Number.isFinite(usage) || usage <= 0) return 0
+  return usage <= 1 ? Math.min(1, usage) : Math.min(1, usage / 25)
+}
+
+function isHighMetaUsage(usage: number): boolean {
+  return usage <= 1 ? usage >= 0.08 : usage >= 8
+}
+
+function threatEffectivenessScore(effectiveness: number): number {
+  if (effectiveness >= 4) return 1
+  if (effectiveness > 1) return 0.72
+  if (effectiveness === 1) return 0.25
+  return 0
+}
+
+function offensiveChannelScore(
+  attacker: PokemonEntry,
+  defender: PokemonEntry,
+  bias: ThreatEntry['offenseBias'],
+): number {
+  const attackerStat =
+    bias === 'physical'
+      ? attacker.baseStats.atk
+      : bias === 'special'
+        ? attacker.baseStats.spa
+        : Math.max(attacker.baseStats.atk, attacker.baseStats.spa)
+  const defenderStat =
+    bias === 'physical'
+      ? defender.baseStats.def
+      : bias === 'special'
+        ? defender.baseStats.spd
+        : Math.min(defender.baseStats.def, defender.baseStats.spd)
+  const ratio = attackerStat / Math.max(1, defenderStat)
+
+  return Math.min(1, Math.max(0, (ratio - 0.55) / 0.95))
+}
+
 function toRankedPokemonEntry(
   pokemon: PokemonEntry,
   roleSimilarity = 0,
@@ -1109,7 +1324,7 @@ function toRankedPokemonEntry(
 
 function rankPokemonForEmptySlot(optimizeForPreview = false): RankedPokemonEntry[] {
   const blocked = duplicateBlockedPokemonIds.value
-  let candidates = pokemonCatalog.value.filter((pokemon) => !blocked.has(pokemon.id))
+  let candidates = recommendationPokemonCatalog.value.filter((pokemon) => !blocked.has(pokemon.id))
   if (candidates.length === 0) return []
 
   if (optimizeForPreview && candidates.length > EMPTY_SLOT_SHORTLIST_LIMIT) {
@@ -1140,7 +1355,9 @@ function rankPokemonForEmptySlot(optimizeForPreview = false): RankedPokemonEntry
     .map((entry) => {
       const teammateSynergy = entry.teammateSynergy / maxSynergy
       const usage = entry.usage / maxUsage
-      const score = teammateSynergy * 0.5 + entry.teamComplement * 0.3 + usage * 0.2
+      const score = isChampionsMetaMode.value
+        ? teammateSynergy * 0.55 + usage * 0.3 + entry.teamComplement * 0.15
+        : teammateSynergy * 0.5 + entry.teamComplement * 0.3 + usage * 0.2
       return toRankedPokemonEntry(
         entry.pokemon,
         0,
@@ -1172,7 +1389,7 @@ function typeOverlap(candidate: PokemonEntry, target: PokemonEntry): { primary: 
 function rankPokemonForFilledSlot(targetPokemon: PokemonEntry, optimizeForPreview = false): RankedPokemonEntry[] {
   const blocked = duplicateBlockedPokemonIds.value
   const allowedCurrentId = activeMember.value.pokemonId
-  let candidates = pokemonCatalog.value.filter((pokemon) => {
+  let candidates = recommendationPokemonCatalog.value.filter((pokemon) => {
     if (pokemon.id === allowedCurrentId) return true
     return !blocked.has(pokemon.id)
   })
@@ -1205,14 +1422,15 @@ function rankPokemonForFilledSlot(targetPokemon: PokemonEntry, optimizeForPrevie
     candidates = [...preferred, ...rest].slice(0, FILLED_SLOT_SHORTLIST_LIMIT)
   }
 
-  return candidates
-    .map((pokemon) => {
-      const candidateRoles = candidateRolesForRanking(pokemon)
-      const roleScore = roleSimilarity(candidateRoles, targetRoles)
-      const typeScores = typeOverlap(pokemon, targetPokemon)
-      const complement = teamComplementScore(pokemon, context, candidateRoles)
-      const usage = usageValue(pokemon.id)
-      return toRankedPokemonEntry(
+  const raw = candidates.map((pokemon) => {
+    const candidateRoles = candidateRolesForRanking(pokemon)
+    const roleScore = roleSimilarity(candidateRoles, targetRoles)
+    const typeScores = typeOverlap(pokemon, targetPokemon)
+    const complement = teamComplementScore(pokemon, context, candidateRoles)
+    const usage = usageValue(pokemon.id)
+    const teammateSynergy = teammateSynergyRaw(pokemon.id)
+    return {
+      entry: toRankedPokemonEntry(
         pokemon,
         roleScore,
         typeScores.primary,
@@ -1220,10 +1438,32 @@ function rankPokemonForFilledSlot(targetPokemon: PokemonEntry, optimizeForPrevie
         complement,
         usage,
         0,
-      )
+      ),
+      teammateSynergy,
+    }
+  })
+
+  const maxSynergy = Math.max(1, ...raw.map((entry) => entry.teammateSynergy))
+  const maxUsage = Math.max(1, ...raw.map((entry) => entry.entry.usage))
+
+  return raw
+    .map(({ entry, teammateSynergy }) => {
+      if (!isChampionsMetaMode.value) return entry
+      const synergyScore = teammateSynergy / maxSynergy
+      const usageScore = entry.usage / maxUsage
+      return {
+        ...entry,
+        score:
+          synergyScore * 0.4 +
+          entry.teamComplement * 0.25 +
+          usageScore * 0.2 +
+          entry.roleSimilarity * 0.1 +
+          entry.primaryTypeMatch * 0.05,
+      }
     })
     .sort(
       (a, b) =>
+        (isChampionsMetaMode.value ? b.score - a.score : 0) ||
         b.roleSimilarity - a.roleSimilarity ||
         b.primaryTypeMatch - a.primaryTypeMatch ||
         b.secondaryTypeOverlap - a.secondaryTypeOverlap ||
@@ -1235,12 +1475,12 @@ function rankPokemonForFilledSlot(targetPokemon: PokemonEntry, optimizeForPrevie
 </script>
 
 <template>
-  <section class="hidden h-full min-h-0 rounded-2xl border border-sky-500/25 bg-off-black/70 p-3 lg:flex lg:flex-col">
+  <section class="flex h-full min-h-0 flex-col rounded-2xl border border-sky-500/25 bg-off-black/70 p-3">
     <div class="shrink-0">
       <h2 class="text-sm font-semibold text-sky-300">{{ panelTitle }}</h2>
       <p class="mt-1 text-[11px] text-gray-400">{{ t('builder.catalogPanelHint') }}</p>
       <p
-        v-if="metaStatusText"
+        v-if="metaStatusText && source !== 'seen-threats'"
         class="mt-1 text-[11px]"
         :class="isMetaFallback ? 'text-amber-300' : isMetaLoading ? 'text-sky-300' : 'text-emerald-300'"
       >
@@ -1249,6 +1489,20 @@ function rankPokemonForFilledSlot(targetPokemon: PokemonEntry, optimizeForPrevie
       <p v-if="contextualHint" class="mt-1 text-[11px] text-gray-400">
         {{ contextualHint }}
       </p>
+      <div v-if="mode === 'vgc' && isBuilderRoute" class="mt-2 flex justify-end">
+        <button
+          type="button"
+          class="rounded-md border px-2 py-1 text-[10px] font-semibold transition"
+          :class="
+            source === 'meta'
+              ? 'border-cyan-400/70 bg-cyan-500/20 text-cyan-100'
+              : 'border-cyan-500/35 bg-off-black/60 text-cyan-200 hover:border-cyan-400/60 hover:bg-cyan-500/10'
+          "
+          @click="uiStore.setBuilderCatalogSource('meta')"
+        >
+          {{ t('builder.metaTopButton') }}
+        </button>
+      </div>
     </div>
 
     <template v-if="isBuilderRoute">
@@ -1329,12 +1583,9 @@ function rankPokemonForFilledSlot(targetPokemon: PokemonEntry, optimizeForPrevie
             :disabled="isItemSelectionLocked"
             @click="applyItemSelection(item.id)"
           >
-            <div class="flex items-start gap-2">
-              <img :src="itemIconUrl(item)" :alt="item.name" class="mt-0.5 h-4 w-4 shrink-0 object-contain opacity-90" @error="onItemIconError" />
-              <div class="min-w-0">
-                <p class="truncate text-xs font-semibold text-gray-100">{{ item.name }}</p>
-                <p class="mt-1 text-[11px] text-gray-400">{{ item.effect || t('builder.noItemDescription') }}</p>
-              </div>
+            <div class="min-w-0">
+              <p class="truncate text-xs font-semibold text-gray-100">{{ item.name }}</p>
+              <p class="mt-1 text-[11px] text-gray-400">{{ item.effect || t('builder.noItemDescription') }}</p>
             </div>
           </button>
           <p v-if="filteredItems.length === 0" class="text-xs text-gray-500">{{ t('builder.catalogNoResults') }}</p>
@@ -1350,15 +1601,6 @@ function rankPokemonForFilledSlot(targetPokemon: PokemonEntry, optimizeForPrevie
             @click="applyPokemonSelection(pokemon.id)"
           >
             <div class="flex items-start gap-2">
-              <img
-                :src="spriteUrl(pokemon.id)"
-                :alt="displayPokemonName(pokemon.id, pokemon.name)"
-                :data-sprite-id="pokemon.id"
-                :data-sprite-fallback-index="0"
-                class="h-8 w-8 shrink-0 rounded bg-black/25 object-contain"
-                loading="lazy"
-                  @error="onPokemonSpriteError"
-              />
               <div class="min-w-0 flex-1">
                 <p class="truncate text-xs font-semibold text-gray-100">
                   #{{ String(pokemon.pokedexNumber).padStart(4, '0') }} {{ displayPokemonName(pokemon.id, pokemon.name) }}
@@ -1379,6 +1621,80 @@ function rankPokemonForFilledSlot(targetPokemon: PokemonEntry, optimizeForPrevie
           <p v-if="filteredPokemon.length === 0" class="text-xs text-gray-500">{{ t('builder.catalogNoResults') }}</p>
         </template>
 
+        <template v-else-if="source === 'meta'">
+          <article
+            v-for="pokemon in filteredChampionsMeta"
+            :key="`meta-${pokemon.id}`"
+            class="rounded-lg border border-cyan-500/25 bg-cyan-500/10 p-2"
+          >
+            <div class="flex items-start gap-2">
+              <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-black/30 text-[11px] font-bold text-cyan-100">
+                #{{ pokemon.rank }}
+              </div>
+              <div class="min-w-0 flex-1">
+                <div class="flex items-start justify-between gap-2">
+                  <div class="min-w-0">
+                    <p class="truncate text-xs font-semibold text-gray-100">
+                      #{{ String(pokemon.pokedexNumber).padStart(4, '0') }} {{ pokemon.name }}
+                    </p>
+                    <p class="mt-0.5 text-[11px] text-cyan-200">
+                      {{ t('builder.metaUsageLabel') }} {{ usagePercentLabel(pokemon.usage) }}
+                    </p>
+                  </div>
+                  <span class="rounded border border-gray-700 bg-off-black/70 px-1 py-0.5 text-[10px] text-gray-300">
+                    {{ t('builder.threatBaseSpeed') }} {{ pokemon.baseSpeed }}
+                  </span>
+                </div>
+                <div class="mt-1 flex flex-wrap gap-1">
+                  <span
+                    v-for="type in pokemon.types"
+                    :key="`meta-type-${pokemon.id}-${type}`"
+                    class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1 py-0.5 text-[10px] text-gray-300"
+                  >
+                    <img :src="TYPE_META[type].icon" :alt="typeLabel(type)" class="h-3 w-3" />
+                    {{ typeLabel(type) }}
+                  </span>
+                  <span class="rounded border border-gray-700 bg-off-black/70 px-1 py-0.5 text-[10px] text-gray-300">
+                    {{ threatOffenseBiasLabel(pokemon.offenseBias) }}
+                  </span>
+                </div>
+                <div class="mt-2 flex justify-end">
+                  <button
+                    type="button"
+                    class="rounded-md border border-cyan-500/50 bg-cyan-500/15 px-2.5 py-1 text-[11px] font-semibold text-cyan-100 transition hover:border-cyan-400 hover:bg-cyan-500/25"
+                    @click="applyPokemonSelection(pokemon.id)"
+                  >
+                    {{ t('builder.metaAddToSlotButton') }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+          <p v-if="mode !== 'vgc'" class="text-xs text-gray-500">{{ t('builder.catalogMetaVgcOnly') }}</p>
+          <p v-else-if="filteredChampionsMeta.length === 0" class="text-xs text-gray-500">{{ t('builder.catalogNoResults') }}</p>
+        </template>
+
+        <template v-else-if="source === 'seen-threats'">
+          <article
+            v-for="threat in filteredSeenThreats"
+            :key="`seen-threat-${threat.id}`"
+            class="rounded-lg border border-amber-500/25 bg-amber-500/10 p-2"
+          >
+            <div class="flex items-center gap-2">
+              <div class="min-w-0 flex-1">
+                <p class="truncate text-xs font-semibold text-gray-100">{{ threat.name }}</p>
+                <p class="text-[11px] text-gray-400">{{ t('strategy.timesSeenShort', { count: threat.timesSeen }) }}</p>
+              </div>
+              <div class="shrink-0 text-right text-[11px]">
+                <p class="font-semibold text-amber-100">{{ t('builder.seenThreatMaxSpeed', { speed: threat.maxSpeed }) }}</p>
+                <p class="text-gray-400">{{ t('builder.threatBaseSpeed') }} {{ threat.baseSpeed }}</p>
+              </div>
+            </div>
+          </article>
+          <p v-if="seenThreatEntries.length === 0" class="text-xs text-gray-500">{{ t('builder.catalogSeenThreatsEmpty') }}</p>
+          <p v-else-if="filteredSeenThreats.length === 0" class="text-xs text-gray-500">{{ t('builder.catalogNoResults') }}</p>
+        </template>
+
         <template v-else-if="source === 'threats'">
           <article
             v-for="threat in filteredThreats"
@@ -1386,15 +1702,6 @@ function rankPokemonForFilledSlot(targetPokemon: PokemonEntry, optimizeForPrevie
             class="rounded-lg border border-gray-700 bg-st-black/55 p-2"
           >
             <div class="flex items-start gap-2">
-              <img
-                :src="spriteUrl(threat.id)"
-                :alt="threat.name"
-                :data-sprite-id="threat.id"
-                :data-sprite-fallback-index="0"
-                class="h-8 w-8 shrink-0 rounded bg-black/25 object-contain"
-                loading="lazy"
-                  @error="onPokemonSpriteError"
-              />
               <div class="min-w-0 flex-1">
                 <div class="flex items-center justify-between gap-2">
                   <p class="truncate text-xs font-semibold text-gray-100">

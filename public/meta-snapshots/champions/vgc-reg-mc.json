@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "format": "champions-vgc-reg-mc",
+  "label": "Pokemon Champions VGC 2026 Regulation Set M-C",
+  "generatedAt": "2026-09-17T18:58:13.000Z",
+  "source": {
+    "name": "Pikalytics Champions",
+    "url": "https://www.pikalytics.com/pokedex/gen9championsvgc2026regmc",
+    "note": "Top 20 usage percentages verified on 2026-09-17. Usage is team appearance, not win rate."
+  },
+  "pokemon": {
+    "rillaboom": { "name": "Rillaboom", "rank": 1, "usage": { "weighted": 0.3761, "raw": 0.3761 }, "items": {}, "moves": {}, "abilities": {}, "teammates": {} },
+    "sneasler": { "name": "Sneasler", "rank": 2, "usage": { "weighted": 0.3664, "raw": 0.3664 }, "items": {}, "moves": {}, "abilities": {}, "teammates": {} },
+    "incineroar": { "name": "Incineroar", "rank": 3, "usage": { "weighted": 0.2845, "raw": 0.2845 }, "items": {}, "moves": {}, "abilities": {}, "teammates": {} },
+    "salamence": { "name": "Salamence", "rank": 4, "usage": { "weighted": 0.2596, "raw": 0.2596 }, "items": {}, "moves": {}, "abilities": {}, "teammates": {} },
+    "kingambit": { "name": "Kingambit", "rank": 5, "usage": { "weighted": 0.2496, "raw": 0.2496 }, "items": {}, "moves": {}, "abilities": {}, "teammates": {} },
+    "basculegion-male": { "name": "Basculegion", "rank": 6, "usage": { "weighted": 0.2378, "raw": 0.2378 }, "items": {}, "moves": {}, "abilities": {}, "teammates": {} },
+    "golisopod": { "name": "Golisopod", "rank": 7, "usage": { "weighted": 0.2168, "raw": 0.2168 }, "items": {}, "moves": {}, "abilities": {}, "teammates": {} },
+    "indeedee-female": { "name": "Indeedee-F", "rank": 8, "usage": { "weighted": 0.2161, "raw": 0.2161 }, "items": {}, "moves": {}, "abilities": {}, "teammates": {} },
+    "farigiraf": { "name": "Farigiraf", "rank": 9, "usage": { "weighted": 0.1804, "raw": 0.1804 }, "items": {}, "moves": {}, "abilities": {}, "teammates": {} },
+    "garchomp": { "name": "Garchomp", "rank": 10, "usage": { "weighted": 0.1544, "raw": 0.1544 }, "items": {}, "moves": {}, "abilities": {}, "teammates": {} },
+    "pelipper": { "name": "Pelipper", "rank": 11, "usage": { "weighted": 0.1481, "raw": 0.1481 }, "items": {}, "moves": {}, "abilities": {}, "teammates": {} },
+    "whimsicott": { "name": "Whimsicott", "rank": 12, "usage": { "weighted": 0.1144, "raw": 0.1144 }, "items": {}, "moves": {}, "abilities": {}, "teammates": {} },
+    "sinistcha": { "name": "Sinistcha", "rank": 13, "usage": { "weighted": 0.1104, "raw": 0.1104 }, "items": {}, "moves": {}, "abilities": {}, "teammates": {} },
+    "gholdengo": { "name": "Gholdengo", "rank": 14, "usage": { "weighted": 0.1038, "raw": 0.1038 }, "items": {}, "moves": {}, "abilities": {}, "teammates": {} },
+    "archaludon": { "name": "Archaludon", "rank": 15, "usage": { "weighted": 0.1012, "raw": 0.1012 }, "items": {}, "moves": {}, "abilities": {}, "teammates": {} },
+    "floette-eternal": { "name": "Floette-Eternal", "rank": 16, "usage": { "weighted": 0.1004, "raw": 0.1004 }, "items": {}, "moves": {}, "abilities": {}, "teammates": {} },
+    "tyranitar": { "name": "Tyranitar", "rank": 17, "usage": { "weighted": 0.0891, "raw": 0.0891 }, "items": {}, "moves": {}, "abilities": {}, "teammates": {} },
+    "baxcalibur": { "name": "Baxcalibur", "rank": 18, "usage": { "weighted": 0.0842, "raw": 0.0842 }, "items": {}, "moves": {}, "abilities": {}, "teammates": {} },
+    "lucario": { "name": "Lucario", "rank": 19, "usage": { "weighted": 0.0834, "raw": 0.0834 }, "items": {}, "moves": {}, "abilities": {}, "teammates": {} },
+    "milotic": { "name": "Milotic", "rank": 20, "usage": { "weighted": 0.0831, "raw": 0.0831 }, "items": {}, "moves": {}, "abilities": {}, "teammates": {} }
+  }
+}

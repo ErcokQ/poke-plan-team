@@ -2,7 +2,7 @@
   "version": "v1",
   "locale": "es",
   "generationId": 5,
-  "generatedAt": "2026-04-17T18:43:31.043Z",
+  "generatedAt": "2026-06-17T06:49:17.718Z",
   "profiles": [
     {
       "id": "victini",
@@ -560,8 +560,8 @@
         {
           "id": "mold-breaker",
           "name": "Rompemoldes",
-          "shortEffect": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
-          "effect": "This Pokemon's moves and their effects ignore certain Abilities of other Pokemon. The Abilities that can be negated are Armor Tail, Aroma Veil, Aura Break, Battle Armor, Big Pecks, Bulletproof, Clear Body, Contrary, Damp, Dazzling, Disguise, Dry Skin, Earth Eater, Filter, Flash Fire, Flower Gift, Flower Veil, Fluffy, Friend Guard, Fur Coat, Good as Gold, Grass Pelt, Guard Dog, Heatproof, Heavy Metal, Hyper Cutter, Ice Face, Ice Scales, Illuminate, Immunity, Inner Focus, Insomnia, Keen Eye, Leaf Guard, Levitate, Light Metal, Lightning Rod, Limber, Magic Bounce, Magma Armor, Marvel Scale, Mind's Eye, Mirror Armor, Motor Drive, Multiscale, Oblivious, Overcoat, Own Tempo, Pastel Veil, Punk Rock, Purifying Salt, Queenly Majesty, Sand Veil, Sap Sipper, Shell Armor, Shield Dust, Simple, Snow Cloak, Solid Rock, Soundproof, Sticky Hold, Storm Drain, Sturdy, Suction Cups, Sweet Veil, Tangled Feet, Telepathy, Tera Shell, Thermal Exchange, Thick Fat, Unaware, Vital Spirit, Volt Absorb, Water Absorb, Water Bubble, Water Veil, Well-Baked Body, White Smoke, Wind Rider, Wonder Guard, and Wonder Skin. This affects every other Pokemon on the field, whether or not it is a target of this Pokemon's move, and whether or not their Ability is beneficial to this Pokemon.",
+          "shortEffect": "Sus movimientos ignoran habilidades defensivas del objetivo.",
+          "effect": "Los movimientos del usuario ignoran habilidades del objetivo que normalmente bloquearian, reducirian o alterarian el efecto del movimiento.",
           "isHidden": false
         }
       ],
@@ -617,7 +617,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10286.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10286.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10286.png",
         "showdown": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10286.gif",
         "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10286.gif"
@@ -2936,8 +2936,8 @@
         {
           "id": "mold-breaker",
           "name": "Rompemoldes",
-          "shortEffect": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
-          "effect": "This Pokemon's moves and their effects ignore certain Abilities of other Pokemon. The Abilities that can be negated are Armor Tail, Aroma Veil, Aura Break, Battle Armor, Big Pecks, Bulletproof, Clear Body, Contrary, Damp, Dazzling, Disguise, Dry Skin, Earth Eater, Filter, Flash Fire, Flower Gift, Flower Veil, Fluffy, Friend Guard, Fur Coat, Good as Gold, Grass Pelt, Guard Dog, Heatproof, Heavy Metal, Hyper Cutter, Ice Face, Ice Scales, Illuminate, Immunity, Inner Focus, Insomnia, Keen Eye, Leaf Guard, Levitate, Light Metal, Lightning Rod, Limber, Magic Bounce, Magma Armor, Marvel Scale, Mind's Eye, Mirror Armor, Motor Drive, Multiscale, Oblivious, Overcoat, Own Tempo, Pastel Veil, Punk Rock, Purifying Salt, Queenly Majesty, Sand Veil, Sap Sipper, Shell Armor, Shield Dust, Simple, Snow Cloak, Solid Rock, Soundproof, Sticky Hold, Storm Drain, Sturdy, Suction Cups, Sweet Veil, Tangled Feet, Telepathy, Tera Shell, Thermal Exchange, Thick Fat, Unaware, Vital Spirit, Volt Absorb, Water Absorb, Water Bubble, Water Veil, Well-Baked Body, White Smoke, Wind Rider, Wonder Guard, and Wonder Skin. This affects every other Pokemon on the field, whether or not it is a target of this Pokemon's move, and whether or not their Ability is beneficial to this Pokemon.",
+          "shortEffect": "Sus movimientos ignoran habilidades defensivas del objetivo.",
+          "effect": "Los movimientos del usuario ignoran habilidades del objetivo que normalmente bloquearian, reducirian o alterarian el efecto del movimiento.",
           "isHidden": true
         }
       ],
@@ -3022,8 +3022,8 @@
         {
           "id": "mold-breaker",
           "name": "Rompemoldes",
-          "shortEffect": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
-          "effect": "This Pokemon's moves and their effects ignore certain Abilities of other Pokemon. The Abilities that can be negated are Armor Tail, Aroma Veil, Aura Break, Battle Armor, Big Pecks, Bulletproof, Clear Body, Contrary, Damp, Dazzling, Disguise, Dry Skin, Earth Eater, Filter, Flash Fire, Flower Gift, Flower Veil, Fluffy, Friend Guard, Fur Coat, Good as Gold, Grass Pelt, Guard Dog, Heatproof, Heavy Metal, Hyper Cutter, Ice Face, Ice Scales, Illuminate, Immunity, Inner Focus, Insomnia, Keen Eye, Leaf Guard, Levitate, Light Metal, Lightning Rod, Limber, Magic Bounce, Magma Armor, Marvel Scale, Mind's Eye, Mirror Armor, Motor Drive, Multiscale, Oblivious, Overcoat, Own Tempo, Pastel Veil, Punk Rock, Purifying Salt, Queenly Majesty, Sand Veil, Sap Sipper, Shell Armor, Shield Dust, Simple, Snow Cloak, Solid Rock, Soundproof, Sticky Hold, Storm Drain, Sturdy, Suction Cups, Sweet Veil, Tangled Feet, Telepathy, Tera Shell, Thermal Exchange, Thick Fat, Unaware, Vital Spirit, Volt Absorb, Water Absorb, Water Bubble, Water Veil, Well-Baked Body, White Smoke, Wind Rider, Wonder Guard, and Wonder Skin. This affects every other Pokemon on the field, whether or not it is a target of this Pokemon's move, and whether or not their Ability is beneficial to this Pokemon.",
+          "shortEffect": "Sus movimientos ignoran habilidades defensivas del objetivo.",
+          "effect": "Los movimientos del usuario ignoran habilidades del objetivo que normalmente bloquearian, reducirian o alterarian el efecto del movimiento.",
           "isHidden": true
         }
       ],
@@ -3093,9 +3093,9 @@
       "abilities": [
         {
           "id": "piercing-drill",
-          "name": "Piercing Drill",
-          "shortEffect": "Potencia los movimientos cortantes y de perforacion del usuario.",
-          "effect": "Potencia los movimientos cortantes y de perforacion del usuario.",
+          "name": "Turbotaladro",
+          "shortEffect": "Los movimientos de contacto pueden golpear a objetivos protegidos con 1/4 del dano.",
+          "effect": "Cuando el usuario usa movimientos de contacto, puede golpear incluso a objetivos que se estan protegiendo e inflige 1/4 del dano que haria normalmente.",
           "isHidden": false
         }
       ],
@@ -3146,7 +3146,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10287.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10287.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10287.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/excadrill-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/excadrill-mega.gif"
@@ -3172,8 +3172,8 @@
         {
           "id": "regenerator",
           "name": "Regeneración",
-          "shortEffect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
-          "effect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+          "shortEffect": "Recupera 1/3 de los PS maximos al retirarse.",
+          "effect": "Cuando el usuario abandona el combate, recupera 1/3 de sus PS maximos.",
           "isHidden": false
         },
         {
@@ -3322,8 +3322,8 @@
         {
           "id": "iron-fist",
           "name": "Puño Férreo",
-          "shortEffect": "This Pokemon's punch-based attacks have 1.2x power. Sucker Punch is not boosted.",
-          "effect": "This Pokemon's punch-based attacks have their power multiplied by 1.2.",
+          "shortEffect": "Potencia los movimientos de puno.",
+          "effect": "Los movimientos clasificados como golpes de puno del usuario infligen 1.2 veces su dano habitual.",
           "isHidden": true
         }
       ],
@@ -3407,8 +3407,8 @@
         {
           "id": "iron-fist",
           "name": "Puño Férreo",
-          "shortEffect": "This Pokemon's punch-based attacks have 1.2x power. Sucker Punch is not boosted.",
-          "effect": "This Pokemon's punch-based attacks have their power multiplied by 1.2.",
+          "shortEffect": "Potencia los movimientos de puno.",
+          "effect": "Los movimientos clasificados como golpes de puno del usuario infligen 1.2 veces su dano habitual.",
           "isHidden": true
         }
       ],
@@ -3492,8 +3492,8 @@
         {
           "id": "iron-fist",
           "name": "Puño Férreo",
-          "shortEffect": "This Pokemon's punch-based attacks have 1.2x power. Sucker Punch is not boosted.",
-          "effect": "This Pokemon's punch-based attacks have their power multiplied by 1.2.",
+          "shortEffect": "Potencia los movimientos de puno.",
+          "effect": "Los movimientos clasificados como golpes de puno del usuario infligen 1.2 veces su dano habitual.",
           "isHidden": true
         }
       ],
@@ -3831,8 +3831,8 @@
         {
           "id": "mold-breaker",
           "name": "Rompemoldes",
-          "shortEffect": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
-          "effect": "This Pokemon's moves and their effects ignore certain Abilities of other Pokemon. The Abilities that can be negated are Armor Tail, Aroma Veil, Aura Break, Battle Armor, Big Pecks, Bulletproof, Clear Body, Contrary, Damp, Dazzling, Disguise, Dry Skin, Earth Eater, Filter, Flash Fire, Flower Gift, Flower Veil, Fluffy, Friend Guard, Fur Coat, Good as Gold, Grass Pelt, Guard Dog, Heatproof, Heavy Metal, Hyper Cutter, Ice Face, Ice Scales, Illuminate, Immunity, Inner Focus, Insomnia, Keen Eye, Leaf Guard, Levitate, Light Metal, Lightning Rod, Limber, Magic Bounce, Magma Armor, Marvel Scale, Mind's Eye, Mirror Armor, Motor Drive, Multiscale, Oblivious, Overcoat, Own Tempo, Pastel Veil, Punk Rock, Purifying Salt, Queenly Majesty, Sand Veil, Sap Sipper, Shell Armor, Shield Dust, Simple, Snow Cloak, Solid Rock, Soundproof, Sticky Hold, Storm Drain, Sturdy, Suction Cups, Sweet Veil, Tangled Feet, Telepathy, Tera Shell, Thermal Exchange, Thick Fat, Unaware, Vital Spirit, Volt Absorb, Water Absorb, Water Bubble, Water Veil, Well-Baked Body, White Smoke, Wind Rider, Wonder Guard, and Wonder Skin. This affects every other Pokemon on the field, whether or not it is a target of this Pokemon's move, and whether or not their Ability is beneficial to this Pokemon.",
+          "shortEffect": "Sus movimientos ignoran habilidades defensivas del objetivo.",
+          "effect": "Los movimientos del usuario ignoran habilidades del objetivo que normalmente bloquearian, reducirian o alterarian el efecto del movimiento.",
           "isHidden": true
         }
       ],
@@ -3903,8 +3903,8 @@
         {
           "id": "mold-breaker",
           "name": "Rompemoldes",
-          "shortEffect": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
-          "effect": "This Pokemon's moves and their effects ignore certain Abilities of other Pokemon. The Abilities that can be negated are Armor Tail, Aroma Veil, Aura Break, Battle Armor, Big Pecks, Bulletproof, Clear Body, Contrary, Damp, Dazzling, Disguise, Dry Skin, Earth Eater, Filter, Flash Fire, Flower Gift, Flower Veil, Fluffy, Friend Guard, Fur Coat, Good as Gold, Grass Pelt, Guard Dog, Heatproof, Heavy Metal, Hyper Cutter, Ice Face, Ice Scales, Illuminate, Immunity, Inner Focus, Insomnia, Keen Eye, Leaf Guard, Levitate, Light Metal, Lightning Rod, Limber, Magic Bounce, Magma Armor, Marvel Scale, Mind's Eye, Mirror Armor, Motor Drive, Multiscale, Oblivious, Overcoat, Own Tempo, Pastel Veil, Punk Rock, Purifying Salt, Queenly Majesty, Sand Veil, Sap Sipper, Shell Armor, Shield Dust, Simple, Snow Cloak, Solid Rock, Soundproof, Sticky Hold, Storm Drain, Sturdy, Suction Cups, Sweet Veil, Tangled Feet, Telepathy, Tera Shell, Thermal Exchange, Thick Fat, Unaware, Vital Spirit, Volt Absorb, Water Absorb, Water Bubble, Water Veil, Well-Baked Body, White Smoke, Wind Rider, Wonder Guard, and Wonder Skin. This affects every other Pokemon on the field, whether or not it is a target of this Pokemon's move, and whether or not their Ability is beneficial to this Pokemon.",
+          "shortEffect": "Sus movimientos ignoran habilidades defensivas del objetivo.",
+          "effect": "Los movimientos del usuario ignoran habilidades del objetivo que normalmente bloquearian, reducirian o alterarian el efecto del movimiento.",
           "isHidden": true
         }
       ],
@@ -4488,25 +4488,11 @@
       ],
       "abilities": [
         {
-          "id": "poison-point",
-          "name": "Punto Tóxico",
-          "shortEffect": "30% chance a Pokemon making contact with this Pokemon will be poisoned.",
-          "effect": "30% chance a Pokemon making contact with this Pokemon will be poisoned.",
+          "id": "shell-armor",
+          "name": "Caparazón",
+          "shortEffect": "Evita recibir golpes criticos.",
+          "effect": "El caparazon del usuario evita que reciba golpes criticos.",
           "isHidden": false
-        },
-        {
-          "id": "swarm",
-          "name": "Enjambre",
-          "shortEffect": "Potencia los movimientos de tipo Bicho cuando le quedan pocos PS.",
-          "effect": "Cuando este Pokemon tiene 1/3 o menos de sus PS maximos, sus movimientos de tipo Bicho infligen 1.5 veces su dano habitual.",
-          "isHidden": false
-        },
-        {
-          "id": "speed-boost",
-          "name": "Impulso",
-          "shortEffect": "This Pokemon's Speed is raised 1 stage at the end of each full turn on the field.",
-          "effect": "This Pokemon's Speed is raised by 1 stage at the end of each full turn it has been on the field.",
-          "isHidden": true
         }
       ],
       "stats": {
@@ -4561,7 +4547,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10288.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10288.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10288.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/scolipede-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/scolipede-mega.gif"
@@ -5012,8 +4998,8 @@
         {
           "id": "mold-breaker",
           "name": "Rompemoldes",
-          "shortEffect": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
-          "effect": "This Pokemon's moves and their effects ignore certain Abilities of other Pokemon. The Abilities that can be negated are Armor Tail, Aroma Veil, Aura Break, Battle Armor, Big Pecks, Bulletproof, Clear Body, Contrary, Damp, Dazzling, Disguise, Dry Skin, Earth Eater, Filter, Flash Fire, Flower Gift, Flower Veil, Fluffy, Friend Guard, Fur Coat, Good as Gold, Grass Pelt, Guard Dog, Heatproof, Heavy Metal, Hyper Cutter, Ice Face, Ice Scales, Illuminate, Immunity, Inner Focus, Insomnia, Keen Eye, Leaf Guard, Levitate, Light Metal, Lightning Rod, Limber, Magic Bounce, Magma Armor, Marvel Scale, Mind's Eye, Mirror Armor, Motor Drive, Multiscale, Oblivious, Overcoat, Own Tempo, Pastel Veil, Punk Rock, Purifying Salt, Queenly Majesty, Sand Veil, Sap Sipper, Shell Armor, Shield Dust, Simple, Snow Cloak, Solid Rock, Soundproof, Sticky Hold, Storm Drain, Sturdy, Suction Cups, Sweet Veil, Tangled Feet, Telepathy, Tera Shell, Thermal Exchange, Thick Fat, Unaware, Vital Spirit, Volt Absorb, Water Absorb, Water Bubble, Water Veil, Well-Baked Body, White Smoke, Wind Rider, Wonder Guard, and Wonder Skin. This affects every other Pokemon on the field, whether or not it is a target of this Pokemon's move, and whether or not their Ability is beneficial to this Pokemon.",
+          "shortEffect": "Sus movimientos ignoran habilidades defensivas del objetivo.",
+          "effect": "Los movimientos del usuario ignoran habilidades del objetivo que normalmente bloquearian, reducirian o alterarian el efecto del movimiento.",
           "isHidden": true
         }
       ],
@@ -5108,8 +5094,8 @@
         {
           "id": "mold-breaker",
           "name": "Rompemoldes",
-          "shortEffect": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
-          "effect": "This Pokemon's moves and their effects ignore certain Abilities of other Pokemon. The Abilities that can be negated are Armor Tail, Aroma Veil, Aura Break, Battle Armor, Big Pecks, Bulletproof, Clear Body, Contrary, Damp, Dazzling, Disguise, Dry Skin, Earth Eater, Filter, Flash Fire, Flower Gift, Flower Veil, Fluffy, Friend Guard, Fur Coat, Good as Gold, Grass Pelt, Guard Dog, Heatproof, Heavy Metal, Hyper Cutter, Ice Face, Ice Scales, Illuminate, Immunity, Inner Focus, Insomnia, Keen Eye, Leaf Guard, Levitate, Light Metal, Lightning Rod, Limber, Magic Bounce, Magma Armor, Marvel Scale, Mind's Eye, Mirror Armor, Motor Drive, Multiscale, Oblivious, Overcoat, Own Tempo, Pastel Veil, Punk Rock, Purifying Salt, Queenly Majesty, Sand Veil, Sap Sipper, Shell Armor, Shield Dust, Simple, Snow Cloak, Solid Rock, Soundproof, Sticky Hold, Storm Drain, Sturdy, Suction Cups, Sweet Veil, Tangled Feet, Telepathy, Tera Shell, Thermal Exchange, Thick Fat, Unaware, Vital Spirit, Volt Absorb, Water Absorb, Water Bubble, Water Veil, Well-Baked Body, White Smoke, Wind Rider, Wonder Guard, and Wonder Skin. This affects every other Pokemon on the field, whether or not it is a target of this Pokemon's move, and whether or not their Ability is beneficial to this Pokemon.",
+          "shortEffect": "Sus movimientos ignoran habilidades defensivas del objetivo.",
+          "effect": "Los movimientos del usuario ignoran habilidades del objetivo que normalmente bloquearian, reducirian o alterarian el efecto del movimiento.",
           "isHidden": true
         }
       ],
@@ -5204,8 +5190,8 @@
         {
           "id": "mold-breaker",
           "name": "Rompemoldes",
-          "shortEffect": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
-          "effect": "This Pokemon's moves and their effects ignore certain Abilities of other Pokemon. The Abilities that can be negated are Armor Tail, Aroma Veil, Aura Break, Battle Armor, Big Pecks, Bulletproof, Clear Body, Contrary, Damp, Dazzling, Disguise, Dry Skin, Earth Eater, Filter, Flash Fire, Flower Gift, Flower Veil, Fluffy, Friend Guard, Fur Coat, Good as Gold, Grass Pelt, Guard Dog, Heatproof, Heavy Metal, Hyper Cutter, Ice Face, Ice Scales, Illuminate, Immunity, Inner Focus, Insomnia, Keen Eye, Leaf Guard, Levitate, Light Metal, Lightning Rod, Limber, Magic Bounce, Magma Armor, Marvel Scale, Mind's Eye, Mirror Armor, Motor Drive, Multiscale, Oblivious, Overcoat, Own Tempo, Pastel Veil, Punk Rock, Purifying Salt, Queenly Majesty, Sand Veil, Sap Sipper, Shell Armor, Shield Dust, Simple, Snow Cloak, Solid Rock, Soundproof, Sticky Hold, Storm Drain, Sturdy, Suction Cups, Sweet Veil, Tangled Feet, Telepathy, Tera Shell, Thermal Exchange, Thick Fat, Unaware, Vital Spirit, Volt Absorb, Water Absorb, Water Bubble, Water Veil, Well-Baked Body, White Smoke, Wind Rider, Wonder Guard, and Wonder Skin. This affects every other Pokemon on the field, whether or not it is a target of this Pokemon's move, and whether or not their Ability is beneficial to this Pokemon.",
+          "shortEffect": "Sus movimientos ignoran habilidades defensivas del objetivo.",
+          "effect": "Los movimientos del usuario ignoran habilidades del objetivo que normalmente bloquearian, reducirian o alterarian el efecto del movimiento.",
           "isHidden": true
         }
       ],
@@ -6531,25 +6517,11 @@
       ],
       "abilities": [
         {
-          "id": "shed-skin",
-          "name": "Mudar",
-          "shortEffect": "This Pokemon has a 33% chance to have its status cured at the end of each turn.",
-          "effect": "This Pokemon has a 33% chance to have its non-volatile status condition cured at the end of each turn.",
-          "isHidden": false
-        },
-        {
-          "id": "moxie",
-          "name": "Autoestima",
-          "shortEffect": "Sube un nivel el Ataque tras debilitar a un Pokemon rival.",
-          "effect": "Cada vez que el usuario debilita a un Pokemon, su Ataque aumenta un nivel.",
-          "isHidden": false
-        },
-        {
           "id": "intimidate",
           "name": "Intimidación",
           "shortEffect": "Al entrar en combate, baja un nivel el Ataque de los rivales adyacentes.",
           "effect": "Cuando entra en combate, intimida a los rivales adyacentes y reduce su Ataque en un nivel.",
-          "isHidden": true
+          "isHidden": false
         }
       ],
       "stats": {
@@ -6600,7 +6572,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10289.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10289.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10289.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/scrafty-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/scrafty-mega.gif"
@@ -8199,8 +8171,8 @@
         {
           "id": "regenerator",
           "name": "Regeneración",
-          "shortEffect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
-          "effect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+          "shortEffect": "Recupera 1/3 de los PS maximos al retirarse.",
+          "effect": "Cuando el usuario abandona el combate, recupera 1/3 de sus PS maximos.",
           "isHidden": true
         }
       ],
@@ -8284,8 +8256,8 @@
         {
           "id": "regenerator",
           "name": "Regeneración",
-          "shortEffect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
-          "effect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+          "shortEffect": "Recupera 1/3 de los PS maximos al retirarse.",
+          "effect": "Cuando el usuario abandona el combate, recupera 1/3 de sus PS maximos.",
           "isHidden": true
         }
       ],
@@ -8369,8 +8341,8 @@
         {
           "id": "regenerator",
           "name": "Regeneración",
-          "shortEffect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
-          "effect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+          "shortEffect": "Recupera 1/3 de los PS maximos al retirarse.",
+          "effect": "Cuando el usuario abandona el combate, recupera 1/3 de sus PS maximos.",
           "isHidden": true
         }
       ],
@@ -8775,8 +8747,8 @@
         {
           "id": "snow-warning",
           "name": "Nevada",
-          "shortEffect": "On switch-in, this Pokemon summons Snow.",
-          "effect": "On switch-in, this Pokemon summons Snow.",
+          "shortEffect": "Invoca nieve al entrar en combate.",
+          "effect": "Al entrar en combate, el usuario hace que empiece a nevar.",
           "isHidden": false
         },
         {
@@ -9090,8 +9062,8 @@
         {
           "id": "no-guard",
           "name": "Indefenso",
-          "shortEffect": "Every move used by or against this Pokemon will always hit.",
-          "effect": "Every move used by or against this Pokemon will always hit.",
+          "shortEffect": "Todos los movimientos usados por o contra este Pokemon aciertan.",
+          "effect": "Los movimientos usados por este Pokemon y los movimientos dirigidos contra el siempre aciertan, salvo inmunidades u otras restricciones del movimiento.",
           "isHidden": true
         }
       ],
@@ -9241,8 +9213,8 @@
         {
           "id": "regenerator",
           "name": "Regeneración",
-          "shortEffect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
-          "effect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+          "shortEffect": "Recupera 1/3 de los PS maximos al retirarse.",
+          "effect": "Cuando el usuario abandona el combate, recupera 1/3 de sus PS maximos.",
           "isHidden": true
         }
       ],
@@ -9314,8 +9286,8 @@
         {
           "id": "regenerator",
           "name": "Regeneración",
-          "shortEffect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
-          "effect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+          "shortEffect": "Recupera 1/3 de los PS maximos al retirarse.",
+          "effect": "Cuando el usuario abandona el combate, recupera 1/3 de sus PS maximos.",
           "isHidden": true
         }
       ],
@@ -9551,8 +9523,8 @@
         {
           "id": "regenerator",
           "name": "Regeneración",
-          "shortEffect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
-          "effect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+          "shortEffect": "Recupera 1/3 de los PS maximos al retirarse.",
+          "effect": "Cuando el usuario abandona el combate, recupera 1/3 de sus PS maximos.",
           "isHidden": true
         }
       ],
@@ -10387,10 +10359,10 @@
       ],
       "abilities": [
         {
-          "id": "levitate",
-          "name": "Levitación",
-          "shortEffect": "Da inmunidad a los movimientos de tipo Tierra.",
-          "effect": "El usuario es inmune a los movimientos de tipo Tierra gracias a que levita.",
+          "id": "eelevate",
+          "name": "Eelevate",
+          "shortEffect": "Da inmunidad a Tierra y sube su estadistica mas alta al debilitar a un objetivo.",
+          "effect": "El usuario flota y es inmune a movimientos de tipo Tierra, Puas, Puas Toxicas y Red Viscosa. Cuando debilita a un objetivo con un ataque, su estadistica mas alta sube un nivel.",
           "isHidden": false
         }
       ],
@@ -10446,7 +10418,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10290.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10290.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10290.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/eelektross-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/eelektross-mega.gif"
@@ -10956,7 +10928,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10291.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10291.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10291.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/chandelure-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/chandelure-mega.gif"
@@ -10982,8 +10954,8 @@
         {
           "id": "mold-breaker",
           "name": "Rompemoldes",
-          "shortEffect": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
-          "effect": "This Pokemon's moves and their effects ignore certain Abilities of other Pokemon. The Abilities that can be negated are Armor Tail, Aroma Veil, Aura Break, Battle Armor, Big Pecks, Bulletproof, Clear Body, Contrary, Damp, Dazzling, Disguise, Dry Skin, Earth Eater, Filter, Flash Fire, Flower Gift, Flower Veil, Fluffy, Friend Guard, Fur Coat, Good as Gold, Grass Pelt, Guard Dog, Heatproof, Heavy Metal, Hyper Cutter, Ice Face, Ice Scales, Illuminate, Immunity, Inner Focus, Insomnia, Keen Eye, Leaf Guard, Levitate, Light Metal, Lightning Rod, Limber, Magic Bounce, Magma Armor, Marvel Scale, Mind's Eye, Mirror Armor, Motor Drive, Multiscale, Oblivious, Overcoat, Own Tempo, Pastel Veil, Punk Rock, Purifying Salt, Queenly Majesty, Sand Veil, Sap Sipper, Shell Armor, Shield Dust, Simple, Snow Cloak, Solid Rock, Soundproof, Sticky Hold, Storm Drain, Sturdy, Suction Cups, Sweet Veil, Tangled Feet, Telepathy, Tera Shell, Thermal Exchange, Thick Fat, Unaware, Vital Spirit, Volt Absorb, Water Absorb, Water Bubble, Water Veil, Well-Baked Body, White Smoke, Wind Rider, Wonder Guard, and Wonder Skin. This affects every other Pokemon on the field, whether or not it is a target of this Pokemon's move, and whether or not their Ability is beneficial to this Pokemon.",
+          "shortEffect": "Sus movimientos ignoran habilidades defensivas del objetivo.",
+          "effect": "Los movimientos del usuario ignoran habilidades del objetivo que normalmente bloquearian, reducirian o alterarian el efecto del movimiento.",
           "isHidden": false
         },
         {
@@ -11068,8 +11040,8 @@
         {
           "id": "mold-breaker",
           "name": "Rompemoldes",
-          "shortEffect": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
-          "effect": "This Pokemon's moves and their effects ignore certain Abilities of other Pokemon. The Abilities that can be negated are Armor Tail, Aroma Veil, Aura Break, Battle Armor, Big Pecks, Bulletproof, Clear Body, Contrary, Damp, Dazzling, Disguise, Dry Skin, Earth Eater, Filter, Flash Fire, Flower Gift, Flower Veil, Fluffy, Friend Guard, Fur Coat, Good as Gold, Grass Pelt, Guard Dog, Heatproof, Heavy Metal, Hyper Cutter, Ice Face, Ice Scales, Illuminate, Immunity, Inner Focus, Insomnia, Keen Eye, Leaf Guard, Levitate, Light Metal, Lightning Rod, Limber, Magic Bounce, Magma Armor, Marvel Scale, Mind's Eye, Mirror Armor, Motor Drive, Multiscale, Oblivious, Overcoat, Own Tempo, Pastel Veil, Punk Rock, Purifying Salt, Queenly Majesty, Sand Veil, Sap Sipper, Shell Armor, Shield Dust, Simple, Snow Cloak, Solid Rock, Soundproof, Sticky Hold, Storm Drain, Sturdy, Suction Cups, Sweet Veil, Tangled Feet, Telepathy, Tera Shell, Thermal Exchange, Thick Fat, Unaware, Vital Spirit, Volt Absorb, Water Absorb, Water Bubble, Water Veil, Well-Baked Body, White Smoke, Wind Rider, Wonder Guard, and Wonder Skin. This affects every other Pokemon on the field, whether or not it is a target of this Pokemon's move, and whether or not their Ability is beneficial to this Pokemon.",
+          "shortEffect": "Sus movimientos ignoran habilidades defensivas del objetivo.",
+          "effect": "Los movimientos del usuario ignoran habilidades del objetivo que normalmente bloquearian, reducirian o alterarian el efecto del movimiento.",
           "isHidden": false
         },
         {
@@ -11154,8 +11126,8 @@
         {
           "id": "mold-breaker",
           "name": "Rompemoldes",
-          "shortEffect": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
-          "effect": "This Pokemon's moves and their effects ignore certain Abilities of other Pokemon. The Abilities that can be negated are Armor Tail, Aroma Veil, Aura Break, Battle Armor, Big Pecks, Bulletproof, Clear Body, Contrary, Damp, Dazzling, Disguise, Dry Skin, Earth Eater, Filter, Flash Fire, Flower Gift, Flower Veil, Fluffy, Friend Guard, Fur Coat, Good as Gold, Grass Pelt, Guard Dog, Heatproof, Heavy Metal, Hyper Cutter, Ice Face, Ice Scales, Illuminate, Immunity, Inner Focus, Insomnia, Keen Eye, Leaf Guard, Levitate, Light Metal, Lightning Rod, Limber, Magic Bounce, Magma Armor, Marvel Scale, Mind's Eye, Mirror Armor, Motor Drive, Multiscale, Oblivious, Overcoat, Own Tempo, Pastel Veil, Punk Rock, Purifying Salt, Queenly Majesty, Sand Veil, Sap Sipper, Shell Armor, Shield Dust, Simple, Snow Cloak, Solid Rock, Soundproof, Sticky Hold, Storm Drain, Sturdy, Suction Cups, Sweet Veil, Tangled Feet, Telepathy, Tera Shell, Thermal Exchange, Thick Fat, Unaware, Vital Spirit, Volt Absorb, Water Absorb, Water Bubble, Water Veil, Well-Baked Body, White Smoke, Wind Rider, Wonder Guard, and Wonder Skin. This affects every other Pokemon on the field, whether or not it is a target of this Pokemon's move, and whether or not their Ability is beneficial to this Pokemon.",
+          "shortEffect": "Sus movimientos ignoran habilidades defensivas del objetivo.",
+          "effect": "Los movimientos del usuario ignoran habilidades del objetivo que normalmente bloquearian, reducirian o alterarian el efecto del movimiento.",
           "isHidden": false
         },
         {
@@ -11759,8 +11731,8 @@
         {
           "id": "regenerator",
           "name": "Regeneración",
-          "shortEffect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
-          "effect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+          "shortEffect": "Recupera 1/3 de los PS maximos al retirarse.",
+          "effect": "Cuando el usuario abandona el combate, recupera 1/3 de sus PS maximos.",
           "isHidden": false
         },
         {
@@ -11839,8 +11811,8 @@
         {
           "id": "regenerator",
           "name": "Regeneración",
-          "shortEffect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
-          "effect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+          "shortEffect": "Recupera 1/3 de los PS maximos al retirarse.",
+          "effect": "Cuando el usuario abandona el combate, recupera 1/3 de sus PS maximos.",
           "isHidden": false
         },
         {
@@ -11926,8 +11898,8 @@
         {
           "id": "mold-breaker",
           "name": "Rompemoldes",
-          "shortEffect": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
-          "effect": "This Pokemon's moves and their effects ignore certain Abilities of other Pokemon. The Abilities that can be negated are Armor Tail, Aroma Veil, Aura Break, Battle Armor, Big Pecks, Bulletproof, Clear Body, Contrary, Damp, Dazzling, Disguise, Dry Skin, Earth Eater, Filter, Flash Fire, Flower Gift, Flower Veil, Fluffy, Friend Guard, Fur Coat, Good as Gold, Grass Pelt, Guard Dog, Heatproof, Heavy Metal, Hyper Cutter, Ice Face, Ice Scales, Illuminate, Immunity, Inner Focus, Insomnia, Keen Eye, Leaf Guard, Levitate, Light Metal, Lightning Rod, Limber, Magic Bounce, Magma Armor, Marvel Scale, Mind's Eye, Mirror Armor, Motor Drive, Multiscale, Oblivious, Overcoat, Own Tempo, Pastel Veil, Punk Rock, Purifying Salt, Queenly Majesty, Sand Veil, Sap Sipper, Shell Armor, Shield Dust, Simple, Snow Cloak, Solid Rock, Soundproof, Sticky Hold, Storm Drain, Sturdy, Suction Cups, Sweet Veil, Tangled Feet, Telepathy, Tera Shell, Thermal Exchange, Thick Fat, Unaware, Vital Spirit, Volt Absorb, Water Absorb, Water Bubble, Water Veil, Well-Baked Body, White Smoke, Wind Rider, Wonder Guard, and Wonder Skin. This affects every other Pokemon on the field, whether or not it is a target of this Pokemon's move, and whether or not their Ability is beneficial to this Pokemon.",
+          "shortEffect": "Sus movimientos ignoran habilidades defensivas del objetivo.",
+          "effect": "Los movimientos del usuario ignoran habilidades del objetivo que normalmente bloquearian, reducirian o alterarian el efecto del movimiento.",
           "isHidden": true
         }
       ],
@@ -11986,8 +11958,8 @@
         {
           "id": "iron-fist",
           "name": "Puño Férreo",
-          "shortEffect": "This Pokemon's punch-based attacks have 1.2x power. Sucker Punch is not boosted.",
-          "effect": "This Pokemon's punch-based attacks have their power multiplied by 1.2.",
+          "shortEffect": "Potencia los movimientos de puno.",
+          "effect": "Los movimientos clasificados como golpes de puno del usuario infligen 1.2 veces su dano habitual.",
           "isHidden": false
         },
         {
@@ -12000,8 +11972,8 @@
         {
           "id": "no-guard",
           "name": "Indefenso",
-          "shortEffect": "Every move used by or against this Pokemon will always hit.",
-          "effect": "Every move used by or against this Pokemon will always hit.",
+          "shortEffect": "Todos los movimientos usados por o contra este Pokemon aciertan.",
+          "effect": "Los movimientos usados por este Pokemon y los movimientos dirigidos contra el siempre aciertan, salvo inmunidades u otras restricciones del movimiento.",
           "isHidden": true
         }
       ],
@@ -12072,8 +12044,8 @@
         {
           "id": "iron-fist",
           "name": "Puño Férreo",
-          "shortEffect": "This Pokemon's punch-based attacks have 1.2x power. Sucker Punch is not boosted.",
-          "effect": "This Pokemon's punch-based attacks have their power multiplied by 1.2.",
+          "shortEffect": "Potencia los movimientos de puno.",
+          "effect": "Los movimientos clasificados como golpes de puno del usuario infligen 1.2 veces su dano habitual.",
           "isHidden": false
         },
         {
@@ -12086,8 +12058,8 @@
         {
           "id": "no-guard",
           "name": "Indefenso",
-          "shortEffect": "Every move used by or against this Pokemon will always hit.",
-          "effect": "Every move used by or against this Pokemon will always hit.",
+          "shortEffect": "Todos los movimientos usados por o contra este Pokemon aciertan.",
+          "effect": "Los movimientos usados por este Pokemon y los movimientos dirigidos contra el siempre aciertan, salvo inmunidades u otras restricciones del movimiento.",
           "isHidden": true
         }
       ],
@@ -12158,8 +12130,8 @@
         {
           "id": "unseen-fist",
           "name": "Puño Invisible",
-          "shortEffect": "This Pokemon's contact moves ignore the target's protection, except Max Guard.",
-          "effect": "This Pokemon's contact moves ignore the target's protection, except Max Guard.",
+          "shortEffect": "Los movimientos de contacto atraviesan protecciones, pero solo hacen 25% del dano.",
+          "effect": "Los movimientos de contacto del usuario golpean al objetivo aunque este usando movimientos de proteccion como Proteccion o Deteccion, pero el dano se reduce al 25% de lo que harian normalmente.",
           "isHidden": false
         }
       ],
@@ -12210,7 +12182,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10313.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10313.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10313.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/golurk-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/golurk-mega.gif"
@@ -13644,8 +13616,8 @@
         {
           "id": "regenerator",
           "name": "Regeneración",
-          "shortEffect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
-          "effect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+          "shortEffect": "Recupera 1/3 de los PS maximos al retirarse.",
+          "effect": "Cuando el usuario abandona el combate, recupera 1/3 de sus PS maximos.",
           "isHidden": false
         }
       ],

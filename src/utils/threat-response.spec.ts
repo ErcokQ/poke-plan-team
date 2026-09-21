@@ -1,10 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import type { MoveEntry, PokemonEntry, Team, TeamMember } from '@/models/domain'
 import type { ThreatProfile } from '@/models/threats'
-import {
-  evaluateThreatAgainstTeam,
-  threatStatusFromCounts,
-} from '@/utils/threat-response'
+import { evaluateThreatAgainstTeam, getThreatProfiles, threatStatusFromCounts } from '@/utils/threat-response'
 
 function createMember(slot: TeamMember['slot'], pokemonId: string, moves: string[]): TeamMember {
   return {
@@ -13,7 +10,7 @@ function createMember(slot: TeamMember['slot'], pokemonId: string, moves: string
     abilityId: '',
     itemId: '',
     natureId: 'jolly',
-    evs: { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 252 },
+    evs: { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 32 },
     ivs: { hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31 },
     moves: [moves[0] ?? '', moves[1] ?? '', moves[2] ?? '', moves[3] ?? ''],
     roleTags: [],
@@ -127,6 +124,17 @@ const dexResolver = (pokemonId: string) => dexById[pokemonId]
 const moveResolver = (moveId: string) => movesById[moveId]
 
 describe('threat-response', () => {
+  it('uses the current M-C usage snapshot for VGC threat profiles', () => {
+    const profiles = getThreatProfiles('vgc')
+    expect(profiles).toHaveLength(12)
+    expect(profiles.slice(0, 3).map((entry) => entry.pokemonId)).toEqual([
+      'rillaboom',
+      'sneasler',
+      'incineroar',
+    ])
+    expect(profiles.some((entry) => entry.pokemonId === 'calyrex-ice')).toBe(false)
+  })
+
   it('returns good status when a threat has 2 solid answers', () => {
     const team = createTeam([
       createMember(1, 'aqua-one', ['water-blast']),

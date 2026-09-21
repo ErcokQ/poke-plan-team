@@ -2,7 +2,7 @@
   "version": "v1",
   "locale": "es",
   "generationId": 4,
-  "generatedAt": "2026-04-17T18:43:31.043Z",
+  "generatedAt": "2026-06-17T06:49:17.718Z",
   "profiles": [
     {
       "id": "turtwig",
@@ -259,8 +259,8 @@
         {
           "id": "iron-fist",
           "name": "Puño Férreo",
-          "shortEffect": "This Pokemon's punch-based attacks have 1.2x power. Sucker Punch is not boosted.",
-          "effect": "This Pokemon's punch-based attacks have their power multiplied by 1.2.",
+          "shortEffect": "Potencia los movimientos de puno.",
+          "effect": "Los movimientos clasificados como golpes de puno del usuario infligen 1.2 veces su dano habitual.",
           "isHidden": true
         }
       ],
@@ -338,8 +338,8 @@
         {
           "id": "iron-fist",
           "name": "Puño Férreo",
-          "shortEffect": "This Pokemon's punch-based attacks have 1.2x power. Sucker Punch is not boosted.",
-          "effect": "This Pokemon's punch-based attacks have their power multiplied by 1.2.",
+          "shortEffect": "Potencia los movimientos de puno.",
+          "effect": "Los movimientos clasificados como golpes de puno del usuario infligen 1.2 veces su dano habitual.",
           "isHidden": true
         }
       ],
@@ -417,8 +417,8 @@
         {
           "id": "iron-fist",
           "name": "Puño Férreo",
-          "shortEffect": "This Pokemon's punch-based attacks have 1.2x power. Sucker Punch is not boosted.",
-          "effect": "This Pokemon's punch-based attacks have their power multiplied by 1.2.",
+          "shortEffect": "Potencia los movimientos de puno.",
+          "effect": "Los movimientos clasificados como golpes de puno del usuario infligen 1.2 veces su dano habitual.",
           "isHidden": true
         }
       ],
@@ -974,18 +974,11 @@
       ],
       "abilities": [
         {
-          "id": "intimidate",
-          "name": "Intimidación",
-          "shortEffect": "Al entrar en combate, baja un nivel el Ataque de los rivales adyacentes.",
-          "effect": "Cuando entra en combate, intimida a los rivales adyacentes y reduce su Ataque en un nivel.",
+          "id": "contrary",
+          "name": "Respondón",
+          "shortEffect": "Invierte las subidas y bajadas de estadisticas.",
+          "effect": "Todos los cambios de estadisticas se invierten: las subidas pasan a ser bajadas y viceversa.",
           "isHidden": false
-        },
-        {
-          "id": "reckless",
-          "name": "Audaz",
-          "shortEffect": "Potencia 1.2x los movimientos que causan recoil o dano de retroceso.",
-          "effect": "Los movimientos con recoil o dano de retroceso del usuario infligen 1.2 veces su dano habitual.",
-          "isHidden": true
         }
       ],
       "stats": {
@@ -1040,7 +1033,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10308.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10308.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10308.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/staraptor-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/staraptor-mega.gif"
@@ -1782,8 +1775,8 @@
         {
           "id": "mold-breaker",
           "name": "Rompemoldes",
-          "shortEffect": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
-          "effect": "This Pokemon's moves and their effects ignore certain Abilities of other Pokemon. The Abilities that can be negated are Armor Tail, Aroma Veil, Aura Break, Battle Armor, Big Pecks, Bulletproof, Clear Body, Contrary, Damp, Dazzling, Disguise, Dry Skin, Earth Eater, Filter, Flash Fire, Flower Gift, Flower Veil, Fluffy, Friend Guard, Fur Coat, Good as Gold, Grass Pelt, Guard Dog, Heatproof, Heavy Metal, Hyper Cutter, Ice Face, Ice Scales, Illuminate, Immunity, Inner Focus, Insomnia, Keen Eye, Leaf Guard, Levitate, Light Metal, Lightning Rod, Limber, Magic Bounce, Magma Armor, Marvel Scale, Mind's Eye, Mirror Armor, Motor Drive, Multiscale, Oblivious, Overcoat, Own Tempo, Pastel Veil, Punk Rock, Purifying Salt, Queenly Majesty, Sand Veil, Sap Sipper, Shell Armor, Shield Dust, Simple, Snow Cloak, Solid Rock, Soundproof, Sticky Hold, Storm Drain, Sturdy, Suction Cups, Sweet Veil, Tangled Feet, Telepathy, Tera Shell, Thermal Exchange, Thick Fat, Unaware, Vital Spirit, Volt Absorb, Water Absorb, Water Bubble, Water Veil, Well-Baked Body, White Smoke, Wind Rider, Wonder Guard, and Wonder Skin. This affects every other Pokemon on the field, whether or not it is a target of this Pokemon's move, and whether or not their Ability is beneficial to this Pokemon.",
+          "shortEffect": "Sus movimientos ignoran habilidades defensivas del objetivo.",
+          "effect": "Los movimientos del usuario ignoran habilidades del objetivo que normalmente bloquearian, reducirian o alterarian el efecto del movimiento.",
           "isHidden": false
         },
         {
@@ -1853,8 +1846,8 @@
         {
           "id": "mold-breaker",
           "name": "Rompemoldes",
-          "shortEffect": "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
-          "effect": "This Pokemon's moves and their effects ignore certain Abilities of other Pokemon. The Abilities that can be negated are Armor Tail, Aroma Veil, Aura Break, Battle Armor, Big Pecks, Bulletproof, Clear Body, Contrary, Damp, Dazzling, Disguise, Dry Skin, Earth Eater, Filter, Flash Fire, Flower Gift, Flower Veil, Fluffy, Friend Guard, Fur Coat, Good as Gold, Grass Pelt, Guard Dog, Heatproof, Heavy Metal, Hyper Cutter, Ice Face, Ice Scales, Illuminate, Immunity, Inner Focus, Insomnia, Keen Eye, Leaf Guard, Levitate, Light Metal, Lightning Rod, Limber, Magic Bounce, Magma Armor, Marvel Scale, Mind's Eye, Mirror Armor, Motor Drive, Multiscale, Oblivious, Overcoat, Own Tempo, Pastel Veil, Punk Rock, Purifying Salt, Queenly Majesty, Sand Veil, Sap Sipper, Shell Armor, Shield Dust, Simple, Snow Cloak, Solid Rock, Soundproof, Sticky Hold, Storm Drain, Sturdy, Suction Cups, Sweet Veil, Tangled Feet, Telepathy, Tera Shell, Thermal Exchange, Thick Fat, Unaware, Vital Spirit, Volt Absorb, Water Absorb, Water Bubble, Water Veil, Well-Baked Body, White Smoke, Wind Rider, Wonder Guard, and Wonder Skin. This affects every other Pokemon on the field, whether or not it is a target of this Pokemon's move, and whether or not their Ability is beneficial to this Pokemon.",
+          "shortEffect": "Sus movimientos ignoran habilidades defensivas del objetivo.",
+          "effect": "Los movimientos del usuario ignoran habilidades del objetivo que normalmente bloquearian, reducirian o alterarian el efecto del movimiento.",
           "isHidden": false
         },
         {
@@ -5069,10 +5062,10 @@
       ],
       "abilities": [
         {
-          "id": "sand-force",
-          "name": "Poder Arena",
-          "shortEffect": "This Pokemon's Ground/Rock/Steel attacks do 1.3x in Sandstorm; immunity to it.",
-          "effect": "If Sandstorm is active, this Pokemon's Ground-, Rock-, and Steel-type attacks have their power multiplied by 1.3. This Pokemon takes no damage from Sandstorm.",
+          "id": "levitate",
+          "name": "Levitación",
+          "shortEffect": "Da inmunidad a los movimientos de tipo Tierra.",
+          "effect": "El usuario es inmune a los movimientos de tipo Tierra gracias a que levita.",
           "isHidden": false
         }
       ],
@@ -5095,7 +5088,8 @@
       "generationId": 4,
       "gameAvailability": [
         "scarlet-violet",
-        "sword-shield"
+        "sword-shield",
+        "pokemon-champions"
       ],
       "eggGroups": [
         "Monster",
@@ -5135,7 +5129,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10309.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10309.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10309.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/garchomp-mega-z.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/garchomp-mega-z.gif"
@@ -5498,10 +5492,10 @@
       ],
       "abilities": [
         {
-          "id": "adaptability",
-          "name": "Adaptable",
-          "shortEffect": "Aumenta el bonus de STAB de 1.5x a 2x.",
-          "effect": "Los movimientos del mismo tipo que el usuario pasan de recibir un bonus de dano de 1.5x a 2x.",
+          "id": "aura-guard",
+          "name": "Aura Guard",
+          "shortEffect": "Reduce un 50% el dano recibido de movimientos de contacto.",
+          "effect": "Reduce a la mitad el dano recibido de movimientos que hacen contacto.",
           "isHidden": false
         }
       ],
@@ -5524,7 +5518,8 @@
       "generationId": 4,
       "gameAvailability": [
         "scarlet-violet",
-        "sword-shield"
+        "sword-shield",
+        "pokemon-champions"
       ],
       "eggGroups": [
         "Ground",
@@ -5558,7 +5553,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10310.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10310.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10310.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/lucario-mega-z.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/lucario-mega-z.gif"
@@ -6333,8 +6328,8 @@
         {
           "id": "snow-warning",
           "name": "Nevada",
-          "shortEffect": "On switch-in, this Pokemon summons Snow.",
-          "effect": "On switch-in, this Pokemon summons Snow.",
+          "shortEffect": "Invoca nieve al entrar en combate.",
+          "effect": "Al entrar en combate, el usuario hace que empiece a nevar.",
           "isHidden": false
         },
         {
@@ -6413,8 +6408,8 @@
         {
           "id": "snow-warning",
           "name": "Nevada",
-          "shortEffect": "On switch-in, this Pokemon summons Snow.",
-          "effect": "On switch-in, this Pokemon summons Snow.",
+          "shortEffect": "Invoca nieve al entrar en combate.",
+          "effect": "Al entrar en combate, el usuario hace que empiece a nevar.",
           "isHidden": false
         },
         {
@@ -6493,8 +6488,8 @@
         {
           "id": "snow-warning",
           "name": "Nevada",
-          "shortEffect": "On switch-in, this Pokemon summons Snow.",
-          "effect": "On switch-in, this Pokemon summons Snow.",
+          "shortEffect": "Invoca nieve al entrar en combate.",
+          "effect": "Al entrar en combate, el usuario hace que empiece a nevar.",
           "isHidden": false
         }
       ],
@@ -6915,8 +6910,8 @@
         {
           "id": "regenerator",
           "name": "Regeneración",
-          "shortEffect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
-          "effect": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+          "shortEffect": "Recupera 1/3 de los PS maximos al retirarse.",
+          "effect": "Cuando el usuario abandona el combate, recupera 1/3 de sus PS maximos.",
           "isHidden": true
         }
       ],
@@ -8246,8 +8241,8 @@
         {
           "id": "snow-warning",
           "name": "Nevada",
-          "shortEffect": "On switch-in, this Pokemon summons Snow.",
-          "effect": "On switch-in, this Pokemon summons Snow.",
+          "shortEffect": "Invoca nieve al entrar en combate.",
+          "effect": "Al entrar en combate, el usuario hace que empiece a nevar.",
           "isHidden": false
         }
       ],
@@ -8311,7 +8306,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10285.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10285.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10285.png",
         "showdown": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10285.gif",
         "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10285.gif"
@@ -9415,7 +9410,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10311.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10311.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10311.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/heatran-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/heatran-mega.gif"
@@ -9910,7 +9905,7 @@
         }
       ],
       "sprites": {
-        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10312.png",
+        "home": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10312.png",
         "officialArtwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10312.png",
         "showdown": "https://play.pokemonshowdown.com/sprites/ani/darkrai-mega.gif",
         "default": "https://play.pokemonshowdown.com/sprites/ani/darkrai-mega.gif"

@@ -20,6 +20,7 @@ import {
   type StatKey,
   type TeamRole,
 } from '@/models/domain'
+import type { PokemonMetaUsage, RankedUsage } from '@/models/meta'
 import { TYPE_META } from '@/models/type-meta'
 import { effectivenessAgainstDual } from '@/models/type-chart'
 import { useAnalyticsStore } from '@/stores/analytics'
@@ -38,7 +39,7 @@ import {
   resolveItemIdAfterFormChange,
 } from '@/utils/form-item-rules'
 import { calculateBattleStats, getNatureModifier } from '@/utils/stat-calc'
-import { getEffectiveLearnsetMoveIds } from '@/utils/move-legality'
+import { getEffectiveLearnsetMoveIds, getPreferredLegalMoves } from '@/utils/move-legality'
 import { moveTypeGradientStyle } from '@/utils/move-type-style'
 import { onPokemonSpriteError, primaryPokemonSpriteUrl } from '@/utils/pokemon-sprite'
 
@@ -136,7 +137,9 @@ const compareDraft = ref<CompareDraft>({
 })
 
 const activeMember = computed(() => {
-  return team.value.members.find((member) => member.slot === selectedSlot.value) ?? team.value.members[0]
+  return (
+    team.value.members.find((member) => member.slot === selectedSlot.value) ?? team.value.members[0]
+  )
 })
 
 const activePokemon = computed(() => {
@@ -168,7 +171,9 @@ const compareAbilitySelectOptions = computed<SearchOption[]>(() =>
   })),
 )
 const itemSelectOptions = computed<SearchOption[]>(() =>
-  dexStore.items.map((item) => ({ value: item.id, label: item.name })),
+  dexStore.items
+    .filter((item) => mode.value !== 'vgc' || item.championsAvailable !== false)
+    .map((item) => ({ value: item.id, label: item.name })),
 )
 const selectedItem = computed(() => dexStore.getItem(activeMember.value.itemId ?? ''))
 const lockedItemId = computed(() => getRequiredItemIdForPokemon(activePokemon.value))
@@ -212,13 +217,14 @@ const moveSelectOptions = computed<SearchOption[]>(() => {
   const pokemon = activePokemon.value
   if (!pokemon) return []
 
-  const effectiveLearnset = getEffectiveLearnsetMoveIds(
-    pokemon,
-    (pokemonId) => dexStore.getPokemon(mode.value, pokemonId),
+  const effectiveLearnset = getEffectiveLearnsetMoveIds(pokemon, (pokemonId) =>
+    dexStore.getPokemon(mode.value, pokemonId),
   )
+  const selectable = effectiveLearnset.length > 0 || pokemon.championsLearnsetMoves !== undefined
+    ? effectiveLearnset
+    : pokemon.suggestedMoves ?? []
   const allowed = new Set<string>([
-    ...effectiveLearnset,
-    ...(pokemon.suggestedMoves ?? []),
+    ...selectable,
     ...activeMember.value.moves.filter(Boolean),
   ])
   const moveMap = new Map(dexStore.moves.map((entry) => [entry.id, entry]))
@@ -255,19 +261,20 @@ const moveSelectOptions = computed<SearchOption[]>(() => {
       },
     }))
 
-  return [...known, ...missing].sort((a, b) => a.label.localeCompare(b.label, localeCode()))
+  return sortMoveOptionsForPokemon([...known, ...missing], pokemon, pokemon.suggestedMoves ?? [])
 })
 const compareMoveSelectOptions = computed<SearchOption[]>(() => {
   const pokemon = comparePokemon.value
   if (!pokemon) return []
 
-  const effectiveLearnset = getEffectiveLearnsetMoveIds(
-    pokemon,
-    (pokemonId) => dexStore.getPokemon(mode.value, pokemonId),
+  const effectiveLearnset = getEffectiveLearnsetMoveIds(pokemon, (pokemonId) =>
+    dexStore.getPokemon(mode.value, pokemonId),
   )
+  const selectable = effectiveLearnset.length > 0 || pokemon.championsLearnsetMoves !== undefined
+    ? effectiveLearnset
+    : pokemon.suggestedMoves ?? []
   const allowed = new Set<string>([
-    ...effectiveLearnset,
-    ...(pokemon.suggestedMoves ?? []),
+    ...selectable,
     ...compareDraft.value.moves.filter(Boolean),
   ])
   const moveMap = new Map(dexStore.moves.map((entry) => [entry.id, entry]))
@@ -304,7 +311,7 @@ const compareMoveSelectOptions = computed<SearchOption[]>(() => {
       },
     }))
 
-  return [...known, ...missing].sort((a, b) => a.label.localeCompare(b.label, localeCode()))
+  return sortMoveOptionsForPokemon([...known, ...missing], pokemon, pokemon.suggestedMoves ?? [])
 })
 const hoveredMoveIndex = ref<number | null>(null)
 const focusedMoveIndex = ref<number | null>(null)
@@ -316,7 +323,9 @@ const totalEvs = computed(() => {
   return STATS.reduce((sum, stat) => sum + (activeMember.value?.evs[stat] ?? 0), 0)
 })
 const remainingEvs = computed(() => Math.max(0, MAX_EVS - totalEvs.value))
-const compareTotalEvs = computed(() => STATS.reduce((sum, stat) => sum + (compareDraft.value.evs[stat] ?? 0), 0))
+const compareTotalEvs = computed(() =>
+  STATS.reduce((sum, stat) => sum + (compareDraft.value.evs[stat] ?? 0), 0),
+)
 const compareRemainingEvs = computed(() => Math.max(0, MAX_EVS - compareTotalEvs.value))
 const finalStats = computed(() => {
   if (!activePokemon.value) {
@@ -368,7 +377,7 @@ function speedBenchmark(baseSpeed: number, natureId: string): number {
   return calculateBattleStats(
     { hp: 80, atk: 80, def: 80, spa: 80, spd: 80, spe: baseSpeed },
     { hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31 },
-    { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 252 },
+    { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: MAX_EV_PER_STAT },
     battleLevel.value,
     natureId,
   ).spe
@@ -391,7 +400,8 @@ const speedTrRankLabel = computed(() => {
 })
 
 const speedTrRankClass = computed(() => {
-  if (speedTrRank.value === 'high') return 'border-emerald-500/45 bg-emerald-500/15 text-emerald-200'
+  if (speedTrRank.value === 'high')
+    return 'border-emerald-500/45 bg-emerald-500/15 text-emerald-200'
   if (speedTrRank.value === 'mid') return 'border-amber-500/45 bg-amber-500/15 text-amber-200'
   return 'border-rose-500/45 bg-rose-500/15 text-rose-200'
 })
@@ -402,20 +412,26 @@ const speedComparison = computed(() => {
   if (speedEffective.value >= speedBench100Jolly.value) {
     return {
       isFaster: true,
-      text: t('builder.speedCompareFaster', { target: t('builder.speedTargetJolly', { base: 100 }) }),
+      text: t('builder.speedCompareFaster', {
+        target: t('builder.speedTargetJolly', { base: 100 }),
+      }),
     }
   }
 
   if (speedEffective.value >= speedBench90Neutral.value) {
     return {
       isFaster: true,
-      text: t('builder.speedCompareFaster', { target: t('builder.speedTargetNeutral', { base: 90 }) }),
+      text: t('builder.speedCompareFaster', {
+        target: t('builder.speedTargetNeutral', { base: 90 }),
+      }),
     }
   }
 
   return {
     isFaster: false,
-    text: t('builder.speedCompareSlower', { target: t('builder.speedTargetNeutral', { base: 90 }) }),
+    text: t('builder.speedCompareSlower', {
+      target: t('builder.speedTargetNeutral', { base: 90 }),
+    }),
   }
 })
 const compareStatDiffs = computed<Record<StatKey, number>>(() => {
@@ -426,12 +442,18 @@ const compareStatDiffs = computed<Record<StatKey, number>>(() => {
   return diffs
 })
 const compareBaseTotal = computed(() =>
-  activePokemon.value ? STATS.reduce((sum, stat) => sum + (activePokemon.value?.baseStats[stat] ?? 0), 0) : 0,
+  activePokemon.value
+    ? STATS.reduce((sum, stat) => sum + (activePokemon.value?.baseStats[stat] ?? 0), 0)
+    : 0,
 )
 const compareCandidateBaseTotal = computed(() =>
-  comparePokemon.value ? STATS.reduce((sum, stat) => sum + (comparePokemon.value?.baseStats[stat] ?? 0), 0) : 0,
+  comparePokemon.value
+    ? STATS.reduce((sum, stat) => sum + (comparePokemon.value?.baseStats[stat] ?? 0), 0)
+    : 0,
 )
-const compareFinalTotal = computed(() => STATS.reduce((sum, stat) => sum + (finalStats.value[stat] ?? 0), 0))
+const compareFinalTotal = computed(() =>
+  STATS.reduce((sum, stat) => sum + (finalStats.value[stat] ?? 0), 0),
+)
 const compareCandidateFinalTotal = computed(() =>
   STATS.reduce((sum, stat) => sum + (compareFinalStats.value[stat] ?? 0), 0),
 )
@@ -457,9 +479,11 @@ const compareTeamAnalytics = computed(() => {
   if (!simulatedMember) return null
 
   simulatedMember.pokemonId = comparePokemon.value.id
-  simulatedMember.abilityId = compareDraft.value.abilityId || comparePokemon.value.abilities[0] || ''
+  simulatedMember.abilityId =
+    compareDraft.value.abilityId || comparePokemon.value.abilities[0] || ''
   simulatedMember.itemId = compareDraft.value.itemId || ''
-  simulatedMember.natureId = compareDraft.value.natureId || comparePokemon.value.defaultNature || simulatedMember.natureId
+  simulatedMember.natureId =
+    compareDraft.value.natureId || comparePokemon.value.defaultNature || simulatedMember.natureId
   simulatedMember.evs = { ...compareDraft.value.evs }
   simulatedMember.ivs = { ...compareDraft.value.ivs }
   simulatedMember.moves = [
@@ -488,6 +512,10 @@ const compareTeamScoreDelta = computed(() => {
 
 function moveNameById(moveId: string): string {
   return dexStore.getMove(moveId)?.name ?? prettifySlug(moveId)
+}
+
+function itemNameById(itemId: string): string {
+  return dexStore.getItem(itemId)?.name ?? prettifySlug(itemId)
 }
 
 function dominantAttackStyle(moveIds: string[]): 'physical' | 'special' | 'mixed' {
@@ -533,8 +561,23 @@ const slotWarnings = computed(() => {
 
   const warnings: string[] = []
   const selectedMoves = activeMember.value.moves.filter(Boolean)
+  if (mode.value === 'vgc') {
+    if (selectedItem.value?.championsAvailable === false) warnings.push(t('builder.warnItemUnavailable'))
+    const itemId = activeMember.value.itemId
+    if (itemId && (team.value?.members.filter((member) => member.itemId === itemId).length ?? 0) > 1) {
+      warnings.push(t('builder.warnItemDuplicate'))
+    }
+    if (
+      (team.value?.members.filter((member) => member.pokemonId.includes('-mega')).length ?? 0) >
+      1
+    ) {
+      warnings.push(t('builder.warnMegaDuplicate'))
+    }
+  }
   const roles = new Set(
-    (activeMember.value.roleTags.length ? activeMember.value.roleTags : activePokemon.value.roleTags) ?? [],
+    (activeMember.value.roleTags.length
+      ? activeMember.value.roleTags
+      : activePokemon.value.roleTags) ?? [],
   )
 
   if (mode.value === 'vgc' && selectedMoves.length > 0 && !selectedMoves.includes('protect')) {
@@ -542,16 +585,17 @@ const slotWarnings = computed(() => {
   }
 
   if (activeMember.value.itemId === 'assault-vest') {
-    const hasStatusMove = selectedMoves.some((moveId) => dexStore.getMove(moveId)?.category === 'status')
+    const hasStatusMove = selectedMoves.some(
+      (moveId) => dexStore.getMove(moveId)?.category === 'status',
+    )
     if (hasStatusMove) {
       warnings.push(t('builder.warnAssaultVestStatus'))
     }
   }
 
   const learnset = new Set(
-    getEffectiveLearnsetMoveIds(
-      activePokemon.value,
-      (pokemonId) => dexStore.getPokemon(mode.value, pokemonId),
+    getEffectiveLearnsetMoveIds(activePokemon.value, (pokemonId) =>
+      dexStore.getPokemon(mode.value, pokemonId),
     ),
   )
   if (learnset.size > 0) {
@@ -572,7 +616,7 @@ const slotWarnings = computed(() => {
     }
   }
 
-  if (totalEvs.value > 0 && totalEvs.value < 508) {
+  if (totalEvs.value > 0 && totalEvs.value < MAX_EVS) {
     warnings.push(t('builder.warnEvsIncomplete'))
   }
 
@@ -624,8 +668,12 @@ const evolutionChainDetails = computed(() => {
     }
   })
 })
-const canActivateTeraDefense = computed(() => Boolean(activePokemon.value && activeMember.value.teraType))
-const effectiveDefensiveTypes = computed<[(typeof TYPE_KEYS)[number], ((typeof TYPE_KEYS)[number] | undefined)]>(() => {
+const canActivateTeraDefense = computed(() =>
+  Boolean(activePokemon.value && activeMember.value.teraType),
+)
+const effectiveDefensiveTypes = computed<
+  [(typeof TYPE_KEYS)[number], (typeof TYPE_KEYS)[number] | undefined]
+>(() => {
   if (isTeraDefenseActive.value && activeMember.value.teraType) {
     return [activeMember.value.teraType, undefined]
   }
@@ -634,7 +682,14 @@ const effectiveDefensiveTypes = computed<[(typeof TYPE_KEYS)[number], ((typeof T
   return [primary, secondary]
 })
 
-const PIVOT_MOVE_IDS = new Set(['u-turn', 'volt-switch', 'flip-turn', 'parting-shot', 'teleport', 'chilly-reception'])
+const PIVOT_MOVE_IDS = new Set([
+  'u-turn',
+  'volt-switch',
+  'flip-turn',
+  'parting-shot',
+  'teleport',
+  'chilly-reception',
+])
 const SUPPORT_MOVE_IDS = new Set([
   'taunt',
   'encore',
@@ -700,7 +755,9 @@ function inferRolesFromMoves(moveIds: string[], pokemon?: PokemonEntry): TeamRol
   const roles = new Set<TeamRole>()
 
   const supportCount = nonEmptyMoves.filter((moveId) => SUPPORT_MOVE_IDS.has(moveId)).length
-  const speedControlCount = nonEmptyMoves.filter((moveId) => SPEED_CONTROL_MOVE_IDS.has(moveId)).length
+  const speedControlCount = nonEmptyMoves.filter((moveId) =>
+    SPEED_CONTROL_MOVE_IDS.has(moveId),
+  ).length
   const wallCount = nonEmptyMoves.filter((moveId) => WALL_MOVE_IDS.has(moveId)).length
 
   if (nonEmptyMoves.some((moveId) => PIVOT_MOVE_IDS.has(moveId))) roles.add('pivot')
@@ -762,7 +819,8 @@ function sameRoleTags(a: TeamRole[], b: TeamRole[]): boolean {
 
 const activeRoleReference = computed<TeamRole[]>(() => {
   const pokemonBaseRoles = activePokemon.value?.roleTags ?? []
-  const memberBaseRoles = activeMember.value.roleTags.length > 0 ? activeMember.value.roleTags : pokemonBaseRoles
+  const memberBaseRoles =
+    activeMember.value.roleTags.length > 0 ? activeMember.value.roleTags : pokemonBaseRoles
   return resolveRoleTagsForSet(activeMember.value.moves, memberBaseRoles, activePokemon.value)
 })
 
@@ -811,8 +869,61 @@ function compareCandidateScore(candidate: PokemonEntry): number {
   return roleSimilarity * 100 + primaryMatch * 18 + secondaryOverlap * 8 + usageScore
 }
 
+function effectivePokemonMeta(pokemon: PokemonEntry): PokemonMetaUsage | undefined {
+  const candidates = new Set<string>([pokemon.id])
+  for (const form of dexStore.getPokemonForms(localeCode(), pokemon.id)) {
+    candidates.add(form.id)
+  }
+
+  let best: PokemonMetaUsage | undefined
+  for (const pokemonId of candidates) {
+    const meta = metaUsageStore.getPokemonMeta(mode.value, pokemonId)
+    if (!meta) continue
+    if (!best || meta.usage > best.usage) best = meta
+  }
+  return best
+}
+
+function rankingFromWeightedIds(entries: RankedUsage[]): Map<string, number> {
+  const map = new Map<string, number>()
+  for (const entry of entries) {
+    map.set(entry.id, entry.weight)
+  }
+  return map
+}
+
+function rankingFromOrderedIds(ids: string[]): Map<string, number> {
+  const map = new Map<string, number>()
+  const total = ids.length
+  ids.forEach((id, index) => {
+    map.set(id, Math.max(0, total - index))
+  })
+  return map
+}
+
+function sortMoveOptionsForPokemon(
+  options: SearchOption[],
+  pokemon: PokemonEntry,
+  fallbackMoveIds: string[],
+): SearchOption[] {
+  const rankedByMeta = rankingFromWeightedIds(effectivePokemonMeta(pokemon)?.moves ?? [])
+  const fallbackRanking = rankingFromOrderedIds(fallbackMoveIds)
+
+  return options.sort((a, b) => {
+    const metaA = rankedByMeta.get(a.value) ?? 0
+    const metaB = rankedByMeta.get(b.value) ?? 0
+    if (metaA !== metaB) return metaB - metaA
+
+    const fallbackA = fallbackRanking.get(a.value) ?? 0
+    const fallbackB = fallbackRanking.get(b.value) ?? 0
+    if (fallbackA !== fallbackB) return fallbackB - fallbackA
+
+    return a.label.localeCompare(b.label, localeCode())
+  })
+}
+
 function previewMovesForRoleRanking(pokemon: PokemonEntry): string[] {
-  const metaTop = (metaUsageStore.getPokemonMeta(mode.value, pokemon.id)?.moves ?? [])
+  const metaTop = (effectivePokemonMeta(pokemon)?.moves ?? [])
     .slice(0, 4)
     .map((entry) => entry.id)
     .filter(Boolean)
@@ -821,31 +932,11 @@ function previewMovesForRoleRanking(pokemon: PokemonEntry): string[] {
 }
 
 function preferredMovesForPokemon(pokemon: PokemonEntry): [string, string, string, string] {
-  const effectiveLearnset = getEffectiveLearnsetMoveIds(
+  return getPreferredLegalMoves(
     pokemon,
     (pokemonId) => dexStore.getPokemon(mode.value, pokemonId),
+    (effectivePokemonMeta(pokemon)?.moves ?? []).map((entry) => entry.id),
   )
-  const allowed = new Set<string>([
-    ...effectiveLearnset,
-    ...(pokemon.suggestedMoves ?? []),
-  ])
-
-  const metaMoves = (metaUsageStore.getPokemonMeta(mode.value, pokemon.id)?.moves ?? [])
-    .map((entry) => entry.id)
-    .filter((moveId) => (allowed.size > 0 ? allowed.has(moveId) : true))
-
-  const fallbackPool = [
-    ...pokemon.suggestedMoves,
-    ...effectiveLearnset,
-  ]
-
-  const unique = [...new Set([...metaMoves, ...fallbackPool])].filter(Boolean)
-  return [
-    unique[0] ?? '',
-    unique[1] ?? '',
-    unique[2] ?? '',
-    unique[3] ?? '',
-  ]
 }
 
 function onPokemonChange(value: string) {
@@ -949,7 +1040,8 @@ async function ensureActiveFormsLoaded(fetchRemote: boolean) {
   try {
     const loadedForms = await dexStore.ensurePokemonForms(mode.value, pokemonId, localeValue)
     if (requestId !== formOptionsRequest) return
-    const resolvedForms = loadedForms.length > 0 ? loadedForms : activePokemon.value ? [activePokemon.value] : []
+    const resolvedForms =
+      loadedForms.length > 0 ? loadedForms : activePokemon.value ? [activePokemon.value] : []
     applyFormOptions(resolvedForms)
   } finally {
     if (requestId === formOptionsRequest) {
@@ -968,7 +1060,11 @@ function onFormChange(value: string) {
   const nextAbility = pokemon.abilities.includes(currentAbility)
     ? currentAbility
     : (pokemon.abilities[0] ?? '')
-  const nextItemId = resolveItemIdAfterFormChange(pokemon, previousPokemon, activeMember.value.itemId ?? '')
+  const nextItemId = resolveItemIdAfterFormChange(
+    pokemon,
+    previousPokemon,
+    activeMember.value.itemId ?? '',
+  )
 
   teamStore.updateMember(mode.value, activeMember.value.slot, {
     pokemonId: value,
@@ -984,10 +1080,22 @@ function onFormChange(value: string) {
 
 function openCatalogSource(source: 'pokemon' | 'items') {
   uiStore.setBuilderCatalogSource(source)
+  if (window.matchMedia('(max-width: 1535px)').matches) uiStore.setMobileTab('tools')
 }
 
 function openThreatsPanel() {
   uiStore.setBuilderCatalogSource('threats')
+  if (window.matchMedia('(max-width: 1535px)').matches) uiStore.setMobileTab('tools')
+}
+
+function openSeenThreatsPanel() {
+  uiStore.setBuilderCatalogSource('seen-threats')
+  if (window.matchMedia('(max-width: 1535px)').matches) uiStore.setMobileTab('tools')
+}
+
+function openMetaPanel() {
+  uiStore.setBuilderCatalogSource('meta')
+  if (window.matchMedia('(max-width: 1535px)').matches) uiStore.setMobileTab('tools')
 }
 
 function updateField(field: 'abilityId' | 'itemId' | 'natureId', value: string) {
@@ -1009,7 +1117,12 @@ function updateMove(index: number, value: string) {
   uiStore.setSelectedMoveIndex(mode.value, index as 0 | 1 | 2 | 3)
   const moves = [...activeMember.value.moves]
   moves[index] = value
-  const nextMoves: [string, string, string, string] = [moves[0] ?? '', moves[1] ?? '', moves[2] ?? '', moves[3] ?? '']
+  const nextMoves: [string, string, string, string] = [
+    moves[0] ?? '',
+    moves[1] ?? '',
+    moves[2] ?? '',
+    moves[3] ?? '',
+  ]
   teamStore.updateMember(mode.value, activeMember.value.slot, {
     moves: nextMoves,
     roleTags: resolveRoleTagsForSet(
@@ -1171,7 +1284,9 @@ function selectedMovePriority(index: number): number {
 
 function normalizeMoveType(value: unknown): (typeof TYPE_KEYS)[number] | null {
   if (typeof value !== 'string') return null
-  return TYPE_KEYS.includes(value as (typeof TYPE_KEYS)[number]) ? (value as (typeof TYPE_KEYS)[number]) : null
+  return TYPE_KEYS.includes(value as (typeof TYPE_KEYS)[number])
+    ? (value as (typeof TYPE_KEYS)[number])
+    : null
 }
 
 function normalizeMoveCategory(value: unknown): MoveEntry['category'] | undefined {
@@ -1305,7 +1420,9 @@ function factorLabel(factor: number): string {
   return `x${factor}`
 }
 
-function defensiveProfile(types: [(typeof TYPE_KEYS)[number], ((typeof TYPE_KEYS)[number] | undefined)]) {
+function defensiveProfile(
+  types: [(typeof TYPE_KEYS)[number], (typeof TYPE_KEYS)[number] | undefined],
+) {
   const weaknesses = TYPE_KEYS.map((attackType) => ({
     type: attackType,
     factor: effectivenessAgainstDual(attackType, types[0], types[1]),
@@ -1325,7 +1442,7 @@ function defensiveProfile(types: [(typeof TYPE_KEYS)[number], ((typeof TYPE_KEYS
 
 const comparePokemonProfile = computed(() => {
   if (!comparePokemon.value) return null
-  const types: [(typeof TYPE_KEYS)[number], ((typeof TYPE_KEYS)[number] | undefined)] = [
+  const types: [(typeof TYPE_KEYS)[number], (typeof TYPE_KEYS)[number] | undefined] = [
     comparePokemon.value.types[0] ?? 'normal',
     comparePokemon.value.types[1],
   ]
@@ -1347,7 +1464,8 @@ function recommendComparePokemonId(): string {
   let bestId = ''
   let bestScore = Number.NEGATIVE_INFINITY
 
-  const pool = compareCandidatePool.value.length > 0 ? compareCandidatePool.value : pokemonOptions.value
+  const pool =
+    compareCandidatePool.value.length > 0 ? compareCandidatePool.value : pokemonOptions.value
   for (const pokemon of pool) {
     if (pokemon.id === activeMember.value.pokemonId) continue
     const score = compareCandidateScore(pokemon)
@@ -1358,7 +1476,9 @@ function recommendComparePokemonId(): string {
   }
 
   if (bestId) return bestId
-  const fallback = comparePokemonOptions.value.find((option) => option.value !== activeMember.value.pokemonId)
+  const fallback = comparePokemonOptions.value.find(
+    (option) => option.value !== activeMember.value.pokemonId,
+  )
   return fallback?.value ?? ''
 }
 
@@ -1587,7 +1707,12 @@ watch(
   <section class="rounded-2xl border border-sky-500/25 bg-off-black/70 p-4">
     <div class="mb-4 flex flex-wrap items-center justify-between gap-2">
       <h2 class="text-lg font-semibold text-sky-300">{{ t('builder.title') }}</h2>
-      <div class="rounded-md border px-2 py-1 text-xs" :class="isComplete ? 'border-green-500/50 text-green-300' : 'border-red-500/50 text-red-300'">
+      <div
+        class="rounded-md border px-2 py-1 text-xs"
+        :class="
+          isComplete ? 'border-green-500/50 text-green-300' : 'border-red-500/50 text-red-300'
+        "
+      >
         {{ isComplete ? t('builder.completeSet') : t('builder.invalidSet') }}
       </div>
     </div>
@@ -1602,302 +1727,339 @@ watch(
       @update:selected-slot="selectedSlot = $event"
     />
 
-    <div class="grid gap-4 xl:grid-cols-[minmax(0,60%)_minmax(0,40%)]">
+    <div class="grid gap-4 min-[1800px]:grid-cols-[minmax(0,60%)_minmax(0,40%)]">
       <div class="contents">
-        <div class="rounded-xl border border-gray-700 bg-st-black/45 p-3 xl:col-start-1 xl:row-start-1">
-            <div class="grid gap-3 md:grid-cols-2">
-              <label class="block text-sm md:col-span-2">
-                <span class="mb-1 block text-gray-300">{{ t('builder.pokemon') }}</span>
-                <input
-                  type="text"
-                  :value="selectedPokemonFieldLabel"
-                  readonly
-                  class="w-full cursor-pointer rounded-md border border-gray-700 bg-st-black p-2 text-sm text-gray-100 outline-none transition hover:border-sky-500/50 focus:border-sky-500/70"
-                  @click="openCatalogSource('pokemon')"
-                  @focus="openCatalogSource('pokemon')"
-                />
-              </label>
+        <div
+          class="rounded-xl border border-gray-700 bg-st-black/45 p-3 min-[1800px]:col-start-1 min-[1800px]:row-start-1"
+        >
+          <div class="grid gap-3 md:grid-cols-2">
+            <label class="block text-sm md:col-span-2">
+              <span class="mb-1 block text-gray-300">{{ t('builder.pokemon') }}</span>
+              <input
+                type="text"
+                :value="selectedPokemonFieldLabel"
+                readonly
+                class="w-full cursor-pointer rounded-md border border-gray-700 bg-st-black p-2 text-sm text-gray-100 outline-none transition hover:border-sky-500/50 focus:border-sky-500/70"
+                @click="openCatalogSource('pokemon')"
+                @focus="openCatalogSource('pokemon')"
+              />
+            </label>
 
-              <label
-                v-if="activeMember.pokemonId"
-                class="block text-sm md:col-span-2"
-                @focusin="void ensureActiveFormsLoaded(true)"
-              >
-                <span class="mb-1 block text-gray-300">{{ t('builder.form') }}</span>
-                <div class="rounded-lg border border-gray-700 bg-off-black/50 p-2">
-                  <div v-if="formSelectOptions.length > 0" class="flex flex-wrap gap-1.5">
-                    <button
-                      v-for="option in formSelectOptions"
-                      :key="`form-${option.value}`"
-                      type="button"
-                      class="inline-flex max-w-full items-center gap-1 rounded-md border px-2 py-1 text-xs transition"
-                      :class="
-                        activeMember.pokemonId === option.value
-                          ? 'border-sky-400/70 bg-sky-500/20 text-sky-100'
-                          : 'border-gray-700 bg-black/35 text-gray-200 hover:border-sky-500/40'
-                      "
-                      @click="onFormChange(option.value)"
-                    >
-                      <img
-                        :src="spriteUrl(option.value)"
-                        :alt="option.label"
-                        :data-sprite-id="option.value"
-                        :data-sprite-fallback-index="0"
-                        class="h-4 w-4 shrink-0 object-contain"
-                        @error="onPokemonSpriteError"
-                      />
-                      <span class="truncate">{{ option.label }}</span>
-                    </button>
-                  </div>
-                  <p v-else class="text-xs text-gray-500">{{ t('common.none') }}</p>
-                </div>
-                <p v-if="isLoadingFormOptions" class="mt-1 text-[11px] text-gray-500">
-                  {{ t('builder.loadingForms') }}
-                </p>
-              </label>
-
-              <div class="rounded-lg border border-gray-700 bg-off-black/50 p-2 md:col-span-2">
-                <p class="mb-2 text-xs text-gray-300">{{ t('builder.favorites') }}</p>
-                <div v-if="favoritePokemonOptions.length > 0" class="flex flex-wrap gap-1.5">
+            <label
+              v-if="activeMember.pokemonId"
+              class="block text-sm md:col-span-2"
+              @focusin="void ensureActiveFormsLoaded(true)"
+            >
+              <span class="mb-1 block text-gray-300">{{ t('builder.form') }}</span>
+              <div class="rounded-lg border border-gray-700 bg-off-black/50 p-2">
+                <div v-if="formSelectOptions.length > 0" class="flex flex-wrap gap-1.5">
                   <button
-                    v-for="pokemon in favoritePokemonOptions"
-                    :key="`fav-${pokemon.id}`"
-                    class="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-xs transition"
-                    :class="activeMember.pokemonId === pokemon.id
-                      ? 'border-sky-400/70 bg-sky-500/20 text-sky-100'
-                      : 'border-gray-700 bg-black/35 text-gray-200 hover:border-sky-500/40'"
-                    @click="onPokemonChange(pokemon.id)"
+                    v-for="option in formSelectOptions"
+                    :key="`form-${option.value}`"
+                    type="button"
+                    class="inline-flex max-w-full items-center gap-1 rounded-md border px-2 py-1 text-xs transition"
+                    :class="
+                      activeMember.pokemonId === option.value
+                        ? 'border-sky-400/70 bg-sky-500/20 text-sky-100'
+                        : 'border-gray-700 bg-black/35 text-gray-200 hover:border-sky-500/40'
+                    "
+                    @click="onFormChange(option.value)"
                   >
                     <img
-                      :src="spriteUrl(pokemon.id)"
-                      :alt="displayPokemonName(pokemon.id, pokemon.name)"
-                      :data-sprite-id="pokemon.id"
+                      :src="spriteUrl(option.value)"
+                      :alt="option.label"
+                      :data-sprite-id="option.value"
                       :data-sprite-fallback-index="0"
-                      class="h-4 w-4 object-contain"
+                      class="h-4 w-4 shrink-0 object-contain"
                       @error="onPokemonSpriteError"
                     />
-                    <span class="max-w-[10rem] truncate">#{{ String(pokemon.pokedexNumber).padStart(4, '0') }} {{ displayPokemonName(pokemon.id, pokemon.name) }}</span>
+                    <span class="truncate">{{ option.label }}</span>
                   </button>
                 </div>
-                <p v-else class="text-xs text-gray-500">{{ t('builder.noFavorites') }}</p>
+                <p v-else class="text-xs text-gray-500">{{ t('common.none') }}</p>
               </div>
+              <p v-if="isLoadingFormOptions" class="mt-1 text-[11px] text-gray-500">
+                {{ t('builder.loadingForms') }}
+              </p>
+            </label>
 
-              <label class="block text-sm">
-                <span class="mb-1 block text-gray-300">{{ t('builder.ability') }}</span>
-                <SearchableSelect
-                  :model-value="activeMember.abilityId"
-                  :options="abilitySelectOptions"
-                  :placeholder="t('builder.selectAbility')"
-                  :no-results-label="t('dex.noSearchResults')"
-                  @update:model-value="updateField('abilityId', $event)"
-                />
-                <p class="mt-2 text-[11px] text-gray-400">
-                  <span class="font-semibold text-gray-300">{{ t('builder.abilityDescription') }}:</span>
-                  {{ selectedAbilityDescription }}
-                </p>
-              </label>
-
-              <label class="block text-sm">
-                <span class="mb-1 block text-gray-300">{{ t('builder.item') }}</span>
-                <input
-                  type="text"
-                  :value="selectedItemFieldLabel"
-                  readonly
-                  class="w-full rounded-md border border-gray-700 bg-st-black p-2 text-sm text-gray-100 outline-none transition"
+            <div class="rounded-lg border border-gray-700 bg-off-black/50 p-2 md:col-span-2">
+              <p class="mb-2 text-xs text-gray-300">{{ t('builder.favorites') }}</p>
+              <div v-if="favoritePokemonOptions.length > 0" class="flex flex-wrap gap-1.5">
+                <button
+                  v-for="pokemon in favoritePokemonOptions"
+                  :key="`fav-${pokemon.id}`"
+                  class="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-xs transition"
                   :class="
-                    isItemSelectionLocked
-                      ? 'cursor-not-allowed border-amber-500/35 bg-amber-500/5 text-amber-100'
-                      : 'cursor-pointer hover:border-sky-500/50 focus:border-sky-500/70'
+                    activeMember.pokemonId === pokemon.id
+                      ? 'border-sky-400/70 bg-sky-500/20 text-sky-100'
+                      : 'border-gray-700 bg-black/35 text-gray-200 hover:border-sky-500/40'
                   "
-                  @click="!isItemSelectionLocked && openCatalogSource('items')"
-                  @focus="!isItemSelectionLocked && openCatalogSource('items')"
-                />
-                <p v-if="isItemSelectionLocked" class="mt-2 text-[11px] text-amber-200">
-                  {{ t('builder.itemLockedByForm', { item: lockedItemLabel }) }}
-                </p>
-                <p v-if="isItemSelectionLocked" class="mt-1 text-[11px] text-gray-500">
-                  {{ t('builder.itemLockedHint') }}
-                </p>
-                <p class="mt-2 text-[11px] text-gray-400">
-                  <span class="font-semibold text-gray-300">{{ t('builder.itemDescription') }}:</span>
-                  {{ selectedItemDescription || t('builder.noItemDescription') }}
-                </p>
-              </label>
-
-              <label class="block text-sm">
-                <span class="mb-1 block text-gray-300">{{ t('builder.nature') }}</span>
-                <SearchableSelect
-                  :model-value="activeMember.natureId"
-                  :options="natureSelectOptions"
-                  :clearable="false"
-                  :no-results-label="t('dex.noSearchResults')"
-                  @update:model-value="updateField('natureId', $event)"
-                />
-                <p class="mt-2 text-[11px] text-gray-400">
-                  <span class="font-semibold text-gray-300">{{ t('builder.natureDescription') }}:</span>
-                  {{ selectedNatureDescription }}
-                </p>
-              </label>
-
-              <label class="block text-sm">
-                <div class="mb-1 flex items-center justify-between gap-2">
-                  <span class="block text-gray-300">{{ t('builder.teraType') }}</span>
-                  <label class="inline-flex items-center gap-1 text-[11px] text-gray-300">
-                    <input
-                      v-model="isTeraDefenseActive"
-                      type="checkbox"
-                      class="h-3.5 w-3.5 rounded border border-gray-600 bg-off-black/70 accent-sky-400"
-                      :disabled="!canActivateTeraDefense"
-                    />
-                    <span>{{ t('builder.activateTeraDefense') }}</span>
-                  </label>
-                </div>
-                <SearchableSelect
-                  :model-value="activeMember.teraType ?? ''"
-                  :options="teraSelectOptions"
-                  :placeholder="t('common.selectNone')"
-                  :no-results-label="t('dex.noSearchResults')"
-                  @update:model-value="updateTera"
-                />
-                <p class="mt-1 text-[11px] text-gray-500">
-                  {{
-                    isTeraDefenseActive && activeMember.teraType
-                      ? t('builder.teraDefenseOn', { type: typeLabel(activeMember.teraType) })
-                      : t('builder.teraDefenseOff')
-                  }}
-                </p>
-              </label>
-
-              <div class="md:col-span-2">
-                <p class="mb-2 text-gray-300">{{ t('builder.roles') }}</p>
-                <div class="flex flex-wrap gap-2">
-                  <button
-                    v-for="role in TEAM_ROLES"
-                    :key="role"
-                    class="rounded-md border px-2 py-1 text-xs"
-                    :class="activeMember.roleTags.includes(role) ? 'border-sky-500 bg-sky-500/20' : 'border-gray-700'"
-                    @click="toggleRole(role)"
+                  @click="onPokemonChange(pokemon.id)"
+                >
+                  <img
+                    :src="spriteUrl(pokemon.id)"
+                    :alt="displayPokemonName(pokemon.id, pokemon.name)"
+                    :data-sprite-id="pokemon.id"
+                    :data-sprite-fallback-index="0"
+                    class="h-4 w-4 object-contain"
+                    @error="onPokemonSpriteError"
+                  />
+                  <span class="max-w-[10rem] truncate"
+                    >#{{ String(pokemon.pokedexNumber).padStart(4, '0') }}
+                    {{ displayPokemonName(pokemon.id, pokemon.name) }}</span
                   >
-                    {{ roleLabel(role) }}
-                  </button>
-                </div>
+                </button>
+              </div>
+              <p v-else class="text-xs text-gray-500">{{ t('builder.noFavorites') }}</p>
+            </div>
+
+            <label class="block text-sm">
+              <span class="mb-1 block text-gray-300">{{ t('builder.ability') }}</span>
+              <SearchableSelect
+                :model-value="activeMember.abilityId"
+                :options="abilitySelectOptions"
+                :placeholder="t('builder.selectAbility')"
+                :no-results-label="t('dex.noSearchResults')"
+                @update:model-value="updateField('abilityId', $event)"
+              />
+              <p class="mt-2 text-[11px] text-gray-400">
+                <span class="font-semibold text-gray-300"
+                  >{{ t('builder.abilityDescription') }}:</span
+                >
+                {{ selectedAbilityDescription }}
+              </p>
+            </label>
+
+            <label class="block text-sm">
+              <span class="mb-1 block text-gray-300">{{ t('builder.item') }}</span>
+              <input
+                type="text"
+                :value="selectedItemFieldLabel"
+                readonly
+                class="w-full rounded-md border border-gray-700 bg-st-black p-2 text-sm text-gray-100 outline-none transition"
+                :class="
+                  isItemSelectionLocked
+                    ? 'cursor-not-allowed border-amber-500/35 bg-amber-500/5 text-amber-100'
+                    : 'cursor-pointer hover:border-sky-500/50 focus:border-sky-500/70'
+                "
+                @click="!isItemSelectionLocked && openCatalogSource('items')"
+                @focus="!isItemSelectionLocked && openCatalogSource('items')"
+              />
+              <p v-if="isItemSelectionLocked" class="mt-2 text-[11px] text-amber-200">
+                {{ t('builder.itemLockedByForm', { item: lockedItemLabel }) }}
+              </p>
+              <p v-if="isItemSelectionLocked" class="mt-1 text-[11px] text-gray-500">
+                {{ t('builder.itemLockedHint') }}
+              </p>
+              <p class="mt-2 text-[11px] text-gray-400">
+                <span class="font-semibold text-gray-300">{{ t('builder.itemDescription') }}:</span>
+                {{ selectedItemDescription || t('builder.noItemDescription') }}
+              </p>
+            </label>
+
+            <label class="block text-sm">
+              <span class="mb-1 block text-gray-300">{{ t('builder.nature') }}</span>
+              <SearchableSelect
+                :model-value="activeMember.natureId"
+                :options="natureSelectOptions"
+                :clearable="false"
+                :no-results-label="t('dex.noSearchResults')"
+                @update:model-value="updateField('natureId', $event)"
+              />
+              <p class="mt-2 text-[11px] text-gray-400">
+                <span class="font-semibold text-gray-300"
+                  >{{ t('builder.natureDescription') }}:</span
+                >
+                {{ selectedNatureDescription }}
+              </p>
+            </label>
+
+            <label class="block text-sm">
+              <div class="mb-1 flex items-center justify-between gap-2">
+                <span class="block text-gray-300">{{ t('builder.teraType') }}</span>
+                <label class="inline-flex items-center gap-1 text-[11px] text-gray-300">
+                  <input
+                    v-model="isTeraDefenseActive"
+                    type="checkbox"
+                    class="h-3.5 w-3.5 rounded border border-gray-600 bg-off-black/70 accent-sky-400"
+                    :disabled="!canActivateTeraDefense"
+                  />
+                  <span>{{ t('builder.activateTeraDefense') }}</span>
+                </label>
+              </div>
+              <SearchableSelect
+                :model-value="activeMember.teraType ?? ''"
+                :options="teraSelectOptions"
+                :placeholder="t('common.selectNone')"
+                :no-results-label="t('dex.noSearchResults')"
+                @update:model-value="updateTera"
+              />
+              <p class="mt-1 text-[11px] text-gray-500">
+                {{
+                  isTeraDefenseActive && activeMember.teraType
+                    ? t('builder.teraDefenseOn', { type: typeLabel(activeMember.teraType) })
+                    : t('builder.teraDefenseOff')
+                }}
+              </p>
+            </label>
+
+            <div class="md:col-span-2">
+              <p class="mb-2 text-gray-300">{{ t('builder.roles') }}</p>
+              <div class="flex flex-wrap gap-2">
+                <button
+                  v-for="role in TEAM_ROLES"
+                  :key="role"
+                  class="rounded-md border px-2 py-1 text-xs"
+                  :class="
+                    activeMember.roleTags.includes(role)
+                      ? 'border-sky-500 bg-sky-500/20'
+                      : 'border-gray-700'
+                  "
+                  @click="toggleRole(role)"
+                >
+                  {{ roleLabel(role) }}
+                </button>
               </div>
             </div>
+          </div>
         </div>
 
-        <div class="rounded-xl border border-gray-700 bg-st-black/45 p-3 xl:col-start-1 xl:row-start-2">
-            <div class="mb-2 flex items-center justify-between gap-2">
-              <p class="text-gray-300">{{ t('builder.moves') }}</p>
-              <p class="text-[11px] text-gray-500">{{ t('builder.movesDropdownHint') }}</p>
-            </div>
-            <div class="space-y-2">
-              <div
-                v-for="(move, index) in activeMember.moves"
-                :key="`move-${index}`"
-                class="relative"
-                @mouseenter="hoveredMoveIndex = index"
-                @mouseleave="hoveredMoveIndex = null"
-                @focusin="onMoveFocusIn(index)"
-                @focusout="onMoveFocusOut(index, $event)"
+        <div
+          class="rounded-xl border border-gray-700 bg-st-black/45 p-3 min-[1800px]:col-start-1 min-[1800px]:row-start-2"
+        >
+          <div class="mb-2 flex items-center justify-between gap-2">
+            <p class="text-gray-300">{{ t('builder.moves') }}</p>
+            <p class="text-[11px] text-gray-500">{{ t('builder.movesDropdownHint') }}</p>
+          </div>
+          <div class="space-y-2">
+            <div
+              v-for="(move, index) in activeMember.moves"
+              :key="`move-${index}`"
+              class="relative"
+              @mouseenter="hoveredMoveIndex = index"
+              @mouseleave="hoveredMoveIndex = null"
+              @focusin="onMoveFocusIn(index)"
+              @focusout="onMoveFocusOut(index, $event)"
+            >
+              <SearchableSelect
+                :model-value="move"
+                :options="moveSelectOptions"
+                :disabled="!activePokemon"
+                :placeholder="`${t('builder.movePlaceholder')} ${index + 1}`"
+                :no-results-label="t('dex.noSearchResults')"
+                @update:model-value="updateMove(index, $event)"
               >
-                <SearchableSelect
-                  :model-value="move"
-                  :options="moveSelectOptions"
-                  :disabled="!activePokemon"
-                  :placeholder="`${t('builder.movePlaceholder')} ${index + 1}`"
-                  :no-results-label="t('dex.noSearchResults')"
-                  @update:model-value="updateMove(index, $event)"
-                >
-                  <template #option="{ option }">
-                    <div
-                      class="-mx-2 -my-1.5 rounded-md px-2 py-1.5"
-                      :style="moveOptionSurfaceStyle(option.meta?.type)"
-                    >
-                      <div class="flex items-start justify-between gap-2">
-                        <div class="min-w-0 flex-1">
-                          <p class="truncate font-semibold text-gray-100">{{ option.label }}</p>
-                          <p class="move-option-effect mt-0.5 text-[10px] text-gray-400">
-                            {{ option.meta?.effect || t('builder.noMoveDescription') }}
-                          </p>
+                <template #option="{ option }">
+                  <div
+                    class="-mx-2 -my-1.5 rounded-md px-2 py-1.5"
+                    :style="moveOptionSurfaceStyle(option.meta?.type)"
+                  >
+                    <div class="flex items-start justify-between gap-2">
+                      <div class="min-w-0 flex-1">
+                        <p class="truncate font-semibold text-gray-100">{{ option.label }}</p>
+                        <p class="move-option-effect mt-0.5 text-[10px] text-gray-400">
+                          {{ option.meta?.effect || t('builder.noMoveDescription') }}
+                        </p>
+                      </div>
+                      <div class="shrink-0 text-right text-[10px] text-gray-300">
+                        <div class="mb-1 flex items-center justify-end gap-1">
+                          <span
+                            v-if="moveTypeIcon(option.meta?.type)"
+                            class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1 py-0.5"
+                          >
+                            <img
+                              :src="moveTypeIcon(option.meta?.type) || ''"
+                              :alt="moveTypeLabel(option.meta?.type)"
+                              class="h-3 w-3"
+                            />
+                            {{ moveTypeLabel(option.meta?.type) }}
+                          </span>
+                          <span
+                            class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1 py-0.5"
+                          >
+                            <img
+                              v-if="moveCategoryIcon(option.meta?.category)"
+                              :src="moveCategoryIcon(option.meta?.category) || ''"
+                              :alt="moveCategoryLabel(option.meta?.category)"
+                              class="h-3 w-3"
+                            />
+                            {{ moveCategoryLabel(option.meta?.category) }}
+                          </span>
                         </div>
-                        <div class="shrink-0 text-right text-[10px] text-gray-300">
-                          <div class="mb-1 flex items-center justify-end gap-1">
+                        <div class="font-mono text-[10px] text-gray-400">
+                          <span
+                            >{{ t('builder.movePowerShort') }}
+                            {{ moveValueLabel(option.meta?.power) }}</span
+                          >
+                          <span class="px-1">|</span>
+                          <span
+                            >{{ t('builder.moveAccuracyShort') }}
+                            {{ moveAccuracyValueLabel(option.meta?.accuracy) }}</span
+                          >
+                          <span class="px-1">|</span>
+                          <span
+                            >{{ t('builder.movePpShort') }}
+                            {{ moveValueLabel(option.meta?.pp) }}</span
+                          >
+                          <template v-if="(option.meta?.priority ?? 0) !== 0">
+                            <span class="px-1">|</span>
                             <span
-                              v-if="moveTypeIcon(option.meta?.type)"
-                              class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1 py-0.5"
+                              >{{ t('builder.movePriorityShort') }}
+                              {{ movePriorityValueLabel(option.meta?.priority) }}</span
                             >
-                              <img :src="moveTypeIcon(option.meta?.type) || ''" :alt="moveTypeLabel(option.meta?.type)" class="h-3 w-3" />
-                              {{ moveTypeLabel(option.meta?.type) }}
-                            </span>
-                            <span class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1 py-0.5">
-                              <img
-                                v-if="moveCategoryIcon(option.meta?.category)"
-                                :src="moveCategoryIcon(option.meta?.category) || ''"
-                                :alt="moveCategoryLabel(option.meta?.category)"
-                                class="h-3 w-3"
-                              />
-                              {{ moveCategoryLabel(option.meta?.category) }}
-                            </span>
-                          </div>
-                          <div class="font-mono text-[10px] text-gray-400">
-                            <span>{{ t('builder.movePowerShort') }} {{ moveValueLabel(option.meta?.power) }}</span>
-                            <span class="px-1">|</span>
-                            <span>{{ t('builder.moveAccuracyShort') }} {{ moveAccuracyValueLabel(option.meta?.accuracy) }}</span>
-                            <span class="px-1">|</span>
-                            <span>{{ t('builder.movePpShort') }} {{ moveValueLabel(option.meta?.pp) }}</span>
-                            <template v-if="(option.meta?.priority ?? 0) !== 0">
-                              <span class="px-1">|</span>
-                              <span>{{ t('builder.movePriorityShort') }} {{ movePriorityValueLabel(option.meta?.priority) }}</span>
-                            </template>
-                          </div>
+                          </template>
                         </div>
                       </div>
                     </div>
-                  </template>
-                </SearchableSelect>
+                  </div>
+                </template>
+              </SearchableSelect>
 
-                <button
-                  v-if="selectedMoveEntry(index)"
-                  type="button"
-                  class="absolute right-8 top-1/2 z-10 -translate-y-1/2 rounded-full border border-sky-500/40 bg-sky-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-sky-200"
-                  :title="t('builder.moveHoverHint')"
-                >
-                  ?
-                </button>
+              <button
+                v-if="selectedMoveEntry(index)"
+                type="button"
+                class="absolute right-8 top-1/2 z-10 -translate-y-1/2 rounded-full border border-sky-500/40 bg-sky-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-sky-200"
+                :title="t('builder.moveHoverHint')"
+              >
+                ?
+              </button>
 
-                <div
-                  v-if="selectedMoveEntry(index) && isMovePopoverOpen(index)"
-                  class="absolute right-0 top-[calc(100%+0.3rem)] z-20 w-80 rounded-md border border-sky-500/40 bg-off-black/95 p-2 text-[11px] shadow-lg"
-                >
-                  <p class="font-semibold text-sky-200">
-                    {{ selectedMoveEntry(index)?.name }}
-                  </p>
-                  <p class="mt-1 text-gray-300">
-                    <span class="font-semibold text-gray-200">{{ t('builder.movePower') }}:</span>
-                    {{ selectedMovePower(index) }}
-                  </p>
-                  <p class="mt-1 text-gray-300">
-                    <span class="font-semibold text-gray-200">{{ t('builder.moveAccuracy') }}:</span>
-                    {{ selectedMoveAccuracy(index) }}
-                  </p>
-                  <p class="mt-1 text-gray-300">
-                    <span class="font-semibold text-gray-200">{{ t('builder.movePp') }}:</span>
-                    {{ selectedMovePp(index) }}
-                  </p>
-                  <p v-if="selectedMovePriority(index) !== 0" class="mt-1 text-gray-300">
-                    <span class="font-semibold text-gray-200">{{ t('builder.movePriority') }}:</span>
-                    {{ movePriorityValueLabel(selectedMovePriority(index)) }}
-                  </p>
-                  <p class="mt-1 text-gray-300">
-                    <span class="font-semibold text-gray-200">{{ t('builder.moveEffect') }}:</span>
-                    {{ selectedMoveEffect(index) }}
-                  </p>
-                </div>
+              <div
+                v-if="selectedMoveEntry(index) && isMovePopoverOpen(index)"
+                class="absolute right-0 top-[calc(100%+0.3rem)] z-20 w-80 rounded-md border border-sky-500/40 bg-off-black/95 p-2 text-[11px] shadow-lg"
+              >
+                <p class="font-semibold text-sky-200">
+                  {{ selectedMoveEntry(index)?.name }}
+                </p>
+                <p class="mt-1 text-gray-300">
+                  <span class="font-semibold text-gray-200">{{ t('builder.movePower') }}:</span>
+                  {{ selectedMovePower(index) }}
+                </p>
+                <p class="mt-1 text-gray-300">
+                  <span class="font-semibold text-gray-200">{{ t('builder.moveAccuracy') }}:</span>
+                  {{ selectedMoveAccuracy(index) }}
+                </p>
+                <p class="mt-1 text-gray-300">
+                  <span class="font-semibold text-gray-200">{{ t('builder.movePp') }}:</span>
+                  {{ selectedMovePp(index) }}
+                </p>
+                <p v-if="selectedMovePriority(index) !== 0" class="mt-1 text-gray-300">
+                  <span class="font-semibold text-gray-200">{{ t('builder.movePriority') }}:</span>
+                  {{ movePriorityValueLabel(selectedMovePriority(index)) }}
+                </p>
+                <p class="mt-1 text-gray-300">
+                  <span class="font-semibold text-gray-200">{{ t('builder.moveEffect') }}:</span>
+                  {{ selectedMoveEffect(index) }}
+                </p>
               </div>
             </div>
+          </div>
         </div>
 
-        <div class="order-4 rounded-xl border border-gray-700 bg-st-black/45 p-3 xl:order-none xl:col-span-2 xl:row-start-3">
+        <div
+          class="order-4 rounded-xl border border-gray-700 bg-st-black/45 p-3 min-[1800px]:order-none min-[1800px]:col-span-2 min-[1800px]:row-start-3"
+        >
           <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
             <p class="text-sm font-semibold text-sky-200">{{ t('builder.statTraining') }}</p>
             <label class="inline-flex items-center gap-2 text-xs text-gray-300">
@@ -1913,14 +2075,15 @@ watch(
             </label>
           </div>
 
-          <div class="grid gap-4 xl:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
+          <div class="grid gap-4 min-[1800px]:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
             <div class="space-y-4">
               <div class="grid gap-4 lg:grid-cols-2">
                 <div>
                   <div class="mb-2 min-h-[2.5rem]">
                     <p class="text-gray-300">{{ t('builder.evs') }}</p>
                     <p class="text-xs text-gray-400">
-                      {{ t('builder.totalEvs') }}: {{ totalEvs }}/{{ MAX_EVS }} | {{ t('builder.remainingEvs') }}: {{ remainingEvs }}
+                      {{ t('builder.totalEvs') }}: {{ totalEvs }}/{{ MAX_EVS }} |
+                      {{ t('builder.remainingEvs') }}: {{ remainingEvs }}
                     </p>
                   </div>
                   <div class="space-y-2">
@@ -1937,7 +2100,9 @@ watch(
                         :max="evMaxForStat(stat)"
                         step="1"
                         :value="activeMember.evs[stat]"
-                        @input="updateStat('evs', stat, Number(($event.target as HTMLInputElement).value))"
+                        @input="
+                          updateStat('evs', stat, Number(($event.target as HTMLInputElement).value))
+                        "
                       />
                       <input
                         class="w-full rounded-md border border-sky-500/35 bg-off-black/70 p-1 text-right"
@@ -1946,7 +2111,9 @@ watch(
                         :max="evMaxForStat(stat)"
                         step="1"
                         :value="activeMember.evs[stat]"
-                        @input="updateStat('evs', stat, Number(($event.target as HTMLInputElement).value))"
+                        @input="
+                          updateStat('evs', stat, Number(($event.target as HTMLInputElement).value))
+                        "
                       />
                     </label>
                   </div>
@@ -1971,7 +2138,9 @@ watch(
                         :max="MAX_IV_PER_STAT"
                         step="1"
                         :value="activeMember.ivs[stat]"
-                        @input="updateStat('ivs', stat, Number(($event.target as HTMLInputElement).value))"
+                        @input="
+                          updateStat('ivs', stat, Number(($event.target as HTMLInputElement).value))
+                        "
                       />
                     </label>
                   </div>
@@ -1985,15 +2154,30 @@ watch(
                   <p class="mb-1 text-xs text-gray-400">{{ t('builder.baseStats') }}</p>
                   <p class="mb-1 text-[11px] text-gray-500">{{ t('builder.baseStatsHint') }}</p>
                   <div class="space-y-1.5">
-                    <div v-for="stat in STATS" :key="`base-${stat}`" class="flex items-center gap-2 text-xs">
-                      <span class="inline-flex w-12 items-center justify-between uppercase text-gray-300">
+                    <div
+                      v-for="stat in STATS"
+                      :key="`base-${stat}`"
+                      class="flex items-center gap-2 text-xs"
+                    >
+                      <span
+                        class="inline-flex w-12 items-center justify-between uppercase text-gray-300"
+                      >
                         <span>{{ stat }}</span>
-                        <span class="text-[10px] font-semibold" :class="natureIndicatorClass(stat)">{{ natureIndicator(stat) }}</span>
+                        <span
+                          class="text-[10px] font-semibold"
+                          :class="natureIndicatorClass(stat)"
+                          >{{ natureIndicator(stat) }}</span
+                        >
                       </span>
                       <div class="h-1.5 flex-1 rounded-full bg-gray-800">
-                        <div class="h-full rounded-full bg-sky-500" :style="{ width: statBarWidth(stat) }" />
+                        <div
+                          class="h-full rounded-full bg-sky-500"
+                          :style="{ width: statBarWidth(stat) }"
+                        />
                       </div>
-                      <span class="w-8 text-right text-gray-300">{{ activePokemon.baseStats[stat] }}</span>
+                      <span class="w-8 text-right text-gray-300">{{
+                        activePokemon.baseStats[stat]
+                      }}</span>
                     </div>
                   </div>
                 </div>
@@ -2004,17 +2188,33 @@ watch(
                     <span>{{ t('builder.calcLevel') }} {{ battleLevel }}</span>
                   </div>
                   <div class="space-y-1.5">
-                    <div v-for="stat in STATS" :key="`final-${stat}`" class="flex items-center gap-2 text-xs">
-                      <span class="inline-flex w-12 items-center justify-between uppercase text-gray-300">
+                    <div
+                      v-for="stat in STATS"
+                      :key="`final-${stat}`"
+                      class="flex items-center gap-2 text-xs"
+                    >
+                      <span
+                        class="inline-flex w-12 items-center justify-between uppercase text-gray-300"
+                      >
                         <span>{{ stat }}</span>
-                        <span class="text-[10px] font-semibold" :class="natureIndicatorClass(stat)">{{ natureIndicator(stat) }}</span>
+                        <span
+                          class="text-[10px] font-semibold"
+                          :class="natureIndicatorClass(stat)"
+                          >{{ natureIndicator(stat) }}</span
+                        >
                       </span>
                       <div class="relative h-1.5 flex-1 rounded-full bg-gray-800">
-                        <div class="h-full rounded-full bg-sky-500" :style="{ width: finalStatBarWidth(stat) }" />
+                        <div
+                          class="h-full rounded-full bg-sky-500"
+                          :style="{ width: finalStatBarWidth(stat) }"
+                        />
                         <div
                           v-if="finalGrowthPercent(stat) > 0"
                           class="absolute top-0 h-full rounded-r-full bg-emerald-400"
-                          :style="{ left: `${finalBaselinePercent(stat)}%`, width: `${finalGrowthPercent(stat)}%` }"
+                          :style="{
+                            left: `${finalBaselinePercent(stat)}%`,
+                            width: `${finalGrowthPercent(stat)}%`,
+                          }"
                         />
                       </div>
                       <span class="w-8 text-right text-gray-100">{{ finalStats[stat] }}</span>
@@ -2023,7 +2223,10 @@ watch(
                 </div>
               </template>
 
-              <div v-else class="rounded-lg border border-gray-700 bg-off-black/50 p-3 text-xs text-gray-500">
+              <div
+                v-else
+                class="rounded-lg border border-gray-700 bg-off-black/50 p-3 text-xs text-gray-500"
+              >
                 {{ t('builder.slotEmptyHint') }}
               </div>
             </div>
@@ -2031,7 +2234,9 @@ watch(
         </div>
       </div>
 
-      <aside class="order-3 rounded-xl border border-gray-700 bg-st-black/50 p-3 xl:order-none xl:col-start-2 xl:row-start-1 xl:row-span-2">
+      <aside
+        class="order-3 rounded-xl border border-gray-700 bg-st-black/50 p-3 min-[1800px]:order-none min-[1800px]:col-start-2 min-[1800px]:row-start-1 min-[1800px]:row-span-2"
+      >
         <div class="mb-3 flex items-center justify-between gap-2">
           <h3 class="text-sm font-semibold text-sky-200">{{ t('builder.selectedPokemon') }}</h3>
           <button
@@ -2056,9 +2261,15 @@ watch(
               @error="onPokemonSpriteError"
             />
             <div>
-              <p class="text-sm font-semibold text-gray-100">{{ displayPokemonName(activePokemon.id, activePokemon.name) }}</p>
-              <p class="text-xs text-gray-400">{{ t('common.slot', { slot: activeMember.slot }) }}</p>
-              <p class="text-xs text-gray-400">{{ t('builder.pokedexNumber') }} {{ activePokemon.pokedexNumber }}</p>
+              <p class="text-sm font-semibold text-gray-100">
+                {{ displayPokemonName(activePokemon.id, activePokemon.name) }}
+              </p>
+              <p class="text-xs text-gray-400">
+                {{ t('common.slot', { slot: activeMember.slot }) }}
+              </p>
+              <p class="text-xs text-gray-400">
+                {{ t('builder.pokedexNumber') }} {{ activePokemon.pokedexNumber }}
+              </p>
             </div>
           </div>
 
@@ -2086,13 +2297,28 @@ watch(
           <div class="mb-3 rounded-lg border border-sky-500/30 bg-sky-500/10 p-2">
             <div class="flex items-center justify-between gap-2">
               <p class="text-xs font-semibold text-sky-200">{{ t('builder.speedTier') }}</p>
-              <div class="flex items-center gap-2">
+              <div class="flex flex-wrap items-center justify-end gap-2">
                 <button
                   type="button"
                   class="rounded-md border border-sky-500/45 bg-off-black/60 px-2 py-0.5 text-[11px] text-sky-100 transition hover:border-sky-400/70 hover:bg-sky-500/10"
                   @click="openThreatsPanel"
                 >
                   {{ t('builder.speedThreatsButton') }}
+                </button>
+                <button
+                  type="button"
+                  class="rounded-md border border-amber-500/45 bg-off-black/60 px-2 py-0.5 text-[11px] text-amber-100 transition hover:border-amber-400/70 hover:bg-amber-500/10"
+                  @click="openSeenThreatsPanel"
+                >
+                  {{ t('builder.seenThreatsButton') }}
+                </button>
+                <button
+                  v-if="mode === 'vgc'"
+                  type="button"
+                  class="rounded-md border border-cyan-500/45 bg-off-black/60 px-2 py-0.5 text-[11px] text-cyan-100 transition hover:border-cyan-400/70 hover:bg-cyan-500/10"
+                  @click="openMetaPanel"
+                >
+                  {{ t('builder.metaTopButton') }}
                 </button>
                 <p class="text-base font-semibold text-sky-100">{{ speedEffective }}</p>
               </div>
@@ -2105,7 +2331,11 @@ watch(
               <button
                 type="button"
                 class="rounded-md border px-2 py-0.5 text-[11px] transition"
-                :class="speedTailwindActive ? 'border-sky-500/60 bg-sky-500/20 text-sky-100' : 'border-gray-700 bg-off-black/70 text-gray-300'"
+                :class="
+                  speedTailwindActive
+                    ? 'border-sky-500/60 bg-sky-500/20 text-sky-100'
+                    : 'border-gray-700 bg-off-black/70 text-gray-300'
+                "
                 @click="toggleSpeedTailwind"
               >
                 {{ t('builder.speedTailwind') }} x2
@@ -2114,9 +2344,15 @@ watch(
               <button
                 type="button"
                 class="rounded-md border px-2 py-0.5 text-[11px] transition disabled:cursor-not-allowed disabled:opacity-45"
-                :class="speedScarfActive ? 'border-cyan-400/60 bg-cyan-400/20 text-cyan-100' : 'border-gray-700 bg-off-black/70 text-gray-300'"
+                :class="
+                  speedScarfActive
+                    ? 'border-cyan-400/60 bg-cyan-400/20 text-cyan-100'
+                    : 'border-gray-700 bg-off-black/70 text-gray-300'
+                "
                 :disabled="!isChoiceScarfEquipped"
-                :title="isChoiceScarfEquipped ? t('builder.speedScarf') : t('builder.speedScarfNeedsItem')"
+                :title="
+                  isChoiceScarfEquipped ? t('builder.speedScarf') : t('builder.speedScarfNeedsItem')
+                "
                 @click="toggleSpeedScarf"
               >
                 {{ t('builder.speedScarf') }} x1.5
@@ -2163,10 +2399,16 @@ watch(
                 :key="`weak-${entry.type}`"
                 class="inline-flex items-center gap-1 rounded-md border border-red-500/30 bg-red-500/10 px-2 py-1 text-xs"
               >
-                <img :src="TYPE_META[entry.type].icon" :alt="typeLabel(entry.type)" class="h-3.5 w-3.5" />
+                <img
+                  :src="TYPE_META[entry.type].icon"
+                  :alt="typeLabel(entry.type)"
+                  class="h-3.5 w-3.5"
+                />
                 {{ typeLabel(entry.type) }} {{ factorLabel(entry.factor) }}
               </span>
-              <span v-if="defensiveWeaknesses.length === 0" class="text-xs text-gray-500">{{ t('common.none') }}</span>
+              <span v-if="defensiveWeaknesses.length === 0" class="text-xs text-gray-500">{{
+                t('common.none')
+              }}</span>
             </div>
           </div>
 
@@ -2178,10 +2420,16 @@ watch(
                 :key="`str-${entry.type}`"
                 class="inline-flex items-center gap-1 rounded-md border border-green-500/30 bg-green-500/10 px-2 py-1 text-xs"
               >
-                <img :src="TYPE_META[entry.type].icon" :alt="typeLabel(entry.type)" class="h-3.5 w-3.5" />
+                <img
+                  :src="TYPE_META[entry.type].icon"
+                  :alt="typeLabel(entry.type)"
+                  class="h-3.5 w-3.5"
+                />
                 {{ typeLabel(entry.type) }} {{ factorLabel(entry.factor) }}
               </span>
-              <span v-if="defensiveStrengths.length === 0" class="text-xs text-gray-500">{{ t('common.none') }}</span>
+              <span v-if="defensiveStrengths.length === 0" class="text-xs text-gray-500">{{
+                t('common.none')
+              }}</span>
             </div>
           </div>
 
@@ -2189,7 +2437,9 @@ watch(
             <p class="mb-1 text-xs text-gray-400">{{ t('builder.evolution') }}</p>
             <div class="flex flex-wrap items-center gap-2">
               <template v-for="(evo, index) in evolutionChainDetails" :key="`evo-${evo.id}`">
-                <div class="inline-flex items-center gap-1 rounded-md border border-gray-700 bg-off-black/70 px-2 py-1 text-xs">
+                <div
+                  class="inline-flex items-center gap-1 rounded-md border border-gray-700 bg-off-black/70 px-2 py-1 text-xs"
+                >
                   <img
                     :src="spriteUrl(evo.id)"
                     :alt="displayPokemonName(evo.id, evo.name)"
@@ -2201,7 +2451,9 @@ watch(
                   />
                   {{ displayPokemonName(evo.id, evo.name) }}
                 </div>
-                <span v-if="index < evolutionChainDetails.length - 1" class="text-xs text-gray-500">></span>
+                <span v-if="index < evolutionChainDetails.length - 1" class="text-xs text-gray-500"
+                  >></span
+                >
               </template>
             </div>
           </div>
@@ -2209,7 +2461,11 @@ watch(
           <div class="mb-3">
             <p class="mb-1 text-xs text-gray-400">{{ t('builder.ability') }}</p>
             <div class="flex flex-wrap gap-1.5">
-              <span v-for="ability in activePokemon.abilities" :key="ability" class="rounded-md border border-gray-700 bg-off-black/70 px-2 py-1 text-xs">
+              <span
+                v-for="ability in activePokemon.abilities"
+                :key="ability"
+                class="rounded-md border border-gray-700 bg-off-black/70 px-2 py-1 text-xs"
+              >
                 {{ abilityLabel(ability) }}
               </span>
             </div>
@@ -2218,8 +2474,12 @@ watch(
           <div class="mb-3">
             <p class="mb-1 text-xs text-gray-400">{{ t('builder.suggestedItems') }}</p>
             <div class="flex flex-wrap gap-1.5">
-              <span v-for="item in activePokemon.suggestedItems.slice(0, 3)" :key="item" class="rounded-md border border-gray-700 bg-off-black/70 px-2 py-1 text-xs">
-                {{ item }}
+              <span
+                v-for="item in activePokemon.suggestedItems.slice(0, 3)"
+                :key="item"
+                class="rounded-md border border-gray-700 bg-off-black/70 px-2 py-1 text-xs"
+              >
+                {{ itemNameById(item) }}
               </span>
             </div>
           </div>
@@ -2227,8 +2487,12 @@ watch(
           <div>
             <p class="mb-1 text-xs text-gray-400">{{ t('builder.suggestedMoves') }}</p>
             <div class="flex flex-wrap gap-1.5">
-              <span v-for="move in activePokemon.suggestedMoves.slice(0, 4)" :key="move" class="rounded-md border border-gray-700 bg-off-black/70 px-2 py-1 text-xs">
-                {{ move }}
+              <span
+                v-for="move in preferredMovesForPokemon(activePokemon).filter(Boolean)"
+                :key="move"
+                class="rounded-md border border-gray-700 bg-off-black/70 px-2 py-1 text-xs"
+              >
+                {{ moveNameById(move) }}
               </span>
             </div>
           </div>
@@ -2253,7 +2517,9 @@ watch(
       class="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4"
       @click.self="closeCompareModal"
     >
-      <article class="max-h-[88vh] w-full max-w-5xl overflow-hidden rounded-2xl border border-sky-500/35 bg-off-black shadow-2xl">
+      <article
+        class="max-h-[88vh] w-full max-w-5xl overflow-hidden rounded-2xl border border-sky-500/35 bg-off-black shadow-2xl"
+      >
         <header class="flex items-center justify-between border-b border-gray-700 px-4 py-3">
           <div>
             <h3 class="text-sm font-semibold text-sky-200">{{ t('builder.compareTitle') }}</h3>
@@ -2294,8 +2560,12 @@ watch(
                     @error="onPokemonSpriteError"
                   />
                   <div>
-                    <p class="text-sm font-semibold text-gray-100">{{ displayPokemonName(activePokemon.id, activePokemon.name) }}</p>
-                    <p class="text-xs text-gray-400">#{{ String(activePokemon.pokedexNumber).padStart(4, '0') }}</p>
+                    <p class="text-sm font-semibold text-gray-100">
+                      {{ displayPokemonName(activePokemon.id, activePokemon.name) }}
+                    </p>
+                    <p class="text-xs text-gray-400">
+                      #{{ String(activePokemon.pokedexNumber).padStart(4, '0') }}
+                    </p>
                   </div>
                 </div>
                 <div class="mt-2 flex flex-wrap gap-1.5">
@@ -2312,7 +2582,9 @@ watch(
             </section>
 
             <section class="rounded-xl border border-sky-500/40 bg-sky-500/5 p-3">
-              <p class="text-xs font-semibold text-sky-200">{{ t('builder.compareCandidateCard') }}</p>
+              <p class="text-xs font-semibold text-sky-200">
+                {{ t('builder.compareCandidateCard') }}
+              </p>
               <template v-if="comparePokemon">
                 <div class="mt-2 flex items-center gap-3">
                   <img
@@ -2324,8 +2596,12 @@ watch(
                     @error="onPokemonSpriteError"
                   />
                   <div>
-                    <p class="text-sm font-semibold text-gray-100">{{ displayPokemonName(comparePokemon.id, comparePokemon.name) }}</p>
-                    <p class="text-xs text-gray-400">#{{ String(comparePokemon.pokedexNumber).padStart(4, '0') }}</p>
+                    <p class="text-sm font-semibold text-gray-100">
+                      {{ displayPokemonName(comparePokemon.id, comparePokemon.name) }}
+                    </p>
+                    <p class="text-xs text-gray-400">
+                      #{{ String(comparePokemon.pokedexNumber).padStart(4, '0') }}
+                    </p>
                   </div>
                 </div>
                 <div class="mt-2 flex flex-wrap gap-1.5">
@@ -2369,8 +2645,17 @@ watch(
                   :no-results-label="t('dex.noSearchResults')"
                   @update:model-value="updateCompareField('itemId', $event)"
                 />
-                <p v-if="comparePokemon && isItemLockedForPokemon(comparePokemon)" class="mt-2 text-[11px] text-amber-200">
-                  {{ t('builder.itemLockedByForm', { item: dexStore.getItem(comparePokemon.requiredItemId ?? '')?.name ?? prettifySlug(comparePokemon.requiredItemId ?? '') }) }}
+                <p
+                  v-if="comparePokemon && isItemLockedForPokemon(comparePokemon)"
+                  class="mt-2 text-[11px] text-amber-200"
+                >
+                  {{
+                    t('builder.itemLockedByForm', {
+                      item:
+                        dexStore.getItem(comparePokemon.requiredItemId ?? '')?.name ??
+                        prettifySlug(comparePokemon.requiredItemId ?? ''),
+                    })
+                  }}
                 </p>
               </label>
 
@@ -2390,8 +2675,14 @@ watch(
             <div class="mt-3 space-y-2">
               <p class="text-xs font-semibold text-gray-300">{{ t('builder.moves') }}</p>
               <div class="grid gap-2 md:grid-cols-2">
-                <label v-for="(move, index) in compareDraft.moves" :key="`cmp-move-${index}`" class="block text-xs">
-                  <span class="mb-1 block text-gray-400">{{ t('builder.movePlaceholder') }} {{ index + 1 }}</span>
+                <label
+                  v-for="(move, index) in compareDraft.moves"
+                  :key="`cmp-move-${index}`"
+                  class="block text-xs"
+                >
+                  <span class="mb-1 block text-gray-400"
+                    >{{ t('builder.movePlaceholder') }} {{ index + 1 }}</span
+                  >
                   <SearchableSelect
                     :model-value="move"
                     :options="compareMoveSelectOptions"
@@ -2418,10 +2709,16 @@ watch(
                                 v-if="moveTypeIcon(option.meta?.type)"
                                 class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1 py-0.5"
                               >
-                                <img :src="moveTypeIcon(option.meta?.type) || ''" :alt="moveTypeLabel(option.meta?.type)" class="h-3 w-3" />
+                                <img
+                                  :src="moveTypeIcon(option.meta?.type) || ''"
+                                  :alt="moveTypeLabel(option.meta?.type)"
+                                  class="h-3 w-3"
+                                />
                                 {{ moveTypeLabel(option.meta?.type) }}
                               </span>
-                              <span class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1 py-0.5">
+                              <span
+                                class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/70 px-1 py-0.5"
+                              >
                                 <img
                                   v-if="moveCategoryIcon(option.meta?.category)"
                                   :src="moveCategoryIcon(option.meta?.category) || ''"
@@ -2432,14 +2729,26 @@ watch(
                               </span>
                             </div>
                             <div class="font-mono text-[10px] text-gray-400">
-                              <span>{{ t('builder.movePowerShort') }} {{ moveValueLabel(option.meta?.power) }}</span>
+                              <span
+                                >{{ t('builder.movePowerShort') }}
+                                {{ moveValueLabel(option.meta?.power) }}</span
+                              >
                               <span class="px-1">|</span>
-                              <span>{{ t('builder.moveAccuracyShort') }} {{ moveAccuracyValueLabel(option.meta?.accuracy) }}</span>
+                              <span
+                                >{{ t('builder.moveAccuracyShort') }}
+                                {{ moveAccuracyValueLabel(option.meta?.accuracy) }}</span
+                              >
                               <span class="px-1">|</span>
-                              <span>{{ t('builder.movePpShort') }} {{ moveValueLabel(option.meta?.pp) }}</span>
+                              <span
+                                >{{ t('builder.movePpShort') }}
+                                {{ moveValueLabel(option.meta?.pp) }}</span
+                              >
                               <template v-if="(option.meta?.priority ?? 0) !== 0">
                                 <span class="px-1">|</span>
-                                <span>{{ t('builder.movePriorityShort') }} {{ movePriorityValueLabel(option.meta?.priority) }}</span>
+                                <span
+                                  >{{ t('builder.movePriorityShort') }}
+                                  {{ movePriorityValueLabel(option.meta?.priority) }}</span
+                                >
                               </template>
                             </div>
                           </div>
@@ -2455,7 +2764,8 @@ watch(
               <div>
                 <p class="text-xs font-semibold text-gray-300">{{ t('builder.evs') }}</p>
                 <p class="mb-2 text-[11px] text-gray-500">
-                  {{ t('builder.totalEvs') }}: {{ compareTotalEvs }}/{{ MAX_EVS }} | {{ t('builder.remainingEvs') }}: {{ compareRemainingEvs }}
+                  {{ t('builder.totalEvs') }}: {{ compareTotalEvs }}/{{ MAX_EVS }} |
+                  {{ t('builder.remainingEvs') }}: {{ compareRemainingEvs }}
                 </p>
                 <div class="space-y-1.5">
                   <label
@@ -2472,7 +2782,13 @@ watch(
                       step="1"
                       :value="compareDraft.evs[stat]"
                       :disabled="!comparePokemon"
-                      @input="updateCompareStat('evs', stat, Number(($event.target as HTMLInputElement).value))"
+                      @input="
+                        updateCompareStat(
+                          'evs',
+                          stat,
+                          Number(($event.target as HTMLInputElement).value),
+                        )
+                      "
                     />
                     <input
                       class="w-full rounded-md border border-sky-500/35 bg-off-black/70 p-1 text-right"
@@ -2482,7 +2798,13 @@ watch(
                       step="1"
                       :value="compareDraft.evs[stat]"
                       :disabled="!comparePokemon"
-                      @change="updateCompareStat('evs', stat, Number(($event.target as HTMLInputElement).value))"
+                      @change="
+                        updateCompareStat(
+                          'evs',
+                          stat,
+                          Number(($event.target as HTMLInputElement).value),
+                        )
+                      "
                     />
                   </label>
                 </div>
@@ -2506,7 +2828,13 @@ watch(
                       step="1"
                       :value="compareDraft.ivs[stat]"
                       :disabled="!comparePokemon"
-                      @input="updateCompareStat('ivs', stat, Number(($event.target as HTMLInputElement).value))"
+                      @input="
+                        updateCompareStat(
+                          'ivs',
+                          stat,
+                          Number(($event.target as HTMLInputElement).value),
+                        )
+                      "
                     />
                   </label>
                 </div>
@@ -2516,7 +2844,9 @@ watch(
 
           <div class="mt-4 rounded-xl border border-gray-700 bg-st-black/50 p-3">
             <p class="text-xs font-semibold text-gray-200">{{ t('builder.compareStatsTitle') }}</p>
-            <p class="mt-1 text-[11px] text-gray-400">{{ t('builder.compareStatsHint', { level: battleLevel }) }}</p>
+            <p class="mt-1 text-[11px] text-gray-400">
+              {{ t('builder.compareStatsHint', { level: battleLevel }) }}
+            </p>
 
             <div class="mt-3 space-y-1.5">
               <div
@@ -2525,13 +2855,20 @@ watch(
                 class="grid grid-cols-[2.4rem_1fr_1fr_1fr] items-center gap-2 text-xs"
               >
                 <span class="uppercase text-gray-400">{{ stat }}</span>
-                <span class="rounded border border-gray-700 bg-off-black/60 px-2 py-1 text-right text-gray-200">
+                <span
+                  class="rounded border border-gray-700 bg-off-black/60 px-2 py-1 text-right text-gray-200"
+                >
                   {{ finalStats[stat] }}
                 </span>
-                <span class="rounded border border-gray-700 bg-off-black/60 px-2 py-1 text-right text-gray-200">
+                <span
+                  class="rounded border border-gray-700 bg-off-black/60 px-2 py-1 text-right text-gray-200"
+                >
                   {{ compareFinalStats[stat] }}
                 </span>
-                <span class="text-right font-semibold" :class="statDeltaClass(compareStatDiffs[stat])">
+                <span
+                  class="text-right font-semibold"
+                  :class="statDeltaClass(compareStatDiffs[stat])"
+                >
                   {{ signed(compareStatDiffs[stat]) }}
                 </span>
               </div>
@@ -2540,18 +2877,30 @@ watch(
             <div class="mt-3 grid gap-2 text-xs sm:grid-cols-3">
               <div class="rounded border border-gray-700 bg-off-black/60 px-2 py-1.5">
                 <p class="text-gray-400">{{ t('builder.compareBaseTotal') }}</p>
-                <p class="font-semibold text-gray-100">{{ compareBaseTotal }} -> {{ compareCandidateBaseTotal }}</p>
-                <p class="font-semibold" :class="statDeltaClass(compareBaseDelta)">{{ signed(compareBaseDelta) }}</p>
+                <p class="font-semibold text-gray-100">
+                  {{ compareBaseTotal }} -> {{ compareCandidateBaseTotal }}
+                </p>
+                <p class="font-semibold" :class="statDeltaClass(compareBaseDelta)">
+                  {{ signed(compareBaseDelta) }}
+                </p>
               </div>
               <div class="rounded border border-gray-700 bg-off-black/60 px-2 py-1.5">
                 <p class="text-gray-400">{{ t('builder.compareFinalTotal') }}</p>
-                <p class="font-semibold text-gray-100">{{ compareFinalTotal }} -> {{ compareCandidateFinalTotal }}</p>
-                <p class="font-semibold" :class="statDeltaClass(compareFinalDelta)">{{ signed(compareFinalDelta) }}</p>
+                <p class="font-semibold text-gray-100">
+                  {{ compareFinalTotal }} -> {{ compareCandidateFinalTotal }}
+                </p>
+                <p class="font-semibold" :class="statDeltaClass(compareFinalDelta)">
+                  {{ signed(compareFinalDelta) }}
+                </p>
               </div>
               <div class="rounded border border-gray-700 bg-off-black/60 px-2 py-1.5">
                 <p class="text-gray-400">{{ t('builder.speedTier') }}</p>
-                <p class="font-semibold text-gray-100">{{ speedFinal }} -> {{ compareSpeedFinal }}</p>
-                <p class="font-semibold" :class="statDeltaClass(compareSpeedDelta)">{{ signed(compareSpeedDelta) }}</p>
+                <p class="font-semibold text-gray-100">
+                  {{ speedFinal }} -> {{ compareSpeedFinal }}
+                </p>
+                <p class="font-semibold" :class="statDeltaClass(compareSpeedDelta)">
+                  {{ signed(compareSpeedDelta) }}
+                </p>
               </div>
             </div>
           </div>
@@ -2565,25 +2914,41 @@ watch(
                   :key="`cmp-current-weak-${entry.type}`"
                   class="inline-flex items-center gap-1 rounded-md border border-red-500/35 bg-red-500/10 px-2 py-1 text-xs"
                 >
-                  <img :src="TYPE_META[entry.type].icon" :alt="typeLabel(entry.type)" class="h-3.5 w-3.5" />
+                  <img
+                    :src="TYPE_META[entry.type].icon"
+                    :alt="typeLabel(entry.type)"
+                    class="h-3.5 w-3.5"
+                  />
                   {{ typeLabel(entry.type) }} {{ factorLabel(entry.factor) }}
                 </span>
-                <span v-if="defensiveWeaknesses.length === 0" class="text-xs text-gray-500">{{ t('common.none') }}</span>
+                <span v-if="defensiveWeaknesses.length === 0" class="text-xs text-gray-500">{{
+                  t('common.none')
+                }}</span>
               </div>
             </section>
 
             <section class="rounded-xl border border-red-500/25 bg-red-500/5 p-3">
-              <p class="text-xs font-semibold text-red-200">{{ t('builder.compareCandidateWeaknesses') }}</p>
+              <p class="text-xs font-semibold text-red-200">
+                {{ t('builder.compareCandidateWeaknesses') }}
+              </p>
               <div class="mt-2 flex flex-wrap gap-1.5">
                 <span
                   v-for="entry in (comparePokemonProfile?.weaknesses ?? []).slice(0, 8)"
                   :key="`cmp-candidate-weak-${entry.type}`"
                   class="inline-flex items-center gap-1 rounded-md border border-red-500/35 bg-red-500/10 px-2 py-1 text-xs"
                 >
-                  <img :src="TYPE_META[entry.type].icon" :alt="typeLabel(entry.type)" class="h-3.5 w-3.5" />
+                  <img
+                    :src="TYPE_META[entry.type].icon"
+                    :alt="typeLabel(entry.type)"
+                    class="h-3.5 w-3.5"
+                  />
                   {{ typeLabel(entry.type) }} {{ factorLabel(entry.factor) }}
                 </span>
-                <span v-if="!comparePokemonProfile || comparePokemonProfile.weaknesses.length === 0" class="text-xs text-gray-500">{{ t('common.none') }}</span>
+                <span
+                  v-if="!comparePokemonProfile || comparePokemonProfile.weaknesses.length === 0"
+                  class="text-xs text-gray-500"
+                  >{{ t('common.none') }}</span
+                >
               </div>
             </section>
           </div>
@@ -2592,7 +2957,12 @@ watch(
             <p class="font-semibold text-cyan-200">{{ t('builder.compareTeamImpact') }}</p>
             <template v-if="compareTeamAnalytics">
               <p class="mt-1 text-gray-300">
-                {{ t('builder.compareTeamScore', { current: currentTeamAnalytics.totalScore, candidate: compareTeamAnalytics.totalScore }) }}
+                {{
+                  t('builder.compareTeamScore', {
+                    current: currentTeamAnalytics.totalScore,
+                    candidate: compareTeamAnalytics.totalScore,
+                  })
+                }}
               </p>
               <p class="mt-1 font-semibold" :class="statDeltaClass(compareTeamScoreDelta ?? 0)">
                 {{ t('builder.compareTeamDelta', { value: signed(compareTeamScoreDelta ?? 0) }) }}

@@ -1,0 +1,3 @@
+[submodule "src/assets/pokesprite"]
+	path = src/assets/pokesprite
+	url = https://github.com/msikma/pokesprite.git
