@@ -94,7 +94,17 @@ documentacion declara que las imagenes de sprites son copyright de
 Nintendo/Creatures Inc./GAME FREAK Inc. La licencia y la atribucion originales
 se conservan dentro del submodulo src/assets/pokesprite.
 
-4. CODIGO DE TERCEROS
+4. DATOS DE USO DE POKEMON CHAMPIONS
+
+Fuente de agregacion: https://github.com/eurekaffeine/pokemon-champions-scraper
+Fuente estadistica original: https://www.pikalytics.com/
+Uso en el proyecto: porcentajes de uso, movimientos, objetos y companeros de
+la regulacion M-C sincronizados previamente en un snapshot local. El proyecto
+no consulta estas fuentes al seleccionar un Pokemon en el navegador. El codigo
+del agregador se publica bajo licencia MIT; los datos y nombres de Pokemon
+conservan los derechos de sus respectivos titulares.
+
+5. CODIGO DE TERCEROS
 
 Las dependencias JavaScript adicionales conservan sus licencias y avisos en
 package-lock.json y en sus paquetes correspondientes. Este documento resume

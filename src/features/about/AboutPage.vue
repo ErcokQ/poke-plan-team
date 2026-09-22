@@ -178,6 +178,18 @@ function sendSuggestion() {
                 {{ t('about.sourcePokeSprite') }}
               </p>
             </li>
+            <li>
+              <a
+                href="https://github.com/eurekaffeine/pokemon-champions-scraper"
+                target="_blank"
+                rel="noreferrer"
+                class="font-semibold text-sky-300 hover:text-sky-200"
+                >Pokemon Champions Scraper ↗</a
+              >
+              <p class="mt-1 text-xs leading-relaxed text-gray-400">
+                {{ t('about.sourceChampionsMeta') }}
+              </p>
+            </li>
           </ul>
         </section>
 

@@ -963,7 +963,9 @@ function preferredItemForPokemon(pokemon: PokemonEntry | undefined): string {
     resolveInitialItemIdForPokemon(pokemon)
 }
 
-function onPokemonChange(value: string) {
+let pokemonSelectionRequest = 0
+async function onPokemonChange(value: string) {
+  const requestId = ++pokemonSelectionRequest
   uiStore.setBuilderCatalogSource('pokemon')
   if (!value) {
     teamStore.updateMember(mode.value, activeMember.value.slot, {
@@ -975,6 +977,11 @@ function onPokemonChange(value: string) {
     })
     return
   }
+
+  const selectedMode = mode.value
+  const selectedSlot = activeMember.value.slot
+  await metaUsageStore.ensureModeLoaded(selectedMode)
+  if (requestId !== pokemonSelectionRequest || mode.value !== selectedMode || activeMember.value.slot !== selectedSlot) return
 
   const pokemon = dexStore.getPokemon(mode.value, value)
   const suggestedMoves: [string, string, string, string] = pokemon

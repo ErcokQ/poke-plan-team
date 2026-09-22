@@ -150,7 +150,11 @@ export class MetaUsageService {
 
   async loadFormat(format: MetaFormatKey): Promise<PokemonMetaUsageMap> {
     if (!this.cache.has(format)) {
-      this.cache.set(format, this.provider.loadFormat(format))
+      const request = this.provider.loadFormat(format).catch((error) => {
+        this.cache.delete(format)
+        throw error
+      })
+      this.cache.set(format, request)
     }
     return this.cache.get(format)!
   }

@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
-import { LocalSnapshotUsageProvider, normalizeMetaId } from './meta-usage-service'
+import { LocalSnapshotUsageProvider, MetaUsageService, normalizeMetaId } from './meta-usage-service'
 
 describe('meta usage service', () => {
   afterEach(() => {
@@ -47,16 +47,31 @@ describe('meta usage service', () => {
     expect(result.sneasler?.teammates[1]).toEqual({ id: 'basculegion-male', weight: 0.43 })
   })
 
-  it('ships current Champions move and item rankings for every ranked Pokemon', async () => {
+  it('retries a failed local meta load on the next selection', async () => {
+    const provider = {
+      loadFormat: vi.fn()
+        .mockRejectedValueOnce(new Error('temporary network error'))
+        .mockResolvedValueOnce({ raichu: { usage: 0.05, moves: [], items: [], teammates: [] } }),
+    }
+    const service = new MetaUsageService(provider)
+
+    await expect(service.loadFormat('champions-vgc-reg-mc')).rejects.toThrow('temporary network error')
+    await expect(service.loadFormat('champions-vgc-reg-mc')).resolves.toHaveProperty('raichu')
+    expect(provider.loadFormat).toHaveBeenCalledTimes(2)
+  })
+
+  it('ships current Champions rankings beyond the top 20', async () => {
     const snapshotPath = path.resolve('public/meta-snapshots/champions/vgc-reg-mc.json')
     const snapshot = JSON.parse(await readFile(snapshotPath, 'utf8')) as {
-      pokemon: Record<string, { moves: Record<string, number>; items: Record<string, number> }>
+      pokemon: Record<string, { rank: number; moves: Record<string, number>; items: Record<string, number> }>
     }
 
-    expect(Object.keys(snapshot.pokemon).length).toBeGreaterThan(0)
-    for (const entry of Object.values(snapshot.pokemon)) {
-      expect(Object.keys(entry.moves).length).toBeGreaterThan(0)
-      expect(Object.keys(entry.items).length).toBeGreaterThan(0)
-    }
+    const entries = Object.values(snapshot.pokemon)
+    expect(entries.length).toBeGreaterThan(200)
+    expect(entries.filter((entry) => Object.keys(entry.moves).length > 0).length).toBeGreaterThan(200)
+    expect(entries.filter((entry) => Object.keys(entry.items).length > 0).length).toBeGreaterThan(200)
+    expect(snapshot.pokemon.raichu?.rank).toBeGreaterThan(20)
+    expect(Object.keys(snapshot.pokemon.raichu?.moves ?? {})).toContain('fake-out')
+    expect(Object.keys(snapshot.pokemon.raichu?.items ?? {})[0]).toBe('raichunite-y')
   })
 })

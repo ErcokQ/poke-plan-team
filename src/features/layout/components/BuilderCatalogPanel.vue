@@ -857,8 +857,26 @@ function displayPokemonName(pokemonId: string, baseName: string): string {
   return suffix ? `${baseName} (${suffix})` : baseName
 }
 
-function applyPokemonSelection(pokemonId: string) {
+function preferredItemForPokemon(pokemon: PokemonEntry | undefined): string {
+  if (!pokemon) return ''
+  const required = getRequiredItemIdForPokemon(pokemon)
+  if (required) return required
+  const ranked = effectivePokemonMeta(pokemon)?.items ?? []
+  const metaItem = ranked.find((entry) => {
+    const item = dexStore.getItem(entry.id)
+    return item && (mode.value !== 'vgc' || item.championsAvailable !== false)
+  })
+  return metaItem?.id ?? resolveInitialItemIdForPokemon(pokemon)
+}
+
+let pokemonSelectionRequest = 0
+async function applyPokemonSelection(pokemonId: string) {
   if (!pokemonId) return
+  const requestId = ++pokemonSelectionRequest
+  const selectedMode = mode.value
+  const selectedSlot = activeMember.value.slot
+  await metaUsageStore.ensureModeLoaded(selectedMode)
+  if (requestId !== pokemonSelectionRequest || mode.value !== selectedMode || activeMember.value.slot !== selectedSlot) return
   uiStore.setBuilderCatalogSource('pokemon')
   const pokemon = dexStore.getPokemon(mode.value, pokemonId)
   const suggestedMoves = pokemon ? preferredMovesForPokemon(pokemon) : ['', '', '', '']
@@ -866,7 +884,7 @@ function applyPokemonSelection(pokemonId: string) {
   teamStore.updateMember(mode.value, activeMember.value.slot, {
     pokemonId,
     abilityId: pokemon?.abilities[0] ?? '',
-    itemId: resolveInitialItemIdForPokemon(pokemon),
+    itemId: preferredItemForPokemon(pokemon),
     natureId: pokemon?.defaultNature ?? activeMember.value.natureId,
     moves: [
       suggestedMoves[0],

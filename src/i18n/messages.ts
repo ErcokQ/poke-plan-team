@@ -112,6 +112,8 @@ export const messages = {
         'PokeAPI se usa para sincronizar datos estructurados que la aplicacion conserva en snapshots locales.',
       sourcePokeSprite:
         'PokeSprite aporta recursos y metadatos bajo MIT; sus imagenes de Pokemon se atribuyen a Nintendo, Creatures y GAME FREAK.',
+      sourceChampionsMeta:
+        'Los porcentajes de uso de Champions M-C provienen de Pikalytics mediante Pokemon Champions Scraper y se conservan en un snapshot local.',
       rightsTitle: 'Titularidad y alcance',
       rightsBody:
         'Pokemon, sus nombres, personajes e imagenes pertenecen a sus respectivos titulares. La aplicacion no reclama propiedad sobre esos recursos ni presenta las fuentes externas como propias.',
@@ -1193,6 +1195,8 @@ export const messages = {
         'PokeAPI is used to synchronize structured data that the application keeps in local snapshots.',
       sourcePokeSprite:
         'PokeSprite provides MIT-licensed resources and metadata; its Pokemon images are attributed to Nintendo, Creatures and GAME FREAK.',
+      sourceChampionsMeta:
+        'Champions M-C usage percentages come from Pikalytics via Pokemon Champions Scraper and are stored in a local snapshot.',
       rightsTitle: 'Ownership and scope',
       rightsBody:
         'Pokemon, its names, characters and images belong to their respective owners. The application does not claim ownership of those resources or present external sources as its own.',

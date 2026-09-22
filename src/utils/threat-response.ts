@@ -18,7 +18,7 @@ import type {
 import { calculateBattleStats } from '@/utils/stat-calc'
 import { calculateFavorableSpeedBenchmark } from '@/utils/speed-comparison'
 import { effectivenessAgainstDual } from '@/models/type-chart'
-import championsMetaSource from '../../data/champions/meta-usage.source.json'
+import vgcThreatsRaw from '@/data/meta-threats.vgc.json'
 import singlesThreatsRaw from '@/data/meta-threats.singles.json'
 
 const MIN_PRESSURE_POWER = 70
@@ -34,20 +34,7 @@ const SPEED_CONTROL_MOVES = new Set([
 ])
 
 const THREATS_BY_MODE: Record<BattleMode, ThreatProfile[]> = {
-  vgc: Object.entries(championsMetaSource.pokemon)
-    .sort(([, a], [, b]) => a.rank - b.rank)
-    .slice(0, 12)
-    .map(([pokemonId, entry]) => ({
-      id: pokemonId,
-      name: entry.name,
-      kind: 'pokemon' as const,
-      pokemonId,
-      defensiveTypes: [],
-      threatMoveTypes: [],
-      expectedSpeed: 0,
-      utilityCountersAny: [],
-      priority: entry.rank,
-    })),
+  vgc: vgcThreatsRaw as ThreatProfile[],
   singles: singlesThreatsRaw as ThreatProfile[],
 }
 
