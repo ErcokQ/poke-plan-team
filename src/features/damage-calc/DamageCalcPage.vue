@@ -1,5 +1,5 @@
 ﻿<script setup lang="ts">
-import { computed, onBeforeUnmount, ref, shallowRef, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, ref, shallowRef, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import SearchableSelect from '@/features/shared/components/SearchableSelect.vue'
@@ -203,6 +203,8 @@ const statEditorDrag = ref<{
 } | null>(null)
 const applyToBuilderMessage = ref('')
 const lineThreatModalOpen = ref(false)
+const slotEditor = ref<{ side: DamageSideId; slot: DamageSlotNumber } | null>(null)
+let slotEditorTrigger: HTMLElement | null = null
 const lineThreatFocus = ref<DamageLineThreatFocus>('leads')
 const lineThreatAvailabilityFilter = ref<'all' | DexAvailabilityFilterKey>('all')
 
@@ -473,6 +475,19 @@ function lineupSlots(side: DamageSideId) {
     .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry))
 }
 
+function teamLineupSlots(side: DamageSideId) {
+  const state = sideState(side)
+  const active = lineupSlots(side)
+  const empty = state.slots.filter(
+    (entry) => !state.activeSlotIds.includes(entry.slot) && !entry.pokemonId,
+  )
+  return [...active, ...empty.slice(0, Math.max(0, maxActiveSlots.value - active.length))]
+}
+
+function filledLineupSlots(side: DamageSideId) {
+  return lineupSlots(side).filter((entry) => Boolean(entry.pokemonId))
+}
+
 function leadSlots(side: DamageSideId) {
   const state = sideState(side)
   const leadIds = isVgc.value ? state.activeSlotIds.slice(0, 2) : state.activeSlotIds
@@ -692,6 +707,65 @@ function pokemonNameById(pokemonId: string): string {
   if (!pokemonId) return t('builder.selectPokemon')
   const pokemon = dexStore.getPokemon(mode.value, pokemonId)
   return pokemon ? speedComparisonPokemonName(pokemon) : pokemonId
+}
+
+function slotEditorIsOpen(side: DamageSideId, slot: DamageSlotNumber): boolean {
+  return slotEditor.value?.side === side && slotEditor.value.slot === slot
+}
+
+function openSlotEditor(side: DamageSideId, slot: DamageSlotNumber) {
+  slotEditorTrigger = document.activeElement as HTMLElement | null
+  slotEditor.value = { side, slot }
+  void nextTick(() => document.querySelector<HTMLElement>('[data-slot-editor]')?.focus())
+}
+
+function closeSlotEditor() {
+  if (!slotEditor.value) return
+  if (statEditorModal.value.open) closeStatEditor()
+  slotEditor.value = null
+  const trigger = slotEditorTrigger
+  slotEditorTrigger = null
+  void nextTick(() => trigger?.focus())
+}
+
+function onSlotEditorKeydown(event: KeyboardEvent) {
+  if (event.key === 'Escape') {
+    event.stopPropagation()
+    closeSlotEditor()
+    return
+  }
+  if (event.key !== 'Tab') return
+  const panel = event.currentTarget as HTMLElement
+  const focusable = Array.from(
+    panel.querySelectorAll<HTMLElement>(
+      'button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    ),
+  ).filter((element) => element.getClientRects().length > 0)
+  if (!focusable.length) return
+  const first = focusable[0]
+  const last = focusable[focusable.length - 1]
+  if (event.shiftKey && (document.activeElement === first || document.activeElement === panel)) {
+    event.preventDefault()
+    last?.focus()
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault()
+    first?.focus()
+  }
+}
+
+function slotMoveNames(slotSet: DamageSlotSet): string {
+  const names = slotSet.moves
+    .filter(Boolean)
+    .map((moveId) => dexStore.getMove(moveId)?.name ?? prettifySlug(moveId))
+  return names.length ? names.join(' · ') : t('common.none')
+}
+
+function abilityNameById(abilityId: string): string {
+  return abilityId ? dexStore.getAbilityMeta(abilityId).name : t('common.none')
+}
+
+function itemNameById(itemId: string): string {
+  return itemId ? (dexStore.getItem(itemId)?.name ?? itemId) : t('common.none')
 }
 
 function typeLabel(type: PokemonTypeKey): string {
@@ -1368,6 +1442,9 @@ function onPokemonChange(side: DamageSideId, slot: DamageSlotNumber, pokemonId: 
     stages: { atk: 0, def: 0, spa: 0, spd: 0, spe: 0 },
     combatContext: defaultCombatContext(),
   })
+  if (!sideState(side).activeSlotIds.includes(slot)) {
+    damageCalcStore.setActiveSlots(mode.value, side, [...sideState(side).activeSlotIds, slot])
+  }
 }
 
 function updateMove(side: DamageSideId, slot: DamageSlotNumber, moveIndex: number, moveId: string) {
@@ -2141,6 +2218,7 @@ function toggleQuickTera(side: DamageSideId, slot: DamageSlotNumber, enabled: bo
 watch(
   mode,
   () => {
+    closeSlotEditor()
     damageCalcStore.initFromBuilder(mode.value)
     void damageCalcStore.ensureMetaTemplatesLoaded(mode.value)
     void metaUsageStore.ensureModeLoaded(mode.value)
@@ -2155,6 +2233,8 @@ watch(
   },
   { immediate: true },
 )
+
+watch(activeStep, closeSlotEditor)
 
 watch(
   [activeStep, mode, matrixAttackerSide, scenarioVersion],
@@ -2854,7 +2934,7 @@ watch(selectedTemplateB, (templateId) => {
           <span class="text-xs text-gray-400">
             {{
               t('damageCalc.activeCount', {
-                count: scenario.sideA.activeSlotIds.length,
+                count: filledLineupSlots('A').length,
                 max: maxActiveSlots,
               })
             }}
@@ -2866,10 +2946,15 @@ watch(selectedTemplateB, (templateId) => {
         </h3>
         <div class="mb-3 overflow-x-auto pb-1">
           <div class="flex min-w-max gap-2">
-            <div
-              v-for="slotSet in lineupSlots('A')"
+            <button
+              v-for="slotSet in teamLineupSlots('A')"
               :key="`sideA-lineup-${slotSet.slot}`"
-              class="w-[190px] rounded-lg border border-gray-700 bg-st-black/60 p-2"
+              type="button"
+              class="w-[190px] rounded-lg border border-gray-700 bg-st-black/60 p-2 text-left transition hover:border-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-400"
+              :aria-label="
+                t('damageCalc.editPokemon', { pokemon: pokemonNameById(slotSet.pokemonId) })
+              "
+              @click="openSlotEditor('A', slotSet.slot)"
             >
               <div class="flex items-center gap-2">
                 <img
@@ -2898,9 +2983,12 @@ watch(selectedTemplateB, (templateId) => {
                 </div>
               </div>
               <div class="mt-2 space-y-2">
-                <p class="text-[11px] text-gray-300">{{ activeRoleLabel('A', slotSet.slot) }}</p>
+                <p class="flex justify-between gap-2 text-[11px] text-gray-300">
+                  <span>{{ slotSet.pokemonId ? activeRoleLabel('A', slotSet.slot) : t('damageCalc.emptySlot') }}</span>
+                  <span class="text-sky-300">{{ t('damageCalc.editShort') }}</span>
+                </p>
               </div>
-            </div>
+            </button>
           </div>
         </div>
 
@@ -2940,15 +3028,70 @@ watch(selectedTemplateB, (templateId) => {
 
         <div class="grid gap-2">
           <div
-            v-for="slotSet in lineupSlots('A')"
+            v-for="slotSet in teamLineupSlots('A')"
             :key="`sideA-slot-${slotSet.slot}`"
             class="rounded-lg border bg-off-black/60 p-2 transition"
             :class="
-              isSlotTouched('A', slotSet.slot)
-                ? 'border-emerald-400/80 ring-1 ring-emerald-400/70'
-                : 'border-gray-700'
+              [
+                isSlotTouched('A', slotSet.slot)
+                  ? 'border-emerald-400/80 ring-1 ring-emerald-400/70'
+                  : 'border-gray-700',
+                !slotSet.pokemonId && 'hidden',
+              ]
             "
           >
+            <div class="flex items-start gap-2">
+              <img
+                :src="spriteUrl(slotSet.pokemonId)"
+                :alt="pokemonNameById(slotSet.pokemonId)"
+                :data-sprite-id="slotSet.pokemonId"
+                :data-sprite-fallback-index="0"
+                class="h-10 w-10 shrink-0 rounded bg-black/20 object-contain"
+                loading="lazy"
+                @error="onSpriteError"
+              />
+              <div class="min-w-0 flex-1 text-xs">
+                <p class="font-semibold text-gray-100">{{ pokemonNameById(slotSet.pokemonId) }}</p>
+                <p class="mt-1 text-gray-400">{{ slotMoveNames(slotSet) }}</p>
+                <p class="mt-1 text-gray-500">
+                  {{ t('damageCalc.ability') }}: {{ abilityNameById(slotSet.abilityId) }} ·
+                  {{ t('damageCalc.item') }}: {{ itemNameById(slotSet.itemId) }}
+                </p>
+              </div>
+            </div>
+            <Teleport v-if="slotEditorIsOpen('A', slotSet.slot)" to="body">
+              <div
+                class="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-3"
+                @click.self="closeSlotEditor"
+              >
+                <article
+                  data-slot-editor
+                  role="dialog"
+                  aria-modal="true"
+                  tabindex="-1"
+                  :aria-label="
+                    t('damageCalc.editPokemon', { pokemon: pokemonNameById(slotSet.pokemonId) })
+                  "
+                  class="flex max-h-[calc(100dvh-24px)] w-full max-w-3xl flex-col rounded-xl border border-sky-500/40 bg-off-black shadow-2xl"
+                  @keydown="onSlotEditorKeydown"
+                >
+                  <header
+                    class="flex items-center justify-between gap-3 border-b border-gray-700 px-4 py-3"
+                  >
+                    <h3 class="text-sm font-semibold text-sky-100">
+                      {{
+                        t('damageCalc.editPokemon', { pokemon: pokemonNameById(slotSet.pokemonId) })
+                      }}
+                    </h3>
+                    <button
+                      type="button"
+                      class="rounded border border-gray-600 px-3 py-1 text-xs text-gray-100 hover:border-sky-400"
+                      @click="closeSlotEditor"
+                    >
+                      {{ t('common.close') }}
+                    </button>
+                  </header>
+                  <div class="overflow-y-auto p-4">
             <div class="mb-2 flex flex-wrap items-center justify-between gap-2">
               <div class="flex items-center gap-2">
                 <img
@@ -3027,9 +3170,13 @@ watch(selectedTemplateB, (templateId) => {
               </label>
 
               <label class="text-xs">
-                <span class="mb-1 block text-gray-300">{{ t('damageCalc.defaultTarget') }}</span>
+                <span class="mb-1 block text-gray-300">{{
+                  t('damageCalc.defaultTarget')
+                }}</span>
                 <SearchableSelect
-                  :model-value="String(scenario.sideA.targetByAttacker[String(slotSet.slot)] ?? 1)"
+                  :model-value="
+                    String(scenario.sideA.targetByAttacker[String(slotSet.slot)] ?? 1)
+                  "
                   :options="targetOptions('A')"
                   :clearable="false"
                   @update:model-value="
@@ -3072,7 +3219,9 @@ watch(selectedTemplateB, (templateId) => {
               </label>
 
               <label v-if="editorMode === 'advanced'" class="text-xs">
-                <span class="mb-1 block text-gray-300">{{ t('damageCalc.teraActivate') }}</span>
+                <span class="mb-1 block text-gray-300">{{
+                  t('damageCalc.teraActivate')
+                }}</span>
                 <div class="flex items-center gap-2">
                   <div class="min-w-0 flex-1">
                     <SearchableSelect
@@ -3125,7 +3274,9 @@ watch(selectedTemplateB, (templateId) => {
                     >
                       <div class="flex items-start justify-between gap-2">
                         <div class="min-w-0 flex-1">
-                          <p class="truncate font-semibold text-gray-100">{{ option.label }}</p>
+                          <p class="truncate font-semibold text-gray-100">
+                            {{ option.label }}
+                          </p>
                           <p class="move-option-effect mt-0.5 text-[10px] text-gray-400">
                             {{ option.meta?.effect || t('builder.noMoveDescription') }}
                           </p>
@@ -3188,7 +3339,9 @@ watch(selectedTemplateB, (templateId) => {
 
             <div class="mt-2 grid gap-2 md:grid-cols-2">
               <label class="text-xs">
-                <span class="mb-1 block text-gray-300">{{ t('damageCalc.currentHpPercent') }}</span>
+                <span class="mb-1 block text-gray-300">{{
+                  t('damageCalc.currentHpPercent')
+                }}</span>
                 <input
                   class="w-full rounded border border-gray-700 bg-off-black/70 px-2 py-1 text-xs text-gray-100"
                   type="number"
@@ -3197,13 +3350,17 @@ watch(selectedTemplateB, (templateId) => {
                   :value="slotSet.currentHpPercent"
                   @change="
                     patchSlot('A', slotSet.slot, {
-                      currentHpPercent: inputNumber(($event.target as HTMLInputElement).value),
+                      currentHpPercent: inputNumber(
+                        ($event.target as HTMLInputElement).value,
+                      ),
                     })
                   "
                 />
               </label>
               <label class="text-xs">
-                <span class="mb-1 block text-gray-300">{{ t('damageCalc.statusLabel') }}</span>
+                <span class="mb-1 block text-gray-300">{{
+                  t('damageCalc.statusLabel')
+                }}</span>
                 <SearchableSelect
                   :model-value="slotSet.status"
                   :options="statusOptions"
@@ -3222,7 +3379,9 @@ watch(selectedTemplateB, (templateId) => {
               <p class="mb-2 text-xs font-semibold text-gray-200">
                 {{ t('damageCalc.statsStages') }}
               </p>
-              <p class="mb-2 text-[11px] text-gray-400">{{ t('damageCalc.statsStagesHelp') }}</p>
+              <p class="mb-2 text-[11px] text-gray-400">
+                {{ t('damageCalc.statsStagesHelp') }}
+              </p>
               <div class="mt-2 grid gap-2 md:grid-cols-5">
                 <label
                   v-for="key in stageKeys"
@@ -3237,7 +3396,12 @@ watch(selectedTemplateB, (templateId) => {
                     max="6"
                     :value="slotSet.stages[key]"
                     @change="
-                      updateStage('A', slotSet.slot, key, ($event.target as HTMLInputElement).value)
+                      updateStage(
+                        'A',
+                        slotSet.slot,
+                        key,
+                        ($event.target as HTMLInputElement).value,
+                      )
                     "
                   />
                 </label>
@@ -3251,7 +3415,9 @@ watch(selectedTemplateB, (templateId) => {
               <p class="mb-2 text-xs font-semibold text-gray-200">
                 {{ t('damageCalc.combat.title') }}
               </p>
-              <p class="mb-2 text-[11px] text-gray-400">{{ t('damageCalc.combat.help') }}</p>
+              <p class="mb-2 text-[11px] text-gray-400">
+                {{ t('damageCalc.combat.help') }}
+              </p>
 
               <div class="grid gap-2 md:grid-cols-2 xl:grid-cols-4">
                 <label
@@ -3447,6 +3613,10 @@ watch(selectedTemplateB, (templateId) => {
                 </label>
               </div>
             </div>
+                  </div>
+                </article>
+              </div>
+            </Teleport>
           </div>
         </div>
       </article>
@@ -3457,7 +3627,7 @@ watch(selectedTemplateB, (templateId) => {
           <span class="text-xs text-gray-400">
             {{
               t('damageCalc.activeCount', {
-                count: scenario.sideB.activeSlotIds.length,
+                count: filledLineupSlots('B').length,
                 max: maxActiveSlots,
               })
             }}
@@ -3469,10 +3639,15 @@ watch(selectedTemplateB, (templateId) => {
         </h3>
         <div class="mb-3 overflow-x-auto pb-1">
           <div class="flex min-w-max gap-2">
-            <div
-              v-for="slotSet in lineupSlots('B')"
+            <button
+              v-for="slotSet in teamLineupSlots('B')"
               :key="`sideB-lineup-${slotSet.slot}`"
-              class="w-[190px] rounded-lg border border-gray-700 bg-st-black/60 p-2"
+              type="button"
+              class="w-[190px] rounded-lg border border-gray-700 bg-st-black/60 p-2 text-left transition hover:border-rose-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-rose-400"
+              :aria-label="
+                t('damageCalc.editPokemon', { pokemon: pokemonNameById(slotSet.pokemonId) })
+              "
+              @click="openSlotEditor('B', slotSet.slot)"
             >
               <div class="flex items-center gap-2">
                 <img
@@ -3501,9 +3676,12 @@ watch(selectedTemplateB, (templateId) => {
                 </div>
               </div>
               <div class="mt-2 space-y-2">
-                <p class="text-[11px] text-gray-300">{{ activeRoleLabel('B', slotSet.slot) }}</p>
+                <p class="flex justify-between gap-2 text-[11px] text-gray-300">
+                  <span>{{ slotSet.pokemonId ? activeRoleLabel('B', slotSet.slot) : t('damageCalc.emptySlot') }}</span>
+                  <span class="text-rose-300">{{ t('damageCalc.editShort') }}</span>
+                </p>
               </div>
-            </div>
+            </button>
           </div>
         </div>
 
@@ -3543,15 +3721,70 @@ watch(selectedTemplateB, (templateId) => {
 
         <div class="grid gap-2">
           <div
-            v-for="slotSet in lineupSlots('B')"
+            v-for="slotSet in teamLineupSlots('B')"
             :key="`sideB-slot-${slotSet.slot}`"
             class="rounded-lg border bg-off-black/60 p-2 transition"
             :class="
-              isSlotTouched('B', slotSet.slot)
-                ? 'border-emerald-400/80 ring-1 ring-emerald-400/70'
-                : 'border-gray-700'
+              [
+                isSlotTouched('B', slotSet.slot)
+                  ? 'border-emerald-400/80 ring-1 ring-emerald-400/70'
+                  : 'border-gray-700',
+                !slotSet.pokemonId && 'hidden',
+              ]
             "
           >
+            <div class="flex items-start gap-2">
+              <img
+                :src="spriteUrl(slotSet.pokemonId)"
+                :alt="pokemonNameById(slotSet.pokemonId)"
+                :data-sprite-id="slotSet.pokemonId"
+                :data-sprite-fallback-index="0"
+                class="h-10 w-10 shrink-0 rounded bg-black/20 object-contain"
+                loading="lazy"
+                @error="onSpriteError"
+              />
+              <div class="min-w-0 flex-1 text-xs">
+                <p class="font-semibold text-gray-100">{{ pokemonNameById(slotSet.pokemonId) }}</p>
+                <p class="mt-1 text-gray-400">{{ slotMoveNames(slotSet) }}</p>
+                <p class="mt-1 text-gray-500">
+                  {{ t('damageCalc.ability') }}: {{ abilityNameById(slotSet.abilityId) }} ·
+                  {{ t('damageCalc.item') }}: {{ itemNameById(slotSet.itemId) }}
+                </p>
+              </div>
+            </div>
+            <Teleport v-if="slotEditorIsOpen('B', slotSet.slot)" to="body">
+              <div
+                class="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-3"
+                @click.self="closeSlotEditor"
+              >
+                <article
+                  data-slot-editor
+                  role="dialog"
+                  aria-modal="true"
+                  tabindex="-1"
+                  :aria-label="
+                    t('damageCalc.editPokemon', { pokemon: pokemonNameById(slotSet.pokemonId) })
+                  "
+                  class="flex max-h-[calc(100dvh-24px)] w-full max-w-3xl flex-col rounded-xl border border-rose-500/40 bg-off-black shadow-2xl"
+                  @keydown="onSlotEditorKeydown"
+                >
+                  <header
+                    class="flex items-center justify-between gap-3 border-b border-gray-700 px-4 py-3"
+                  >
+                    <h3 class="text-sm font-semibold text-rose-100">
+                      {{
+                        t('damageCalc.editPokemon', { pokemon: pokemonNameById(slotSet.pokemonId) })
+                      }}
+                    </h3>
+                    <button
+                      type="button"
+                      class="rounded border border-gray-600 px-3 py-1 text-xs text-gray-100 hover:border-rose-400"
+                      @click="closeSlotEditor"
+                    >
+                      {{ t('common.close') }}
+                    </button>
+                  </header>
+                  <div class="overflow-y-auto p-4">
             <div class="mb-2 flex flex-wrap items-center justify-between gap-2">
               <div class="flex items-center gap-2">
                 <img
@@ -3630,9 +3863,13 @@ watch(selectedTemplateB, (templateId) => {
               </label>
 
               <label class="text-xs">
-                <span class="mb-1 block text-gray-300">{{ t('damageCalc.defaultTarget') }}</span>
+                <span class="mb-1 block text-gray-300">{{
+                  t('damageCalc.defaultTarget')
+                }}</span>
                 <SearchableSelect
-                  :model-value="String(scenario.sideB.targetByAttacker[String(slotSet.slot)] ?? 1)"
+                  :model-value="
+                    String(scenario.sideB.targetByAttacker[String(slotSet.slot)] ?? 1)
+                  "
                   :options="targetOptions('B')"
                   :clearable="false"
                   @update:model-value="
@@ -3675,7 +3912,9 @@ watch(selectedTemplateB, (templateId) => {
               </label>
 
               <label v-if="editorMode === 'advanced'" class="text-xs">
-                <span class="mb-1 block text-gray-300">{{ t('damageCalc.teraActivate') }}</span>
+                <span class="mb-1 block text-gray-300">{{
+                  t('damageCalc.teraActivate')
+                }}</span>
                 <div class="flex items-center gap-2">
                   <div class="min-w-0 flex-1">
                     <SearchableSelect
@@ -3728,7 +3967,9 @@ watch(selectedTemplateB, (templateId) => {
                     >
                       <div class="flex items-start justify-between gap-2">
                         <div class="min-w-0 flex-1">
-                          <p class="truncate font-semibold text-gray-100">{{ option.label }}</p>
+                          <p class="truncate font-semibold text-gray-100">
+                            {{ option.label }}
+                          </p>
                           <p class="move-option-effect mt-0.5 text-[10px] text-gray-400">
                             {{ option.meta?.effect || t('builder.noMoveDescription') }}
                           </p>
@@ -3791,7 +4032,9 @@ watch(selectedTemplateB, (templateId) => {
 
             <div class="mt-2 grid gap-2 md:grid-cols-2">
               <label class="text-xs">
-                <span class="mb-1 block text-gray-300">{{ t('damageCalc.currentHpPercent') }}</span>
+                <span class="mb-1 block text-gray-300">{{
+                  t('damageCalc.currentHpPercent')
+                }}</span>
                 <input
                   class="w-full rounded border border-gray-700 bg-off-black/70 px-2 py-1 text-xs text-gray-100"
                   type="number"
@@ -3800,13 +4043,17 @@ watch(selectedTemplateB, (templateId) => {
                   :value="slotSet.currentHpPercent"
                   @change="
                     patchSlot('B', slotSet.slot, {
-                      currentHpPercent: inputNumber(($event.target as HTMLInputElement).value),
+                      currentHpPercent: inputNumber(
+                        ($event.target as HTMLInputElement).value,
+                      ),
                     })
                   "
                 />
               </label>
               <label class="text-xs">
-                <span class="mb-1 block text-gray-300">{{ t('damageCalc.statusLabel') }}</span>
+                <span class="mb-1 block text-gray-300">{{
+                  t('damageCalc.statusLabel')
+                }}</span>
                 <SearchableSelect
                   :model-value="slotSet.status"
                   :options="statusOptions"
@@ -3825,7 +4072,9 @@ watch(selectedTemplateB, (templateId) => {
               <p class="mb-2 text-xs font-semibold text-gray-200">
                 {{ t('damageCalc.statsStages') }}
               </p>
-              <p class="mb-2 text-[11px] text-gray-400">{{ t('damageCalc.statsStagesHelp') }}</p>
+              <p class="mb-2 text-[11px] text-gray-400">
+                {{ t('damageCalc.statsStagesHelp') }}
+              </p>
               <div class="mt-2 grid gap-2 md:grid-cols-5">
                 <label
                   v-for="key in stageKeys"
@@ -3840,7 +4089,12 @@ watch(selectedTemplateB, (templateId) => {
                     max="6"
                     :value="slotSet.stages[key]"
                     @change="
-                      updateStage('B', slotSet.slot, key, ($event.target as HTMLInputElement).value)
+                      updateStage(
+                        'B',
+                        slotSet.slot,
+                        key,
+                        ($event.target as HTMLInputElement).value,
+                      )
                     "
                   />
                 </label>
@@ -3854,7 +4108,9 @@ watch(selectedTemplateB, (templateId) => {
               <p class="mb-2 text-xs font-semibold text-gray-200">
                 {{ t('damageCalc.combat.title') }}
               </p>
-              <p class="mb-2 text-[11px] text-gray-400">{{ t('damageCalc.combat.help') }}</p>
+              <p class="mb-2 text-[11px] text-gray-400">
+                {{ t('damageCalc.combat.help') }}
+              </p>
 
               <div class="grid gap-2 md:grid-cols-2 xl:grid-cols-4">
                 <label
@@ -4050,6 +4306,10 @@ watch(selectedTemplateB, (templateId) => {
                 </label>
               </div>
             </div>
+                  </div>
+                </article>
+              </div>
+            </Teleport>
           </div>
         </div>
       </article>
@@ -4293,7 +4553,7 @@ watch(selectedTemplateB, (templateId) => {
 
     <div
       v-if="statEditorModal.open && statEditorSlotSet"
-      class="fixed inset-0 z-40 p-4 pointer-events-none"
+      class="fixed inset-0 z-[60] p-4 pointer-events-none"
     >
       <article
         class="pointer-events-auto absolute overflow-auto rounded-xl border border-sky-500/40 bg-off-black/95 p-4 shadow-2xl shadow-black/50"
