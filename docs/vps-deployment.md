@@ -75,9 +75,29 @@ confirmar que ese usuario puede crear carpetas y enlaces en las dos rutas
 anteriores. Si `VPS_USER` debe ser distinto, concederle solo esos permisos sin
 cambiar el propietario de todo `public_html`.
 El workflow agrega `.htaccess` con fallback SPA, cache larga para JS/CSS/fuentes
-compilados y cache corta para snapshots. Apache necesita
-`mod_rewrite`, `mod_headers`, `AllowOverride FileInfo` y permitir enlaces
-simbolicos para esa ruta, igual que el virtual server existente.
+compilados y cache corta para snapshots. El vhost HTTPS actual de
+`m3rsync.com` tiene `AllowOverride none` sobre `public_html`; por eso hay que
+habilitar `FileInfo` específicamente para las releases. Agregar en los bloques
+HTTP y HTTPS del virtual host:
+
+```apache
+<Directory /home/m3rsync/releases/estanque-de-mudkip>
+    Options -Indexes
+    AllowOverride FileInfo
+    Require all granted
+</Directory>
+```
+
+Apache necesita `mod_rewrite` y `mod_headers`. Después de editar, ejecutar como
+administrador:
+
+```bash
+apachectl configtest
+systemctl reload apache2
+```
+
+No hace falta habilitar `.htaccess` para todo `public_html`; el bloque anterior
+limita el cambio a esta aplicación.
 
 Si `public_html/estanque-de-mudkip` ya existe como directorio real, el script
 se detiene deliberadamente. Migrarlo una sola vez, conservando respaldo:

@@ -28,6 +28,9 @@ un paso manual revisable, nunca una dependencia del deploy.
   `prod`; verificar permisos del usuario VPS, huella SSH, Apache/TLS y fallback
   SPA. Si la ruta publica existente es un directorio, migrarla a symlink de
   forma supervisada antes del primer deploy.
+- En el vhost HTTPS, habilitar `AllowOverride FileInfo` solo para
+  `/home/m3rsync/releases/estanque-de-mudkip`; `public_html` usa actualmente
+  `AllowOverride none` y sin esta excepcion las rutas internas responden 404.
 - Hacer smoke real y revisar los logs de la primera publicacion. Una build
   local correcta no demuestra que CI/CD o el servidor esten configurados.
 

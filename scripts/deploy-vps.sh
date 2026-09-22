@@ -36,7 +36,6 @@ ssh_options=(-i "$HOME/.ssh/id_ed25519" -p "$port" -o BatchMode=yes -o StrictHos
 ssh "${ssh_options[@]}" "$remote" "mkdir -p -- '$release' '$web_root' && { test ! -e '$live' || test -L '$live'; }"
 
 cat > dist/.htaccess <<'HTACCESS'
-Options -MultiViews
 RewriteEngine On
 RewriteBase /estanque-de-mudkip/
 RewriteCond %{REQUEST_FILENAME} -f [OR]
@@ -63,7 +62,7 @@ ssh "${ssh_options[@]}" "$remote" "ln -sfn '$release' '$next' && mv -Tf '$next' 
 
 base='https://m3rsync.com/estanque-de-mudkip'
 if ! curl --fail --silent --show-error --location --retry 3 --max-time 30 "$base/vgc/dex?release=$RELEASE_SHA" | grep -F '<div id="app"' >/dev/null; then
-  echo 'Smoke de ruta SPA fallido' >&2
+  echo 'Smoke de ruta SPA fallido; verifica AllowOverride FileInfo para las releases en Apache' >&2
   smoke_failed=1
 else
   smoke_failed=0
