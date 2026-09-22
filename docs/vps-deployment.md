@@ -77,11 +77,14 @@ cambiar el propietario de todo `public_html`.
 El workflow agrega `.htaccess` con fallback SPA, cache larga para JS/CSS/fuentes
 compilados y cache corta para snapshots. El vhost HTTPS actual de
 `m3rsync.com` tiene `AllowOverride none` sobre `public_html`; por eso hay que
-habilitar `FileInfo` específicamente para las releases. Agregar en los bloques
-HTTP y HTTPS del virtual host:
+habilitar `FileInfo` específicamente para la ruta pública de la aplicación.
+Apache conserva la ruta del enlace simbólico al combinar bloques `Directory`,
+así que el bloque debe apuntar a `public_html/estanque-de-mudkip`, no a la
+carpeta destino bajo `releases`. Agregar en los bloques HTTP y HTTPS del virtual
+host:
 
 ```apache
-<Directory /home/m3rsync/releases/estanque-de-mudkip>
+<Directory /home/m3rsync/public_html/estanque-de-mudkip>
     Options -Indexes
     AllowOverride FileInfo
     Require all granted
