@@ -102,6 +102,22 @@ export const messages = {
       projectNextTitle: 'Compromiso de actualizacion',
       projectNextBody:
         'Seguire actualizando la plataforma de forma iterativa, agregando mejoras basadas en feedback real de jugadores.',
+      legalTitle: 'Fuentes, licencias y uso no comercial',
+      legalIntro:
+        'El Estanque de Mudkip es un proyecto independiente, gratuito y actualmente no comercial. No esta afiliado, patrocinado ni respaldado por Nintendo, Creatures, GAME FREAK, The Pokemon Company, Smogon o Pokemon Showdown.',
+      dataSourcesTitle: 'Fuentes de datos',
+      sourceShowdown:
+        'Pokemon Showdown se usa como fuente complementaria de datos competitivos y consistencia. Su servidor y datos se publican bajo licencia MIT.',
+      sourcePokeApi:
+        'PokeAPI se usa para sincronizar datos estructurados que la aplicacion conserva en snapshots locales.',
+      sourcePokeSprite:
+        'PokeSprite aporta recursos y metadatos bajo MIT; sus imagenes de Pokemon se atribuyen a Nintendo, Creatures y GAME FREAK.',
+      rightsTitle: 'Titularidad y alcance',
+      rightsBody:
+        'Pokemon, sus nombres, personajes e imagenes pertenecen a sus respectivos titulares. La aplicacion no reclama propiedad sobre esos recursos ni presenta las fuentes externas como propias.',
+      futureUseBody:
+        'Antes de incorporar anuncios, pagos u otra monetizacion se revisaran nuevamente las fuentes, permisos y avisos aplicables.',
+      noticesLink: 'Consultar avisos completos de terceros',
       bugTitle: 'Reportar bug',
       bugHint: 'Si encuentras un error, envialo con contexto para poder reproducirlo.',
       suggestionTitle: 'Enviar sugerencia',
@@ -995,6 +1011,8 @@ export const messages = {
       loading: 'Cargando generacion...',
       unavailable: 'Esta generacion se habilitara en una siguiente fase.',
       noSearchResults: 'No hay Pokemon que coincidan con la busqueda.',
+      noResultsForAbility:
+        'No hay Pokemon con la habilidad {ability} que coincidan con los filtros actuales.',
       noResultsForLearnedMove: 'No hay Pokemon que aprendan {move} con los filtros actuales.',
       noResultsForType: 'No hay Pokemon de tipo {type} en esta generacion.',
       noResultsWithTypeAndSearch:
@@ -1025,6 +1043,8 @@ export const messages = {
       moveSpecial: 'Ataque especial',
       moveStatus: 'Estado',
       searchPokemon: 'Buscar Pokemon por nombre o numero...',
+      searchAbility: 'Filtrar por habilidad...',
+      searchAbilityNoResults: 'No hay habilidades para esta busqueda.',
       searchLearnedMove: 'Filtrar por movimiento aprendido...',
       searchLearnedMoveNoResults: 'No hay movimientos para esta busqueda.',
       searchMove: 'Buscar movimiento...',
@@ -1158,6 +1178,22 @@ export const messages = {
       projectNextTitle: 'Update commitment',
       projectNextBody:
         'I will keep updating the platform iteratively, prioritizing improvements driven by real player feedback.',
+      legalTitle: 'Sources, licenses and non-commercial use',
+      legalIntro:
+        'Mudkip Pond is an independent, free and currently non-commercial project. It is not affiliated with, sponsored by or endorsed by Nintendo, Creatures, GAME FREAK, The Pokemon Company, Smogon or Pokemon Showdown.',
+      dataSourcesTitle: 'Data sources',
+      sourceShowdown:
+        'Pokemon Showdown is used as a complementary source for competitive data and consistency. Its server and data are published under the MIT License.',
+      sourcePokeApi:
+        'PokeAPI is used to synchronize structured data that the application keeps in local snapshots.',
+      sourcePokeSprite:
+        'PokeSprite provides MIT-licensed resources and metadata; its Pokemon images are attributed to Nintendo, Creatures and GAME FREAK.',
+      rightsTitle: 'Ownership and scope',
+      rightsBody:
+        'Pokemon, its names, characters and images belong to their respective owners. The application does not claim ownership of those resources or present external sources as its own.',
+      futureUseBody:
+        'Before introducing advertising, payments or other monetization, the applicable sources, permissions and notices will be reviewed again.',
+      noticesLink: 'View complete third-party notices',
       bugTitle: 'Report a bug',
       bugHint: 'If you find an issue, send enough context so it can be reproduced.',
       suggestionTitle: 'Send a suggestion',
@@ -2047,6 +2083,7 @@ export const messages = {
       loading: 'Loading generation...',
       unavailable: 'This generation will be enabled in a next phase.',
       noSearchResults: 'No Pokemon matched your search.',
+      noResultsForAbility: 'No Pokemon with the {ability} ability matched the current filters.',
       noResultsForLearnedMove: 'No Pokemon that learn {move} matched the current filters.',
       noResultsForType: 'No {type}-type Pokemon are available in this generation.',
       noResultsWithTypeAndSearch: 'No {type}-type Pokemon matched the current search.',
@@ -2076,6 +2113,8 @@ export const messages = {
       moveSpecial: 'Special',
       moveStatus: 'Status',
       searchPokemon: 'Search Pokemon by name or number...',
+      searchAbility: 'Filter by ability...',
+      searchAbilityNoResults: 'No abilities found for this search.',
       searchLearnedMove: 'Filter by learned move...',
       searchLearnedMoveNoResults: 'No moves found for this search.',
       searchMove: 'Search move...',

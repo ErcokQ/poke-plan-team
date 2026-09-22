@@ -16,6 +16,7 @@ interface UiPreferences {
   dexGenerationByMode: Record<BattleMode, number>
   dexTypeFilterByMode: Record<BattleMode, PokemonTypeKey | ''>
   dexAvailabilityFilterByMode: Record<BattleMode, 'all' | DexAvailabilityFilterKey>
+  dexAbilityFilterByMode: Record<BattleMode, string>
   dexMoveFilterByMode: Record<BattleMode, string>
   damageCalcThreatAvailabilityFilterByMode: Record<BattleMode, 'all' | DexAvailabilityFilterKey>
 }
@@ -51,6 +52,10 @@ export const useUiStore = defineStore('ui', () => {
     dexAvailabilityFilterByMode: {
       vgc: 'all',
       singles: 'all',
+    },
+    dexAbilityFilterByMode: {
+      vgc: '',
+      singles: '',
     },
     dexMoveFilterByMode: {
       vgc: '',
@@ -88,6 +93,7 @@ export const useUiStore = defineStore('ui', () => {
       dexGenerationByMode?: Partial<Record<BattleMode, number>>
       dexTypeFilterByMode?: Partial<Record<BattleMode, string>>
       dexAvailabilityFilterByMode?: Partial<Record<BattleMode, string>>
+      dexAbilityFilterByMode?: Partial<Record<BattleMode, string>>
       dexMoveFilterByMode?: Partial<Record<BattleMode, string>>
       damageCalcThreatAvailabilityFilterByMode?: Partial<Record<BattleMode, string>>
     }
@@ -125,6 +131,10 @@ export const useUiStore = defineStore('ui', () => {
       dexAvailabilityFilterByMode: {
         vgc: toValidDexAvailabilityFilter(current.dexAvailabilityFilterByMode?.vgc),
         singles: toValidDexAvailabilityFilter(current.dexAvailabilityFilterByMode?.singles),
+      },
+      dexAbilityFilterByMode: {
+        vgc: toValidDexAbilityFilter(current.dexAbilityFilterByMode?.vgc),
+        singles: toValidDexAbilityFilter(current.dexAbilityFilterByMode?.singles),
       },
       dexMoveFilterByMode: {
         vgc: toValidDexMoveFilter(current.dexMoveFilterByMode?.vgc),
@@ -217,6 +227,14 @@ export const useUiStore = defineStore('ui', () => {
     return toValidDexAvailabilityFilter(preferences.value.dexAvailabilityFilterByMode[mode])
   }
 
+  function setDexAbilityFilter(mode: BattleMode, filter: string) {
+    preferences.value.dexAbilityFilterByMode[mode] = toValidDexAbilityFilter(filter)
+  }
+
+  function getDexAbilityFilter(mode: BattleMode): string {
+    return toValidDexAbilityFilter(preferences.value.dexAbilityFilterByMode[mode])
+  }
+
   function setDexMoveFilter(mode: BattleMode, filter: string) {
     preferences.value.dexMoveFilterByMode[mode] = toValidDexMoveFilter(filter)
   }
@@ -277,6 +295,8 @@ export const useUiStore = defineStore('ui', () => {
     getDexTypeFilter,
     setDexAvailabilityFilter,
     getDexAvailabilityFilter,
+    setDexAbilityFilter,
+    getDexAbilityFilter,
     setDexMoveFilter,
     getDexMoveFilter,
     setDamageCalcThreatAvailabilityFilter,
@@ -328,6 +348,10 @@ function toValidDexAvailabilityFilter(value: unknown): 'all' | DexAvailabilityFi
 }
 
 function toValidDexMoveFilter(value: unknown): string {
+  return typeof value === 'string' ? value.slice(0, 80).trimStart() : ''
+}
+
+function toValidDexAbilityFilter(value: unknown): string {
   return typeof value === 'string' ? value.slice(0, 80).trimStart() : ''
 }
 

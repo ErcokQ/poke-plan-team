@@ -13,6 +13,7 @@ const { t, locale } = useI18n()
 const mode = computed<BattleMode>(() => (route.params.mode === 'singles' ? 'singles' : 'vgc'))
 const ownerPhotoEnv = (import.meta.env.VITE_OWNER_PHOTO_URL as string | undefined)?.trim()
 const ownerPhoto = computed(() => ownerPhotoEnv || resolvePublicAssetPath('ercokq.jpeg'))
+const thirdPartyNoticesUrl = resolvePublicAssetPath('third-party-notices.txt')
 const ownerPhotoSrc = ref(ownerPhoto.value)
 const feedbackCounters = ref(getAboutFeedbackCounters())
 const feedbackStatus = ref<{ tone: 'success' | 'error'; message: string } | null>(null)
@@ -120,6 +121,77 @@ function sendSuggestion() {
         </div>
       </article>
     </div>
+
+    <article class="rounded-2xl border border-amber-400/25 bg-off-black/70 p-4">
+      <div class="flex flex-wrap items-start justify-between gap-3">
+        <div class="max-w-4xl">
+          <h2 class="text-base font-semibold text-amber-100">{{ t('about.legalTitle') }}</h2>
+          <p class="mt-2 text-sm leading-relaxed text-gray-300">{{ t('about.legalIntro') }}</p>
+        </div>
+        <a
+          :href="thirdPartyNoticesUrl"
+          target="_blank"
+          rel="noreferrer"
+          class="rounded-md border border-amber-400/40 bg-amber-500/10 px-3 py-2 text-xs font-semibold text-amber-100 transition hover:border-amber-300/70"
+        >
+          {{ t('about.noticesLink') }}
+        </a>
+      </div>
+
+      <div class="mt-4 grid gap-4 lg:grid-cols-2">
+        <section class="rounded-xl border border-gray-700 bg-black/20 p-3">
+          <h3 class="text-sm font-semibold text-sky-100">{{ t('about.dataSourcesTitle') }}</h3>
+          <ul class="mt-3 space-y-3 text-sm text-gray-300">
+            <li>
+              <a
+                href="https://github.com/smogon/pokemon-showdown"
+                target="_blank"
+                rel="noreferrer"
+                class="font-semibold text-sky-300 hover:text-sky-200"
+                >Pokemon Showdown ↗</a
+              >
+              <p class="mt-1 text-xs leading-relaxed text-gray-400">
+                {{ t('about.sourceShowdown') }}
+              </p>
+            </li>
+            <li>
+              <a
+                href="https://pokeapi.co/"
+                target="_blank"
+                rel="noreferrer"
+                class="font-semibold text-sky-300 hover:text-sky-200"
+                >PokeAPI ↗</a
+              >
+              <p class="mt-1 text-xs leading-relaxed text-gray-400">
+                {{ t('about.sourcePokeApi') }}
+              </p>
+            </li>
+            <li>
+              <a
+                href="https://github.com/msikma/pokesprite"
+                target="_blank"
+                rel="noreferrer"
+                class="font-semibold text-sky-300 hover:text-sky-200"
+                >PokeSprite ↗</a
+              >
+              <p class="mt-1 text-xs leading-relaxed text-gray-400">
+                {{ t('about.sourcePokeSprite') }}
+              </p>
+            </li>
+          </ul>
+        </section>
+
+        <section class="rounded-xl border border-gray-700 bg-black/20 p-3">
+          <h3 class="text-sm font-semibold text-sky-100">{{ t('about.rightsTitle') }}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-gray-300">{{ t('about.rightsBody') }}</p>
+          <p
+            class="mt-3 rounded-lg border border-violet-400/25 bg-violet-500/10 p-3 text-xs leading-relaxed text-violet-100"
+          >
+            {{ t('about.futureUseBody') }}
+          </p>
+        </section>
+      </div>
+    </article>
 
     <div class="grid gap-4 lg:grid-cols-2">
       <article class="rounded-2xl border border-rose-500/25 bg-off-black/70 p-4">

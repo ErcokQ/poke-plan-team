@@ -205,6 +205,7 @@ const isLoading = ref(false)
 const loadError = ref('')
 const typeFilter = ref<PokemonTypeKey | null>(null)
 const availabilityFilter = ref<'all' | DexAvailabilityFilterKey>('all')
+const abilityFilter = ref('')
 const learnedMoveFilter = ref('')
 
 const selectedProfile = ref<DexPokemonProfile | null>(null)
@@ -235,6 +236,7 @@ function applyDexPreferences(nextMode: BattleMode) {
   activeGeneration.value = uiStore.getDexGeneration(nextMode)
   typeFilter.value = uiStore.getDexTypeFilter(nextMode)
   availabilityFilter.value = uiStore.getDexAvailabilityFilter(nextMode)
+  abilityFilter.value = uiStore.getDexAbilityFilter(nextMode)
   learnedMoveFilter.value = uiStore.getDexMoveFilter(nextMode)
 }
 
@@ -383,14 +385,54 @@ const selectedAvailabilityOption = computed(() => {
 })
 
 const hasSearchQuery = computed(() => pokemonSearch.value.trim().length > 0)
+const hasAbilityFilter = computed(() => abilityFilter.value.trim().length > 0)
 const hasMoveFilter = computed(() => learnedMoveFilter.value.trim().length > 0)
 const hasActiveDexFilters = computed(
   () =>
     hasSearchQuery.value ||
+    hasAbilityFilter.value ||
     hasMoveFilter.value ||
     typeFilter.value !== null ||
     availabilityFilter.value !== 'all',
 )
+
+const abilityIdsByEntryId = computed(() => {
+  const result = new Map<string, Set<string>>()
+
+  for (const entry of entries.value) {
+    const pokemonIds = [entry.id, ...entry.variants.map((variant) => variant.id)]
+    const abilityIds = new Set<string>()
+
+    for (const pokemonId of pokemonIds) {
+      const summary = dexStore.getPokemonProfileSummary(pokemonId, locale.value as LocaleCode)
+      for (const ability of summary?.abilities ?? []) abilityIds.add(ability.id)
+    }
+
+    result.set(entry.id, abilityIds)
+  }
+
+  return result
+})
+
+const abilityFilterOptions = computed<SearchableOption[]>(() => {
+  const abilityIds = new Set<string>()
+  for (const entryAbilityIds of abilityIdsByEntryId.value.values()) {
+    for (const abilityId of entryAbilityIds) abilityIds.add(abilityId)
+  }
+
+  return [...abilityIds]
+    .map((abilityId) => dexStore.getAbilityMeta(abilityId))
+    .map((ability) => ({
+      value: ability.id,
+      label: ability.name,
+      meta: { effect: ability.shortEffect || ability.effect },
+    }))
+    .sort((a, b) => a.label.localeCompare(b.label, locale.value))
+})
+
+const selectedAbilityFilterOption = computed(() => {
+  return abilityFilterOptions.value.find((option) => option.value === abilityFilter.value) ?? null
+})
 
 const learnedMoveFilterOption = computed(() => {
   if (!learnedMoveFilter.value) return null
@@ -449,6 +491,10 @@ const filteredEntries = computed(() => {
       (entry.gameAvailability ?? []).includes(availabilityFilter.value)
     if (!matchesAvailability) return false
 
+    const matchesAbility =
+      !abilityFilter.value || abilityIdsByEntryId.value.get(entry.id)?.has(abilityFilter.value)
+    if (!matchesAbility) return false
+
     const matchesLearnedMove = !moveMatches || moveMatches.has(entry.id)
     if (!matchesLearnedMove) return false
 
@@ -463,6 +509,11 @@ const filteredEntries = computed(() => {
 })
 
 const noResultsMessage = computed(() => {
+  if (hasAbilityFilter.value) {
+    return t('dex.noResultsForAbility', {
+      ability: selectedAbilityFilterOption.value?.label ?? abilityFilter.value.trim(),
+    })
+  }
   if (hasMoveFilter.value) {
     return t('dex.noResultsForLearnedMove', {
       move: learnedMoveFilterOption.value?.name ?? learnedMoveFilter.value.trim(),
@@ -741,6 +792,7 @@ function toggleTypeFilter(type: PokemonTypeKey) {
 
 function clearDexFilters() {
   pokemonSearch.value = ''
+  abilityFilter.value = ''
   learnedMoveFilter.value = ''
   typeFilter.value = null
   availabilityFilter.value = 'all'
@@ -1073,6 +1125,14 @@ watch(
 )
 
 watch(
+  [mode, abilityFilter],
+  ([currentMode, filter]) => {
+    uiStore.setDexAbilityFilter(currentMode, filter)
+  },
+  { immediate: true },
+)
+
+watch(
   [mode, learnedMoveFilter],
   ([currentMode, filter]) => {
     uiStore.setDexMoveFilter(currentMode, filter)
@@ -1098,6 +1158,17 @@ watch(
     if (availabilityFilter.value === 'all') return
     if (!options.some((option) => option.key === availabilityFilter.value)) {
       availabilityFilter.value = 'all'
+    }
+  },
+  { immediate: true },
+)
+
+watch(
+  abilityFilterOptions,
+  (options) => {
+    if (entries.value.length === 0 || !abilityFilter.value) return
+    if (!options.some((option) => option.value === abilityFilter.value)) {
+      abilityFilter.value = ''
     }
   },
   { immediate: true },
@@ -1304,7 +1375,8 @@ watch(
           </button>
         </div>
       </div>
-      <div class="mb-4 flex flex-col gap-2 xl:flex-row xl:items-center">
+      <div
+        class="mb-4 grid gap-2 md:grid-cols-2 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)_auto] xl:items-center">
         <div class="flex min-w-0 flex-1 items-center gap-2">
           <input v-model="pokemonSearch" type="text"
             class="w-full rounded-md border border-gray-700 bg-off-black/70 px-2.5 py-2 text-sm text-gray-100 placeholder:text-gray-500"
@@ -1312,6 +1384,34 @@ watch(
           <button v-if="pokemonSearch.trim()"
             class="rounded-md border border-gray-700 px-2 py-2 text-xs text-gray-200 hover:border-sky-500/50"
             @click="pokemonSearch = ''">
+            X
+          </button>
+        </div>
+        <div class="flex min-w-0 items-center gap-2">
+          <div class="min-w-0 flex-1">
+            <SearchableSelect
+              v-model="abilityFilter"
+              :options="abilityFilterOptions"
+              :placeholder="t('dex.searchAbility')"
+              :no-results-label="t('dex.searchAbilityNoResults')"
+              :large-list-threshold="120"
+              :large-list-preview="80"
+            >
+              <template #option="{ option }">
+                <div class="min-w-0">
+                  <p class="truncate font-semibold text-gray-100">{{ option.label }}</p>
+                  <p v-if="option.meta?.effect" class="truncate text-[10px] text-gray-400">
+                    {{ option.meta.effect }}
+                  </p>
+                </div>
+              </template>
+            </SearchableSelect>
+          </div>
+          <button
+            v-if="abilityFilter"
+            class="rounded-md border border-gray-700 px-2 py-2 text-xs text-gray-200 hover:border-sky-500/50"
+            @click="abilityFilter = ''"
+          >
             X
           </button>
         </div>
