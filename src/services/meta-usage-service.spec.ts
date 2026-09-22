@@ -1,4 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { readFile } from 'node:fs/promises'
+import path from 'node:path'
 import { LocalSnapshotUsageProvider, normalizeMetaId } from './meta-usage-service'
 
 describe('meta usage service', () => {
@@ -43,5 +45,18 @@ describe('meta usage service', () => {
     expect(result.sneasler?.items[0]).toEqual({ id: 'white-herb', weight: 0.77 })
     expect(result.sneasler?.teammates[0]).toEqual({ id: 'kingambit', weight: 0.45 })
     expect(result.sneasler?.teammates[1]).toEqual({ id: 'basculegion-male', weight: 0.43 })
+  })
+
+  it('ships current Champions move and item rankings for every ranked Pokemon', async () => {
+    const snapshotPath = path.resolve('public/meta-snapshots/champions/vgc-reg-mc.json')
+    const snapshot = JSON.parse(await readFile(snapshotPath, 'utf8')) as {
+      pokemon: Record<string, { moves: Record<string, number>; items: Record<string, number> }>
+    }
+
+    expect(Object.keys(snapshot.pokemon).length).toBeGreaterThan(0)
+    for (const entry of Object.values(snapshot.pokemon)) {
+      expect(Object.keys(entry.moves).length).toBeGreaterThan(0)
+      expect(Object.keys(entry.items).length).toBeGreaterThan(0)
+    }
   })
 })

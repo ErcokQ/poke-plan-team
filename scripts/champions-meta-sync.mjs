@@ -361,6 +361,9 @@ async function main() {
   if (rankedEntries.length === 0) {
     throw new Error('No verified Champions usage percentages were found; refusing to overwrite the snapshot')
   }
+  if (!rankedEntries.some((entry) => Object.keys(entry.moves).length > 0 && Object.keys(entry.items).length > 0)) {
+    throw new Error('No Champions move and item usage was found; refusing to overwrite the snapshot')
+  }
   const payload = toPayload(rankedEntries, generatedAt, sourceUrl)
 
   await writeJsonWithGzip(sourcePath, payload)

@@ -170,11 +170,19 @@ const compareAbilitySelectOptions = computed<SearchOption[]>(() =>
     label: abilityLabel(ability),
   })),
 )
-const itemSelectOptions = computed<SearchOption[]>(() =>
-  dexStore.items
+function sortedItemOptionsForPokemon(pokemon: PokemonEntry | null | undefined): SearchOption[] {
+  const rankedByMeta = rankingFromWeightedIds(effectivePokemonMeta(pokemon)?.items ?? [])
+  const fallbackRanking = rankingFromOrderedIds(pokemon?.suggestedItems ?? [])
+  return dexStore.items
     .filter((item) => mode.value !== 'vgc' || item.championsAvailable !== false)
-    .map((item) => ({ value: item.id, label: item.name })),
-)
+    .map((item) => ({ value: item.id, label: item.name }))
+    .sort((a, b) =>
+      (rankedByMeta.get(b.value) ?? 0) - (rankedByMeta.get(a.value) ?? 0) ||
+      (fallbackRanking.get(b.value) ?? 0) - (fallbackRanking.get(a.value) ?? 0) ||
+      a.label.localeCompare(b.label, localeCode()),
+    )
+}
+const compareItemSelectOptions = computed(() => sortedItemOptionsForPokemon(comparePokemon.value))
 const selectedItem = computed(() => dexStore.getItem(activeMember.value.itemId ?? ''))
 const lockedItemId = computed(() => getRequiredItemIdForPokemon(activePokemon.value))
 const isItemSelectionLocked = computed(() => isItemLockedForPokemon(activePokemon.value))
@@ -869,7 +877,8 @@ function compareCandidateScore(candidate: PokemonEntry): number {
   return roleSimilarity * 100 + primaryMatch * 18 + secondaryOverlap * 8 + usageScore
 }
 
-function effectivePokemonMeta(pokemon: PokemonEntry): PokemonMetaUsage | undefined {
+function effectivePokemonMeta(pokemon: PokemonEntry | null | undefined): PokemonMetaUsage | undefined {
+  if (!pokemon) return undefined
   const candidates = new Set<string>([pokemon.id])
   for (const form of dexStore.getPokemonForms(localeCode(), pokemon.id)) {
     candidates.add(form.id)
@@ -939,6 +948,21 @@ function preferredMovesForPokemon(pokemon: PokemonEntry): [string, string, strin
   )
 }
 
+function preferredItemsForPokemon(pokemon: PokemonEntry): string[] {
+  const ranked = effectivePokemonMeta(pokemon)?.items.map((entry) => entry.id) ?? []
+  return [...new Set([...ranked, ...pokemon.suggestedItems])].filter((itemId) => {
+    const item = dexStore.getItem(itemId)
+    return item && (mode.value !== 'vgc' || item.championsAvailable !== false)
+  })
+}
+
+function preferredItemForPokemon(pokemon: PokemonEntry | undefined): string {
+  if (!pokemon) return ''
+  return getRequiredItemIdForPokemon(pokemon) ||
+    preferredItemsForPokemon(pokemon)[0] ||
+    resolveInitialItemIdForPokemon(pokemon)
+}
+
 function onPokemonChange(value: string) {
   uiStore.setBuilderCatalogSource('pokemon')
   if (!value) {
@@ -960,7 +984,7 @@ function onPokemonChange(value: string) {
   teamStore.updateMember(mode.value, activeMember.value.slot, {
     pokemonId: value,
     abilityId: pokemon?.abilities[0] ?? '',
-    itemId: resolveInitialItemIdForPokemon(pokemon),
+    itemId: preferredItemForPokemon(pokemon),
     natureId: pokemon?.defaultNature ?? activeMember.value.natureId,
     moves: suggestedMoves,
     roleTags: pokemon ? resolveRoleTagsForSet(suggestedMoves, pokemon.roleTags, pokemon) : [],
@@ -1496,7 +1520,7 @@ function buildCompareDraft(pokemonId: string, preserveTraining = true) {
   compareDraft.value = {
     pokemonId,
     abilityId: pokemon.abilities[0] ?? '',
-    itemId: resolveInitialItemIdForPokemon(pokemon),
+    itemId: preferredItemForPokemon(pokemon),
     natureId: preservedNature || pokemon.defaultNature || 'jolly',
     evs: { ...preservedEvs },
     ivs: { ...preservedIvs },
@@ -2475,7 +2499,7 @@ watch(
             <p class="mb-1 text-xs text-gray-400">{{ t('builder.suggestedItems') }}</p>
             <div class="flex flex-wrap gap-1.5">
               <span
-                v-for="item in activePokemon.suggestedItems.slice(0, 3)"
+                v-for="item in preferredItemsForPokemon(activePokemon).slice(0, 3)"
                 :key="item"
                 class="rounded-md border border-gray-700 bg-off-black/70 px-2 py-1 text-xs"
               >
@@ -2639,7 +2663,7 @@ watch(
                 <span class="mb-1 block text-gray-300">{{ t('builder.item') }}</span>
                 <SearchableSelect
                   :model-value="compareDraft.itemId"
-                  :options="itemSelectOptions"
+                  :options="compareItemSelectOptions"
                   :placeholder="t('builder.selectItem')"
                   :disabled="!comparePokemon || isItemLockedForPokemon(comparePokemon)"
                   :no-results-label="t('dex.noSearchResults')"
