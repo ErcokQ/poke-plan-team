@@ -1,5 +1,5 @@
 ﻿<script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import type { BattleMode, PokemonTypeKey, ScoreWeights, TeamMember } from '@/models/domain'
@@ -39,6 +39,16 @@ const selectedSlot = computed<1 | 2 | 3 | 4 | 5 | 6>({
   get: () => uiStore.getSelectedSlot(mode.value),
   set: (slot) => uiStore.setSelectedSlot(mode.value, slot),
 })
+
+watch(
+  [mode, () => team.value.id, () => team.value.updatedAt],
+  () => {
+    if (team.value.members.some((entry) => entry.slot === selectedSlot.value && entry.pokemonId)) return
+    const firstOccupiedSlot = team.value.members.find((entry) => entry.pokemonId)?.slot
+    if (firstOccupiedSlot) selectedSlot.value = firstOccupiedSlot
+  },
+  { immediate: true },
+)
 
 const member = computed(() => team.value.members.find((entry) => entry.slot === selectedSlot.value) ?? team.value.members[0])
 const memberPokemon = computed(() => (member.value.pokemonId ? dexStore.getPokemon(mode.value, member.value.pokemonId) : undefined))
@@ -116,6 +126,8 @@ const teamMembersWithPokemon = computed(() => {
 const teamDefenseTypeRows = computed<{
   weaknesses: TeamDefenseTypeRow[]
   resistances: TeamDefenseTypeRow[]
+  noWeaknesses: TeamDefenseTypeRow[]
+  noResistances: TeamDefenseTypeRow[]
 }>(() => {
   const rows: TeamDefenseTypeRow[] = TYPE_KEYS.map((type) => ({
     type,
@@ -181,6 +193,8 @@ const teamDefenseTypeRows = computed<{
   return {
     weaknesses: weaknessRows,
     resistances: resistanceRows,
+    noWeaknesses: rows.filter((row) => row.weakCount === 0),
+    noResistances: rows.filter((row) => row.resistCount === 0),
   }
 })
 
@@ -236,6 +250,10 @@ const teamOffenseCoverageRows = computed<TeamOffenseCoverageRow[]>(() => {
     .filter((row) => row.coverageCount > 0)
     .sort((a, b) => b.coverageCount - a.coverageCount || b.bestMultiplier - a.bestMultiplier)
 })
+
+const uncoveredOffenseTypes = computed(() =>
+  TYPE_KEYS.filter((type) => !teamOffenseCoverageRows.value.some((row) => row.type === type)),
+)
 
 const analysisSections = computed<Array<{ key: AnalysisSection; label: string }>>(() => [
   { key: 'overview', label: t('analytics.sectionOverview') },
@@ -562,16 +580,22 @@ function pillarMapButtonClass(key: 'plan' | 'tempo' | 'matchups' | 'resources'):
         {{ t('analytics.prioritiesProvisional', { count: teamMembersWithPokemon.length }) }}
       </p>
       <RouterLink
-        v-if="teamMembersWithPokemon.length < 4"
+        v-if="teamMembersWithPokemon.length > 0 && teamMembersWithPokemon.length < 4"
         :to="{ name: 'builder', params: { mode } }"
         class="mt-3 inline-flex rounded-lg border border-sky-400/50 bg-sky-500/15 px-3 py-1.5 text-xs font-semibold text-sky-100 hover:border-sky-300"
       >
         {{ t('analytics.goToBuilder') }}
       </RouterLink>
-      <p v-else-if="priorityFindings.length === 0" class="mt-1 text-xs text-emerald-200">
+      <p
+        v-if="teamMembersWithPokemon.length >= 4 && priorityFindings.length === 0"
+        class="mt-1 text-xs text-emerald-200"
+      >
         {{ t('analytics.prioritiesClear') }}
       </p>
-      <div v-else class="mt-2 grid gap-2 sm:grid-cols-3">
+      <div
+        v-if="teamMembersWithPokemon.length >= 4 && priorityFindings.length > 0"
+        class="mt-2 grid gap-2 sm:grid-cols-3"
+      >
         <button
           v-for="finding in priorityFindings"
           :key="`${finding.section}-${finding.text}`"
@@ -599,6 +623,20 @@ function pillarMapButtonClass(key: 'plan' | 'tempo' | 'matchups' | 'resources'):
         {{ section.label }}
       </button>
     </nav>
+
+    <div
+      v-if="activeSection === 'overview' && teamMembersWithPokemon.length === 0"
+      class="mt-4 rounded-xl border border-sky-500/30 bg-sky-500/5 p-4"
+    >
+      <h3 class="text-sm font-semibold text-sky-100">{{ t('analytics.overviewEmptyTitle') }}</h3>
+      <p class="mt-1 text-xs text-gray-300">{{ t('analytics.overviewEmptyHint') }}</p>
+      <RouterLink
+        :to="{ name: 'builder', params: { mode } }"
+        class="mt-3 inline-flex rounded-lg border border-sky-400/50 bg-sky-500/15 px-3 py-1.5 text-xs font-semibold text-sky-100 hover:border-sky-300"
+      >
+        {{ t('analytics.goToBuilder') }}
+      </RouterLink>
+    </div>
 
     <TeamSlotPicker
       v-if="activeSection === 'overview' && teamMembersWithPokemon.length > 0"
@@ -919,7 +957,7 @@ function pillarMapButtonClass(key: 'plan' | 'tempo' | 'matchups' | 'resources'):
       <article class="rounded-xl border border-rose-500/30 bg-rose-500/5 p-3">
         <h3 class="text-sm font-semibold text-rose-200">{{ t('analytics.teamWeaknessWidgetTitle') }}</h3>
         <p class="mt-1 text-[11px] text-gray-400">{{ t('analytics.teamWeaknessWidgetHint') }}</p>
-        <p v-if="teamDefenseTypeRows.weaknesses.length > 0" class="mt-1 text-[11px] text-rose-100">
+        <p class="mt-1 text-[11px] text-rose-100">
           {{ t('analytics.teamWeaknessCount', { covered: teamDefenseTypeRows.weaknesses.length, total: 18 }) }}
         </p>
         <ul
@@ -969,13 +1007,28 @@ function pillarMapButtonClass(key: 'plan' | 'tempo' | 'matchups' | 'resources'):
         >
           {{ showAllWeaknessTypes ? t('analytics.teamTypeShowLess') : t('analytics.teamTypeShowAll') }}
         </button>
-        <p v-else class="mt-2 text-xs text-gray-500">{{ t('common.none') }}</p>
+        <div class="mt-3 border-t border-gray-700 pt-2">
+          <p class="text-[11px] font-semibold text-gray-400">{{ t('analytics.teamNoWeaknessTypes') }}</p>
+          <div class="mt-1 flex flex-wrap gap-1">
+            <span
+              v-for="row in teamDefenseTypeRows.noWeaknesses"
+              :key="`team-no-weak-${row.type}`"
+              class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/50 px-1.5 py-0.5 text-[10px] text-gray-300"
+            >
+              <img :src="TYPE_META[row.type].icon" :alt="''" class="h-3 w-3" />
+              {{ row.label }}
+            </span>
+            <span v-if="teamDefenseTypeRows.noWeaknesses.length === 0" class="text-[10px] text-gray-500">
+              {{ t('common.none') }}
+            </span>
+          </div>
+        </div>
       </article>
 
       <article class="rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-3">
         <h3 class="text-sm font-semibold text-emerald-200">{{ t('analytics.teamResistanceWidgetTitle') }}</h3>
         <p class="mt-1 text-[11px] text-gray-400">{{ t('analytics.teamResistanceWidgetHint') }}</p>
-        <p v-if="teamDefenseTypeRows.resistances.length > 0" class="mt-1 text-[11px] text-emerald-100">
+        <p class="mt-1 text-[11px] text-emerald-100">
           {{ t('analytics.teamResistanceCount', { covered: teamDefenseTypeRows.resistances.length, total: 18 }) }}
         </p>
         <ul
@@ -1028,13 +1081,28 @@ function pillarMapButtonClass(key: 'plan' | 'tempo' | 'matchups' | 'resources'):
         >
           {{ showAllResistanceTypes ? t('analytics.teamTypeShowLess') : t('analytics.teamTypeShowAll') }}
         </button>
-        <p v-else class="mt-2 text-xs text-gray-500">{{ t('common.none') }}</p>
+        <div class="mt-3 border-t border-gray-700 pt-2">
+          <p class="text-[11px] font-semibold text-gray-400">{{ t('analytics.teamNoResistanceTypes') }}</p>
+          <div class="mt-1 flex flex-wrap gap-1">
+            <span
+              v-for="row in teamDefenseTypeRows.noResistances"
+              :key="`team-no-res-${row.type}`"
+              class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/50 px-1.5 py-0.5 text-[10px] text-gray-300"
+            >
+              <img :src="TYPE_META[row.type].icon" :alt="''" class="h-3 w-3" />
+              {{ row.label }}
+            </span>
+            <span v-if="teamDefenseTypeRows.noResistances.length === 0" class="text-[10px] text-gray-500">
+              {{ t('common.none') }}
+            </span>
+          </div>
+        </div>
       </article>
 
       <article class="rounded-xl border border-sky-500/30 bg-sky-500/5 p-3">
         <h3 class="text-sm font-semibold text-sky-200">{{ t('analytics.teamCoverageWidgetTitle') }}</h3>
         <p class="mt-1 text-[11px] text-gray-400">{{ t('analytics.teamCoverageWidgetHint') }}</p>
-        <p v-if="teamOffenseCoverageRows.length > 0" class="mt-1 text-[11px] text-sky-100">
+        <p class="mt-1 text-[11px] text-sky-100">
           {{ t('analytics.teamCoverageCount', { covered: teamOffenseCoverageRows.length, total: 18 }) }}
         </p>
         <ul
@@ -1084,7 +1152,22 @@ function pillarMapButtonClass(key: 'plan' | 'tempo' | 'matchups' | 'resources'):
         >
           {{ showAllCoveredTypes ? t('analytics.teamTypeShowLess') : t('analytics.teamTypeShowAll') }}
         </button>
-        <p v-else class="mt-2 text-xs text-gray-500">{{ t('common.none') }}</p>
+        <div class="mt-3 border-t border-gray-700 pt-2">
+          <p class="text-[11px] font-semibold text-gray-400">{{ t('analytics.teamUncoveredTypes') }}</p>
+          <div class="mt-1 flex flex-wrap gap-1">
+            <span
+              v-for="type in uncoveredOffenseTypes"
+              :key="`team-no-cover-${type}`"
+              class="inline-flex items-center gap-1 rounded border border-gray-700 bg-off-black/50 px-1.5 py-0.5 text-[10px] text-gray-300"
+            >
+              <img :src="TYPE_META[type].icon" :alt="''" class="h-3 w-3" />
+              {{ typeName(type) }}
+            </span>
+            <span v-if="uncoveredOffenseTypes.length === 0" class="text-[10px] text-gray-500">
+              {{ t('common.none') }}
+            </span>
+          </div>
+        </div>
       </article>
     </div>
 

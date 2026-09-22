@@ -956,7 +956,15 @@ export const useAnalyticsStore = defineStore('analytics', () => {
     const team = teamStore.getActiveTeam(mode)
     return {
       team,
-      key: [mode, team.id, team.updatedAt, ...extras].join('|'),
+      key: [
+        mode,
+        team.id,
+        team.updatedAt,
+        uiStore.locale,
+        dexStore.source,
+        dexStore.lastHydratedAt ?? '',
+        ...extras,
+      ].join('|'),
     }
   }
 
