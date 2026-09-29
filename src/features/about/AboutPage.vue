@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import ownerPlaceholder from '@/assets/img/about-owner-placeholder.svg'
 import type { BattleMode } from '@/models/domain'
-import { getAboutFeedbackCounters, saveAboutFeedback } from '@/services/about-feedback-service'
+import { buildAboutFeedbackIssueUrl, type AboutFeedbackType } from '@/services/about-feedback-service'
 import { resolvePublicAssetPath } from '@/utils/base-path'
 
 const route = useRoute()
@@ -15,16 +15,12 @@ const ownerPhotoEnv = (import.meta.env.VITE_OWNER_PHOTO_URL as string | undefine
 const ownerPhoto = computed(() => ownerPhotoEnv || resolvePublicAssetPath('ercokq.jpeg'))
 const thirdPartyNoticesUrl = resolvePublicAssetPath('third-party-notices.txt')
 const ownerPhotoSrc = ref(ownerPhoto.value)
-const feedbackCounters = ref(getAboutFeedbackCounters())
-const feedbackStatus = ref<{ tone: 'success' | 'error'; message: string } | null>(null)
+const feedbackError = ref('')
 
 const bugSubject = ref('')
 const bugMessage = ref('')
 const suggestionSubject = ref('')
 const suggestionMessage = ref('')
-
-const bugSavedCount = computed(() => feedbackCounters.value.bug)
-const suggestionSavedCount = computed(() => feedbackCounters.value.suggestion)
 
 watch(ownerPhoto, (value) => {
   ownerPhotoSrc.value = value
@@ -36,50 +32,32 @@ function onOwnerPhotoError() {
   }
 }
 
-function refreshCounters() {
-  feedbackCounters.value = getAboutFeedbackCounters()
-}
-
 function validateFeedback(subject: string, message: string): boolean {
   const valid = Boolean(subject.trim()) || Boolean(message.trim())
   if (!valid) {
-    feedbackStatus.value = { tone: 'error', message: t('about.saveValidation') }
+    feedbackError.value = t('about.saveValidation')
   }
   return valid
 }
 
-function sendBugReport() {
-  if (!validateFeedback(bugSubject.value, bugMessage.value)) return
+function openFeedbackIssue(type: AboutFeedbackType) {
+  const subject = type === 'bug' ? bugSubject.value : suggestionSubject.value
+  const message = type === 'bug' ? bugMessage.value : suggestionMessage.value
+  if (!validateFeedback(subject, message)) return
 
-  saveAboutFeedback({
-    type: 'bug',
-    subject: bugSubject.value.trim(),
-    message: bugMessage.value.trim(),
+  const issueUrl = buildAboutFeedbackIssueUrl({
+    type,
+    subject,
+    message,
     mode: mode.value,
     language: locale.value,
-  })
-
-  bugSubject.value = ''
-  bugMessage.value = ''
-  refreshCounters()
-  feedbackStatus.value = { tone: 'success', message: t('about.saveBugSuccess') }
-}
-
-function sendSuggestion() {
-  if (!validateFeedback(suggestionSubject.value, suggestionMessage.value)) return
-
-  saveAboutFeedback({
-    type: 'suggestion',
-    subject: suggestionSubject.value.trim(),
-    message: suggestionMessage.value.trim(),
-    mode: mode.value,
-    language: locale.value,
-  })
-
-  suggestionSubject.value = ''
-  suggestionMessage.value = ''
-  refreshCounters()
-  feedbackStatus.value = { tone: 'success', message: t('about.saveSuggestionSuccess') }
+  }, t(type === 'bug' ? 'about.bugDefaultSubject' : 'about.suggestionDefaultSubject'))
+  if (issueUrl.length > 7000) {
+    feedbackError.value = t('about.feedbackTooLong')
+    return
+  }
+  feedbackError.value = ''
+  window.location.assign(issueUrl)
 }
 </script>
 
@@ -205,20 +183,23 @@ function sendSuggestion() {
       </div>
     </article>
 
+    <div class="rounded-2xl border border-sky-500/25 bg-off-black/70 p-3">
+      <p class="text-xs text-gray-300">{{ t('about.githubNotice') }}</p>
+      <p v-if="feedbackError" role="alert" class="mt-2 text-xs font-semibold text-rose-300">
+        {{ feedbackError }}
+      </p>
+    </div>
+
     <div class="grid gap-4 lg:grid-cols-2">
       <article class="rounded-2xl border border-rose-500/25 bg-off-black/70 p-4">
-        <div class="flex items-center justify-between gap-2">
-          <h2 class="text-base font-semibold text-rose-200">{{ t('about.bugTitle') }}</h2>
-          <span class="rounded-md border border-rose-400/40 bg-rose-500/10 px-2 py-0.5 text-[11px] text-rose-100">
-            {{ t('about.savedCount', { count: bugSavedCount }) }}
-          </span>
-        </div>
+        <h2 class="text-base font-semibold text-rose-200">{{ t('about.bugTitle') }}</h2>
         <p class="mt-1 text-sm text-gray-300">{{ t('about.bugHint') }}</p>
         <label class="mt-3 block text-xs text-gray-300">
           {{ t('about.subjectLabel') }}
           <input
             v-model.trim="bugSubject"
             type="text"
+            maxlength="120"
             class="mt-1 w-full rounded-md border border-gray-700 bg-st-black px-3 py-2 text-sm text-gray-100 outline-none focus:border-rose-400/80"
             :placeholder="t('about.subjectPlaceholder')"
           />
@@ -228,6 +209,7 @@ function sendSuggestion() {
           <textarea
             v-model.trim="bugMessage"
             rows="5"
+            maxlength="2000"
             class="mt-1 w-full rounded-md border border-gray-700 bg-st-black px-3 py-2 text-sm text-gray-100 outline-none focus:border-rose-400/80"
             :placeholder="t('about.bugPlaceholder')"
           />
@@ -235,25 +217,21 @@ function sendSuggestion() {
         <button
           type="button"
           class="mt-3 rounded-md border border-rose-400/70 bg-rose-500/20 px-3 py-2 text-xs font-semibold text-rose-100"
-          @click="sendBugReport"
+          @click="openFeedbackIssue('bug')"
         >
           {{ t('about.sendBug') }}
         </button>
       </article>
 
       <article class="rounded-2xl border border-emerald-500/25 bg-off-black/70 p-4">
-        <div class="flex items-center justify-between gap-2">
-          <h2 class="text-base font-semibold text-emerald-200">{{ t('about.suggestionTitle') }}</h2>
-          <span class="rounded-md border border-emerald-400/40 bg-emerald-500/10 px-2 py-0.5 text-[11px] text-emerald-100">
-            {{ t('about.savedCount', { count: suggestionSavedCount }) }}
-          </span>
-        </div>
+        <h2 class="text-base font-semibold text-emerald-200">{{ t('about.suggestionTitle') }}</h2>
         <p class="mt-1 text-sm text-gray-300">{{ t('about.suggestionHint') }}</p>
         <label class="mt-3 block text-xs text-gray-300">
           {{ t('about.subjectLabel') }}
           <input
             v-model.trim="suggestionSubject"
             type="text"
+            maxlength="120"
             class="mt-1 w-full rounded-md border border-gray-700 bg-st-black px-3 py-2 text-sm text-gray-100 outline-none focus:border-emerald-400/80"
             :placeholder="t('about.subjectPlaceholder')"
           />
@@ -263,6 +241,7 @@ function sendSuggestion() {
           <textarea
             v-model.trim="suggestionMessage"
             rows="5"
+            maxlength="2000"
             class="mt-1 w-full rounded-md border border-gray-700 bg-st-black px-3 py-2 text-sm text-gray-100 outline-none focus:border-emerald-400/80"
             :placeholder="t('about.suggestionPlaceholder')"
           />
@@ -270,22 +249,12 @@ function sendSuggestion() {
         <button
           type="button"
           class="mt-3 rounded-md border border-emerald-400/70 bg-emerald-500/20 px-3 py-2 text-xs font-semibold text-emerald-100"
-          @click="sendSuggestion"
+          @click="openFeedbackIssue('suggestion')"
         >
           {{ t('about.sendSuggestion') }}
         </button>
       </article>
     </div>
 
-    <div class="rounded-2xl border border-sky-500/25 bg-off-black/70 p-3">
-      <p class="text-xs text-gray-300">{{ t('about.storageHint') }}</p>
-      <p
-        v-if="feedbackStatus"
-        class="mt-2 text-xs font-semibold"
-        :class="feedbackStatus.tone === 'success' ? 'text-emerald-300' : 'text-rose-300'"
-      >
-        {{ feedbackStatus.message }}
-      </p>
-    </div>
   </section>
 </template>
